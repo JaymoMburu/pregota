@@ -1,0 +1,22 @@
+{
+  "name": "Pregota — Anonymous Gifts",
+  "short_name": "Pregota",
+  "description": "Send anonymous money gifts via M-Pesa. No identity revealed.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#0f0f1a",
+  "theme_color": "#7c3aed",
+  "orientation": "portrait-primary",
+  "categories": ["finance", "utilities"],
+  "icons": [
+    { "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" },
+    { "src": "/icons/icon.svg",     "sizes": "any",     "type": "image/svg+xml", "purpose": "any maskable" }
+  ],
+  "shortcuts": [
+    { "name": "Send a Gift",  "url": "/",       "description": "Send an anonymous M-Pesa gift" },
+    { "name": "Redeem Gift",  "url": "/redeem", "description": "Claim your gift code" },
+    { "name": "Track Gift",   "url": "/track",  "description": "Check gift status" }
+  ]
+}
