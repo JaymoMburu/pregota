@@ -10,7 +10,7 @@
 set -e  # exit on any error
 
 # ── Config — edit these before running ─────────────────────────
-REPO_URL="https://github.com/YOUR_USERNAME/pregota.git"
+REPO_URL="https://github.com/JaymoMburu/pregota.git"
 APP_DIR="$HOME/pregota"          # app lives OUTSIDE public_html
 PUBLIC_HTML="$HOME/public_html"  # your domain's web root
 BRANCH="main"
