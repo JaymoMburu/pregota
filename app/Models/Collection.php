@@ -9,7 +9,7 @@ class Collection extends Model
 {
     protected $fillable = [
         'slug', 'title', 'description', 'photo_path', 'occasion', 'organiser_name', 'organiser_phone', 'recipient_name',
-        'recipient_phone_encrypted', 'target_amount', 'deadline',
+        'recipient_phone_encrypted', 'target_amount', 'per_person_amount', 'preset_amounts', 'deadline',
         'payout_trigger', 'status', 'manage_token',
         'total_raised', 'contributor_count',
         'b2c_conversation_id', 'paid_out_at',
@@ -17,8 +17,9 @@ class Collection extends Model
     ];
 
     protected $casts = [
-        'deadline'    => 'datetime',
-        'paid_out_at' => 'datetime',
+        'deadline'       => 'datetime',
+        'paid_out_at'    => 'datetime',
+        'preset_amounts' => 'array',
     ];
 
     public function contributions()

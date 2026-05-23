@@ -68,6 +68,8 @@ Route::post('/collections/{slug}/close', [CollectionController::class, 'close'])
 
 // ── Staff pages ───────────────────────────────────────────────────────────
 Route::get('/for-staff', fn() => view('staff.landing'))->name('staff.landing');
+Route::get('/for-creators', fn() => view('creator.landing'))->name('creator.landing');
+Route::get('/for-groups', fn() => view('collections.landing'))->name('collection.landing');
 Route::get('/staff/register', fn() => redirect()->route('staff.register'));
 
 Route::get('/t/register', [StaffAuthController::class, 'registerForm'])->name('staff.register');

@@ -28,8 +28,11 @@ class CollectionController extends Controller
             'organiser_phone' => ['nullable', 'string', 'regex:/^(\+?254|0)[17]\d{8}$/'],
             'recipient_name'  => ['required', 'string', 'max:60'],
             'recipient_phone' => ['required', 'string', 'regex:/^(\+?254|0)[17]\d{8}$/'],
-            'target_amount'   => ['nullable', 'integer', 'min:100'],
-            'deadline'        => ['nullable', 'date', 'after:now'],
+            'target_amount'      => ['nullable', 'integer', 'min:100'],
+            'per_person_amount'  => ['nullable', 'integer', 'min:50', 'max:' . config('pregota.max_amount')],
+            'preset_amounts'     => ['nullable', 'array', 'max:4'],
+            'preset_amounts.*'   => ['nullable', 'integer', 'min:50', 'max:' . config('pregota.max_amount')],
+            'deadline'           => ['nullable', 'date', 'after:now'],
             'payout_trigger'  => ['required', 'in:target,deadline,manual'],
             'photo'           => ['nullable', 'image', 'mimes:jpeg,jpg,png,webp', 'max:4096'],
         ]);
@@ -37,6 +40,10 @@ class CollectionController extends Controller
         if ($request->hasFile('photo')) {
             $data['photo_path'] = $request->file('photo')->store('collections', 'public');
         }
+
+        $presets = array_values(array_filter(array_map('intval', $data['preset_amounts'] ?? []), fn($v) => $v >= 50));
+        sort($presets);
+        $data['preset_amounts'] = $presets ?: null;
 
         $collection = $this->service->create($data);
 

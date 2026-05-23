@@ -1,0 +1,44 @@
+name: Deploy to Production
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2   # needed for changed-files diff
+
+      - name: Upload changed files via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        with:
+          server: 198.23.51.245
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          port: 21
+          server-dir: /
+          local-dir: ./
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/node_modules/**
+            **/vendor/**
+            .env
+            storage/logs/**
+            storage/framework/cache/**
+            storage/framework/sessions/**
+            storage/framework/views/**
+            bootstrap/cache/**
+            public/deploy-hook.php
+
+      - name: Clear caches & run migrations
+        run: |
+          curl -f -s -o /dev/null \
+            "https://pregota.com/deploy-hook.php?secret=${{ secrets.DEPLOY_HOOK_SECRET }}&migrate=1" \
+          && echo "Deploy hook OK" \
+          || echo "Deploy hook failed — check server logs"

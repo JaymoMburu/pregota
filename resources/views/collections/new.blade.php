@@ -242,6 +242,30 @@ textarea{resize:vertical;min-height:90px}
                     </div>
                 </div>
 
+                <!-- Contribution amounts -->
+                <div class="form-section">
+                    <div class="section-label">Contribution Amounts (optional)</div>
+
+                    <div class="form-group">
+                        <label>Fixed Per-person Amount (KES)</label>
+                        <input type="number" name="per_person_amount" placeholder="e.g. 500 — locks every contributor to this exact amount"
+                               min="50" value="{{ old('per_person_amount') }}">
+                        <div class="hint">Use this for chama, office collections, or any group where everyone must pay the same amount. Leaves contributors no choice — the field is locked.</div>
+                    </div>
+
+                    <div class="form-group" style="margin-top:14px">
+                        <label>Quick-select Buttons <span style="font-weight:400;text-transform:none;letter-spacing:0">(optional — up to 4 amounts)</span></label>
+                        <div class="form-row" style="grid-template-columns:1fr 1fr 1fr 1fr;gap:8px">
+                            @foreach([0,1,2,3] as $i)
+                            <input type="number" name="preset_amounts[]"
+                                   placeholder="{{ ['e.g. 100','e.g. 200','e.g. 500','e.g. 1000'][$i] }}"
+                                   min="50" value="{{ old('preset_amounts.'.$i) }}">
+                            @endforeach
+                        </div>
+                        <div class="hint">These appear as tap-to-select buttons on the contribution page. Leave all blank and contributors type any amount freely.</div>
+                    </div>
+                </div>
+
                 <!-- Payout trigger -->
                 <div class="form-section">
                     <div class="section-label">When Should Money Be Paid Out?</div>

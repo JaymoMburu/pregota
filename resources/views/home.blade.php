@@ -43,6 +43,10 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0f0f1a;color:#fff;m
 .mc-school:hover::before{background:radial-gradient(ellipse at top left,rgba(59,130,246,.06),transparent 60%)}
 .mc-tips:hover{background:rgba(245,158,11,.06)}
 .mc-tips:hover::before{background:radial-gradient(ellipse at top left,rgba(245,158,11,.05),transparent 60%)}
+.mc-creator{background:linear-gradient(135deg,rgba(124,58,237,.12),rgba(236,72,153,.1));border-color:rgba(192,132,252,.2)}
+.mc-creator:hover{background:linear-gradient(135deg,rgba(124,58,237,.2),rgba(236,72,153,.15));border-color:rgba(192,132,252,.5);transform:translateY(-2px)}
+.mc-creator .mc-cta{color:#f472b6}
+.mc-creator-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(244,114,182,.12);border:1px solid rgba(244,114,182,.25);border-radius:20px;padding:4px 12px;font-size:11px;font-weight:700;color:#f472b6;margin-bottom:14px;letter-spacing:.04em;width:fit-content}
 
 .mc-icon{font-size:36px;margin-bottom:14px;display:block;position:relative;z-index:1}
 .mc-name{font-size:20px;font-weight:900;margin-bottom:6px;position:relative;z-index:1}
@@ -107,7 +111,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0f0f1a;color:#fff;m
         </a>
 
         <!-- Group Collections -->
-        <a href="{{ route('collection.new') }}" class="module-card mc-collection">
+        <a href="{{ route('collection.landing') }}" class="module-card mc-collection">
             <span class="mc-icon">🤝</span>
             <div class="mc-name">Group Collections</div>
             <div class="mc-desc">Start a collection for any cause. Everyone contributes directly. Money goes straight to the person who needs it.</div>
@@ -146,6 +150,25 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0f0f1a;color:#fff;m
                 <span class="mc-tag">Hotel</span>
             </div>
             <div class="mc-cta">Create Tip Page <span>›</span></div>
+        </a>
+
+        <!-- Creator Gifts — full width -->
+        <a href="{{ route('creator.landing') }}" class="module-card mc-creator" style="grid-column:1/-1;flex-direction:row;align-items:center;gap:28px;padding:28px 32px">
+            <span class="mc-icon" style="margin-bottom:0;font-size:48px;flex-shrink:0">🎤</span>
+            <div style="flex:1">
+                <div class="mc-creator-badge">✨ For Content Creators</div>
+                <div class="mc-name" style="font-size:22px">Creator Gift Page</div>
+                <div class="mc-desc" style="margin-bottom:16px">Set up your personal gift page in 60 seconds. Share your link — fans send you M-Pesa gifts directly, no awkward conversations, no sharing your number. Used by YouTubers, podcasters, artists, and streamers.</div>
+                <div class="mc-examples">
+                    <span class="mc-tag">YouTube</span>
+                    <span class="mc-tag">Podcast</span>
+                    <span class="mc-tag">Music</span>
+                    <span class="mc-tag">Comedy</span>
+                    <span class="mc-tag">Art</span>
+                    <span class="mc-tag">pregota.com/c/yourname</span>
+                </div>
+            </div>
+            <div class="mc-cta" style="flex-shrink:0;font-size:15px">Get Your Page <span>›</span></div>
         </a>
 
     </div>

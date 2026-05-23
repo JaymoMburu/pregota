@@ -260,17 +260,29 @@ input::placeholder{color:rgba(255,255,255,.3)}
         <div class="card-title">Contribute Now</div>
 
         <div id="formArea">
+            @if($collection->per_person_amount)
+            <div style="background:rgba(124,58,237,.1);border:1px solid rgba(124,58,237,.25);border-radius:10px;padding:12px 14px;margin-bottom:14px;font-size:13px;color:rgba(255,255,255,.7)">
+                🔒 Fixed contribution: <strong style="color:#c084fc">KES {{ number_format($collection->per_person_amount) }}</strong> per person
+            </div>
+            <div class="form-group">
+                <label>Amount (KES)</label>
+                <input type="number" id="amount" value="{{ $collection->per_person_amount }}" readonly
+                       style="opacity:.6;cursor:not-allowed">
+            </div>
+            @else
+            @if($collection->preset_amounts && count($collection->preset_amounts))
             <div class="amount-presets">
-                @foreach([200, 500, 1000, 2000] as $preset)
+                @foreach($collection->preset_amounts as $preset)
                 <div class="preset-btn" onclick="setPreset({{ $preset }}, this)">{{ number_format($preset) }}</div>
                 @endforeach
             </div>
-
+            @endif
             <div class="form-group">
                 <label>Amount (KES)</label>
                 <input type="number" id="amount" placeholder="e.g. 500" min="50" step="50"
                        oninput="updateFee(); clearPresets()">
             </div>
+            @endif
 
             <div class="fee-line" id="feeLine" style="display:none">
                 <span>Your contribution: <strong id="feeNet">KES —</strong></span>
@@ -402,6 +414,9 @@ function clearPresets() {
 }
 
 phoneEl?.addEventListener('input', validateForm);
+
+// If amount is pre-filled (per_person_amount), show fee immediately
+if (amountEl && amountEl.readOnly) updateFee();
 
 async function sendContribution() {
     const amt   = parseInt(amountEl.value);
