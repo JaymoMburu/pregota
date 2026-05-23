@@ -163,6 +163,29 @@ class CreatorController extends Controller
         return response()->json(['success' => false, 'message' => 'Could not initiate payment. Please try again.'], 422);
     }
 
+    // ── Creator search ────────────────────────────────────────────────────
+
+    public function search(Request $request)
+    {
+        $q = trim($request->input('q', ''));
+        if (strlen($q) < 2) {
+            return response()->json([]);
+        }
+
+        $creators = Creator::where('is_active', true)
+            ->where(function ($query) use ($q) {
+                $query->where('handle', 'like', '%' . $q . '%')
+                      ->orWhere('display_name', 'like', '%' . $q . '%');
+            })
+            ->select('handle', 'display_name', 'bio', 'photo_url', 'min_gift_amount', 'total_received')
+            ->withCount(['gifts' => fn ($q) => $q->where('status', 'paid')])
+            ->orderByDesc('total_received')
+            ->limit(8)
+            ->get();
+
+        return response()->json($creators);
+    }
+
     // ── OBS alert overlay ─────────────────────────────────────────────────
 
     public function alertOverlay(string $handle, string $token)

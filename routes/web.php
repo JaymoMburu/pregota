@@ -135,6 +135,8 @@ Route::post('/creator/logout', [CreatorController::class, 'logout'])->name('crea
 Route::get('/creator/dashboard', [CreatorController::class, 'dashboard'])->name('creator.dashboard')->middleware(\App\Http\Middleware\CreatorAuth::class);
 Route::post('/creator/profile', [CreatorController::class, 'updateProfile'])->name('creator.profile')->middleware(\App\Http\Middleware\CreatorAuth::class);
 
+// Creator search
+Route::get('/gift/search', [CreatorController::class, 'search'])->name('gift.search');
 // Public creator gift page
 Route::get('/c/{handle}', [CreatorController::class, 'publicPage'])->name('creator.page');
 Route::post('/c/{handle}/gift', [CreatorController::class, 'sendGift'])->name('creator.gift');

@@ -74,6 +74,22 @@ textarea{resize:none;height:68px}
 
 .right-foot{padding:12px 32px;text-align:center;color:rgba(255,255,255,.6);font-size:11px;border-top:1px solid rgba(255,255,255,.06)}
 
+/* Creator search */
+.search-wrap{margin-bottom:20px;position:relative}
+.search-wrap input{padding-left:38px;background:rgba(255,255,255,.06)}
+.search-icon{position:absolute;left:13px;top:50%;transform:translateY(-50%);font-size:15px;pointer-events:none;opacity:.5}
+.search-results{position:absolute;top:calc(100% + 6px);left:0;right:0;background:#161f27;border:1px solid rgba(255,255,255,.12);border-radius:14px;z-index:50;overflow:hidden;box-shadow:0 16px 48px rgba(0,0,0,.6)}
+.search-empty{padding:18px;text-align:center;font-size:13px;color:rgba(255,255,255,.5)}
+.creator-result{display:flex;align-items:center;gap:12px;padding:12px 16px;cursor:pointer;text-decoration:none;transition:.15s;border-bottom:1px solid rgba(255,255,255,.05)}
+.creator-result:last-child{border-bottom:none}
+.creator-result:hover{background:rgba(255,255,255,.04)}
+.cr-avatar{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,#00A651,#007A33);display:flex;align-items:center;justify-content:center;font-size:17px;font-weight:900;flex-shrink:0;overflow:hidden}
+.cr-avatar img{width:100%;height:100%;object-fit:cover}
+.cr-info{flex:1;min-width:0}
+.cr-name{font-size:14px;font-weight:700;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cr-handle{font-size:12px;color:rgba(255,255,255,.5);margin-top:1px}
+.cr-min{font-size:11px;color:#4ade80;margin-top:3px}
+
 /* Tabs */
 .tabs{display:flex;gap:0;margin-bottom:22px;border:1px solid rgba(255,255,255,.1);border-radius:10px;overflow:hidden}
 .tab-btn{flex:1;padding:10px 6px;border:none;background:rgba(255,255,255,.04);color:rgba(255,255,255,.72);font-size:13px;font-weight:600;cursor:pointer;transition:.15s;font-family:inherit}
@@ -184,6 +200,13 @@ textarea{resize:none;height:68px}
 
     <div class="right-body">
         <div class="form-wrap">
+
+            <!-- Creator search -->
+            <div class="search-wrap">
+                <span class="search-icon">🔍</span>
+                <input type="text" id="creatorSearch" placeholder="Search a creator to gift…" autocomplete="off">
+                <div class="search-results" id="searchResults" style="display:none"></div>
+            </div>
 
             <!-- Tab switcher -->
             <div class="tabs">
@@ -535,6 +558,62 @@ async function pollDirectStatus(giftId, amount) {
     }
     document.getElementById('dPending').innerHTML = '⚠️ Timed out. Check your M-Pesa — if charged, contact support.';
 }
+
+// ── Creator search ─────────────────────────────────────────────────────────
+(function() {
+    const input   = document.getElementById('creatorSearch');
+    const results = document.getElementById('searchResults');
+    let timer;
+
+    function fmtKes(n) { return 'KES ' + Number(n).toLocaleString('en-KE'); }
+
+    function renderResults(creators) {
+        if (!creators.length) {
+            results.innerHTML = '<div class="search-empty">No creators found</div>';
+        } else {
+            results.innerHTML = creators.map(c => {
+                const initials = c.display_name.charAt(0).toUpperCase();
+                const avatar   = c.photo_url
+                    ? `<img src="${c.photo_url}" alt="${c.display_name}">`
+                    : initials;
+                return `<a href="/c/${c.handle}" class="creator-result">
+                    <div class="cr-avatar">${avatar}</div>
+                    <div class="cr-info">
+                        <div class="cr-name">${c.display_name}</div>
+                        <div class="cr-handle">@${c.handle}</div>
+                        <div class="cr-min">Min gift ${fmtKes(c.min_gift_amount)}</div>
+                    </div>
+                </a>`;
+            }).join('');
+        }
+        results.style.display = 'block';
+    }
+
+    input.addEventListener('input', function() {
+        clearTimeout(timer);
+        const q = this.value.trim();
+        if (q.length < 2) { results.style.display = 'none'; return; }
+        timer = setTimeout(async () => {
+            try {
+                const res  = await fetch('/gift/search?q=' + encodeURIComponent(q));
+                const data = await res.json();
+                renderResults(data);
+            } catch(e) {}
+        }, 350);
+    });
+
+    document.addEventListener('click', function(e) {
+        if (!input.contains(e.target) && !results.contains(e.target)) {
+            results.style.display = 'none';
+        }
+    });
+
+    input.addEventListener('focus', function() {
+        if (this.value.trim().length >= 2 && results.children.length) {
+            results.style.display = 'block';
+        }
+    });
+})();
 
 function resetDirect() {
     document.getElementById('dAmount').value           = '';
