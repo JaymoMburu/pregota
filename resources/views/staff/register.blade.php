@@ -30,7 +30,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 .section-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.6);margin-bottom:12px;margin-top:20px}
 .form-group{margin-bottom:14px}
 label{display:block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.78);margin-bottom:6px}
-input,select{width:100%;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);border-radius:10px;padding:12px 14px;color:#fff;font-size:14px;outline:none;transition:.2s;font-family:inherit}
+input,select{width:100%;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);border-radius:10px;padding:12px 14px;color:#fff;font-size:16px;outline:none;transition:.2s;font-family:inherit}
 input:focus,select:focus{border-color:#00A651;background:rgba(0,166,81,.08)}
 input::placeholder{color:rgba(255,255,255,.82)}
 select option{background:#0B1810}
@@ -53,13 +53,13 @@ input[type=hidden]{}
 .login-link{text-align:center;margin-top:16px;font-size:13px;color:rgba(255,255,255,.6)}
 .login-link a{color:#25D366;text-decoration:none;font-weight:600}
 
+.m-logo{display:none}
 @media(max-width:820px){
     body{flex-direction:column}
-    .panel-left{width:100%;height:auto;position:static;padding:24px 20px}
-    .left-center{gap:16px}
-    .headline h1{font-size:24px}
+    .panel-left{display:none}
+    .m-logo{display:block;font-size:22px;font-weight:900;background:linear-gradient(135deg,#25D366,#4ADE80);-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-decoration:none;padding:14px 18px 4px}
     .panel-right{width:100%;border-left:none}
-    .right-body{padding:20px}
+    .right-body{padding:16px}
 }
 </style>
 </head>
@@ -84,6 +84,7 @@ input[type=hidden]{}
 </div>
 
 <div class="panel-right">
+    <a href="{{ route('home') }}" class="m-logo">Pregota</a>
     @include('partials.module-nav', ['activeModule' => 'tips'])
     <nav class="right-nav">
         <a href="{{ route('staff.landing') }}" class="logo-sm">Pregota</a>

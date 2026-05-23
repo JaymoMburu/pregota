@@ -36,7 +36,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 .form-group{margin-bottom:12px}
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 label{display:block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.78);margin-bottom:6px}
-input{width:100%;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);border-radius:10px;padding:11px 13px;color:#fff;font-size:14px;outline:none;transition:.2s;font-family:inherit}
+input{width:100%;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);border-radius:10px;padding:11px 13px;color:#fff;font-size:16px;outline:none;transition:.2s;font-family:inherit}
 input:focus{border-color:#00A651;background:rgba(0,166,81,.08)}
 input::placeholder{color:rgba(255,255,255,.82)}
 .hint{font-size:11px;color:rgba(255,255,255,.6);margin-top:5px}
@@ -58,7 +58,15 @@ input::placeholder{color:rgba(255,255,255,.82)}
 .submit-btn{width:100%;padding:15px;border-radius:12px;border:none;font-size:16px;font-weight:700;cursor:pointer;background:linear-gradient(135deg,#00A651,#007A33);color:#fff;margin-top:10px;transition:.2s}
 .submit-btn:hover{opacity:.9;transform:translateY(-1px)}
 
-@media(max-width:820px){body{flex-direction:column}.panel-left{width:100%;min-height:auto;padding:24px 20px}.left-center{gap:16px}.panel-right{width:100%;border-left:none}.right-body{padding:20px}.b1,.b2{display:none}.form-row{grid-template-columns:1fr}}
+.m-logo{display:none}
+@media(max-width:820px){
+    body{flex-direction:column}
+    .panel-left{display:none}
+    .m-logo{display:block;font-size:22px;font-weight:900;background:linear-gradient(135deg,#25D366,#4ADE80);-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-decoration:none;padding:14px 18px 4px}
+    .panel-right{width:100%;border-left:none}
+    .right-body{padding:16px}
+    .form-row{grid-template-columns:1fr}
+}
 </style>
 </head>
 <body>
@@ -81,6 +89,7 @@ input::placeholder{color:rgba(255,255,255,.82)}
 </div>
 
 <div class="panel-right">
+    <a href="{{ route('home') }}" class="m-logo">Pregota</a>
     <nav class="right-nav">
         <a href="{{ route('home') }}" class="logo-sm">Pregota</a>
         <span style="font-size:12px;color:rgba(255,255,255,.6)">School Fees · Setup</span>
