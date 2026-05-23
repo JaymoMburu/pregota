@@ -159,7 +159,7 @@ textarea{resize:none;height:68px}
         </div>
     </div>
 
-    <div class="left-foot">© 2026 Pregota · KES 100 – 150,000 per gift · <a href="{{ route('home') }}" style="color:rgba(255,255,255,.4);text-decoration:none">← All features</a></div>
+    <div class="left-foot">© 2026 Pregota · Phone numbers never stored · Secured by M-Pesa STK Push</div>
 </div>
 
 <!-- RIGHT -->
