@@ -42,5 +42,16 @@ if (isset($_GET['migrate'])) {
     $log[]  = ($status === 0 ? '✓' : '✗') . " migrate" . ($output ? ":\n{$output}" : '');
 }
 
+// Optionally show last Laravel log entries
+if (isset($_GET['log'])) {
+    $logFile = __DIR__ . '/../storage/logs/laravel.log';
+    if (file_exists($logFile)) {
+        $lines = array_slice(file($logFile), -60);
+        $log[] = "\n=== Last 60 log lines ===\n" . implode('', $lines);
+    } else {
+        $log[] = "\n=== No laravel.log found ===";
+    }
+}
+
 header('Content-Type: text/plain');
 echo implode("\n", $log) . "\n";
