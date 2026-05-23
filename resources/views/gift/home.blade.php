@@ -9,7 +9,7 @@
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{height:100%}
-body{font-family:'Segoe UI',system-ui,sans-serif;color:#fff;display:flex;min-height:100vh}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:#0f0f1a;color:#fff;display:flex;min-height:100vh}
 
 /* ── Left panel ── */
 .panel-left{
