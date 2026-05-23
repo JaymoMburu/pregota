@@ -108,7 +108,7 @@ textarea{resize:none;height:64px}
         <div class="form-group">
             <label>Gift Amount (KES)</label>
             <input type="number" id="amount" placeholder="Min KES {{ number_format($creator->min_gift_amount, 0) }}"
-                min="{{ $creator->min_gift_amount }}" max="150000" required>
+                min="{{ $creator->min_gift_amount }}" max="{{ config('pregota.max_amount') }}" required>
         </div>
 
         <div class="fee-preview" id="feePreview">
@@ -145,15 +145,18 @@ textarea{resize:none;height:64px}
 </div>
 
 <script>
-const CSRF = document.querySelector('meta[name=csrf-token]').content;
-const fmt  = n => 'KES ' + Number(n).toLocaleString('en-KE', {minimumFractionDigits:2});
+const CSRF        = document.querySelector('meta[name=csrf-token]').content;
+const fmt         = n => 'KES ' + Number(n).toLocaleString('en-KE', {minimumFractionDigits:2});
+const CREATOR_MIN = {{ $creator->min_gift_amount }};
+const FEE_IN_PCT  = {{ config('pregota.fee_in_pct') }};
+const FEE_OUT_PCT = {{ config('pregota.fee_out_pct') }};
+const FEE_MIN     = {{ config('pregota.fee_min_kes') }};
 
 document.getElementById('amount').addEventListener('input', function() {
     const v = parseFloat(this.value);
     const preview = document.getElementById('feePreview');
-    if (!v || v < 50) { preview.style.display='none'; return; }
+    if (!v || v < CREATOR_MIN) { preview.style.display='none'; return; }
 
-    const FEE_IN_PCT = 2.5, FEE_OUT_PCT = 1.5, FEE_MIN = 50;
     const feeOutCalc = v * FEE_OUT_PCT / (100 - FEE_OUT_PCT);
     const feeOut     = Math.max(FEE_MIN / 2, feeOutCalc);
     const faceValue  = v + feeOut;

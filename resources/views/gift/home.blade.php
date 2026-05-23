@@ -307,8 +307,11 @@ textarea{resize:none;height:68px}
 <script>
 const fmt       = n => 'KES ' + Number(n).toLocaleString('en-KE', {minimumFractionDigits:2});
 const CSRF      = document.querySelector('meta[name=csrf-token]').content;
-const DIRECT_FEE = {{ config('pregota.gift_direct_fee') }};
-const MIN_AMT    = {{ config('pregota.min_amount') }};
+const DIRECT_FEE  = {{ config('pregota.gift_direct_fee') }};
+const MIN_AMT     = {{ config('pregota.min_amount') }};
+const FEE_IN_PCT  = {{ config('pregota.fee_in_pct') }};
+const FEE_OUT_PCT = {{ config('pregota.fee_out_pct') }};
+const FEE_MIN     = {{ config('pregota.fee_min_kes') }};
 
 // ── Tab switching ──────────────────────────────────────────────────────────
 function switchTab(tab) {
@@ -340,7 +343,6 @@ function switchTab(tab) {
 function updateVoucherFee(v) {
     const preview = document.getElementById('feePreview');
     if (!v || v < MIN_AMT) { preview.style.display = 'none'; return; }
-    const FEE_IN_PCT = 2.5, FEE_OUT_PCT = 1.5, FEE_MIN = 50;
     const feeOutCalc = v * FEE_OUT_PCT / (100 - FEE_OUT_PCT);
     const feeOut     = Math.max(FEE_MIN / 2, feeOutCalc);
     const faceValue  = v + feeOut;

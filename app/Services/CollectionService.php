@@ -70,8 +70,9 @@ class CollectionService
 
     public function contribute(Collection $collection, int $amount, string $phone, ?string $name): CollectionContribution
     {
-        $fee   = (int) config('pregota.collection_fee', 30);
-        $gross = $amount + $fee;
+        $feeMin = (int) config('pregota.collection_fee', 30);
+        $fee    = max($feeMin, (int) ceil($amount * 0.01));
+        $gross  = $amount + $fee;
 
         return DB::transaction(function () use ($collection, $amount, $phone, $name, $fee, $gross) {
             $contribution = CollectionContribution::create([

@@ -318,24 +318,24 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
             </div>
         </div>
 
-        <p style="font-size:13px;color:rgba(255,255,255,.82);margin-top:20px;text-align:center">KES 30 flat fee per contribution · Added on top · Recipient receives 100% of every pledged amount</p>
+        <p style="font-size:13px;color:rgba(255,255,255,.82);margin-top:20px;text-align:center">1% service fee per contribution (min KES 30) · Added on top · Recipient receives 100% of every pledged amount</p>
 
         <div class="fee-box">
             <div class="fee-row">
                 <span class="fee-label">Contributor pledges</span>
-                <span class="fee-value" style="color:#34d399">KES 500</span>
+                <span class="fee-value" style="color:#34d399">KES 5,000</span>
             </div>
             <div class="fee-row">
-                <span class="fee-label">Pregota platform fee (added on top)</span>
-                <span class="fee-value" style="color:rgba(255,255,255,.78)">+ KES 30</span>
+                <span class="fee-label">Pregota platform fee (1% — added on top)</span>
+                <span class="fee-value" style="color:rgba(255,255,255,.78)">+ KES 50</span>
             </div>
             <div class="fee-row">
                 <span class="fee-label">Contributor pays via M-Pesa STK Push</span>
-                <span class="fee-value">KES 530</span>
+                <span class="fee-value">KES 5,050</span>
             </div>
             <div class="fee-row" style="margin-top:4px;padding-top:12px;border-top:1px solid rgba(255,255,255,.08)">
                 <span class="fee-label">Recipient receives</span>
-                <span class="fee-value" style="color:#34d399;font-size:15px">KES 500 — every shilling pledged</span>
+                <span class="fee-value" style="color:#34d399;font-size:15px">KES 5,000 — every shilling pledged</span>
             </div>
         </div>
     </div>

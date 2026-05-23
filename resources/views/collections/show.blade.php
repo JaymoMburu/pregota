@@ -279,14 +279,14 @@ input::placeholder{color:rgba(255,255,255,.82)}
             @endif
             <div class="form-group">
                 <label>Amount (KES)</label>
-                <input type="number" id="amount" placeholder="e.g. 500" min="50" step="50"
+                <input type="number" id="amount" placeholder="e.g. 500" min="100" step="100"
                        oninput="updateFee(); clearPresets()">
             </div>
             @endif
 
             <div class="fee-line" id="feeLine" style="display:none">
                 <span>Your contribution: <strong id="feeNet">KES —</strong></span>
-                <span>Service fee: KES 30 → Total: <strong id="feeGross">KES —</strong></span>
+                <span>Fee: <strong id="feeSvc">KES 30</strong> → You pay: <strong id="feeGross">KES —</strong></span>
             </div>
 
             <div class="form-group">
@@ -384,13 +384,15 @@ const payBtn     = document.getElementById('payBtn');
 
 function updateFee() {
     const amt = parseInt(amountEl?.value);
-    if (!amt || amt < 50) {
+    if (!amt || amt < 100) {
         document.getElementById('feeLine').style.display = 'none';
         payBtn.disabled = true;
         return;
     }
+    const fee = Math.max(30, Math.ceil(amt * 0.01));
     document.getElementById('feeNet').textContent   = 'KES ' + amt.toLocaleString();
-    document.getElementById('feeGross').textContent = 'KES ' + (amt + 30).toLocaleString();
+    document.getElementById('feeSvc').textContent   = 'KES ' + fee.toLocaleString();
+    document.getElementById('feeGross').textContent = 'KES ' + (amt + fee).toLocaleString();
     document.getElementById('feeLine').style.display = 'flex';
     validateForm();
 }
@@ -399,7 +401,7 @@ function validateForm() {
     const amt   = parseInt(amountEl?.value);
     const phone = phoneEl?.value.trim();
     const validPhone = /^(\+?254|0)[17]\d{8}$/.test(phone);
-    payBtn.disabled = !(amt >= 50 && validPhone);
+    payBtn.disabled = !(amt >= 100 && validPhone);
 }
 
 function setPreset(val, el) {
