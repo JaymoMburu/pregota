@@ -8,7 +8,7 @@ $_mods = [
 ];
 @endphp
 <div style="padding:10px 24px;border-bottom:1px solid rgba(255,255,255,.06);display:flex;align-items:center;gap:8px;flex-wrap:wrap;background:#0B141A">
-    <a href="{{ route('home') }}" style="font-size:12px;color:rgba(255,255,255,.35);text-decoration:none;margin-right:6px;display:flex;align-items:center;gap:4px;white-space:nowrap;flex-shrink:0" onmouseover="this.style.color='rgba(255,255,255,.7)'" onmouseout="this.style.color='rgba(255,255,255,.35)'">
+    <a href="{{ route('home') }}" style="font-size:12px;color:rgba(255,255,255,.6);text-decoration:none;margin-right:6px;display:flex;align-items:center;gap:4px;white-space:nowrap;flex-shrink:0" onmouseover="this.style.color='rgba(255,255,255,.7)'" onmouseout="this.style.color='rgba(255,255,255,.6)'">
         ‹ All
     </a>
     <div style="width:1px;height:16px;background:rgba(255,255,255,.1);flex-shrink:0"></div>
@@ -18,7 +18,7 @@ $_mods = [
         {{ $mod['emoji'] }} {{ $mod['label'] }}
     </span>
     @else
-    <a href="{{ $mod['url'] }}" style="display:inline-flex;align-items:center;gap:5px;padding:5px 12px;border-radius:20px;font-size:12px;font-weight:600;background:transparent;border:1px solid rgba(255,255,255,.08);color:rgba(255,255,255,.45);text-decoration:none;white-space:nowrap;transition:.15s" onmouseover="this.style.color='{{ $mod['color'] }}';this.style.borderColor='{{ $mod['color'] }}40'" onmouseout="this.style.color='rgba(255,255,255,.45)';this.style.borderColor='rgba(255,255,255,.08)'">
+    <a href="{{ $mod['url'] }}" style="display:inline-flex;align-items:center;gap:5px;padding:5px 12px;border-radius:20px;font-size:12px;font-weight:600;background:transparent;border:1px solid rgba(255,255,255,.08);color:rgba(255,255,255,.72);text-decoration:none;white-space:nowrap;transition:.15s" onmouseover="this.style.color='{{ $mod['color'] }}';this.style.borderColor='{{ $mod['color'] }}40'" onmouseout="this.style.color='rgba(255,255,255,.72)';this.style.borderColor='rgba(255,255,255,.08)'">
         {{ $mod['emoji'] }} {{ $mod['label'] }}
     </a>
     @endif

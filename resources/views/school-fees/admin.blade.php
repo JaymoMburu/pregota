@@ -20,29 +20,29 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 .alert.info{background:rgba(0,166,81,.1);border:1px solid rgba(0,166,81,.25);color:#25D366}
 
 h2{font-size:22px;font-weight:900;margin-bottom:4px}
-.subtitle{font-size:13px;color:rgba(255,255,255,.4);margin-bottom:24px}
+.subtitle{font-size:13px;color:rgba(255,255,255,.68);margin-bottom:24px}
 
 /* Totals */
 .totals-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:28px}
 @media(max-width:600px){.totals-row{grid-template-columns:1fr 1fr}}
 .total-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:16px;text-align:center}
 .total-card .num{font-size:24px;font-weight:900;color:#25D366}
-.total-card .lbl{font-size:11px;color:rgba(255,255,255,.4);margin-top:4px}
+.total-card .lbl{font-size:11px;color:rgba(255,255,255,.68);margin-top:4px}
 
 /* Section */
-.section-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.35);margin-bottom:12px}
+.section-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.6);margin-bottom:12px}
 
 /* Class cards */
 .classes-grid{display:flex;flex-direction:column;gap:12px;margin-bottom:28px}
 .class-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:16px}
 .class-card-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px}
 .class-name{font-size:16px;font-weight:800}
-.class-teacher{font-size:12px;color:rgba(255,255,255,.4);margin-top:2px}
+.class-teacher{font-size:12px;color:rgba(255,255,255,.68);margin-top:2px}
 .class-raised{text-align:right}
 .class-raised .amount{font-size:18px;font-weight:900;color:#25D366}
-.class-raised .count{font-size:11px;color:rgba(255,255,255,.4)}
+.class-raised .count{font-size:11px;color:rgba(255,255,255,.68)}
 .class-link-row{display:flex;gap:8px;align-items:center;margin-bottom:10px}
-.class-link-input{flex:1;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:8px 10px;color:rgba(255,255,255,.5);font-size:11px;outline:none;font-family:monospace}
+.class-link-input{flex:1;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:8px 10px;color:rgba(255,255,255,.78);font-size:11px;outline:none;font-family:monospace}
 .copy-cls-btn{padding:7px 12px;border-radius:7px;background:rgba(0,166,81,.2);border:1px solid rgba(0,166,81,.3);color:#25D366;font-size:11px;font-weight:700;cursor:pointer;white-space:nowrap}
 .wa-cls-btn{display:inline-flex;align-items:center;gap:5px;padding:7px 12px;border-radius:7px;background:#25d366;color:#fff;font-size:11px;font-weight:700;text-decoration:none;white-space:nowrap}
 .paid-students{margin-top:10px;border-top:1px solid rgba(255,255,255,.05);padding-top:10px}

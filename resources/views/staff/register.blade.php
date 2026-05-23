@@ -13,11 +13,11 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 .left-center{flex:1;display:flex;flex-direction:column;justify-content:center;position:relative;z-index:1;gap:32px}
 .headline h1{font-size:clamp(26px,3vw,38px);font-weight:900;line-height:1.15;letter-spacing:-.5px}
 .headline h1 em{font-style:normal;background:linear-gradient(135deg,#25D366,#4ADE80);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.headline p{margin-top:10px;font-size:14px;color:rgba(255,255,255,.45);line-height:1.65;max-width:280px}
+.headline p{margin-top:10px;font-size:14px;color:rgba(255,255,255,.72);line-height:1.65;max-width:280px}
 .check-list{display:flex;flex-direction:column;gap:12px}
 .check-item{display:flex;align-items:center;gap:10px;font-size:13px;color:rgba(255,255,255,.65)}
 .check-item::before{content:"✓";width:20px;height:20px;background:rgba(34,197,94,.2);border:1px solid rgba(34,197,94,.35);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;color:#4ade80;flex-shrink:0}
-.left-foot{margin-top:auto;position:relative;z-index:1;font-size:11px;color:rgba(255,255,255,.3)}
+.left-foot{margin-top:auto;position:relative;z-index:1;font-size:11px;color:rgba(255,255,255,.82)}
 
 .panel-right{width:58%;min-height:100vh;background:#0B141A;display:flex;flex-direction:column;border-left:1px solid rgba(255,255,255,.06)}
 .right-nav{padding:16px 32px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,.06)}
@@ -25,20 +25,20 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 .right-body{flex:1;padding:32px;overflow-y:auto}
 .form-wrap{max-width:440px}
 .form-title{font-size:20px;font-weight:900;margin-bottom:6px}
-.form-subtitle{font-size:13px;color:rgba(255,255,255,.4);margin-bottom:24px}
+.form-subtitle{font-size:13px;color:rgba(255,255,255,.68);margin-bottom:24px}
 
-.section-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.35);margin-bottom:12px;margin-top:20px}
+.section-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.6);margin-bottom:12px;margin-top:20px}
 .form-group{margin-bottom:14px}
-label{display:block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.5);margin-bottom:6px}
+label{display:block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.78);margin-bottom:6px}
 input,select{width:100%;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);border-radius:10px;padding:12px 14px;color:#fff;font-size:14px;outline:none;transition:.2s;font-family:inherit}
 input:focus,select:focus{border-color:#00A651;background:rgba(0,166,81,.08)}
-input::placeholder{color:rgba(255,255,255,.3)}
+input::placeholder{color:rgba(255,255,255,.82)}
 select option{background:#0B1810}
-.hint{font-size:11px;color:rgba(255,255,255,.35);margin-top:5px}
+.hint{font-size:11px;color:rgba(255,255,255,.6);margin-top:5px}
 .hint.green{color:#4ade80}
 
 .handle-wrap{position:relative}
-.handle-prefix{position:absolute;left:14px;top:50%;transform:translateY(-50%);font-size:14px;color:rgba(255,255,255,.35);pointer-events:none}
+.handle-prefix{position:absolute;left:14px;top:50%;transform:translateY(-50%);font-size:14px;color:rgba(255,255,255,.6);pointer-events:none}
 .handle-wrap input{padding-left:90px}
 
 .emoji-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;margin-bottom:6px}
@@ -50,7 +50,7 @@ input[type=hidden]{}
 
 .submit-btn{width:100%;padding:15px;border-radius:12px;border:none;font-size:16px;font-weight:700;cursor:pointer;background:linear-gradient(135deg,#00A651,#007A33);color:#fff;margin-top:8px;transition:.2s}
 .submit-btn:hover{opacity:.9;transform:translateY(-1px)}
-.login-link{text-align:center;margin-top:16px;font-size:13px;color:rgba(255,255,255,.35)}
+.login-link{text-align:center;margin-top:16px;font-size:13px;color:rgba(255,255,255,.6)}
 .login-link a{color:#25D366;text-decoration:none;font-weight:600}
 
 @media(max-width:820px){
@@ -87,7 +87,7 @@ input[type=hidden]{}
     @include('partials.module-nav', ['activeModule' => 'tips'])
     <nav class="right-nav">
         <a href="{{ route('staff.landing') }}" class="logo-sm">Pregota</a>
-        <span style="font-size:12px;color:rgba(255,255,255,.35)">Individual Registration</span>
+        <span style="font-size:12px;color:rgba(255,255,255,.6)">Individual Registration</span>
     </nav>
     <div class="right-body">
         <div class="form-wrap">

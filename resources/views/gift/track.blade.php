@@ -16,9 +16,9 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 .card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:40px 32px;max-width:420px;width:100%;text-align:center}
 .icon{font-size:48px;margin-bottom:20px}
 h1{font-size:24px;font-weight:900;margin-bottom:8px}
-.sub{color:rgba(255,255,255,.5);font-size:14px;margin-bottom:32px}
+.sub{color:rgba(255,255,255,.78);font-size:14px;margin-bottom:32px}
 .form-group{margin-bottom:18px;text-align:left}
-label{display:block;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.5);margin-bottom:8px}
+label{display:block;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.78);margin-bottom:8px}
 input{width:100%;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);border-radius:10px;padding:14px 16px;color:#fff;font-size:16px;outline:none;transition:.2s;letter-spacing:.05em}
 input:focus{border-color:#00A651}
 input::placeholder{color:rgba(255,255,255,.25);letter-spacing:normal}
@@ -32,10 +32,10 @@ input::placeholder{color:rgba(255,255,255,.25);letter-spacing:normal}
 .status-card.expired,.status-card.cancelled,.status-card.recalled{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1)}
 .status-icon{font-size:40px;margin-bottom:12px}
 .status-title{font-size:20px;font-weight:800;margin-bottom:8px}
-.status-desc{font-size:13px;color:rgba(255,255,255,.55);line-height:1.6}
+.status-desc{font-size:13px;color:rgba(255,255,255,.82);line-height:1.6}
 .meta-row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.06);font-size:13px;margin-top:16px}
 .meta-row:last-child{border-bottom:none}
-.meta-lbl{color:rgba(255,255,255,.4)}
+.meta-lbl{color:rgba(255,255,255,.68)}
 .meta-val{font-weight:600}
 .countdown{font-size:12px;color:#fbbf24;margin-top:8px}
 .footer{text-align:center;padding:24px;color:rgba(255,255,255,.25);font-size:12px;border-top:1px solid rgba(255,255,255,.06)}
@@ -133,8 +133,8 @@ function renderResult(json) {
     const trackedCode = document.getElementById('code').value.trim();
     const recallForm = json.status === 'active' ? `
         <div id="recallSection" style="margin-top:20px;border-top:1px solid rgba(255,255,255,.08);padding-top:18px;text-align:left">
-            <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.4);margin-bottom:10px">Cancel This Gift</div>
-            <div style="font-size:12px;color:rgba(255,255,255,.4);margin-bottom:12px;line-height:1.55">Changed your mind? Enter your recall token and M-Pesa number to cancel. You will receive the face value back — the deposit fee is <strong style="color:rgba(255,255,255,.6)">not</strong> refunded.</div>
+            <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.68);margin-bottom:10px">Cancel This Gift</div>
+            <div style="font-size:12px;color:rgba(255,255,255,.68);margin-bottom:12px;line-height:1.55">Changed your mind? Enter your recall token and M-Pesa number to cancel. You will receive the face value back — the deposit fee is <strong style="color:rgba(255,255,255,.6)">not</strong> refunded.</div>
             <input type="text" id="recallTokenInput" placeholder="RC-XXXX-XXXX" maxlength="15"
                 style="width:100%;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);border-radius:8px;padding:10px 12px;color:#fff;font-size:13px;outline:none;margin-bottom:8px;font-family:monospace;letter-spacing:.08em"
                 oninput="this.value=this.value.toUpperCase().replace(/[^A-Z0-9-]/g,'')">
@@ -168,10 +168,10 @@ function renderHoldState(json) {
         <div class="status-title" style="color:#fbbf24">Verification Window Active</div>
         <div class="status-desc">Payment confirmed. The sender has a short window to verify they sent this to the right person before it becomes claimable.</div>
         <div class="countdown" id="holdCountdown" style="font-size:20px;font-weight:900;font-family:monospace;color:#fbbf24;margin:14px 0">${formatSeconds(json.hold_seconds)}</div>
-        <div style="font-size:12px;color:rgba(255,255,255,.35);margin-bottom:16px">Gift becomes claimable when this reaches zero</div>
+        <div style="font-size:12px;color:rgba(255,255,255,.6);margin-bottom:16px">Gift becomes claimable when this reaches zero</div>
         <div style="border-top:1px solid rgba(255,255,255,.08);padding-top:16px;text-align:left">
             <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(251,191,36,.7);margin-bottom:8px">⚠️ Sent to the wrong person?</div>
-            <div style="font-size:12px;color:rgba(255,255,255,.4);margin-bottom:10px;line-height:1.55">Cancel now using your recall token. The deposit fee is not refunded — you receive the face value only.</div>
+            <div style="font-size:12px;color:rgba(255,255,255,.68);margin-bottom:10px;line-height:1.55">Cancel now using your recall token. The deposit fee is not refunded — you receive the face value only.</div>
             <input type="text" id="recallTokenInput" placeholder="RC-XXXX-XXXX" maxlength="15"
                 style="width:100%;background:rgba(255,255,255,.07);border:1px solid rgba(251,191,36,.3);border-radius:8px;padding:10px 12px;color:#fff;font-size:13px;outline:none;margin-bottom:8px;font-family:monospace;letter-spacing:.08em"
                 oninput="this.value=this.value.toUpperCase().replace(/[^A-Z0-9-]/g,'')">

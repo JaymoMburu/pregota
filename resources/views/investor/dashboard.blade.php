@@ -14,14 +14,14 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0a0a14;color:#fff;m
 .logo{font-size:18px;font-weight:900;background:linear-gradient(135deg,#00A651,#007A33);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 .nav-right{display:flex;align-items:center;gap:20px}
 .investor-pill{background:rgba(0,166,81,.15);border:1px solid rgba(0,166,81,.25);border-radius:99px;padding:5px 14px;font-size:12px;color:#a78bfa;font-weight:600}
-.logout-btn{background:none;border:none;color:rgba(255,255,255,.3);font-size:13px;cursor:pointer}
+.logout-btn{background:none;border:none;color:rgba(255,255,255,.82);font-size:13px;cursor:pointer}
 .logout-btn:hover{color:#fff}
 
 /* Page */
 .page{padding:32px}
 .page-header{margin-bottom:28px}
 .page-header h1{font-size:22px;font-weight:800;color:#fff;margin-bottom:4px}
-.page-header p{font-size:13px;color:rgba(255,255,255,.4)}
+.page-header p{font-size:13px;color:rgba(255,255,255,.68)}
 .updated{font-size:11px;color:rgba(255,255,255,.25);margin-top:6px}
 
 /* KPI Grid */
@@ -33,14 +33,14 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0a0a14;color:#fff;m
 .kpi.green::before{background:linear-gradient(90deg,#059669,#34d399)}
 .kpi.blue::before{background:linear-gradient(90deg,#2563eb,#60a5fa)}
 .kpi.gold::before{background:linear-gradient(90deg,#d97706,#fbbf24)}
-.kpi-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.35);margin-bottom:10px}
+.kpi-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.6);margin-bottom:10px}
 .kpi-val{font-size:28px;font-weight:900;line-height:1;margin-bottom:5px}
 .kpi.purple .kpi-val{color:#a78bfa}
 .kpi.pink .kpi-val{color:#4ADE80}
 .kpi.green .kpi-val{color:#34d399}
 .kpi.blue .kpi-val{color:#60a5fa}
 .kpi.gold .kpi-val{color:#fbbf24}
-.kpi-sub{font-size:11px;color:rgba(255,255,255,.3)}
+.kpi-sub{font-size:11px;color:rgba(255,255,255,.82)}
 .kpi-badge{display:inline-block;background:rgba(52,211,153,.12);border:1px solid rgba(52,211,153,.2);color:#34d399;font-size:10px;font-weight:700;border-radius:99px;padding:2px 8px;margin-left:6px}
 .kpi-badge.neg{background:rgba(248,113,113,.12);border-color:rgba(248,113,113,.2);color:#f87171}
 
@@ -52,7 +52,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0a0a14;color:#fff;m
 .panel{background:#13131f;border:1px solid rgba(255,255,255,.07);border-radius:16px;overflow:hidden}
 .panel-head{padding:16px 20px;border-bottom:1px solid rgba(255,255,255,.06);display:flex;justify-content:space-between;align-items:center}
 .panel-head h2{font-size:14px;font-weight:700;color:#fff}
-.panel-head span{font-size:11px;color:rgba(255,255,255,.3)}
+.panel-head span{font-size:11px;color:rgba(255,255,255,.82)}
 .panel-body{padding:20px}
 
 /* Chart */
@@ -60,12 +60,12 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0a0a14;color:#fff;m
 
 /* Module table */
 .mt{width:100%;border-collapse:collapse;font-size:13px}
-.mt th{padding:8px 14px;text-align:left;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.3);background:rgba(255,255,255,.02);border-bottom:1px solid rgba(255,255,255,.05)}
+.mt th{padding:8px 14px;text-align:left;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.82);background:rgba(255,255,255,.02);border-bottom:1px solid rgba(255,255,255,.05)}
 .mt td{padding:11px 14px;border-bottom:1px solid rgba(255,255,255,.04);color:rgba(255,255,255,.8);vertical-align:middle}
 .mt tr:last-child td{border-bottom:none}
 .mt tr:hover td{background:rgba(255,255,255,.02)}
 .num{font-weight:700;font-variant-numeric:tabular-nums}
-.tag{display:inline-block;background:rgba(255,255,255,.06);border-radius:6px;padding:2px 8px;font-size:11px;color:rgba(255,255,255,.4);font-weight:600}
+.tag{display:inline-block;background:rgba(255,255,255,.06);border-radius:6px;padding:2px 8px;font-size:11px;color:rgba(255,255,255,.68);font-weight:600}
 
 /* Milestones */
 .ms-list{display:flex;flex-direction:column;gap:0}
@@ -75,7 +75,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0a0a14;color:#fff;m
 .ms-dot.done{background:rgba(52,211,153,.15);border:1px solid rgba(52,211,153,.3)}
 .ms-dot.pending{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1)}
 .ms-text h4{font-size:13px;font-weight:700;color:#fff;margin-bottom:2px}
-.ms-text p{font-size:12px;color:rgba(255,255,255,.35);line-height:1.5}
+.ms-text p{font-size:12px;color:rgba(255,255,255,.6);line-height:1.5}
 
 /* Investor profile card */
 .profile{background:#13131f;border:1px solid rgba(0,166,81,.2);border-radius:16px;padding:20px 22px;margin-bottom:18px}
@@ -83,7 +83,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0a0a14;color:#fff;m
 .profile-type{font-size:12px;color:#a78bfa;font-weight:600;margin-bottom:14px}
 .profile-row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.05);font-size:13px}
 .profile-row:last-child{border-bottom:none}
-.profile-row .lbl{color:rgba(255,255,255,.35)}
+.profile-row .lbl{color:rgba(255,255,255,.6)}
 .profile-row .val{color:#fff;font-weight:600}
 
 /* Use of funds */
@@ -92,10 +92,10 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0a0a14;color:#fff;m
 .uof-bar-wrap{flex:1;background:rgba(255,255,255,.06);border-radius:99px;height:7px;overflow:hidden}
 .uof-bar{height:100%;border-radius:99px}
 .uof-label{font-size:12px;color:rgba(255,255,255,.7);width:180px;flex-shrink:0}
-.uof-pct{font-size:12px;font-weight:700;color:rgba(255,255,255,.5);width:36px;text-align:right;flex-shrink:0}
+.uof-pct{font-size:12px;font-weight:700;color:rgba(255,255,255,.78);width:36px;text-align:right;flex-shrink:0}
 
 /* Confidentiality banner */
-.confidential{background:rgba(0,166,81,.08);border:1px solid rgba(0,166,81,.18);border-radius:10px;padding:10px 16px;font-size:12px;color:rgba(255,255,255,.35);margin-bottom:24px;display:flex;gap:10px;align-items:center}
+.confidential{background:rgba(0,166,81,.08);border:1px solid rgba(0,166,81,.18);border-radius:10px;padding:10px 16px;font-size:12px;color:rgba(255,255,255,.6);margin-bottom:24px;display:flex;gap:10px;align-items:center}
 </style>
 </head>
 <body>
@@ -364,8 +364,8 @@ new Chart(ctx, {
             }
         },
         scales: {
-            x: { grid: { color: 'rgba(255,255,255,.05)' }, ticks: { color: 'rgba(255,255,255,.4)', font: { size: 11 } } },
-            y: { grid: { color: 'rgba(255,255,255,.05)' }, ticks: { color: 'rgba(255,255,255,.4)', font: { size: 11 }, callback: v => 'KES ' + v.toLocaleString() }, beginAtZero: true }
+            x: { grid: { color: 'rgba(255,255,255,.05)' }, ticks: { color: 'rgba(255,255,255,.68)', font: { size: 11 } } },
+            y: { grid: { color: 'rgba(255,255,255,.05)' }, ticks: { color: 'rgba(255,255,255,.68)', font: { size: 11 }, callback: v => 'KES ' + v.toLocaleString() }, beginAtZero: true }
         }
     }
 });

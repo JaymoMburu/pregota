@@ -11,7 +11,7 @@
 body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;min-height:100vh;display:flex;flex-direction:column}
 .nav{padding:14px 24px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,.08)}
 .logo{font-size:20px;font-weight:900;background:linear-gradient(135deg,#00A651,#007A33);-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-decoration:none}
-.nav-link{color:rgba(255,255,255,.5);text-decoration:none;font-size:13px;font-weight:600;padding:7px 14px;border:1px solid rgba(255,255,255,.15);border-radius:8px}
+.nav-link{color:rgba(255,255,255,.78);text-decoration:none;font-size:13px;font-weight:600;padding:7px 14px;border:1px solid rgba(255,255,255,.15);border-radius:8px}
 
 .main{flex:1;display:flex;align-items:flex-start;justify-content:center;padding:32px 20px}
 .card{max-width:400px;width:100%}
@@ -20,25 +20,25 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 .profile{text-align:center;margin-bottom:28px}
 .avatar{width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,#00A651,#007A33);display:flex;align-items:center;justify-content:center;font-size:38px;margin:0 auto 14px}
 .staff-name{font-size:24px;font-weight:900;margin-bottom:4px}
-.staff-role{font-size:13px;color:rgba(255,255,255,.45)}
+.staff-role{font-size:13px;color:rgba(255,255,255,.72)}
 .business-tag{display:inline-flex;align-items:center;gap:6px;background:rgba(0,166,81,.12);border:1px solid rgba(0,166,81,.25);border-radius:20px;padding:4px 12px;font-size:12px;color:#a78bfa;margin-top:8px}
 
 /* Rating badge */
-.rating-badge{display:flex;align-items:center;justify-content:center;gap:6px;margin-top:12px;font-size:13px;color:rgba(255,255,255,.5)}
+.rating-badge{display:flex;align-items:center;justify-content:center;gap:6px;margin-top:12px;font-size:13px;color:rgba(255,255,255,.78)}
 .stars{color:#fbbf24;letter-spacing:1px}
 
 /* Preset amounts */
-.amounts-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.4);margin-bottom:10px}
+.amounts-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.68);margin-bottom:10px}
 .preset-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:14px}
 .preset-btn{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:12px 6px;cursor:pointer;text-align:center;color:#fff;font-size:13px;font-weight:700;transition:.15s}
 .preset-btn:hover,.preset-btn.selected{border-color:#00A651;background:rgba(0,166,81,.15);color:#25D366}
 
 /* Form */
 .form-group{margin-bottom:14px}
-label{display:block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.5);margin-bottom:6px}
+label{display:block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.78);margin-bottom:6px}
 input{width:100%;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);border-radius:10px;padding:13px 16px;color:#fff;font-size:15px;outline:none;transition:.2s;font-family:inherit}
 input:focus{border-color:#00A651;background:rgba(0,166,81,.1)}
-input::placeholder{color:rgba(255,255,255,.3)}
+input::placeholder{color:rgba(255,255,255,.82)}
 
 .fee-preview{background:rgba(0,166,81,.07);border:1px solid rgba(0,166,81,.2);border-radius:10px;padding:10px 14px;margin-bottom:14px;font-size:12px;display:none}
 .fee-row{display:flex;justify-content:space-between;padding:2px 0;color:rgba(255,255,255,.6)}
@@ -97,7 +97,7 @@ textarea::placeholder{color:rgba(255,255,255,.25)}
             <span style="font-size:20px;flex-shrink:0">🛡️</span>
             <div style="flex:1">
                 <div style="font-size:12px;font-weight:700;color:#4ade80">Privacy Protected</div>
-                <div style="font-size:11px;color:rgba(255,255,255,.4);margin-top:1px;line-height:1.5">{{ $staff->name }}'s number is never visible — not to you, not to their employer.</div>
+                <div style="font-size:11px;color:rgba(255,255,255,.68);margin-top:1px;line-height:1.5">{{ $staff->name }}'s number is never visible — not to you, not to their employer.</div>
             </div>
             <a href="{{ route('staff.landing') }}" style="font-size:10px;color:rgba(74,222,128,.55);text-decoration:none;white-space:nowrap;flex-shrink:0">Learn more</a>
         </div>
@@ -130,7 +130,7 @@ textarea::placeholder{color:rgba(255,255,255,.25)}
             <!-- Gift nudge shown when amount ≥ nudge threshold -->
             <div id="giftNudge" style="display:none;background:rgba(37,211,102,.07);border:1px solid rgba(37,211,102,.25);border-radius:10px;padding:10px 14px;margin-bottom:14px">
                 <div style="font-size:12px;font-weight:700;color:#25D366;margin-bottom:5px">💡 Sending KES 500+?</div>
-                <div style="font-size:12px;color:rgba(255,255,255,.5);margin-bottom:8px">For larger amounts you can send a Gift Voucher (shareable code) or a Direct Gift (instant delivery). Recipient gets the full amount — same fee of KES 75.</div>
+                <div style="font-size:12px;color:rgba(255,255,255,.78);margin-bottom:8px">For larger amounts you can send a Gift Voucher (shareable code) or a Direct Gift (instant delivery). Recipient gets the full amount — same fee of KES 75.</div>
                 <div style="display:flex;gap:8px;flex-wrap:wrap">
                     <a id="nudgeVoucher" href="#" style="font-size:12px;font-weight:700;color:#a78bfa;background:rgba(0,166,81,.15);border:1px solid rgba(0,166,81,.3);border-radius:7px;padding:5px 12px;text-decoration:none">🎁 Gift Voucher →</a>
                     <a id="nudgeDirect" href="#" style="font-size:12px;font-weight:700;color:#25D366;background:rgba(37,211,102,.12);border:1px solid rgba(37,211,102,.3);border-radius:7px;padding:5px 12px;text-decoration:none">⚡ Direct Gift →</a>
@@ -144,7 +144,7 @@ textarea::placeholder{color:rgba(255,255,255,.25)}
 
             <button class="btn" id="tipBtn" onclick="sendTip()">Send Tip →</button>
 
-            <div id="pendingStatus" style="display:none;text-align:center;margin-top:16px;font-size:13px;color:rgba(255,255,255,.5)">
+            <div id="pendingStatus" style="display:none;text-align:center;margin-top:16px;font-size:13px;color:rgba(255,255,255,.78)">
                 <span class="status-dot"></span>Waiting for M-Pesa confirmation...
             </div>
         </div>
@@ -153,7 +153,7 @@ textarea::placeholder{color:rgba(255,255,255,.25)}
         <div class="feedback-step" id="feedbackStep">
             <div style="font-size:40px;margin-bottom:10px">🎉</div>
             <div style="font-size:18px;font-weight:800;margin-bottom:6px">Tip sent to {{ $staff->name }}!</div>
-            <div style="font-size:13px;color:rgba(255,255,255,.45);margin-bottom:20px">How was your experience?</div>
+            <div style="font-size:13px;color:rgba(255,255,255,.72);margin-bottom:20px">How was your experience?</div>
 
             <div class="star-row" id="starRow">
                 <span onclick="setRating(1)">⭐</span>
@@ -168,14 +168,14 @@ textarea::placeholder{color:rgba(255,255,255,.25)}
             <textarea id="comment" placeholder="Leave a comment (optional)..."></textarea>
 
             <button class="btn" id="feedbackBtn" onclick="submitFeedback()" style="margin-top:12px" disabled>Submit Feedback</button>
-            <button onclick="skipFeedback()" style="background:none;border:none;color:rgba(255,255,255,.3);cursor:pointer;font-size:13px;margin-top:12px;display:block;width:100%">Skip</button>
+            <button onclick="skipFeedback()" style="background:none;border:none;color:rgba(255,255,255,.82);cursor:pointer;font-size:13px;margin-top:12px;display:block;width:100%">Skip</button>
         </div>
 
         <!-- Final success -->
         <div class="success-box" id="successBox">
             <div style="font-size:40px;margin-bottom:10px">✅</div>
             <div style="font-size:16px;font-weight:800;margin-bottom:6px">Thank you!</div>
-            <div style="font-size:13px;color:rgba(255,255,255,.55)">Your feedback has been recorded. {{ $staff->name }} appreciates it.</div>
+            <div style="font-size:13px;color:rgba(255,255,255,.82)">Your feedback has been recorded. {{ $staff->name }} appreciates it.</div>
             <a href="{{ route('home') }}" style="display:inline-block;margin-top:16px;color:#a78bfa;font-size:13px">Send a gift instead →</a>
         </div>
 

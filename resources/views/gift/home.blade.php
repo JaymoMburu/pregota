@@ -25,7 +25,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;d
 
 .headline h1{font-size:clamp(34px,3.8vw,54px);font-weight:900;line-height:1.1;letter-spacing:-.5px}
 .headline h1 em{font-style:normal;background:linear-gradient(135deg,#25D366,#4ADE80);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.headline p{margin-top:14px;font-size:15px;color:rgba(255,255,255,.45);line-height:1.6;max-width:320px}
+.headline p{margin-top:14px;font-size:15px;color:rgba(255,255,255,.72);line-height:1.6;max-width:320px}
 
 /* How it works steps */
 .steps-list{display:flex;flex-direction:column;gap:24px}
@@ -37,9 +37,9 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;d
     font-size:13px;font-weight:900;margin-top:1px;
 }
 .step-text h3{font-size:14px;font-weight:700;margin-bottom:3px;color:rgba(255,255,255,.9)}
-.step-text p{font-size:13px;color:rgba(255,255,255,.5);line-height:1.55}
+.step-text p{font-size:13px;color:rgba(255,255,255,.78);line-height:1.55}
 
-.left-foot{margin-top:auto;position:relative;z-index:1;font-size:11px;color:rgba(255,255,255,.35)}
+.left-foot{margin-top:auto;position:relative;z-index:1;font-size:11px;color:rgba(255,255,255,.6)}
 
 /* ── Right panel ── */
 .panel-right{
@@ -48,7 +48,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;d
     border-left:1px solid rgba(255,255,255,.06);
 }
 .right-nav{padding:16px 32px;display:flex;justify-content:flex-end;gap:10px;border-bottom:1px solid rgba(255,255,255,.06)}
-.nav-link{color:rgba(255,255,255,.45);text-decoration:none;font-size:13px;font-weight:600;padding:7px 14px;border:1px solid rgba(255,255,255,.12);border-radius:8px;transition:.15s}
+.nav-link{color:rgba(255,255,255,.72);text-decoration:none;font-size:13px;font-weight:600;padding:7px 14px;border:1px solid rgba(255,255,255,.12);border-radius:8px;transition:.15s}
 .nav-link:hover{background:rgba(255,255,255,.06);color:#fff}
 
 .right-body{flex:1;display:flex;align-items:center;justify-content:center;padding:24px 32px}
@@ -59,31 +59,31 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;d
 label{display:block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.6);margin-bottom:6px}
 input,textarea{width:100%;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.18);border-radius:10px;padding:13px 16px;color:#fff;font-size:15px;outline:none;transition:.2s;font-family:inherit}
 input:focus,textarea:focus{border-color:#00A651;background:rgba(0,166,81,.1)}
-input::placeholder,textarea::placeholder{color:rgba(255,255,255,.38)}
+input::placeholder,textarea::placeholder{color:rgba(255,255,255,.65)}
 textarea{resize:none;height:68px}
 
 .fee-preview{background:rgba(0,166,81,.07);border:1px solid rgba(0,166,81,.2);border-radius:10px;padding:11px 14px;margin-bottom:14px;font-size:12px;display:none}
 .fee-row{display:flex;justify-content:space-between;padding:2px 0;color:rgba(255,255,255,.65)}
 .fee-row.total{color:#fff;font-weight:700;border-top:1px solid rgba(255,255,255,.08);margin-top:5px;padding-top:7px}
 
-.hint{font-size:11px;color:rgba(255,255,255,.42);margin-top:5px}
+.hint{font-size:11px;color:rgba(255,255,255,.68);margin-top:5px}
 
 .btn-primary{width:100%;padding:15px;border-radius:12px;border:none;font-size:16px;font-weight:700;cursor:pointer;background:linear-gradient(135deg,#00A651,#007A33);color:#fff;margin-top:6px;transition:.2s}
 .btn-primary:hover{opacity:.9;transform:translateY(-1px)}
 .btn-primary:disabled{opacity:.45;cursor:not-allowed;transform:none}
 
-.right-foot{padding:12px 32px;text-align:center;color:rgba(255,255,255,.35);font-size:11px;border-top:1px solid rgba(255,255,255,.06)}
+.right-foot{padding:12px 32px;text-align:center;color:rgba(255,255,255,.6);font-size:11px;border-top:1px solid rgba(255,255,255,.06)}
 
 /* Tabs */
 .tabs{display:flex;gap:0;margin-bottom:22px;border:1px solid rgba(255,255,255,.1);border-radius:10px;overflow:hidden}
-.tab-btn{flex:1;padding:10px 6px;border:none;background:rgba(255,255,255,.04);color:rgba(255,255,255,.45);font-size:13px;font-weight:600;cursor:pointer;transition:.15s;font-family:inherit}
+.tab-btn{flex:1;padding:10px 6px;border:none;background:rgba(255,255,255,.04);color:rgba(255,255,255,.72);font-size:13px;font-weight:600;cursor:pointer;transition:.15s;font-family:inherit}
 .tab-btn.active{background:linear-gradient(135deg,rgba(0,166,81,.3),rgba(0,122,51,.2));color:#fff}
 .tab-pane{display:none}
 .tab-pane.active{display:block}
 
 /* Direct gift inline success */
 .direct-success{text-align:center;padding:20px 0;display:none}
-.direct-pending{text-align:center;margin-top:14px;font-size:13px;color:rgba(255,255,255,.5);display:none}
+.direct-pending{text-align:center;margin-top:14px;font-size:13px;color:rgba(255,255,255,.78);display:none}
 
 /* ── Modal ── */
 .modal{position:fixed;inset:0;background:rgba(0,0,0,.85);display:none;align-items:center;justify-content:center;z-index:200;padding:24px}
@@ -220,7 +220,7 @@ textarea{resize:none;height:68px}
             <!-- TAB: Direct Gift -->
             <div class="tab-pane" id="tabDirect">
                 <div class="form-title" style="font-size:18px;margin-bottom:6px">Direct Gift</div>
-                <div style="font-size:12px;color:rgba(255,255,255,.4);margin-bottom:16px;line-height:1.6">Money goes straight to the recipient's M-Pesa — no code, no claiming. KES {{ config('pregota.gift_direct_fee') }} flat fee.</div>
+                <div style="font-size:12px;color:rgba(255,255,255,.68);margin-bottom:16px;line-height:1.6">Money goes straight to the recipient's M-Pesa — no code, no claiming. KES {{ config('pregota.gift_direct_fee') }} flat fee.</div>
 
                 <!-- Direct gift form -->
                 <div id="directForm">
@@ -258,8 +258,8 @@ textarea{resize:none;height:68px}
                 <div class="direct-success" id="directSuccess">
                     <div style="font-size:44px;margin-bottom:12px">⚡</div>
                     <div style="font-size:20px;font-weight:900;margin-bottom:6px">Gift Sent!</div>
-                    <div style="font-size:13px;color:rgba(255,255,255,.5);margin-bottom:6px">KES <span id="dSentAmount">—</span> sent directly to the recipient's M-Pesa.</div>
-                    <div style="font-size:12px;color:rgba(255,255,255,.3);margin-bottom:20px">No code needed — they should receive an M-Pesa notification shortly.</div>
+                    <div style="font-size:13px;color:rgba(255,255,255,.78);margin-bottom:6px">KES <span id="dSentAmount">—</span> sent directly to the recipient's M-Pesa.</div>
+                    <div style="font-size:12px;color:rgba(255,255,255,.82);margin-bottom:20px">No code needed — they should receive an M-Pesa notification shortly.</div>
                     <button onclick="resetDirect()" style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:10px 22px;color:rgba(255,255,255,.6);cursor:pointer;font-size:13px;font-weight:600">Send Another →</button>
                 </div>
             </div>
@@ -275,18 +275,18 @@ textarea{resize:none;height:68px}
     <div class="modal-box">
         <div style="font-size:40px;margin-bottom:12px">🎁</div>
         <h2 style="font-size:20px;font-weight:800;margin-bottom:8px">Gift Code Generated!</h2>
-        <p style="color:rgba(255,255,255,.5);font-size:13px;margin-bottom:4px">Share this code with your recipient</p>
+        <p style="color:rgba(255,255,255,.78);font-size:13px;margin-bottom:4px">Share this code with your recipient</p>
         <div class="code-display" id="voucherCode">—</div>
         <button class="copy-btn" onclick="copyCode()">Copy Code</button>
 
         <div style="background:rgba(0,166,81,.1);border:1px solid rgba(0,166,81,.25);border-radius:10px;padding:12px 14px;margin-top:18px;text-align:left">
-            <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.4);margin-bottom:6px">Cancel / Recall Token</div>
+            <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.68);margin-bottom:6px">Cancel / Recall Token</div>
             <div style="font-size:15px;font-weight:800;font-family:monospace;color:#25D366;letter-spacing:.1em" id="recallToken">—</div>
             <button class="copy-btn" onclick="copyRecallToken()" style="margin-top:8px;font-size:11px;padding:5px 14px">Copy Token</button>
-            <p style="font-size:11px;color:rgba(255,255,255,.4);margin-top:8px;line-height:1.55">Save this token. If the gift is unredeemed you can use it on the Track page to cancel. The deposit fee is not refunded — you receive the face value only.</p>
+            <p style="font-size:11px;color:rgba(255,255,255,.68);margin-top:8px;line-height:1.55">Save this token. If the gift is unredeemed you can use it on the Track page to cancel. The deposit fee is not refunded — you receive the face value only.</p>
         </div>
 
-        <p id="mpesaStatus" style="color:rgba(255,255,255,.4);font-size:12px;margin-top:16px">
+        <p id="mpesaStatus" style="color:rgba(255,255,255,.68);font-size:12px;margin-top:16px">
             <span class="status-dot"></span>Waiting for M-Pesa confirmation...
         </p>
 
@@ -294,13 +294,13 @@ textarea{resize:none;height:68px}
             <div style="font-size:13px;font-weight:700;color:#fbbf24;margin-bottom:4px">
                 ⚠️ You have <span id="holdCountdown" style="font-family:monospace">5:00</span> to cancel
             </div>
-            <div style="font-size:11px;color:rgba(255,255,255,.45);line-height:1.55">If you sent this to the wrong person, go to <strong style="color:rgba(255,255,255,.7)">Track Gift</strong> and use your recall token above before this window closes.</div>
+            <div style="font-size:11px;color:rgba(255,255,255,.72);line-height:1.55">If you sent this to the wrong person, go to <strong style="color:rgba(255,255,255,.7)">Track Gift</strong> and use your recall token above before this window closes.</div>
         </div>
         <div id="holdGone" style="display:none;font-size:11px;color:#4ade80;margin-top:10px">✅ Verification window passed — gift is now claimable.</div>
 
         <p style="color:rgba(255,255,255,.25);font-size:11px;margin-top:10px">Valid for 72 hours · Share via WhatsApp, SMS, or verbally</p>
         <button onclick="document.getElementById('successModal').classList.remove('show')"
-            style="margin-top:14px;background:none;border:none;color:rgba(255,255,255,.3);cursor:pointer;font-size:13px">Close</button>
+            style="margin-top:14px;background:none;border:none;color:rgba(255,255,255,.82);cursor:pointer;font-size:13px">Close</button>
     </div>
 </div>
 
@@ -399,7 +399,7 @@ async function pollStatus(code) {
         if (json.status === 'active') {
             document.querySelector('.status-dot').style.cssText = 'background:#22c55e;animation:none';
             document.getElementById('mpesaStatus').innerHTML = '✅ Payment confirmed! Share the code above with your recipient.';
-            document.getElementById('mpesaStatus').style.color = 'rgba(255,255,255,.55)';
+            document.getElementById('mpesaStatus').style.color = 'rgba(255,255,255,.82)';
             if (json.hold_seconds > 0) {
                 document.getElementById('holdAlert').style.display = 'block';
                 startHoldCountdown(json.hold_seconds);

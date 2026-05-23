@@ -10,7 +10,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 
 .topbar{padding:14px 20px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,.07);background:#0B141A;position:sticky;top:0;z-index:10}
 .logo{font-size:18px;font-weight:900;background:linear-gradient(135deg,#25D366,#4ADE80);-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-decoration:none}
-.logout-btn{font-size:12px;color:rgba(255,255,255,.35);background:none;border:none;cursor:pointer;padding:6px 10px}
+.logout-btn{font-size:12px;color:rgba(255,255,255,.6);background:none;border:none;cursor:pointer;padding:6px 10px}
 
 .page{max-width:640px;margin:0 auto;padding:24px 20px 60px}
 
@@ -21,18 +21,18 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 .profile-header{display:flex;align-items:center;gap:16px;margin-bottom:28px}
 .avatar{width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,#00A651,#007A33);display:flex;align-items:center;justify-content:center;font-size:28px;flex-shrink:0}
 .profile-info h2{font-size:20px;font-weight:900}
-.profile-info .role{font-size:13px;color:rgba(255,255,255,.45);margin-top:2px}
+.profile-info .role{font-size:13px;color:rgba(255,255,255,.72);margin-top:2px}
 .rating-badge{display:inline-flex;align-items:center;gap:4px;font-size:12px;color:#fbbf24;margin-top:4px}
 
 /* Stats */
 .stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:24px}
 .stat-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:16px;text-align:center}
 .stat-num{font-size:24px;font-weight:900;color:#25D366}
-.stat-label{font-size:11px;color:rgba(255,255,255,.4);margin-top:3px}
+.stat-label{font-size:11px;color:rgba(255,255,255,.68);margin-top:3px}
 
 /* Tip link card */
 .link-card{background:linear-gradient(135deg,rgba(0,166,81,.15),rgba(0,122,51,.08));border:1px solid rgba(0,166,81,.25);border-radius:14px;padding:20px;margin-bottom:24px}
-.link-card-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.4);margin-bottom:10px}
+.link-card-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.68);margin-bottom:10px}
 .link-row{display:flex;gap:8px;align-items:center}
 .link-input{flex:1;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:8px;padding:10px 12px;color:rgba(255,255,255,.7);font-size:13px;outline:none;font-family:monospace}
 .copy-btn{padding:10px 16px;border-radius:8px;background:rgba(0,166,81,.25);border:1px solid rgba(0,166,81,.35);color:#25D366;font-size:12px;font-weight:700;cursor:pointer;white-space:nowrap}
@@ -40,32 +40,32 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 
 /* Card styles */
 .card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:20px;margin-bottom:20px}
-.card-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.35);margin-bottom:14px}
+.card-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.6);margin-bottom:14px}
 
 /* Tip list */
 .tip-item{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.05)}
 .tip-item:last-child{border-bottom:none}
 .tip-amount{font-size:16px;font-weight:700;color:#25D366}
-.tip-time{font-size:11px;color:rgba(255,255,255,.3)}
+.tip-time{font-size:11px;color:rgba(255,255,255,.82)}
 .tip-rating{font-size:12px;color:#fbbf24}
-.empty{text-align:center;padding:20px;font-size:13px;color:rgba(255,255,255,.3)}
+.empty{text-align:center;padding:20px;font-size:13px;color:rgba(255,255,255,.82)}
 
 /* Splits */
 .split-item{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.05)}
 .split-item:last-child{border-bottom:none}
 .split-left{flex:1;min-width:0}
 .split-name{font-size:13px;font-weight:600;color:rgba(255,255,255,.85);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.split-meta{font-size:11px;color:rgba(255,255,255,.3);margin-top:1px}
+.split-meta{font-size:11px;color:rgba(255,255,255,.82);margin-top:1px}
 .split-right{text-align:right;flex-shrink:0;margin-left:12px}
 .split-amount{font-size:15px;font-weight:800;color:#4ade80}
 .split-status{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;margin-top:2px}
 .split-status.settled{color:#4ade80}
 .split-status.open{color:#fbbf24}
-.split-status.expired{color:rgba(255,255,255,.3)}
+.split-status.expired{color:rgba(255,255,255,.82)}
 .reconcile-bar{display:flex;gap:10px;margin-bottom:16px}
 .reconcile-chip{flex:1;background:rgba(74,222,128,.07);border:1px solid rgba(74,222,128,.18);border-radius:10px;padding:12px;text-align:center}
 .reconcile-num{font-size:20px;font-weight:900;color:#4ade80}
-.reconcile-label{font-size:10px;color:rgba(255,255,255,.35);margin-top:2px}
+.reconcile-label{font-size:10px;color:rgba(255,255,255,.6);margin-top:2px}
 .new-split-btn{display:inline-flex;align-items:center;gap:6px;margin-top:4px;padding:9px 16px;border-radius:8px;background:rgba(74,222,128,.12);border:1px solid rgba(74,222,128,.25);color:#4ade80;font-size:12px;font-weight:700;text-decoration:none}
 
 /* Feedback */
@@ -78,16 +78,16 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 .fb-tag{padding:3px 8px;border-radius:10px;background:rgba(0,166,81,.15);border:1px solid rgba(0,166,81,.25);font-size:11px;color:#25D366}
 
 /* Profile form */
-details summary{cursor:pointer;list-style:none;font-size:13px;font-weight:700;color:rgba(255,255,255,.5);padding:4px 0}
+details summary{cursor:pointer;list-style:none;font-size:13px;font-weight:700;color:rgba(255,255,255,.78);padding:4px 0}
 details summary::-webkit-details-marker{display:none}
 details[open] summary{color:#25D366;margin-bottom:16px}
 .form-group{margin-bottom:12px}
-label{display:block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.5);margin-bottom:6px}
+label{display:block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.78);margin-bottom:6px}
 input{width:100%;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);border-radius:10px;padding:11px 13px;color:#fff;font-size:14px;outline:none;transition:.2s;font-family:inherit}
 input:focus{border-color:#00A651;background:rgba(0,166,81,.08)}
-input::placeholder{color:rgba(255,255,255,.3)}
+input::placeholder{color:rgba(255,255,255,.82)}
 .save-btn{padding:11px 24px;border-radius:10px;border:none;font-size:14px;font-weight:700;cursor:pointer;background:linear-gradient(135deg,#00A651,#007A33);color:#fff}
-.hint{font-size:11px;color:rgba(255,255,255,.35);margin-top:5px}
+.hint{font-size:11px;color:rgba(255,255,255,.6);margin-top:5px}
 
 @media(max-width:480px){.stats-row{grid-template-columns:1fr 1fr}.stat-card:last-child{grid-column:span 2}}
 </style>
@@ -277,7 +277,7 @@ input::placeholder{color:rgba(255,255,255,.3)}
                     <input type="password" name="password_confirmation" placeholder="Repeat new password">
                 </div>
 
-                <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.35);margin:20px 0 10px;padding-top:16px;border-top:1px solid rgba(255,255,255,.06)">
+                <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.6);margin:20px 0 10px;padding-top:16px;border-top:1px solid rgba(255,255,255,.06)">
                     Restaurant Till / Paybill
                 </div>
                 <div class="form-group">

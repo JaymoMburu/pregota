@@ -16,13 +16,13 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 .left-center{flex:1;display:flex;flex-direction:column;justify-content:center;position:relative;z-index:1;gap:28px}
 .headline h1{font-size:clamp(24px,2.8vw,38px);font-weight:900;line-height:1.12;letter-spacing:-.5px}
 .headline h1 em{font-style:normal;background:linear-gradient(135deg,#25D366,#4ADE80);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.headline p{margin-top:10px;font-size:14px;color:rgba(255,255,255,.45);line-height:1.65;max-width:300px}
+.headline p{margin-top:10px;font-size:14px;color:rgba(255,255,255,.72);line-height:1.65;max-width:300px}
 .flow-steps{display:flex;flex-direction:column;gap:14px}
 .flow-step{display:flex;gap:12px;align-items:flex-start}
 .flow-num{width:26px;height:26px;border-radius:50%;background:linear-gradient(135deg,#00A651,#007A33);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:900;flex-shrink:0;margin-top:1px}
 .flow-text strong{font-size:13px;color:rgba(255,255,255,.85);display:block;margin-bottom:1px}
-.flow-text span{font-size:12px;color:rgba(255,255,255,.4);line-height:1.5}
-.left-foot{position:relative;z-index:1;font-size:11px;color:rgba(255,255,255,.3)}
+.flow-text span{font-size:12px;color:rgba(255,255,255,.68);line-height:1.5}
+.left-foot{position:relative;z-index:1;font-size:11px;color:rgba(255,255,255,.82)}
 
 .panel-right{width:58%;min-height:100vh;background:#0B141A;display:flex;flex-direction:column;border-left:1px solid rgba(255,255,255,.06)}
 .right-nav{padding:16px 32px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,.06)}
@@ -30,16 +30,16 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 .right-body{flex:1;padding:32px;overflow-y:auto}
 .form-wrap{max-width:500px}
 .form-title{font-size:20px;font-weight:900;margin-bottom:4px}
-.form-subtitle{font-size:13px;color:rgba(255,255,255,.4);margin-bottom:24px}
+.form-subtitle{font-size:13px;color:rgba(255,255,255,.68);margin-bottom:24px}
 
-.section-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.35);margin-bottom:10px;margin-top:20px}
+.section-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.6);margin-bottom:10px;margin-top:20px}
 .form-group{margin-bottom:12px}
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-label{display:block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.5);margin-bottom:6px}
+label{display:block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.78);margin-bottom:6px}
 input{width:100%;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);border-radius:10px;padding:11px 13px;color:#fff;font-size:14px;outline:none;transition:.2s;font-family:inherit}
 input:focus{border-color:#00A651;background:rgba(0,166,81,.08)}
-input::placeholder{color:rgba(255,255,255,.3)}
-.hint{font-size:11px;color:rgba(255,255,255,.35);margin-top:5px}
+input::placeholder{color:rgba(255,255,255,.82)}
+.hint{font-size:11px;color:rgba(255,255,255,.6);margin-top:5px}
 .hint.green{color:#4ade80}
 .alert.error{background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.25);color:#f87171;border-radius:8px;padding:10px 12px;margin-bottom:14px;font-size:13px}
 
@@ -50,10 +50,10 @@ input::placeholder{color:rgba(255,255,255,.3)}
 .class-row input:focus{border-bottom-color:#00A651;background:transparent}
 .remove-class{background:none;border:none;color:rgba(239,68,68,.5);font-size:18px;cursor:pointer;line-height:1;padding:0;width:24px;text-align:center}
 .remove-class:hover{color:#f87171}
-.add-class-btn{width:100%;padding:10px;border-radius:10px;border:1px dashed rgba(255,255,255,.2);background:rgba(255,255,255,.03);color:rgba(255,255,255,.5);font-size:13px;font-weight:600;cursor:pointer;transition:.15s}
+.add-class-btn{width:100%;padding:10px;border-radius:10px;border:1px dashed rgba(255,255,255,.2);background:rgba(255,255,255,.03);color:rgba(255,255,255,.78);font-size:13px;font-weight:600;cursor:pointer;transition:.15s}
 .add-class-btn:hover{border-color:#00A651;color:#25D366;background:rgba(0,166,81,.06)}
 .class-header{display:grid;grid-template-columns:1fr 1fr 32px;gap:8px;padding:0 12px;margin-bottom:4px}
-.class-header span{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.3)}
+.class-header span{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.82)}
 
 .submit-btn{width:100%;padding:15px;border-radius:12px;border:none;font-size:16px;font-weight:700;cursor:pointer;background:linear-gradient(135deg,#00A651,#007A33);color:#fff;margin-top:10px;transition:.2s}
 .submit-btn:hover{opacity:.9;transform:translateY(-1px)}
@@ -83,7 +83,7 @@ input::placeholder{color:rgba(255,255,255,.3)}
 <div class="panel-right">
     <nav class="right-nav">
         <a href="{{ route('home') }}" class="logo-sm">Pregota</a>
-        <span style="font-size:12px;color:rgba(255,255,255,.35)">School Fees · Setup</span>
+        <span style="font-size:12px;color:rgba(255,255,255,.6)">School Fees · Setup</span>
     </nav>
     <div class="right-body">
         <div class="form-wrap">

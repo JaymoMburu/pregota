@@ -14,30 +14,30 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 .hero{padding:28px 20px 16px;max-width:560px;margin:0 auto}
 .school-badge{display:inline-flex;align-items:center;gap:6px;padding:5px 12px;border-radius:20px;background:rgba(0,166,81,.15);border:1px solid rgba(0,166,81,.3);font-size:12px;color:#25D366;font-weight:600;margin-bottom:12px}
 h1{font-size:clamp(20px,4.5vw,30px);font-weight:900;line-height:1.15;margin-bottom:6px}
-.meta{font-size:13px;color:rgba(255,255,255,.4);display:flex;flex-wrap:wrap;gap:10px}
+.meta{font-size:13px;color:rgba(255,255,255,.68);display:flex;flex-wrap:wrap;gap:10px}
 
 .status-banner{margin:0 20px 16px;max-width:520px;margin-left:auto;margin-right:auto;padding:12px 16px;border-radius:10px;font-size:13px;font-weight:600;text-align:center;background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.25);color:#f87171}
 
 .stats-row{max-width:560px;margin:0 auto 20px;padding:0 20px;display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .stat-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:16px;text-align:center}
 .stat-num{font-size:26px;font-weight:900;color:#25D366}
-.stat-label{font-size:11px;color:rgba(255,255,255,.4);margin-top:4px}
+.stat-label{font-size:11px;color:rgba(255,255,255,.68);margin-top:4px}
 
 .main{max-width:560px;margin:0 auto;padding:0 20px 40px;display:flex;flex-direction:column;gap:18px}
 .card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:20px}
-.card-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.35);margin-bottom:14px}
+.card-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.6);margin-bottom:14px}
 
 .amount-display{text-align:center;padding:16px 0 8px}
 .amount-big{font-size:48px;font-weight:900;background:linear-gradient(135deg,#25D366,#4ADE80);-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1}
-.amount-label{font-size:13px;color:rgba(255,255,255,.4);margin-top:4px}
+.amount-label{font-size:13px;color:rgba(255,255,255,.68);margin-top:4px}
 
 .form-group{margin-bottom:12px}
-label{display:block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.5);margin-bottom:6px}
+label{display:block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.78);margin-bottom:6px}
 input{width:100%;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);border-radius:10px;padding:12px 14px;color:#fff;font-size:14px;outline:none;transition:.2s;font-family:inherit}
 input:focus{border-color:#00A651;background:rgba(0,166,81,.08)}
-input::placeholder{color:rgba(255,255,255,.3)}
-.hint{font-size:11px;color:rgba(255,255,255,.35);margin-top:5px}
-.fee-line{display:flex;justify-content:space-between;font-size:12px;color:rgba(255,255,255,.4);background:rgba(255,255,255,.03);padding:8px 12px;border-radius:8px;margin-bottom:12px}
+input::placeholder{color:rgba(255,255,255,.82)}
+.hint{font-size:11px;color:rgba(255,255,255,.6);margin-top:5px}
+.fee-line{display:flex;justify-content:space-between;font-size:12px;color:rgba(255,255,255,.68);background:rgba(255,255,255,.03);padding:8px 12px;border-radius:8px;margin-bottom:12px}
 .fee-line strong{color:rgba(255,255,255,.75)}
 
 .pay-btn{width:100%;padding:15px;border-radius:12px;border:none;font-size:16px;font-weight:700;cursor:pointer;background:linear-gradient(135deg,#00A651,#007A33);color:#fff;transition:.2s}
@@ -49,7 +49,7 @@ input::placeholder{color:rgba(255,255,255,.3)}
 @keyframes spin{to{transform:rotate(360deg)}}
 .status-icon{font-size:40px;margin-bottom:10px}
 .status-msg{font-size:15px;font-weight:700;margin-bottom:6px}
-.status-sub{font-size:13px;color:rgba(255,255,255,.45)}
+.status-sub{font-size:13px;color:rgba(255,255,255,.72)}
 .btn-sm{padding:10px 20px;border-radius:8px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.07);color:#fff;font-size:13px;font-weight:600;cursor:pointer;margin-top:14px}
 
 .paid-list{display:flex;flex-direction:column;gap:8px}
@@ -57,15 +57,15 @@ input::placeholder{color:rgba(255,255,255,.3)}
 .paid-avatar{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#00A651,#007A33);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0}
 .paid-name{flex:1;font-size:13px;font-weight:600}
 .paid-amount{font-size:13px;font-weight:700;color:#25D366}
-.paid-time{font-size:11px;color:rgba(255,255,255,.3)}
-.empty{text-align:center;padding:16px;font-size:13px;color:rgba(255,255,255,.3)}
+.paid-time{font-size:11px;color:rgba(255,255,255,.82)}
+.empty{text-align:center;padding:16px;font-size:13px;color:rgba(255,255,255,.82)}
 </style>
 </head>
 <body>
 
 <div class="topbar">
     <a href="{{ route('home') }}" class="logo">Pregota</a>
-    <span style="font-size:12px;color:rgba(255,255,255,.35)">School Fees</span>
+    <span style="font-size:12px;color:rgba(255,255,255,.6)">School Fees</span>
 </div>
 
 @if(! $collection->isOpen())

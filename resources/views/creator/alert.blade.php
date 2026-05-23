@@ -29,7 +29,7 @@ body{background:transparent;font-family:'Segoe UI',system-ui,sans-serif;overflow
 .alert-amount{font-size:22px;font-weight:900;color:#fff;line-height:1}
 .alert-msg{font-size:12px;color:rgba(255,255,255,.7);margin-top:4px;font-style:italic}
 
-.pregota-badge{font-size:9px;color:rgba(255,255,255,.4);margin-top:6px;font-weight:600;letter-spacing:.1em;text-transform:uppercase}
+.pregota-badge{font-size:9px;color:rgba(255,255,255,.68);margin-top:6px;font-weight:600;letter-spacing:.1em;text-transform:uppercase}
 </style>
 </head>
 <body>

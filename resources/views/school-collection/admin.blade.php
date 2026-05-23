@@ -20,17 +20,17 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 .alert.info{background:rgba(0,166,81,.1);border:1px solid rgba(0,166,81,.25);color:#25D366}
 
 h2{font-size:22px;font-weight:900;margin-bottom:4px}
-.subtitle{font-size:13px;color:rgba(255,255,255,.4);margin-bottom:24px}
+.subtitle{font-size:13px;color:rgba(255,255,255,.68);margin-bottom:24px}
 
 /* Totals */
 .totals-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:28px}
 @media(max-width:600px){.totals-row{grid-template-columns:1fr 1fr}}
 .total-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:16px;text-align:center}
 .total-card .num{font-size:24px;font-weight:900;color:#25D366}
-.total-card .lbl{font-size:11px;color:rgba(255,255,255,.4);margin-top:4px}
+.total-card .lbl{font-size:11px;color:rgba(255,255,255,.68);margin-top:4px}
 
 /* Section */
-.section-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.35);margin-bottom:12px}
+.section-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.6);margin-bottom:12px}
 
 /* Class accordion */
 .acc-list{display:flex;flex-direction:column;gap:6px;margin-bottom:28px}
@@ -39,22 +39,22 @@ h2{font-size:22px;font-weight:900;margin-bottom:4px}
 .acc-header:hover{background:rgba(255,255,255,.03)}
 .acc-left{flex:1;min-width:0}
 .acc-class-name{font-size:14px;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.acc-teacher{font-size:11px;color:rgba(255,255,255,.35);margin-top:2px}
+.acc-teacher{font-size:11px;color:rgba(255,255,255,.6);margin-top:2px}
 .acc-right{display:flex;align-items:center;gap:8px;flex-shrink:0}
 .acc-stat{font-size:11px;font-weight:700;padding:2px 8px;border-radius:8px}
 .acc-stat.green{background:rgba(74,222,128,.1);color:#4ade80}
 .acc-stat.amber{background:rgba(251,191,36,.1);color:#fbbf24}
 .acc-stat.red{background:rgba(239,68,68,.1);color:#f87171}
 .acc-amount{font-size:13px;font-weight:900;color:#25D366;min-width:80px;text-align:right}
-.acc-chevron{font-size:12px;color:rgba(255,255,255,.3);transition:.2s;margin-left:4px}
+.acc-chevron{font-size:12px;color:rgba(255,255,255,.82);transition:.2s;margin-left:4px}
 .acc-chevron.open{transform:rotate(180deg)}
 .acc-body{display:none;border-top:1px solid rgba(255,255,255,.06);padding:14px 16px}
 
 /* Links */
 .link-section{margin-bottom:12px}
-.link-lbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.3);margin-bottom:5px}
+.link-lbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.82);margin-bottom:5px}
 .class-link-row{display:flex;gap:7px;align-items:center}
-.class-link-input{flex:1;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:7px;padding:7px 9px;color:rgba(255,255,255,.45);font-size:11px;outline:none;font-family:monospace}
+.class-link-input{flex:1;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:7px;padding:7px 9px;color:rgba(255,255,255,.72);font-size:11px;outline:none;font-family:monospace}
 .copy-cls-btn{padding:6px 11px;border-radius:7px;background:rgba(0,166,81,.2);border:1px solid rgba(0,166,81,.3);color:#25D366;font-size:11px;font-weight:700;cursor:pointer;white-space:nowrap}
 .wa-cls-btn{display:inline-flex;align-items:center;gap:5px;padding:6px 11px;border-radius:7px;background:#25d366;color:#fff;font-size:11px;font-weight:700;text-decoration:none;white-space:nowrap}
 
@@ -62,10 +62,10 @@ h2{font-size:22px;font-weight:900;margin-bottom:4px}
 .stu-toggle{display:flex;align-items:center;gap:6px;font-size:11px;font-weight:700;color:rgba(0,166,81,.8);cursor:pointer;border:none;background:none;padding:0;margin:10px 0 0}
 .stu-toggle:hover{color:#25D366}
 .stu-table{width:100%;border-collapse:collapse;margin-top:8px;font-size:12px}
-.stu-table th{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:rgba(255,255,255,.3);text-align:left;padding:5px 8px;border-bottom:1px solid rgba(255,255,255,.07)}
+.stu-table th{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:rgba(255,255,255,.82);text-align:left;padding:5px 8px;border-bottom:1px solid rgba(255,255,255,.07)}
 .stu-table td{padding:7px 8px;border-bottom:1px solid rgba(255,255,255,.04);color:rgba(255,255,255,.7);vertical-align:middle}
 .stu-table tr:last-child td{border-bottom:none}
-.stu-table td.mono{font-family:monospace;color:rgba(255,255,255,.3);font-size:11px}
+.stu-table td.mono{font-family:monospace;color:rgba(255,255,255,.82);font-size:11px}
 .stu-table td.amt{font-weight:700;color:#25D366;text-align:right}
 .badge-full{font-size:10px;padding:2px 7px;border-radius:6px;background:rgba(74,222,128,.1);color:#4ade80;font-weight:700}
 .badge-part{font-size:10px;padding:2px 7px;border-radius:6px;background:rgba(251,191,36,.1);color:#fbbf24;font-weight:700}
@@ -281,7 +281,7 @@ h2{font-size:22px;font-weight:900;margin-bottom:4px}
             </div>
 
             <!-- Links -->
-            <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.3);margin-bottom:5px">Parent Payment Link</div>
+            <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.82);margin-bottom:5px">Parent Payment Link</div>
             <div class="class-link-row">
                 <input class="class-link-input" readonly value="{{ $classUrl }}" id="link-{{ $class->id }}">
                 <button class="copy-cls-btn" onclick="doCopy('link-{{ $class->id }}', this)">Copy</button>
@@ -290,7 +290,7 @@ h2{font-size:22px;font-weight:900;margin-bottom:4px}
                     WhatsApp
                 </a>
             </div>
-            <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.3);margin:10px 0 5px">Teacher Tracking Link (private)</div>
+            <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.82);margin:10px 0 5px">Teacher Tracking Link (private)</div>
             <div class="class-link-row">
                 <input class="class-link-input" readonly value="{{ $teacherUrl }}" id="tlink-{{ $class->id }}">
                 <button class="copy-cls-btn" onclick="doCopy('tlink-{{ $class->id }}', this)">Copy</button>

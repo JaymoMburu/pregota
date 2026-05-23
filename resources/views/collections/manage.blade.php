@@ -22,20 +22,20 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 .alert.error{background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.25);color:#f87171}
 
 h2{font-size:22px;font-weight:900;margin-bottom:4px}
-.subtitle{font-size:13px;color:rgba(255,255,255,.4);margin-bottom:24px}
+.subtitle{font-size:13px;color:rgba(255,255,255,.68);margin-bottom:24px}
 
 .stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:24px}
 .stat-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:16px;text-align:center}
 .stat-num{font-size:26px;font-weight:900}
 .stat-num.purple{color:#25D366}
-.stat-label{font-size:11px;color:rgba(255,255,255,.4);margin-top:3px}
+.stat-label{font-size:11px;color:rgba(255,255,255,.68);margin-top:3px}
 
 .progress-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:16px;margin-bottom:24px}
-.progress-head{display:flex;justify-content:space-between;font-size:13px;color:rgba(255,255,255,.45);margin-bottom:8px}
+.progress-head{display:flex;justify-content:space-between;font-size:13px;color:rgba(255,255,255,.72);margin-bottom:8px}
 .progress-bar-wrap{height:8px;background:rgba(255,255,255,.08);border-radius:4px;overflow:hidden}
 .progress-bar-fill{height:100%;background:linear-gradient(90deg,#00A651,#007A33);border-radius:4px}
 
-.section-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.35);margin-bottom:12px}
+.section-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.6);margin-bottom:12px}
 
 .share-block{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:16px;margin-bottom:24px}
 .link-row{display:flex;gap:8px;align-items:center;margin-top:8px}
@@ -51,14 +51,14 @@ h2{font-size:22px;font-weight:900;margin-bottom:4px}
 
 .table-wrap{overflow-x:auto}
 table{width:100%;border-collapse:collapse}
-th{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.35);padding:10px 12px;text-align:left;border-bottom:1px solid rgba(255,255,255,.07)}
+th{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.6);padding:10px 12px;text-align:left;border-bottom:1px solid rgba(255,255,255,.07)}
 td{padding:12px;font-size:13px;border-bottom:1px solid rgba(255,255,255,.05);color:rgba(255,255,255,.75)}
 tr:last-child td{border-bottom:none}
 .status-pill{display:inline-block;padding:3px 8px;border-radius:12px;font-size:10px;font-weight:700}
 .status-pill.paid{background:rgba(34,197,94,.12);color:#4ade80}
 .status-pill.pending{background:rgba(251,191,36,.1);color:#fbbf24}
 .status-pill.failed{background:rgba(239,68,68,.1);color:#f87171}
-.empty-row td{text-align:center;color:rgba(255,255,255,.3);padding:28px}
+.empty-row td{text-align:center;color:rgba(255,255,255,.82);padding:28px}
 
 .warning-box{background:rgba(251,191,36,.08);border:1px solid rgba(251,191,36,.2);color:#fbbf24;border-radius:10px;padding:12px 14px;font-size:12px;margin-bottom:16px}
 
@@ -185,7 +185,7 @@ tr:last-child td{border-bottom:none}
                     <td>{{ $c->displayName() }}</td>
                     <td>KES {{ number_format($c->amount) }}</td>
                     <td><span class="status-pill {{ $c->status }}">{{ ucfirst($c->status) }}</span></td>
-                    <td style="color:rgba(255,255,255,.4)">{{ $c->created_at->format('j M, H:i') }}</td>
+                    <td style="color:rgba(255,255,255,.68)">{{ $c->created_at->format('j M, H:i') }}</td>
                 </tr>
                 @empty
                 <tr class="empty-row"><td colspan="4">No contributions yet — share your link!</td></tr>

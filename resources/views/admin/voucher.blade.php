@@ -9,7 +9,7 @@
 body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;min-height:100vh}
 .nav{padding:14px 28px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,.08)}
 .logo{font-size:18px;font-weight:900;background:linear-gradient(135deg,#00A651,#007A33);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.back{color:rgba(255,255,255,.4);font-size:13px;text-decoration:none}
+.back{color:rgba(255,255,255,.68);font-size:13px;text-decoration:none}
 .main{padding:28px;max-width:900px;margin:0 auto}
 .voucher-hero{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:16px;padding:28px;margin-bottom:24px;display:flex;gap:24px;flex-wrap:wrap;align-items:center}
 .code-big{font-family:monospace;font-size:32px;font-weight:900;letter-spacing:.12em;background:linear-gradient(135deg,#00A651,#007A33);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
@@ -17,23 +17,23 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 .badge.active{background:rgba(34,197,94,.15);color:#4ade80}
 .badge.redeemed{background:rgba(167,139,250,.15);color:#a78bfa}
 .badge.pending{background:rgba(251,191,36,.15);color:#fbbf24}
-.badge.expired,.badge.cancelled{background:rgba(255,255,255,.08);color:rgba(255,255,255,.4)}
+.badge.expired,.badge.cancelled{background:rgba(255,255,255,.08);color:rgba(255,255,255,.68)}
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:24px}
 .card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:20px}
-.card h3{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.35);margin-bottom:14px}
+.card h3{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.6);margin-bottom:14px}
 .row{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.05);font-size:13px}
 .row:last-child{border-bottom:none}
-.row .lbl{color:rgba(255,255,255,.45)}
+.row .lbl{color:rgba(255,255,255,.72)}
 .row .val{font-weight:600;color:#fff}
 .ledger{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:14px;overflow:hidden}
-.ledger h3{padding:14px 20px;border-bottom:1px solid rgba(255,255,255,.07);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.35)}
+.ledger h3{padding:14px 20px;border-bottom:1px solid rgba(255,255,255,.07);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.6)}
 .entry{padding:12px 20px;border-bottom:1px solid rgba(255,255,255,.05);display:flex;gap:16px;align-items:flex-start}
 .entry:last-child{border-bottom:none}
 .event-dot{width:8px;height:8px;border-radius:50%;background:#00A651;flex-shrink:0;margin-top:5px}
 .event-name{font-size:12px;font-weight:700;color:#a78bfa;margin-bottom:4px}
 .event-hash{font-family:monospace;font-size:10px;color:rgba(255,255,255,.25);word-break:break-all}
-.event-payload{font-size:11px;color:rgba(255,255,255,.45);margin-top:4px}
-.event-time{font-size:11px;color:rgba(255,255,255,.3);white-space:nowrap;margin-left:auto}
+.event-payload{font-size:11px;color:rgba(255,255,255,.72);margin-top:4px}
+.event-time{font-size:11px;color:rgba(255,255,255,.82);white-space:nowrap;margin-left:auto}
 .fabric-badge{display:inline-flex;padding:1px 7px;border-radius:4px;font-size:10px;background:rgba(34,197,94,.1);color:#4ade80;font-family:monospace}
 </style>
 </head>
@@ -73,7 +73,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
         @if($voucher->sender_name || $voucher->message)
         <div style="flex:1;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:14px;font-size:14px">
             @if($voucher->sender_name)
-            <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.35);margin-bottom:6px">From: {{ $voucher->sender_name }}</div>
+            <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.6);margin-bottom:6px">From: {{ $voucher->sender_name }}</div>
             @else
             <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.25);margin-bottom:6px">Anonymous</div>
             @endif

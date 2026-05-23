@@ -10,7 +10,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 .nav{padding:14px 28px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,.08)}
 .logo{font-size:18px;font-weight:900;background:linear-gradient(135deg,#00A651,#007A33);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 .nav-links{display:flex;gap:12px}
-.back{color:rgba(255,255,255,.4);font-size:13px;text-decoration:none}
+.back{color:rgba(255,255,255,.68);font-size:13px;text-decoration:none}
 .main{padding:28px;max-width:960px;margin:0 auto}
 h1{font-size:20px;font-weight:800;margin-bottom:24px}
 .alert{border-radius:10px;padding:12px 16px;margin-bottom:20px;font-size:13px}
@@ -26,13 +26,13 @@ h1{font-size:20px;font-weight:800;margin-bottom:24px}
 .cat-shop{background:rgba(246,139,30,.15);color:#f68b1e}
 .cat-save{background:rgba(34,197,94,.12);color:#4ade80}
 .cat-invest{background:rgba(0,166,81,.15);color:#a78bfa}
-.pc-tag{font-size:12px;color:rgba(255,255,255,.45);margin-bottom:12px;line-height:1.4}
+.pc-tag{font-size:12px;color:rgba(255,255,255,.72);margin-bottom:12px;line-height:1.4}
 .pc-url{font-size:11px;color:rgba(255,255,255,.25);font-family:monospace;margin-bottom:12px;word-break:break-all}
 .pc-actions{display:flex;gap:8px}
 .pc-btn{font-size:12px;font-weight:600;border:none;border-radius:6px;padding:6px 12px;cursor:pointer}
 .btn-toggle-on{background:rgba(239,68,68,.15);color:#f87171}
 .btn-toggle-off{background:rgba(34,197,94,.15);color:#4ade80}
-.btn-delete{background:rgba(255,255,255,.06);color:rgba(255,255,255,.4)}
+.btn-delete{background:rgba(255,255,255,.06);color:rgba(255,255,255,.68)}
 .btn-delete:hover{background:rgba(239,68,68,.15);color:#f87171}
 
 /* Add form */
@@ -40,7 +40,7 @@ h1{font-size:20px;font-weight:800;margin-bottom:24px}
 .add-form h2{font-size:15px;font-weight:700;margin-bottom:18px;color:rgba(255,255,255,.7)}
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
 .form-group{display:flex;flex-direction:column;gap:5px}
-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.4)}
+label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.68)}
 input,select{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:8px;padding:10px 12px;color:#fff;font-size:13px;outline:none}
 input:focus,select:focus{border-color:#00A651}
 select option{background:#0B1810}
@@ -70,7 +70,7 @@ select option{background:#0B1810}
 
     @foreach(['shop','save','invest'] as $cat)
     @if(isset($byCategory[$cat]))
-    <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.35);margin-bottom:12px">
+    <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.6);margin-bottom:12px">
         {{ $catLabels[$cat] }}
     </div>
     <div class="grid">

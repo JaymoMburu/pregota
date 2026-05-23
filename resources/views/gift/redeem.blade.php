@@ -12,7 +12,7 @@ html,body{height:100%}
 body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;min-height:100vh;display:flex;flex-direction:column}
 .nav{padding:16px 24px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,.08)}
 .logo{font-size:22px;font-weight:900;background:linear-gradient(135deg,#00A651,#007A33);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.nav-link{color:rgba(255,255,255,.55);text-decoration:none;font-size:13px;font-weight:600;padding:7px 14px;border:1px solid rgba(255,255,255,.15);border-radius:8px}
+.nav-link{color:rgba(255,255,255,.82);text-decoration:none;font-size:13px;font-weight:600;padding:7px 14px;border:1px solid rgba(255,255,255,.15);border-radius:8px}
 
 .main{flex:1;display:flex;align-items:flex-start;justify-content:center;padding:32px 20px}
 .card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:20px;padding:32px 28px;max-width:480px;width:100%}
@@ -24,12 +24,12 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 /* Step 1 — Code entry */
 .gift-icon{font-size:48px;text-align:center;margin-bottom:16px}
 h2{font-size:20px;font-weight:800;margin-bottom:6px;text-align:center}
-.sub{color:rgba(255,255,255,.5);font-size:13px;text-align:center;margin-bottom:24px;line-height:1.5}
+.sub{color:rgba(255,255,255,.78);font-size:13px;text-align:center;margin-bottom:24px;line-height:1.5}
 .form-group{margin-bottom:14px}
-label{display:block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.55);margin-bottom:6px}
+label{display:block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.82);margin-bottom:6px}
 input{width:100%;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.16);border-radius:10px;padding:13px 16px;color:#fff;font-size:15px;outline:none;transition:.2s;font-family:inherit}
 input:focus{border-color:#00A651;background:rgba(0,166,81,.1)}
-input::placeholder{color:rgba(255,255,255,.3)}
+input::placeholder{color:rgba(255,255,255,.82)}
 .btn{width:100%;padding:14px;border-radius:12px;border:none;font-size:16px;font-weight:700;cursor:pointer;background:linear-gradient(135deg,#00A651,#007A33);color:#fff;transition:.2s;margin-top:4px}
 .btn:hover{opacity:.9}
 .btn:disabled{opacity:.45;cursor:not-allowed}
@@ -38,29 +38,29 @@ input::placeholder{color:rgba(255,255,255,.3)}
 /* Step 2 — Gift revealed + choice */
 .gift-reveal{background:linear-gradient(135deg,rgba(0,166,81,.15),rgba(0,122,51,.1));border:1px solid rgba(0,166,81,.3);border-radius:14px;padding:20px;text-align:center;margin-bottom:24px}
 .gift-amount{font-size:36px;font-weight:900;background:linear-gradient(135deg,#25D366,#4ADE80);-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1}
-.gift-from{font-size:12px;color:rgba(255,255,255,.45);margin-top:8px}
+.gift-from{font-size:12px;color:rgba(255,255,255,.72);margin-top:8px}
 .gift-msg-box{background:rgba(255,255,255,.05);border-radius:8px;padding:10px 12px;margin-top:10px;font-style:italic;font-size:13px;color:rgba(255,255,255,.65);line-height:1.5}
 
-.choice-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.4);margin-bottom:12px}
+.choice-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.68);margin-bottom:12px}
 .choices{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:8px}
 .choice-btn{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:16px 12px;cursor:pointer;text-align:center;transition:.2s;color:#fff}
 .choice-btn:hover{border-color:#00A651;background:rgba(0,166,81,.12)}
 .choice-btn.selected{border-color:#00A651;background:rgba(0,166,81,.15)}
 .choice-emoji{font-size:26px;margin-bottom:6px}
 .choice-title{font-size:13px;font-weight:700}
-.choice-sub{font-size:11px;color:rgba(255,255,255,.4);margin-top:2px}
+.choice-sub{font-size:11px;color:rgba(255,255,255,.68);margin-top:2px}
 
 /* Step 3a — Cash claim */
-.back-link{font-size:13px;color:rgba(255,255,255,.4);cursor:pointer;margin-bottom:20px;display:inline-flex;align-items:center;gap:6px;background:none;border:none;color:rgba(255,255,255,.45)}
+.back-link{font-size:13px;color:rgba(255,255,255,.68);cursor:pointer;margin-bottom:20px;display:inline-flex;align-items:center;gap:6px;background:none;border:none;color:rgba(255,255,255,.72)}
 .back-link:hover{color:#fff}
 
 /* Step 3b — Partner grid */
 .partner-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .partner-card{border-radius:12px;padding:14px;border:1px solid rgba(255,255,255,.1);cursor:pointer;text-decoration:none;color:#fff;display:flex;flex-direction:column;gap:6px;transition:.2s;background:rgba(255,255,255,.04)}
-.partner-card:hover{border-color:rgba(255,255,255,.3);background:rgba(255,255,255,.07);transform:translateY(-1px)}
+.partner-card:hover{border-color:rgba(255,255,255,.82);background:rgba(255,255,255,.07);transform:translateY(-1px)}
 .partner-emoji{font-size:24px}
 .partner-name{font-size:13px;font-weight:700}
-.partner-tag{font-size:11px;color:rgba(255,255,255,.45);line-height:1.4}
+.partner-tag{font-size:11px;color:rgba(255,255,255,.72);line-height:1.4}
 .partner-cta{font-size:11px;font-weight:700;margin-top:4px;opacity:.7}
 
 /* Success */
@@ -100,7 +100,7 @@ input::placeholder{color:rgba(255,255,255,.3)}
         <!-- ── STEP 2: Choice ── -->
         <div class="step" id="step2">
             <div class="gift-reveal">
-                <div style="font-size:13px;color:rgba(255,255,255,.45);margin-bottom:6px">Your gift</div>
+                <div style="font-size:13px;color:rgba(255,255,255,.72);margin-bottom:6px">Your gift</div>
                 <div class="gift-amount" id="giftAmount">—</div>
                 <div class="gift-from" id="giftFrom"></div>
                 <div class="gift-msg-box" id="giftMsg" style="display:none"></div>
@@ -162,7 +162,7 @@ input::placeholder{color:rgba(255,255,255,.3)}
 
             <div class="partner-grid" id="partnerGrid"></div>
 
-            <p style="font-size:11px;color:rgba(255,255,255,.3);margin-top:16px;text-align:center">
+            <p style="font-size:11px;color:rgba(255,255,255,.82);margin-top:16px;text-align:center">
                 Your gift code remains valid · Cash out anytime on this page
             </p>
         </div>
@@ -264,7 +264,7 @@ function goTo(choice) {
     `).join('');
 
     if (!list.length) {
-        grid.innerHTML = '<p style="color:rgba(255,255,255,.4);font-size:13px;grid-column:1/-1">No partners listed yet. Check back soon.</p>';
+        grid.innerHTML = '<p style="color:rgba(255,255,255,.68);font-size:13px;grid-column:1/-1">No partners listed yet. Check back soon.</p>';
     }
 
     showStep('step3-partners');
@@ -334,7 +334,7 @@ function showHoldScreen(seconds) {
             <div style="font-size:32px;margin-bottom:8px">⏳</div>
             <div style="font-size:15px;font-weight:800;color:#fbbf24;margin-bottom:6px">Gift is in its verification window</div>
             <div style="font-size:28px;font-weight:900;font-family:monospace;color:#fbbf24;margin:10px 0">${fmt}</div>
-            <div style="font-size:12px;color:rgba(255,255,255,.45);line-height:1.6">The sender is confirming you received this gift. You'll be able to open it when this reaches zero.</div>`;
+            <div style="font-size:12px;color:rgba(255,255,255,.72);line-height:1.6">The sender is confirming you received this gift. You'll be able to open it when this reaches zero.</div>`;
     }
 
     render(seconds);

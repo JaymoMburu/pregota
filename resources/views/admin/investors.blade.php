@@ -10,11 +10,11 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 .nav{padding:14px 28px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,.08);background:rgba(0,0,0,.3)}
 .logo{font-size:18px;font-weight:900;background:linear-gradient(135deg,#00A651,#007A33);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 .nav-links{display:flex;gap:20px;align-items:center}
-.nav-links a{color:rgba(255,255,255,.4);font-size:13px;text-decoration:none}
+.nav-links a{color:rgba(255,255,255,.68);font-size:13px;text-decoration:none}
 .nav-links a:hover,.nav-links a.active{color:#a78bfa}
 .main{padding:28px}
 h1{font-size:20px;font-weight:800;margin-bottom:4px}
-.sub{font-size:13px;color:rgba(255,255,255,.4);margin-bottom:24px}
+.sub{font-size:13px;color:rgba(255,255,255,.68);margin-bottom:24px}
 .success{background:rgba(52,211,153,.1);border:1px solid rgba(52,211,153,.25);color:#6ee7b7;border-radius:10px;padding:11px 14px;font-size:13px;margin-bottom:18px}
 .error-msg{background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.25);color:#f87171;border-radius:10px;padding:11px 14px;font-size:13px;margin-bottom:18px}
 
@@ -23,7 +23,7 @@ h1{font-size:20px;font-weight:800;margin-bottom:4px}
 .form-card h2{font-size:14px;font-weight:700;margin-bottom:16px;color:#a78bfa}
 .fg{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 .field{display:flex;flex-direction:column;gap:5px}
-.field label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.35)}
+.field label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.6)}
 .field input,.field select,.field textarea{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:9px;padding:9px 12px;color:#fff;font-size:13px;outline:none}
 .field select option{background:#0B1810;color:#fff}
 .field input:focus,.field select:focus{border-color:rgba(0,166,81,.5)}
@@ -34,12 +34,12 @@ h1{font-size:20px;font-weight:800;margin-bottom:4px}
 .panel-head{padding:16px 20px;border-bottom:1px solid rgba(255,255,255,.07);display:flex;justify-content:space-between;align-items:center}
 .panel-head h2{font-size:15px;font-weight:700}
 table{width:100%;border-collapse:collapse;font-size:13px}
-th{padding:10px 14px;text-align:left;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.35);background:rgba(255,255,255,.03)}
+th{padding:10px 14px;text-align:left;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.6);background:rgba(255,255,255,.03)}
 td{padding:12px 14px;border-top:1px solid rgba(255,255,255,.05);color:rgba(255,255,255,.8);vertical-align:middle}
 tr:hover td{background:rgba(255,255,255,.02)}
 .badge{display:inline-flex;padding:2px 10px;border-radius:999px;font-size:11px;font-weight:700}
 .badge.active{background:rgba(52,211,153,.15);color:#4ade80}
-.badge.inactive{background:rgba(255,255,255,.08);color:rgba(255,255,255,.4)}
+.badge.inactive{background:rgba(255,255,255,.08);color:rgba(255,255,255,.68)}
 .type-badge{display:inline-block;background:rgba(0,166,81,.15);color:#a78bfa;font-size:11px;font-weight:700;padding:2px 8px;border-radius:6px}
 .action-btn{font-size:11px;font-weight:700;padding:4px 10px;border-radius:6px;border:1px solid;cursor:pointer;background:none}
 .action-btn.toggle{border-color:rgba(251,191,36,.3);color:#fbbf24}
@@ -61,7 +61,7 @@ tr:hover td{background:rgba(255,255,255,.02)}
         <a href="{{ route('home') }}">← Live Site</a>
         <form method="POST" action="{{ route('admin.logout') }}" style="display:inline">
             @csrf
-            <button type="submit" style="background:none;border:none;color:rgba(255,255,255,.3);cursor:pointer;font-size:13px">Logout</button>
+            <button type="submit" style="background:none;border:none;color:rgba(255,255,255,.82);cursor:pointer;font-size:13px">Logout</button>
         </form>
     </div>
 </nav>
@@ -121,10 +121,10 @@ tr:hover td{background:rgba(255,255,255,.02)}
     <div class="panel">
         <div class="panel-head">
             <h2>Investors ({{ $investors->count() }})</h2>
-            <span style="font-size:12px;color:rgba(255,255,255,.3)">Each investor logs in at /investors/login</span>
+            <span style="font-size:12px;color:rgba(255,255,255,.82)">Each investor logs in at /investors/login</span>
         </div>
         @if($investors->isEmpty())
-        <div style="padding:32px;text-align:center;color:rgba(255,255,255,.3);font-size:13px">No investors added yet.</div>
+        <div style="padding:32px;text-align:center;color:rgba(255,255,255,.82);font-size:13px">No investors added yet.</div>
         @else
         <table>
             <thead>
@@ -143,12 +143,12 @@ tr:hover td{background:rgba(255,255,255,.02)}
                 @foreach($investors as $inv)
                 <tr>
                     <td><strong>{{ $inv->name }}</strong></td>
-                    <td style="color:rgba(255,255,255,.5)">{{ $inv->email }}</td>
+                    <td style="color:rgba(255,255,255,.78)">{{ $inv->email }}</td>
                     <td><span class="type-badge">{{ $inv->typeLabel() }}</span></td>
                     <td>{{ $inv->equity_pct ? $inv->equity_pct . '%' : '—' }}</td>
                     <td>{{ $inv->amount_invested_kes ? 'KES ' . number_format($inv->amount_invested_kes, 0) : '—' }}</td>
                     <td><span class="badge {{ $inv->is_active ? 'active' : 'inactive' }}">{{ $inv->is_active ? 'Active' : 'Inactive' }}</span></td>
-                    <td style="color:rgba(255,255,255,.4);font-size:12px">{{ $inv->last_login_at ? $inv->last_login_at->format('d M y, H:i') : 'Never' }}</td>
+                    <td style="color:rgba(255,255,255,.68);font-size:12px">{{ $inv->last_login_at ? $inv->last_login_at->format('d M y, H:i') : 'Never' }}</td>
                     <td>
                         <form method="POST" action="{{ route('admin.investors.toggle', $inv) }}" style="display:inline">
                             @csrf

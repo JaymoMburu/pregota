@@ -17,7 +17,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 .icon-ring{width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,rgba(0,166,81,.25),rgba(59,130,246,.15));border:2px solid rgba(0,166,81,.35);display:flex;align-items:center;justify-content:center;font-size:30px;margin:0 auto 20px}
 
 h1{font-size:22px;font-weight:900;margin-bottom:8px}
-.sub{font-size:14px;color:rgba(255,255,255,.45);line-height:1.55;margin-bottom:28px}
+.sub{font-size:14px;color:rgba(255,255,255,.72);line-height:1.55;margin-bottom:28px}
 .sub strong{color:rgba(255,255,255,.75)}
 
 .step-list{text-align:left;display:flex;flex-direction:column;gap:10px;margin-bottom:28px}
@@ -31,7 +31,7 @@ h1{font-size:22px;font-weight:900;margin-bottom:8px}
 .spin-inline{display:inline-block;width:14px;height:14px;border:2px solid rgba(251,191,36,.25);border-top-color:#fbbf24;border-radius:50%;animation:spin .8s linear infinite;vertical-align:middle;margin-right:6px}
 @keyframes spin{to{transform:rotate(360deg)}}
 
-.resend-btn{background:none;border:1px solid rgba(255,255,255,.12);border-radius:8px;color:rgba(255,255,255,.45);font-size:12px;padding:8px 16px;cursor:pointer;transition:.15s}
+.resend-btn{background:none;border:1px solid rgba(255,255,255,.12);border-radius:8px;color:rgba(255,255,255,.72);font-size:12px;padding:8px 16px;cursor:pointer;transition:.15s}
 .resend-btn:hover{border-color:rgba(255,255,255,.25);color:rgba(255,255,255,.7)}
 .resend-btn:disabled{opacity:.4;cursor:not-allowed}
 

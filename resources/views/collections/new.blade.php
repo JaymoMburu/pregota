@@ -14,13 +14,13 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 .left-center{flex:1;display:flex;flex-direction:column;justify-content:center;position:relative;z-index:1;gap:40px;padding:40px 0}
 .headline h1{font-size:clamp(28px,3.2vw,44px);font-weight:900;line-height:1.12;letter-spacing:-.5px}
 .headline h1 em{font-style:normal;background:linear-gradient(135deg,#25D366,#4ADE80);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.headline p{margin-top:12px;font-size:14px;color:rgba(255,255,255,.45);line-height:1.65;max-width:300px}
+.headline p{margin-top:12px;font-size:14px;color:rgba(255,255,255,.72);line-height:1.65;max-width:300px}
 .benefit-list{display:flex;flex-direction:column;gap:16px}
 .benefit{display:flex;align-items:flex-start;gap:14px}
 .benefit-icon{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#00A651,#007A33);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;margin-top:1px}
 .benefit-text strong{font-size:13px;color:rgba(255,255,255,.85);display:block;margin-bottom:2px}
-.benefit-text span{font-size:12px;color:rgba(255,255,255,.4);line-height:1.5}
-.left-foot{margin-top:auto;position:relative;z-index:1;font-size:11px;color:rgba(255,255,255,.3)}
+.benefit-text span{font-size:12px;color:rgba(255,255,255,.68);line-height:1.5}
+.left-foot{margin-top:auto;position:relative;z-index:1;font-size:11px;color:rgba(255,255,255,.82)}
 
 .panel-right{width:55%;min-height:100vh;background:#0B141A;display:flex;flex-direction:column;border-left:1px solid rgba(255,255,255,.06)}
 .right-nav{padding:16px 32px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,.06)}
@@ -29,15 +29,15 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 .form-wrap{max-width:480px}
 .form-title{font-size:20px;font-weight:900;margin-bottom:22px}
 .form-section{margin-bottom:22px}
-.section-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.35);margin-bottom:12px}
+.section-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.6);margin-bottom:12px}
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .form-group{margin-bottom:14px}
-label{display:block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.5);margin-bottom:6px}
+label{display:block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.78);margin-bottom:6px}
 input,select,textarea{width:100%;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);border-radius:10px;padding:12px 14px;color:#fff;font-size:14px;outline:none;transition:.2s;font-family:inherit}
 input:focus,select:focus,textarea:focus{border-color:#00A651;background:rgba(0,166,81,.08)}
-input::placeholder{color:rgba(255,255,255,.3)}
+input::placeholder{color:rgba(255,255,255,.82)}
 select option{background:#0B1810}
-.hint{font-size:11px;color:rgba(255,255,255,.35);margin-top:5px}
+.hint{font-size:11px;color:rgba(255,255,255,.6);margin-top:5px}
 
 .occasion-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:4px}
 .occ-btn{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:12px 6px;cursor:pointer;text-align:center;transition:.15s}
@@ -52,7 +52,7 @@ input[type=hidden]{}
 .trigger-opt:has(input:checked){border-color:#00A651;background:rgba(0,166,81,.08)}
 .trigger-opt input[type=radio]{margin-top:2px;accent-color:#00A651;width:16px;height:16px;flex-shrink:0}
 .trigger-opt-text strong{font-size:13px;color:rgba(255,255,255,.85);display:block;margin-bottom:2px}
-.trigger-opt-text span{font-size:11px;color:rgba(255,255,255,.4);line-height:1.5}
+.trigger-opt-text span{font-size:11px;color:rgba(255,255,255,.68);line-height:1.5}
 
 .submit-btn{width:100%;padding:15px;border-radius:12px;border:none;font-size:16px;font-weight:700;cursor:pointer;background:linear-gradient(135deg,#00A651,#007A33);color:#fff;margin-top:6px;transition:.2s}
 .submit-btn:hover{opacity:.9;transform:translateY(-1px)}
@@ -64,7 +64,7 @@ textarea{resize:vertical;min-height:90px}
 .photo-drop:hover,.photo-drop.over{border-color:#00A651;background:rgba(0,166,81,.06)}
 .photo-drop input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
 .photo-drop-icon{font-size:28px;margin-bottom:6px}
-.photo-drop-label{font-size:13px;color:rgba(255,255,255,.45);line-height:1.5}
+.photo-drop-label{font-size:13px;color:rgba(255,255,255,.72);line-height:1.5}
 .photo-drop-label strong{color:rgba(255,255,255,.7)}
 .photo-preview{display:none;margin-top:12px;border-radius:10px;overflow:hidden;max-height:180px;position:relative}
 .photo-preview img{width:100%;height:180px;object-fit:cover;display:block;border-radius:10px}
@@ -128,7 +128,7 @@ textarea{resize:vertical;min-height:90px}
     @include('partials.module-nav', ['activeModule' => 'collection'])
     <nav class="right-nav">
         <a href="{{ route('home') }}" class="logo-sm">Pregota</a>
-        <span style="font-size:12px;color:rgba(255,255,255,.35)">Collections · Quick Setup</span>
+        <span style="font-size:12px;color:rgba(255,255,255,.6)">Collections · Quick Setup</span>
     </nav>
     <div class="right-body">
         <div class="form-wrap">

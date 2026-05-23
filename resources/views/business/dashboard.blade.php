@@ -11,20 +11,20 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 .nav{padding:14px 24px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,.08)}
 .logo{font-size:20px;font-weight:900;background:linear-gradient(135deg,#00A651,#007A33);-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-decoration:none}
 .nav-right{display:flex;align-items:center;gap:12px}
-.biz-name{font-size:13px;color:rgba(255,255,255,.4)}
-.logout-btn{background:none;border:none;color:rgba(255,255,255,.3);cursor:pointer;font-size:13px}
+.biz-name{font-size:13px;color:rgba(255,255,255,.68)}
+.logout-btn{background:none;border:none;color:rgba(255,255,255,.82);cursor:pointer;font-size:13px}
 
 .main{padding:24px;max-width:900px;margin:0 auto}
-.section-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.3);margin-bottom:12px}
+.section-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.82);margin-bottom:12px}
 
 /* Plan banner */
 .plan-banner{border-radius:12px;padding:12px 18px;margin-bottom:22px;display:flex;justify-content:space-between;align-items:center;gap:12px}
 .plan-banner.free{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1)}
 .plan-banner.paid{background:linear-gradient(135deg,rgba(0,166,81,.15),rgba(0,122,51,.1));border:1px solid rgba(0,166,81,.25)}
 .plan-tag{font-size:12px;font-weight:700;padding:3px 10px;border-radius:20px}
-.plan-tag.free{background:rgba(255,255,255,.08);color:rgba(255,255,255,.5)}
+.plan-tag.free{background:rgba(255,255,255,.08);color:rgba(255,255,255,.78)}
 .plan-tag.paid{background:linear-gradient(135deg,#00A651,#007A33);color:#fff}
-.plan-text{font-size:13px;color:rgba(255,255,255,.5)}
+.plan-text{font-size:13px;color:rgba(255,255,255,.78)}
 .plan-text strong{color:rgba(255,255,255,.8)}
 .upgrade-link{font-size:12px;font-weight:700;color:#a78bfa;text-decoration:none;white-space:nowrap;background:rgba(0,166,81,.15);border:1px solid rgba(0,166,81,.3);border-radius:8px;padding:6px 14px}
 
@@ -33,28 +33,28 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 @media(max-width:600px){.stats{grid-template-columns:1fr 1fr}}
 .stat{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:16px}
 .stat-val{font-size:22px;font-weight:900;background:linear-gradient(135deg,#25D366,#4ADE80);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.stat-lbl{font-size:11px;color:rgba(255,255,255,.35);margin-top:4px;text-transform:uppercase;letter-spacing:.06em}
+.stat-lbl{font-size:11px;color:rgba(255,255,255,.6);margin-top:4px;text-transform:uppercase;letter-spacing:.06em}
 
 /* Analytics */
 .analytics-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:28px}
 @media(max-width:640px){.analytics-grid{grid-template-columns:1fr}}
 .analytics-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:14px;padding:20px}
-.analytics-card h3{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.35);margin-bottom:16px}
+.analytics-card h3{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.6);margin-bottom:16px}
 .analytics-card.full-width{grid-column:1/-1}
 
 /* Trend bars */
 .trend-bars{display:flex;align-items:flex-end;gap:4px;height:52px}
 .trend-bar-wrap{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px}
 .trend-bar{width:100%;border-radius:3px 3px 0 0;min-height:3px;transition:.3s}
-.trend-label{font-size:10px;color:rgba(255,255,255,.3)}
-.trend-value{font-size:10px;color:rgba(255,255,255,.45);margin-bottom:2px}
+.trend-label{font-size:10px;color:rgba(255,255,255,.82)}
+.trend-value{font-size:10px;color:rgba(255,255,255,.72);margin-bottom:2px}
 
 /* Tag bars */
 .tag-bar-row{display:flex;align-items:center;gap:8px;margin-bottom:8px}
 .tag-name{width:110px;font-size:12px;color:rgba(255,255,255,.6);text-align:right;flex-shrink:0}
 .tag-track{flex:1;background:rgba(255,255,255,.06);border-radius:4px;height:7px;overflow:hidden}
 .tag-fill{height:100%;background:linear-gradient(90deg,#00A651,#007A33);border-radius:4px}
-.tag-count{width:22px;font-size:11px;color:rgba(255,255,255,.35);text-align:right}
+.tag-count{width:22px;font-size:11px;color:rgba(255,255,255,.6);text-align:right}
 
 /* Leaderboard */
 .leader-row{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.05)}
@@ -65,15 +65,15 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 /* Upgrade card */
 .upgrade-card{background:rgba(255,255,255,.03);border:1px dashed rgba(0,166,81,.3);border-radius:16px;padding:28px;margin-bottom:28px;text-align:center}
 .upgrade-card h3{font-size:18px;font-weight:900;margin-bottom:8px}
-.upgrade-card p{font-size:13px;color:rgba(255,255,255,.45);margin-bottom:24px;line-height:1.6}
+.upgrade-card p{font-size:13px;color:rgba(255,255,255,.72);margin-bottom:24px;line-height:1.6}
 .plans-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:22px;text-align:left}
 @media(max-width:520px){.plans-grid{grid-template-columns:1fr}}
 .plan-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:12px;padding:16px}
 .plan-card.popular{border-color:rgba(0,166,81,.5);background:rgba(0,166,81,.08)}
 .plan-name{font-size:13px;font-weight:800;margin-bottom:2px}
 .plan-price{font-size:20px;font-weight:900;background:linear-gradient(135deg,#25D366,#4ADE80);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.plan-price span{font-size:12px;font-weight:400;color:rgba(255,255,255,.35)}
-.plan-feature{font-size:11px;color:rgba(255,255,255,.4);margin-top:8px;line-height:1.6}
+.plan-price span{font-size:12px;font-weight:400;color:rgba(255,255,255,.6)}
+.plan-feature{font-size:11px;color:rgba(255,255,255,.68);margin-top:8px;line-height:1.6}
 .plan-feature li{list-style:none;padding:1px 0}
 .plan-feature li::before{content:'✓ ';color:#4ade80}
 
@@ -81,15 +81,15 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 .staff-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:14px;overflow:hidden;margin-bottom:28px}
 .staff-row{display:grid;grid-template-columns:2fr 1fr 1fr 1fr auto;align-items:center;padding:14px 18px;border-bottom:1px solid rgba(255,255,255,.05);gap:10px}
 .staff-row:last-child{border-bottom:none}
-.staff-row.header{background:rgba(255,255,255,.03);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.3)}
+.staff-row.header{background:rgba(255,255,255,.03);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.82)}
 .staff-name{font-weight:700;font-size:14px}
-.staff-handle{font-size:11px;color:rgba(255,255,255,.35);margin-top:2px}
+.staff-handle{font-size:11px;color:rgba(255,255,255,.6);margin-top:2px}
 .rating-stars{color:#fbbf24;font-size:14px}
 .badge{display:inline-block;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600}
 .badge.active{background:rgba(34,197,94,.12);color:#4ade80;border:1px solid rgba(34,197,94,.2)}
-.badge.inactive{background:rgba(255,255,255,.06);color:rgba(255,255,255,.4);border:1px solid rgba(255,255,255,.1)}
+.badge.inactive{background:rgba(255,255,255,.06);color:rgba(255,255,255,.68);border:1px solid rgba(255,255,255,.1)}
 .row-actions{display:flex;gap:6px}
-.action-btn{background:none;border:1px solid rgba(255,255,255,.1);border-radius:6px;padding:5px 10px;color:rgba(255,255,255,.5);font-size:11px;cursor:pointer}
+.action-btn{background:none;border:1px solid rgba(255,255,255,.1);border-radius:6px;padding:5px 10px;color:rgba(255,255,255,.78);font-size:11px;cursor:pointer}
 .action-btn:hover{background:rgba(255,255,255,.06);color:#fff}
 .view-btn{color:#a78bfa;border-color:rgba(0,166,81,.3)}
 @media(max-width:640px){
@@ -102,11 +102,11 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
 @media(max-width:500px){.form-row{grid-template-columns:1fr}}
 .form-group{display:flex;flex-direction:column;gap:5px}
-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.4)}
+label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.68)}
 input,select{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:8px;padding:10px 12px;color:#fff;font-size:13px;outline:none;font-family:inherit}
 input:focus,select:focus{border-color:#00A651}
 select option{background:#0B1810}
-.hint{font-size:10px;color:rgba(255,255,255,.3)}
+.hint{font-size:10px;color:rgba(255,255,255,.82)}
 .save-btn{background:linear-gradient(135deg,#00A651,#007A33);color:#fff;border:none;border-radius:10px;padding:10px 22px;font-size:14px;font-weight:700;cursor:pointer}
 .alert{border-radius:8px;padding:10px 12px;margin-bottom:14px;font-size:13px}
 .alert.success{background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.25);color:#4ade80}
@@ -117,7 +117,7 @@ select option{background:#0B1810}
 .fb-stars{color:#fbbf24;font-size:13px;margin-bottom:3px}
 .fb-tags{display:flex;flex-wrap:wrap;gap:5px;margin:5px 0}
 .fb-tag{background:rgba(0,166,81,.1);border:1px solid rgba(0,166,81,.2);border-radius:12px;padding:2px 9px;font-size:11px;color:#a78bfa}
-.fb-comment{font-size:12px;color:rgba(255,255,255,.5);font-style:italic;margin-top:4px}
+.fb-comment{font-size:12px;color:rgba(255,255,255,.78);font-style:italic;margin-top:4px}
 .fb-meta{font-size:11px;color:rgba(255,255,255,.25);margin-top:4px}
 .no-data{text-align:center;padding:28px;color:rgba(255,255,255,.25);font-size:13px}
 
@@ -151,7 +151,7 @@ select option{background:#0B1810}
             <span class="plan-tag paid">{{ $business->planLabel() }}</span>
             <span class="plan-text"><strong>Full Analytics Active</strong> · Subscription expires {{ $business->plan_expires_at?->format('M j, Y') ?? 'never' }}</span>
         </div>
-        <span style="font-size:12px;color:rgba(255,255,255,.3)">Tips are fee-free ✓</span>
+        <span style="font-size:12px;color:rgba(255,255,255,.82)">Tips are fee-free ✓</span>
     </div>
     @else
     <div class="plan-banner free">
@@ -187,7 +187,7 @@ select option{background:#0B1810}
     <a href="{{ route('business.leads') }}" style="display:flex;align-items:center;justify-content:space-between;background:rgba(251,191,36,.07);border:1px solid rgba(251,191,36,.2);border-radius:14px;padding:16px 20px;margin-bottom:24px;text-decoration:none">
         <div>
             <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(251,191,36,.6);margin-bottom:4px">Customer Leads</div>
-            <div style="font-size:20px;font-weight:900;color:#fbbf24">{{ $stats['leads_count'] }} <span style="font-size:13px;font-weight:500;color:rgba(255,255,255,.4)">customers opted in · View & export →</span></div>
+            <div style="font-size:20px;font-weight:900;color:#fbbf24">{{ $stats['leads_count'] }} <span style="font-size:13px;font-weight:500;color:rgba(255,255,255,.68)">customers opted in · View & export →</span></div>
         </div>
     </a>
     @endif
@@ -218,7 +218,7 @@ select option{background:#0B1810}
                 </div>
                 @endforeach
             </div>
-            <div style="margin-top:10px;font-size:11px;color:rgba(255,255,255,.3)">
+            <div style="margin-top:10px;font-size:11px;color:rgba(255,255,255,.82)">
                 Review rate: <strong style="color:rgba(255,255,255,.6)">{{ $analytics['reviewRate'] }}%</strong> of tipped customers left feedback
             </div>
         </div>
@@ -252,12 +252,12 @@ select option{background:#0B1810}
                 <span style="font-size:22px">{{ $member['emoji'] }}</span>
                 <div style="flex:1">
                     <div style="font-size:13px;font-weight:700">{{ $member['name'] }}</div>
-                    @if($member['role'])<div style="font-size:11px;color:rgba(255,255,255,.35)">{{ $member['role'] }}</div>@endif
+                    @if($member['role'])<div style="font-size:11px;color:rgba(255,255,255,.6)">{{ $member['role'] }}</div>@endif
                 </div>
                 <div style="text-align:right">
                     @if($member['avg_rating'] > 0)
                     <div class="leader-stars">{{ str_repeat('★', (int) round($member['avg_rating'])) }}{{ str_repeat('☆', 5 - (int) round($member['avg_rating'])) }}</div>
-                    <div style="font-size:11px;color:rgba(255,255,255,.35)">{{ $member['avg_rating'] }} · {{ $member['review_count'] }} {{ Str::plural('review', $member['review_count']) }}</div>
+                    <div style="font-size:11px;color:rgba(255,255,255,.6)">{{ $member['avg_rating'] }} · {{ $member['review_count'] }} {{ Str::plural('review', $member['review_count']) }}</div>
                     @else
                     <div style="font-size:12px;color:rgba(255,255,255,.2)">No reviews yet</div>
                     @endif
@@ -339,12 +339,12 @@ select option{background:#0B1810}
             <div class="hide-mobile">
                 @if($member->feedback_count > 0)
                 <span class="rating-stars">{{ str_repeat('★', (int) round($member->averageRating())) }}</span>
-                <span style="font-size:12px;color:rgba(255,255,255,.5);margin-left:4px">{{ $member->averageRating() }}</span>
+                <span style="font-size:12px;color:rgba(255,255,255,.78);margin-left:4px">{{ $member->averageRating() }}</span>
                 @else
                 <span style="color:rgba(255,255,255,.25);font-size:12px">No reviews</span>
                 @endif
             </div>
-            <div class="hide-mobile" style="font-size:13px;color:rgba(255,255,255,.5)">{{ $member->feedback_count }}</div>
+            <div class="hide-mobile" style="font-size:13px;color:rgba(255,255,255,.78)">{{ $member->feedback_count }}</div>
             <div class="hide-mobile"><span class="badge {{ $member->active ? 'active' : 'inactive' }}">{{ $member->active ? 'Active' : 'Inactive' }}</span></div>
             <div class="row-actions">
                 <button class="action-btn view-btn" onclick="viewStaff({{ $member->id }})">Stats</button>
@@ -416,7 +416,7 @@ select option{background:#0B1810}
             <div style="display:flex;justify-content:space-between;align-items:flex-start">
                 <div>
                     <div class="fb-stars">{{ str_repeat('★', $fb->rating) }}{{ str_repeat('☆', 5 - $fb->rating) }}</div>
-                    <div style="font-size:12px;color:rgba(255,255,255,.5);margin-top:2px">{{ $fb->staff->name }}@if($fb->staff->role) · {{ $fb->staff->role }}@endif</div>
+                    <div style="font-size:12px;color:rgba(255,255,255,.78);margin-top:2px">{{ $fb->staff->name }}@if($fb->staff->role) · {{ $fb->staff->role }}@endif</div>
                     @if(!empty($fb->tags))
                     <div class="fb-tags">@foreach($fb->tags as $tag)<span class="fb-tag">{{ $tag }}</span>@endforeach</div>
                     @endif
@@ -438,7 +438,7 @@ select option{background:#0B1810}
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px">
             <div style="font-size:16px;font-weight:800" id="modalName">—</div>
             <button onclick="document.getElementById('staffModal').classList.remove('show')"
-                style="background:none;border:none;color:rgba(255,255,255,.4);cursor:pointer;font-size:20px">✕</button>
+                style="background:none;border:none;color:rgba(255,255,255,.68);cursor:pointer;font-size:20px">✕</button>
         </div>
         <div id="modalContent" style="color:rgba(255,255,255,.6);font-size:13px">Loading...</div>
     </div>
@@ -462,7 +462,7 @@ async function viewStaff(id) {
             <div style="flex:1;height:6px;background:rgba(255,255,255,.08);border-radius:3px;overflow:hidden">
                 <div style="height:100%;background:linear-gradient(90deg,#00A651,#007A33);width:${d.total_tips > 0 ? Math.round((count||0)/d.total_tips*100) : 0}%"></div>
             </div>
-            <span style="font-size:11px;color:rgba(255,255,255,.35);width:20px">${count||0}</span>
+            <span style="font-size:11px;color:rgba(255,255,255,.6);width:20px">${count||0}</span>
         </div>`;
 
     const tagRows = Object.entries(d.tag_counts||{}).map(([tag,cnt]) =>
@@ -473,19 +473,19 @@ async function viewStaff(id) {
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:18px">
             <div style="background:rgba(255,255,255,.04);border-radius:10px;padding:12px;text-align:center">
                 <div style="font-size:24px;font-weight:900;background:linear-gradient(135deg,#25D366,#4ADE80);-webkit-background-clip:text;-webkit-text-fill-color:transparent">${d.avg_rating}</div>
-                <div style="font-size:11px;color:rgba(255,255,255,.35);margin-top:2px">Avg Rating</div>
+                <div style="font-size:11px;color:rgba(255,255,255,.6);margin-top:2px">Avg Rating</div>
             </div>
             <div style="background:rgba(255,255,255,.04);border-radius:10px;padding:12px;text-align:center">
                 <div style="font-size:24px;font-weight:900;background:linear-gradient(135deg,#25D366,#4ADE80);-webkit-background-clip:text;-webkit-text-fill-color:transparent">${d.total_tips}</div>
-                <div style="font-size:11px;color:rgba(255,255,255,.35);margin-top:2px">Total Reviews</div>
+                <div style="font-size:11px;color:rgba(255,255,255,.6);margin-top:2px">Total Reviews</div>
             </div>
         </div>
         <div style="margin-bottom:14px">
-            <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.3);margin-bottom:8px">Rating Breakdown</div>
+            <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.82);margin-bottom:8px">Rating Breakdown</div>
             ${[5,4,3,2,1].map(r => ratingBar(r, d.rating_dist?.[r])).join('')}
         </div>
-        ${tagRows ? `<div style="margin-bottom:14px"><div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.3);margin-bottom:8px">Top Feedback Tags</div><div style="display:flex;flex-wrap:wrap">${tagRows}</div></div>` : ''}
-        ${d.comments?.length ? `<div><div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.3);margin-bottom:8px">Recent Comments</div>${d.comments.map(c=>`<div style="font-size:12px;color:rgba(255,255,255,.5);font-style:italic;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.05)">"${c}"</div>`).join('')}</div>` : ''}
+        ${tagRows ? `<div style="margin-bottom:14px"><div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.82);margin-bottom:8px">Top Feedback Tags</div><div style="display:flex;flex-wrap:wrap">${tagRows}</div></div>` : ''}
+        ${d.comments?.length ? `<div><div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.82);margin-bottom:8px">Recent Comments</div>${d.comments.map(c=>`<div style="font-size:12px;color:rgba(255,255,255,.78);font-style:italic;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.05)">"${c}"</div>`).join('')}</div>` : ''}
     `;
 }
 </script>

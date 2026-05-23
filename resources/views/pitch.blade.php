@@ -8,7 +8,7 @@
 <meta property="og:description" content="Zero-reconciliation welfare contributions for Kenyan groups. KES 35–60B flows through informal welfare collections in Kenya every year.">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-:root{--purple:#00A651;--pink:#007A33;--bg:#0B141A;--card:rgba(255,255,255,.04);--border:rgba(255,255,255,.08);--muted:rgba(255,255,255,.4);--subtle:rgba(255,255,255,.07)}
+:root{--purple:#00A651;--pink:#007A33;--bg:#0B141A;--card:rgba(255,255,255,.04);--border:rgba(255,255,255,.08);--muted:rgba(255,255,255,.68);--subtle:rgba(255,255,255,.07)}
 body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:#fff;line-height:1.6}
 a{color:#25D366;text-decoration:none}
 
@@ -32,21 +32,21 @@ strong{color:rgba(255,255,255,.9);font-weight:700}
 /* ── Cover ── */
 #cover{background:linear-gradient(150deg,#080010,#150730 50%,#200840)}
 #cover h1{margin-bottom:20px}
-#cover .tagline{font-size:clamp(16px,2.2vw,22px);color:rgba(255,255,255,.5);max-width:600px;margin-bottom:40px;font-weight:400}
+#cover .tagline{font-size:clamp(16px,2.2vw,22px);color:rgba(255,255,255,.78);max-width:600px;margin-bottom:40px;font-weight:400}
 .cover-badge{display:inline-flex;align-items:center;gap:8px;padding:8px 18px;border-radius:24px;background:rgba(0,166,81,.15);border:1px solid rgba(0,166,81,.3);font-size:13px;color:#25D366;font-weight:700;margin-bottom:32px;letter-spacing:.04em}
 .logo-mark{font-size:clamp(18px,2.5vw,26px);font-weight:900;background:linear-gradient(135deg,#25D366,#4ADE80);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:40px;display:block}
 
 /* ── Quote / Story ── */
 .story-quote{font-size:clamp(18px,2.5vw,28px);font-weight:700;color:#fff;line-height:1.45;max-width:760px;margin-bottom:32px;border-left:3px solid var(--purple);padding-left:24px}
-.story-body{font-size:16px;color:rgba(255,255,255,.55);max-width:680px;line-height:1.8}
+.story-body{font-size:16px;color:rgba(255,255,255,.82);max-width:680px;line-height:1.8}
 
 /* ── Problem layers ── */
 .problem-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-top:32px;max-width:900px}
 .problem-card{background:rgba(239,68,68,.06);border:1px solid rgba(239,68,68,.18);border-radius:14px;padding:22px}
 .problem-card h3{color:#fca5a5;font-size:15px;margin-bottom:8px}
-.problem-card p{font-size:13px;color:rgba(255,255,255,.45);line-height:1.65;max-width:none}
+.problem-card p{font-size:13px;color:rgba(255,255,255,.72);line-height:1.65;max-width:none}
 .big-stat{font-size:clamp(40px,7vw,90px);font-weight:900;line-height:1;margin:32px 0 8px;background:linear-gradient(135deg,#25D366,#4ADE80);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.big-stat-label{font-size:16px;color:rgba(255,255,255,.45)}
+.big-stat-label{font-size:16px;color:rgba(255,255,255,.72)}
 
 /* ── Steps ── */
 .steps{display:flex;flex-direction:column;gap:0;max-width:680px;margin-top:28px}
@@ -54,7 +54,7 @@ strong{color:rgba(255,255,255,.9);font-weight:700}
 .step:last-child{border-bottom:none}
 .step-n{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--purple),var(--pink));display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:900;flex-shrink:0;margin-top:2px}
 .step-body h3{font-size:15px;font-weight:700;margin-bottom:3px;color:#fff}
-.step-body p{font-size:13px;color:rgba(255,255,255,.45);max-width:none;line-height:1.55}
+.step-body p{font-size:13px;color:rgba(255,255,255,.72);max-width:none;line-height:1.55}
 .step-final h3{color:#4ade80}
 
 /* ── Stats row ── */
@@ -86,7 +86,7 @@ strong{color:rgba(255,255,255,.9);font-weight:700}
 .phase-tag{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--purple);margin-bottom:6px}
 .phase h3{font-size:15px;font-weight:700;margin-bottom:8px}
 .phase ul{padding-left:16px;display:flex;flex-direction:column;gap:4px}
-.phase ul li{font-size:13px;color:rgba(255,255,255,.5)}
+.phase ul li{font-size:13px;color:rgba(255,255,255,.78)}
 .phase.active{border-color:rgba(0,166,81,.35);background:rgba(0,166,81,.07)}
 
 /* ── Ask ── */
@@ -103,8 +103,8 @@ strong{color:rgba(255,255,255,.9);font-weight:700}
 #closing h2{text-align:center}
 #closing p{text-align:center;margin:0 auto}
 .closing-stat{font-size:clamp(48px,9vw,100px);font-weight:900;line-height:1;background:linear-gradient(135deg,#25D366,#4ADE80);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin:28px 0 8px}
-.closing-sub{font-size:18px;color:rgba(255,255,255,.4);margin-bottom:40px}
-.contact{font-size:15px;color:rgba(255,255,255,.4);margin-top:40px}
+.closing-sub{font-size:18px;color:rgba(255,255,255,.68);margin-bottom:40px}
+.contact{font-size:15px;color:rgba(255,255,255,.68);margin-top:40px}
 .contact a{color:#25D366}
 
 /* ── Nav dots ── */
@@ -145,7 +145,7 @@ strong{color:rgba(255,255,255,.9);font-weight:700}
     <div class="slide-label">The Moment Everyone Knows</div>
     <div class="story-quote">"Ati unatuma wapi?"</div>
     <div class="story-body">
-        It is Monday morning. A colleague's parent passed away over the weekend. The WhatsApp message goes out. 47 people say <em style="-webkit-text-fill-color:rgba(255,255,255,.5);background:none">"pole sana."</em>
+        It is Monday morning. A colleague's parent passed away over the weekend. The WhatsApp message goes out. 47 people say <em style="-webkit-text-fill-color:rgba(255,255,255,.78);background:none">"pole sana."</em>
         Someone volunteers their personal M-Pesa number as the collection point.<br><br>
         By Wednesday: 23 people have sent. 8 sent twice by mistake. 4 sent the wrong amount.
         The volunteer has <strong>KES 34,200 on their personal M-Pesa</strong> that belongs to someone else, and cannot sleep.<br><br>
@@ -200,7 +200,7 @@ strong{color:rgba(255,255,255,.9);font-weight:700}
         <div class="stat-box"><div class="num">KES 60B</div><div class="lbl">Annual informal welfare contributions</div></div>
         <div class="stat-box"><div class="num">KES 83M</div><div class="lbl">Pregota annual revenue at 10% market penetration</div></div>
     </div>
-    <p style="margin-top:28px;font-size:14px;color:rgba(255,255,255,.35)">Bottom-up: 230,000 groups × 8 occasions/yr × 15 contributors × KES 30 fee = KES 83M at 10% penetration</p>
+    <p style="margin-top:28px;font-size:14px;color:rgba(255,255,255,.6)">Bottom-up: 230,000 groups × 8 occasions/yr × 15 contributors × KES 30 fee = KES 83M at 10% penetration</p>
 </section>
 
 <!-- ── 06 UNIT ECONOMICS ── -->
@@ -245,7 +245,7 @@ strong{color:rgba(255,255,255,.9);font-weight:700}
         <div class="step"><div class="step-n">→</div><div class="step-body"><h3>Next time their group needs to collect</h3><p>Someone in those 30 remembers. <strong>One collection = 30 people acquired.</strong></p></div></div>
         <div class="step"><div class="step-n">→</div><div class="step-body"><h3>Groups overlap</h3><p>Kamau is in his office welfare group, church choir, and old-school class group. One win propagates across all three. The network compounds.</p></div></div>
     </div>
-    <p style="margin-top:20px;font-size:13px;color:rgba(255,255,255,.35)">Same mechanic as GoFundMe (share link = distribution) and M-Pesa (transaction notification = acquisition prompt). Zero paid marketing required for initial spread.</p>
+    <p style="margin-top:20px;font-size:13px;color:rgba(255,255,255,.6)">Same mechanic as GoFundMe (share link = distribution) and M-Pesa (transaction notification = acquisition prompt). Zero paid marketing required for initial spread.</p>
 </section>
 
 <!-- ── 09 COMPETITION ── -->

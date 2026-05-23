@@ -36,7 +36,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 .hero{padding:28px 20px 20px;max-width:600px;margin:0 auto}
 .occasion-badge{display:inline-flex;align-items:center;gap:6px;padding:5px 12px;border-radius:20px;background:rgba(0,166,81,.18);border:1px solid rgba(0,166,81,.35);font-size:12px;color:#25D366;font-weight:600;margin-bottom:14px}
 .collection-title{font-size:clamp(22px,5vw,32px);font-weight:900;line-height:1.15;margin-bottom:8px}
-.meta-line{font-size:13px;color:rgba(255,255,255,.45);display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.meta-line{font-size:13px;color:rgba(255,255,255,.72);display:flex;flex-wrap:wrap;gap:12px;align-items:center}
 .meta-sep{color:rgba(255,255,255,.2)}
 
 .status-banner{margin:0 20px 20px;max-width:560px;margin-left:auto;margin-right:auto;padding:12px 16px;border-radius:10px;font-size:13px;font-weight:600;text-align:center}
@@ -46,34 +46,34 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 .progress-card{margin:0 20px 20px;max-width:560px;margin-left:auto;margin-right:auto;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:20px}
 .progress-amounts{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:10px}
 .raised-amount{font-size:28px;font-weight:900}
-.raised-amount span{font-size:14px;font-weight:400;color:rgba(255,255,255,.4)}
-.target-label{font-size:13px;color:rgba(255,255,255,.4)}
+.raised-amount span{font-size:14px;font-weight:400;color:rgba(255,255,255,.68)}
+.target-label{font-size:13px;color:rgba(255,255,255,.68)}
 .progress-bar-wrap{height:8px;background:rgba(255,255,255,.08);border-radius:4px;overflow:hidden;margin-bottom:10px}
 .progress-bar-fill{height:100%;background:linear-gradient(90deg,#00A651,#007A33);border-radius:4px;transition:.5s}
-.progress-meta{display:flex;gap:16px;font-size:12px;color:rgba(255,255,255,.4)}
+.progress-meta{display:flex;gap:16px;font-size:12px;color:rgba(255,255,255,.68)}
 .progress-meta strong{color:rgba(255,255,255,.75)}
 
 /* Photo hero */
 .collection-photo{width:100%;max-width:600px;margin:0 auto 0;display:block;max-height:340px;object-fit:cover;border-bottom:1px solid rgba(255,255,255,.06)}
-.collection-description{font-size:14px;color:rgba(255,255,255,.55);line-height:1.7;margin-top:12px;white-space:pre-wrap}
+.collection-description{font-size:14px;color:rgba(255,255,255,.82);line-height:1.7;margin-top:12px;white-space:pre-wrap}
 
 .main-grid{max-width:600px;margin:0 auto;padding:0 20px 40px;display:flex;flex-direction:column;gap:20px}
 
 .card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:20px}
-.card-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.35);margin-bottom:14px}
+.card-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.6);margin-bottom:14px}
 
 /* Contribution form */
 .amount-presets{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:12px}
 .preset-btn{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:8px;padding:10px 4px;font-size:13px;font-weight:700;color:rgba(255,255,255,.7);cursor:pointer;text-align:center;transition:.15s}
 .preset-btn:hover,.preset-btn.active{border-color:#00A651;background:rgba(0,166,81,.15);color:#25D366}
 .form-group{margin-bottom:12px}
-label{display:block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.5);margin-bottom:6px}
+label{display:block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.78);margin-bottom:6px}
 input{width:100%;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);border-radius:10px;padding:12px 14px;color:#fff;font-size:14px;outline:none;transition:.2s;font-family:inherit}
 input:focus{border-color:#00A651;background:rgba(0,166,81,.08)}
-input::placeholder{color:rgba(255,255,255,.3)}
-.fee-line{display:flex;justify-content:space-between;align-items:center;font-size:12px;color:rgba(255,255,255,.4);padding:8px 12px;background:rgba(255,255,255,.03);border-radius:8px;margin-bottom:12px}
+input::placeholder{color:rgba(255,255,255,.82)}
+.fee-line{display:flex;justify-content:space-between;align-items:center;font-size:12px;color:rgba(255,255,255,.68);padding:8px 12px;background:rgba(255,255,255,.03);border-radius:8px;margin-bottom:12px}
 .fee-line strong{color:rgba(255,255,255,.75)}
-.hint{font-size:11px;color:rgba(255,255,255,.35);margin-top:5px}
+.hint{font-size:11px;color:rgba(255,255,255,.6);margin-top:5px}
 .submit-btn{width:100%;padding:15px;border-radius:12px;border:none;font-size:16px;font-weight:700;cursor:pointer;background:linear-gradient(135deg,#00A651,#007A33);color:#fff;transition:.2s}
 .submit-btn:hover:not(:disabled){opacity:.9;transform:translateY(-1px)}
 .submit-btn:disabled{opacity:.5;cursor:not-allowed;transform:none}
@@ -84,7 +84,7 @@ input::placeholder{color:rgba(255,255,255,.3)}
 @keyframes spin{to{transform:rotate(360deg)}}
 .status-icon{font-size:40px;margin-bottom:10px}
 .status-msg{font-size:15px;font-weight:700;margin-bottom:6px}
-.status-sub{font-size:13px;color:rgba(255,255,255,.45)}
+.status-sub{font-size:13px;color:rgba(255,255,255,.72)}
 .btn-sm{padding:10px 20px;border-radius:8px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.07);color:#fff;font-size:13px;font-weight:600;cursor:pointer;margin-top:14px}
 
 /* Contributor wall */
@@ -94,12 +94,12 @@ input::placeholder{color:rgba(255,255,255,.3)}
 .contrib-info{flex:1}
 .contrib-name{font-size:13px;font-weight:600;color:rgba(255,255,255,.85)}
 .contrib-amount{font-size:14px;font-weight:700;color:#25D366}
-.contrib-time{font-size:11px;color:rgba(255,255,255,.3)}
-.empty-wall{text-align:center;padding:20px;font-size:13px;color:rgba(255,255,255,.3)}
+.contrib-time{font-size:11px;color:rgba(255,255,255,.82)}
+.empty-wall{text-align:center;padding:20px;font-size:13px;color:rgba(255,255,255,.82)}
 
 /* Share card */
 .share-card{background:linear-gradient(135deg,rgba(0,166,81,.15),rgba(0,122,51,.1));border:1px solid rgba(0,166,81,.25);border-radius:14px;padding:20px;text-align:center}
-.share-card p{font-size:13px;color:rgba(255,255,255,.5);margin-bottom:14px}
+.share-card p{font-size:13px;color:rgba(255,255,255,.78);margin-bottom:14px}
 .wa-btn{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;border-radius:10px;background:#25d366;color:#fff;font-size:14px;font-weight:700;text-decoration:none;border:none;cursor:pointer}
 .copy-link-btn{display:inline-flex;align-items:center;gap:6px;padding:10px 18px;border-radius:10px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.7);font-size:13px;font-weight:600;cursor:pointer;margin-left:8px}
 .copy-link-btn.copied{color:#4ade80;border-color:rgba(74,222,128,.35)}
@@ -108,7 +108,7 @@ input::placeholder{color:rgba(255,255,255,.3)}
 .contact-bar{max-width:600px;margin:0 auto 16px;padding:0 20px}
 .contact-card{display:flex;align-items:center;justify-content:space-between;gap:12px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:12px 16px}
 .contact-info{display:flex;flex-direction:column;gap:2px}
-.contact-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.3)}
+.contact-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.82)}
 .contact-name{font-size:14px;font-weight:700;color:rgba(255,255,255,.85)}
 .contact-actions{display:flex;gap:8px;flex-shrink:0}
 .contact-call-btn{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border-radius:8px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.7);font-size:12px;font-weight:700;text-decoration:none;transition:.15s}
@@ -120,7 +120,7 @@ input::placeholder{color:rgba(255,255,255,.3)}
 .frozen-banner{margin:0 20px 20px;max-width:560px;margin-left:auto;margin-right:auto;padding:14px 16px;border-radius:10px;background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.3);color:#f87171;font-size:13px;font-weight:600;text-align:center}
 
 /* Trust notice */
-.trust-notice{max-width:560px;margin:0 auto 16px;padding:10px 14px;border-radius:9px;background:rgba(59,130,246,.06);border:1px solid rgba(59,130,246,.15);color:rgba(255,255,255,.4);font-size:11.5px;display:flex;align-items:center;gap:8px}
+.trust-notice{max-width:560px;margin:0 auto 16px;padding:10px 14px;border-radius:9px;background:rgba(59,130,246,.06);border:1px solid rgba(59,130,246,.15);color:rgba(255,255,255,.68);font-size:11.5px;display:flex;align-items:center;gap:8px}
 .report-link{display:inline;font-size:11.5px;color:#60a5fa;background:none;border:none;padding:0;cursor:pointer;text-decoration:underline}
 .report-link:hover{color:#93c5fd}
 
@@ -129,14 +129,14 @@ input::placeholder{color:rgba(255,255,255,.3)}
 .modal-backdrop.open{display:flex}
 .modal{background:#161624;border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:28px;max-width:400px;width:100%}
 .modal h3{font-size:16px;font-weight:800;margin-bottom:6px;color:#f87171}
-.modal p{font-size:13px;color:rgba(255,255,255,.45);margin-bottom:16px;line-height:1.5}
+.modal p{font-size:13px;color:rgba(255,255,255,.72);margin-bottom:16px;line-height:1.5}
 .modal textarea{width:100%;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);border-radius:10px;padding:12px 14px;color:#fff;font-size:13px;outline:none;resize:vertical;min-height:90px;font-family:inherit}
 .modal textarea:focus{border-color:#ef4444}
 .modal-actions{display:flex;gap:10px;margin-top:14px}
 .report-submit-btn{flex:1;padding:12px;border-radius:9px;border:none;background:#ef4444;color:#fff;font-size:14px;font-weight:700;cursor:pointer}
 .report-submit-btn:hover{background:#dc2626}
 .report-submit-btn:disabled{opacity:.5;cursor:not-allowed}
-.modal-cancel-btn{padding:12px 20px;border-radius:9px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.05);color:rgba(255,255,255,.5);font-size:14px;font-weight:600;cursor:pointer}
+.modal-cancel-btn{padding:12px 20px;border-radius:9px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.05);color:rgba(255,255,255,.78);font-size:14px;font-weight:600;cursor:pointer}
 
 @media(max-width:480px){
     .amount-presets{grid-template-columns:repeat(4,1fr)}

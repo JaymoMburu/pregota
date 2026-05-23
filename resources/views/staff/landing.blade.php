@@ -20,16 +20,16 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 .shield-badge{display:inline-flex;align-items:center;gap:7px;background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.25);border-radius:20px;padding:6px 16px;font-size:12px;font-weight:700;color:#4ade80;margin-bottom:24px;letter-spacing:.05em}
 .hero h1{font-size:clamp(32px,6vw,52px);font-weight:900;line-height:1.1;letter-spacing:-.5px;margin-bottom:18px}
 .hero h1 em{font-style:normal;background:linear-gradient(135deg,#25D366,#4ADE80);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.hero p{font-size:16px;color:rgba(255,255,255,.55);line-height:1.7;margin-bottom:32px;max-width:420px;margin-left:auto;margin-right:auto}
+.hero p{font-size:16px;color:rgba(255,255,255,.82);line-height:1.7;margin-bottom:32px;max-width:420px;margin-left:auto;margin-right:auto}
 .hero-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
 .btn-primary{background:linear-gradient(135deg,#00A651,#007A33);color:#fff;border:none;border-radius:12px;padding:14px 28px;font-size:15px;font-weight:700;cursor:pointer;text-decoration:none;display:inline-block}
 .btn-secondary{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.7);border-radius:12px;padding:14px 28px;font-size:15px;font-weight:700;text-decoration:none;display:inline-block}
 
 /* Risk section */
 .section{padding:56px 24px;max-width:680px;margin:0 auto}
-.section-tag{display:inline-block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:rgba(255,255,255,.35);margin-bottom:12px}
+.section-tag{display:inline-block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:rgba(255,255,255,.6);margin-bottom:12px}
 .section h2{font-size:clamp(22px,4vw,32px);font-weight:900;line-height:1.2;margin-bottom:14px}
-.section p{font-size:15px;color:rgba(255,255,255,.5);line-height:1.7}
+.section p{font-size:15px;color:rgba(255,255,255,.78);line-height:1.7}
 
 .risk-card{background:rgba(239,68,68,.06);border:1px solid rgba(239,68,68,.2);border-radius:16px;padding:24px;margin-top:24px}
 .risk-title{font-size:14px;font-weight:700;color:#fca5a5;margin-bottom:14px}
@@ -37,7 +37,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 .risk-item:last-child{border-bottom:none}
 .risk-icon{font-size:18px;margin-top:1px;flex-shrink:0}
 .risk-text strong{font-size:13px;color:#fca5a5;display:block;margin-bottom:2px}
-.risk-text span{font-size:12px;color:rgba(255,255,255,.4);line-height:1.55}
+.risk-text span{font-size:12px;color:rgba(255,255,255,.68);line-height:1.55}
 
 /* How it works */
 .how{background:rgba(0,166,81,.05);border-top:1px solid rgba(0,166,81,.1);border-bottom:1px solid rgba(0,166,81,.1);padding:56px 24px}
@@ -47,7 +47,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 .step:last-child{border-bottom:none}
 .step-num{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#00A651,#007A33);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:900;flex-shrink:0;margin-top:2px}
 .step-body h3{font-size:15px;font-weight:700;margin-bottom:4px}
-.step-body p{font-size:13px;color:rgba(255,255,255,.45);line-height:1.6}
+.step-body p{font-size:13px;color:rgba(255,255,255,.72);line-height:1.6}
 
 /* Bill Split feature */
 .split-feature{background:rgba(74,222,128,.04);border-top:1px solid rgba(74,222,128,.1);border-bottom:1px solid rgba(74,222,128,.1);padding:56px 24px}
@@ -59,11 +59,11 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 .split-step:last-child{border-bottom:none}
 .split-num{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#059669,#4ade80);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:900;flex-shrink:0;margin-top:2px;color:#0B141A}
 .split-body h3{font-size:15px;font-weight:700;margin-bottom:4px}
-.split-body p{font-size:13px;color:rgba(255,255,255,.45);line-height:1.6}
+.split-body p{font-size:13px;color:rgba(255,255,255,.72);line-height:1.6}
 .split-bonus{margin-top:28px;background:rgba(0,166,81,.08);border:1px solid rgba(0,166,81,.2);border-radius:14px;padding:20px;display:flex;gap:14px;align-items:flex-start}
 .split-bonus-icon{font-size:28px;flex-shrink:0}
 .split-bonus h4{font-size:14px;font-weight:700;color:#25D366;margin-bottom:4px}
-.split-bonus p{font-size:13px;color:rgba(255,255,255,.45);line-height:1.6}
+.split-bonus p{font-size:13px;color:rgba(255,255,255,.72);line-height:1.6}
 .split-cta{margin-top:28px;display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#059669,#10b981);color:#fff;border:none;border-radius:12px;padding:14px 28px;font-size:15px;font-weight:700;text-decoration:none}
 
 /* Customer feedback */
@@ -85,7 +85,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 .g-card{background:rgba(34,197,94,.06);border:1px solid rgba(34,197,94,.15);border-radius:14px;padding:18px}
 .g-icon{font-size:24px;margin-bottom:8px}
 .g-title{font-size:14px;font-weight:700;color:#4ade80;margin-bottom:4px}
-.g-text{font-size:12px;color:rgba(255,255,255,.45);line-height:1.6}
+.g-text{font-size:12px;color:rgba(255,255,255,.72);line-height:1.6}
 
 /* Who it's for */
 .jobs{padding:0 24px 56px;max-width:680px;margin:0 auto}
@@ -94,16 +94,16 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 .job-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:16px;text-align:center}
 .job-emoji{font-size:28px;margin-bottom:6px}
 .job-title{font-size:13px;font-weight:700;color:rgba(255,255,255,.8)}
-.job-sub{font-size:11px;color:rgba(255,255,255,.35);margin-top:2px}
+.job-sub{font-size:11px;color:rgba(255,255,255,.6);margin-top:2px}
 
 /* CTA bottom */
 .cta-bottom{background:linear-gradient(135deg,rgba(0,166,81,.15),rgba(0,122,51,.1));border-top:1px solid rgba(0,166,81,.2);padding:64px 24px;text-align:center}
 .cta-bottom h2{font-size:clamp(24px,4vw,36px);font-weight:900;margin-bottom:12px}
-.cta-bottom p{font-size:15px;color:rgba(255,255,255,.5);margin-bottom:32px;line-height:1.6}
+.cta-bottom p{font-size:15px;color:rgba(255,255,255,.78);margin-bottom:32px;line-height:1.6}
 
 /* Employer strip */
 .employer-strip{background:rgba(255,255,255,.03);border-top:1px solid rgba(255,255,255,.07);padding:24px;text-align:center}
-.employer-strip p{font-size:13px;color:rgba(255,255,255,.35)}
+.employer-strip p{font-size:13px;color:rgba(255,255,255,.6)}
 .employer-strip a{color:#a78bfa;text-decoration:none;font-weight:600}
 
 .footer{padding:20px 24px;text-align:center;color:rgba(255,255,255,.2);font-size:11px;border-top:1px solid rgba(255,255,255,.06)}
@@ -172,7 +172,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
     <div class="how-inner">
         <div class="section-tag">How It Works</div>
         <h2>Simple for you. Invisible to them.</h2>
-        <p style="font-size:15px;color:rgba(255,255,255,.5);margin-top:10px">Your customer tips you normally via M-Pesa. They never see your number. The money arrives directly on your phone.</p>
+        <p style="font-size:15px;color:rgba(255,255,255,.78);margin-top:10px">Your customer tips you normally via M-Pesa. They never see your number. The money arrives directly on your phone.</p>
 
         <div class="steps">
             <div class="step">
@@ -212,7 +212,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
     <div class="split-feature-inner">
         <div class="split-tag">Also for Waitstaff</div>
         <h2>Split the bill at your table.<br><span style="background:linear-gradient(135deg,#4ade80,#10b981);-webkit-background-clip:text;-webkit-text-fill-color:transparent">No awkward M-Pesa codes.</span></h2>
-        <p style="font-size:15px;color:rgba(255,255,255,.5);margin-top:10px;line-height:1.7">Enter the total once. Show a QR. Each person at the table scans and pays their share directly — the full amount lands on your M-Pesa the moment the last person pays.</p>
+        <p style="font-size:15px;color:rgba(255,255,255,.78);margin-top:10px;line-height:1.7">Enter the total once. Show a QR. Each person at the table scans and pays their share directly — the full amount lands on your M-Pesa the moment the last person pays.</p>
 
         <div class="split-steps">
             <div class="split-step">
@@ -265,7 +265,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
             <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
             Try Bill Split Now — Free
         </a>
-        <p style="margin-top:10px;font-size:11px;color:rgba(255,255,255,.3)">KES 30 fee added per person · Paid by each customer · No monthly charge</p>
+        <p style="margin-top:10px;font-size:11px;color:rgba(255,255,255,.82)">KES 30 fee added per person · Paid by each customer · No monthly charge</p>
     </div>
 </div>
 
@@ -273,7 +273,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 <div class="feedback">
     <div class="section-tag">Customer Feedback</div>
     <h2>Tips come with feedback. So you can grow.</h2>
-    <p style="font-size:15px;color:rgba(255,255,255,.5);margin-top:10px;line-height:1.7">After tipping, customers can leave a star rating, emoji reaction, and a short note. You see it all on your private dashboard — your employer only sees service quality data, never your earnings.</p>
+    <p style="font-size:15px;color:rgba(255,255,255,.78);margin-top:10px;line-height:1.7">After tipping, customers can leave a star rating, emoji reaction, and a short note. You see it all on your private dashboard — your employer only sees service quality data, never your earnings.</p>
 
     <div class="feedback-grid">
         <div class="fb-card">
@@ -324,7 +324,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
             </div>
         </div>
     </div>
-    <p style="margin-top:20px;font-size:12px;color:rgba(255,255,255,.3);text-align:center">Sample feedback — shown on your personal dashboard. Customer identities are always anonymous.</p>
+    <p style="margin-top:20px;font-size:12px;color:rgba(255,255,255,.82);text-align:center">Sample feedback — shown on your personal dashboard. Customer identities are always anonymous.</p>
 </div>
 
 <!-- Privacy guarantee -->
@@ -398,7 +398,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
     <h2>Your tips. Your privacy.<br>Your safety.</h2>
     <p>Join thousands of service workers in Kenya who tip privately.<br>Free to sign up. Takes 2 minutes.</p>
     <a href="{{ route('staff.register') }}" class="btn-primary" style="font-size:16px;padding:16px 36px">Create My Free Tip Page →</a>
-    <p style="margin-top:16px;font-size:12px;color:rgba(255,255,255,.3)">No monthly fees · No hidden charges · Cancel anytime</p>
+    <p style="margin-top:16px;font-size:12px;color:rgba(255,255,255,.82)">No monthly fees · No hidden charges · Cancel anytime</p>
 </div>
 
 <!-- Employer strip -->

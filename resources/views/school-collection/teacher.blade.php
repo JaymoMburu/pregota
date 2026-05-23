@@ -12,9 +12,9 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 .teacher-badge{font-size:11px;padding:4px 12px;border-radius:20px;background:rgba(0,166,81,.15);border:1px solid rgba(0,166,81,.3);color:#25D366;font-weight:700}
 
 .hero{padding:24px 20px 16px;max-width:640px;margin:0 auto}
-.school-label{font-size:12px;color:rgba(255,255,255,.35);margin-bottom:6px}
+.school-label{font-size:12px;color:rgba(255,255,255,.6);margin-bottom:6px}
 h1{font-size:clamp(20px,4.5vw,28px);font-weight:900;line-height:1.15;margin-bottom:6px}
-.meta{font-size:13px;color:rgba(255,255,255,.4)}
+.meta{font-size:13px;color:rgba(255,255,255,.68)}
 
 .page{max-width:640px;margin:0 auto;padding:0 20px 48px;display:flex;flex-direction:column;gap:16px}
 
@@ -26,11 +26,11 @@ h1{font-size:clamp(20px,4.5vw,28px);font-weight:900;line-height:1.15;margin-bott
 .stat-num.teal{color:#2dd4bf}
 .stat-num.amber{color:#fbbf24}
 .stat-num.purple{color:#25D366}
-.stat-label{font-size:10px;color:rgba(255,255,255,.4);margin-top:4px;line-height:1.3}
+.stat-label{font-size:10px;color:rgba(255,255,255,.68);margin-top:4px;line-height:1.3}
 
 /* Share parent link */
 .share-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:16px}
-.card-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.35);margin-bottom:10px}
+.card-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.6);margin-bottom:10px}
 .link-row{display:flex;gap:8px;align-items:center;margin-bottom:10px}
 .link-input{flex:1;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:9px 10px;color:rgba(255,255,255,.6);font-size:12px;outline:none;font-family:monospace}
 .copy-btn{padding:8px 14px;border-radius:8px;background:rgba(0,166,81,.2);border:1px solid rgba(0,166,81,.3);color:#25D366;font-size:12px;font-weight:700;cursor:pointer;white-space:nowrap}
@@ -44,12 +44,12 @@ h1{font-size:clamp(20px,4.5vw,28px);font-weight:900;line-height:1.15;margin-bott
 .student-top{display:flex;align-items:center;gap:12px;margin-bottom:7px}
 .avatar{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#00A651,#007A33);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0}
 .student-name{flex:1;font-size:14px;font-weight:600;color:rgba(255,255,255,.85)}
-.student-id{font-size:11px;color:rgba(255,255,255,.3);font-weight:400;margin-left:6px;font-family:monospace}
+.student-id{font-size:11px;color:rgba(255,255,255,.82);font-weight:400;margin-left:6px;font-family:monospace}
 .full-badge{font-size:11px;padding:3px 9px;border-radius:10px;background:rgba(74,222,128,.12);border:1px solid rgba(74,222,128,.25);color:#4ade80;font-weight:700}
 .partial-badge{font-size:11px;padding:3px 9px;border-radius:10px;background:rgba(251,191,36,.1);border:1px solid rgba(251,191,36,.2);color:#fbbf24;font-weight:700}
 .student-amounts{display:flex;gap:16px;padding-left:46px;font-size:12px;margin-bottom:6px}
 .amt-paid{color:#4ade80;font-weight:700}
-.amt-remaining{color:rgba(255,255,255,.35)}
+.amt-remaining{color:rgba(255,255,255,.6)}
 .amt-separator{color:rgba(255,255,255,.15)}
 /* Mini progress bar */
 .mini-bar{height:4px;background:rgba(255,255,255,.08);border-radius:2px;margin:0 0 0 46px;overflow:hidden}
@@ -62,7 +62,7 @@ h1{font-size:clamp(20px,4.5vw,28px);font-weight:900;line-height:1.15;margin-bott
 .pending-name{font-size:13px;color:rgba(255,255,255,.65)}
 .pending-badge{font-size:11px;padding:2px 8px;border-radius:10px;background:rgba(251,191,36,.12);color:#fbbf24;font-weight:700}
 
-.empty{text-align:center;padding:20px;font-size:13px;color:rgba(255,255,255,.3)}
+.empty{text-align:center;padding:20px;font-size:13px;color:rgba(255,255,255,.82)}
 .refresh-note{text-align:center;font-size:11px;color:rgba(255,255,255,.2);padding:8px 0}
 
 @media(max-width:480px){

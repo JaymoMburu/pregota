@@ -13,13 +13,13 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 .left-center{flex:1;display:flex;flex-direction:column;justify-content:center;gap:28px}
 .headline h1{font-size:clamp(24px,2.8vw,38px);font-weight:900;line-height:1.12;letter-spacing:-.5px}
 .headline h1 em{font-style:normal;background:linear-gradient(135deg,#25D366,#4ADE80);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.headline p{margin-top:10px;font-size:14px;color:rgba(255,255,255,.45);line-height:1.65;max-width:300px}
+.headline p{margin-top:10px;font-size:14px;color:rgba(255,255,255,.72);line-height:1.65;max-width:300px}
 .flow-steps{display:flex;flex-direction:column;gap:14px}
 .flow-step{display:flex;gap:12px;align-items:flex-start}
 .flow-num{width:26px;height:26px;border-radius:50%;background:linear-gradient(135deg,#00A651,#007A33);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:900;flex-shrink:0;margin-top:1px}
 .flow-text strong{font-size:13px;color:rgba(255,255,255,.85);display:block;margin-bottom:1px}
-.flow-text span{font-size:12px;color:rgba(255,255,255,.4);line-height:1.5}
-.left-foot{margin-top:auto;font-size:11px;color:rgba(255,255,255,.3)}
+.flow-text span{font-size:12px;color:rgba(255,255,255,.68);line-height:1.5}
+.left-foot{margin-top:auto;font-size:11px;color:rgba(255,255,255,.82)}
 
 .panel-right{width:58%;min-height:100vh;background:#0B141A;display:flex;flex-direction:column;border-left:1px solid rgba(255,255,255,.06)}
 .right-nav{padding:16px 32px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,.06)}
@@ -27,14 +27,14 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 .right-body{flex:1;padding:32px;overflow-y:auto}
 .form-wrap{max-width:460px}
 .form-title{font-size:20px;font-weight:900;margin-bottom:4px}
-.form-subtitle{font-size:13px;color:rgba(255,255,255,.4);margin-bottom:24px}
-.section-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.35);margin-bottom:10px;margin-top:20px}
+.form-subtitle{font-size:13px;color:rgba(255,255,255,.68);margin-bottom:24px}
+.section-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.6);margin-bottom:10px;margin-top:20px}
 .form-group{margin-bottom:12px}
-label{display:block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.5);margin-bottom:6px}
+label{display:block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.78);margin-bottom:6px}
 input{width:100%;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);border-radius:10px;padding:11px 13px;color:#fff;font-size:14px;outline:none;transition:.2s;font-family:inherit}
 input:focus{border-color:#00A651;background:rgba(0,166,81,.08)}
-input::placeholder{color:rgba(255,255,255,.3)}
-.hint{font-size:11px;color:rgba(255,255,255,.35);margin-top:5px}
+input::placeholder{color:rgba(255,255,255,.82)}
+.hint{font-size:11px;color:rgba(255,255,255,.6);margin-top:5px}
 .hint.green{color:#4ade80}
 .alert.error{background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.25);color:#f87171;border-radius:8px;padding:10px 12px;margin-bottom:14px;font-size:13px}
 .submit-btn{width:100%;padding:15px;border-radius:12px;border:none;font-size:16px;font-weight:700;cursor:pointer;background:linear-gradient(135deg,#00A651,#007A33);color:#fff;margin-top:10px;transition:.2s}
@@ -64,7 +64,7 @@ input::placeholder{color:rgba(255,255,255,.3)}
     @include('partials.module-nav', ['activeModule' => ''])
     <nav class="right-nav">
         <a href="{{ route('home') }}" class="logo-sm">Pregota</a>
-        <span style="font-size:12px;color:rgba(255,255,255,.35)">Bill Split</span>
+        <span style="font-size:12px;color:rgba(255,255,255,.6)">Bill Split</span>
     </nav>
     <div class="right-body">
         <div class="form-wrap">
@@ -154,7 +154,7 @@ document.getElementById('totalAmount').addEventListener('input', function() {
     const hint = document.getElementById('feeHint');
     if (!v || v < 100) { hint.textContent = ''; return; }
     hint.textContent = 'Customers pay their share + KES 30 each. You receive KES ' + v.toLocaleString('en-KE') + ' exactly.';
-    hint.style.color = 'rgba(255,255,255,.35)';
+    hint.style.color = 'rgba(255,255,255,.6)';
 });
 </script>
 </body>

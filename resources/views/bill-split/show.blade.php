@@ -12,8 +12,8 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 .card{width:100%;max-width:400px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:24px;padding:28px 24px;margin-top:12px}
 
 /* Bill header */
-.bill-label{font-size:12px;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.35);margin-bottom:4px;text-align:center}
-.bill-total{font-size:13px;color:rgba(255,255,255,.4);text-align:center;margin-bottom:16px}
+.bill-label{font-size:12px;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.6);margin-bottom:4px;text-align:center}
+.bill-total{font-size:13px;color:rgba(255,255,255,.68);text-align:center;margin-bottom:16px}
 
 /* Progress */
 .progress-wrap{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:14px 16px;margin-bottom:20px}
@@ -21,26 +21,26 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 .progress-fill{height:100%;background:linear-gradient(90deg,#00A651,#007A33);border-radius:999px;transition:.5s}
 .progress-row{display:flex;justify-content:space-between;font-size:12px}
 .remaining-val{font-size:22px;font-weight:900;text-align:center;margin-bottom:4px;background:linear-gradient(135deg,#25D366,#4ADE80);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.remaining-lbl{font-size:11px;color:rgba(255,255,255,.35);text-align:center;margin-bottom:12px}
+.remaining-lbl{font-size:11px;color:rgba(255,255,255,.6);text-align:center;margin-bottom:12px}
 
 /* Form */
-.section-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.4);margin-bottom:8px}
+.section-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.68);margin-bottom:8px}
 .form-group{margin-bottom:14px}
-label{display:block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.5);margin-bottom:6px}
+label{display:block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.78);margin-bottom:6px}
 input{width:100%;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:10px;padding:13px 14px;color:#fff;font-size:16px;outline:none;transition:.2s;font-family:inherit}
 input:focus{border-color:#00A651;background:rgba(0,166,81,.1)}
-input::placeholder{color:rgba(255,255,255,.3)}
-.hint{font-size:11px;color:rgba(255,255,255,.35);margin-top:5px}
+input::placeholder{color:rgba(255,255,255,.82)}
+.hint{font-size:11px;color:rgba(255,255,255,.6);margin-top:5px}
 
 .breakdown{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:12px;padding:14px 16px;margin-bottom:14px;display:none}
 .breakdown-row{display:flex;justify-content:space-between;align-items:center;font-size:13px;padding:4px 0}
-.breakdown-row .lbl{color:rgba(255,255,255,.5)}
+.breakdown-row .lbl{color:rgba(255,255,255,.78)}
 .breakdown-row .val{font-weight:600;color:rgba(255,255,255,.75)}
 .breakdown-divider{border:none;border-top:1px solid rgba(255,255,255,.08);margin:8px 0}
 .breakdown-total{display:flex;justify-content:space-between;align-items:center;padding-top:4px}
 .breakdown-total .lbl{font-size:13px;font-weight:700;color:rgba(255,255,255,.8)}
 .breakdown-total .val{font-size:18px;font-weight:900;color:#25D366}
-.fee-tag{font-size:10px;color:rgba(255,255,255,.3);margin-top:6px;text-align:center}
+.fee-tag{font-size:10px;color:rgba(255,255,255,.82);margin-top:6px;text-align:center}
 
 .btn{width:100%;padding:15px;border-radius:12px;border:none;font-size:16px;font-weight:700;cursor:pointer;background:linear-gradient(135deg,#00A651,#007A33);color:#fff;transition:.2s;margin-top:4px}
 .btn:hover{opacity:.9}
@@ -61,24 +61,24 @@ input::placeholder{color:rgba(255,255,255,.3)}
 /* Tip section */
 .tip-section{margin-top:20px;padding-top:20px;border-top:1px solid rgba(255,255,255,.07);display:none}
 .tip-heading{font-size:15px;font-weight:800;margin-bottom:4px}
-.tip-sub{font-size:12px;color:rgba(255,255,255,.4);margin-bottom:16px}
+.tip-sub{font-size:12px;color:rgba(255,255,255,.68);margin-bottom:16px}
 .tip-waiter{display:flex;align-items:center;gap:10px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:12px 14px;margin-bottom:16px}
 .tip-avatar{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#00A651,#007A33);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
 .tip-name{font-size:14px;font-weight:700}
-.tip-role{font-size:11px;color:rgba(255,255,255,.4);margin-top:1px}
-.tip-skip{background:none;border:none;color:rgba(255,255,255,.3);font-size:12px;cursor:pointer;margin-top:10px;text-decoration:underline;display:block;text-align:center}
+.tip-role{font-size:11px;color:rgba(255,255,255,.68);margin-top:1px}
+.tip-skip{background:none;border:none;color:rgba(255,255,255,.82);font-size:12px;cursor:pointer;margin-top:10px;text-decoration:underline;display:block;text-align:center}
 .tip-done{text-align:center;padding:16px 0;display:none}
 
 /* Opt-in */
 .optin-section{margin-top:20px;padding-top:20px;border-top:1px solid rgba(255,255,255,.07);display:none}
 .optin-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(251,191,36,.1);border:1px solid rgba(251,191,36,.2);border-radius:20px;padding:4px 12px;font-size:11px;font-weight:700;color:#fbbf24;margin-bottom:10px}
 .optin-heading{font-size:15px;font-weight:800;margin-bottom:4px}
-.optin-sub{font-size:12px;color:rgba(255,255,255,.45);margin-bottom:14px;line-height:1.5}
-.optin-skip{background:none;border:none;color:rgba(255,255,255,.3);font-size:12px;cursor:pointer;margin-top:10px;text-decoration:underline;display:block;text-align:center}
+.optin-sub{font-size:12px;color:rgba(255,255,255,.72);margin-bottom:14px;line-height:1.5}
+.optin-skip{background:none;border:none;color:rgba(255,255,255,.82);font-size:12px;cursor:pointer;margin-top:10px;text-decoration:underline;display:block;text-align:center}
 .optin-done{text-align:center;padding:14px 0;display:none}
 
 .footer{margin-top:20px;font-size:11px;color:rgba(255,255,255,.2);text-align:center}
-.pregota-link{color:rgba(255,255,255,.3);text-decoration:none;font-weight:700}
+.pregota-link{color:rgba(255,255,255,.82);text-decoration:none;font-weight:700}
 </style>
 </head>
 <body>
@@ -88,7 +88,7 @@ input::placeholder{color:rgba(255,255,255,.3)}
 <div class="card">
     <div class="bill-label">{{ $bill->business_name }}</div>
     @if($bill->label)
-    <div style="font-size:12px;color:rgba(255,255,255,.3);text-align:center;margin-bottom:4px">{{ $bill->label }}</div>
+    <div style="font-size:12px;color:rgba(255,255,255,.82);text-align:center;margin-bottom:4px">{{ $bill->label }}</div>
     @endif
     <div class="bill-total">Total bill: KES {{ number_format($bill->total_amount) }}</div>
 
@@ -103,7 +103,7 @@ input::placeholder{color:rgba(255,255,255,.3)}
         </div>
         <div class="progress-row">
             <span style="color:#4ade80;font-weight:700" id="paidAmt">KES {{ number_format($bill->paid_amount) }} paid</span>
-            <span style="color:rgba(255,255,255,.35)">{{ $bill->progressPct() }}%</span>
+            <span style="color:rgba(255,255,255,.6)">{{ $bill->progressPct() }}%</span>
         </div>
     </div>
 
@@ -111,14 +111,14 @@ input::placeholder{color:rgba(255,255,255,.3)}
     <div class="settled-box">
         <div style="font-size:48px;margin-bottom:10px">✅</div>
         <div style="font-size:18px;font-weight:900;color:#4ade80;margin-bottom:6px">Bill fully paid!</div>
-        <div style="font-size:13px;color:rgba(255,255,255,.45)">Everyone has paid. You're all settled.</div>
+        <div style="font-size:13px;color:rgba(255,255,255,.72)">Everyone has paid. You're all settled.</div>
     </div>
 
     @elseif(!$open)
     <div class="settled-box">
         <div style="font-size:48px;margin-bottom:10px">⏱️</div>
         <div style="font-size:16px;font-weight:700;margin-bottom:6px">This bill has expired</div>
-        <div style="font-size:13px;color:rgba(255,255,255,.45)">Ask your waiter to generate a new split.</div>
+        <div style="font-size:13px;color:rgba(255,255,255,.72)">Ask your waiter to generate a new split.</div>
     </div>
 
     @else
@@ -163,14 +163,14 @@ input::placeholder{color:rgba(255,255,255,.3)}
     <div class="waiting-box" id="waitingBox">
         <div class="waiting-icon">📱</div>
         <div style="font-size:16px;font-weight:700;margin-bottom:6px">Check your phone</div>
-        <div style="font-size:13px;color:rgba(255,255,255,.45)">Enter your M-Pesa PIN to complete payment.</div>
+        <div style="font-size:13px;color:rgba(255,255,255,.72)">Enter your M-Pesa PIN to complete payment.</div>
     </div>
 
     <!-- Payment success -->
     <div class="success-box" id="successBox">
         <div style="font-size:48px;margin-bottom:10px">🎉</div>
         <div style="font-size:18px;font-weight:900;margin-bottom:6px">Payment confirmed!</div>
-        <div style="font-size:13px;color:rgba(255,255,255,.45)" id="successMsg"></div>
+        <div style="font-size:13px;color:rgba(255,255,255,.72)" id="successMsg"></div>
     </div>
 
     <!-- Payment failed -->
@@ -199,7 +199,7 @@ input::placeholder{color:rgba(255,255,255,.3)}
         <div class="optin-done" id="optinDone">
             <div style="font-size:32px;margin-bottom:8px">🙌</div>
             <div style="font-size:14px;font-weight:700;margin-bottom:4px">Contact shared!</div>
-            <div style="font-size:12px;color:rgba(255,255,255,.4)">{{ $bill->business_name }} will be in touch. You can ask them to remove you at any time.</div>
+            <div style="font-size:12px;color:rgba(255,255,255,.68)">{{ $bill->business_name }} will be in touch. You can ask them to remove you at any time.</div>
         </div>
     </div>
 
@@ -235,13 +235,13 @@ input::placeholder{color:rgba(255,255,255,.3)}
         <div class="waiting-box" id="tipWaiting">
             <div class="waiting-icon">📱</div>
             <div style="font-size:15px;font-weight:700;margin-bottom:6px">Check your phone</div>
-            <div style="font-size:13px;color:rgba(255,255,255,.45)">Enter your M-Pesa PIN to send the tip.</div>
+            <div style="font-size:13px;color:rgba(255,255,255,.72)">Enter your M-Pesa PIN to send the tip.</div>
         </div>
 
         <div class="tip-done" id="tipDone">
             <div style="font-size:36px;margin-bottom:8px">🙏</div>
             <div style="font-size:15px;font-weight:700;margin-bottom:4px">Tip sent!</div>
-            <div style="font-size:12px;color:rgba(255,255,255,.4)">{{ $staff->name }} will appreciate it.</div>
+            <div style="font-size:12px;color:rgba(255,255,255,.68)">{{ $staff->name }} will appreciate it.</div>
         </div>
     </div>
     @endif
@@ -353,7 +353,7 @@ function showSettled() {
     document.getElementById('successBox').innerHTML =
         '<div style="font-size:48px;margin-bottom:10px">✅</div>' +
         '<div style="font-size:18px;font-weight:900;color:#4ade80;margin-bottom:6px">Bill fully paid!</div>' +
-        '<div style="font-size:13px;color:rgba(255,255,255,.45)">Everyone has paid. You\'re all settled.</div>';
+        '<div style="font-size:13px;color:rgba(255,255,255,.72)">Everyone has paid. You\'re all settled.</div>';
 }
 
 @if($staff)

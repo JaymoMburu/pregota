@@ -19,7 +19,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 .badge{display:inline-flex;align-items:center;gap:7px;background:rgba(16,185,129,.1);border:1px solid rgba(16,185,129,.25);border-radius:20px;padding:6px 16px;font-size:12px;font-weight:700;color:#34d399;margin-bottom:24px;letter-spacing:.05em}
 .hero h1{font-size:clamp(30px,6vw,50px);font-weight:900;line-height:1.1;letter-spacing:-.5px;margin-bottom:18px}
 .hero h1 em{font-style:normal;background:linear-gradient(135deg,#34d399,#10b981);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.hero p{font-size:16px;color:rgba(255,255,255,.55);line-height:1.7;margin-bottom:32px;max-width:460px;margin-left:auto;margin-right:auto}
+.hero p{font-size:16px;color:rgba(255,255,255,.82);line-height:1.7;margin-bottom:32px;max-width:460px;margin-left:auto;margin-right:auto}
 .hero-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
 .btn-primary{background:linear-gradient(135deg,#059669,#10b981);color:#fff;border:none;border-radius:12px;padding:14px 28px;font-size:15px;font-weight:700;cursor:pointer;text-decoration:none;display:inline-block}
 .btn-secondary{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.7);border-radius:12px;padding:14px 28px;font-size:15px;font-weight:700;text-decoration:none;display:inline-block}
@@ -31,21 +31,21 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 .preview-label{position:absolute;top:-12px;right:16px;background:#10b981;color:#fff;font-size:10px;font-weight:700;padding:3px 10px;border-radius:20px;letter-spacing:.05em}
 .occ-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(16,185,129,.12);border:1px solid rgba(16,185,129,.25);border-radius:20px;padding:4px 12px;font-size:11px;font-weight:700;color:#34d399;margin-bottom:12px}
 .preview-title{font-size:18px;font-weight:900;margin-bottom:6px;line-height:1.25}
-.preview-desc{font-size:12px;color:rgba(255,255,255,.5);line-height:1.6;margin-bottom:16px}
+.preview-desc{font-size:12px;color:rgba(255,255,255,.78);line-height:1.6;margin-bottom:16px}
 .preview-bar-wrap{margin-bottom:16px}
-.preview-bar-label{display:flex;justify-content:space-between;font-size:11px;color:rgba(255,255,255,.4);margin-bottom:6px}
+.preview-bar-label{display:flex;justify-content:space-between;font-size:11px;color:rgba(255,255,255,.68);margin-bottom:6px}
 .preview-bar{height:6px;background:rgba(255,255,255,.08);border-radius:4px}
 .preview-bar-fill{height:100%;width:62%;background:linear-gradient(90deg,#059669,#34d399);border-radius:4px}
 .preview-stats{display:flex;gap:12px;margin-bottom:16px}
-.preview-stat{font-size:11px;color:rgba(255,255,255,.4);text-align:center;flex:1;background:rgba(255,255,255,.04);border-radius:8px;padding:8px 4px}
+.preview-stat{font-size:11px;color:rgba(255,255,255,.68);text-align:center;flex:1;background:rgba(255,255,255,.04);border-radius:8px;padding:8px 4px}
 .preview-stat strong{display:block;font-size:14px;font-weight:800;color:#fff;margin-bottom:2px}
 .preview-btn{width:100%;background:linear-gradient(135deg,#059669,#10b981);border:none;border-radius:10px;padding:13px;font-size:14px;font-weight:700;color:#fff;cursor:pointer;text-align:center}
 
 /* Section styles */
 .section{padding:56px 24px;max-width:700px;margin:0 auto}
-.section-tag{display:inline-block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:rgba(255,255,255,.35);margin-bottom:12px}
+.section-tag{display:inline-block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:rgba(255,255,255,.6);margin-bottom:12px}
 .section h2{font-size:clamp(22px,4vw,32px);font-weight:900;line-height:1.2;margin-bottom:14px}
-.section p{font-size:15px;color:rgba(255,255,255,.5);line-height:1.7}
+.section p{font-size:15px;color:rgba(255,255,255,.78);line-height:1.7}
 
 /* WhatsApp problems */
 .problem-card{background:rgba(239,68,68,.06);border:1px solid rgba(239,68,68,.15);border-radius:16px;padding:24px;margin-top:24px}
@@ -54,7 +54,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 .problem-item:last-child{border-bottom:none}
 .problem-icon{font-size:20px;flex-shrink:0;margin-top:1px}
 .problem-text strong{font-size:13px;color:#fca5a5;display:block;margin-bottom:3px}
-.problem-text span{font-size:12px;color:rgba(255,255,255,.4);line-height:1.6}
+.problem-text span{font-size:12px;color:rgba(255,255,255,.68);line-height:1.6}
 
 /* How it works */
 .how{background:rgba(16,185,129,.04);border-top:1px solid rgba(16,185,129,.1);border-bottom:1px solid rgba(16,185,129,.1);padding:56px 24px}
@@ -64,7 +64,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 .step:last-child{border-bottom:none}
 .step-num{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#059669,#10b981);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:900;flex-shrink:0;margin-top:2px}
 .step-body h3{font-size:15px;font-weight:700;margin-bottom:4px}
-.step-body p{font-size:13px;color:rgba(255,255,255,.45);line-height:1.6}
+.step-body p{font-size:13px;color:rgba(255,255,255,.72);line-height:1.6}
 
 /* Contributor flow */
 .contrib-section{padding:56px 24px;max-width:700px;margin:0 auto}
@@ -72,7 +72,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 .contrib-step{display:flex;gap:16px;align-items:flex-start;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:14px;padding:18px}
 .contrib-icon{font-size:28px;flex-shrink:0}
 .contrib-body h4{font-size:14px;font-weight:700;margin-bottom:4px}
-.contrib-body p{font-size:13px;color:rgba(255,255,255,.45);line-height:1.6}
+.contrib-body p{font-size:13px;color:rgba(255,255,255,.72);line-height:1.6}
 
 /* Advantages grid */
 .adv{background:rgba(16,185,129,.04);border-top:1px solid rgba(16,185,129,.1);border-bottom:1px solid rgba(16,185,129,.1);padding:56px 24px}
@@ -82,13 +82,13 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 .adv-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:20px}
 .adv-icon{font-size:28px;margin-bottom:10px}
 .adv-title{font-size:14px;font-weight:700;color:#34d399;margin-bottom:4px}
-.adv-text{font-size:13px;color:rgba(255,255,255,.45);line-height:1.6}
+.adv-text{font-size:13px;color:rgba(255,255,255,.72);line-height:1.6}
 
 /* Fee box */
 .fee-box{background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.2);border-radius:14px;padding:20px;margin-top:28px}
 .fee-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.06);font-size:13px}
 .fee-row:last-child{border-bottom:none;font-weight:700}
-.fee-label{color:rgba(255,255,255,.55)}
+.fee-label{color:rgba(255,255,255,.82)}
 .fee-value{font-weight:600}
 
 /* Occasions */
@@ -98,12 +98,12 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 .occ-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:16px;text-align:center}
 .occ-emoji{font-size:28px;margin-bottom:6px}
 .occ-name{font-size:13px;font-weight:700;color:rgba(255,255,255,.8)}
-.occ-sub{font-size:11px;color:rgba(255,255,255,.35);margin-top:2px}
+.occ-sub{font-size:11px;color:rgba(255,255,255,.6);margin-top:2px}
 
 /* CTA */
 .cta-bottom{background:linear-gradient(135deg,rgba(5,150,105,.15),rgba(16,185,129,.08));border-top:1px solid rgba(16,185,129,.2);padding:64px 24px;text-align:center}
 .cta-bottom h2{font-size:clamp(24px,4vw,36px);font-weight:900;margin-bottom:12px}
-.cta-bottom p{font-size:15px;color:rgba(255,255,255,.5);margin-bottom:32px;line-height:1.6}
+.cta-bottom p{font-size:15px;color:rgba(255,255,255,.78);margin-bottom:32px;line-height:1.6}
 
 .footer{padding:20px 24px;text-align:center;color:rgba(255,255,255,.2);font-size:11px;border-top:1px solid rgba(255,255,255,.06)}
 </style>
@@ -206,7 +206,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
     <div class="how-inner">
         <div class="section-tag">How It Works</div>
         <h2>One link. Everyone pays directly. You're done.</h2>
-        <p style="font-size:15px;color:rgba(255,255,255,.5);margin-top:10px">Set up a collection in under 2 minutes. Share the link anywhere. Watch contributions arrive in real time.</p>
+        <p style="font-size:15px;color:rgba(255,255,255,.78);margin-top:10px">Set up a collection in under 2 minutes. Share the link anywhere. Watch contributions arrive in real time.</p>
 
         <div class="steps">
             <div class="step">
@@ -245,7 +245,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 <div class="contrib-section">
     <div class="section-tag">What Contributors Experience</div>
     <h2>As easy as sending an M-Pesa.</h2>
-    <p style="font-size:15px;color:rgba(255,255,255,.5);margin-top:10px;margin-bottom:0">No sign-up. No app. No asking anyone for a number. Just click, confirm, done.</p>
+    <p style="font-size:15px;color:rgba(255,255,255,.78);margin-top:10px;margin-bottom:0">No sign-up. No app. No asking anyone for a number. Just click, confirm, done.</p>
 
     <div class="contrib-flow">
         <div class="contrib-step">
@@ -318,7 +318,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
             </div>
         </div>
 
-        <p style="font-size:13px;color:rgba(255,255,255,.3);margin-top:20px;text-align:center">KES 30 flat fee per contribution · Added on top · Recipient receives 100% of every pledged amount</p>
+        <p style="font-size:13px;color:rgba(255,255,255,.82);margin-top:20px;text-align:center">KES 30 flat fee per contribution · Added on top · Recipient receives 100% of every pledged amount</p>
 
         <div class="fee-box">
             <div class="fee-row">
@@ -327,7 +327,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
             </div>
             <div class="fee-row">
                 <span class="fee-label">Pregota platform fee (added on top)</span>
-                <span class="fee-value" style="color:rgba(255,255,255,.5)">+ KES 30</span>
+                <span class="fee-value" style="color:rgba(255,255,255,.78)">+ KES 30</span>
             </div>
             <div class="fee-row">
                 <span class="fee-label">Contributor pays via M-Pesa STK Push</span>
@@ -399,7 +399,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
     <h2>Ready to collect?<br><em style="font-style:normal;background:linear-gradient(135deg,#34d399,#10b981);-webkit-background-clip:text;-webkit-text-fill-color:transparent">No WhatsApp group required.</em></h2>
     <p>Takes under 2 minutes to set up. Share one link. Let people contribute on their own — in their own time, with their privacy intact.</p>
     <a href="{{ route('collection.new') }}" class="btn-primary" style="font-size:16px;padding:16px 36px">Start a Collection — Free →</a>
-    <p style="margin-top:16px;font-size:12px;color:rgba(255,255,255,.3)">No account needed · No monthly fee · Money goes direct to recipient</p>
+    <p style="margin-top:16px;font-size:12px;color:rgba(255,255,255,.82)">No account needed · No monthly fee · Money goes direct to recipient</p>
 </div>
 
 @include('partials.discover', ['current' => 'collection', 'fullWidth' => true])

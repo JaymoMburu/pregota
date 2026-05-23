@@ -11,9 +11,9 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0a0a14;min-height:1
 .logo{font-size:22px;font-weight:900;background:linear-gradient(135deg,#00A651,#007A33);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:6px}
 .badge{display:inline-block;background:rgba(0,166,81,.15);border:1px solid rgba(0,166,81,.3);color:#a78bfa;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:3px 10px;border-radius:99px;margin-bottom:24px}
 h1{font-size:20px;font-weight:800;color:#fff;margin-bottom:6px}
-.sub{font-size:13px;color:rgba(255,255,255,.4);margin-bottom:28px;line-height:1.5}
+.sub{font-size:13px;color:rgba(255,255,255,.68);margin-bottom:28px;line-height:1.5}
 .field{margin-bottom:16px}
-label{display:block;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.4);margin-bottom:6px}
+label{display:block;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.68);margin-bottom:6px}
 input{width:100%;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:12px 14px;color:#fff;font-size:14px;outline:none;transition:.2s}
 input:focus{border-color:rgba(0,166,81,.6);background:rgba(0,166,81,.05)}
 .btn{width:100%;padding:13px;border-radius:10px;border:none;background:linear-gradient(135deg,#00A651,#007A33);color:#fff;font-size:14px;font-weight:700;cursor:pointer;margin-top:8px;transition:.2s}

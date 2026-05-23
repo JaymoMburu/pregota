@@ -14,25 +14,25 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 .hero{padding:28px 20px 16px;max-width:560px;margin:0 auto}
 .school-badge{display:inline-flex;align-items:center;gap:6px;padding:5px 12px;border-radius:20px;background:rgba(0,166,81,.15);border:1px solid rgba(0,166,81,.3);font-size:12px;color:#25D366;font-weight:600;margin-bottom:12px}
 h1{font-size:clamp(20px,4.5vw,30px);font-weight:900;line-height:1.15;margin-bottom:6px}
-.meta{font-size:13px;color:rgba(255,255,255,.4);display:flex;flex-wrap:wrap;gap:10px}
+.meta{font-size:13px;color:rgba(255,255,255,.68);display:flex;flex-wrap:wrap;gap:10px}
 
 .status-banner{margin:0 20px 16px;max-width:520px;margin-left:auto;margin-right:auto;padding:12px 16px;border-radius:10px;font-size:13px;font-weight:600;text-align:center;background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.25);color:#f87171}
 
 .stats-row{max-width:560px;margin:0 auto 20px;padding:0 20px;display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .stat-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:16px;text-align:center}
 .stat-num{font-size:26px;font-weight:900;color:#25D366}
-.stat-label{font-size:11px;color:rgba(255,255,255,.4);margin-top:4px}
+.stat-label{font-size:11px;color:rgba(255,255,255,.68);margin-top:4px}
 
 .main{max-width:560px;margin:0 auto;padding:0 20px 40px;display:flex;flex-direction:column;gap:18px}
 .card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:20px}
-.card-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.35);margin-bottom:14px}
+.card-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.6);margin-bottom:14px}
 
 /* Balance info panel */
 .balance-info{display:none;background:rgba(96,165,250,.07);border:1px solid rgba(96,165,250,.2);border-radius:10px;padding:12px 14px;margin-bottom:14px}
 .balance-info.complete{background:rgba(74,222,128,.07);border-color:rgba(74,222,128,.25)}
 .balance-row{display:flex;justify-content:space-between;align-items:center;font-size:13px}
 .balance-row+.balance-row{margin-top:6px}
-.balance-key{color:rgba(255,255,255,.5)}
+.balance-key{color:rgba(255,255,255,.78)}
 .balance-val{font-weight:700}
 .balance-val.paid{color:#60a5fa}
 .balance-val.remaining{color:#fbbf24}
@@ -42,12 +42,12 @@ h1{font-size:clamp(20px,4.5vw,30px);font-weight:900;line-height:1.15;margin-bott
 .complete-badge{display:inline-flex;align-items:center;gap:5px;padding:5px 12px;border-radius:20px;background:rgba(74,222,128,.12);border:1px solid rgba(74,222,128,.3);color:#4ade80;font-size:12px;font-weight:700;margin-bottom:10px}
 
 .form-group{margin-bottom:12px}
-label{display:block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.5);margin-bottom:6px}
+label{display:block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.78);margin-bottom:6px}
 input{width:100%;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);border-radius:10px;padding:12px 14px;color:#fff;font-size:14px;outline:none;transition:.2s;font-family:inherit}
 input:focus{border-color:#00A651;background:rgba(0,166,81,.08)}
-input::placeholder{color:rgba(255,255,255,.3)}
-.hint{font-size:11px;color:rgba(255,255,255,.35);margin-top:5px}
-.fee-line{display:flex;justify-content:space-between;font-size:12px;color:rgba(255,255,255,.4);background:rgba(255,255,255,.03);padding:8px 12px;border-radius:8px;margin-bottom:12px}
+input::placeholder{color:rgba(255,255,255,.82)}
+.hint{font-size:11px;color:rgba(255,255,255,.6);margin-top:5px}
+.fee-line{display:flex;justify-content:space-between;font-size:12px;color:rgba(255,255,255,.68);background:rgba(255,255,255,.03);padding:8px 12px;border-radius:8px;margin-bottom:12px}
 .fee-line strong{color:rgba(255,255,255,.75)}
 
 .full-btn{margin-top:8px;padding:8px 14px;border-radius:8px;background:rgba(0,166,81,.1);border:1px solid rgba(0,166,81,.25);color:#25D366;font-size:12px;font-weight:600;cursor:pointer;transition:.15s;width:100%;text-align:left}
@@ -62,7 +62,7 @@ input::placeholder{color:rgba(255,255,255,.3)}
 @keyframes spin{to{transform:rotate(360deg)}}
 .status-icon{font-size:40px;margin-bottom:10px}
 .status-msg{font-size:15px;font-weight:700;margin-bottom:6px}
-.status-sub{font-size:13px;color:rgba(255,255,255,.45)}
+.status-sub{font-size:13px;color:rgba(255,255,255,.72)}
 .btn-sm{padding:10px 20px;border-radius:8px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.07);color:#fff;font-size:13px;font-weight:600;cursor:pointer;margin-top:14px}
 
 /* History list */
@@ -71,8 +71,8 @@ input::placeholder{color:rgba(255,255,255,.3)}
 .paid-avatar{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#00A651,#007A33);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0}
 .paid-name{flex:1;font-size:13px;font-weight:600}
 .paid-amount{font-size:13px;font-weight:700;color:#25D366}
-.paid-time{font-size:11px;color:rgba(255,255,255,.3)}
-.empty{text-align:center;padding:16px;font-size:13px;color:rgba(255,255,255,.3)}
+.paid-time{font-size:11px;color:rgba(255,255,255,.82)}
+.empty{text-align:center;padding:16px;font-size:13px;color:rgba(255,255,255,.82)}
 
 /* Partial badge */
 .partial-badge{display:inline-block;font-size:10px;padding:2px 7px;border-radius:8px;background:rgba(251,191,36,.12);border:1px solid rgba(251,191,36,.2);color:#fbbf24;font-weight:700;margin-left:6px;vertical-align:middle}
@@ -81,7 +81,7 @@ input::placeholder{color:rgba(255,255,255,.3)}
 .frozen-banner{margin:0 20px 16px;max-width:520px;margin-left:auto;margin-right:auto;padding:14px 16px;border-radius:10px;background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.3);color:#f87171;font-size:13px;font-weight:600;text-align:center}
 
 /* Trust notice */
-.trust-notice{margin:0 20px 0;max-width:520px;margin-left:auto;margin-right:auto;padding:10px 14px;border-radius:9px;background:rgba(59,130,246,.06);border:1px solid rgba(59,130,246,.15);color:rgba(255,255,255,.4);font-size:11.5px;display:flex;align-items:center;gap:8px;margin-bottom:16px}
+.trust-notice{margin:0 20px 0;max-width:520px;margin-left:auto;margin-right:auto;padding:10px 14px;border-radius:9px;background:rgba(59,130,246,.06);border:1px solid rgba(59,130,246,.15);color:rgba(255,255,255,.68);font-size:11.5px;display:flex;align-items:center;gap:8px;margin-bottom:16px}
 .trust-notice a{color:#60a5fa;text-decoration:none}
 .trust-notice a:hover{text-decoration:underline}
 
@@ -90,14 +90,14 @@ input::placeholder{color:rgba(255,255,255,.3)}
 .modal-backdrop.open{display:flex}
 .modal{background:#161624;border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:28px;max-width:400px;width:100%}
 .modal h3{font-size:16px;font-weight:800;margin-bottom:6px;color:#f87171}
-.modal p{font-size:13px;color:rgba(255,255,255,.45);margin-bottom:16px;line-height:1.5}
+.modal p{font-size:13px;color:rgba(255,255,255,.72);margin-bottom:16px;line-height:1.5}
 .modal textarea{width:100%;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);border-radius:10px;padding:12px 14px;color:#fff;font-size:13px;outline:none;resize:vertical;min-height:90px;font-family:inherit}
 .modal textarea:focus{border-color:#ef4444}
 .modal-actions{display:flex;gap:10px;margin-top:14px}
 .report-submit-btn{flex:1;padding:12px;border-radius:9px;border:none;background:#ef4444;color:#fff;font-size:14px;font-weight:700;cursor:pointer}
 .report-submit-btn:hover{background:#dc2626}
 .report-submit-btn:disabled{opacity:.5;cursor:not-allowed}
-.modal-cancel-btn{padding:12px 20px;border-radius:9px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.05);color:rgba(255,255,255,.5);font-size:14px;font-weight:600;cursor:pointer}
+.modal-cancel-btn{padding:12px 20px;border-radius:9px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.05);color:rgba(255,255,255,.78);font-size:14px;font-weight:600;cursor:pointer}
 .report-link{display:inline-flex;align-items:center;gap:5px;font-size:11px;color:rgba(239,68,68,.55);text-decoration:none;cursor:pointer;border:none;background:none;padding:0;transition:.15s}
 .report-link:hover{color:#f87171}
 </style>
@@ -106,7 +106,7 @@ input::placeholder{color:rgba(255,255,255,.3)}
 
 <div class="topbar">
     <a href="{{ route('home') }}" class="logo">Pregota</a>
-    <span style="font-size:12px;color:rgba(255,255,255,.35)">Collection</span>
+    <span style="font-size:12px;color:rgba(255,255,255,.6)">Collection</span>
 </div>
 
 @if($collection->is_frozen)
@@ -168,7 +168,7 @@ input::placeholder{color:rgba(255,255,255,.3)}
             <div class="balance-info" id="balanceInfo">
                 <div id="completeMsg" style="display:none">
                     <span class="complete-badge">✅ Fully Paid</span>
-                    <div style="font-size:13px;color:rgba(255,255,255,.5)">This student has completed their collection payment.</div>
+                    <div style="font-size:13px;color:rgba(255,255,255,.78)">This student has completed their collection payment.</div>
                 </div>
                 <div id="partialMsg">
                     <div class="balance-row">
@@ -191,7 +191,7 @@ input::placeholder{color:rgba(255,255,255,.3)}
 
             <div id="paymentFields">
                 <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:10px;padding:12px 14px;margin-bottom:14px;display:flex;justify-content:space-between;align-items:center">
-                    <span style="font-size:12px;color:rgba(255,255,255,.45)">Collection amount set by school</span>
+                    <span style="font-size:12px;color:rgba(255,255,255,.72)">Collection amount set by school</span>
                     <span style="font-size:18px;font-weight:900;color:#25D366">KES {{ number_format($collection->amount_per_student) }}</span>
                 </div>
 

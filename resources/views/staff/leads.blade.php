@@ -9,26 +9,26 @@
 body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;min-height:100vh}
 .topbar{padding:14px 20px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,.07);background:#0B141A;position:sticky;top:0;z-index:10}
 .logo{font-size:18px;font-weight:900;background:linear-gradient(135deg,#25D366,#4ADE80);-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-decoration:none}
-.back{font-size:13px;color:rgba(255,255,255,.4);text-decoration:none}
+.back{font-size:13px;color:rgba(255,255,255,.68);text-decoration:none}
 .page{max-width:600px;margin:0 auto;padding:24px 20px 60px}
 .page-title{font-size:20px;font-weight:900;margin-bottom:4px}
-.page-sub{font-size:13px;color:rgba(255,255,255,.4);margin-bottom:24px;line-height:1.6}
+.page-sub{font-size:13px;color:rgba(255,255,255,.68);margin-bottom:24px;line-height:1.6}
 
 .summary-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:24px}
 .sum-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:16px;text-align:center}
 .sum-num{font-size:28px;font-weight:900;color:#fbbf24}
-.sum-label{font-size:11px;color:rgba(255,255,255,.4);margin-top:3px}
+.sum-label{font-size:11px;color:rgba(255,255,255,.68);margin-top:3px}
 
 .lead-item{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:14px 16px;margin-bottom:10px}
 .lead-phone{font-size:15px;font-weight:700;font-family:monospace;letter-spacing:.05em;color:rgba(255,255,255,.7)}
-.lead-meta{font-size:11px;color:rgba(255,255,255,.35);margin-top:3px}
-.lead-venue{font-size:11px;color:rgba(255,255,255,.45);margin-top:2px}
+.lead-meta{font-size:11px;color:rgba(255,255,255,.6);margin-top:3px}
+.lead-venue{font-size:11px;color:rgba(255,255,255,.72);margin-top:2px}
 
 .notice{background:rgba(0,166,81,.08);border:1px solid rgba(0,166,81,.2);border-radius:12px;padding:16px 18px;margin-bottom:24px}
-.notice p{font-size:13px;color:rgba(255,255,255,.55);line-height:1.7}
+.notice p{font-size:13px;color:rgba(255,255,255,.82);line-height:1.7}
 .notice strong{color:#25D366}
 
-.empty{text-align:center;padding:48px 20px;color:rgba(255,255,255,.3);font-size:14px}
+.empty{text-align:center;padding:48px 20px;color:rgba(255,255,255,.82);font-size:14px}
 .empty-icon{font-size:40px;margin-bottom:12px}
 </style>
 </head>

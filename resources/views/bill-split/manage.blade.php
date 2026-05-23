@@ -10,20 +10,20 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 
 .card{width:100%;max-width:380px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:24px;padding:28px 24px;text-align:center}
 
-.bill-label{font-size:13px;color:rgba(255,255,255,.4);margin-bottom:6px}
+.bill-label{font-size:13px;color:rgba(255,255,255,.68);margin-bottom:6px}
 .bill-amount{font-size:36px;font-weight:900;letter-spacing:-.5px;margin-bottom:20px}
 
 /* QR */
 #qrcode{display:flex;justify-content:center;margin-bottom:20px}
 #qrcode canvas,#qrcode img{border-radius:12px;padding:10px;background:#fff}
 
-.scan-hint{font-size:13px;color:rgba(255,255,255,.4);margin-bottom:20px}
+.scan-hint{font-size:13px;color:rgba(255,255,255,.68);margin-bottom:20px}
 
 /* Progress */
 .progress-wrap{margin-bottom:16px}
 .progress-bar{height:10px;background:rgba(255,255,255,.08);border-radius:999px;overflow:hidden;margin-bottom:10px}
 .progress-fill{height:100%;background:linear-gradient(90deg,#00A651,#007A33);border-radius:999px;transition:.5s}
-.progress-label{display:flex;justify-content:space-between;font-size:12px;color:rgba(255,255,255,.45)}
+.progress-label{display:flex;justify-content:space-between;font-size:12px;color:rgba(255,255,255,.72)}
 .progress-label .paid{color:#4ade80;font-weight:700}
 
 /* Payments list */
@@ -31,7 +31,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 .payment-row{display:flex;align-items:center;justify-content:space-between;background:rgba(34,197,94,.07);border:1px solid rgba(34,197,94,.2);border-radius:10px;padding:10px 14px;animation:slideIn .3s ease}
 @keyframes slideIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
 .payment-amount{font-size:15px;font-weight:800;color:#4ade80}
-.payment-meta{font-size:11px;color:rgba(255,255,255,.35);margin-top:2px}
+.payment-meta{font-size:11px;color:rgba(255,255,255,.6);margin-top:2px}
 .payment-check{font-size:20px}
 .payments-empty{font-size:12px;color:rgba(255,255,255,.25);text-align:center;padding:12px 0}
 
@@ -40,18 +40,18 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 .status-settled{display:none}
 .settled-icon{font-size:56px;margin-bottom:12px}
 .settled-title{font-size:20px;font-weight:900;color:#4ade80;margin-bottom:6px}
-.settled-sub{font-size:13px;color:rgba(255,255,255,.45)}
+.settled-sub{font-size:13px;color:rgba(255,255,255,.72)}
 
 .new-bill-btn{display:inline-block;margin-top:20px;padding:12px 28px;border-radius:12px;border:none;font-size:14px;font-weight:700;cursor:pointer;background:linear-gradient(135deg,#00A651,#007A33);color:#fff;text-decoration:none}
 .footer{margin-top:20px;font-size:11px;color:rgba(255,255,255,.2)}
 
 /* Send to phone */
 .send-section{margin-top:20px;padding-top:16px;border-top:1px solid rgba(255,255,255,.07);text-align:left}
-.send-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.3);margin-bottom:10px;display:flex;align-items:center;gap:6px}
+.send-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.82);margin-bottom:10px;display:flex;align-items:center;gap:6px}
 .send-row{display:flex;gap:8px;margin-bottom:8px}
 .send-input{flex:1;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:8px;padding:10px 12px;color:#fff;font-size:14px;outline:none;font-family:inherit}
 .send-input:focus{border-color:#00A651}
-.send-input::placeholder{color:rgba(255,255,255,.3)}
+.send-input::placeholder{color:rgba(255,255,255,.82)}
 .send-btn{padding:10px 14px;border-radius:8px;border:none;background:rgba(0,166,81,.3);border:1px solid rgba(0,166,81,.4);color:#25D366;font-size:12px;font-weight:700;cursor:pointer;white-space:nowrap}
 .send-btn:disabled{opacity:.4;cursor:not-allowed}
 .send-status{font-size:12px;margin-top:6px;min-height:18px;text-align:center}
@@ -197,7 +197,7 @@ function sendToPhone() {
     if (!phone)                  { status.style.color = '#f87171'; status.textContent = 'Enter the customer\'s phone number.'; return; }
 
     btn.disabled = true;
-    status.style.color = 'rgba(255,255,255,.45)';
+    status.style.color = 'rgba(255,255,255,.72)';
     status.textContent = 'Sending STK Push…';
 
     fetch(PAY_URL, {

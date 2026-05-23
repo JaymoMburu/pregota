@@ -10,11 +10,11 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 .nav{padding:14px 24px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,.08)}
 .logo{font-size:18px;font-weight:900;background:linear-gradient(135deg,#00A651,#007A33);-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-decoration:none}
 .nav-links{display:flex;gap:16px;align-items:center}
-.nav-link{color:rgba(255,255,255,.45);text-decoration:none;font-size:13px}
+.nav-link{color:rgba(255,255,255,.72);text-decoration:none;font-size:13px}
 .nav-link.active{color:#a78bfa;font-weight:600}
 .main{padding:24px;max-width:960px;margin:0 auto}
 .page-title{font-size:20px;font-weight:900;margin-bottom:4px}
-.page-sub{font-size:13px;color:rgba(255,255,255,.4);margin-bottom:24px}
+.page-sub{font-size:13px;color:rgba(255,255,255,.68);margin-bottom:24px}
 
 .alert{border-radius:8px;padding:10px 12px;margin-bottom:16px;font-size:13px}
 .alert.success{background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.25);color:#4ade80}
@@ -23,17 +23,17 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 .card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:14px;overflow:hidden;margin-bottom:24px}
 .biz-row{display:grid;grid-template-columns:2fr 1fr 1fr 1fr auto;align-items:center;padding:14px 18px;border-bottom:1px solid rgba(255,255,255,.05);gap:12px}
 .biz-row:last-child{border-bottom:none}
-.biz-row.header{background:rgba(255,255,255,.03);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.3)}
+.biz-row.header{background:rgba(255,255,255,.03);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.82)}
 .biz-name{font-weight:700;font-size:14px}
-.biz-meta{font-size:11px;color:rgba(255,255,255,.35);margin-top:2px}
+.biz-meta{font-size:11px;color:rgba(255,255,255,.6);margin-top:2px}
 .plan-badge{display:inline-block;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700}
-.plan-badge.free{background:rgba(255,255,255,.08);color:rgba(255,255,255,.5)}
+.plan-badge.free{background:rgba(255,255,255,.08);color:rgba(255,255,255,.78)}
 .plan-badge.paid{background:linear-gradient(135deg,#00A651,#007A33);color:#fff}
-.expires{font-size:11px;color:rgba(255,255,255,.35)}
+.expires{font-size:11px;color:rgba(255,255,255,.6)}
 .expires.soon{color:#fbbf24}
 .expires.expired{color:#f87171}
 .actions{display:flex;gap:6px;align-items:center}
-.btn-sm{background:none;border:1px solid rgba(255,255,255,.1);border-radius:6px;padding:5px 12px;color:rgba(255,255,255,.5);font-size:11px;cursor:pointer;text-decoration:none;display:inline-block}
+.btn-sm{background:none;border:1px solid rgba(255,255,255,.1);border-radius:6px;padding:5px 12px;color:rgba(255,255,255,.78);font-size:11px;cursor:pointer;text-decoration:none;display:inline-block}
 .btn-sm:hover{background:rgba(255,255,255,.06);color:#fff}
 .btn-sm.primary{color:#a78bfa;border-color:rgba(0,166,81,.3)}
 .btn-sm.danger{color:#f87171;border-color:rgba(239,68,68,.2)}
@@ -43,13 +43,13 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 .modal.show{display:flex}
 .modal-box{background:#13131f;border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:28px;max-width:380px;width:100%}
 .modal-title{font-size:16px;font-weight:800;margin-bottom:18px}
-label{display:block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.4);margin-bottom:6px}
+label{display:block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.68);margin-bottom:6px}
 select,input{width:100%;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:8px;padding:10px 12px;color:#fff;font-size:13px;outline:none;font-family:inherit;margin-bottom:14px}
 select option{background:#0B1810}
 select:focus,input:focus{border-color:#00A651}
 .modal-btns{display:flex;gap:10px;margin-top:4px}
 .btn-primary{background:linear-gradient(135deg,#00A651,#007A33);color:#fff;border:none;border-radius:8px;padding:10px 20px;font-size:13px;font-weight:700;cursor:pointer;flex:1}
-.btn-cancel{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.5);border-radius:8px;padding:10px 20px;font-size:13px;font-weight:600;cursor:pointer}
+.btn-cancel{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.78);border-radius:8px;padding:10px 20px;font-size:13px;font-weight:600;cursor:pointer}
 .no-data{text-align:center;padding:40px;color:rgba(255,255,255,.25);font-size:13px}
 </style>
 </head>
@@ -62,7 +62,7 @@ select:focus,input:focus{border-color:#00A651}
         <a href="{{ route('admin.partners') }}" class="nav-link">Partners</a>
         <form method="POST" action="{{ route('admin.logout') }}" style="display:inline">
             @csrf
-            <button type="submit" style="background:none;border:none;color:rgba(255,255,255,.3);cursor:pointer;font-size:13px">Logout</button>
+            <button type="submit" style="background:none;border:none;color:rgba(255,255,255,.82);cursor:pointer;font-size:13px">Logout</button>
         </form>
     </div>
 </nav>
@@ -98,7 +98,7 @@ select:focus,input:focus{border-color:#00A651}
                 <div class="biz-name">{{ $biz->logo_emoji }} {{ $biz->name }}</div>
                 <div class="biz-meta">{{ $biz->categoryLabel() }}@if($biz->city) · {{ $biz->city }}@endif · {{ $biz->email }}</div>
             </div>
-            <div style="font-size:13px;color:rgba(255,255,255,.5)">{{ $biz->staff_count }}</div>
+            <div style="font-size:13px;color:rgba(255,255,255,.78)">{{ $biz->staff_count }}</div>
             <div>
                 <span class="plan-badge {{ $isSubscribed ? 'paid' : 'free' }}">{{ $biz->planLabel() }}</span>
             </div>
