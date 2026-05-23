@@ -6,9 +6,9 @@
 <title>Creator Dashboard — Pregota</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Segoe UI',system-ui,sans-serif;background:#0f0f1a;color:#fff;min-height:100vh}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;min-height:100vh}
 .nav{padding:14px 24px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,.08)}
-.logo{font-size:20px;font-weight:900;background:linear-gradient(135deg,#7c3aed,#db2777);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.logo{font-size:20px;font-weight:900;background:linear-gradient(135deg,#00A651,#007A33);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 .nav-right{display:flex;align-items:center;gap:14px}
 .nav-handle{font-size:13px;color:rgba(255,255,255,.4)}
 .logout-btn{background:none;border:none;color:rgba(255,255,255,.35);cursor:pointer;font-size:13px}
@@ -19,28 +19,28 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0f0f1a;color:#fff;m
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:24px}
 @media(max-width:600px){.stats{grid-template-columns:1fr 1fr}}
 .stat{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:16px}
-.stat-val{font-size:20px;font-weight:900;background:linear-gradient(135deg,#c084fc,#f472b6);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.stat-val{font-size:20px;font-weight:900;background:linear-gradient(135deg,#25D366,#4ADE80);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 .stat-lbl{font-size:11px;color:rgba(255,255,255,.35);margin-top:4px;text-transform:uppercase;letter-spacing:.06em}
 
 /* Creator link card */
-.link-card{background:rgba(124,58,237,.08);border:1px solid rgba(124,58,237,.25);border-radius:14px;padding:18px 20px;margin-bottom:24px}
+.link-card{background:rgba(0,166,81,.08);border:1px solid rgba(0,166,81,.25);border-radius:14px;padding:18px 20px;margin-bottom:24px}
 .link-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.4);margin-bottom:8px}
-.link-url{font-size:16px;font-weight:700;color:#c084fc;font-family:monospace;word-break:break-all}
+.link-url{font-size:16px;font-weight:700;color:#25D366;font-family:monospace;word-break:break-all}
 .link-actions{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}
 .link-btn{font-size:12px;font-weight:600;padding:7px 14px;border-radius:8px;cursor:pointer;border:none;transition:.15s}
-.btn-copy{background:rgba(124,58,237,.2);color:#a78bfa}
+.btn-copy{background:rgba(0,166,81,.2);color:#a78bfa}
 .btn-obs{background:rgba(34,197,94,.12);color:#4ade80}
 .btn-view{background:rgba(255,255,255,.06);color:rgba(255,255,255,.6)}
 
 /* Goal */
 .goal-bar-wrap{height:6px;background:rgba(255,255,255,.07);border-radius:999px;overflow:hidden;margin:8px 0 4px}
-.goal-fill{height:100%;background:linear-gradient(90deg,#7c3aed,#db2777);border-radius:999px}
+.goal-fill{height:100%;background:linear-gradient(90deg,#00A651,#007A33);border-radius:999px}
 
 /* Gift feed */
 .feed-title{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.3);margin-bottom:12px}
 .gift-item{display:flex;justify-content:space-between;align-items:flex-start;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.05)}
 .gift-item:last-child{border-bottom:none}
-.gift-amount{font-size:16px;font-weight:800;background:linear-gradient(135deg,#c084fc,#f472b6);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.gift-amount{font-size:16px;font-weight:800;background:linear-gradient(135deg,#25D366,#4ADE80);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 .gift-from{font-size:12px;color:rgba(255,255,255,.4);margin-top:2px}
 .gift-msg{font-size:12px;color:rgba(255,255,255,.5);font-style:italic;margin-top:4px}
 .gift-time{font-size:11px;color:rgba(255,255,255,.25);white-space:nowrap;margin-left:12px}
@@ -54,8 +54,8 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0f0f1a;color:#fff;m
 .form-group{display:flex;flex-direction:column;gap:5px}
 label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.4)}
 input{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:10px 12px;color:#fff;font-size:13px;outline:none}
-input:focus{border-color:#7c3aed}
-.save-btn{background:linear-gradient(135deg,#7c3aed,#db2777);color:#fff;border:none;border-radius:10px;padding:10px 22px;font-size:14px;font-weight:700;cursor:pointer;margin-top:4px}
+input:focus{border-color:#00A651}
+.save-btn{background:linear-gradient(135deg,#00A651,#007A33);color:#fff;border:none;border-radius:10px;padding:10px 22px;font-size:14px;font-weight:700;cursor:pointer;margin-top:4px}
 .alert{border-radius:8px;padding:10px 12px;margin-bottom:14px;font-size:13px}
 .alert.success{background:rgba(34,197,94,.12);border:1px solid rgba(34,197,94,.3);color:#4ade80}
 </style>

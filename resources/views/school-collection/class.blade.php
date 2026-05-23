@@ -7,12 +7,12 @@
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Segoe UI',system-ui,sans-serif;background:#0f0f1a;color:#fff;min-height:100vh}
-.topbar{padding:14px 20px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,.07);background:#0f0f1a;position:sticky;top:0;z-index:10}
-.logo{font-size:18px;font-weight:900;background:linear-gradient(135deg,#c084fc,#f472b6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-decoration:none}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;min-height:100vh}
+.topbar{padding:14px 20px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,.07);background:#0B141A;position:sticky;top:0;z-index:10}
+.logo{font-size:18px;font-weight:900;background:linear-gradient(135deg,#25D366,#4ADE80);-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-decoration:none}
 
 .hero{padding:28px 20px 16px;max-width:560px;margin:0 auto}
-.school-badge{display:inline-flex;align-items:center;gap:6px;padding:5px 12px;border-radius:20px;background:rgba(124,58,237,.15);border:1px solid rgba(124,58,237,.3);font-size:12px;color:#c084fc;font-weight:600;margin-bottom:12px}
+.school-badge{display:inline-flex;align-items:center;gap:6px;padding:5px 12px;border-radius:20px;background:rgba(0,166,81,.15);border:1px solid rgba(0,166,81,.3);font-size:12px;color:#25D366;font-weight:600;margin-bottom:12px}
 h1{font-size:clamp(20px,4.5vw,30px);font-weight:900;line-height:1.15;margin-bottom:6px}
 .meta{font-size:13px;color:rgba(255,255,255,.4);display:flex;flex-wrap:wrap;gap:10px}
 
@@ -20,7 +20,7 @@ h1{font-size:clamp(20px,4.5vw,30px);font-weight:900;line-height:1.15;margin-bott
 
 .stats-row{max-width:560px;margin:0 auto 20px;padding:0 20px;display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .stat-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:16px;text-align:center}
-.stat-num{font-size:26px;font-weight:900;color:#c084fc}
+.stat-num{font-size:26px;font-weight:900;color:#25D366}
 .stat-label{font-size:11px;color:rgba(255,255,255,.4);margin-top:4px}
 
 .main{max-width:560px;margin:0 auto;padding:0 20px 40px;display:flex;flex-direction:column;gap:18px}
@@ -38,27 +38,27 @@ h1{font-size:clamp(20px,4.5vw,30px);font-weight:900;line-height:1.15;margin-bott
 .balance-val.remaining{color:#fbbf24}
 .balance-val.done{color:#4ade80}
 .balance-progress{height:5px;background:rgba(255,255,255,.1);border-radius:3px;margin-top:10px;overflow:hidden}
-.balance-progress-fill{height:100%;background:linear-gradient(90deg,#7c3aed,#4ade80);border-radius:3px;transition:width .4s}
+.balance-progress-fill{height:100%;background:linear-gradient(90deg,#00A651,#4ade80);border-radius:3px;transition:width .4s}
 .complete-badge{display:inline-flex;align-items:center;gap:5px;padding:5px 12px;border-radius:20px;background:rgba(74,222,128,.12);border:1px solid rgba(74,222,128,.3);color:#4ade80;font-size:12px;font-weight:700;margin-bottom:10px}
 
 .form-group{margin-bottom:12px}
 label{display:block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.5);margin-bottom:6px}
 input{width:100%;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);border-radius:10px;padding:12px 14px;color:#fff;font-size:14px;outline:none;transition:.2s;font-family:inherit}
-input:focus{border-color:#7c3aed;background:rgba(124,58,237,.08)}
+input:focus{border-color:#00A651;background:rgba(0,166,81,.08)}
 input::placeholder{color:rgba(255,255,255,.3)}
 .hint{font-size:11px;color:rgba(255,255,255,.35);margin-top:5px}
 .fee-line{display:flex;justify-content:space-between;font-size:12px;color:rgba(255,255,255,.4);background:rgba(255,255,255,.03);padding:8px 12px;border-radius:8px;margin-bottom:12px}
 .fee-line strong{color:rgba(255,255,255,.75)}
 
-.full-btn{margin-top:8px;padding:8px 14px;border-radius:8px;background:rgba(124,58,237,.1);border:1px solid rgba(124,58,237,.25);color:#c084fc;font-size:12px;font-weight:600;cursor:pointer;transition:.15s;width:100%;text-align:left}
-.full-btn:hover{background:rgba(124,58,237,.18)}
+.full-btn{margin-top:8px;padding:8px 14px;border-radius:8px;background:rgba(0,166,81,.1);border:1px solid rgba(0,166,81,.25);color:#25D366;font-size:12px;font-weight:600;cursor:pointer;transition:.15s;width:100%;text-align:left}
+.full-btn:hover{background:rgba(0,166,81,.18)}
 
-.pay-btn{width:100%;padding:15px;border-radius:12px;border:none;font-size:16px;font-weight:700;cursor:pointer;background:linear-gradient(135deg,#7c3aed,#db2777);color:#fff;transition:.2s}
+.pay-btn{width:100%;padding:15px;border-radius:12px;border:none;font-size:16px;font-weight:700;cursor:pointer;background:linear-gradient(135deg,#00A651,#007A33);color:#fff;transition:.2s}
 .pay-btn:hover:not(:disabled){opacity:.9;transform:translateY(-1px)}
 .pay-btn:disabled{opacity:.5;cursor:not-allowed;transform:none}
 
 .status-overlay{display:none;text-align:center;padding:20px 0}
-.spin{width:36px;height:36px;border:3px solid rgba(124,58,237,.25);border-top-color:#7c3aed;border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 12px}
+.spin{width:36px;height:36px;border:3px solid rgba(0,166,81,.25);border-top-color:#00A651;border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 12px}
 @keyframes spin{to{transform:rotate(360deg)}}
 .status-icon{font-size:40px;margin-bottom:10px}
 .status-msg{font-size:15px;font-weight:700;margin-bottom:6px}
@@ -68,9 +68,9 @@ input::placeholder{color:rgba(255,255,255,.3)}
 /* History list */
 .paid-list{display:flex;flex-direction:column;gap:8px}
 .paid-item{display:flex;align-items:center;gap:12px}
-.paid-avatar{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#7c3aed,#db2777);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0}
+.paid-avatar{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#00A651,#007A33);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0}
 .paid-name{flex:1;font-size:13px;font-weight:600}
-.paid-amount{font-size:13px;font-weight:700;color:#c084fc}
+.paid-amount{font-size:13px;font-weight:700;color:#25D366}
 .paid-time{font-size:11px;color:rgba(255,255,255,.3)}
 .empty{text-align:center;padding:16px;font-size:13px;color:rgba(255,255,255,.3)}
 
@@ -192,7 +192,7 @@ input::placeholder{color:rgba(255,255,255,.3)}
             <div id="paymentFields">
                 <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:10px;padding:12px 14px;margin-bottom:14px;display:flex;justify-content:space-between;align-items:center">
                     <span style="font-size:12px;color:rgba(255,255,255,.45)">Collection amount set by school</span>
-                    <span style="font-size:18px;font-weight:900;color:#c084fc">KES {{ number_format($collection->amount_per_student) }}</span>
+                    <span style="font-size:18px;font-weight:900;color:#25D366">KES {{ number_format($collection->amount_per_student) }}</span>
                 </div>
 
                 <div class="form-group">

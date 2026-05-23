@@ -7,7 +7,7 @@
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Segoe UI',system-ui,sans-serif;background:#0f0f1a;color:#fff;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:24px 20px}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:24px 20px}
 
 .card{width:100%;max-width:400px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:24px;padding:28px 24px;margin-top:12px}
 
@@ -18,9 +18,9 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0f0f1a;color:#fff;m
 /* Progress */
 .progress-wrap{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:14px 16px;margin-bottom:20px}
 .progress-bar{height:8px;background:rgba(255,255,255,.08);border-radius:999px;overflow:hidden;margin-bottom:8px}
-.progress-fill{height:100%;background:linear-gradient(90deg,#7c3aed,#db2777);border-radius:999px;transition:.5s}
+.progress-fill{height:100%;background:linear-gradient(90deg,#00A651,#007A33);border-radius:999px;transition:.5s}
 .progress-row{display:flex;justify-content:space-between;font-size:12px}
-.remaining-val{font-size:22px;font-weight:900;text-align:center;margin-bottom:4px;background:linear-gradient(135deg,#c084fc,#f472b6);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.remaining-val{font-size:22px;font-weight:900;text-align:center;margin-bottom:4px;background:linear-gradient(135deg,#25D366,#4ADE80);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 .remaining-lbl{font-size:11px;color:rgba(255,255,255,.35);text-align:center;margin-bottom:12px}
 
 /* Form */
@@ -28,7 +28,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0f0f1a;color:#fff;m
 .form-group{margin-bottom:14px}
 label{display:block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.5);margin-bottom:6px}
 input{width:100%;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:10px;padding:13px 14px;color:#fff;font-size:16px;outline:none;transition:.2s;font-family:inherit}
-input:focus{border-color:#7c3aed;background:rgba(124,58,237,.1)}
+input:focus{border-color:#00A651;background:rgba(0,166,81,.1)}
 input::placeholder{color:rgba(255,255,255,.3)}
 .hint{font-size:11px;color:rgba(255,255,255,.35);margin-top:5px}
 
@@ -39,10 +39,10 @@ input::placeholder{color:rgba(255,255,255,.3)}
 .breakdown-divider{border:none;border-top:1px solid rgba(255,255,255,.08);margin:8px 0}
 .breakdown-total{display:flex;justify-content:space-between;align-items:center;padding-top:4px}
 .breakdown-total .lbl{font-size:13px;font-weight:700;color:rgba(255,255,255,.8)}
-.breakdown-total .val{font-size:18px;font-weight:900;color:#c084fc}
+.breakdown-total .val{font-size:18px;font-weight:900;color:#25D366}
 .fee-tag{font-size:10px;color:rgba(255,255,255,.3);margin-top:6px;text-align:center}
 
-.btn{width:100%;padding:15px;border-radius:12px;border:none;font-size:16px;font-weight:700;cursor:pointer;background:linear-gradient(135deg,#7c3aed,#db2777);color:#fff;transition:.2s;margin-top:4px}
+.btn{width:100%;padding:15px;border-radius:12px;border:none;font-size:16px;font-weight:700;cursor:pointer;background:linear-gradient(135deg,#00A651,#007A33);color:#fff;transition:.2s;margin-top:4px}
 .btn:hover{opacity:.9}
 .btn:disabled{opacity:.45;cursor:not-allowed}
 
@@ -63,7 +63,7 @@ input::placeholder{color:rgba(255,255,255,.3)}
 .tip-heading{font-size:15px;font-weight:800;margin-bottom:4px}
 .tip-sub{font-size:12px;color:rgba(255,255,255,.4);margin-bottom:16px}
 .tip-waiter{display:flex;align-items:center;gap:10px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:12px 14px;margin-bottom:16px}
-.tip-avatar{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#7c3aed,#db2777);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.tip-avatar{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#00A651,#007A33);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
 .tip-name{font-size:14px;font-weight:700}
 .tip-role{font-size:11px;color:rgba(255,255,255,.4);margin-top:1px}
 .tip-skip{background:none;border:none;color:rgba(255,255,255,.3);font-size:12px;cursor:pointer;margin-top:10px;text-decoration:underline;display:block;text-align:center}

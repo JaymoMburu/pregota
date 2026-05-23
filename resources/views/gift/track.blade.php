@@ -8,9 +8,9 @@
 @include('partials.pwa')
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Segoe UI',system-ui,sans-serif;background:#0f0f1a;color:#fff;min-height:100vh;display:flex;flex-direction:column}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;min-height:100vh;display:flex;flex-direction:column}
 .nav{padding:16px 24px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,.08)}
-.logo{font-size:22px;font-weight:900;background:linear-gradient(135deg,#7c3aed,#db2777);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.logo{font-size:22px;font-weight:900;background:linear-gradient(135deg,#00A651,#007A33);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 .nav-link{color:rgba(255,255,255,.6);text-decoration:none;font-size:14px;font-weight:600;padding:8px 16px;border:1px solid rgba(255,255,255,.2);border-radius:8px}
 .main{flex:1;display:flex;align-items:center;justify-content:center;padding:40px 24px}
 .card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:40px 32px;max-width:420px;width:100%;text-align:center}
@@ -20,14 +20,14 @@ h1{font-size:24px;font-weight:900;margin-bottom:8px}
 .form-group{margin-bottom:18px;text-align:left}
 label{display:block;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.5);margin-bottom:8px}
 input{width:100%;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);border-radius:10px;padding:14px 16px;color:#fff;font-size:16px;outline:none;transition:.2s;letter-spacing:.05em}
-input:focus{border-color:#7c3aed}
+input:focus{border-color:#00A651}
 input::placeholder{color:rgba(255,255,255,.25);letter-spacing:normal}
-.btn{width:100%;padding:15px;border-radius:12px;border:none;font-size:16px;font-weight:700;cursor:pointer;background:linear-gradient(135deg,#7c3aed,#db2777);color:#fff;margin-top:8px}
+.btn{width:100%;padding:15px;border-radius:12px;border:none;font-size:16px;font-weight:700;cursor:pointer;background:linear-gradient(135deg,#00A651,#007A33);color:#fff;margin-top:8px}
 .btn:disabled{opacity:.5;cursor:not-allowed}
 .result{margin-top:28px;display:none}
 .status-card{border-radius:14px;padding:24px;text-align:center}
 .status-card.pending{background:rgba(251,191,36,.08);border:1px solid rgba(251,191,36,.25)}
-.status-card.active{background:rgba(124,58,237,.08);border:1px solid rgba(124,58,237,.25)}
+.status-card.active{background:rgba(0,166,81,.08);border:1px solid rgba(0,166,81,.25)}
 .status-card.redeemed{background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.25)}
 .status-card.expired,.status-card.cancelled,.status-card.recalled{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1)}
 .status-icon{font-size:40px;margin-bottom:12px}

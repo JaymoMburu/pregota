@@ -9,9 +9,9 @@
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{height:100%}
-body{font-family:'Segoe UI',system-ui,sans-serif;background:#0f0f1a;color:#fff;min-height:100vh;display:flex;flex-direction:column}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;min-height:100vh;display:flex;flex-direction:column}
 .nav{padding:16px 24px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,.08)}
-.logo{font-size:22px;font-weight:900;background:linear-gradient(135deg,#7c3aed,#db2777);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.logo{font-size:22px;font-weight:900;background:linear-gradient(135deg,#00A651,#007A33);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 .nav-link{color:rgba(255,255,255,.55);text-decoration:none;font-size:13px;font-weight:600;padding:7px 14px;border:1px solid rgba(255,255,255,.15);border-radius:8px}
 
 .main{flex:1;display:flex;align-items:flex-start;justify-content:center;padding:32px 20px}
@@ -28,24 +28,24 @@ h2{font-size:20px;font-weight:800;margin-bottom:6px;text-align:center}
 .form-group{margin-bottom:14px}
 label{display:block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.55);margin-bottom:6px}
 input{width:100%;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.16);border-radius:10px;padding:13px 16px;color:#fff;font-size:15px;outline:none;transition:.2s;font-family:inherit}
-input:focus{border-color:#7c3aed;background:rgba(124,58,237,.1)}
+input:focus{border-color:#00A651;background:rgba(0,166,81,.1)}
 input::placeholder{color:rgba(255,255,255,.3)}
-.btn{width:100%;padding:14px;border-radius:12px;border:none;font-size:16px;font-weight:700;cursor:pointer;background:linear-gradient(135deg,#7c3aed,#db2777);color:#fff;transition:.2s;margin-top:4px}
+.btn{width:100%;padding:14px;border-radius:12px;border:none;font-size:16px;font-weight:700;cursor:pointer;background:linear-gradient(135deg,#00A651,#007A33);color:#fff;transition:.2s;margin-top:4px}
 .btn:hover{opacity:.9}
 .btn:disabled{opacity:.45;cursor:not-allowed}
 .err{background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.3);border-radius:10px;padding:12px 14px;font-size:13px;color:#fca5a5;margin-bottom:14px;display:none}
 
 /* Step 2 — Gift revealed + choice */
-.gift-reveal{background:linear-gradient(135deg,rgba(124,58,237,.15),rgba(219,39,119,.1));border:1px solid rgba(124,58,237,.3);border-radius:14px;padding:20px;text-align:center;margin-bottom:24px}
-.gift-amount{font-size:36px;font-weight:900;background:linear-gradient(135deg,#c084fc,#f472b6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1}
+.gift-reveal{background:linear-gradient(135deg,rgba(0,166,81,.15),rgba(0,122,51,.1));border:1px solid rgba(0,166,81,.3);border-radius:14px;padding:20px;text-align:center;margin-bottom:24px}
+.gift-amount{font-size:36px;font-weight:900;background:linear-gradient(135deg,#25D366,#4ADE80);-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1}
 .gift-from{font-size:12px;color:rgba(255,255,255,.45);margin-top:8px}
 .gift-msg-box{background:rgba(255,255,255,.05);border-radius:8px;padding:10px 12px;margin-top:10px;font-style:italic;font-size:13px;color:rgba(255,255,255,.65);line-height:1.5}
 
 .choice-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.4);margin-bottom:12px}
 .choices{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:8px}
 .choice-btn{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:16px 12px;cursor:pointer;text-align:center;transition:.2s;color:#fff}
-.choice-btn:hover{border-color:#7c3aed;background:rgba(124,58,237,.12)}
-.choice-btn.selected{border-color:#7c3aed;background:rgba(124,58,237,.15)}
+.choice-btn:hover{border-color:#00A651;background:rgba(0,166,81,.12)}
+.choice-btn.selected{border-color:#00A651;background:rgba(0,166,81,.15)}
 .choice-emoji{font-size:26px;margin-bottom:6px}
 .choice-title{font-size:13px;font-weight:700}
 .choice-sub{font-size:11px;color:rgba(255,255,255,.4);margin-top:2px}

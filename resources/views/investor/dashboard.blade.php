@@ -11,9 +11,9 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0a0a14;color:#fff;m
 
 /* Nav */
 .nav{padding:14px 32px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,.07);background:rgba(0,0,0,.4);position:sticky;top:0;z-index:10;backdrop-filter:blur(8px)}
-.logo{font-size:18px;font-weight:900;background:linear-gradient(135deg,#7c3aed,#db2777);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.logo{font-size:18px;font-weight:900;background:linear-gradient(135deg,#00A651,#007A33);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 .nav-right{display:flex;align-items:center;gap:20px}
-.investor-pill{background:rgba(124,58,237,.15);border:1px solid rgba(124,58,237,.25);border-radius:99px;padding:5px 14px;font-size:12px;color:#a78bfa;font-weight:600}
+.investor-pill{background:rgba(0,166,81,.15);border:1px solid rgba(0,166,81,.25);border-radius:99px;padding:5px 14px;font-size:12px;color:#a78bfa;font-weight:600}
 .logout-btn{background:none;border:none;color:rgba(255,255,255,.3);font-size:13px;cursor:pointer}
 .logout-btn:hover{color:#fff}
 
@@ -28,15 +28,15 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0a0a14;color:#fff;m
 .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px;margin-bottom:28px}
 .kpi{background:#13131f;border:1px solid rgba(255,255,255,.07);border-radius:16px;padding:20px 22px;position:relative;overflow:hidden}
 .kpi::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
-.kpi.purple::before{background:linear-gradient(90deg,#7c3aed,#a855f7)}
-.kpi.pink::before{background:linear-gradient(90deg,#db2777,#f472b6)}
+.kpi.purple::before{background:linear-gradient(90deg,#00A651,#a855f7)}
+.kpi.pink::before{background:linear-gradient(90deg,#007A33,#4ADE80)}
 .kpi.green::before{background:linear-gradient(90deg,#059669,#34d399)}
 .kpi.blue::before{background:linear-gradient(90deg,#2563eb,#60a5fa)}
 .kpi.gold::before{background:linear-gradient(90deg,#d97706,#fbbf24)}
 .kpi-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.35);margin-bottom:10px}
 .kpi-val{font-size:28px;font-weight:900;line-height:1;margin-bottom:5px}
 .kpi.purple .kpi-val{color:#a78bfa}
-.kpi.pink .kpi-val{color:#f472b6}
+.kpi.pink .kpi-val{color:#4ADE80}
 .kpi.green .kpi-val{color:#34d399}
 .kpi.blue .kpi-val{color:#60a5fa}
 .kpi.gold .kpi-val{color:#fbbf24}
@@ -78,7 +78,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0a0a14;color:#fff;m
 .ms-text p{font-size:12px;color:rgba(255,255,255,.35);line-height:1.5}
 
 /* Investor profile card */
-.profile{background:#13131f;border:1px solid rgba(124,58,237,.2);border-radius:16px;padding:20px 22px;margin-bottom:18px}
+.profile{background:#13131f;border:1px solid rgba(0,166,81,.2);border-radius:16px;padding:20px 22px;margin-bottom:18px}
 .profile-name{font-size:16px;font-weight:800;color:#fff;margin-bottom:4px}
 .profile-type{font-size:12px;color:#a78bfa;font-weight:600;margin-bottom:14px}
 .profile-row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.05);font-size:13px}
@@ -95,7 +95,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0a0a14;color:#fff;m
 .uof-pct{font-size:12px;font-weight:700;color:rgba(255,255,255,.5);width:36px;text-align:right;flex-shrink:0}
 
 /* Confidentiality banner */
-.confidential{background:rgba(124,58,237,.08);border:1px solid rgba(124,58,237,.18);border-radius:10px;padding:10px 16px;font-size:12px;color:rgba(255,255,255,.35);margin-bottom:24px;display:flex;gap:10px;align-items:center}
+.confidential{background:rgba(0,166,81,.08);border:1px solid rgba(0,166,81,.18);border-radius:10px;padding:10px 16px;font-size:12px;color:rgba(255,255,255,.35);margin-bottom:24px;display:flex;gap:10px;align-items:center}
 </style>
 </head>
 <body>
@@ -214,12 +214,12 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0a0a14;color:#fff;m
                     <div class="uof">
                         <div class="uof-item">
                             <div class="uof-label">Engineering (2 devs, 12m)</div>
-                            <div class="uof-bar-wrap"><div class="uof-bar" style="width:45%;background:linear-gradient(90deg,#7c3aed,#a855f7)"></div></div>
+                            <div class="uof-bar-wrap"><div class="uof-bar" style="width:45%;background:linear-gradient(90deg,#00A651,#a855f7)"></div></div>
                             <div class="uof-pct">45%</div>
                         </div>
                         <div class="uof-item">
                             <div class="uof-label">Community activation</div>
-                            <div class="uof-bar-wrap"><div class="uof-bar" style="width:20%;background:linear-gradient(90deg,#db2777,#f472b6)"></div></div>
+                            <div class="uof-bar-wrap"><div class="uof-bar" style="width:20%;background:linear-gradient(90deg,#007A33,#4ADE80)"></div></div>
                             <div class="uof-pct">20%</div>
                         </div>
                         <div class="uof-item">
@@ -341,12 +341,12 @@ new Chart(ctx, {
             backgroundColor: revenue.map((v, i) =>
                 i === revenue.length - 1
                     ? 'rgba(167,139,250,0.9)'
-                    : 'rgba(124,58,237,0.4)'
+                    : 'rgba(0,166,81,0.4)'
             ),
             borderColor: revenue.map((v, i) =>
                 i === revenue.length - 1
                     ? 'rgba(167,139,250,1)'
-                    : 'rgba(124,58,237,0.7)'
+                    : 'rgba(0,166,81,0.7)'
             ),
             borderWidth: 1,
             borderRadius: 6,

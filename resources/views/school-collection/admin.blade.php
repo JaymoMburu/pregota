@@ -6,18 +6,18 @@
 <title>Admin Dashboard — {{ $collection->school_name }}</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Segoe UI',system-ui,sans-serif;background:#0f0f1a;color:#fff;min-height:100vh}
-.topbar{padding:14px 20px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,.07);background:#0f0f1a}
-.logo{font-size:18px;font-weight:900;background:linear-gradient(135deg,#c084fc,#f472b6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-decoration:none}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;min-height:100vh}
+.topbar{padding:14px 20px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,.07);background:#0B141A}
+.logo{font-size:18px;font-weight:900;background:linear-gradient(135deg,#25D366,#4ADE80);-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-decoration:none}
 .status-badge{font-size:11px;padding:4px 10px;border-radius:20px;font-weight:700}
 .status-badge.open{background:rgba(34,197,94,.15);border:1px solid rgba(34,197,94,.3);color:#4ade80}
-.status-badge.closed,.status-badge.paid{background:rgba(124,58,237,.15);border:1px solid rgba(124,58,237,.3);color:#c084fc}
+.status-badge.closed,.status-badge.paid{background:rgba(0,166,81,.15);border:1px solid rgba(0,166,81,.3);color:#25D366}
 
 .page{max-width:800px;margin:0 auto;padding:24px 20px 60px}
 .alert{padding:12px 16px;border-radius:10px;margin-bottom:18px;font-size:13px;font-weight:600}
 .alert.success{background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.25);color:#4ade80}
 .alert.error{background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.25);color:#f87171}
-.alert.info{background:rgba(124,58,237,.1);border:1px solid rgba(124,58,237,.25);color:#c084fc}
+.alert.info{background:rgba(0,166,81,.1);border:1px solid rgba(0,166,81,.25);color:#25D366}
 
 h2{font-size:22px;font-weight:900;margin-bottom:4px}
 .subtitle{font-size:13px;color:rgba(255,255,255,.4);margin-bottom:24px}
@@ -26,7 +26,7 @@ h2{font-size:22px;font-weight:900;margin-bottom:4px}
 .totals-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:28px}
 @media(max-width:600px){.totals-row{grid-template-columns:1fr 1fr}}
 .total-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:16px;text-align:center}
-.total-card .num{font-size:24px;font-weight:900;color:#c084fc}
+.total-card .num{font-size:24px;font-weight:900;color:#25D366}
 .total-card .lbl{font-size:11px;color:rgba(255,255,255,.4);margin-top:4px}
 
 /* Section */
@@ -45,7 +45,7 @@ h2{font-size:22px;font-weight:900;margin-bottom:4px}
 .acc-stat.green{background:rgba(74,222,128,.1);color:#4ade80}
 .acc-stat.amber{background:rgba(251,191,36,.1);color:#fbbf24}
 .acc-stat.red{background:rgba(239,68,68,.1);color:#f87171}
-.acc-amount{font-size:13px;font-weight:900;color:#c084fc;min-width:80px;text-align:right}
+.acc-amount{font-size:13px;font-weight:900;color:#25D366;min-width:80px;text-align:right}
 .acc-chevron{font-size:12px;color:rgba(255,255,255,.3);transition:.2s;margin-left:4px}
 .acc-chevron.open{transform:rotate(180deg)}
 .acc-body{display:none;border-top:1px solid rgba(255,255,255,.06);padding:14px 16px}
@@ -55,18 +55,18 @@ h2{font-size:22px;font-weight:900;margin-bottom:4px}
 .link-lbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.3);margin-bottom:5px}
 .class-link-row{display:flex;gap:7px;align-items:center}
 .class-link-input{flex:1;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:7px;padding:7px 9px;color:rgba(255,255,255,.45);font-size:11px;outline:none;font-family:monospace}
-.copy-cls-btn{padding:6px 11px;border-radius:7px;background:rgba(124,58,237,.2);border:1px solid rgba(124,58,237,.3);color:#c084fc;font-size:11px;font-weight:700;cursor:pointer;white-space:nowrap}
+.copy-cls-btn{padding:6px 11px;border-radius:7px;background:rgba(0,166,81,.2);border:1px solid rgba(0,166,81,.3);color:#25D366;font-size:11px;font-weight:700;cursor:pointer;white-space:nowrap}
 .wa-cls-btn{display:inline-flex;align-items:center;gap:5px;padding:6px 11px;border-radius:7px;background:#25d366;color:#fff;font-size:11px;font-weight:700;text-decoration:none;white-space:nowrap}
 
 /* Student table */
-.stu-toggle{display:flex;align-items:center;gap:6px;font-size:11px;font-weight:700;color:rgba(124,58,237,.8);cursor:pointer;border:none;background:none;padding:0;margin:10px 0 0}
-.stu-toggle:hover{color:#c084fc}
+.stu-toggle{display:flex;align-items:center;gap:6px;font-size:11px;font-weight:700;color:rgba(0,166,81,.8);cursor:pointer;border:none;background:none;padding:0;margin:10px 0 0}
+.stu-toggle:hover{color:#25D366}
 .stu-table{width:100%;border-collapse:collapse;margin-top:8px;font-size:12px}
 .stu-table th{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:rgba(255,255,255,.3);text-align:left;padding:5px 8px;border-bottom:1px solid rgba(255,255,255,.07)}
 .stu-table td{padding:7px 8px;border-bottom:1px solid rgba(255,255,255,.04);color:rgba(255,255,255,.7);vertical-align:middle}
 .stu-table tr:last-child td{border-bottom:none}
 .stu-table td.mono{font-family:monospace;color:rgba(255,255,255,.3);font-size:11px}
-.stu-table td.amt{font-weight:700;color:#c084fc;text-align:right}
+.stu-table td.amt{font-weight:700;color:#25D366;text-align:right}
 .badge-full{font-size:10px;padding:2px 7px;border-radius:6px;background:rgba(74,222,128,.1);color:#4ade80;font-weight:700}
 .badge-part{font-size:10px;padding:2px 7px;border-radius:6px;background:rgba(251,191,36,.1);color:#fbbf24;font-weight:700}
 
@@ -77,11 +77,11 @@ h2{font-size:22px;font-weight:900;margin-bottom:4px}
 .pending-row:last-child{border-bottom:none}
 .paid-student-row{display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:13px}
 .paid-student-row .name{color:rgba(255,255,255,.75)}
-.paid-student-row .amount{color:#c084fc;font-weight:700}
+.paid-student-row .amount{color:#25D366;font-weight:700}
 
 /* Actions */
 .actions-row{display:flex;gap:10px;margin-bottom:28px;flex-wrap:wrap}
-.btn-payout{flex:1;min-width:180px;padding:14px;border-radius:10px;border:none;font-size:14px;font-weight:700;cursor:pointer;background:linear-gradient(135deg,#7c3aed,#db2777);color:#fff}
+.btn-payout{flex:1;min-width:180px;padding:14px;border-radius:10px;border:none;font-size:14px;font-weight:700;cursor:pointer;background:linear-gradient(135deg,#00A651,#007A33);color:#fff}
 .btn-payout:hover:not(:disabled){opacity:.9}
 .btn-payout:disabled{opacity:.4;cursor:not-allowed}
 .btn-close{flex:1;min-width:120px;padding:14px;border-radius:10px;border:1px solid rgba(239,68,68,.3);background:rgba(239,68,68,.06);color:#f87171;font-size:14px;font-weight:700;cursor:pointer}

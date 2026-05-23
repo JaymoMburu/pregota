@@ -6,22 +6,22 @@
 <title>Create Your Tip Page — Pregota</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Segoe UI',system-ui,sans-serif;background:#0f0f1a;color:#fff;min-height:100vh;display:flex}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;min-height:100vh;display:flex}
 
-.panel-left{width:42%;height:100vh;position:sticky;top:0;background:radial-gradient(circle 260px at -40px -80px,rgba(124,58,237,.35),transparent 70%),radial-gradient(circle 200px at calc(100% + 20px) 100%,rgba(219,39,119,.28),transparent 70%),linear-gradient(150deg,#0a0015,#1e0840 55%,#2d0a4e);display:flex;flex-direction:column;padding:40px 44px;overflow:hidden}
-.left-logo{font-size:22px;font-weight:900;position:relative;z-index:1;background:linear-gradient(135deg,#c084fc,#f472b6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-decoration:none}
+.panel-left{width:42%;height:100vh;position:sticky;top:0;background:radial-gradient(circle 260px at -40px -80px,rgba(0,166,81,.35),transparent 70%),radial-gradient(circle 200px at calc(100% + 20px) 100%,rgba(0,122,51,.28),transparent 70%),linear-gradient(150deg,#030D07,#0A1A0F 55%,#0F2418);display:flex;flex-direction:column;padding:40px 44px;overflow:hidden}
+.left-logo{font-size:22px;font-weight:900;position:relative;z-index:1;background:linear-gradient(135deg,#25D366,#4ADE80);-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-decoration:none}
 .left-center{flex:1;display:flex;flex-direction:column;justify-content:center;position:relative;z-index:1;gap:32px}
 .headline h1{font-size:clamp(26px,3vw,38px);font-weight:900;line-height:1.15;letter-spacing:-.5px}
-.headline h1 em{font-style:normal;background:linear-gradient(135deg,#c084fc,#f472b6);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.headline h1 em{font-style:normal;background:linear-gradient(135deg,#25D366,#4ADE80);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 .headline p{margin-top:10px;font-size:14px;color:rgba(255,255,255,.45);line-height:1.65;max-width:280px}
 .check-list{display:flex;flex-direction:column;gap:12px}
 .check-item{display:flex;align-items:center;gap:10px;font-size:13px;color:rgba(255,255,255,.65)}
 .check-item::before{content:"✓";width:20px;height:20px;background:rgba(34,197,94,.2);border:1px solid rgba(34,197,94,.35);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;color:#4ade80;flex-shrink:0}
 .left-foot{margin-top:auto;position:relative;z-index:1;font-size:11px;color:rgba(255,255,255,.3)}
 
-.panel-right{width:58%;min-height:100vh;background:#0f0f1a;display:flex;flex-direction:column;border-left:1px solid rgba(255,255,255,.06)}
+.panel-right{width:58%;min-height:100vh;background:#0B141A;display:flex;flex-direction:column;border-left:1px solid rgba(255,255,255,.06)}
 .right-nav{padding:16px 32px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,.06)}
-.logo-sm{font-size:18px;font-weight:900;background:linear-gradient(135deg,#c084fc,#f472b6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-decoration:none}
+.logo-sm{font-size:18px;font-weight:900;background:linear-gradient(135deg,#25D366,#4ADE80);-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-decoration:none}
 .right-body{flex:1;padding:32px;overflow-y:auto}
 .form-wrap{max-width:440px}
 .form-title{font-size:20px;font-weight:900;margin-bottom:6px}
@@ -31,9 +31,9 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0f0f1a;color:#fff;m
 .form-group{margin-bottom:14px}
 label{display:block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.5);margin-bottom:6px}
 input,select{width:100%;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);border-radius:10px;padding:12px 14px;color:#fff;font-size:14px;outline:none;transition:.2s;font-family:inherit}
-input:focus,select:focus{border-color:#7c3aed;background:rgba(124,58,237,.08)}
+input:focus,select:focus{border-color:#00A651;background:rgba(0,166,81,.08)}
 input::placeholder{color:rgba(255,255,255,.3)}
-select option{background:#1a1a2e}
+select option{background:#0B1810}
 .hint{font-size:11px;color:rgba(255,255,255,.35);margin-top:5px}
 .hint.green{color:#4ade80}
 
@@ -43,15 +43,15 @@ select option{background:#1a1a2e}
 
 .emoji-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;margin-bottom:6px}
 .emoji-opt{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:8px 4px;cursor:pointer;text-align:center;font-size:20px;transition:.15s}
-.emoji-opt:hover,.emoji-opt.selected{border-color:#7c3aed;background:rgba(124,58,237,.15)}
+.emoji-opt:hover,.emoji-opt.selected{border-color:#00A651;background:rgba(0,166,81,.15)}
 input[type=hidden]{}
 
 .alert.error{background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.25);color:#f87171;border-radius:8px;padding:10px 12px;margin-bottom:14px;font-size:13px}
 
-.submit-btn{width:100%;padding:15px;border-radius:12px;border:none;font-size:16px;font-weight:700;cursor:pointer;background:linear-gradient(135deg,#7c3aed,#db2777);color:#fff;margin-top:8px;transition:.2s}
+.submit-btn{width:100%;padding:15px;border-radius:12px;border:none;font-size:16px;font-weight:700;cursor:pointer;background:linear-gradient(135deg,#00A651,#007A33);color:#fff;margin-top:8px;transition:.2s}
 .submit-btn:hover{opacity:.9;transform:translateY(-1px)}
 .login-link{text-align:center;margin-top:16px;font-size:13px;color:rgba(255,255,255,.35)}
-.login-link a{color:#c084fc;text-decoration:none;font-weight:600}
+.login-link a{color:#25D366;text-decoration:none;font-weight:600}
 
 @media(max-width:820px){
     body{flex-direction:column}
@@ -190,7 +190,7 @@ handleInput.addEventListener('input', () => {
     const val = handleInput.value;
     if (!val) { handleHint.textContent = 'Letters and numbers only. This is your permanent tip link.'; handleHint.style.color = ''; return; }
     handleHint.textContent = `Your link will be: pregota.com/t/${val}`;
-    handleHint.style.color = '#c084fc';
+    handleHint.style.color = '#25D366';
 });
 </script>
 </body>

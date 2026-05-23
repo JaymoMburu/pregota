@@ -27,14 +27,14 @@
 <meta name="twitter:image" content="{{ $ogImage }}">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Segoe UI',system-ui,sans-serif;background:#0f0f1a;color:#fff;min-height:100vh}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;min-height:100vh}
 
-.topbar{padding:14px 20px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,.07);position:sticky;top:0;background:#0f0f1a;z-index:10}
-.logo{font-size:18px;font-weight:900;background:linear-gradient(135deg,#c084fc,#f472b6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-decoration:none}
+.topbar{padding:14px 20px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,.07);position:sticky;top:0;background:#0B141A;z-index:10}
+.logo{font-size:18px;font-weight:900;background:linear-gradient(135deg,#25D366,#4ADE80);-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-decoration:none}
 .share-top-btn{display:flex;align-items:center;gap:6px;padding:8px 14px;border-radius:8px;background:#25d366;color:#fff;font-size:12px;font-weight:700;border:none;cursor:pointer;text-decoration:none}
 
 .hero{padding:28px 20px 20px;max-width:600px;margin:0 auto}
-.occasion-badge{display:inline-flex;align-items:center;gap:6px;padding:5px 12px;border-radius:20px;background:rgba(124,58,237,.18);border:1px solid rgba(124,58,237,.35);font-size:12px;color:#c084fc;font-weight:600;margin-bottom:14px}
+.occasion-badge{display:inline-flex;align-items:center;gap:6px;padding:5px 12px;border-radius:20px;background:rgba(0,166,81,.18);border:1px solid rgba(0,166,81,.35);font-size:12px;color:#25D366;font-weight:600;margin-bottom:14px}
 .collection-title{font-size:clamp(22px,5vw,32px);font-weight:900;line-height:1.15;margin-bottom:8px}
 .meta-line{font-size:13px;color:rgba(255,255,255,.45);display:flex;flex-wrap:wrap;gap:12px;align-items:center}
 .meta-sep{color:rgba(255,255,255,.2)}
@@ -49,7 +49,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0f0f1a;color:#fff;m
 .raised-amount span{font-size:14px;font-weight:400;color:rgba(255,255,255,.4)}
 .target-label{font-size:13px;color:rgba(255,255,255,.4)}
 .progress-bar-wrap{height:8px;background:rgba(255,255,255,.08);border-radius:4px;overflow:hidden;margin-bottom:10px}
-.progress-bar-fill{height:100%;background:linear-gradient(90deg,#7c3aed,#db2777);border-radius:4px;transition:.5s}
+.progress-bar-fill{height:100%;background:linear-gradient(90deg,#00A651,#007A33);border-radius:4px;transition:.5s}
 .progress-meta{display:flex;gap:16px;font-size:12px;color:rgba(255,255,255,.4)}
 .progress-meta strong{color:rgba(255,255,255,.75)}
 
@@ -65,22 +65,22 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0f0f1a;color:#fff;m
 /* Contribution form */
 .amount-presets{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:12px}
 .preset-btn{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:8px;padding:10px 4px;font-size:13px;font-weight:700;color:rgba(255,255,255,.7);cursor:pointer;text-align:center;transition:.15s}
-.preset-btn:hover,.preset-btn.active{border-color:#7c3aed;background:rgba(124,58,237,.15);color:#c084fc}
+.preset-btn:hover,.preset-btn.active{border-color:#00A651;background:rgba(0,166,81,.15);color:#25D366}
 .form-group{margin-bottom:12px}
 label{display:block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.5);margin-bottom:6px}
 input{width:100%;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);border-radius:10px;padding:12px 14px;color:#fff;font-size:14px;outline:none;transition:.2s;font-family:inherit}
-input:focus{border-color:#7c3aed;background:rgba(124,58,237,.08)}
+input:focus{border-color:#00A651;background:rgba(0,166,81,.08)}
 input::placeholder{color:rgba(255,255,255,.3)}
 .fee-line{display:flex;justify-content:space-between;align-items:center;font-size:12px;color:rgba(255,255,255,.4);padding:8px 12px;background:rgba(255,255,255,.03);border-radius:8px;margin-bottom:12px}
 .fee-line strong{color:rgba(255,255,255,.75)}
 .hint{font-size:11px;color:rgba(255,255,255,.35);margin-top:5px}
-.submit-btn{width:100%;padding:15px;border-radius:12px;border:none;font-size:16px;font-weight:700;cursor:pointer;background:linear-gradient(135deg,#7c3aed,#db2777);color:#fff;transition:.2s}
+.submit-btn{width:100%;padding:15px;border-radius:12px;border:none;font-size:16px;font-weight:700;cursor:pointer;background:linear-gradient(135deg,#00A651,#007A33);color:#fff;transition:.2s}
 .submit-btn:hover:not(:disabled){opacity:.9;transform:translateY(-1px)}
 .submit-btn:disabled{opacity:.5;cursor:not-allowed;transform:none}
 
 /* Status overlay */
 .status-overlay{display:none;text-align:center;padding:20px 0}
-.spin{width:36px;height:36px;border:3px solid rgba(124,58,237,.25);border-top-color:#7c3aed;border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 12px}
+.spin{width:36px;height:36px;border:3px solid rgba(0,166,81,.25);border-top-color:#00A651;border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 12px}
 @keyframes spin{to{transform:rotate(360deg)}}
 .status-icon{font-size:40px;margin-bottom:10px}
 .status-msg{font-size:15px;font-weight:700;margin-bottom:6px}
@@ -90,15 +90,15 @@ input::placeholder{color:rgba(255,255,255,.3)}
 /* Contributor wall */
 .contrib-list{display:flex;flex-direction:column;gap:8px}
 .contrib-item{display:flex;align-items:center;gap:12px}
-.contrib-avatar{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#7c3aed,#db2777);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;flex-shrink:0}
+.contrib-avatar{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#00A651,#007A33);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;flex-shrink:0}
 .contrib-info{flex:1}
 .contrib-name{font-size:13px;font-weight:600;color:rgba(255,255,255,.85)}
-.contrib-amount{font-size:14px;font-weight:700;color:#c084fc}
+.contrib-amount{font-size:14px;font-weight:700;color:#25D366}
 .contrib-time{font-size:11px;color:rgba(255,255,255,.3)}
 .empty-wall{text-align:center;padding:20px;font-size:13px;color:rgba(255,255,255,.3)}
 
 /* Share card */
-.share-card{background:linear-gradient(135deg,rgba(124,58,237,.15),rgba(219,39,119,.1));border:1px solid rgba(124,58,237,.25);border-radius:14px;padding:20px;text-align:center}
+.share-card{background:linear-gradient(135deg,rgba(0,166,81,.15),rgba(0,122,51,.1));border:1px solid rgba(0,166,81,.25);border-radius:14px;padding:20px;text-align:center}
 .share-card p{font-size:13px;color:rgba(255,255,255,.5);margin-bottom:14px}
 .wa-btn{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;border-radius:10px;background:#25d366;color:#fff;font-size:14px;font-weight:700;text-decoration:none;border:none;cursor:pointer}
 .copy-link-btn{display:inline-flex;align-items:center;gap:6px;padding:10px 18px;border-radius:10px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.7);font-size:13px;font-weight:600;cursor:pointer;margin-left:8px}
@@ -261,8 +261,8 @@ input::placeholder{color:rgba(255,255,255,.3)}
 
         <div id="formArea">
             @if($collection->per_person_amount)
-            <div style="background:rgba(124,58,237,.1);border:1px solid rgba(124,58,237,.25);border-radius:10px;padding:12px 14px;margin-bottom:14px;font-size:13px;color:rgba(255,255,255,.7)">
-                🔒 Fixed contribution: <strong style="color:#c084fc">KES {{ number_format($collection->per_person_amount) }}</strong> per person
+            <div style="background:rgba(0,166,81,.1);border:1px solid rgba(0,166,81,.25);border-radius:10px;padding:12px 14px;margin-bottom:14px;font-size:13px;color:rgba(255,255,255,.7)">
+                🔒 Fixed contribution: <strong style="color:#25D366">KES {{ number_format($collection->per_person_amount) }}</strong> per person
             </div>
             <div class="form-group">
                 <label>Amount (KES)</label>

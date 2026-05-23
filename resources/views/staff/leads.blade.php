@@ -6,9 +6,9 @@
 <title>Customer Leads — Pregota</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Segoe UI',system-ui,sans-serif;background:#0f0f1a;color:#fff;min-height:100vh}
-.topbar{padding:14px 20px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,.07);background:#0f0f1a;position:sticky;top:0;z-index:10}
-.logo{font-size:18px;font-weight:900;background:linear-gradient(135deg,#c084fc,#f472b6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-decoration:none}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;min-height:100vh}
+.topbar{padding:14px 20px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,.07);background:#0B141A;position:sticky;top:0;z-index:10}
+.logo{font-size:18px;font-weight:900;background:linear-gradient(135deg,#25D366,#4ADE80);-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-decoration:none}
 .back{font-size:13px;color:rgba(255,255,255,.4);text-decoration:none}
 .page{max-width:600px;margin:0 auto;padding:24px 20px 60px}
 .page-title{font-size:20px;font-weight:900;margin-bottom:4px}
@@ -24,9 +24,9 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0f0f1a;color:#fff;m
 .lead-meta{font-size:11px;color:rgba(255,255,255,.35);margin-top:3px}
 .lead-venue{font-size:11px;color:rgba(255,255,255,.45);margin-top:2px}
 
-.notice{background:rgba(124,58,237,.08);border:1px solid rgba(124,58,237,.2);border-radius:12px;padding:16px 18px;margin-bottom:24px}
+.notice{background:rgba(0,166,81,.08);border:1px solid rgba(0,166,81,.2);border-radius:12px;padding:16px 18px;margin-bottom:24px}
 .notice p{font-size:13px;color:rgba(255,255,255,.55);line-height:1.7}
-.notice strong{color:#c084fc}
+.notice strong{color:#25D366}
 
 .empty{text-align:center;padding:48px 20px;color:rgba(255,255,255,.3);font-size:14px}
 .empty-icon{font-size:40px;margin-bottom:12px}

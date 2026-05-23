@@ -7,9 +7,9 @@
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Segoe UI',system-ui,sans-serif;background:#0f0f1a;color:#fff;min-height:100vh}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;min-height:100vh}
 .nav{padding:14px 24px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,.08)}
-.logo{font-size:20px;font-weight:900;background:linear-gradient(135deg,#7c3aed,#db2777);-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-decoration:none}
+.logo{font-size:20px;font-weight:900;background:linear-gradient(135deg,#00A651,#007A33);-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-decoration:none}
 .nav-right{display:flex;align-items:center;gap:12px}
 .biz-name{font-size:13px;color:rgba(255,255,255,.4)}
 .logout-btn{background:none;border:none;color:rgba(255,255,255,.3);cursor:pointer;font-size:13px}
@@ -20,19 +20,19 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0f0f1a;color:#fff;m
 /* Plan banner */
 .plan-banner{border-radius:12px;padding:12px 18px;margin-bottom:22px;display:flex;justify-content:space-between;align-items:center;gap:12px}
 .plan-banner.free{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1)}
-.plan-banner.paid{background:linear-gradient(135deg,rgba(124,58,237,.15),rgba(219,39,119,.1));border:1px solid rgba(124,58,237,.25)}
+.plan-banner.paid{background:linear-gradient(135deg,rgba(0,166,81,.15),rgba(0,122,51,.1));border:1px solid rgba(0,166,81,.25)}
 .plan-tag{font-size:12px;font-weight:700;padding:3px 10px;border-radius:20px}
 .plan-tag.free{background:rgba(255,255,255,.08);color:rgba(255,255,255,.5)}
-.plan-tag.paid{background:linear-gradient(135deg,#7c3aed,#db2777);color:#fff}
+.plan-tag.paid{background:linear-gradient(135deg,#00A651,#007A33);color:#fff}
 .plan-text{font-size:13px;color:rgba(255,255,255,.5)}
 .plan-text strong{color:rgba(255,255,255,.8)}
-.upgrade-link{font-size:12px;font-weight:700;color:#a78bfa;text-decoration:none;white-space:nowrap;background:rgba(124,58,237,.15);border:1px solid rgba(124,58,237,.3);border-radius:8px;padding:6px 14px}
+.upgrade-link{font-size:12px;font-weight:700;color:#a78bfa;text-decoration:none;white-space:nowrap;background:rgba(0,166,81,.15);border:1px solid rgba(0,166,81,.3);border-radius:8px;padding:6px 14px}
 
 /* Stats */
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:28px}
 @media(max-width:600px){.stats{grid-template-columns:1fr 1fr}}
 .stat{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:16px}
-.stat-val{font-size:22px;font-weight:900;background:linear-gradient(135deg,#c084fc,#f472b6);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.stat-val{font-size:22px;font-weight:900;background:linear-gradient(135deg,#25D366,#4ADE80);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 .stat-lbl{font-size:11px;color:rgba(255,255,255,.35);margin-top:4px;text-transform:uppercase;letter-spacing:.06em}
 
 /* Analytics */
@@ -53,7 +53,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0f0f1a;color:#fff;m
 .tag-bar-row{display:flex;align-items:center;gap:8px;margin-bottom:8px}
 .tag-name{width:110px;font-size:12px;color:rgba(255,255,255,.6);text-align:right;flex-shrink:0}
 .tag-track{flex:1;background:rgba(255,255,255,.06);border-radius:4px;height:7px;overflow:hidden}
-.tag-fill{height:100%;background:linear-gradient(90deg,#7c3aed,#db2777);border-radius:4px}
+.tag-fill{height:100%;background:linear-gradient(90deg,#00A651,#007A33);border-radius:4px}
 .tag-count{width:22px;font-size:11px;color:rgba(255,255,255,.35);text-align:right}
 
 /* Leaderboard */
@@ -63,15 +63,15 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0f0f1a;color:#fff;m
 .leader-stars{color:#fbbf24;font-size:13px}
 
 /* Upgrade card */
-.upgrade-card{background:rgba(255,255,255,.03);border:1px dashed rgba(124,58,237,.3);border-radius:16px;padding:28px;margin-bottom:28px;text-align:center}
+.upgrade-card{background:rgba(255,255,255,.03);border:1px dashed rgba(0,166,81,.3);border-radius:16px;padding:28px;margin-bottom:28px;text-align:center}
 .upgrade-card h3{font-size:18px;font-weight:900;margin-bottom:8px}
 .upgrade-card p{font-size:13px;color:rgba(255,255,255,.45);margin-bottom:24px;line-height:1.6}
 .plans-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:22px;text-align:left}
 @media(max-width:520px){.plans-grid{grid-template-columns:1fr}}
 .plan-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:12px;padding:16px}
-.plan-card.popular{border-color:rgba(124,58,237,.5);background:rgba(124,58,237,.08)}
+.plan-card.popular{border-color:rgba(0,166,81,.5);background:rgba(0,166,81,.08)}
 .plan-name{font-size:13px;font-weight:800;margin-bottom:2px}
-.plan-price{font-size:20px;font-weight:900;background:linear-gradient(135deg,#c084fc,#f472b6);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.plan-price{font-size:20px;font-weight:900;background:linear-gradient(135deg,#25D366,#4ADE80);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 .plan-price span{font-size:12px;font-weight:400;color:rgba(255,255,255,.35)}
 .plan-feature{font-size:11px;color:rgba(255,255,255,.4);margin-top:8px;line-height:1.6}
 .plan-feature li{list-style:none;padding:1px 0}
@@ -91,7 +91,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0f0f1a;color:#fff;m
 .row-actions{display:flex;gap:6px}
 .action-btn{background:none;border:1px solid rgba(255,255,255,.1);border-radius:6px;padding:5px 10px;color:rgba(255,255,255,.5);font-size:11px;cursor:pointer}
 .action-btn:hover{background:rgba(255,255,255,.06);color:#fff}
-.view-btn{color:#a78bfa;border-color:rgba(124,58,237,.3)}
+.view-btn{color:#a78bfa;border-color:rgba(0,166,81,.3)}
 @media(max-width:640px){
     .staff-row{grid-template-columns:1fr auto}
     .hide-mobile{display:none}
@@ -104,10 +104,10 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0f0f1a;color:#fff;m
 .form-group{display:flex;flex-direction:column;gap:5px}
 label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.4)}
 input,select{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:8px;padding:10px 12px;color:#fff;font-size:13px;outline:none;font-family:inherit}
-input:focus,select:focus{border-color:#7c3aed}
-select option{background:#1a1a2e}
+input:focus,select:focus{border-color:#00A651}
+select option{background:#0B1810}
 .hint{font-size:10px;color:rgba(255,255,255,.3)}
-.save-btn{background:linear-gradient(135deg,#7c3aed,#db2777);color:#fff;border:none;border-radius:10px;padding:10px 22px;font-size:14px;font-weight:700;cursor:pointer}
+.save-btn{background:linear-gradient(135deg,#00A651,#007A33);color:#fff;border:none;border-radius:10px;padding:10px 22px;font-size:14px;font-weight:700;cursor:pointer}
 .alert{border-radius:8px;padding:10px 12px;margin-bottom:14px;font-size:13px}
 .alert.success{background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.25);color:#4ade80}
 
@@ -116,7 +116,7 @@ select option{background:#1a1a2e}
 .feedback-item:last-child{border-bottom:none}
 .fb-stars{color:#fbbf24;font-size:13px;margin-bottom:3px}
 .fb-tags{display:flex;flex-wrap:wrap;gap:5px;margin:5px 0}
-.fb-tag{background:rgba(124,58,237,.1);border:1px solid rgba(124,58,237,.2);border-radius:12px;padding:2px 9px;font-size:11px;color:#a78bfa}
+.fb-tag{background:rgba(0,166,81,.1);border:1px solid rgba(0,166,81,.2);border-radius:12px;padding:2px 9px;font-size:11px;color:#a78bfa}
 .fb-comment{font-size:12px;color:rgba(255,255,255,.5);font-style:italic;margin-top:4px}
 .fb-meta{font-size:11px;color:rgba(255,255,255,.25);margin-top:4px}
 .no-data{text-align:center;padding:28px;color:rgba(255,255,255,.25);font-size:13px}
@@ -205,7 +205,7 @@ select option{background:#1a1a2e}
                 @foreach($analytics['trend'] as $day)
                 @php
                     $pct = $day['avg_rating'] ? round($day['avg_rating'] / 5 * 100) : 0;
-                    $color = $day['count'] > 0 ? 'linear-gradient(to top,#7c3aed,#db2777)' : 'rgba(255,255,255,.08)';
+                    $color = $day['count'] > 0 ? 'linear-gradient(to top,#00A651,#007A33)' : 'rgba(255,255,255,.08)';
                 @endphp
                 <div class="trend-bar-wrap">
                     @if($day['avg_rating'])
@@ -313,7 +313,7 @@ select option{background:#1a1a2e}
         </div>
 
         <a href="mailto:hello@pregota.com?subject=Pregota Business Subscription — {{ $business->name }}"
-           style="display:inline-block;background:linear-gradient(135deg,#7c3aed,#db2777);color:#fff;border:none;border-radius:12px;padding:13px 28px;font-size:15px;font-weight:700;text-decoration:none;cursor:pointer">
+           style="display:inline-block;background:linear-gradient(135deg,#00A651,#007A33);color:#fff;border:none;border-radius:12px;padding:13px 28px;font-size:15px;font-weight:700;text-decoration:none;cursor:pointer">
             Subscribe Now — Contact Us →
         </a>
         <div style="margin-top:10px;font-size:11px;color:rgba(255,255,255,.25)">M-Pesa payment · Activate within 24 hours</div>
@@ -460,23 +460,23 @@ async function viewStaff(id) {
         `<div style="display:flex;align-items:center;gap:8px;margin-bottom:4px">
             <span style="color:#fbbf24;font-size:12px;width:70px">${'★'.repeat(r)}${'☆'.repeat(5-r)}</span>
             <div style="flex:1;height:6px;background:rgba(255,255,255,.08);border-radius:3px;overflow:hidden">
-                <div style="height:100%;background:linear-gradient(90deg,#7c3aed,#db2777);width:${d.total_tips > 0 ? Math.round((count||0)/d.total_tips*100) : 0}%"></div>
+                <div style="height:100%;background:linear-gradient(90deg,#00A651,#007A33);width:${d.total_tips > 0 ? Math.round((count||0)/d.total_tips*100) : 0}%"></div>
             </div>
             <span style="font-size:11px;color:rgba(255,255,255,.35);width:20px">${count||0}</span>
         </div>`;
 
     const tagRows = Object.entries(d.tag_counts||{}).map(([tag,cnt]) =>
-        `<span style="background:rgba(124,58,237,.12);border:1px solid rgba(124,58,237,.2);border-radius:12px;padding:3px 10px;font-size:11px;color:#a78bfa;margin:3px">${tag} ×${cnt}</span>`
+        `<span style="background:rgba(0,166,81,.12);border:1px solid rgba(0,166,81,.2);border-radius:12px;padding:3px 10px;font-size:11px;color:#a78bfa;margin:3px">${tag} ×${cnt}</span>`
     ).join('');
 
     document.getElementById('modalContent').innerHTML = `
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:18px">
             <div style="background:rgba(255,255,255,.04);border-radius:10px;padding:12px;text-align:center">
-                <div style="font-size:24px;font-weight:900;background:linear-gradient(135deg,#c084fc,#f472b6);-webkit-background-clip:text;-webkit-text-fill-color:transparent">${d.avg_rating}</div>
+                <div style="font-size:24px;font-weight:900;background:linear-gradient(135deg,#25D366,#4ADE80);-webkit-background-clip:text;-webkit-text-fill-color:transparent">${d.avg_rating}</div>
                 <div style="font-size:11px;color:rgba(255,255,255,.35);margin-top:2px">Avg Rating</div>
             </div>
             <div style="background:rgba(255,255,255,.04);border-radius:10px;padding:12px;text-align:center">
-                <div style="font-size:24px;font-weight:900;background:linear-gradient(135deg,#c084fc,#f472b6);-webkit-background-clip:text;-webkit-text-fill-color:transparent">${d.total_tips}</div>
+                <div style="font-size:24px;font-weight:900;background:linear-gradient(135deg,#25D366,#4ADE80);-webkit-background-clip:text;-webkit-text-fill-color:transparent">${d.total_tips}</div>
                 <div style="font-size:11px;color:rgba(255,255,255,.35);margin-top:2px">Total Reviews</div>
             </div>
         </div>

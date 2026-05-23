@@ -1,13 +1,13 @@
 @php
 $_active = $activeModule ?? '';
 $_mods = [
-    'gift'       => ['emoji' => '🎁', 'label' => 'Gift',        'url' => route('gift.home'),           'color' => '#c084fc'],
+    'gift'       => ['emoji' => '🎁', 'label' => 'Gift',        'url' => route('gift.home'),           'color' => '#25D366'],
     'collection' => ['emoji' => '🤝', 'label' => 'Collections', 'url' => route('collection.new'),      'color' => '#34d399'],
     'school'     => ['emoji' => '🏫', 'label' => 'School',      'url' => route('school-collection.new'),'color' => '#60a5fa'],
     'tips'       => ['emoji' => '⭐', 'label' => 'Tips',        'url' => route('staff.landing'),       'color' => '#fbbf24'],
 ];
 @endphp
-<div style="padding:10px 24px;border-bottom:1px solid rgba(255,255,255,.06);display:flex;align-items:center;gap:8px;flex-wrap:wrap;background:#0f0f1a">
+<div style="padding:10px 24px;border-bottom:1px solid rgba(255,255,255,.06);display:flex;align-items:center;gap:8px;flex-wrap:wrap;background:#0B141A">
     <a href="{{ route('home') }}" style="font-size:12px;color:rgba(255,255,255,.35);text-decoration:none;margin-right:6px;display:flex;align-items:center;gap:4px;white-space:nowrap;flex-shrink:0" onmouseover="this.style.color='rgba(255,255,255,.7)'" onmouseout="this.style.color='rgba(255,255,255,.35)'">
         ‹ All
     </a>

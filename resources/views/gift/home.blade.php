@@ -9,22 +9,22 @@
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{height:100%}
-body{font-family:'Segoe UI',system-ui,sans-serif;background:#0f0f1a;color:#fff;display:flex;min-height:100vh}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;display:flex;min-height:100vh}
 
 /* ── Left panel ── */
 .panel-left{
     width:52%;height:100vh;position:sticky;top:0;
-    background:radial-gradient(circle 300px at -50px -100px,rgba(124,58,237,.35),transparent 70%),radial-gradient(circle 230px at calc(100% + 30px) 100%,rgba(219,39,119,.28),transparent 70%),linear-gradient(150deg,#0a0015 0%,#1e0840 55%,#2d0a4e 100%);
+    background:radial-gradient(circle 300px at -50px -100px,rgba(0,166,81,.35),transparent 70%),radial-gradient(circle 230px at calc(100% + 30px) 100%,rgba(0,122,51,.28),transparent 70%),linear-gradient(150deg,#030D07 0%,#0A1A0F 55%,#0F2418 100%);
     display:flex;flex-direction:column;
     padding:40px 48px;overflow:hidden;
 }
 
-.left-logo{font-size:24px;font-weight:900;position:relative;z-index:1;background:linear-gradient(135deg,#c084fc,#f472b6);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.left-logo{font-size:24px;font-weight:900;position:relative;z-index:1;background:linear-gradient(135deg,#25D366,#4ADE80);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 
 .left-center{flex:1;display:flex;flex-direction:column;justify-content:center;position:relative;z-index:1;gap:48px}
 
 .headline h1{font-size:clamp(34px,3.8vw,54px);font-weight:900;line-height:1.1;letter-spacing:-.5px}
-.headline h1 em{font-style:normal;background:linear-gradient(135deg,#c084fc,#f472b6);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.headline h1 em{font-style:normal;background:linear-gradient(135deg,#25D366,#4ADE80);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 .headline p{margin-top:14px;font-size:15px;color:rgba(255,255,255,.45);line-height:1.6;max-width:320px}
 
 /* How it works steps */
@@ -32,7 +32,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0f0f1a;color:#fff;d
 .step-item{display:flex;align-items:flex-start;gap:16px}
 .step-num{
     width:32px;height:32px;border-radius:50%;flex-shrink:0;
-    background:linear-gradient(135deg,#7c3aed,#db2777);
+    background:linear-gradient(135deg,#00A651,#007A33);
     display:flex;align-items:center;justify-content:center;
     font-size:13px;font-weight:900;margin-top:1px;
 }
@@ -43,7 +43,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0f0f1a;color:#fff;d
 
 /* ── Right panel ── */
 .panel-right{
-    width:48%;min-height:100vh;background:#0f0f1a;
+    width:48%;min-height:100vh;background:#0B141A;
     display:flex;flex-direction:column;
     border-left:1px solid rgba(255,255,255,.06);
 }
@@ -58,17 +58,17 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0f0f1a;color:#fff;d
 .form-group{margin-bottom:14px}
 label{display:block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.6);margin-bottom:6px}
 input,textarea{width:100%;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.18);border-radius:10px;padding:13px 16px;color:#fff;font-size:15px;outline:none;transition:.2s;font-family:inherit}
-input:focus,textarea:focus{border-color:#7c3aed;background:rgba(124,58,237,.1)}
+input:focus,textarea:focus{border-color:#00A651;background:rgba(0,166,81,.1)}
 input::placeholder,textarea::placeholder{color:rgba(255,255,255,.38)}
 textarea{resize:none;height:68px}
 
-.fee-preview{background:rgba(124,58,237,.07);border:1px solid rgba(124,58,237,.2);border-radius:10px;padding:11px 14px;margin-bottom:14px;font-size:12px;display:none}
+.fee-preview{background:rgba(0,166,81,.07);border:1px solid rgba(0,166,81,.2);border-radius:10px;padding:11px 14px;margin-bottom:14px;font-size:12px;display:none}
 .fee-row{display:flex;justify-content:space-between;padding:2px 0;color:rgba(255,255,255,.65)}
 .fee-row.total{color:#fff;font-weight:700;border-top:1px solid rgba(255,255,255,.08);margin-top:5px;padding-top:7px}
 
 .hint{font-size:11px;color:rgba(255,255,255,.42);margin-top:5px}
 
-.btn-primary{width:100%;padding:15px;border-radius:12px;border:none;font-size:16px;font-weight:700;cursor:pointer;background:linear-gradient(135deg,#7c3aed,#db2777);color:#fff;margin-top:6px;transition:.2s}
+.btn-primary{width:100%;padding:15px;border-radius:12px;border:none;font-size:16px;font-weight:700;cursor:pointer;background:linear-gradient(135deg,#00A651,#007A33);color:#fff;margin-top:6px;transition:.2s}
 .btn-primary:hover{opacity:.9;transform:translateY(-1px)}
 .btn-primary:disabled{opacity:.45;cursor:not-allowed;transform:none}
 
@@ -77,7 +77,7 @@ textarea{resize:none;height:68px}
 /* Tabs */
 .tabs{display:flex;gap:0;margin-bottom:22px;border:1px solid rgba(255,255,255,.1);border-radius:10px;overflow:hidden}
 .tab-btn{flex:1;padding:10px 6px;border:none;background:rgba(255,255,255,.04);color:rgba(255,255,255,.45);font-size:13px;font-weight:600;cursor:pointer;transition:.15s;font-family:inherit}
-.tab-btn.active{background:linear-gradient(135deg,rgba(124,58,237,.3),rgba(219,39,119,.2));color:#fff}
+.tab-btn.active{background:linear-gradient(135deg,rgba(0,166,81,.3),rgba(0,122,51,.2));color:#fff}
 .tab-pane{display:none}
 .tab-pane.active{display:block}
 
@@ -89,9 +89,9 @@ textarea{resize:none;height:68px}
 .modal{position:fixed;inset:0;background:rgba(0,0,0,.85);display:none;align-items:center;justify-content:center;z-index:200;padding:24px}
 .modal.show{display:flex}
 .modal-box{background:#13131f;border:1px solid rgba(255,255,255,.1);border-radius:22px;padding:36px 32px;max-width:380px;width:100%;text-align:center}
-.code-display{font-size:28px;font-weight:900;letter-spacing:.15em;background:linear-gradient(135deg,#7c3aed,#db2777);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin:20px 0;font-family:monospace}
-.copy-btn{background:rgba(124,58,237,.2);border:1px solid rgba(124,58,237,.4);color:#a78bfa;border-radius:8px;padding:8px 22px;cursor:pointer;font-size:13px;font-weight:600}
-.copy-btn:hover{background:rgba(124,58,237,.3)}
+.code-display{font-size:28px;font-weight:900;letter-spacing:.15em;background:linear-gradient(135deg,#00A651,#007A33);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin:20px 0;font-family:monospace}
+.copy-btn{background:rgba(0,166,81,.2);border:1px solid rgba(0,166,81,.4);color:#a78bfa;border-radius:8px;padding:8px 22px;cursor:pointer;font-size:13px;font-weight:600}
+.copy-btn:hover{background:rgba(0,166,81,.3)}
 .status-dot{width:9px;height:9px;border-radius:50%;background:#f59e0b;display:inline-block;animation:pulse 1.5s infinite;margin-right:6px;vertical-align:middle}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
 
@@ -279,9 +279,9 @@ textarea{resize:none;height:68px}
         <div class="code-display" id="voucherCode">—</div>
         <button class="copy-btn" onclick="copyCode()">Copy Code</button>
 
-        <div style="background:rgba(124,58,237,.1);border:1px solid rgba(124,58,237,.25);border-radius:10px;padding:12px 14px;margin-top:18px;text-align:left">
+        <div style="background:rgba(0,166,81,.1);border:1px solid rgba(0,166,81,.25);border-radius:10px;padding:12px 14px;margin-top:18px;text-align:left">
             <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.4);margin-bottom:6px">Cancel / Recall Token</div>
-            <div style="font-size:15px;font-weight:800;font-family:monospace;color:#c084fc;letter-spacing:.1em" id="recallToken">—</div>
+            <div style="font-size:15px;font-weight:800;font-family:monospace;color:#25D366;letter-spacing:.1em" id="recallToken">—</div>
             <button class="copy-btn" onclick="copyRecallToken()" style="margin-top:8px;font-size:11px;padding:5px 14px">Copy Token</button>
             <p style="font-size:11px;color:rgba(255,255,255,.4);margin-top:8px;line-height:1.55">Save this token. If the gift is unredeemed you can use it on the Track page to cancel. The deposit fee is not refunded — you receive the face value only.</p>
         </div>

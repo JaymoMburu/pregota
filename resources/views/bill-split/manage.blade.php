@@ -6,7 +6,7 @@
 <title>{{ $bill->label ?? 'Bill Split' }} — Pregota</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Segoe UI',system-ui,sans-serif;background:#0f0f1a;color:#fff;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px 20px}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px 20px}
 
 .card{width:100%;max-width:380px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:24px;padding:28px 24px;text-align:center}
 
@@ -22,7 +22,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0f0f1a;color:#fff;m
 /* Progress */
 .progress-wrap{margin-bottom:16px}
 .progress-bar{height:10px;background:rgba(255,255,255,.08);border-radius:999px;overflow:hidden;margin-bottom:10px}
-.progress-fill{height:100%;background:linear-gradient(90deg,#7c3aed,#db2777);border-radius:999px;transition:.5s}
+.progress-fill{height:100%;background:linear-gradient(90deg,#00A651,#007A33);border-radius:999px;transition:.5s}
 .progress-label{display:flex;justify-content:space-between;font-size:12px;color:rgba(255,255,255,.45)}
 .progress-label .paid{color:#4ade80;font-weight:700}
 
@@ -42,7 +42,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0f0f1a;color:#fff;m
 .settled-title{font-size:20px;font-weight:900;color:#4ade80;margin-bottom:6px}
 .settled-sub{font-size:13px;color:rgba(255,255,255,.45)}
 
-.new-bill-btn{display:inline-block;margin-top:20px;padding:12px 28px;border-radius:12px;border:none;font-size:14px;font-weight:700;cursor:pointer;background:linear-gradient(135deg,#7c3aed,#db2777);color:#fff;text-decoration:none}
+.new-bill-btn{display:inline-block;margin-top:20px;padding:12px 28px;border-radius:12px;border:none;font-size:14px;font-weight:700;cursor:pointer;background:linear-gradient(135deg,#00A651,#007A33);color:#fff;text-decoration:none}
 .footer{margin-top:20px;font-size:11px;color:rgba(255,255,255,.2)}
 
 /* Send to phone */
@@ -50,9 +50,9 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0f0f1a;color:#fff;m
 .send-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.3);margin-bottom:10px;display:flex;align-items:center;gap:6px}
 .send-row{display:flex;gap:8px;margin-bottom:8px}
 .send-input{flex:1;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:8px;padding:10px 12px;color:#fff;font-size:14px;outline:none;font-family:inherit}
-.send-input:focus{border-color:#7c3aed}
+.send-input:focus{border-color:#00A651}
 .send-input::placeholder{color:rgba(255,255,255,.3)}
-.send-btn{padding:10px 14px;border-radius:8px;border:none;background:rgba(124,58,237,.3);border:1px solid rgba(124,58,237,.4);color:#c084fc;font-size:12px;font-weight:700;cursor:pointer;white-space:nowrap}
+.send-btn{padding:10px 14px;border-radius:8px;border:none;background:rgba(0,166,81,.3);border:1px solid rgba(0,166,81,.4);color:#25D366;font-size:12px;font-weight:700;cursor:pointer;white-space:nowrap}
 .send-btn:disabled{opacity:.4;cursor:not-allowed}
 .send-status{font-size:12px;margin-top:6px;min-height:18px;text-align:center}
 </style>

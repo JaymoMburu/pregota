@@ -8,11 +8,11 @@
 @include('partials.pwa')
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Segoe UI',system-ui,sans-serif;background:#0f0f1a;color:#fff;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:24px 20px}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:24px 20px}
 .card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:24px;padding:32px 28px;max-width:420px;width:100%;margin-top:16px}
 
 /* Creator profile */
-.avatar{width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,#7c3aed,#db2777);display:flex;align-items:center;justify-content:center;font-size:32px;font-weight:900;margin:0 auto 14px;overflow:hidden}
+.avatar{width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,#00A651,#007A33);display:flex;align-items:center;justify-content:center;font-size:32px;font-weight:900;margin:0 auto 14px;overflow:hidden}
 .avatar img{width:100%;height:100%;object-fit:cover}
 .creator-name{font-size:22px;font-weight:900;text-align:center}
 .creator-handle{font-size:13px;color:rgba(255,255,255,.35);text-align:center;margin-top:3px}
@@ -22,13 +22,13 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0f0f1a;color:#fff;m
 .goal{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:14px 16px;margin:20px 0}
 .goal-label{display:flex;justify-content:space-between;font-size:12px;color:rgba(255,255,255,.45);margin-bottom:8px}
 .goal-bar{height:6px;background:rgba(255,255,255,.08);border-radius:999px;overflow:hidden}
-.goal-fill{height:100%;background:linear-gradient(90deg,#7c3aed,#db2777);border-radius:999px;transition:.6s}
+.goal-fill{height:100%;background:linear-gradient(90deg,#00A651,#007A33);border-radius:999px;transition:.6s}
 .goal-pct{font-size:11px;color:#a78bfa;margin-top:5px;text-align:right}
 
 /* Stats row */
 .stats{display:flex;gap:12px;margin-bottom:24px}
 .stat{flex:1;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:10px;padding:10px;text-align:center}
-.stat-val{font-size:16px;font-weight:800;background:linear-gradient(135deg,#c084fc,#f472b6);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.stat-val{font-size:16px;font-weight:800;background:linear-gradient(135deg,#25D366,#4ADE80);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 .stat-lbl{font-size:10px;color:rgba(255,255,255,.35);margin-top:2px;text-transform:uppercase;letter-spacing:.06em}
 
 /* Form */
@@ -36,15 +36,15 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0f0f1a;color:#fff;m
 .form-group{margin-bottom:14px}
 label{display:block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.5);margin-bottom:6px}
 input,textarea{width:100%;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:10px;padding:13px 14px;color:#fff;font-size:15px;outline:none;transition:.2s;font-family:inherit}
-input:focus,textarea:focus{border-color:#7c3aed;background:rgba(124,58,237,.1)}
+input:focus,textarea:focus{border-color:#00A651;background:rgba(0,166,81,.1)}
 input::placeholder,textarea::placeholder{color:rgba(255,255,255,.3)}
 textarea{resize:none;height:64px}
-.btn{width:100%;padding:15px;border-radius:12px;border:none;font-size:16px;font-weight:700;cursor:pointer;background:linear-gradient(135deg,#7c3aed,#db2777);color:#fff;transition:.2s;margin-top:4px}
+.btn{width:100%;padding:15px;border-radius:12px;border:none;font-size:16px;font-weight:700;cursor:pointer;background:linear-gradient(135deg,#00A651,#007A33);color:#fff;transition:.2s;margin-top:4px}
 .btn:hover{opacity:.9}
 .btn:disabled{opacity:.45;cursor:not-allowed}
 
 /* Fee preview */
-.fee-preview{background:rgba(124,58,237,.07);border:1px solid rgba(124,58,237,.2);border-radius:10px;padding:11px 14px;margin-bottom:14px;font-size:12px;display:none}
+.fee-preview{background:rgba(0,166,81,.07);border:1px solid rgba(0,166,81,.2);border-radius:10px;padding:11px 14px;margin-bottom:14px;font-size:12px;display:none}
 .fee-row{display:flex;justify-content:space-between;padding:2px 0;color:rgba(255,255,255,.6)}
 .fee-row.total{color:#fff;font-weight:700;border-top:1px solid rgba(255,255,255,.08);margin-top:5px;padding-top:7px}
 
@@ -53,7 +53,7 @@ textarea{resize:none;height:64px}
 
 .footer{margin-top:24px;font-size:11px;color:rgba(255,255,255,.2);text-align:center}
 .pregota-link{color:rgba(255,255,255,.3);text-decoration:none;font-weight:700}
-.pregota-link:hover{color:#c084fc}
+.pregota-link:hover{color:#25D366}
 </style>
 </head>
 <body>

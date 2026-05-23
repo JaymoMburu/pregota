@@ -8,20 +8,20 @@
 @include('partials.pwa')
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Segoe UI',system-ui,sans-serif;background:#0f0f1a;color:#fff;min-height:100vh}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;min-height:100vh}
 
 /* Nav */
-.nav{padding:16px 24px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,.07);position:sticky;top:0;background:#0f0f1a;z-index:10}
-.logo{font-size:22px;font-weight:900;background:linear-gradient(135deg,#c084fc,#f472b6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-decoration:none}
+.nav{padding:16px 24px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,.07);position:sticky;top:0;background:#0B141A;z-index:10}
+.logo{font-size:22px;font-weight:900;background:linear-gradient(135deg,#25D366,#4ADE80);-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-decoration:none}
 .nav-links{display:flex;gap:8px}
 .nav-link{color:rgba(255,255,255,.5);text-decoration:none;font-size:13px;font-weight:600;padding:7px 14px;border:1px solid rgba(255,255,255,.1);border-radius:8px;transition:.15s}
 .nav-link:hover{background:rgba(255,255,255,.06);color:#fff}
 
 /* Hero */
 .hero{padding:64px 24px 40px;text-align:center;max-width:640px;margin:0 auto}
-.hero-tag{display:inline-flex;align-items:center;gap:8px;background:rgba(124,58,237,.12);border:1px solid rgba(124,58,237,.25);border-radius:20px;padding:6px 16px;font-size:12px;font-weight:700;color:#c084fc;margin-bottom:24px;letter-spacing:.04em}
+.hero-tag{display:inline-flex;align-items:center;gap:8px;background:rgba(0,166,81,.12);border:1px solid rgba(0,166,81,.25);border-radius:20px;padding:6px 16px;font-size:12px;font-weight:700;color:#25D366;margin-bottom:24px;letter-spacing:.04em}
 .hero h1{font-size:clamp(36px,6vw,58px);font-weight:900;line-height:1.08;letter-spacing:-.5px;margin-bottom:16px}
-.hero h1 em{font-style:normal;background:linear-gradient(135deg,#c084fc,#f472b6);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero h1 em{font-style:normal;background:linear-gradient(135deg,#25D366,#4ADE80);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 .hero p{font-size:16px;color:rgba(255,255,255,.45);line-height:1.65;max-width:400px;margin:0 auto}
 
 /* Module grid */
@@ -32,32 +32,32 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0f0f1a;color:#fff;m
 
 .module-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:20px;padding:28px 26px;display:flex;flex-direction:column;gap:0;transition:.2s;text-decoration:none;color:#fff;position:relative;overflow:hidden}
 .module-card::before{content:'';position:absolute;inset:0;border-radius:20px;opacity:0;transition:.2s;pointer-events:none}
-.module-card:hover{transform:translateY(-2px);border-color:rgba(124,58,237,.4)}
+.module-card:hover{transform:translateY(-2px);border-color:rgba(0,166,81,.4)}
 .module-card:hover::before{opacity:1}
 
-.mc-gift:hover{background:rgba(124,58,237,.1)}
-.mc-gift:hover::before{background:radial-gradient(ellipse at top left,rgba(192,132,252,.08),transparent 60%)}
+.mc-gift:hover{background:rgba(0,166,81,.1)}
+.mc-gift:hover::before{background:radial-gradient(ellipse at top left,rgba(37,211,102,.08),transparent 60%)}
 .mc-collection:hover{background:rgba(16,185,129,.06)}
 .mc-collection:hover::before{background:radial-gradient(ellipse at top left,rgba(16,185,129,.06),transparent 60%)}
 .mc-school:hover{background:rgba(59,130,246,.07)}
 .mc-school:hover::before{background:radial-gradient(ellipse at top left,rgba(59,130,246,.06),transparent 60%)}
 .mc-tips:hover{background:rgba(245,158,11,.06)}
 .mc-tips:hover::before{background:radial-gradient(ellipse at top left,rgba(245,158,11,.05),transparent 60%)}
-.mc-creator{background:linear-gradient(135deg,rgba(124,58,237,.12),rgba(236,72,153,.1));border-color:rgba(192,132,252,.2)}
-.mc-creator:hover{background:linear-gradient(135deg,rgba(124,58,237,.2),rgba(236,72,153,.15));border-color:rgba(192,132,252,.5);transform:translateY(-2px)}
-.mc-creator .mc-cta{color:#f472b6}
-.mc-creator-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(244,114,182,.12);border:1px solid rgba(244,114,182,.25);border-radius:20px;padding:4px 12px;font-size:11px;font-weight:700;color:#f472b6;margin-bottom:14px;letter-spacing:.04em;width:fit-content}
+.mc-creator{background:linear-gradient(135deg,rgba(0,166,81,.12),rgba(236,72,153,.1));border-color:rgba(37,211,102,.2)}
+.mc-creator:hover{background:linear-gradient(135deg,rgba(0,166,81,.2),rgba(236,72,153,.15));border-color:rgba(37,211,102,.5);transform:translateY(-2px)}
+.mc-creator .mc-cta{color:#4ADE80}
+.mc-creator-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(74,222,128,.12);border:1px solid rgba(74,222,128,.25);border-radius:20px;padding:4px 12px;font-size:11px;font-weight:700;color:#4ADE80;margin-bottom:14px;letter-spacing:.04em;width:fit-content}
 
 .mc-icon{font-size:36px;margin-bottom:14px;display:block;position:relative;z-index:1}
 .mc-name{font-size:20px;font-weight:900;margin-bottom:6px;position:relative;z-index:1}
 .mc-desc{font-size:13px;color:rgba(255,255,255,.45);line-height:1.6;margin-bottom:20px;flex:1;position:relative;z-index:1}
 .mc-examples{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:20px;position:relative;z-index:1}
 .mc-tag{font-size:11px;padding:3px 10px;border-radius:20px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.5)}
-.mc-cta{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:700;color:#c084fc;position:relative;z-index:1}
+.mc-cta{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:700;color:#25D366;position:relative;z-index:1}
 .mc-cta span{transition:.2s}
 .module-card:hover .mc-cta span{transform:translateX(3px)}
 
-.mc-gift .mc-cta{color:#c084fc}
+.mc-gift .mc-cta{color:#25D366}
 .mc-collection .mc-cta{color:#34d399}
 .mc-school .mc-cta{color:#60a5fa}
 .mc-tips .mc-cta{color:#fbbf24}

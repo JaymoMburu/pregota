@@ -6,9 +6,9 @@
 <title>Partners — Pregota Admin</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Segoe UI',system-ui,sans-serif;background:#0f0f1a;color:#fff;min-height:100vh}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;min-height:100vh}
 .nav{padding:14px 28px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,.08)}
-.logo{font-size:18px;font-weight:900;background:linear-gradient(135deg,#7c3aed,#db2777);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.logo{font-size:18px;font-weight:900;background:linear-gradient(135deg,#00A651,#007A33);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 .nav-links{display:flex;gap:12px}
 .back{color:rgba(255,255,255,.4);font-size:13px;text-decoration:none}
 .main{padding:28px;max-width:960px;margin:0 auto}
@@ -25,7 +25,7 @@ h1{font-size:20px;font-weight:800;margin-bottom:24px}
 .pc-cat{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;padding:2px 8px;border-radius:999px;margin-left:auto}
 .cat-shop{background:rgba(246,139,30,.15);color:#f68b1e}
 .cat-save{background:rgba(34,197,94,.12);color:#4ade80}
-.cat-invest{background:rgba(124,58,237,.15);color:#a78bfa}
+.cat-invest{background:rgba(0,166,81,.15);color:#a78bfa}
 .pc-tag{font-size:12px;color:rgba(255,255,255,.45);margin-bottom:12px;line-height:1.4}
 .pc-url{font-size:11px;color:rgba(255,255,255,.25);font-family:monospace;margin-bottom:12px;word-break:break-all}
 .pc-actions{display:flex;gap:8px}
@@ -42,9 +42,9 @@ h1{font-size:20px;font-weight:800;margin-bottom:24px}
 .form-group{display:flex;flex-direction:column;gap:5px}
 label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.4)}
 input,select{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:8px;padding:10px 12px;color:#fff;font-size:13px;outline:none}
-input:focus,select:focus{border-color:#7c3aed}
-select option{background:#1a1a2e}
-.submit-btn{background:linear-gradient(135deg,#7c3aed,#db2777);color:#fff;border:none;border-radius:10px;padding:11px 24px;font-size:14px;font-weight:700;cursor:pointer;margin-top:4px}
+input:focus,select:focus{border-color:#00A651}
+select option{background:#0B1810}
+.submit-btn{background:linear-gradient(135deg,#00A651,#007A33);color:#fff;border:none;border-radius:10px;padding:11px 24px;font-size:14px;font-weight:700;cursor:pointer;margin-top:4px}
 </style>
 </head>
 <body>
@@ -138,7 +138,7 @@ select option{background:#1a1a2e}
                 </div>
                 <div class="form-group">
                     <label>Brand Color</label>
-                    <input type="text" name="brand_color" placeholder="#F68B1E" value="#7c3aed" maxlength="20">
+                    <input type="text" name="brand_color" placeholder="#F68B1E" value="#00A651" maxlength="20">
                 </div>
             </div>
             <div class="form-group" style="margin-bottom:14px">

@@ -8,9 +8,9 @@
 <meta property="og:description" content="Zero-reconciliation welfare contributions for Kenyan groups. KES 35–60B flows through informal welfare collections in Kenya every year.">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-:root{--purple:#7c3aed;--pink:#db2777;--bg:#0f0f1a;--card:rgba(255,255,255,.04);--border:rgba(255,255,255,.08);--muted:rgba(255,255,255,.4);--subtle:rgba(255,255,255,.07)}
+:root{--purple:#00A651;--pink:#007A33;--bg:#0B141A;--card:rgba(255,255,255,.04);--border:rgba(255,255,255,.08);--muted:rgba(255,255,255,.4);--subtle:rgba(255,255,255,.07)}
 body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:#fff;line-height:1.6}
-a{color:#c084fc;text-decoration:none}
+a{color:#25D366;text-decoration:none}
 
 /* ── Layout ── */
 .slide{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:60px clamp(20px,6vw,120px);border-bottom:1px solid var(--border);position:relative;overflow:hidden}
@@ -20,21 +20,21 @@ h1{font-size:clamp(36px,6vw,72px);font-weight:900;line-height:1.08;letter-spacin
 h2{font-size:clamp(24px,4vw,44px);font-weight:900;line-height:1.12;letter-spacing:-.3px;margin-bottom:16px}
 h3{font-size:18px;font-weight:800;margin-bottom:8px}
 p{font-size:16px;color:rgba(255,255,255,.6);max-width:680px;line-height:1.75}
-em{font-style:normal;background:linear-gradient(135deg,#c084fc,#f472b6);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+em{font-style:normal;background:linear-gradient(135deg,#25D366,#4ADE80);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 strong{color:rgba(255,255,255,.9);font-weight:700}
 
 /* ── Blobs ── */
 .blob{position:absolute;border-radius:50%;filter:blur(120px);pointer-events:none;z-index:0}
-.blob-purple{background:#7c3aed}
-.blob-pink{background:#db2777}
+.blob-purple{background:#00A651}
+.blob-pink{background:#007A33}
 .slide>*:not(.blob){position:relative;z-index:1}
 
 /* ── Cover ── */
 #cover{background:linear-gradient(150deg,#080010,#150730 50%,#200840)}
 #cover h1{margin-bottom:20px}
 #cover .tagline{font-size:clamp(16px,2.2vw,22px);color:rgba(255,255,255,.5);max-width:600px;margin-bottom:40px;font-weight:400}
-.cover-badge{display:inline-flex;align-items:center;gap:8px;padding:8px 18px;border-radius:24px;background:rgba(124,58,237,.15);border:1px solid rgba(124,58,237,.3);font-size:13px;color:#c084fc;font-weight:700;margin-bottom:32px;letter-spacing:.04em}
-.logo-mark{font-size:clamp(18px,2.5vw,26px);font-weight:900;background:linear-gradient(135deg,#c084fc,#f472b6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:40px;display:block}
+.cover-badge{display:inline-flex;align-items:center;gap:8px;padding:8px 18px;border-radius:24px;background:rgba(0,166,81,.15);border:1px solid rgba(0,166,81,.3);font-size:13px;color:#25D366;font-weight:700;margin-bottom:32px;letter-spacing:.04em}
+.logo-mark{font-size:clamp(18px,2.5vw,26px);font-weight:900;background:linear-gradient(135deg,#25D366,#4ADE80);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:40px;display:block}
 
 /* ── Quote / Story ── */
 .story-quote{font-size:clamp(18px,2.5vw,28px);font-weight:700;color:#fff;line-height:1.45;max-width:760px;margin-bottom:32px;border-left:3px solid var(--purple);padding-left:24px}
@@ -45,7 +45,7 @@ strong{color:rgba(255,255,255,.9);font-weight:700}
 .problem-card{background:rgba(239,68,68,.06);border:1px solid rgba(239,68,68,.18);border-radius:14px;padding:22px}
 .problem-card h3{color:#fca5a5;font-size:15px;margin-bottom:8px}
 .problem-card p{font-size:13px;color:rgba(255,255,255,.45);line-height:1.65;max-width:none}
-.big-stat{font-size:clamp(40px,7vw,90px);font-weight:900;line-height:1;margin:32px 0 8px;background:linear-gradient(135deg,#c084fc,#f472b6);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.big-stat{font-size:clamp(40px,7vw,90px);font-weight:900;line-height:1;margin:32px 0 8px;background:linear-gradient(135deg,#25D366,#4ADE80);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 .big-stat-label{font-size:16px;color:rgba(255,255,255,.45)}
 
 /* ── Steps ── */
@@ -60,7 +60,7 @@ strong{color:rgba(255,255,255,.9);font-weight:700}
 /* ── Stats row ── */
 .stats-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin-top:32px;max-width:800px}
 .stat-box{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:20px}
-.stat-box .num{font-size:32px;font-weight:900;background:linear-gradient(135deg,#c084fc,#f472b6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1}
+.stat-box .num{font-size:32px;font-weight:900;background:linear-gradient(135deg,#25D366,#4ADE80);-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1}
 .stat-box .lbl{font-size:12px;color:var(--muted);margin-top:6px}
 
 /* ── Tables ── */
@@ -68,7 +68,7 @@ strong{color:rgba(255,255,255,.9);font-weight:700}
 .deck-table th{padding:10px 14px;text-align:left;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);border-bottom:1px solid var(--border)}
 .deck-table td{padding:12px 14px;border-bottom:1px solid rgba(255,255,255,.04);color:rgba(255,255,255,.7);vertical-align:top}
 .deck-table tr:last-child td{border-bottom:none}
-.deck-table .hi{color:#c084fc;font-weight:700}
+.deck-table .hi{color:#25D366;font-weight:700}
 .deck-table .check{color:#4ade80;font-weight:700}
 .deck-table .cross{color:rgba(255,255,255,.2)}
 
@@ -78,7 +78,7 @@ strong{color:rgba(255,255,255,.9);font-weight:700}
 .module-card .icon{font-size:22px;margin-bottom:8px}
 .module-card h3{font-size:14px;font-weight:700;margin-bottom:4px}
 .module-card p{font-size:12px;color:var(--muted);max-width:none;line-height:1.55}
-.module-card .fee{font-size:12px;color:#c084fc;font-weight:700;margin-top:8px}
+.module-card .fee{font-size:12px;color:#25D366;font-weight:700;margin-top:8px}
 
 /* ── Roadmap ── */
 .roadmap{display:flex;flex-direction:column;gap:16px;max-width:720px;margin-top:28px}
@@ -87,7 +87,7 @@ strong{color:rgba(255,255,255,.9);font-weight:700}
 .phase h3{font-size:15px;font-weight:700;margin-bottom:8px}
 .phase ul{padding-left:16px;display:flex;flex-direction:column;gap:4px}
 .phase ul li{font-size:13px;color:rgba(255,255,255,.5)}
-.phase.active{border-color:rgba(124,58,237,.35);background:rgba(124,58,237,.07)}
+.phase.active{border-color:rgba(0,166,81,.35);background:rgba(0,166,81,.07)}
 
 /* ── Ask ── */
 .fund-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:800px;margin-top:28px}
@@ -96,24 +96,24 @@ strong{color:rgba(255,255,255,.9);font-weight:700}
 .fund-card h3{font-size:13px;font-weight:700;margin-bottom:10px;color:rgba(255,255,255,.6);text-transform:uppercase;letter-spacing:.06em}
 .fund-item{display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:13px}
 .fund-item:last-child{border-bottom:none}
-.fund-item .pct{color:#c084fc;font-weight:700}
+.fund-item .pct{color:#25D366;font-weight:700}
 
 /* ── Closing ── */
 #closing{background:linear-gradient(150deg,#080010,#150730 50%,#200840);text-align:center;align-items:center}
 #closing h2{text-align:center}
 #closing p{text-align:center;margin:0 auto}
-.closing-stat{font-size:clamp(48px,9vw,100px);font-weight:900;line-height:1;background:linear-gradient(135deg,#c084fc,#f472b6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin:28px 0 8px}
+.closing-stat{font-size:clamp(48px,9vw,100px);font-weight:900;line-height:1;background:linear-gradient(135deg,#25D366,#4ADE80);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin:28px 0 8px}
 .closing-sub{font-size:18px;color:rgba(255,255,255,.4);margin-bottom:40px}
 .contact{font-size:15px;color:rgba(255,255,255,.4);margin-top:40px}
-.contact a{color:#c084fc}
+.contact a{color:#25D366}
 
 /* ── Nav dots ── */
 .nav-dots{position:fixed;right:20px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:8px;z-index:100}
 .dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.15);cursor:pointer;transition:.2s}
-.dot.active{background:#c084fc;transform:scale(1.3)}
+.dot.active{background:#25D366;transform:scale(1.3)}
 
 /* ── Progress bar ── */
-.progress{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,#7c3aed,#db2777);z-index:200;transition:.1s}
+.progress{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,#00A651,#007A33);z-index:200;transition:.1s}
 
 @media(max-width:600px){
     .slide{padding:48px 20px}
@@ -257,7 +257,7 @@ strong{color:rgba(255,255,255,.9);font-weight:700}
     <table class="deck-table">
         <tr>
             <th>Feature</th>
-            <th style="color:#c084fc">Pregota</th>
+            <th style="color:#25D366">Pregota</th>
             <th>Mchanga</th>
             <th>Paybill</th>
             <th>Personal M-Pesa</th>

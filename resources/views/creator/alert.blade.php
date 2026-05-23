@@ -11,10 +11,10 @@ body{background:transparent;font-family:'Segoe UI',system-ui,sans-serif;overflow
 .alert-wrap{position:fixed;bottom:24px;left:24px;width:380px;pointer-events:none}
 
 .gift-alert{
-    background:linear-gradient(135deg,rgba(124,58,237,.95),rgba(219,39,119,.9));
+    background:linear-gradient(135deg,rgba(0,166,81,.95),rgba(0,122,51,.9));
     border-radius:16px;padding:16px 20px;
     display:flex;align-items:center;gap:14px;
-    box-shadow:0 8px 32px rgba(124,58,237,.4);
+    box-shadow:0 8px 32px rgba(0,166,81,.4);
     transform:translateX(-120%);opacity:0;
     transition:transform .5s cubic-bezier(.34,1.56,.64,1), opacity .4s ease;
 }

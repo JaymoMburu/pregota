@@ -6,9 +6,9 @@
 <title>Businesses — Pregota Admin</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Segoe UI',system-ui,sans-serif;background:#0f0f1a;color:#fff;min-height:100vh}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;min-height:100vh}
 .nav{padding:14px 24px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,.08)}
-.logo{font-size:18px;font-weight:900;background:linear-gradient(135deg,#7c3aed,#db2777);-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-decoration:none}
+.logo{font-size:18px;font-weight:900;background:linear-gradient(135deg,#00A651,#007A33);-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-decoration:none}
 .nav-links{display:flex;gap:16px;align-items:center}
 .nav-link{color:rgba(255,255,255,.45);text-decoration:none;font-size:13px}
 .nav-link.active{color:#a78bfa;font-weight:600}
@@ -28,14 +28,14 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0f0f1a;color:#fff;m
 .biz-meta{font-size:11px;color:rgba(255,255,255,.35);margin-top:2px}
 .plan-badge{display:inline-block;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700}
 .plan-badge.free{background:rgba(255,255,255,.08);color:rgba(255,255,255,.5)}
-.plan-badge.paid{background:linear-gradient(135deg,#7c3aed,#db2777);color:#fff}
+.plan-badge.paid{background:linear-gradient(135deg,#00A651,#007A33);color:#fff}
 .expires{font-size:11px;color:rgba(255,255,255,.35)}
 .expires.soon{color:#fbbf24}
 .expires.expired{color:#f87171}
 .actions{display:flex;gap:6px;align-items:center}
 .btn-sm{background:none;border:1px solid rgba(255,255,255,.1);border-radius:6px;padding:5px 12px;color:rgba(255,255,255,.5);font-size:11px;cursor:pointer;text-decoration:none;display:inline-block}
 .btn-sm:hover{background:rgba(255,255,255,.06);color:#fff}
-.btn-sm.primary{color:#a78bfa;border-color:rgba(124,58,237,.3)}
+.btn-sm.primary{color:#a78bfa;border-color:rgba(0,166,81,.3)}
 .btn-sm.danger{color:#f87171;border-color:rgba(239,68,68,.2)}
 
 /* Subscribe modal */
@@ -45,10 +45,10 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0f0f1a;color:#fff;m
 .modal-title{font-size:16px;font-weight:800;margin-bottom:18px}
 label{display:block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.4);margin-bottom:6px}
 select,input{width:100%;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:8px;padding:10px 12px;color:#fff;font-size:13px;outline:none;font-family:inherit;margin-bottom:14px}
-select option{background:#1a1a2e}
-select:focus,input:focus{border-color:#7c3aed}
+select option{background:#0B1810}
+select:focus,input:focus{border-color:#00A651}
 .modal-btns{display:flex;gap:10px;margin-top:4px}
-.btn-primary{background:linear-gradient(135deg,#7c3aed,#db2777);color:#fff;border:none;border-radius:8px;padding:10px 20px;font-size:13px;font-weight:700;cursor:pointer;flex:1}
+.btn-primary{background:linear-gradient(135deg,#00A651,#007A33);color:#fff;border:none;border-radius:8px;padding:10px 20px;font-size:13px;font-weight:700;cursor:pointer;flex:1}
 .btn-cancel{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.5);border-radius:8px;padding:10px 20px;font-size:13px;font-weight:600;cursor:pointer}
 .no-data{text-align:center;padding:40px;color:rgba(255,255,255,.25);font-size:13px}
 </style>

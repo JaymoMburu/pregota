@@ -6,14 +6,14 @@
 <title>Manage Collection — {{ $collection->title }}</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Segoe UI',system-ui,sans-serif;background:#0f0f1a;color:#fff;min-height:100vh}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;min-height:100vh}
 
-.topbar{padding:14px 20px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,.07);background:#0f0f1a}
-.logo{font-size:18px;font-weight:900;background:linear-gradient(135deg,#c084fc,#f472b6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-decoration:none}
+.topbar{padding:14px 20px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,.07);background:#0B141A}
+.logo{font-size:18px;font-weight:900;background:linear-gradient(135deg,#25D366,#4ADE80);-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-decoration:none}
 .badge{font-size:11px;padding:4px 10px;border-radius:20px;font-weight:700}
 .badge.open{background:rgba(34,197,94,.15);border:1px solid rgba(34,197,94,.3);color:#4ade80}
 .badge.closed{background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.25);color:#f87171}
-.badge.paid{background:rgba(124,58,237,.15);border:1px solid rgba(124,58,237,.3);color:#c084fc}
+.badge.paid{background:rgba(0,166,81,.15);border:1px solid rgba(0,166,81,.3);color:#25D366}
 
 .page{max-width:700px;margin:0 auto;padding:24px 20px 60px}
 
@@ -27,24 +27,24 @@ h2{font-size:22px;font-weight:900;margin-bottom:4px}
 .stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:24px}
 .stat-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:16px;text-align:center}
 .stat-num{font-size:26px;font-weight:900}
-.stat-num.purple{color:#c084fc}
+.stat-num.purple{color:#25D366}
 .stat-label{font-size:11px;color:rgba(255,255,255,.4);margin-top:3px}
 
 .progress-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:16px;margin-bottom:24px}
 .progress-head{display:flex;justify-content:space-between;font-size:13px;color:rgba(255,255,255,.45);margin-bottom:8px}
 .progress-bar-wrap{height:8px;background:rgba(255,255,255,.08);border-radius:4px;overflow:hidden}
-.progress-bar-fill{height:100%;background:linear-gradient(90deg,#7c3aed,#db2777);border-radius:4px}
+.progress-bar-fill{height:100%;background:linear-gradient(90deg,#00A651,#007A33);border-radius:4px}
 
 .section-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.35);margin-bottom:12px}
 
 .share-block{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:16px;margin-bottom:24px}
 .link-row{display:flex;gap:8px;align-items:center;margin-top:8px}
 .link-input{flex:1;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:8px;padding:10px 12px;color:rgba(255,255,255,.6);font-size:12px;outline:none;font-family:monospace}
-.copy-btn{padding:10px 16px;border-radius:8px;background:rgba(124,58,237,.2);border:1px solid rgba(124,58,237,.3);color:#c084fc;font-size:12px;font-weight:700;cursor:pointer;white-space:nowrap}
+.copy-btn{padding:10px 16px;border-radius:8px;background:rgba(0,166,81,.2);border:1px solid rgba(0,166,81,.3);color:#25D366;font-size:12px;font-weight:700;cursor:pointer;white-space:nowrap}
 .wa-btn{display:inline-flex;align-items:center;gap:6px;padding:10px 16px;border-radius:8px;background:#25d366;color:#fff;font-size:12px;font-weight:700;text-decoration:none;white-space:nowrap}
 
 .actions-row{display:flex;gap:10px;margin-bottom:24px;flex-wrap:wrap}
-.btn-payout{flex:1;min-width:160px;padding:14px;border-radius:10px;border:none;font-size:14px;font-weight:700;cursor:pointer;background:linear-gradient(135deg,#7c3aed,#db2777);color:#fff}
+.btn-payout{flex:1;min-width:160px;padding:14px;border-radius:10px;border:none;font-size:14px;font-weight:700;cursor:pointer;background:linear-gradient(135deg,#00A651,#007A33);color:#fff}
 .btn-payout:hover{opacity:.9}
 .btn-close{flex:1;min-width:120px;padding:14px;border-radius:10px;border:1px solid rgba(239,68,68,.35);background:rgba(239,68,68,.08);color:#f87171;font-size:14px;font-weight:700;cursor:pointer}
 .btn-close:hover{background:rgba(239,68,68,.14)}

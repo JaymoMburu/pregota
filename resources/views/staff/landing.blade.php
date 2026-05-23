@@ -8,21 +8,21 @@
 @include('partials.pwa')
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Segoe UI',system-ui,sans-serif;background:#0f0f1a;color:#fff;min-height:100vh}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;min-height:100vh}
 
 /* Nav */
-.nav{padding:14px 24px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,.08);position:sticky;top:0;background:#0f0f1a;z-index:10}
-.logo{font-size:20px;font-weight:900;background:linear-gradient(135deg,#7c3aed,#db2777);-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-decoration:none}
-.nav-cta{background:linear-gradient(135deg,#7c3aed,#db2777);color:#fff;border:none;border-radius:8px;padding:8px 18px;font-size:13px;font-weight:700;cursor:pointer;text-decoration:none}
+.nav{padding:14px 24px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,.08);position:sticky;top:0;background:#0B141A;z-index:10}
+.logo{font-size:20px;font-weight:900;background:linear-gradient(135deg,#00A651,#007A33);-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-decoration:none}
+.nav-cta{background:linear-gradient(135deg,#00A651,#007A33);color:#fff;border:none;border-radius:8px;padding:8px 18px;font-size:13px;font-weight:700;cursor:pointer;text-decoration:none}
 
 /* Hero */
 .hero{padding:64px 24px 48px;text-align:center;max-width:580px;margin:0 auto;position:relative}
 .shield-badge{display:inline-flex;align-items:center;gap:7px;background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.25);border-radius:20px;padding:6px 16px;font-size:12px;font-weight:700;color:#4ade80;margin-bottom:24px;letter-spacing:.05em}
 .hero h1{font-size:clamp(32px,6vw,52px);font-weight:900;line-height:1.1;letter-spacing:-.5px;margin-bottom:18px}
-.hero h1 em{font-style:normal;background:linear-gradient(135deg,#c084fc,#f472b6);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero h1 em{font-style:normal;background:linear-gradient(135deg,#25D366,#4ADE80);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 .hero p{font-size:16px;color:rgba(255,255,255,.55);line-height:1.7;margin-bottom:32px;max-width:420px;margin-left:auto;margin-right:auto}
 .hero-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
-.btn-primary{background:linear-gradient(135deg,#7c3aed,#db2777);color:#fff;border:none;border-radius:12px;padding:14px 28px;font-size:15px;font-weight:700;cursor:pointer;text-decoration:none;display:inline-block}
+.btn-primary{background:linear-gradient(135deg,#00A651,#007A33);color:#fff;border:none;border-radius:12px;padding:14px 28px;font-size:15px;font-weight:700;cursor:pointer;text-decoration:none;display:inline-block}
 .btn-secondary{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.7);border-radius:12px;padding:14px 28px;font-size:15px;font-weight:700;text-decoration:none;display:inline-block}
 
 /* Risk section */
@@ -40,12 +40,12 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0f0f1a;color:#fff;m
 .risk-text span{font-size:12px;color:rgba(255,255,255,.4);line-height:1.55}
 
 /* How it works */
-.how{background:rgba(124,58,237,.05);border-top:1px solid rgba(124,58,237,.1);border-bottom:1px solid rgba(124,58,237,.1);padding:56px 24px}
+.how{background:rgba(0,166,81,.05);border-top:1px solid rgba(0,166,81,.1);border-bottom:1px solid rgba(0,166,81,.1);padding:56px 24px}
 .how-inner{max-width:680px;margin:0 auto}
 .steps{display:flex;flex-direction:column;gap:0;margin-top:28px}
 .step{display:flex;gap:20px;padding:20px 0;border-bottom:1px solid rgba(255,255,255,.05)}
 .step:last-child{border-bottom:none}
-.step-num{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#7c3aed,#db2777);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:900;flex-shrink:0;margin-top:2px}
+.step-num{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#00A651,#007A33);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:900;flex-shrink:0;margin-top:2px}
 .step-body h3{font-size:15px;font-weight:700;margin-bottom:4px}
 .step-body p{font-size:13px;color:rgba(255,255,255,.45);line-height:1.6}
 
@@ -57,12 +57,12 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0f0f1a;color:#fff;m
 .split-steps{display:flex;flex-direction:column;gap:0;margin-top:28px}
 .split-step{display:flex;gap:20px;padding:20px 0;border-bottom:1px solid rgba(74,222,128,.08)}
 .split-step:last-child{border-bottom:none}
-.split-num{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#059669,#4ade80);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:900;flex-shrink:0;margin-top:2px;color:#0f0f1a}
+.split-num{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#059669,#4ade80);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:900;flex-shrink:0;margin-top:2px;color:#0B141A}
 .split-body h3{font-size:15px;font-weight:700;margin-bottom:4px}
 .split-body p{font-size:13px;color:rgba(255,255,255,.45);line-height:1.6}
-.split-bonus{margin-top:28px;background:rgba(124,58,237,.08);border:1px solid rgba(124,58,237,.2);border-radius:14px;padding:20px;display:flex;gap:14px;align-items:flex-start}
+.split-bonus{margin-top:28px;background:rgba(0,166,81,.08);border:1px solid rgba(0,166,81,.2);border-radius:14px;padding:20px;display:flex;gap:14px;align-items:flex-start}
 .split-bonus-icon{font-size:28px;flex-shrink:0}
-.split-bonus h4{font-size:14px;font-weight:700;color:#c084fc;margin-bottom:4px}
+.split-bonus h4{font-size:14px;font-weight:700;color:#25D366;margin-bottom:4px}
 .split-bonus p{font-size:13px;color:rgba(255,255,255,.45);line-height:1.6}
 .split-cta{margin-top:28px;display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#059669,#10b981);color:#fff;border:none;border-radius:12px;padding:14px 28px;font-size:15px;font-weight:700;text-decoration:none}
 
@@ -74,7 +74,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0f0f1a;color:#fff;m
 .fb-stars{font-size:14px;letter-spacing:1px;margin-bottom:8px}
 .fb-text{font-size:13px;color:rgba(255,255,255,.65);line-height:1.6;margin-bottom:12px;min-height:40px}
 .fb-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
-.fb-tag{background:rgba(124,58,237,.15);border:1px solid rgba(124,58,237,.25);border-radius:20px;padding:3px 10px;font-size:11px;color:#c084fc;font-weight:600}
+.fb-tag{background:rgba(0,166,81,.15);border:1px solid rgba(0,166,81,.25);border-radius:20px;padding:3px 10px;font-size:11px;color:#25D366;font-weight:600}
 .fb-footer{font-size:11px;color:rgba(255,255,255,.25);display:flex;justify-content:space-between}
 .fb-amount{color:#4ade80;font-weight:700;font-size:12px}
 
@@ -97,7 +97,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0f0f1a;color:#fff;m
 .job-sub{font-size:11px;color:rgba(255,255,255,.35);margin-top:2px}
 
 /* CTA bottom */
-.cta-bottom{background:linear-gradient(135deg,rgba(124,58,237,.15),rgba(219,39,119,.1));border-top:1px solid rgba(124,58,237,.2);padding:64px 24px;text-align:center}
+.cta-bottom{background:linear-gradient(135deg,rgba(0,166,81,.15),rgba(0,122,51,.1));border-top:1px solid rgba(0,166,81,.2);padding:64px 24px;text-align:center}
 .cta-bottom h2{font-size:clamp(24px,4vw,36px);font-weight:900;margin-bottom:12px}
 .cta-bottom p{font-size:15px;color:rgba(255,255,255,.5);margin-bottom:32px;line-height:1.6}
 
@@ -179,7 +179,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0f0f1a;color:#fff;m
                 <div class="step-num">1</div>
                 <div class="step-body">
                     <h3>Create your free tip page</h3>
-                    <p>Sign up in 2 minutes. Add your name, role, and M-Pesa number privately. You get a personal link like <strong style="color:#c084fc">pregota.com/t/grace</strong></p>
+                    <p>Sign up in 2 minutes. Add your name, role, and M-Pesa number privately. You get a personal link like <strong style="color:#25D366">pregota.com/t/grace</strong></p>
                 </div>
             </div>
             <div class="step">

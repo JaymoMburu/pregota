@@ -6,9 +6,9 @@
 <title>Pregota Admin Dashboard</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Segoe UI',system-ui,sans-serif;background:#0f0f1a;color:#fff;min-height:100vh}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;min-height:100vh}
 .nav{padding:14px 28px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,.08);background:rgba(0,0,0,.3)}
-.logo{font-size:18px;font-weight:900;background:linear-gradient(135deg,#7c3aed,#db2777);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.logo{font-size:18px;font-weight:900;background:linear-gradient(135deg,#00A651,#007A33);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 .nav-right{display:flex;gap:12px;align-items:center}
 .logout{color:rgba(255,255,255,.4);font-size:13px;text-decoration:none}
 .main{padding:28px}
@@ -18,7 +18,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0f0f1a;color:#fff;m
 .kpi-val{font-size:24px;font-weight:900}
 .kpi-val.green{color:#22c55e}
 .kpi-val.purple{color:#a78bfa}
-.kpi-val.pink{color:#f472b6}
+.kpi-val.pink{color:#4ADE80}
 .kpi-val.yellow{color:#fbbf24}
 .table-wrap{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:16px;overflow:hidden}
 .table-header{padding:16px 20px;border-bottom:1px solid rgba(255,255,255,.07);display:flex;justify-content:space-between;align-items:center}

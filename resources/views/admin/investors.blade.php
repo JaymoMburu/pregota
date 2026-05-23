@@ -6,9 +6,9 @@
 <title>Pregota Admin — Investors</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Segoe UI',system-ui,sans-serif;background:#0f0f1a;color:#fff;min-height:100vh}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;min-height:100vh}
 .nav{padding:14px 28px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,.08);background:rgba(0,0,0,.3)}
-.logo{font-size:18px;font-weight:900;background:linear-gradient(135deg,#7c3aed,#db2777);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.logo{font-size:18px;font-weight:900;background:linear-gradient(135deg,#00A651,#007A33);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 .nav-links{display:flex;gap:20px;align-items:center}
 .nav-links a{color:rgba(255,255,255,.4);font-size:13px;text-decoration:none}
 .nav-links a:hover,.nav-links a.active{color:#a78bfa}
@@ -25,9 +25,9 @@ h1{font-size:20px;font-weight:800;margin-bottom:4px}
 .field{display:flex;flex-direction:column;gap:5px}
 .field label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.35)}
 .field input,.field select,.field textarea{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:9px;padding:9px 12px;color:#fff;font-size:13px;outline:none}
-.field select option{background:#1a1a2e;color:#fff}
-.field input:focus,.field select:focus{border-color:rgba(124,58,237,.5)}
-.btn-add{background:linear-gradient(135deg,#7c3aed,#db2777);border:none;border-radius:9px;padding:10px 20px;color:#fff;font-size:13px;font-weight:700;cursor:pointer;margin-top:8px}
+.field select option{background:#0B1810;color:#fff}
+.field input:focus,.field select:focus{border-color:rgba(0,166,81,.5)}
+.btn-add{background:linear-gradient(135deg,#00A651,#007A33);border:none;border-radius:9px;padding:10px 20px;color:#fff;font-size:13px;font-weight:700;cursor:pointer;margin-top:8px}
 
 /* Table */
 .panel{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:16px;overflow:hidden}
@@ -40,12 +40,12 @@ tr:hover td{background:rgba(255,255,255,.02)}
 .badge{display:inline-flex;padding:2px 10px;border-radius:999px;font-size:11px;font-weight:700}
 .badge.active{background:rgba(52,211,153,.15);color:#4ade80}
 .badge.inactive{background:rgba(255,255,255,.08);color:rgba(255,255,255,.4)}
-.type-badge{display:inline-block;background:rgba(124,58,237,.15);color:#a78bfa;font-size:11px;font-weight:700;padding:2px 8px;border-radius:6px}
+.type-badge{display:inline-block;background:rgba(0,166,81,.15);color:#a78bfa;font-size:11px;font-weight:700;padding:2px 8px;border-radius:6px}
 .action-btn{font-size:11px;font-weight:700;padding:4px 10px;border-radius:6px;border:1px solid;cursor:pointer;background:none}
 .action-btn.toggle{border-color:rgba(251,191,36,.3);color:#fbbf24}
 .action-btn.toggle:hover{background:rgba(251,191,36,.1)}
-.action-btn.reset{border-color:rgba(124,58,237,.3);color:#a78bfa;margin-left:6px}
-.action-btn.reset:hover{background:rgba(124,58,237,.1)}
+.action-btn.reset{border-color:rgba(0,166,81,.3);color:#a78bfa;margin-left:6px}
+.action-btn.reset:hover{background:rgba(0,166,81,.1)}
 .pw-form{display:inline}
 .pw-input{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:6px;padding:3px 8px;color:#fff;font-size:11px;width:110px;outline:none;margin-left:6px}
 </style>

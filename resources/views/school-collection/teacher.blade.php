@@ -6,10 +6,10 @@
 <title>{{ $class->class_name }} — Collection Tracker</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Segoe UI',system-ui,sans-serif;background:#0f0f1a;color:#fff;min-height:100vh}
-.topbar{padding:14px 20px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,.07);background:#0f0f1a;position:sticky;top:0;z-index:10}
-.logo{font-size:18px;font-weight:900;background:linear-gradient(135deg,#c084fc,#f472b6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-decoration:none}
-.teacher-badge{font-size:11px;padding:4px 12px;border-radius:20px;background:rgba(124,58,237,.15);border:1px solid rgba(124,58,237,.3);color:#c084fc;font-weight:700}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;min-height:100vh}
+.topbar{padding:14px 20px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,.07);background:#0B141A;position:sticky;top:0;z-index:10}
+.logo{font-size:18px;font-weight:900;background:linear-gradient(135deg,#25D366,#4ADE80);-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-decoration:none}
+.teacher-badge{font-size:11px;padding:4px 12px;border-radius:20px;background:rgba(0,166,81,.15);border:1px solid rgba(0,166,81,.3);color:#25D366;font-weight:700}
 
 .hero{padding:24px 20px 16px;max-width:640px;margin:0 auto}
 .school-label{font-size:12px;color:rgba(255,255,255,.35);margin-bottom:6px}
@@ -25,7 +25,7 @@ h1{font-size:clamp(20px,4.5vw,28px);font-weight:900;line-height:1.15;margin-bott
 .stat-num.green{color:#4ade80}
 .stat-num.teal{color:#2dd4bf}
 .stat-num.amber{color:#fbbf24}
-.stat-num.purple{color:#c084fc}
+.stat-num.purple{color:#25D366}
 .stat-label{font-size:10px;color:rgba(255,255,255,.4);margin-top:4px;line-height:1.3}
 
 /* Share parent link */
@@ -33,7 +33,7 @@ h1{font-size:clamp(20px,4.5vw,28px);font-weight:900;line-height:1.15;margin-bott
 .card-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.35);margin-bottom:10px}
 .link-row{display:flex;gap:8px;align-items:center;margin-bottom:10px}
 .link-input{flex:1;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:9px 10px;color:rgba(255,255,255,.6);font-size:12px;outline:none;font-family:monospace}
-.copy-btn{padding:8px 14px;border-radius:8px;background:rgba(124,58,237,.2);border:1px solid rgba(124,58,237,.3);color:#c084fc;font-size:12px;font-weight:700;cursor:pointer;white-space:nowrap}
+.copy-btn{padding:8px 14px;border-radius:8px;background:rgba(0,166,81,.2);border:1px solid rgba(0,166,81,.3);color:#25D366;font-size:12px;font-weight:700;cursor:pointer;white-space:nowrap}
 .wa-btn{display:inline-flex;align-items:center;gap:6px;padding:9px 14px;border-radius:8px;background:#25d366;color:#fff;font-size:12px;font-weight:700;text-decoration:none}
 .nudge-btn{display:inline-flex;align-items:center;gap:6px;padding:9px 14px;border-radius:8px;background:rgba(251,191,36,.1);border:1px solid rgba(251,191,36,.25);color:#fbbf24;font-size:12px;font-weight:700;text-decoration:none;cursor:pointer}
 
@@ -42,7 +42,7 @@ h1{font-size:clamp(20px,4.5vw,28px);font-weight:900;line-height:1.15;margin-bott
 .student-item{padding:12px 0;border-bottom:1px solid rgba(255,255,255,.05)}
 .student-item:last-child{border-bottom:none}
 .student-top{display:flex;align-items:center;gap:12px;margin-bottom:7px}
-.avatar{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#7c3aed,#db2777);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0}
+.avatar{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#00A651,#007A33);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0}
 .student-name{flex:1;font-size:14px;font-weight:600;color:rgba(255,255,255,.85)}
 .student-id{font-size:11px;color:rgba(255,255,255,.3);font-weight:400;margin-left:6px;font-family:monospace}
 .full-badge{font-size:11px;padding:3px 9px;border-radius:10px;background:rgba(74,222,128,.12);border:1px solid rgba(74,222,128,.25);color:#4ade80;font-weight:700}
@@ -53,7 +53,7 @@ h1{font-size:clamp(20px,4.5vw,28px);font-weight:900;line-height:1.15;margin-bott
 .amt-separator{color:rgba(255,255,255,.15)}
 /* Mini progress bar */
 .mini-bar{height:4px;background:rgba(255,255,255,.08);border-radius:2px;margin:0 0 0 46px;overflow:hidden}
-.mini-bar-fill{height:100%;background:linear-gradient(90deg,#7c3aed,#4ade80);border-radius:2px;transition:width .3s}
+.mini-bar-fill{height:100%;background:linear-gradient(90deg,#00A651,#4ade80);border-radius:2px;transition:width .3s}
 .student-time{padding-left:46px;font-size:11px;color:rgba(255,255,255,.25);margin-top:4px}
 
 /* Pending */

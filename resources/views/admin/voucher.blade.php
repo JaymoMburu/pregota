@@ -6,13 +6,13 @@
 <title>Voucher {{ $voucher->code }} — Pregota Admin</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Segoe UI',system-ui,sans-serif;background:#0f0f1a;color:#fff;min-height:100vh}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;min-height:100vh}
 .nav{padding:14px 28px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,.08)}
-.logo{font-size:18px;font-weight:900;background:linear-gradient(135deg,#7c3aed,#db2777);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.logo{font-size:18px;font-weight:900;background:linear-gradient(135deg,#00A651,#007A33);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 .back{color:rgba(255,255,255,.4);font-size:13px;text-decoration:none}
 .main{padding:28px;max-width:900px;margin:0 auto}
 .voucher-hero{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:16px;padding:28px;margin-bottom:24px;display:flex;gap:24px;flex-wrap:wrap;align-items:center}
-.code-big{font-family:monospace;font-size:32px;font-weight:900;letter-spacing:.12em;background:linear-gradient(135deg,#7c3aed,#db2777);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.code-big{font-family:monospace;font-size:32px;font-weight:900;letter-spacing:.12em;background:linear-gradient(135deg,#00A651,#007A33);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 .badge{display:inline-flex;padding:4px 14px;border-radius:999px;font-size:12px;font-weight:700}
 .badge.active{background:rgba(34,197,94,.15);color:#4ade80}
 .badge.redeemed{background:rgba(167,139,250,.15);color:#a78bfa}
@@ -29,7 +29,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0f0f1a;color:#fff;m
 .ledger h3{padding:14px 20px;border-bottom:1px solid rgba(255,255,255,.07);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.35)}
 .entry{padding:12px 20px;border-bottom:1px solid rgba(255,255,255,.05);display:flex;gap:16px;align-items:flex-start}
 .entry:last-child{border-bottom:none}
-.event-dot{width:8px;height:8px;border-radius:50%;background:#7c3aed;flex-shrink:0;margin-top:5px}
+.event-dot{width:8px;height:8px;border-radius:50%;background:#00A651;flex-shrink:0;margin-top:5px}
 .event-name{font-size:12px;font-weight:700;color:#a78bfa;margin-bottom:4px}
 .event-hash{font-family:monospace;font-size:10px;color:rgba(255,255,255,.25);word-break:break-all}
 .event-payload{font-size:11px;color:rgba(255,255,255,.45);margin-top:4px}

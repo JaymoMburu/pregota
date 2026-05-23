@@ -6,10 +6,10 @@
 <title>My Dashboard — Pregota</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Segoe UI',system-ui,sans-serif;background:#0f0f1a;color:#fff;min-height:100vh}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;min-height:100vh}
 
-.topbar{padding:14px 20px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,.07);background:#0f0f1a;position:sticky;top:0;z-index:10}
-.logo{font-size:18px;font-weight:900;background:linear-gradient(135deg,#c084fc,#f472b6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-decoration:none}
+.topbar{padding:14px 20px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,.07);background:#0B141A;position:sticky;top:0;z-index:10}
+.logo{font-size:18px;font-weight:900;background:linear-gradient(135deg,#25D366,#4ADE80);-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-decoration:none}
 .logout-btn{font-size:12px;color:rgba(255,255,255,.35);background:none;border:none;cursor:pointer;padding:6px 10px}
 
 .page{max-width:640px;margin:0 auto;padding:24px 20px 60px}
@@ -19,7 +19,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0f0f1a;color:#fff;m
 
 /* Profile header */
 .profile-header{display:flex;align-items:center;gap:16px;margin-bottom:28px}
-.avatar{width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,#7c3aed,#db2777);display:flex;align-items:center;justify-content:center;font-size:28px;flex-shrink:0}
+.avatar{width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,#00A651,#007A33);display:flex;align-items:center;justify-content:center;font-size:28px;flex-shrink:0}
 .profile-info h2{font-size:20px;font-weight:900}
 .profile-info .role{font-size:13px;color:rgba(255,255,255,.45);margin-top:2px}
 .rating-badge{display:inline-flex;align-items:center;gap:4px;font-size:12px;color:#fbbf24;margin-top:4px}
@@ -27,15 +27,15 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0f0f1a;color:#fff;m
 /* Stats */
 .stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:24px}
 .stat-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:16px;text-align:center}
-.stat-num{font-size:24px;font-weight:900;color:#c084fc}
+.stat-num{font-size:24px;font-weight:900;color:#25D366}
 .stat-label{font-size:11px;color:rgba(255,255,255,.4);margin-top:3px}
 
 /* Tip link card */
-.link-card{background:linear-gradient(135deg,rgba(124,58,237,.15),rgba(219,39,119,.08));border:1px solid rgba(124,58,237,.25);border-radius:14px;padding:20px;margin-bottom:24px}
+.link-card{background:linear-gradient(135deg,rgba(0,166,81,.15),rgba(0,122,51,.08));border:1px solid rgba(0,166,81,.25);border-radius:14px;padding:20px;margin-bottom:24px}
 .link-card-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.4);margin-bottom:10px}
 .link-row{display:flex;gap:8px;align-items:center}
 .link-input{flex:1;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:8px;padding:10px 12px;color:rgba(255,255,255,.7);font-size:13px;outline:none;font-family:monospace}
-.copy-btn{padding:10px 16px;border-radius:8px;background:rgba(124,58,237,.25);border:1px solid rgba(124,58,237,.35);color:#c084fc;font-size:12px;font-weight:700;cursor:pointer;white-space:nowrap}
+.copy-btn{padding:10px 16px;border-radius:8px;background:rgba(0,166,81,.25);border:1px solid rgba(0,166,81,.35);color:#25D366;font-size:12px;font-weight:700;cursor:pointer;white-space:nowrap}
 .wa-share{display:inline-flex;align-items:center;gap:6px;margin-top:10px;padding:9px 16px;border-radius:8px;background:#25d366;color:#fff;font-size:12px;font-weight:700;text-decoration:none}
 
 /* Card styles */
@@ -45,7 +45,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0f0f1a;color:#fff;m
 /* Tip list */
 .tip-item{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.05)}
 .tip-item:last-child{border-bottom:none}
-.tip-amount{font-size:16px;font-weight:700;color:#c084fc}
+.tip-amount{font-size:16px;font-weight:700;color:#25D366}
 .tip-time{font-size:11px;color:rgba(255,255,255,.3)}
 .tip-rating{font-size:12px;color:#fbbf24}
 .empty{text-align:center;padding:20px;font-size:13px;color:rgba(255,255,255,.3)}
@@ -75,18 +75,18 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0f0f1a;color:#fff;m
 .fb-comment{font-size:13px;color:rgba(255,255,255,.6);line-height:1.5}
 .fb-time{font-size:11px;color:rgba(255,255,255,.25);margin-top:4px}
 .fb-tags{display:flex;flex-wrap:wrap;gap:4px;margin-top:6px}
-.fb-tag{padding:3px 8px;border-radius:10px;background:rgba(124,58,237,.15);border:1px solid rgba(124,58,237,.25);font-size:11px;color:#c084fc}
+.fb-tag{padding:3px 8px;border-radius:10px;background:rgba(0,166,81,.15);border:1px solid rgba(0,166,81,.25);font-size:11px;color:#25D366}
 
 /* Profile form */
 details summary{cursor:pointer;list-style:none;font-size:13px;font-weight:700;color:rgba(255,255,255,.5);padding:4px 0}
 details summary::-webkit-details-marker{display:none}
-details[open] summary{color:#c084fc;margin-bottom:16px}
+details[open] summary{color:#25D366;margin-bottom:16px}
 .form-group{margin-bottom:12px}
 label{display:block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.5);margin-bottom:6px}
 input{width:100%;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);border-radius:10px;padding:11px 13px;color:#fff;font-size:14px;outline:none;transition:.2s;font-family:inherit}
-input:focus{border-color:#7c3aed;background:rgba(124,58,237,.08)}
+input:focus{border-color:#00A651;background:rgba(0,166,81,.08)}
 input::placeholder{color:rgba(255,255,255,.3)}
-.save-btn{padding:11px 24px;border-radius:10px;border:none;font-size:14px;font-weight:700;cursor:pointer;background:linear-gradient(135deg,#7c3aed,#db2777);color:#fff}
+.save-btn{padding:11px 24px;border-radius:10px;border:none;font-size:14px;font-weight:700;cursor:pointer;background:linear-gradient(135deg,#00A651,#007A33);color:#fff}
 .hint{font-size:11px;color:rgba(255,255,255,.35);margin-top:5px}
 
 @media(max-width:480px){.stats-row{grid-template-columns:1fr 1fr}.stat-card:last-child{grid-column:span 2}}
@@ -195,7 +195,7 @@ input::placeholder{color:rgba(255,255,255,.3)}
         @endif
 
         <div style="display:flex;gap:10px;margin-top:4px">
-            <a href="{{ route('staff.charge') }}" class="new-split-btn" style="flex:1;justify-content:center;background:linear-gradient(135deg,#7c3aed,#db2777)">
+            <a href="{{ route('staff.charge') }}" class="new-split-btn" style="flex:1;justify-content:center;background:linear-gradient(135deg,#00A651,#007A33)">
                 ⚡ Charge Customer
             </a>
             <a href="{{ route('bill-split.new') }}" class="new-split-btn" style="flex:1;justify-content:center">
@@ -283,11 +283,11 @@ input::placeholder{color:rgba(255,255,255,.3)}
                 <div class="form-group">
                     <div style="display:flex;gap:8px;margin-bottom:8px">
                         <label style="display:flex;align-items:center;gap:6px;font-size:12px;font-weight:600;text-transform:none;letter-spacing:0;color:rgba(255,255,255,.7);cursor:pointer;flex:1;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:9px 11px">
-                            <input type="radio" name="till_type" value="paybill" style="width:auto;accent-color:#7c3aed" {{ $staff->till_type === 'paybill' ? 'checked' : '' }}>
+                            <input type="radio" name="till_type" value="paybill" style="width:auto;accent-color:#00A651" {{ $staff->till_type === 'paybill' ? 'checked' : '' }}>
                             Paybill
                         </label>
                         <label style="display:flex;align-items:center;gap:6px;font-size:12px;font-weight:600;text-transform:none;letter-spacing:0;color:rgba(255,255,255,.7);cursor:pointer;flex:1;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:9px 11px">
-                            <input type="radio" name="till_type" value="till" style="width:auto;accent-color:#7c3aed" {{ $staff->till_type === 'till' ? 'checked' : '' }}>
+                            <input type="radio" name="till_type" value="till" style="width:auto;accent-color:#00A651" {{ $staff->till_type === 'till' ? 'checked' : '' }}>
                             Till (Lipa na M-Pesa)
                         </label>
                     </div>

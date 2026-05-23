@@ -6,9 +6,9 @@
 <title>Charge Customer — Pregota</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Segoe UI',system-ui,sans-serif;background:#0f0f1a;color:#fff;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:24px 20px}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:24px 20px}
 .topbar{width:100%;max-width:420px;display:flex;justify-content:space-between;align-items:center;margin-bottom:24px}
-.logo{font-size:18px;font-weight:900;background:linear-gradient(135deg,#c084fc,#f472b6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-decoration:none}
+.logo{font-size:18px;font-weight:900;background:linear-gradient(135deg,#25D366,#4ADE80);-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-decoration:none}
 .back{font-size:13px;color:rgba(255,255,255,.4);text-decoration:none}
 
 .card{width:100%;max-width:420px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:20px;padding:28px 24px}
@@ -17,7 +17,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0f0f1a;color:#fff;m
 
 label{display:block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.5);margin-bottom:6px}
 input{width:100%;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);border-radius:10px;padding:13px 14px;color:#fff;font-size:16px;outline:none;transition:.2s;font-family:inherit}
-input:focus{border-color:#7c3aed;background:rgba(124,58,237,.08)}
+input:focus{border-color:#00A651;background:rgba(0,166,81,.08)}
 input::placeholder{color:rgba(255,255,255,.3)}
 .form-group{margin-bottom:16px}
 .hint{font-size:11px;color:rgba(255,255,255,.35);margin-top:5px}
@@ -33,9 +33,9 @@ input::placeholder{color:rgba(255,255,255,.3)}
 /* Till type toggle */
 .type-row{display:flex;gap:10px;margin-bottom:4px}
 .type-opt{display:flex;align-items:center;gap:7px;font-size:13px;font-weight:600;color:rgba(255,255,255,.75);cursor:pointer;flex:1;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:11px 13px}
-.type-opt input[type=radio]{width:auto;accent-color:#7c3aed}
+.type-opt input[type=radio]{width:auto;accent-color:#00A651}
 .save-check{display:flex;align-items:center;gap:8px;font-size:12px;color:rgba(255,255,255,.45);margin-top:10px;cursor:pointer}
-.save-check input{width:auto;accent-color:#7c3aed}
+.save-check input{width:auto;accent-color:#00A651}
 
 .alert.error{background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.25);color:#f87171;border-radius:8px;padding:10px 12px;margin-bottom:16px;font-size:13px}
 
@@ -46,10 +46,10 @@ input::placeholder{color:rgba(255,255,255,.3)}
 .preview-row .val{font-weight:600}
 .preview-divider{border:none;border-top:1px solid rgba(255,255,255,.07);margin:8px 0}
 .preview-total{display:flex;justify-content:space-between;font-size:15px;font-weight:900}
-.preview-total .val{color:#c084fc}
+.preview-total .val{color:#25D366}
 .preview-note{font-size:10px;color:rgba(255,255,255,.3);margin-top:6px;text-align:center}
 
-.submit-btn{width:100%;padding:15px;border-radius:12px;border:none;font-size:16px;font-weight:700;cursor:pointer;background:linear-gradient(135deg,#7c3aed,#db2777);color:#fff;margin-top:4px;transition:.2s}
+.submit-btn{width:100%;padding:15px;border-radius:12px;border:none;font-size:16px;font-weight:700;cursor:pointer;background:linear-gradient(135deg,#00A651,#007A33);color:#fff;margin-top:4px;transition:.2s}
 .submit-btn:hover{opacity:.9}
 </style>
 </head>

@@ -8,9 +8,9 @@
 @include('partials.pwa')
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Segoe UI',system-ui,sans-serif;background:#0f0f1a;color:#fff;min-height:100vh;display:flex;flex-direction:column}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;min-height:100vh;display:flex;flex-direction:column}
 .nav{padding:14px 24px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,.08)}
-.logo{font-size:20px;font-weight:900;background:linear-gradient(135deg,#7c3aed,#db2777);-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-decoration:none}
+.logo{font-size:20px;font-weight:900;background:linear-gradient(135deg,#00A651,#007A33);-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-decoration:none}
 .nav-link{color:rgba(255,255,255,.5);text-decoration:none;font-size:13px;font-weight:600;padding:7px 14px;border:1px solid rgba(255,255,255,.15);border-radius:8px}
 
 .main{flex:1;display:flex;align-items:flex-start;justify-content:center;padding:32px 20px}
@@ -18,10 +18,10 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0f0f1a;color:#fff;m
 
 /* Staff profile */
 .profile{text-align:center;margin-bottom:28px}
-.avatar{width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,#7c3aed,#db2777);display:flex;align-items:center;justify-content:center;font-size:38px;margin:0 auto 14px}
+.avatar{width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,#00A651,#007A33);display:flex;align-items:center;justify-content:center;font-size:38px;margin:0 auto 14px}
 .staff-name{font-size:24px;font-weight:900;margin-bottom:4px}
 .staff-role{font-size:13px;color:rgba(255,255,255,.45)}
-.business-tag{display:inline-flex;align-items:center;gap:6px;background:rgba(124,58,237,.12);border:1px solid rgba(124,58,237,.25);border-radius:20px;padding:4px 12px;font-size:12px;color:#a78bfa;margin-top:8px}
+.business-tag{display:inline-flex;align-items:center;gap:6px;background:rgba(0,166,81,.12);border:1px solid rgba(0,166,81,.25);border-radius:20px;padding:4px 12px;font-size:12px;color:#a78bfa;margin-top:8px}
 
 /* Rating badge */
 .rating-badge{display:flex;align-items:center;justify-content:center;gap:6px;margin-top:12px;font-size:13px;color:rgba(255,255,255,.5)}
@@ -31,20 +31,20 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0f0f1a;color:#fff;m
 .amounts-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.4);margin-bottom:10px}
 .preset-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:14px}
 .preset-btn{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:12px 6px;cursor:pointer;text-align:center;color:#fff;font-size:13px;font-weight:700;transition:.15s}
-.preset-btn:hover,.preset-btn.selected{border-color:#7c3aed;background:rgba(124,58,237,.15);color:#c084fc}
+.preset-btn:hover,.preset-btn.selected{border-color:#00A651;background:rgba(0,166,81,.15);color:#25D366}
 
 /* Form */
 .form-group{margin-bottom:14px}
 label{display:block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.5);margin-bottom:6px}
 input{width:100%;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);border-radius:10px;padding:13px 16px;color:#fff;font-size:15px;outline:none;transition:.2s;font-family:inherit}
-input:focus{border-color:#7c3aed;background:rgba(124,58,237,.1)}
+input:focus{border-color:#00A651;background:rgba(0,166,81,.1)}
 input::placeholder{color:rgba(255,255,255,.3)}
 
-.fee-preview{background:rgba(124,58,237,.07);border:1px solid rgba(124,58,237,.2);border-radius:10px;padding:10px 14px;margin-bottom:14px;font-size:12px;display:none}
+.fee-preview{background:rgba(0,166,81,.07);border:1px solid rgba(0,166,81,.2);border-radius:10px;padding:10px 14px;margin-bottom:14px;font-size:12px;display:none}
 .fee-row{display:flex;justify-content:space-between;padding:2px 0;color:rgba(255,255,255,.6)}
 .fee-row.total{color:#fff;font-weight:700;border-top:1px solid rgba(255,255,255,.08);margin-top:5px;padding-top:6px}
 
-.btn{width:100%;padding:15px;border-radius:12px;border:none;font-size:16px;font-weight:700;cursor:pointer;background:linear-gradient(135deg,#7c3aed,#db2777);color:#fff;margin-top:4px;transition:.2s}
+.btn{width:100%;padding:15px;border-radius:12px;border:none;font-size:16px;font-weight:700;cursor:pointer;background:linear-gradient(135deg,#00A651,#007A33);color:#fff;margin-top:4px;transition:.2s}
 .btn:disabled{opacity:.45;cursor:not-allowed}
 
 /* Feedback step */
@@ -54,7 +54,7 @@ input::placeholder{color:rgba(255,255,255,.3)}
 .star-row span.lit{filter:none;opacity:1}
 .tag-grid{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:14px 0}
 .tag-btn{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:20px;padding:7px 14px;font-size:12px;cursor:pointer;color:rgba(255,255,255,.7);transition:.15s}
-.tag-btn:hover,.tag-btn.selected{background:rgba(124,58,237,.18);border-color:#7c3aed;color:#c084fc}
+.tag-btn:hover,.tag-btn.selected{background:rgba(0,166,81,.18);border-color:#00A651;color:#25D366}
 textarea{width:100%;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:12px;color:#fff;font-size:13px;resize:none;height:70px;outline:none;margin-top:10px;font-family:inherit}
 textarea::placeholder{color:rgba(255,255,255,.25)}
 
@@ -128,12 +128,12 @@ textarea::placeholder{color:rgba(255,255,255,.25)}
             @endif
 
             <!-- Gift nudge shown when amount ≥ nudge threshold -->
-            <div id="giftNudge" style="display:none;background:rgba(192,132,252,.07);border:1px solid rgba(192,132,252,.25);border-radius:10px;padding:10px 14px;margin-bottom:14px">
-                <div style="font-size:12px;font-weight:700;color:#c084fc;margin-bottom:5px">💡 Sending KES 500+?</div>
+            <div id="giftNudge" style="display:none;background:rgba(37,211,102,.07);border:1px solid rgba(37,211,102,.25);border-radius:10px;padding:10px 14px;margin-bottom:14px">
+                <div style="font-size:12px;font-weight:700;color:#25D366;margin-bottom:5px">💡 Sending KES 500+?</div>
                 <div style="font-size:12px;color:rgba(255,255,255,.5);margin-bottom:8px">For larger amounts you can send a Gift Voucher (shareable code) or a Direct Gift (instant delivery). Recipient gets the full amount — same fee of KES 75.</div>
                 <div style="display:flex;gap:8px;flex-wrap:wrap">
-                    <a id="nudgeVoucher" href="#" style="font-size:12px;font-weight:700;color:#a78bfa;background:rgba(124,58,237,.15);border:1px solid rgba(124,58,237,.3);border-radius:7px;padding:5px 12px;text-decoration:none">🎁 Gift Voucher →</a>
-                    <a id="nudgeDirect" href="#" style="font-size:12px;font-weight:700;color:#c084fc;background:rgba(192,132,252,.12);border:1px solid rgba(192,132,252,.3);border-radius:7px;padding:5px 12px;text-decoration:none">⚡ Direct Gift →</a>
+                    <a id="nudgeVoucher" href="#" style="font-size:12px;font-weight:700;color:#a78bfa;background:rgba(0,166,81,.15);border:1px solid rgba(0,166,81,.3);border-radius:7px;padding:5px 12px;text-decoration:none">🎁 Gift Voucher →</a>
+                    <a id="nudgeDirect" href="#" style="font-size:12px;font-weight:700;color:#25D366;background:rgba(37,211,102,.12);border:1px solid rgba(37,211,102,.3);border-radius:7px;padding:5px 12px;text-decoration:none">⚡ Direct Gift →</a>
                 </div>
             </div>
 
