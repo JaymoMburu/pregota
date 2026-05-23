@@ -132,10 +132,19 @@ h1{font-size:clamp(20px,4.5vw,28px);font-weight:900;line-height:1.15;margin-bott
     <!-- Per-student payment status -->
     @if($studentTotals->count())
     <div class="list-card">
-        <div class="card-title">Student Fee Status ({{ $studentTotals->count() }} student{{ $studentTotals->count() === 1 ? '' : 's' }})</div>
+        <div class="card-title" style="display:flex;justify-content:space-between;align-items:center">
+            <span>Student Fee Status ({{ $studentTotals->count() }} student{{ $studentTotals->count() === 1 ? '' : 's' }})</span>
+            <span id="searchCount" style="font-size:11px;color:rgba(255,255,255,.4)"></span>
+        </div>
+        <div style="margin-bottom:12px">
+            <input type="text" id="studentSearch" placeholder="Search by student name or ID…"
+                style="width:100%;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:9px 12px;color:#fff;font-size:13px;outline:none;font-family:inherit"
+                oninput="filterStudents(this.value)">
+        </div>
+        <div id="noResults" style="display:none;text-align:center;padding:14px;font-size:13px;color:rgba(255,255,255,.4)">No students match your search.</div>
         @foreach($studentTotals as $s)
         @php $pct = min(100, round(($s['total_paid'] / $collection->amount_per_student) * 100)); @endphp
-        <div class="student-item">
+        <div class="student-item" data-search="{{ strtolower($s['name'] . ' ' . ($s['student_id'] ?? '')) }}">
             <div class="student-top">
                 <div class="avatar">{{ strtoupper(substr($s['name'], 0, 1)) }}</div>
                 <div class="student-name">
@@ -194,8 +203,32 @@ function copyLink(id, btn) {
     });
 }
 
-// Auto-refresh every 30s
-setTimeout(() => location.reload(), 30000);
+function filterStudents(q) {
+    const term  = q.trim().toLowerCase();
+    const items = document.querySelectorAll('.student-item');
+    let   shown = 0;
+    items.forEach(el => {
+        const match = !term || el.dataset.search.includes(term);
+        el.style.display = match ? '' : 'none';
+        if (match) shown++;
+    });
+    const countEl = document.getElementById('searchCount');
+    const noRes   = document.getElementById('noResults');
+    countEl.textContent = term ? `${shown} of ${items.length}` : '';
+    noRes.style.display = (term && shown === 0) ? 'block' : 'none';
+}
+
+// Pause auto-refresh while user is searching
+let refreshTimer = null;
+function scheduleRefresh() {
+    clearTimeout(refreshTimer);
+    const searchEl = document.getElementById('studentSearch');
+    if (!searchEl || !searchEl.value.trim()) {
+        refreshTimer = setTimeout(() => location.reload(), 30000);
+    }
+}
+document.getElementById('studentSearch')?.addEventListener('input', scheduleRefresh);
+scheduleRefresh();
 </script>
 </body>
 </html>

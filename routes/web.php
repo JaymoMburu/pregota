@@ -9,6 +9,7 @@ use App\Http\Controllers\CollectionController;
 use App\Http\Controllers\CreatorController;
 use App\Http\Controllers\GiftController;
 use App\Http\Controllers\MpesaController;
+use App\Http\Controllers\MultiGiftController;
 use App\Http\Controllers\SchoolFeesController;
 use App\Http\Controllers\StaffAuthController;
 use App\Http\Controllers\TipController;
@@ -34,6 +35,12 @@ Route::get('/gift/status', [GiftController::class, 'checkStatus'])->name('gift.s
 Route::post('/gift/direct', [GiftController::class, 'directInitiate'])->name('gift.direct');
 Route::get('/gift/direct/status', [GiftController::class, 'directStatus'])->name('gift.direct.status');
 Route::get('/gift/partner/{partner:slug}', [GiftController::class, 'partnerRedirect'])->name('gift.partner');
+
+// ── Multi-creator gift ────────────────────────────────────────────────────
+Route::get('/gift/multi-creator', [MultiGiftController::class, 'page'])->name('gift.multi');
+Route::get('/gift/multi-creator/search', [MultiGiftController::class, 'searchCreator'])->name('gift.multi.search');
+Route::post('/gift/multi-creator/initiate', [MultiGiftController::class, 'initiate'])->name('gift.multi.initiate');
+Route::get('/gift/multi-creator/status', [MultiGiftController::class, 'status'])->name('gift.multi.status');
 
 // ── School Collection ────────────────────────────────────────────────────
 Route::get('/school-collection', fn() => redirect()->route('school-collection.new'));

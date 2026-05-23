@@ -8,6 +8,7 @@ use App\Models\CollectionContribution;
 use App\Models\CreatorGift;
 use App\Models\DirectGift;
 use App\Models\LedgerEntry;
+use App\Models\MultiGift;
 use App\Models\SchoolCollection;
 use App\Models\SchoolPayment;
 use App\Models\TipTransaction;
@@ -15,6 +16,7 @@ use App\Models\Voucher;
 use App\Services\BillSplitService;
 use App\Services\CollectionService;
 use App\Services\DirectGiftService;
+use App\Services\MultiGiftService;
 use App\Services\SchoolFeesService;
 use App\Services\TipService;
 use App\Services\TxHashService;
@@ -32,6 +34,7 @@ class MpesaController extends Controller
         private CollectionService $collections,
         private SchoolFeesService $schoolFees,
         private BillSplitService $billSplits,
+        private MultiGiftService $multiGifts,
         private TxHashService $txHash,
     ) {}
 
@@ -64,6 +67,12 @@ class MpesaController extends Controller
                 return response()->json(['ResultCode' => 0, 'ResultDesc' => 'Accepted']);
             }
 
+            // MultiGift check (before others — has distinct reference format)
+            $handled = $this->multiGifts->confirmPayment($checkoutId, $mpesaCode, $amount);
+            if ($handled) {
+                return response()->json(['ResultCode' => 0, 'ResultDesc' => 'Accepted']);
+            }
+
             // Tip → Creator → DirectGift → Collection → SchoolFees → Voucher
             $handled = $this->tips->confirmPayment($checkoutId, $mpesaCode, $amount);
             if ($handled) { $this->seal($handled, 'TIP'); }
@@ -93,6 +102,12 @@ class MpesaController extends Controller
             }
         } else {
             $reason = $callback['ResultDesc'] ?? 'Unknown';
+
+            $multi = MultiGift::where('mpesa_checkout_id', $checkoutId)->first();
+            if ($multi) {
+                $this->multiGifts->failPayment($checkoutId);
+                return response()->json(['ResultCode' => 0, 'ResultDesc' => 'Accepted']);
+            }
 
             $tip = TipTransaction::where('mpesa_checkout_id', $checkoutId)->first();
             if ($tip) {
