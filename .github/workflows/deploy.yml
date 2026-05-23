@@ -34,7 +34,6 @@ jobs:
             storage/framework/sessions/**
             storage/framework/views/**
             bootstrap/cache/**
-            public/deploy-hook.php
 
       - name: Clear caches & run migrations
         run: |
