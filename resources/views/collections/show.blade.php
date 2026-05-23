@@ -68,7 +68,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 .preset-btn:hover,.preset-btn.active{border-color:#00A651;background:rgba(0,166,81,.15);color:#25D366}
 .form-group{margin-bottom:12px}
 label{display:block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.78);margin-bottom:6px}
-input{width:100%;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);border-radius:10px;padding:12px 14px;color:#fff;font-size:14px;outline:none;transition:.2s;font-family:inherit}
+input{width:100%;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);border-radius:10px;padding:12px 14px;color:#fff;font-size:16px;outline:none;transition:.2s;font-family:inherit}
 input:focus{border-color:#00A651;background:rgba(0,166,81,.08)}
 input::placeholder{color:rgba(255,255,255,.82)}
 .fee-line{display:flex;justify-content:space-between;align-items:center;font-size:12px;color:rgba(255,255,255,.68);padding:8px 12px;background:rgba(255,255,255,.03);border-radius:8px;margin-bottom:12px}
@@ -130,7 +130,7 @@ input::placeholder{color:rgba(255,255,255,.82)}
 .modal{background:#161624;border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:28px;max-width:400px;width:100%}
 .modal h3{font-size:16px;font-weight:800;margin-bottom:6px;color:#f87171}
 .modal p{font-size:13px;color:rgba(255,255,255,.72);margin-bottom:16px;line-height:1.5}
-.modal textarea{width:100%;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);border-radius:10px;padding:12px 14px;color:#fff;font-size:13px;outline:none;resize:vertical;min-height:90px;font-family:inherit}
+.modal textarea{width:100%;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);border-radius:10px;padding:12px 14px;color:#fff;font-size:16px;outline:none;resize:vertical;min-height:90px;font-family:inherit}
 .modal textarea:focus{border-color:#ef4444}
 .modal-actions{display:flex;gap:10px;margin-top:14px}
 .report-submit-btn{flex:1;padding:12px;border-radius:9px;border:none;background:#ef4444;color:#fff;font-size:14px;font-weight:700;cursor:pointer}

@@ -35,7 +35,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 .section-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.68);margin-bottom:8px}
 .form-group{margin-bottom:14px}
 label{display:block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.78);margin-bottom:6px}
-input,textarea{width:100%;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:10px;padding:13px 14px;color:#fff;font-size:15px;outline:none;transition:.2s;font-family:inherit}
+input,textarea{width:100%;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:10px;padding:13px 14px;color:#fff;font-size:16px;outline:none;transition:.2s;font-family:inherit}
 input:focus,textarea:focus{border-color:#00A651;background:rgba(0,166,81,.1)}
 input::placeholder,textarea::placeholder{color:rgba(255,255,255,.82)}
 textarea{resize:none;height:64px}

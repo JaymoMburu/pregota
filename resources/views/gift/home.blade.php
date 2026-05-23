@@ -57,7 +57,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;d
 
 .form-group{margin-bottom:14px}
 label{display:block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.6);margin-bottom:6px}
-input,textarea{width:100%;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.18);border-radius:10px;padding:13px 16px;color:#fff;font-size:15px;outline:none;transition:.2s;font-family:inherit}
+input,textarea{width:100%;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.18);border-radius:10px;padding:13px 16px;color:#fff;font-size:16px;outline:none;transition:.2s;font-family:inherit}
 input:focus,textarea:focus{border-color:#00A651;background:rgba(0,166,81,.1)}
 input::placeholder,textarea::placeholder{color:rgba(255,255,255,.65)}
 textarea{resize:none;height:68px}
@@ -95,22 +95,32 @@ textarea{resize:none;height:68px}
 .status-dot{width:9px;height:9px;border-radius:50%;background:#f59e0b;display:inline-block;animation:pulse 1.5s infinite;margin-right:6px;vertical-align:middle}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
 
+/* Mobile logo — hidden on desktop, shown when left panel is gone */
+.m-logo{display:none}
+
 @media(max-width:800px){
-    body{flex-direction:column-reverse}
-    .panel-left,.panel-right{width:100%}
-    .panel-left{min-height:auto;padding:24px 20px}
-    .left-center{gap:20px}
-    .headline h1{font-size:28px}
-    .headline p{font-size:14px}
-    .steps-list{gap:16px}
-    .step-text p{font-size:12px}
-    .left-foot{text-align:center}
-    .panel-right{border-left:none}
-    .right-nav{padding:12px 20px}
-    .right-body{padding:20px;align-items:flex-start}
+    body{flex-direction:column}
+    .panel-left{display:none}
+    .panel-right{width:100%;border-left:none;min-height:100vh}
+    .m-logo{
+        display:block;font-size:22px;font-weight:900;
+        background:linear-gradient(135deg,#25D366,#4ADE80);
+        -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+        text-decoration:none;padding:14px 18px 4px
+    }
+    .right-nav{
+        padding:8px 14px;gap:6px;
+        overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;
+        justify-content:flex-start;border-bottom:1px solid rgba(255,255,255,.06)
+    }
+    .right-nav::-webkit-scrollbar{display:none}
+    .right-nav .nav-link{white-space:nowrap;font-size:11px;padding:5px 10px}
+    .right-body{padding:16px;align-items:flex-start;padding-top:20px}
     .form-wrap{max-width:100%}
-    .right-foot{padding:12px 20px}
-    .b1,.b2{display:none}
+    .form-title{font-size:20px;margin-bottom:14px}
+    .tabs{margin-bottom:16px}
+    .btn-primary{padding:16px;font-size:17px}
+    .right-foot{padding:10px 16px;font-size:10px}
 }
 </style>
 </head>
@@ -164,9 +174,10 @@ textarea{resize:none;height:68px}
 
 <!-- RIGHT -->
 <div class="panel-right">
+    <a href="{{ route('home') }}" class="m-logo">Pregota</a>
     @include('partials.module-nav', ['activeModule' => 'gift'])
     <div class="right-nav" style="padding:10px 24px;gap:8px">
-        <a href="{{ route('gift.multi') }}" class="nav-link" style="font-size:12px;padding:5px 12px">🎤 Gift Multiple Creators</a>
+        <a href="{{ route('gift.multi') }}" class="nav-link" style="font-size:12px;padding:5px 12px">🎤 Multi-Creator</a>
         <a href="{{ route('track') }}" class="nav-link" style="font-size:12px;padding:5px 12px">Track Gift</a>
         <a href="{{ route('redeem') }}" class="nav-link" style="font-size:12px;padding:5px 12px">Redeem Gift</a>
     </div>

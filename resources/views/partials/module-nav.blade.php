@@ -7,7 +7,7 @@ $_mods = [
     'tips'       => ['emoji' => '⭐', 'label' => 'Tips',        'url' => route('staff.landing'),       'color' => '#fbbf24'],
 ];
 @endphp
-<div style="padding:10px 24px;border-bottom:1px solid rgba(255,255,255,.06);display:flex;align-items:center;gap:8px;flex-wrap:wrap;background:#0B141A">
+<div style="padding:8px 16px;border-bottom:1px solid rgba(255,255,255,.06);display:flex;align-items:center;gap:8px;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;background:#0B141A">
     <a href="{{ route('home') }}" style="font-size:12px;color:rgba(255,255,255,.6);text-decoration:none;margin-right:6px;display:flex;align-items:center;gap:4px;white-space:nowrap;flex-shrink:0" onmouseover="this.style.color='rgba(255,255,255,.7)'" onmouseout="this.style.color='rgba(255,255,255,.6)'">
         ‹ All
     </a>
