@@ -1,8 +1,8 @@
 @php
 $modules = [
-    'gift'       => ['emoji' => '🎁', 'name' => 'Gift Vouchers',      'desc' => 'Send anonymous M-Pesa gifts',  'url' => route('home')],
-    'collection' => ['emoji' => '🤝', 'name' => 'Group Collections',  'desc' => 'Funerals, chamas, harambees',  'url' => route('collection.new')],
-    'school'     => ['emoji' => '🏫', 'name' => 'School Collections', 'desc' => 'Exam fees, trips, PTA levies', 'url' => route('school-collection.new')],
+    'gift'       => ['emoji' => '🎁', 'name' => 'Gift Vouchers',      'desc' => 'Send anonymous M-Pesa gifts',  'url' => route('gift.landing')],
+    'collection' => ['emoji' => '🤝', 'name' => 'Group Collections',  'desc' => 'Funerals, chamas, harambees',  'url' => route('collection.landing')],
+    'school'     => ['emoji' => '🏫', 'name' => 'School Collections', 'desc' => 'Exam fees, trips, PTA levies', 'url' => route('school.landing')],
     'tips'       => ['emoji' => '⭐', 'name' => 'Staff Tips',         'desc' => 'Receive tips privately',       'url' => route('staff.landing')],
 ];
 $_current = $current ?? '';

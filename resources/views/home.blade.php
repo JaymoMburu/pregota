@@ -97,7 +97,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
     <div class="module-grid">
 
         <!-- Gift Vouchers -->
-        <a href="{{ route('gift.home') }}" class="module-card mc-gift">
+        <a href="{{ route('gift.landing') }}" class="module-card mc-gift">
             <span class="mc-icon">🎁</span>
             <div class="mc-name">Gift Vouchers</div>
             <div class="mc-desc">Send money to anyone — anonymously. They get a code to claim it. Your number is never revealed.</div>
@@ -125,7 +125,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
         </a>
 
         <!-- School Collections -->
-        <a href="{{ route('school-collection.new') }}" class="module-card mc-school">
+        <a href="{{ route('school.landing') }}" class="module-card mc-school">
             <span class="mc-icon">🏫</span>
             <div class="mc-name">School Collections</div>
             <div class="mc-desc">Set up a school collection in minutes. Each class gets its own payment link. Admin sees every payment in real time.</div>
