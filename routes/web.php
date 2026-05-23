@@ -77,6 +77,8 @@ Route::post('/collections/{slug}/close', [CollectionController::class, 'close'])
 Route::get('/for-staff', fn() => view('staff.landing'))->name('staff.landing');
 Route::get('/for-creators', fn() => view('creator.landing'))->name('creator.landing');
 Route::get('/for-groups', fn() => view('collections.landing'))->name('collection.landing');
+Route::get('/send-gift', fn() => view('gift.landing'))->name('gift.landing');
+Route::get('/for-schools', fn() => view('school-collection.landing'))->name('school.landing');
 Route::get('/staff/register', fn() => redirect()->route('staff.register'));
 
 Route::get('/t/register', [StaffAuthController::class, 'registerForm'])->name('staff.register');
@@ -190,5 +192,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::post('/investors',                                   [AdminController::class, 'createInvestor'])->name('investors.create');
         Route::post('/investors/{investor}/toggle',                 [AdminController::class, 'toggleInvestor'])->name('investors.toggle');
         Route::post('/investors/{investor}/reset-password',         [AdminController::class, 'resetInvestorPassword'])->name('investors.reset-password');
+
+        Route::get('/creators',                                     [AdminController::class, 'creators'])->name('creators');
+        Route::post('/creators/{creator}/approve',                  [AdminController::class, 'approveCreator'])->name('creators.approve');
+        Route::delete('/creators/{creator}',                        [AdminController::class, 'rejectCreator'])->name('creators.reject');
     });
 });

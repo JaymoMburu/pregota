@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Business;
 use App\Models\Collection;
+use App\Models\Creator;
 use App\Models\Investor;
 use App\Models\LedgerEntry;
 use App\Models\Partner;
@@ -203,6 +204,28 @@ class AdminController extends Controller
         $data = $request->validate(['password' => ['required', 'string', 'min:8']]);
         $investor->update(['password' => $data['password']]);
         return back()->with('success', "Password reset for {$investor->name}.");
+    }
+
+    // ── Creator approval ──────────────────────────────────────────────────
+
+    public function creators()
+    {
+        $pending = Creator::where('is_active', false)->latest()->get();
+        $active  = Creator::where('is_active', true)->latest()->get();
+        return view('admin.creators', compact('pending', 'active'));
+    }
+
+    public function approveCreator(Creator $creator)
+    {
+        $creator->update(['is_active' => true]);
+        return back()->with('success', "Creator @{$creator->handle} approved and is now live.");
+    }
+
+    public function rejectCreator(Creator $creator)
+    {
+        $handle = $creator->handle;
+        $creator->delete();
+        return back()->with('success', "Creator @{$handle} rejected and removed.");
     }
 
     public function cancelVoucher(Voucher $voucher)

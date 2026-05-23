@@ -23,6 +23,10 @@ input::placeholder{color:rgba(255,255,255,.25)}
 .err{background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.25);border-radius:8px;padding:10px 12px;font-size:13px;color:#fca5a5;margin-bottom:14px}
 .login-link{text-align:center;margin-top:16px;font-size:13px;color:rgba(255,255,255,.6)}
 .login-link a{color:#a78bfa;text-decoration:none}
+.pending-box{background:rgba(251,191,36,.1);border:1px solid rgba(251,191,36,.3);border-radius:12px;padding:20px;text-align:center;margin-bottom:20px}
+.pending-box .icon{font-size:36px;margin-bottom:10px}
+.pending-box strong{display:block;font-size:16px;font-weight:800;color:#fbbf24;margin-bottom:6px}
+.pending-box p{font-size:13px;color:rgba(255,255,255,.78);line-height:1.6}
 </style>
 </head>
 <body>
@@ -31,10 +35,19 @@ input::placeholder{color:rgba(255,255,255,.25)}
     <h1>Creator Account</h1>
     <p class="sub">Receive gifts privately. Share a link — never your number.</p>
 
+    @if(session('pending'))
+    <div class="pending-box">
+        <div class="icon">⏳</div>
+        <strong>Application Received!</strong>
+        <p>{{ session('pending') }}</p>
+    </div>
+    @endif
+
     @if($errors->any())
     <div class="err">{{ $errors->first() }}</div>
     @endif
 
+    @if(!session('pending'))
     <form method="POST" action="{{ route('creator.register.post') }}">
         @csrf
 
@@ -91,6 +104,7 @@ input::placeholder{color:rgba(255,255,255,.25)}
 
         <button type="submit" class="btn">Create Creator Account →</button>
     </form>
+    @endif
 
     <div class="login-link">Already have an account? <a href="{{ route('creator.login') }}">Sign in</a></div>
 </div>

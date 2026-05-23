@@ -38,7 +38,7 @@ class CreatorController extends Controller
             'min_gift'     => ['nullable', 'numeric', 'min:50'],
         ]);
 
-        $creator = Creator::create([
+        Creator::create([
             'handle'                 => strtolower($data['handle']),
             'display_name'           => $data['display_name'],
             'bio'                    => $data['bio'] ?? null,
@@ -48,10 +48,10 @@ class CreatorController extends Controller
             'goal_amount'            => $data['goal_amount'] ?? null,
             'min_gift_amount'        => $data['min_gift'] ?? 50,
             'alert_token'            => Creator::generateAlertToken(),
+            'is_active'              => false,
         ]);
 
-        Session::put('creator_id', $creator->id);
-        return redirect()->route('creator.dashboard');
+        return redirect()->route('creator.register')->with('pending', 'Your creator account is under review. You\'ll be able to receive gifts once approved — usually within 24 hours.');
     }
 
     // ── Auth ──────────────────────────────────────────────────────────────
