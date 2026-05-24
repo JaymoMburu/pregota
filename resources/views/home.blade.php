@@ -113,8 +113,8 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
         <!-- Group Collections -->
         <a href="{{ route('collection.landing') }}" class="module-card mc-collection">
             <span class="mc-icon">💬</span>
-            <div class="mc-name">Group Collections</div>
-            <div class="mc-desc">Share one link. No creating a group, no adding anyone, no chasing payments. Contributors pay directly via M-Pesa — you never handle a single shilling.</div>
+            <div class="mc-name">WhatsApp Group Collections</div>
+            <div class="mc-desc">Already have a WhatsApp group? Drop a Pregota link — everyone pays via M-Pesa directly, no adding anyone, no cash through admin. Hate being added to contribution groups? Just open the link and pay. Done.</div>
             <div class="mc-examples">
                 <span class="mc-tag">Bereavement</span>
                 <span class="mc-tag">Chama</span>

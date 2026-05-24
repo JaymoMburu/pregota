@@ -117,9 +117,19 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 
 <!-- Hero -->
 <div class="hero">
-    <div class="badge">💬 Group Collections · Powered by M-Pesa</div>
-    <h1>Nobody added you to a WhatsApp group or anything.<br><em>Just a link. Just M-Pesa.</em></h1>
-    <p>Someone you know needs support. A link lands in your inbox — or on a status. You open it, you contribute, you're done. No group. No 300 messages. No public list of who hasn't paid. Just you, your M-Pesa PIN, and a cause worth supporting.</p>
+    <div class="badge">💬 WhatsApp Group Collections · Powered by M-Pesa</div>
+    <h1>Your WhatsApp group.<br><em>Now with a proper M-Pesa collection.</em></h1>
+    <p>Already organising on WhatsApp? Drop a Pregota link in the group — everyone pays directly via M-Pesa STK Push, the total updates live, and you never touch anyone's money.<br><br>Not in the group? Never added? Doesn't matter. Anyone with the link can contribute — no group join required, no number shared, no public pressure.</p>
+    <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:24px;margin-bottom:8px">
+        <div style="background:rgba(16,185,129,.1);border:1px solid rgba(16,185,129,.2);border-radius:12px;padding:12px 18px;font-size:13px;color:rgba(255,255,255,.82);text-align:left;max-width:220px">
+            <div style="font-weight:700;color:#34d399;margin-bottom:4px">For the organiser</div>
+            Share one link in your WhatsApp group. No adding people, no collecting cash, no spreadsheets.
+        </div>
+        <div style="background:rgba(16,185,129,.1);border:1px solid rgba(16,185,129,.2);border-radius:12px;padding:12px 18px;font-size:13px;color:rgba(255,255,255,.82);text-align:left;max-width:220px">
+            <div style="font-weight:700;color:#34d399;margin-bottom:4px">For the contributor</div>
+            Nobody added you to anything. Just open the link, pay via M-Pesa, and you're done.
+        </div>
+    </div>
     <div class="hero-btns">
         <a href="{{ route('collection.new') }}" class="btn-primary">Start a Collection — Free</a>
         <a href="#how-it-works" class="btn-secondary">See How It Works</a>
