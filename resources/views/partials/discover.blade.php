@@ -1,7 +1,7 @@
 @php
 $modules = [
     'gift'       => ['emoji' => '🎁', 'name' => 'Gift Vouchers',      'desc' => 'Send anonymous M-Pesa gifts',  'url' => route('gift.landing')],
-    'collection' => ['emoji' => '🤝', 'name' => 'Group Collections',    'desc' => 'No group adds, no holding cash', 'url' => route('collection.landing')],
+    'collection' => ['emoji' => '💬', 'name' => 'WhatsApp Collections', 'desc' => 'No group adds, no holding cash',  'url' => route('collection.landing')],
     'school'     => ['emoji' => '🏫', 'name' => 'School Collections', 'desc' => 'Exam fees, trips, PTA levies', 'url' => route('school.landing')],
     'tips'       => ['emoji' => '⭐', 'name' => 'Staff Tips',         'desc' => 'Receive tips privately',       'url' => route('staff.landing')],
 ];

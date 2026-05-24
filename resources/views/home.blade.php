@@ -112,9 +112,9 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 
         <!-- Group Collections -->
         <a href="{{ route('collection.landing') }}" class="module-card mc-collection">
-            <span class="mc-icon">🤝</span>
-            <div class="mc-name">Group Collections</div>
-            <div class="mc-desc">Tired of being added to contribution groups you never asked for? Tired of chasing people or holding their cash? Share one link — everyone pays via M-Pesa directly. Nobody gets added to anything.</div>
+            <span class="mc-icon">💬</span>
+            <div class="mc-name">WhatsApp Group Collections</div>
+            <div class="mc-desc">Tired of being added to a WhatsApp contribution group you never asked for? Tired of chasing people or holding their cash? Share one link — everyone pays via M-Pesa directly. Nobody gets added to anything.</div>
             <div class="mc-examples">
                 <span class="mc-tag">Bereavement</span>
                 <span class="mc-tag">Chama</span>

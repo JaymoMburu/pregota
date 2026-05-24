@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Group Collections — Pregota</title>
-<meta name="description" content="Tired of being added to contribution groups? Tired of chasing payments and holding everyone's cash? One link. Everyone pays via M-Pesa directly. No group adds, no drama.">
+<title>WhatsApp Group Collections — Pregota</title>
+<meta name="description" content="Tired of being added to a WhatsApp contribution group? Tired of chasing payments and holding everyone's cash? One link. Everyone pays via M-Pesa directly. No group adds, no drama.">
 @include('partials.pwa')
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
@@ -117,10 +117,10 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 
 <!-- Hero -->
 <div class="hero">
-    <div class="badge">🤝 Group Collections · Powered by M-Pesa</div>
-    <h1>Contributions —<br><em>without the drama.</em></h1>
-    <p>Someone always gets added to a group they didn't ask for. Someone always ends up holding everyone's cash and having to prove they didn't steal it. Someone always has to chase people in public.</p>
-    <p style="margin-top:14px">Pregota fixes both ends. Organisers share a link — no adding anyone to anything. Contributors click and pay directly — no group join, no number sharing, no public pressure.</p>
+    <div class="badge">💬 WhatsApp Group Collections · Powered by M-Pesa</div>
+    <h1>WhatsApp contributions —<br><em>without the drama.</em></h1>
+    <p>Someone always gets added to a WhatsApp group they didn't ask for. Someone always ends up holding everyone's cash and having to prove they didn't steal it. Someone always chases people publicly.</p>
+    <p style="margin-top:14px">Pregota fixes both ends. Organisers share a link in the WhatsApp group — no adding anyone, no holding cash. Contributors click and pay directly — no group join required, no number sharing, no public pressure.</p>
     <div class="hero-btns" style="margin-top:28px">
         <a href="{{ route('collection.new') }}" class="btn-primary">Start a Collection — Free</a>
         <a href="#how-it-works" class="btn-secondary">See How It Works</a>
@@ -154,7 +154,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 <!-- The Problem -->
 <div class="section" style="max-width:760px">
     <div class="section-tag">The Problem</div>
-    <h2>Two people suffer every time there's a collection.</h2>
+    <h2>Two people suffer every time there's a WhatsApp collection.</h2>
     <p>The person organising it. And the person being asked to contribute. Here's exactly what each of them goes through.</p>
 
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:28px">
@@ -233,8 +233,8 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 <div class="how" id="how-it-works">
     <div class="how-inner">
         <div class="section-tag">How It Works</div>
-        <h2>One link. Nobody gets added to anything.</h2>
-        <p style="font-size:15px;color:rgba(255,255,255,.78);margin-top:10px">Set up in under 2 minutes. Share the link anywhere — WhatsApp, SMS, Instagram, wherever. Contributions arrive in real time. You never hold anyone's money.</p>
+        <h2>Drop one link in the group. Nobody gets added to anything.</h2>
+        <p style="font-size:15px;color:rgba(255,255,255,.78);margin-top:10px">Set up in under 2 minutes. Share the link in your WhatsApp group, status, or DM. Contributions arrive in real time. You never hold anyone's money.</p>
 
         <div class="steps">
             <div class="step">
@@ -424,14 +424,14 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 
 <!-- CTA -->
 <div class="cta-bottom">
-    <h2>Nobody gets added. Nobody holds your money.<br><em style="font-style:normal;background:linear-gradient(135deg,#34d399,#10b981);-webkit-background-clip:text;-webkit-text-fill-color:transparent">Just a link. Just M-Pesa.</em></h2>
-    <p>Set up in under 2 minutes. Share the link anywhere. Contributors pay directly — no group joins, no screenshots, no chasing. The money goes straight to the recipient. You're done.</p>
+    <h2>Drop it in the WhatsApp group. Nobody gets added.<br><em style="font-style:normal;background:linear-gradient(135deg,#34d399,#10b981);-webkit-background-clip:text;-webkit-text-fill-color:transparent">Nobody holds the money. Just M-Pesa.</em></h2>
+    <p>Set up in under 2 minutes. Share the link in your WhatsApp group, status, or DM. Contributors pay directly — no group joins, no screenshots, no chasing. The money goes straight to the recipient.</p>
     <a href="{{ route('collection.new') }}" class="btn-primary" style="font-size:16px;padding:16px 36px">Start a Collection — Free →</a>
     <p style="margin-top:16px;font-size:12px;color:rgba(255,255,255,.82)">No account needed · No monthly fee · Money goes direct to recipient</p>
 </div>
 
 @include('partials.discover', ['current' => 'collection', 'fullWidth' => true])
-<footer class="footer">© 2026 Pregota · Group Collections via M-Pesa · pregota.com</footer>
+<footer class="footer">© 2026 Pregota · WhatsApp Group Collections via M-Pesa · pregota.com</footer>
 
 </body>
 </html>
