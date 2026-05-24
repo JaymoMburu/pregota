@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>WhatsApp Group Collections — Pregota</title>
-<meta name="description" content="Nobody added you to a WhatsApp group. Just a link, just M-Pesa. Contribute to any collection privately — bereavement, chama, wedding, medical.">
+<title>Group Collections — Pregota</title>
+<meta name="description" content="Tired of being added to contribution groups? Tired of chasing payments and holding everyone's cash? One link. Everyone pays via M-Pesa directly. No group adds, no drama.">
 @include('partials.pwa')
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
@@ -117,20 +117,11 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 
 <!-- Hero -->
 <div class="hero">
-    <div class="badge">💬 WhatsApp Group Collections · Powered by M-Pesa</div>
-    <h1>Your WhatsApp group.<br><em>Now with a proper M-Pesa collection.</em></h1>
-    <p>Already organising on WhatsApp? Drop a Pregota link in the group — everyone pays directly via M-Pesa STK Push, the total updates live, and you never touch anyone's money.<br><br>Not in the group? Never added? Doesn't matter. Anyone with the link can contribute — no group join required, no number shared, no public pressure.</p>
-    <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:24px;margin-bottom:8px">
-        <div style="background:rgba(16,185,129,.1);border:1px solid rgba(16,185,129,.2);border-radius:12px;padding:12px 18px;font-size:13px;color:rgba(255,255,255,.82);text-align:left;max-width:220px">
-            <div style="font-weight:700;color:#34d399;margin-bottom:4px">For the organiser</div>
-            Share one link in your WhatsApp group. No adding people, no collecting cash, no spreadsheets.
-        </div>
-        <div style="background:rgba(16,185,129,.1);border:1px solid rgba(16,185,129,.2);border-radius:12px;padding:12px 18px;font-size:13px;color:rgba(255,255,255,.82);text-align:left;max-width:220px">
-            <div style="font-weight:700;color:#34d399;margin-bottom:4px">For the contributor</div>
-            Nobody added you to anything. Just open the link, pay via M-Pesa, and you're done.
-        </div>
-    </div>
-    <div class="hero-btns">
+    <div class="badge">🤝 Group Collections · Powered by M-Pesa</div>
+    <h1>Contributions —<br><em>without the drama.</em></h1>
+    <p>Someone always gets added to a group they didn't ask for. Someone always ends up holding everyone's cash and having to prove they didn't steal it. Someone always has to chase people in public.</p>
+    <p style="margin-top:14px">Pregota fixes both ends. Organisers share a link — no adding anyone to anything. Contributors click and pay directly — no group join, no number sharing, no public pressure.</p>
+    <div class="hero-btns" style="margin-top:28px">
         <a href="{{ route('collection.new') }}" class="btn-primary">Start a Collection — Free</a>
         <a href="#how-it-works" class="btn-secondary">See How It Works</a>
     </div>
@@ -161,54 +152,89 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 </div>
 
 <!-- The Problem -->
-<div class="section">
+<div class="section" style="max-width:760px">
     <div class="section-tag">The Problem</div>
-    <h2>WhatsApp groups are great for organising. Terrible for collecting money.</h2>
-    <p>The group chat works — the payment part doesn't. Here's what every WhatsApp group admin deals with.</p>
+    <h2>Two people suffer every time there's a collection.</h2>
+    <p>The person organising it. And the person being asked to contribute. Here's exactly what each of them goes through.</p>
 
-    <div class="problem-card">
-        <div class="problem-title">📲 What goes wrong when your WhatsApp group tries to collect</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:28px">
 
-        <div class="problem-item">
-            <div class="problem-icon">😳</div>
-            <div class="problem-text">
-                <strong>"These people have not yet contributed" — public shaming</strong>
-                <span>The admin posts a list. 200 people see it. The pressure and embarrassment is real — even when members had every intention to contribute.</span>
+        <div class="problem-card" style="margin-top:0">
+            <div class="problem-title">😤 The organiser's nightmare</div>
+
+            <div class="problem-item">
+                <div class="problem-icon">📞</div>
+                <div class="problem-text">
+                    <strong>Hunting for everyone's number just to add them</strong>
+                    <span>You have to manually collect contacts, create a group, add people one by one — before you've even started collecting.</span>
+                </div>
+            </div>
+            <div class="problem-item">
+                <div class="problem-icon">💸</div>
+                <div class="problem-text">
+                    <strong>Money lands in your personal M-Pesa</strong>
+                    <span>Now you're holding 30 people's cash. You have to prove every shilling reached the beneficiary. One misunderstanding and you're accused of stealing.</span>
+                </div>
+            </div>
+            <div class="problem-item">
+                <div class="problem-icon">🗂️</div>
+                <div class="problem-text">
+                    <strong>Tracking is copy-paste and prayer</strong>
+                    <span>Copying M-Pesa messages into a notes app. Manually checking who paid. Someone always says they sent — you can't find it. Disputes, always.</span>
+                </div>
+            </div>
+            <div class="problem-item">
+                <div class="problem-icon">😓</div>
+                <div class="problem-text">
+                    <strong>Chasing people is exhausting and embarrassing</strong>
+                    <span>Either post the non-payers publicly and be the villain, or chase each person privately. Neither feels good.</span>
+                </div>
             </div>
         </div>
 
-        <div class="problem-item">
-            <div class="problem-icon">💸</div>
-            <div class="problem-text">
-                <strong>Admin handles all the cash — with zero accountability</strong>
-                <span>Everyone sends to one person's M-Pesa. No real-time tally, no proof of total collected, no guarantee every shilling reaches the recipient. You just have to trust.</span>
+        <div class="problem-card" style="margin-top:0">
+            <div class="problem-title">😩 The contributor's nightmare</div>
+
+            <div class="problem-item">
+                <div class="problem-icon">🔔</div>
+                <div class="problem-text">
+                    <strong>"You have been added to Kamau Harambee Group"</strong>
+                    <span>You didn't ask to be added. You don't know half these people. Your number is now visible to 80 strangers.</span>
+                </div>
+            </div>
+            <div class="problem-item">
+                <div class="problem-icon">😳</div>
+                <div class="problem-text">
+                    <strong>Public shaming if you haven't paid</strong>
+                    <span>"The following have not yet contributed…" Your name on a list. In front of everyone. Even if you were just waiting to be paid yourself.</span>
+                </div>
+            </div>
+            <div class="problem-item">
+                <div class="problem-icon">📲</div>
+                <div class="problem-text">
+                    <strong>Screenshot and prove you paid</strong>
+                    <span>You send the money, then screenshot the M-Pesa message, then send it to admin, then wait for confirmation you were ticked off the list. What year is this?</span>
+                </div>
+            </div>
+            <div class="problem-item">
+                <div class="problem-icon">🚪</div>
+                <div class="problem-text">
+                    <strong>You can't even leave the group</strong>
+                    <span>You paid. The collection is done. But you're still in the group, still getting notifications, and you can't leave without looking like you're being difficult.</span>
+                </div>
             </div>
         </div>
 
-        <div class="problem-item">
-            <div class="problem-icon">🗂️</div>
-            <div class="problem-text">
-                <strong>Tracking is screenshots and guesswork</strong>
-                <span>Admins copy M-Pesa messages into notes, manually count who paid. Mistakes happen. Disputes happen. Someone always says they sent and it wasn't recorded.</span>
-            </div>
-        </div>
-
-        <div class="problem-item">
-            <div class="problem-icon">🔔</div>
-            <div class="problem-text">
-                <strong>300 messages about a collection you paid for 2 weeks ago</strong>
-                <span>The group never dies. Reminders, thank-yous, follow-ups, side conversations — the collection is done but the noise isn't.</span>
-            </div>
-        </div>
     </div>
+    <p style="text-align:center;font-size:15px;color:rgba(255,255,255,.78);margin-top:28px;font-weight:700">Pregota fixes both — for the organiser and for every person contributing.</p>
 </div>
 
 <!-- How it works -->
 <div class="how" id="how-it-works">
     <div class="how-inner">
         <div class="section-tag">How It Works</div>
-        <h2>Post one link in your WhatsApp group. Done.</h2>
-        <p style="font-size:15px;color:rgba(255,255,255,.78);margin-top:10px">Set up in under 2 minutes. Drop the link in your group. Watch contributions arrive in real time — no chasing, no screenshots.</p>
+        <h2>One link. Nobody gets added to anything.</h2>
+        <p style="font-size:15px;color:rgba(255,255,255,.78);margin-top:10px">Set up in under 2 minutes. Share the link anywhere — WhatsApp, SMS, Instagram, wherever. Contributions arrive in real time. You never hold anyone's money.</p>
 
         <div class="steps">
             <div class="step">
@@ -221,8 +247,8 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
             <div class="step">
                 <div class="step-num">2</div>
                 <div class="step-body">
-                    <h3>Post the link in your WhatsApp group</h3>
-                    <p>You get a unique link — <strong style="color:#34d399">pregota.com/collections/your-title</strong>. Paste it in the group, share as a status, forward by text. One message. No pinning, no follow-up needed.</p>
+                    <h3>Share the link — anywhere</h3>
+                    <p>You get a unique link — <strong style="color:#34d399">pregota.com/collections/your-title</strong>. Share it on WhatsApp, as a status, in a DM, by SMS. One link. No adding anyone, no follow-up chasing required.</p>
                 </div>
             </div>
             <div class="step">
@@ -285,7 +311,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 <div class="adv">
     <div class="adv-inner">
         <div class="section-tag">Why Pregota</div>
-        <h2>Your WhatsApp group organises. Pregota collects.</h2>
+        <h2>Every pain point, solved — for both sides.</h2>
 
         <div class="adv-grid">
             <div class="adv-card">
@@ -398,14 +424,14 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 
 <!-- CTA -->
 <div class="cta-bottom">
-    <h2>No group. No pressure. No drama.<br><em style="font-style:normal;background:linear-gradient(135deg,#34d399,#10b981);-webkit-background-clip:text;-webkit-text-fill-color:transparent">Just a link. Just M-Pesa.</em></h2>
-    <p>Set up in under 2 minutes. Share the link anywhere — WhatsApp status, DM, text. Anyone who sees it can contribute privately. Nobody gets added to anything.</p>
+    <h2>Nobody gets added. Nobody holds your money.<br><em style="font-style:normal;background:linear-gradient(135deg,#34d399,#10b981);-webkit-background-clip:text;-webkit-text-fill-color:transparent">Just a link. Just M-Pesa.</em></h2>
+    <p>Set up in under 2 minutes. Share the link anywhere. Contributors pay directly — no group joins, no screenshots, no chasing. The money goes straight to the recipient. You're done.</p>
     <a href="{{ route('collection.new') }}" class="btn-primary" style="font-size:16px;padding:16px 36px">Start a Collection — Free →</a>
     <p style="margin-top:16px;font-size:12px;color:rgba(255,255,255,.82)">No account needed · No monthly fee · Money goes direct to recipient</p>
 </div>
 
 @include('partials.discover', ['current' => 'collection', 'fullWidth' => true])
-<footer class="footer">© 2026 Pregota · WhatsApp Group Collections via M-Pesa · pregota.com</footer>
+<footer class="footer">© 2026 Pregota · Group Collections via M-Pesa · pregota.com</footer>
 
 </body>
 </html>
