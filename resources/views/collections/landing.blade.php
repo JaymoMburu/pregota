@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>WhatsApp Group Collections — Pregota</title>
-<meta name="description" content="Share a Pregota link in your WhatsApp group. Everyone pays directly via M-Pesa STK Push. Bereavement, chama, wedding, medical and more.">
+<meta name="description" content="Nobody added you to a WhatsApp group. Just a link, just M-Pesa. Contribute to any collection privately — bereavement, chama, wedding, medical.">
 @include('partials.pwa')
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
@@ -117,9 +117,9 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 
 <!-- Hero -->
 <div class="hero">
-    <div class="badge">💬 WhatsApp Group Collections · Powered by M-Pesa</div>
-    <h1>Post the link in your group.<br><em>Everyone pays directly.</em></h1>
-    <p>Your WhatsApp group is already organised — now give it a proper M-Pesa collection. Share one Pregota link, everyone pays via STK Push, money goes straight to the recipient. No admin handling cash. No screenshots. No chasing.</p>
+    <div class="badge">💬 Group Collections · Powered by M-Pesa</div>
+    <h1>Nobody added you to a WhatsApp group or anything.<br><em>Just a link. Just M-Pesa.</em></h1>
+    <p>Someone you know needs support. A link lands in your inbox — or on a status. You open it, you contribute, you're done. No group. No 300 messages. No public list of who hasn't paid. Just you, your M-Pesa PIN, and a cause worth supporting.</p>
     <div class="hero-btns">
         <a href="{{ route('collection.new') }}" class="btn-primary">Start a Collection — Free</a>
         <a href="#how-it-works" class="btn-secondary">See How It Works</a>
@@ -388,8 +388,8 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 
 <!-- CTA -->
 <div class="cta-bottom">
-    <h2>Ready to collect?<br><em style="font-style:normal;background:linear-gradient(135deg,#34d399,#10b981);-webkit-background-clip:text;-webkit-text-fill-color:transparent">Post one link in your group.</em></h2>
-    <p>Takes under 2 minutes to set up. Drop the link in your WhatsApp group. Anyone — inside the group or not — can open it and pay directly via M-Pesa.</p>
+    <h2>No group. No pressure. No drama.<br><em style="font-style:normal;background:linear-gradient(135deg,#34d399,#10b981);-webkit-background-clip:text;-webkit-text-fill-color:transparent">Just a link. Just M-Pesa.</em></h2>
+    <p>Set up in under 2 minutes. Share the link anywhere — WhatsApp status, DM, text. Anyone who sees it can contribute privately. Nobody gets added to anything.</p>
     <a href="{{ route('collection.new') }}" class="btn-primary" style="font-size:16px;padding:16px 36px">Start a Collection — Free →</a>
     <p style="margin-top:16px;font-size:12px;color:rgba(255,255,255,.82)">No account needed · No monthly fee · Money goes direct to recipient</p>
 </div>
