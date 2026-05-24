@@ -112,14 +112,14 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 
         <!-- Group Collections -->
         <a href="{{ route('collection.landing') }}" class="module-card mc-collection">
-            <span class="mc-icon">🤝</span>
-            <div class="mc-name">Group Collections</div>
-            <div class="mc-desc">Start a collection for any cause. Everyone contributes directly. Money goes straight to the person who needs it.</div>
+            <span class="mc-icon">💬</span>
+            <div class="mc-name">WhatsApp Group Collections</div>
+            <div class="mc-desc">Post one link in your WhatsApp group. Everyone pays directly via M-Pesa. No admin handling cash. No need to be in the group to contribute.</div>
             <div class="mc-examples">
                 <span class="mc-tag">Bereavement</span>
+                <span class="mc-tag">Chama</span>
                 <span class="mc-tag">Wedding</span>
                 <span class="mc-tag">Medical</span>
-                <span class="mc-tag">Chama</span>
             </div>
             <div class="mc-cta">Start a Collection <span>›</span></div>
         </a>
