@@ -16,6 +16,7 @@ class Voucher extends Model
         'b2c_conversation_id', 'b2c_confirmation_code',
         'prev_hash', 'entry_hash',
         'activated_at', 'redeemed_at', 'expires_at',
+        'recipient_phone', 'claimed_at',
     ];
 
     protected $casts = [
@@ -27,6 +28,7 @@ class Voucher extends Model
         'activated_at'  => 'datetime',
         'redeemed_at'   => 'datetime',
         'expires_at'    => 'datetime',
+        'claimed_at'    => 'datetime',
     ];
 
     public function bulkGift(): BelongsTo

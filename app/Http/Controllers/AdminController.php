@@ -56,8 +56,9 @@ class AdminController extends Controller
 
         $frozenSchoolCollections = SchoolCollection::where('is_frozen', true)->latest()->get();
         $frozenCollections       = Collection::where('is_frozen', true)->latest()->get();
+        $pendingPayouts          = Voucher::where('status', 'claimed')->oldest('claimed_at')->get();
 
-        return view('admin.dashboard', compact('vouchers', 'stats', 'frozenSchoolCollections', 'frozenCollections'));
+        return view('admin.dashboard', compact('vouchers', 'stats', 'frozenSchoolCollections', 'frozenCollections', 'pendingPayouts'));
     }
 
     public function unfreezeSchoolCollection(SchoolCollection $schoolCollection)
@@ -226,6 +227,26 @@ class AdminController extends Controller
         $handle = $creator->handle;
         $creator->delete();
         return back()->with('success', "Creator @{$handle} rejected and removed.");
+    }
+
+    public function markPaid(Voucher $voucher)
+    {
+        if ($voucher->status !== 'claimed') {
+            return back()->with('error', 'Voucher is not in claimed state.');
+        }
+
+        $voucher->update([
+            'status'          => 'redeemed',
+            'redeemed_at'     => now(),
+            'recipient_phone' => null,
+        ]);
+
+        LedgerEntry::record($voucher, 'manually_paid', [
+            'note'          => 'Admin manually sent M-Pesa payout',
+            'payout_amount' => $voucher->payout_amount,
+        ], $voucher->payout_amount);
+
+        return back()->with('success', "Voucher {$voucher->code} — KES " . number_format($voucher->payout_amount, 0) . " marked as paid.");
     }
 
     public function cancelVoucher(Voucher $voucher)

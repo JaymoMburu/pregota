@@ -183,6 +183,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/voucher/{voucher}', [AdminController::class, 'voucher'])->name('voucher');
         Route::post('/voucher/{voucher}/activate', [AdminController::class, 'activateVoucher'])->name('voucher.activate');
         Route::post('/voucher/{voucher}/cancel', [AdminController::class, 'cancelVoucher'])->name('voucher.cancel');
+        Route::post('/voucher/{voucher}/mark-paid', [AdminController::class, 'markPaid'])->name('voucher.mark-paid');
         Route::get('/partners', [AdminController::class, 'partners'])->name('partners');
         Route::post('/partners', [AdminController::class, 'createPartner'])->name('partners.create');
         Route::post('/partners/{partner}/toggle', [AdminController::class, 'togglePartner'])->name('partners.toggle');

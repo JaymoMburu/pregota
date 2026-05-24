@@ -13,4 +13,5 @@ return [
     'gift_direct_fee'      => (int) env('PREGOTA_GIFT_DIRECT_FEE', 75),
     'gift_nudge_threshold' => (int) env('PREGOTA_GIFT_NUDGE_THRESHOLD', 500),
     'collection_fee'       => (int) env('PREGOTA_COLLECTION_FEE', 30),
+    'manual_payouts'       => env('PREGOTA_MANUAL_PAYOUTS', false),
 ];

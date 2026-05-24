@@ -159,7 +159,30 @@ class VoucherService
             'fee_out'       => $voucher->fee_out,
         ], $voucher->payout_amount);
 
-        // Initiate B2C payout
+        // Manual payout mode — queue for admin to send manually
+        if (config('pregota.manual_payouts', false)) {
+            $voucher->update([
+                'status'          => 'claimed',
+                'claimed_at'      => now(),
+                'recipient_phone' => $recipientPhone,
+            ]);
+
+            LedgerEntry::record($voucher, 'voucher_queued', [
+                'payout_amount' => $voucher->payout_amount,
+                'note'          => 'Manual payout mode — queued for admin',
+            ], $voucher->payout_amount);
+
+            return [
+                'success'     => true,
+                'manual'      => true,
+                'message'     => 'Gift received! Your KES ' . number_format($voucher->payout_amount, 0) . ' will arrive on M-Pesa within a few hours.',
+                'amount'      => $voucher->payout_amount,
+                'gift_msg'    => $voucher->message,
+                'sender_name' => $voucher->sender_name,
+            ];
+        }
+
+        // Automatic B2C payout
         $b2c = $this->daraja->b2cPayout(
             (int) $voucher->payout_amount,
             $recipientPhone,
