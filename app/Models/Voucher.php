@@ -3,11 +3,13 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Voucher extends Model
 {
     protected $fillable = [
+        'bulk_gift_id',
         'code', 'face_value', 'gross_amount', 'fee_in', 'fee_out', 'payout_amount',
         'message', 'sender_name', 'status',
         'mpesa_checkout_id', 'mpesa_confirmation_code',
@@ -26,6 +28,11 @@ class Voucher extends Model
         'redeemed_at'   => 'datetime',
         'expires_at'    => 'datetime',
     ];
+
+    public function bulkGift(): BelongsTo
+    {
+        return $this->belongsTo(BulkGift::class);
+    }
 
     public function ledger(): HasMany
     {

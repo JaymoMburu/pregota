@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\BulkGiftController;
 use App\Http\Controllers\InvestorController;
 use App\Http\Controllers\TxController;
 use App\Http\Controllers\BillSplitController;
@@ -35,6 +36,12 @@ Route::get('/gift/status', [GiftController::class, 'checkStatus'])->name('gift.s
 Route::post('/gift/direct', [GiftController::class, 'directInitiate'])->name('gift.direct');
 Route::get('/gift/direct/status', [GiftController::class, 'directStatus'])->name('gift.direct.status');
 Route::get('/gift/partner/{partner:slug}', [GiftController::class, 'partnerRedirect'])->name('gift.partner');
+
+// ── Bulk / corporate gift codes ───────────────────────────────────────────
+Route::get('/gift/bulk', [BulkGiftController::class, 'page'])->name('gift.bulk');
+Route::post('/gift/bulk/initiate', [BulkGiftController::class, 'initiate'])->name('gift.bulk.initiate');
+Route::get('/gift/bulk/status', [BulkGiftController::class, 'status'])->name('gift.bulk.status');
+Route::get('/gift/bulk/download', [BulkGiftController::class, 'download'])->name('gift.bulk.download');
 
 // ── Multi-creator gift ────────────────────────────────────────────────────
 Route::get('/gift/multi-creator', [MultiGiftController::class, 'page'])->name('gift.multi');

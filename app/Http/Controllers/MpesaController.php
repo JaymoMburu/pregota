@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\BillSplitPayment;
+use App\Models\BulkGift;
 use App\Models\Collection;
 use App\Models\CollectionContribution;
 use App\Models\CreatorGift;
@@ -14,6 +15,7 @@ use App\Models\SchoolPayment;
 use App\Models\TipTransaction;
 use App\Models\Voucher;
 use App\Services\BillSplitService;
+use App\Services\BulkGiftService;
 use App\Services\CollectionService;
 use App\Services\DirectGiftService;
 use App\Services\MultiGiftService;
@@ -28,6 +30,7 @@ class MpesaController extends Controller
 {
     public function __construct(
         private VoucherService $vouchers,
+        private BulkGiftService $bulkGifts,
         private CreatorController $creators,
         private TipService $tips,
         private DirectGiftService $directGifts,
@@ -92,8 +95,11 @@ class MpesaController extends Controller
                                 $handled = $this->billSplits->confirmPayment($checkoutId, $mpesaCode);
                                 if ($handled) { $this->seal($handled, 'SPLIT'); }
                                 else {
-                                    $handled = $this->vouchers->confirmDeposit($checkoutId, $mpesaCode, $amount);
-                                    if ($handled) { $this->seal($handled, 'VOUCHER'); }
+                                    $handled = $this->bulkGifts->confirmPayment($checkoutId, $mpesaCode, $amount);
+                                    if (! $handled) {
+                                        $handled = $this->vouchers->confirmDeposit($checkoutId, $mpesaCode, $amount);
+                                        if ($handled) { $this->seal($handled, 'VOUCHER'); }
+                                    }
                                 }
                             }
                         }
@@ -133,7 +139,12 @@ class MpesaController extends Controller
                                 if ($split) {
                                     $this->billSplits->failPayment($checkoutId);
                                 } else {
-                                    $this->vouchers->failDeposit($checkoutId, $reason);
+                                    $bulk = BulkGift::where('mpesa_checkout_id', $checkoutId)->first();
+                                    if ($bulk) {
+                                        $this->bulkGifts->failPayment($checkoutId);
+                                    } else {
+                                        $this->vouchers->failDeposit($checkoutId, $reason);
+                                    }
                                 }
                             }
                         }

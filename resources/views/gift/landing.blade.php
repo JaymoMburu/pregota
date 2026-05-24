@@ -23,6 +23,32 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 .btn-primary{background:linear-gradient(135deg,#00A651,#007A33);color:#fff;border:none;border-radius:12px;padding:14px 28px;font-size:15px;font-weight:700;cursor:pointer;text-decoration:none;display:inline-block}
 .btn-secondary{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.7);border-radius:12px;padding:14px 28px;font-size:15px;font-weight:700;text-decoration:none;display:inline-block}
 
+/* Who is this for — two paths */
+.paths{padding:48px 24px 8px;max-width:700px;margin:0 auto}
+.paths-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:rgba(255,255,255,.4);text-align:center;margin-bottom:20px}
+.paths-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:520px){.paths-grid{grid-template-columns:1fr}}
+
+.path-card{border-radius:18px;padding:26px;text-decoration:none;color:#fff;display:flex;flex-direction:column;gap:0;transition:.2s;position:relative;overflow:hidden}
+.path-card-individual{background:rgba(37,211,102,.07);border:1.5px solid rgba(37,211,102,.25)}
+.path-card-individual:hover{background:rgba(37,211,102,.13);border-color:rgba(37,211,102,.5);transform:translateY(-2px)}
+.path-card-corporate{background:rgba(251,191,36,.06);border:1.5px solid rgba(251,191,36,.2)}
+.path-card-corporate:hover{background:rgba(251,191,36,.12);border-color:rgba(251,191,36,.4);transform:translateY(-2px)}
+
+.path-badge{display:inline-flex;align-items:center;gap:6px;border-radius:20px;padding:4px 12px;font-size:10px;font-weight:700;letter-spacing:.06em;margin-bottom:14px;width:fit-content}
+.path-badge-individual{background:rgba(37,211,102,.15);color:#4ADE80;border:1px solid rgba(37,211,102,.25)}
+.path-badge-corporate{background:rgba(251,191,36,.12);color:#fbbf24;border:1px solid rgba(251,191,36,.2)}
+
+.path-icon{font-size:38px;margin-bottom:12px}
+.path-title{font-size:18px;font-weight:900;margin-bottom:8px}
+.path-desc{font-size:13px;color:rgba(255,255,255,.72);line-height:1.6;margin-bottom:16px;flex:1}
+.path-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:18px}
+.path-tag{font-size:11px;padding:3px 10px;border-radius:20px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.72)}
+.path-cta{font-size:13px;font-weight:700;display:inline-flex;align-items:center;gap:5px}
+.path-cta-individual{color:#4ADE80}
+.path-cta-corporate{color:#fbbf24}
+.path-card:hover .path-cta span{transform:translateX(3px);transition:.2s}
+
 /* Gift type cards */
 .types{padding:48px 24px;max-width:700px;margin:0 auto}
 .types-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:28px}
@@ -107,9 +133,46 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
     </div>
 </div>
 
+<!-- Individual vs Corporate paths -->
+<div class="paths">
+    <div class="paths-label">Who is this for?</div>
+    <div class="paths-grid">
+
+        <a href="{{ route('gift.home') }}" class="path-card path-card-individual">
+            <div class="path-badge path-badge-individual">👤 Individual</div>
+            <div class="path-icon">🎁</div>
+            <div class="path-title">Personal Gift</div>
+            <div class="path-desc">Send a one-off gift to someone you care about — anonymously. They never see your name or number. You never need theirs.</div>
+            <div class="path-tags">
+                <span class="path-tag">Birthday</span>
+                <span class="path-tag">Thank you</span>
+                <span class="path-tag">Anniversary</span>
+                <span class="path-tag">Support</span>
+                <span class="path-tag">Surprise</span>
+            </div>
+            <div class="path-cta path-cta-individual">Send a Gift Now <span>›</span></div>
+        </a>
+
+        <a href="{{ route('gift.bulk') }}" class="path-card path-card-corporate">
+            <div class="path-badge path-badge-corporate">🏢 Corporate</div>
+            <div class="path-icon">📦</div>
+            <div class="path-title">Bulk Gift Codes</div>
+            <div class="path-desc">Buy multiple gift codes in one M-Pesa payment. Distribute to staff, clients, or event attendees — each code redeemed independently.</div>
+            <div class="path-tags">
+                <span class="path-tag">Staff rewards</span>
+                <span class="path-tag">Client gifts</span>
+                <span class="path-tag">Events</span>
+                <span class="path-tag">Promotions</span>
+            </div>
+            <div class="path-cta path-cta-corporate">Get Bulk Codes <span>›</span></div>
+        </a>
+
+    </div>
+</div>
+
 <!-- Gift types -->
 <div class="types">
-    <div class="section-tag">Two Ways to Gift</div>
+    <div class="section-tag">Two Ways to Send · Individual</div>
     <h2 style="font-size:clamp(22px,4vw,32px);font-weight:900;line-height:1.2;margin-bottom:6px">Pick the type that fits.</h2>
     <p style="font-size:15px;color:rgba(255,255,255,.78);margin-top:8px">Whether you want a surprise or instant delivery, we have you covered.</p>
 
@@ -281,7 +344,10 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 <div class="cta-bottom">
     <h2>Ready to send?<br><em style="font-style:normal;background:linear-gradient(135deg,#25D366,#4ADE80);-webkit-background-clip:text;-webkit-text-fill-color:transparent">Takes under two minutes.</em></h2>
     <p>No account. No app. Just M-Pesa and a gift code. The most private way to give cash in Kenya.</p>
-    <a href="{{ route('gift.home') }}" class="btn-primary" style="font-size:16px;padding:16px 36px">Send a Gift →</a>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+        <a href="{{ route('gift.home') }}" class="btn-primary" style="font-size:16px;padding:16px 36px">Send a Personal Gift →</a>
+        <a href="{{ route('gift.bulk') }}" class="btn-secondary" style="font-size:15px;padding:15px 28px">🏢 Corporate Bulk Codes</a>
+    </div>
     <p style="margin-top:16px;font-size:12px;color:rgba(255,255,255,.82)">No account needed · Minimum KES {{ number_format(config('pregota.min_amount'), 0) }} · Valid 72 hours</p>
 </div>
 

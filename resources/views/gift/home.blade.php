@@ -194,6 +194,7 @@ textarea{resize:none;height:68px}
     @include('partials.module-nav', ['activeModule' => 'gift'])
     <div class="right-nav" style="padding:10px 24px;gap:8px">
         <a href="{{ route('gift.multi') }}" class="nav-link" style="font-size:12px;padding:5px 12px">🎤 Multi-Creator</a>
+        <a href="{{ route('gift.bulk') }}" class="nav-link" style="font-size:12px;padding:5px 12px">🏢 Bulk Codes</a>
         <a href="{{ route('track') }}" class="nav-link" style="font-size:12px;padding:5px 12px">Track Gift</a>
         <a href="{{ route('redeem') }}" class="nav-link" style="font-size:12px;padding:5px 12px">Redeem Gift</a>
     </div>
