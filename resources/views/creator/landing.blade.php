@@ -113,9 +113,9 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 
 <!-- Hero -->
 <div class="hero">
-    <div class="creator-badge">🎤 For Kenyan Content Creators</div>
+    <div class="creator-badge">🎤 TikTok · Instagram · YouTube · Podcasts · Kenya</div>
     <h1>Receive M-Pesa gifts.<br><em>Without sharing your number.</em></h1>
-    <p>Your fans send you money in seconds via M-Pesa — privately. No "send to my number" conversations. No strangers saving your contact. No unwanted calls. Just gifts, straight to your M-Pesa.</p>
+    <p>Put your Pregota link in your TikTok bio or Instagram bio. Your Kenyan fans send you money in seconds — privately, via M-Pesa. No "send to my number" awkwardness. No strangers saving your contact.</p>
     <div class="hero-btns">
         <a href="{{ route('creator.register') }}" class="btn-primary">Create My Gift Page — Free</a>
         <a href="#how-it-works" class="btn-secondary">See How It Works</a>
@@ -198,8 +198,8 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
             <div class="step">
                 <div class="step-num">2</div>
                 <div class="step-body">
-                    <h3>Share your link everywhere</h3>
-                    <p>Put it in your YouTube description, Instagram bio, TikTok link, podcast show notes, or Twitter/X profile. One link works everywhere — no app needed for your fans.</p>
+                    <h3>Drop the link in your bio — everywhere</h3>
+                    <p>One link works on every platform. Paste it in your <strong style="color:#c084fc">TikTok bio link</strong>, <strong style="color:#f472b6">Instagram bio</strong>, YouTube description, podcast show notes, Twitter/X, or WhatsApp status. Fans click it directly — no switching apps, no DMs asking for your number.</p>
                 </div>
             </div>
             <div class="step">
@@ -309,6 +309,23 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 <div class="who">
     <div class="section-tag">Who This Is For</div>
     <h2>Any creator with a Kenyan audience.</h2>
+
+    <!-- Social media highlight -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:24px;margin-bottom:12px">
+        <div class="creator-card" style="background:linear-gradient(135deg,rgba(0,0,0,.4),rgba(105,65,198,.15));border-color:rgba(105,65,198,.35);padding:20px">
+            <div style="font-size:32px;margin-bottom:8px">🎵</div>
+            <div class="creator-title" style="font-size:15px;color:#c084fc">TikTokers</div>
+            <div class="creator-sub" style="margin-top:4px;line-height:1.5">Comedy, dance, lifestyle & viral content — Kenya's fastest growing creator economy</div>
+            <div style="margin-top:10px;font-size:11px;color:rgba(105,65,198,.9);font-weight:700">Add link to TikTok bio →</div>
+        </div>
+        <div class="creator-card" style="background:linear-gradient(135deg,rgba(131,58,180,.12),rgba(253,29,29,.1),rgba(252,176,69,.08));border-color:rgba(253,29,29,.25);padding:20px">
+            <div style="font-size:32px;margin-bottom:8px">📸</div>
+            <div class="creator-title" style="font-size:15px;color:#f472b6">Instagram Creators</div>
+            <div class="creator-sub" style="margin-top:4px;line-height:1.5">Influencers, lifestyle, fashion, food & travel — monetise your followers directly</div>
+            <div style="margin-top:10px;font-size:11px;color:rgba(244,114,182,.9);font-weight:700">Add link in bio →</div>
+        </div>
+    </div>
+
     <div class="creator-grid">
         <div class="creator-card">
             <div class="creator-emoji">📺</div>
@@ -321,7 +338,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
             <div class="creator-sub">Audio creators</div>
         </div>
         <div class="creator-card">
-            <div class="creator-emoji">🎵</div>
+            <div class="creator-emoji">🎶</div>
             <div class="creator-title">Musicians</div>
             <div class="creator-sub">Artists & bands</div>
         </div>
@@ -346,14 +363,14 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
             <div class="creator-sub">Streamers & esports</div>
         </div>
         <div class="creator-card">
-            <div class="creator-emoji">📸</div>
-            <div class="creator-title">Photographers</div>
-            <div class="creator-sub">Photography & film</div>
-        </div>
-        <div class="creator-card">
             <div class="creator-emoji">🧑‍🏫</div>
             <div class="creator-title">Educators</div>
             <div class="creator-sub">Tutors & mentors</div>
+        </div>
+        <div class="creator-card">
+            <div class="creator-emoji">🍽️</div>
+            <div class="creator-title">Food Creators</div>
+            <div class="creator-sub">Recipe & food reviews</div>
         </div>
     </div>
 </div>

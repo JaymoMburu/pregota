@@ -160,11 +160,11 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
                 <div class="mc-name" style="font-size:22px">Creator Gift Page</div>
                 <div class="mc-desc" style="margin-bottom:16px">Set up your personal gift page in 60 seconds. Share your link — fans send you M-Pesa gifts directly, no awkward conversations, no sharing your number. Used by YouTubers, podcasters, artists, and streamers.</div>
                 <div class="mc-examples">
+                    <span class="mc-tag">TikTok</span>
+                    <span class="mc-tag">Instagram</span>
                     <span class="mc-tag">YouTube</span>
                     <span class="mc-tag">Podcast</span>
                     <span class="mc-tag">Music</span>
-                    <span class="mc-tag">Comedy</span>
-                    <span class="mc-tag">Art</span>
                     <span class="mc-tag">pregota.com/c/yourname</span>
                 </div>
             </div>
