@@ -72,7 +72,7 @@ input::placeholder{color:rgba(255,255,255,.82)}
     <div class="left-center">
         <div class="headline">
             <h1>School collections.<br><em>No cash handling.<br>No reconciliation.</em></h1>
-            <p>Exam fees, trips, PTA levies — parents pay directly via M-Pesa. Teachers share a link. Admin sees everything in real time.</p>
+            <p>Remedial classes, trips, PTA activities, prize giving — parents pay directly via M-Pesa. No cash to the teacher's personal number. Admin sees every payment in real time.</p>
         </div>
         <div class="flow-steps">
             <div class="flow-step"><div class="flow-num">1</div><div class="flow-text"><strong>Admin sets up the collection</strong><span>Adds all classes and class teachers in one form. Takes 3 minutes.</span></div></div>
@@ -93,7 +93,7 @@ input::placeholder{color:rgba(255,255,255,.82)}
     </nav>
     <div class="right-body">
         <div class="form-wrap">
-            <div class="form-title">Set Up Fees Collection</div>
+            <div class="form-title">Set Up School Collection</div>
             <div class="form-subtitle">You'll get a private admin dashboard link plus a unique link for each class teacher.</div>
 
             @if($errors->any())

@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>School Fee Collections — Pregota</title>
-<meta name="description" content="Collect school fees via M-Pesa without handling cash. Parents pay directly — class teachers share a link, admin sees everything in real time.">
+<title>School Collections — Pregota</title>
+<meta name="description" content="Remedial classes, trips, PTA activities — parents pay via M-Pesa directly. No cash to the teacher's number. Class teachers share a link, admin sees everything in real time.">
 @include('partials.pwa')
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
@@ -99,9 +99,9 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 
 <!-- Hero -->
 <div class="hero">
-    <div class="badge">🏫 School Fee Collections · via M-Pesa</div>
-    <h1>Collect school fees.<br><em>No cash handling.<br>No reconciliation.</em></h1>
-    <p>Parents pay directly via M-Pesa STK Push. Class teachers share a link with their class. Admin sees who has paid in real time — per student, per class.</p>
+    <div class="badge">🏫 School Collections · via M-Pesa</div>
+    <h1>School collections.<br><em>No cash to the teacher.<br>No reconciliation.</em></h1>
+    <p>Remedial classes, trips, PTA activities, prize giving — parents pay directly via M-Pesa STK Push. No more sending money to a teacher's personal number. Admin sees who has paid in real time — per student, per class.</p>
     <div class="hero-btns">
         <a href="{{ route('school-collection.new') }}" class="btn-primary">Set Up a Collection — Free</a>
         <a href="#how-it-works" class="btn-secondary">See How It Works</a>

@@ -130,10 +130,10 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
             <div class="mc-name">School Collections</div>
             <div class="mc-desc">Set up a school collection in minutes. Each class gets its own payment link. Admin sees every payment in real time.</div>
             <div class="mc-examples">
-                <span class="mc-tag">Exam fees</span>
-                <span class="mc-tag">Trips</span>
+                <span class="mc-tag">Remedial classes</span>
+                <span class="mc-tag">School trips</span>
                 <span class="mc-tag">PTA levy</span>
-                <span class="mc-tag">Tuition</span>
+                <span class="mc-tag">Prize giving</span>
             </div>
             <div class="mc-cta">Set Up Collection <span>›</span></div>
         </a>
