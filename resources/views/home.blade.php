@@ -89,7 +89,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 <div class="hero">
     <div class="hero-tag">🇰🇪 Built for Kenya · Powered by M-Pesa</div>
     <h1>Money moving.<br><em>Zero hassle.</em></h1>
-    <p>Whether you're collecting, gifting, or tipping — Pregota handles the M-Pesa so you don't have to.</p>
+    <p>Built for how Kenyans actually move money.</p>
 </div>
 
 <div class="modules">
