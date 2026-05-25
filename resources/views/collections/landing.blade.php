@@ -119,8 +119,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 <div class="hero">
     <div class="badge">💬 WhatsApp Group Collections · Powered by M-Pesa</div>
     <h1>WhatsApp contributions —<br><em>without the drama.</em></h1>
-    <p>Someone always gets added to a WhatsApp group they didn't ask for. Someone always ends up holding everyone's cash and having to prove they didn't steal it. Someone always chases people publicly.</p>
-    <p style="margin-top:14px">Pregota fixes both ends. Organisers share a link in the WhatsApp group — no adding anyone, no holding cash. Contributors click and pay directly — no group join required, no number sharing, no public pressure.</p>
+    <p>One link in the group. Everyone pays via M-Pesa directly.<br>No group adds. No cash through admin. No chasing.</p>
     <div class="hero-btns" style="margin-top:28px">
         <a href="{{ route('collection.new') }}" class="btn-primary">Start a Collection — Free</a>
         <a href="#how-it-works" class="btn-secondary">See How It Works</a>
