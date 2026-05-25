@@ -68,7 +68,7 @@ class DarajaService
                 'BusinessShortCode' => $this->shortcode,
                 'Password'          => $password,
                 'Timestamp'         => $timestamp,
-                'TransactionType'   => 'CustomerPayBillOnline',
+                'TransactionType'   => config('daraja.transaction_type', 'CustomerBuyGoodsOnline'),
                 'Amount'            => $amount,
                 'PartyA'            => $phone,
                 'PartyB'            => $this->shortcode,
