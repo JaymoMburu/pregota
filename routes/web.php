@@ -196,6 +196,7 @@ Route::get('/deni', [DeniController::class, 'landing'])->name('deni.landing');
 Route::get('/deni/create', [DeniController::class, 'create'])->name('deni.create');
 Route::post('/deni', [DeniController::class, 'store'])->name('deni.store');
 Route::get('/deni/admin/{token}', [DeniController::class, 'adminView'])->name('deni.admin');
+Route::post('/deni/admin/{token}/charge', [DeniController::class, 'addCharge'])->name('deni.charge');
 Route::get('/deni/{token}', [DeniController::class, 'show'])->name('deni.show');
 Route::post('/deni/{token}/pay', [DeniController::class, 'pay'])->name('deni.pay');
 Route::get('/deni/{token}/status', [DeniController::class, 'payStatus'])->name('deni.status');

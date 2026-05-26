@@ -18,6 +18,7 @@ class Deni extends Model
 
     public function payLink()   { return $this->belongsTo(PayLink::class); }
     public function payments()  { return $this->hasMany(DeniPayment::class); }
+    public function items()     { return $this->hasMany(DeniItem::class); }
 
     public function balance(): int { return max(0, $this->original_amount - $this->amount_paid); }
 

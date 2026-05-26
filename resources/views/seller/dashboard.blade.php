@@ -191,15 +191,19 @@ tr:hover td{background:rgba(255,255,255,.03)}
         </div>
         @endif
 
+        @if(session('charge_added'))
+        <div style="background:rgba(37,211,102,.06);border:1px solid rgba(37,211,102,.18);border-radius:9px;padding:10px 14px;margin-bottom:12px;font-size:13px;color:#4ADE80">✓ Charge added to "{{ session('charge_added') }}"</div>
+        @endif
+
         <form method="POST" action="{{ route('deni.store') }}">
             @csrf
             <div class="form-row">
                 <div class="form-group-sm" style="flex:1;min-width:160px">
-                    <label>What's the tab for?</label>
-                    <input type="text" name="description" maxlength="300" placeholder="e.g. Ugali + fish, 3 Jun" required>
+                    <label>Customer / Tab Name</label>
+                    <input type="text" name="description" maxlength="300" placeholder="e.g. John Kamau or Table 3" required>
                 </div>
                 <div class="form-group-sm" style="width:120px">
-                    <label>Amount (KES)</label>
+                    <label>Opening Amount</label>
                     <input type="number" name="original_amount" min="1" max="500000" placeholder="120" required>
                 </div>
                 <div class="form-group-sm" style="width:140px">
@@ -212,21 +216,47 @@ tr:hover td{background:rgba(255,255,255,.03)}
 
         @if($openDeni->isNotEmpty())
         <div style="margin-top:16px;display:flex;flex-direction:column;gap:8px">
-            <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(239,68,68,.5);margin-bottom:4px">Open Tabs</div>
+            <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(239,68,68,.5);margin-bottom:4px">Open Tabs ({{ $openDeni->count() }})</div>
             @foreach($openDeni as $d)
             @php $pct = $d->original_amount > 0 ? round(($d->amount_paid / $d->original_amount) * 100) : 0; @endphp
-            <div style="padding:12px 14px;background:rgba(239,68,68,.04);border:1px solid rgba(239,68,68,.12);border-radius:10px">
-                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;flex-wrap:wrap;gap:6px">
-                    <div>
-                        <div style="font-size:13px;font-weight:700">{{ $d->description }}</div>
-                        <div style="font-size:11px;color:rgba(255,255,255,.4)">{{ $d->status === 'partial' ? 'KES '.number_format($d->amount_paid).' paid · ' : '' }}KES {{ number_format($d->balance()) }} remaining</div>
+            <div style="background:rgba(239,68,68,.04);border:1px solid rgba(239,68,68,.12);border-radius:10px;overflow:hidden">
+                {{-- Tab summary row --}}
+                <div style="padding:12px 14px">
+                    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;flex-wrap:wrap;gap:6px">
+                        <div>
+                            <div style="font-size:13px;font-weight:700">{{ $d->description }}</div>
+                            <div style="font-size:11px;color:rgba(255,255,255,.4)">
+                                {{ $d->status === 'partial' ? 'KES '.number_format($d->amount_paid).' paid · ' : '' }}
+                                <span style="color:#f87171;font-weight:600">KES {{ number_format($d->balance()) }} remaining</span>
+                            </div>
+                        </div>
+                        <div style="display:flex;gap:6px;flex-wrap:wrap">
+                            <button onclick="toggleCharge('{{ $d->admin_token }}')" style="font-size:11px;padding:5px 12px;background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.25);border-radius:6px;color:#f87171;cursor:pointer;font-weight:600">+ Add Charge</button>
+                            <button onclick="navigator.clipboard.writeText('{{ url('/deni/' . $d->debtor_token) }}');this.textContent='✓ Copied!'" style="font-size:11px;padding:5px 10px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:6px;color:rgba(255,255,255,.5);cursor:pointer">Copy Link</button>
+                            <a href="{{ url('/deni/admin/' . $d->admin_token) }}" style="font-size:11px;padding:5px 10px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:6px;color:rgba(255,255,255,.5);text-decoration:none">View →</a>
+                        </div>
                     </div>
-                    <div style="display:flex;gap:8px">
-                        <button onclick="navigator.clipboard.writeText('{{ url('/deni/' . $d->debtor_token) }}');alert('Link copied!')" style="font-size:11px;padding:4px 10px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:6px;color:rgba(255,255,255,.5);cursor:pointer">Copy Link</button>
-                        <a href="{{ url('/deni/admin/' . $d->admin_token) }}" style="font-size:11px;padding:4px 10px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:6px;color:rgba(255,255,255,.5);text-decoration:none">View →</a>
+                    <div style="height:4px;background:rgba(255,255,255,.07);border-radius:999px;overflow:hidden">
+                        <div style="height:100%;width:{{ $pct }}%;background:linear-gradient(90deg,#ef4444,#fbbf24);border-radius:999px"></div>
                     </div>
                 </div>
-                <div style="height:5px;background:rgba(255,255,255,.07);border-radius:999px;overflow:hidden"><div style="height:100%;width:{{ $pct }}%;background:linear-gradient(90deg,#25D366,#4ADE80);border-radius:999px"></div></div>
+                {{-- Inline Add Charge form (hidden by default) --}}
+                <div id="charge-{{ $d->admin_token }}" style="display:none;border-top:1px solid rgba(239,68,68,.15);padding:12px 14px;background:rgba(239,68,68,.06)">
+                    <form method="POST" action="{{ route('deni.charge', $d->admin_token) }}" style="display:flex;gap:8px;flex-wrap:wrap;align-items:flex-end">
+                        @csrf
+                        <input type="hidden" name="from" value="dashboard">
+                        <div style="flex:1;min-width:140px">
+                            <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(239,68,68,.6);margin-bottom:5px">What for?</div>
+                            <input type="text" name="description" placeholder="e.g. Ugali + fish" maxlength="200" required style="width:100%;padding:8px 10px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:7px;color:#fff;font-size:13px;outline:none;font-family:inherit">
+                        </div>
+                        <div style="width:90px">
+                            <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(239,68,68,.6);margin-bottom:5px">KES</div>
+                            <input type="number" name="amount" placeholder="120" min="1" max="500000" required style="width:100%;padding:8px 10px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:7px;color:#fff;font-size:13px;outline:none;font-family:inherit">
+                        </div>
+                        <button type="submit" style="padding:8px 16px;background:linear-gradient(135deg,#dc2626,#ef4444);border:none;border-radius:7px;color:#fff;font-size:13px;font-weight:700;cursor:pointer">Add →</button>
+                        <button type="button" onclick="toggleCharge('{{ $d->admin_token }}')" style="padding:8px 12px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:7px;color:rgba(255,255,255,.4);font-size:12px;cursor:pointer">Cancel</button>
+                    </form>
+                </div>
             </div>
             @endforeach
         </div>
@@ -335,6 +365,11 @@ tr:hover td{background:rgba(255,255,255,.03)}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" integrity="sha512-CNgIRecGo7nphbeZ04Sc13ka07paqdeTu0WR1IM4kNcpmBAUSHSe1HDAH/bxRHZ2rOS6QTLXT8ROuJq9q0BGQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
 const PAY_URL = 'https://pregota.com/pay/{{ $payLink->handle }}';
+
+function toggleCharge(token) {
+    const el = document.getElementById('charge-' + token);
+    if (el) el.style.display = el.style.display === 'none' ? 'block' : 'none';
+}
 
 function copyLink() {
     navigator.clipboard.writeText(PAY_URL).then(() => {

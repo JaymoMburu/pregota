@@ -58,6 +58,21 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
             @endif
         </div>
 
+        @if($deni->items->isNotEmpty())
+        <div style="margin-bottom:14px">
+            <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:rgba(255,255,255,.3);margin-bottom:8px">What you owe</div>
+            @foreach($deni->items->sortByDesc('created_at') as $item)
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:9px 12px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:8px;margin-bottom:5px">
+                <div>
+                    <div style="font-size:13px;color:rgba(255,255,255,.8)">{{ $item->description }}</div>
+                    <div style="font-size:11px;color:rgba(255,255,255,.3)">{{ $item->created_at->format('d M') }}</div>
+                </div>
+                <div style="font-size:13px;font-weight:700;color:#f87171">KES {{ number_format($item->amount) }}</div>
+            </div>
+            @endforeach
+        </div>
+        @endif
+
         <div id="pay-form">
             <div class="field">
                 <label>Amount to Pay (KES)</label>

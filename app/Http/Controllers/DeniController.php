@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Deni;
+use App\Models\DeniItem;
 use App\Models\DeniPayment;
 use App\Models\PayLink;
 use App\Services\DarajaService;
@@ -97,7 +98,7 @@ class DeniController extends Controller
     // Debtor's payment page
     public function show(string $token)
     {
-        $deni = Deni::where('debtor_token', $token)->with('payLink')->firstOrFail();
+        $deni = Deni::where('debtor_token', $token)->with(['payLink', 'items'])->firstOrFail();
         return view('deni.pay', compact('deni'));
     }
 
@@ -162,7 +163,31 @@ class DeniController extends Controller
     // Admin view — anyone with the admin_token can manage their deni
     public function adminView(string $token)
     {
-        $deni = Deni::where('admin_token', $token)->with(['payLink', 'payments'])->firstOrFail();
+        $deni = Deni::where('admin_token', $token)->with(['payLink', 'payments', 'items'])->firstOrFail();
         return view('deni.admin', compact('deni'));
+    }
+
+    // Add a charge to an existing open tab
+    public function addCharge(Request $request, string $token)
+    {
+        $deni = Deni::where('admin_token', $token)->firstOrFail();
+
+        $data = $request->validate([
+            'description' => ['required', 'string', 'max:200'],
+            'amount'      => ['required', 'integer', 'min:1', 'max:500000'],
+        ]);
+
+        $deni->items()->create($data);
+        $deni->increment('original_amount', $data['amount']);
+
+        if ($deni->status === 'settled') {
+            $deni->update(['status' => 'partial']);
+        }
+
+        $from = $request->input('from', 'admin');
+        if ($from === 'dashboard') {
+            return redirect()->route('seller.dashboard')->with('charge_added', $deni->description);
+        }
+        return redirect()->route('deni.admin', $token)->with('charge_added', true);
     }
 }
