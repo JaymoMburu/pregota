@@ -89,6 +89,10 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0a1a0f;color:#fff;m
         <div class="today-val" id="today-total">—</div>
         <div class="today-label">Total collected</div>
     </div>
+    <div class="today-stat" id="tips-stat" style="display:none">
+        <div class="today-val" id="today-tips" style="color:#fbbf24">—</div>
+        <div class="today-label">Tips today</div>
+    </div>
     @if($payLink->fixed_amount && $payLink->default_amount)
     <div class="today-stat">
         <div class="today-val" style="color:#fbbf24">KES {{ number_format($payLink->default_amount) }}</div>
@@ -177,19 +181,33 @@ function renderPayments(payments) {
     // Rebuild totals
     todayCount = payments.length;
     todayTotal = payments.reduce((s, p) => s + p.amount, 0);
+    const todayTips = payments.reduce((s, p) => s + (p.tip_amount || 0), 0);
+    if (todayTips > 0) {
+        const tipsEl = document.getElementById('today-tips');
+        if (tipsEl) {
+            tipsEl.textContent = fmt(todayTips);
+            document.getElementById('tips-stat').style.display = '';
+        }
+    }
 
     payments.forEach(p => {
         if (knownIds.has(p.id)) return;
         addedAny = true;
 
+        const hasTip  = p.tip_amount > 0;
+        const tipLine = hasTip
+            ? `<div style="font-size:11px;color:#fbbf24;font-weight:700;margin-top:2px">🙏 +${fmt(p.tip_amount)} tip${p.tip_recipient ? ' → ' + p.tip_recipient : ''}${p.tip_comment ? ' · "' + p.tip_comment + '"' : ''}</div>`
+            : '';
+
         const row = document.createElement('div');
         row.className = 'payment-row' + (firstLoad ? '' : ' new-flash');
         row.id        = 'pay-' + p.id;
         row.innerHTML = `
-            <div class="payment-icon">✅</div>
+            <div class="payment-icon">${hasTip ? '🙏' : '✅'}</div>
             <div class="payment-info">
-                <div class="payment-amount">${fmt(p.amount)}</div>
-                <div class="payment-note">${p.note || 'No note'}</div>
+                <div class="payment-amount">${fmt(p.amount)}${hasTip ? ` <span style="font-size:13px;color:rgba(255,255,255,.5)">+ ${fmt(p.tip_amount)} tip</span>` : ''}</div>
+                ${tipLine}
+                <div class="payment-note" style="margin-top:${hasTip?'2':'0'}px">${p.note || ''}</div>
             </div>
             <div class="payment-time">
                 <div class="payment-abs">${p.time_abs}</div>

@@ -18,25 +18,41 @@ class SellerService
         return ['fee' => $fee, 'net_amount' => $netAmount];
     }
 
-    public function initiate(int $amount, string $buyerPhone, PayLink $payLink, ?string $note = null): SellerPayment
-    {
-        $fees = $this->calculateFee($amount);
+    public function initiate(
+        int $amount,
+        string $buyerPhone,
+        PayLink $payLink,
+        ?string $note = null,
+        int $tipAmount = 0,
+        ?string $tipRecipient = null,
+        ?string $tipComment = null
+    ): SellerPayment {
+        $fees  = $this->calculateFee($amount);
+        $total = $amount + $tipAmount; // tip is fee-free, added on top
 
-        return DB::transaction(function () use ($amount, $buyerPhone, $payLink, $note, $fees) {
+        return DB::transaction(function () use ($amount, $total, $buyerPhone, $payLink, $note, $fees, $tipAmount, $tipRecipient, $tipComment) {
             $payment = SellerPayment::create([
-                'pay_link_id' => $payLink->id,
-                'amount'      => $amount,
-                'fee'         => $fees['fee'],
-                'net_amount'  => $fees['net_amount'],
-                'buyer_note'  => $note,
-                'status'      => 'pending',
+                'pay_link_id'   => $payLink->id,
+                'amount'        => $amount,
+                'fee'           => $fees['fee'],
+                'net_amount'    => $fees['net_amount'],
+                'tip_amount'    => $tipAmount,
+                'tip_recipient' => $tipRecipient,
+                'tip_comment'   => $tipComment,
+                'buyer_note'    => $note,
+                'status'        => 'pending',
             ]);
 
+            $desc = 'Pay ' . $payLink->business_name;
+            if ($tipAmount > 0) {
+                $desc .= ' + Tip';
+            }
+
             $stk = $this->daraja->stkPush(
-                $amount,
+                $total,
                 $buyerPhone,
                 'PAY-' . $payment->id,
-                'Pay ' . $payLink->business_name
+                $desc
             );
 
             if (isset($stk['CheckoutRequestID'])) {
@@ -58,7 +74,7 @@ class SellerService
         ]);
 
         $link = $payment->payLink;
-        $link->increment('total_received', $payment->net_amount);
+        $link->increment('total_received', $payment->net_amount + $payment->tip_amount);
         $link->increment('payment_count');
 
         return $payment->fresh();

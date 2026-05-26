@@ -112,8 +112,11 @@ class SellerController extends Controller
         $payLink = PayLink::where('handle', $handle)->where('is_active', true)->firstOrFail();
 
         $rules = [
-            'phone' => ['required', 'string', 'regex:/^(\+?254|0)[17]\d{8}$/'],
-            'note'  => ['nullable', 'string', 'max:200'],
+            'phone'         => ['required', 'string', 'regex:/^(\+?254|0)[17]\d{8}$/'],
+            'note'          => ['nullable', 'string', 'max:200'],
+            'tip_amount'    => ['nullable', 'integer', 'min:0', 'max:5000'],
+            'tip_recipient' => ['nullable', 'string', 'in:conductor,driver'],
+            'tip_comment'   => ['nullable', 'string', 'max:200'],
         ];
 
         // Current fare set by conductor takes precedence; otherwise passenger enters amount
@@ -134,13 +137,23 @@ class SellerController extends Controller
             $amount = (int) $data['amount'];
         }
 
-        $payment = $this->seller->initiate($amount, $data['phone'], $payLink, $data['note'] ?? null);
+        $tipAmount    = (int) ($data['tip_amount'] ?? 0);
+        $tipRecipient = $data['tip_recipient'] ?? null;
+        $tipComment   = $data['tip_comment'] ?? null;
+
+        $payment = $this->seller->initiate(
+            $amount, $data['phone'], $payLink,
+            $data['note'] ?? null,
+            $tipAmount, $tipRecipient, $tipComment
+        );
 
         return response()->json([
             'success'     => true,
             'payment_id'  => $payment->id,
             'checkout_id' => $payment->mpesa_checkout_id,
             'amount'      => $payment->amount,
+            'tip_amount'  => $payment->tip_amount,
+            'total'       => $payment->amount + $payment->tip_amount,
             'message'     => 'STK Push sent. Enter your M-Pesa PIN.',
         ]);
     }
@@ -196,11 +209,14 @@ class SellerController extends Controller
             ->get(['id', 'amount', 'buyer_note', 'created_at']);
 
         return response()->json($payments->map(fn($p) => [
-            'id'        => $p->id,
-            'amount'    => $p->amount,
-            'note'      => $p->buyer_note,
-            'time'      => $p->created_at->diffForHumans(),
-            'time_abs'  => $p->created_at->format('H:i:s'),
+            'id'            => $p->id,
+            'amount'        => $p->amount,
+            'tip_amount'    => $p->tip_amount,
+            'tip_recipient' => $p->tip_recipient,
+            'tip_comment'   => $p->tip_comment,
+            'note'          => $p->buyer_note,
+            'time'          => $p->created_at->diffForHumans(),
+            'time_abs'      => $p->created_at->format('H:i:s'),
         ]));
     }
 }

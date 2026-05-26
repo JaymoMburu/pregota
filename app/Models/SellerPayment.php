@@ -8,7 +8,9 @@ class SellerPayment extends Model
 {
     protected $fillable = [
         'pay_link_id', 'mpesa_checkout_id', 'mpesa_ref',
-        'amount', 'fee', 'net_amount', 'buyer_note', 'status',
+        'amount', 'fee', 'net_amount',
+        'tip_amount', 'tip_recipient', 'tip_comment',
+        'buyer_note', 'status',
     ];
 
     public function payLink()

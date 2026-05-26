@@ -38,6 +38,26 @@ input:focus{border-color:rgba(37,211,102,.5);background:rgba(255,255,255,.08)}
 
 .security-note{display:flex;align-items:center;gap:8px;font-size:12px;color:rgba(255,255,255,.5);background:rgba(255,255,255,.04);border-radius:8px;padding:10px 12px;margin-bottom:20px}
 
+/* Tip section */
+.tip-section{border-top:1px solid rgba(255,255,255,.07);margin:20px 0 18px;padding-top:18px}
+.tip-toggle{display:flex;align-items:center;justify-content:space-between;cursor:pointer;user-select:none}
+.tip-toggle-label{font-size:14px;font-weight:700;color:rgba(255,255,255,.85)}
+.tip-toggle-sub{font-size:11px;color:rgba(255,255,255,.45);margin-top:2px}
+.tip-chevron{font-size:18px;color:rgba(255,255,255,.4);transition:.2s}
+.tip-body{display:none;margin-top:16px}
+.tip-body.open{display:block}
+.tip-amounts{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.tip-btn{padding:9px 16px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:10px;color:rgba(255,255,255,.8);font-size:14px;font-weight:700;cursor:pointer;transition:.15s}
+.tip-btn:hover{background:rgba(255,255,255,.1)}
+.tip-btn.selected{background:rgba(37,211,102,.15);border-color:rgba(37,211,102,.4);color:#25D366}
+.tip-custom{margin-bottom:14px}
+.tip-recipient-row{display:flex;gap:8px;margin-bottom:14px}
+.tip-who{flex:1;padding:10px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:10px;font-size:13px;font-weight:700;color:rgba(255,255,255,.65);cursor:pointer;text-align:center;transition:.15s}
+.tip-who:hover{background:rgba(255,255,255,.09)}
+.tip-who.selected{background:rgba(37,211,102,.12);border-color:rgba(37,211,102,.3);color:#25D366}
+.tip-total{background:rgba(37,211,102,.07);border:1px solid rgba(37,211,102,.18);border-radius:10px;padding:10px 14px;font-size:13px;color:rgba(255,255,255,.75);display:none;margin-bottom:14px}
+.tip-total strong{color:#25D366;font-size:15px}
+
 .btn{width:100%;padding:15px;background:linear-gradient(135deg,#25D366,#1aaa52);color:#fff;font-size:16px;font-weight:800;border:none;border-radius:12px;cursor:pointer;transition:.2s;display:flex;align-items:center;justify-content:center;gap:8px}
 .btn:hover{transform:translateY(-1px);box-shadow:0 8px 24px rgba(37,211,102,.3)}
 .btn:disabled{opacity:.6;cursor:not-allowed;transform:none;box-shadow:none}
@@ -114,6 +134,36 @@ input:focus{border-color:rgba(37,211,102,.5);background:rgba(255,255,255,.08)}
                 <div class="hint">You'll get an M-Pesa prompt — enter your PIN to pay</div>
             </div>
 
+            {{-- Optional tip --}}
+            <div class="tip-section">
+                <div class="tip-toggle" onclick="toggleTip()">
+                    <div>
+                        <div class="tip-toggle-label">🙏 Add a tip</div>
+                        <div class="tip-toggle-sub">Optional · fee-free · goes directly to the crew</div>
+                    </div>
+                    <div class="tip-chevron" id="tip-chevron">›</div>
+                </div>
+
+                <div class="tip-body" id="tip-body">
+                    <div class="tip-amounts">
+                        <button class="tip-btn" onclick="selectTip(10)">+10</button>
+                        <button class="tip-btn" onclick="selectTip(20)">+20</button>
+                        <button class="tip-btn" onclick="selectTip(50)">+50</button>
+                        <button class="tip-btn" onclick="selectTip(100)">+100</button>
+                        <button class="tip-btn" id="tip-custom-btn" onclick="selectTip('custom')">Other</button>
+                    </div>
+                    <div class="tip-custom" id="tip-custom-wrap" style="display:none">
+                        <input type="number" id="tip-custom-input" placeholder="Enter tip amount (KES)" min="1" max="5000" oninput="onCustomTip()">
+                    </div>
+                    <div class="tip-recipient-row">
+                        <div class="tip-who" id="tip-conductor" onclick="selectRecipient('conductor')">👤 Conductor</div>
+                        <div class="tip-who" id="tip-driver" onclick="selectRecipient('driver')">🚐 Driver</div>
+                    </div>
+                    <input type="text" id="tip-comment" placeholder="Leave a message… (optional)" maxlength="200" style="margin-bottom:14px">
+                    <div class="tip-total" id="tip-total"></div>
+                </div>
+            </div>
+
             <div class="security-note">
                 🔒 <span>Your number is never shared with the seller. Secured by Pregota.</span>
             </div>
@@ -178,6 +228,59 @@ let conductorFare  = {{ $payLink->current_fare ?? 'null' }};
 let conductorRoute = {{ $payLink->current_route ? json_encode($payLink->current_route) : 'null' }};
 const isTransport  = {{ $payLink->category === 'transport' ? 'true' : 'false' }};
 
+// ── Tip logic ─────────────────────────────────────────────────────────────
+let selectedTip       = 0;
+let selectedRecipient = null;
+let tipOpen           = false;
+
+function toggleTip() {
+    tipOpen = !tipOpen;
+    document.getElementById('tip-body').classList.toggle('open', tipOpen);
+    document.getElementById('tip-chevron').style.transform = tipOpen ? 'rotate(90deg)' : '';
+}
+
+function selectTip(val) {
+    document.querySelectorAll('.tip-btn').forEach(b => b.classList.remove('selected'));
+    const customWrap = document.getElementById('tip-custom-wrap');
+
+    if (val === 'custom') {
+        document.getElementById('tip-custom-btn').classList.add('selected');
+        customWrap.style.display = 'block';
+        document.getElementById('tip-custom-input').focus();
+        selectedTip = parseInt(document.getElementById('tip-custom-input').value) || 0;
+    } else {
+        customWrap.style.display = 'none';
+        selectedTip = val;
+        // highlight the right button
+        document.querySelectorAll('.tip-btn').forEach(b => {
+            if (b.textContent === '+' + val) b.classList.add('selected');
+        });
+    }
+    updateTipTotal();
+}
+
+function onCustomTip() {
+    selectedTip = parseInt(document.getElementById('tip-custom-input').value) || 0;
+    updateTipTotal();
+}
+
+function selectRecipient(who) {
+    selectedRecipient = who;
+    document.getElementById('tip-conductor').classList.toggle('selected', who === 'conductor');
+    document.getElementById('tip-driver').classList.toggle('selected', who === 'driver');
+}
+
+function updateTipTotal() {
+    const totalEl = document.getElementById('tip-total');
+    const fare    = getAmount();
+    if (selectedTip > 0) {
+        totalEl.style.display = 'block';
+        totalEl.innerHTML = `Fare <strong>KES ${fare.toLocaleString()}</strong> + Tip <strong style="color:#fbbf24">KES ${selectedTip.toLocaleString()}</strong> = Total <strong>KES ${(fare + selectedTip).toLocaleString()}</strong>`;
+    } else {
+        totalEl.style.display = 'none';
+    }
+}
+
 function getAmount() {
     if (conductorFare) return conductorFare;
     @if($payLink->fixed_amount && $payLink->default_amount)
@@ -207,6 +310,8 @@ function initiatePay() {
     btn.disabled = true;
     document.getElementById('btn-text').textContent = 'Sending M-Pesa prompt…';
 
+    const tipComment = document.getElementById('tip-comment')?.value.trim() || '';
+
     const body = new URLSearchParams({
         phone,
         _token: '{{ csrf_token() }}'
@@ -216,6 +321,12 @@ function initiatePay() {
     @if(!$payLink->current_fare && !($payLink->fixed_amount && $payLink->default_amount))
     body.append('amount', amount);
     @endif
+
+    if (selectedTip > 0) {
+        body.append('tip_amount', selectedTip);
+        if (selectedRecipient) body.append('tip_recipient', selectedRecipient);
+        if (tipComment) body.append('tip_comment', tipComment);
+    }
 
     fetch('{{ route('seller.pay', $payLink->handle) }}', {
         method: 'POST',
@@ -249,8 +360,14 @@ function pollStatus() {
         .then(data => {
             if (data.status === 'confirmed') {
                 clearInterval(pollTimer);
-                const amt = getAmount();
-                document.getElementById('receipt-amount').textContent = 'KES ' + amt.toLocaleString();
+                const fare = getAmount();
+                const total = fare + selectedTip;
+                const amtEl = document.getElementById('receipt-amount');
+                if (selectedTip > 0) {
+                    amtEl.innerHTML = `KES ${total.toLocaleString()}<div style="font-size:14px;color:rgba(255,255,255,.6);font-weight:600;margin-top:4px">Fare KES ${fare.toLocaleString()} + Tip KES ${selectedTip.toLocaleString()}${selectedRecipient ? ' (' + selectedRecipient + ')' : ''}</div>`;
+                } else {
+                    amtEl.textContent = 'KES ' + fare.toLocaleString();
+                }
                 if (conductorRoute) {
                     document.getElementById('receipt-route').textContent = conductorRoute;
                 }
