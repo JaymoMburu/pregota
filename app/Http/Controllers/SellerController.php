@@ -110,12 +110,17 @@ class SellerController extends Controller
     }
 
     // ── Public pay page ───────────────────────────────────────────────────
-    public function publicPage(string $handle)
+    public function publicPage(string $handle, Request $request)
     {
-        $payLink = PayLink::where('handle', $handle)->where('is_active', true)->firstOrFail();
-        $fee     = $this->seller->calculateFee($payLink->default_amount ?? 100);
+        $payLink    = PayLink::where('handle', $handle)->where('is_active', true)->firstOrFail();
+        $tillAmount = null;
+        if ($request->filled('amount')) {
+            $val = (int) $request->query('amount');
+            if ($val >= 10 && $val <= 150000) $tillAmount = $val;
+        }
+        $fee = $this->seller->calculateFee($tillAmount ?? $payLink->default_amount ?? 100);
 
-        return view('seller.public', compact('payLink', 'fee'));
+        return view('seller.public', compact('payLink', 'fee', 'tillAmount'));
     }
 
     public function currentInfo(string $handle)

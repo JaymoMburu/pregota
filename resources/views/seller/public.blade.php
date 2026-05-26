@@ -154,6 +154,12 @@ input:focus{border-color:rgba(37,211,102,.5);background:rgba(255,255,255,.08)}
                 <div class="fare-big">KES {{ number_format($payLink->default_amount) }}</div>
                 <div class="fare-locked">🔒 Fixed amount</div>
             </div>
+            @elseif($tillAmount)
+            <div class="route-card" id="route-card">
+                <div class="route-label">Amount</div>
+                <div class="fare-big">KES {{ number_format($tillAmount) }}</div>
+                <div class="fare-locked">🔒 Set by cashier</div>
+            </div>
             @else
             <div class="no-route-note" id="no-route-note">
                 Ask the conductor for the fare, then enter the amount below.
@@ -332,6 +338,8 @@ function getAmount() {
     if (conductorFare) return conductorFare;
     @if($payLink->fixed_amount && $payLink->default_amount)
     return {{ (int) $payLink->default_amount }};
+    @elseif($tillAmount)
+    return {{ $tillAmount }};
     @else
     return parseInt(document.getElementById('amount')?.value || '0');
     @endif
@@ -375,7 +383,7 @@ function initiatePay() {
         return;
     }
 
-    @if(!$payLink->current_fare && !($payLink->fixed_amount && $payLink->default_amount))
+    @if(!$payLink->current_fare && !($payLink->fixed_amount && $payLink->default_amount) && !$tillAmount)
     if (!amount || amount < 10) {
         alert('Enter an amount of at least KES 10.');
         return;
@@ -396,6 +404,9 @@ function initiatePay() {
     // Only send amount if it's not server-determined
     @if(!$payLink->current_fare && !($payLink->fixed_amount && $payLink->default_amount))
     body.append('amount', amount);
+    @endif
+    @if($tillAmount)
+    body.append('amount', {{ $tillAmount }});
     @endif
 
     if (selectedTip > 0) {
