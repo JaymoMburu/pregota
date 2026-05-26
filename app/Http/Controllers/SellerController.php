@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BuyerPin;
 use App\Models\BuyerStamp;
 use App\Models\ManualEntry;
 use App\Models\PayLink;
@@ -321,10 +322,56 @@ class SellerController extends Controller
         return view('seller.me');
     }
 
+    public function meHasPin(Request $request)
+    {
+        $phone = $request->query('phone', '');
+        if (! preg_match('/^(\+?254|0)[17]\d{8}$/', preg_replace('/\s/', '', $phone))) {
+            return response()->json(['has_pin' => false]);
+        }
+        $hash = $this->seller->hashPhone($phone);
+        return response()->json(['has_pin' => BuyerPin::where('phone_hash', $hash)->exists()]);
+    }
+
+    public function mePin(Request $request)
+    {
+        $data = $request->validate([
+            'phone' => ['required', 'string', 'regex:/^(\+?254|0)[17]\d{8}$/'],
+            'pin'   => ['required', 'digits:4'],
+        ]);
+        $hash     = $this->seller->hashPhone($data['phone']);
+        $existing = BuyerPin::find($hash);
+
+        if (! $existing) {
+            // First time — create PIN and grant access (no charge on first setup)
+            BuyerPin::create([
+                'phone_hash' => $hash,
+                'pin_hash'   => Hash::make($data['pin']),
+            ]);
+            $this->grantMeSession($hash);
+            return response()->json(['success' => true, 'created' => true]);
+        }
+
+        if (! Hash::check($data['pin'], $existing->pin_hash)) {
+            return response()->json(['success' => false, 'message' => 'Incorrect PIN. Try again.'], 401);
+        }
+
+        // Returning user re-authenticating — charge point for KES 1 STK Push when Pregota paybill is live:
+        // $this->seller->chargeSessionFee($data['phone'], 1);
+
+        $this->grantMeSession($hash);
+        return response()->json(['success' => true]);
+    }
+
     public function meLookup(Request $request)
     {
         $data = $request->validate(['phone' => ['required', 'string', 'regex:/^(\+?254|0)[17]\d{8}$/']]);
         $hash = $this->seller->hashPhone($data['phone']);
+
+        // Must be PIN-verified within the last 24 hours
+        if (! $this->isSessionValid($hash)) {
+            $error = session('me_verified') === $hash ? 'session_expired' : 'pin_required';
+            return response()->json(['error' => $error], 401);
+        }
 
         // Automatic Pregota payments
         $payments = SellerPayment::where('buyer_phone_hash', $hash)
@@ -478,6 +525,14 @@ class SellerController extends Controller
     {
         $data = $request->validate([
             'phone'       => ['required', 'string', 'regex:/^(\+?254|0)[17]\d{8}$/'],
+        ]);
+        $hash0 = $this->seller->hashPhone($data['phone']);
+        if (! $this->isSessionValid($hash0)) {
+            $error = session('me_verified') === $hash0 ? 'session_expired' : 'pin_required';
+            return response()->json(['error' => $error], 401);
+        }
+        $data = $request->validate([
+            'phone'       => ['required', 'string', 'regex:/^(\+?254|0)[17]\d{8}$/'],
             'type'        => ['required', 'in:expense,income'],
             'amount'      => ['required', 'integer', 'min:1', 'max:9999999'],
             'category'    => ['nullable', 'string', 'max:40'],
@@ -502,11 +557,32 @@ class SellerController extends Controller
     // ── Manual entry (delete) ─────────────────────────────────────────────
     public function deleteEntry(Request $request, int $id)
     {
-        $data  = $request->validate(['phone' => ['required', 'string', 'regex:/^(\+?254|0)[17]\d{8}$/']]);
-        $hash  = $this->seller->hashPhone($data['phone']);
+        $data = $request->validate(['phone' => ['required', 'string', 'regex:/^(\+?254|0)[17]\d{8}$/']]);
+        $hash = $this->seller->hashPhone($data['phone']);
+
+        if (! $this->isSessionValid($hash)) {
+            $error = session('me_verified') === $hash ? 'session_expired' : 'pin_required';
+            return response()->json(['error' => $error], 401);
+        }
+
         $entry = ManualEntry::where('id', $id)->where('phone_hash', $hash)->firstOrFail();
         $entry->delete();
 
         return response()->json(['success' => true]);
+    }
+
+    // ── Session helpers ───────────────────────────────────────────────────
+    private function grantMeSession(string $hash): void
+    {
+        session([
+            'me_verified'    => $hash,
+            'me_verified_at' => now()->timestamp,
+        ]);
+    }
+
+    private function isSessionValid(string $hash): bool
+    {
+        return session('me_verified') === $hash
+            && session('me_verified_at', 0) > now()->subHours(24)->timestamp;
     }
 }

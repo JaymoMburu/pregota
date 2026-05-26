@@ -169,6 +169,8 @@ Route::get('/seller/status', [SellerController::class, 'checkStatus'])->name('se
 
 Route::get('/sellers', [SellerController::class, 'directory'])->name('seller.directory');
 Route::get('/me', [SellerController::class, 'me'])->name('buyer.me');
+Route::get('/me/has-pin', [SellerController::class, 'meHasPin'])->name('buyer.me.has-pin');
+Route::post('/me/pin', [SellerController::class, 'mePin'])->name('buyer.me.pin');
 Route::post('/me/lookup', [SellerController::class, 'meLookup'])->name('buyer.me.lookup');
 Route::post('/me/entry', [SellerController::class, 'saveEntry'])->name('buyer.me.entry');
 Route::delete('/me/entry/{id}', [SellerController::class, 'deleteEntry'])->name('buyer.me.entry.delete');
