@@ -114,10 +114,11 @@ input.note-input::placeholder{color:rgba(255,255,255,.3)}
             <div class="dc-body">
                 <div class="dc-meta">
                     <div class="dc-meta-item">Buyer: <strong style="font-family:monospace">{{ $d->buyer_phone }}</strong></div>
-                    <div class="dc-meta-item">Status: <span class="status-badge {{ $d->status }}">{{ $d->status }}</span></div>
                     @if($payLink)
-                    <div class="dc-meta-item">Seller: <strong>pregota.com/pay/{{ $payLink->handle }}</strong></div>
+                    <div class="dc-meta-item">Seller: <strong style="font-family:monospace">{{ $d->seller_phone }}</strong></div>
+                    <div class="dc-meta-item">Handle: <strong>pregota.com/pay/{{ $payLink->handle }}</strong></div>
                     @endif
+                    <div class="dc-meta-item">Status: <span class="status-badge {{ $d->status }}">{{ $d->status }}</span></div>
                 </div>
                 <div class="issue-badge">{{ $issueLabels[$d->issue_type] ?? $d->issue_type }}</div>
                 <div class="description">{{ $d->description }}</div>

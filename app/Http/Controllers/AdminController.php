@@ -283,6 +283,10 @@ class AdminController extends Controller
         $disputes->each(function ($d) {
             try { $d->buyer_phone = Crypt::decryptString($d->buyer_phone_encrypted); }
             catch (\Exception $e) { $d->buyer_phone = '—'; }
+
+            try { $d->seller_phone = $d->payment?->payLink?->phone_encrypted
+                ? Crypt::decryptString($d->payment->payLink->phone_encrypted) : '—'; }
+            catch (\Exception $e) { $d->seller_phone = '—'; }
         });
 
         return view('admin.disputes', compact('disputes'));
