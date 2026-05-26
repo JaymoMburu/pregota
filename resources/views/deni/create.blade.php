@@ -59,9 +59,14 @@ h1{font-size:24px;font-weight:900;margin-bottom:6px}
             <input type="number" name="original_amount" placeholder="120" min="1" max="500000" required value="{{ old('original_amount') }}">
         </div>
         <div class="field">
-            <label>Customer's Phone (optional)</label>
+            <label>Your M-Pesa Number</label>
+            <input type="tel" name="lender_phone" placeholder="0712 345 678" required value="{{ old('lender_phone') }}">
+            <div class="hint">This is where M-Pesa will send the money when they pay.</div>
+        </div>
+        <div class="field">
+            <label>Their Phone (optional)</label>
             <input type="tel" name="debtor_phone" placeholder="0712 345 678" value="{{ old('debtor_phone') }}">
-            <div class="hint">If entered, the deni will appear on their Pregota dashboard automatically.</div>
+            <div class="hint">If entered, the deni appears on their Pregota dashboard automatically.</div>
         </div>
         <div class="field">
             <label>Due Date (optional)</label>

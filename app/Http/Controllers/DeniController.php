@@ -8,6 +8,7 @@ use App\Models\PayLink;
 use App\Services\DarajaService;
 use App\Services\SellerService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Str;
 
 class DeniController extends Controller
@@ -37,7 +38,8 @@ class DeniController extends Controller
         ];
 
         if (! $isSeller) {
-            $rules['creditor_name'] = ['required', 'string', 'max:100'];
+            $rules['creditor_name']  = ['required', 'string', 'max:100'];
+            $rules['lender_phone']   = ['required', 'string', 'regex:/^(\+?254|0)[17]\d{8}$/'];
         }
 
         $data = $request->validate($rules);
@@ -45,15 +47,21 @@ class DeniController extends Controller
         $debtorHash    = isset($data['debtor_phone']) ? $this->seller->hashPhone($data['debtor_phone']) : null;
         $creditorLabel = $payLink?->business_name ?? $data['creditor_name'];
 
+        // Lender's M-Pesa: seller uses their registered phone, personal uses the provided one
+        $lenderPhone = $isSeller
+            ? Crypt::decryptString($payLink->phone_encrypted)
+            : $data['lender_phone'];
+
         $deni = Deni::create([
-            'pay_link_id'       => $payLink?->id,
-            'creditor_name'     => $payLink ? null : $data['creditor_name'],
-            'admin_token'       => Str::random(48),
-            'debtor_token'      => Str::random(48),
-            'debtor_phone_hash' => $debtorHash,
-            'description'       => $data['description'],
-            'original_amount'   => $data['original_amount'],
-            'due_date'          => $data['due_date'] ?? null,
+            'pay_link_id'            => $payLink?->id,
+            'creditor_name'          => $payLink ? null : $data['creditor_name'],
+            'admin_token'            => Str::random(48),
+            'debtor_token'           => Str::random(48),
+            'debtor_phone_hash'      => $debtorHash,
+            'lender_phone_encrypted' => Crypt::encryptString($lenderPhone),
+            'description'            => $data['description'],
+            'original_amount'        => $data['original_amount'],
+            'due_date'               => $data['due_date'] ?? null,
         ]);
 
         $debtorUrl = url('/deni/' . $deni->debtor_token);

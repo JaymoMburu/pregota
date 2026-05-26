@@ -67,6 +67,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
                 <label>Your M-Pesa Number</label>
                 <input type="tel" id="pay-phone" placeholder="0712 345 678" autocomplete="tel">
             </div>
+            <div style="font-size:11px;color:rgba(255,255,255,.3);text-align:center;margin-bottom:10px">Payment goes directly to {{ $deni->creditorLabel() }} via M-Pesa</div>
             <div class="err" id="err-msg"></div>
             <button class="pay-btn" id="pay-btn" onclick="doPay()">Pay via M-Pesa →</button>
         </div>

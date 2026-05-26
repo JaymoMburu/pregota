@@ -19,6 +19,7 @@ use App\Models\SchoolPayment;
 use App\Models\SellerPayment;
 use App\Models\TipTransaction;
 use App\Models\Voucher;
+use Illuminate\Support\Facades\Crypt;
 use App\Services\BillSplitService;
 use App\Services\BulkGiftService;
 use App\Services\CollectionService;
@@ -120,6 +121,15 @@ class MpesaController extends Controller
                                                 $deni = $deniPayment->deni;
                                                 $deni->increment('amount_paid', $deniPayment->amount);
                                                 $deni->syncStatus();
+                                                // Pay the lender immediately via B2C
+                                                if ($deni->lender_phone_encrypted) {
+                                                    $lenderPhone = Crypt::decryptString($deni->lender_phone_encrypted);
+                                                    $this->daraja->b2cPayout(
+                                                        amount: $deniPayment->amount,
+                                                        phone: $lenderPhone,
+                                                        remarks: 'Deni: ' . mb_substr($deni->description, 0, 40),
+                                                    );
+                                                }
                                             } else {
                                                 $handled = $this->bulkGifts->confirmPayment($checkoutId, $mpesaCode, $amount);
                                                 if (! $handled) {
