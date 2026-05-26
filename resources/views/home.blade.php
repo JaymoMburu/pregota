@@ -81,6 +81,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 <nav class="nav">
     <a href="{{ route('home') }}" class="logo">Pregota</a>
     <div class="nav-links">
+        <a href="{{ route('redeem') }}" class="nav-link">Redeem a Gift</a>
         <a href="{{ route('staff.landing') }}" class="nav-link">For Staff</a>
         <a href="{{ route('business.register') }}" class="nav-link">For Business</a>
     </div>

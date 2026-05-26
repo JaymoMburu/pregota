@@ -119,7 +119,10 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 
 <nav class="nav">
     <a href="{{ route('home') }}" class="logo">Pregota</a>
-    <a href="{{ route('gift.home') }}" class="nav-cta">Send a Gift →</a>
+    <div style="display:flex;gap:10px;align-items:center">
+        <a href="{{ route('redeem') }}" style="color:rgba(255,255,255,.7);font-size:13px;font-weight:600;text-decoration:none">Redeem a Gift</a>
+        <a href="{{ route('gift.home') }}" class="nav-cta">Send a Gift →</a>
+    </div>
 </nav>
 
 <!-- Hero -->
