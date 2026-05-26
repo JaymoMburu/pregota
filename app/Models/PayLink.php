@@ -36,4 +36,20 @@ class PayLink extends Model
     {
         return $this->hasMany(SellerPayment::class);
     }
+
+    // For transport: kca123a → KCA 123A. Others: return handle as-is.
+    public function displayIdentifier(): string
+    {
+        if ($this->category !== 'transport') {
+            return $this->handle;
+        }
+
+        $slug = strtoupper($this->handle); // KCA123A
+        // Standard Kenyan plate: 3 letters + 3 digits + optional letter (6 or 7 chars)
+        if (preg_match('/^([A-Z]{3})(\d{3}[A-Z]?)$/', $slug, $m)) {
+            return $m[1] . ' ' . $m[2]; // KCA 123A
+        }
+
+        return $slug;
+    }
 }

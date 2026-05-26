@@ -71,7 +71,12 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0a1a0f;color:#fff;m
 <body>
 
 <div class="header">
-    <div class="biz-name">{{ $payLink->business_name }}</div>
+    <div class="biz-name">
+        {{ $payLink->business_name }}
+        @if($payLink->category === 'transport')
+        <span style="font-size:12px;color:rgba(255,255,255,.55);font-weight:700;margin-left:6px">{{ $payLink->displayIdentifier() }}</span>
+        @endif
+    </div>
     <div class="live-dot"><span class="dot"></span> LIVE</div>
 </div>
 

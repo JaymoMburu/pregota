@@ -69,7 +69,9 @@ input:focus{border-color:rgba(37,211,102,.5);background:rgba(255,255,255,.08)}
             {{ $payLink->category === 'transport' ? '🚐' : '🛍️' }}
         </div>
         <div class="biz-name">{{ $payLink->business_name }}</div>
-        @if($payLink->category)
+        @if($payLink->category === 'transport')
+        <div class="biz-cat" style="font-size:13px;letter-spacing:.12em;color:#4ADE80">{{ $payLink->displayIdentifier() }}</div>
+        @elseif($payLink->category)
         <div class="biz-cat">{{ ucfirst($payLink->category) }}</div>
         @endif
 
@@ -129,25 +131,27 @@ input:focus{border-color:rgba(37,211,102,.5);background:rgba(255,255,255,.08)}
         </div>
 
         {{-- Success receipt --}}
-        <div class="status-box success" id="status-success">
-            <div style="font-size:56px;margin-bottom:10px">✅</div>
-            <div style="font-size:12px;font-weight:700;color:#25D366;text-transform:uppercase;letter-spacing:.1em;margin-bottom:10px">Payment Confirmed</div>
+        <div class="status-box success" id="status-success" style="padding:28px 20px">
+            {{-- Big tick --}}
+            <div style="font-size:72px;line-height:1;margin-bottom:8px">✅</div>
 
             {{-- Amount --}}
-            <div id="receipt-amount" style="font-size:46px;font-weight:900;color:#fff;line-height:1;margin-bottom:6px"></div>
+            <div id="receipt-amount" style="font-size:48px;font-weight:900;color:#fff;line-height:1;margin-bottom:8px"></div>
 
-            {{-- Route (shown when conductor has set it) --}}
-            <div id="receipt-route" style="font-size:15px;font-weight:800;color:#25D366;margin-bottom:6px"></div>
+            {{-- Route --}}
+            <div id="receipt-route" style="font-size:16px;font-weight:800;color:#25D366;margin-bottom:6px"></div>
 
-            {{-- Business --}}
-            <div style="font-size:13px;color:rgba(255,255,255,.6);margin-bottom:4px">paid to <strong style="color:#fff">{{ $payLink->business_name }}</strong></div>
+            {{-- Business + plate --}}
+            <div style="font-size:13px;color:rgba(255,255,255,.6);margin-bottom:6px">
+                paid to <strong style="color:#fff">{{ $payLink->business_name }}</strong>@if($payLink->category === 'transport') <strong style="color:rgba(255,255,255,.8)">· {{ $payLink->displayIdentifier() }}</strong>@endif
+            </div>
 
-            {{-- Time --}}
-            <div id="receipt-time" style="font-size:12px;color:rgba(255,255,255,.4);margin-bottom:20px"></div>
+            {{-- Timestamp — prominent --}}
+            <div id="receipt-time" style="font-size:15px;font-weight:700;color:rgba(255,255,255,.75);margin-bottom:20px"></div>
 
             {{-- Show-to-conductor prompt --}}
-            <div style="background:rgba(37,211,102,.12);border:2px solid rgba(37,211,102,.35);border-radius:12px;padding:14px 16px">
-                <div style="font-size:16px;font-weight:900;color:#4ade80;margin-bottom:2px">Show this to the conductor</div>
+            <div style="background:rgba(37,211,102,.12);border:2px solid rgba(37,211,102,.4);border-radius:12px;padding:14px 16px">
+                <div style="font-size:17px;font-weight:900;color:#4ade80;margin-bottom:3px">✓ Show this to the conductor</div>
                 <div style="font-size:11px;color:rgba(255,255,255,.5)">Your number was never shared</div>
             </div>
         </div>
@@ -250,7 +254,10 @@ function pollStatus() {
                 if (conductorRoute) {
                     document.getElementById('receipt-route').textContent = conductorRoute;
                 }
-                document.getElementById('receipt-time').textContent = new Date().toLocaleTimeString();
+                const now = new Date();
+                document.getElementById('receipt-time').textContent =
+                    now.toLocaleDateString('en-KE', {weekday:'short', day:'numeric', month:'short'})
+                    + ' · ' + now.toLocaleTimeString('en-KE', {hour:'2-digit', minute:'2-digit', second:'2-digit'});
                 showState('success');
             } else if (data.status === 'failed') {
                 clearInterval(pollTimer);
