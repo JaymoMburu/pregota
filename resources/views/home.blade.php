@@ -43,6 +43,9 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 .mc-school:hover::before{background:radial-gradient(ellipse at top left,rgba(59,130,246,.06),transparent 60%)}
 .mc-tips:hover{background:rgba(245,158,11,.06)}
 .mc-tips:hover::before{background:radial-gradient(ellipse at top left,rgba(245,158,11,.05),transparent 60%)}
+.mc-seller:hover{background:rgba(37,211,102,.07)}
+.mc-seller:hover::before{background:radial-gradient(ellipse at top left,rgba(37,211,102,.06),transparent 60%)}
+.mc-seller .mc-cta{color:#25D366}
 .mc-creator{background:linear-gradient(135deg,rgba(0,166,81,.12),rgba(236,72,153,.1));border-color:rgba(37,211,102,.2)}
 .mc-creator:hover{background:linear-gradient(135deg,rgba(0,166,81,.2),rgba(236,72,153,.15));border-color:rgba(37,211,102,.5);transform:translateY(-2px)}
 .mc-creator .mc-cta{color:#4ADE80}
@@ -151,6 +154,20 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
                 <span class="mc-tag">Hotel</span>
             </div>
             <div class="mc-cta">Create Tip Page <span>›</span></div>
+        </a>
+
+        <!-- Seller Pay Links -->
+        <a href="{{ route('seller.landing') }}" class="module-card mc-seller">
+            <span class="mc-icon">🛍️</span>
+            <div class="mc-name">Seller Pay Links</div>
+            <div class="mc-desc">Get paid via M-Pesa without sharing your personal number. One link — share it on WhatsApp, Instagram, or print it at your shop.</div>
+            <div class="mc-examples">
+                <span class="mc-tag">Instagram shops</span>
+                <span class="mc-tag">Kiosks</span>
+                <span class="mc-tag">Matatu</span>
+                <span class="mc-tag">Salons</span>
+            </div>
+            <div class="mc-cta">Get My Pay Link <span>›</span></div>
         </a>
 
         <!-- Creator Gifts — full width -->

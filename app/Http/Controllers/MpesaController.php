@@ -12,6 +12,7 @@ use App\Models\LedgerEntry;
 use App\Models\MultiGift;
 use App\Models\SchoolCollection;
 use App\Models\SchoolPayment;
+use App\Models\SellerPayment;
 use App\Models\TipTransaction;
 use App\Models\Voucher;
 use App\Services\BillSplitService;
@@ -20,6 +21,7 @@ use App\Services\CollectionService;
 use App\Services\DirectGiftService;
 use App\Services\MultiGiftService;
 use App\Services\SchoolFeesService;
+use App\Services\SellerService;
 use App\Services\TipService;
 use App\Services\TxHashService;
 use App\Services\VoucherService;
@@ -38,6 +40,7 @@ class MpesaController extends Controller
         private SchoolFeesService $schoolFees,
         private BillSplitService $billSplits,
         private MultiGiftService $multiGifts,
+        private SellerService $sellers,
         private TxHashService $txHash,
     ) {}
 
@@ -97,8 +100,11 @@ class MpesaController extends Controller
                                 else {
                                     $handled = $this->bulkGifts->confirmPayment($checkoutId, $mpesaCode, $amount);
                                     if (! $handled) {
-                                        $handled = $this->vouchers->confirmDeposit($checkoutId, $mpesaCode, $amount);
-                                        if ($handled) { $this->seal($handled, 'VOUCHER'); }
+                                        $handled = $this->sellers->confirmPayment($checkoutId, $mpesaCode, $amount);
+                                        if (! $handled) {
+                                            $handled = $this->vouchers->confirmDeposit($checkoutId, $mpesaCode, $amount);
+                                            if ($handled) { $this->seal($handled, 'VOUCHER'); }
+                                        }
                                     }
                                 }
                             }
@@ -143,7 +149,12 @@ class MpesaController extends Controller
                                     if ($bulk) {
                                         $this->bulkGifts->failPayment($checkoutId);
                                     } else {
-                                        $this->vouchers->failDeposit($checkoutId, $reason);
+                                        $seller = SellerPayment::where('mpesa_checkout_id', $checkoutId)->first();
+                                        if ($seller) {
+                                            $this->sellers->failPayment($checkoutId);
+                                        } else {
+                                            $this->vouchers->failDeposit($checkoutId, $reason);
+                                        }
                                     }
                                 }
                             }

@@ -12,6 +12,7 @@ use App\Http\Controllers\GiftController;
 use App\Http\Controllers\MpesaController;
 use App\Http\Controllers\MultiGiftController;
 use App\Http\Controllers\SchoolFeesController;
+use App\Http\Controllers\SellerController;
 use App\Http\Controllers\StaffAuthController;
 use App\Http\Controllers\TipController;
 use Illuminate\Support\Facades\Route;
@@ -153,6 +154,19 @@ Route::post('/c/{handle}/gift', [CreatorController::class, 'sendGift'])->name('c
 // OBS alert overlay (token-auth, no CSRF)
 Route::get('/c/{handle}/alert/{token}', [CreatorController::class, 'alertOverlay'])->name('creator.alert');
 Route::get('/c/{handle}/alert/{token}/poll', [CreatorController::class, 'alertPoll'])->name('creator.alert.poll');
+
+// ── Seller Pay Links ─────────────────────────────────────────────────────
+Route::get('/for-sellers', [SellerController::class, 'landing'])->name('seller.landing');
+Route::get('/seller/register', [SellerController::class, 'registerForm'])->name('seller.register');
+Route::post('/seller/register', [SellerController::class, 'register'])->name('seller.register.post');
+Route::get('/seller/login', [SellerController::class, 'loginForm'])->name('seller.login');
+Route::post('/seller/login', [SellerController::class, 'login'])->name('seller.login.post');
+Route::post('/seller/logout', [SellerController::class, 'logout'])->name('seller.logout');
+Route::get('/seller/dashboard', [SellerController::class, 'dashboard'])->name('seller.dashboard')->middleware(\App\Http\Middleware\SellerAuth::class);
+Route::get('/seller/status', [SellerController::class, 'checkStatus'])->name('seller.status');
+
+Route::get('/pay/{handle}', [SellerController::class, 'publicPage'])->name('seller.public');
+Route::post('/pay/{handle}/pay', [SellerController::class, 'pay'])->name('seller.pay');
 
 // ── M-Pesa Daraja webhooks (no CSRF) ─────────────────────────────────────
 Route::prefix('mpesa')->withoutMiddleware([\Illuminate\Foundation\Http\Middleware\VerifyCsrfToken::class])->group(function () {
