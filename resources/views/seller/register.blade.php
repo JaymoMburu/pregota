@@ -81,8 +81,7 @@ input[type=checkbox]{width:18px!important;height:18px;accent-color:#25D366}
 
         {{-- Matatu context banner --}}
         <div class="matatu-banner" id="matatu-banner">
-            🚐 <strong>For matatus:</strong> Your vehicle reg number becomes your unique payment link.
-            Each matatu gets its own QR code — the SACCO can track every vehicle separately.
+            🚐 <strong>For matatus:</strong> Your reg number becomes your payment link. No fare set at registration — the conductor updates the route and fare from the live view each time the route changes. Passengers see it automatically on their screen.
         </div>
 
         {{-- Identifier field: reg plate for matatu, handle for others --}}
@@ -141,21 +140,24 @@ input[type=checkbox]{width:18px!important;height:18px;accent-color:#25D366}
             <div class="hint">Your personal number — never shown to buyers or passengers</div>
         </div>
 
-        <hr class="divider">
+        {{-- Fare fields: hidden for transport (set dynamically from live view) --}}
+        <div id="fare-fields">
+            <hr class="divider">
 
-        <div class="form-group">
-            <label id="amount-label">Default payment amount (KES) <span style="color:rgba(255,255,255,.45)">(optional)</span></label>
-            <input type="number" name="default_amount" value="{{ old('default_amount') }}" placeholder="e.g. 70" min="10" max="150000">
-            <div class="hint" id="amount-hint">Leave blank to let buyers enter any amount</div>
-        </div>
+            <div class="form-group">
+                <label id="amount-label">Default payment amount (KES) <span style="color:rgba(255,255,255,.45)">(optional)</span></label>
+                <input type="number" name="default_amount" value="{{ old('default_amount') }}" placeholder="e.g. 500" min="10" max="150000">
+                <div class="hint" id="amount-hint">Leave blank to let buyers enter any amount</div>
+            </div>
 
-        <div class="form-group">
-            <div class="toggle-group">
-                <div>
-                    <div class="toggle-label" id="fixed-label">Fixed amount only</div>
-                    <div class="toggle-desc" id="fixed-desc">Buyers cannot change the amount</div>
+            <div class="form-group">
+                <div class="toggle-group">
+                    <div>
+                        <div class="toggle-label" id="fixed-label">Fixed amount only</div>
+                        <div class="toggle-desc" id="fixed-desc">Buyers cannot change the amount</div>
+                    </div>
+                    <input type="checkbox" name="fixed_amount" value="1" {{ old('fixed_amount') ? 'checked' : '' }}>
                 </div>
-                <input type="checkbox" name="fixed_amount" value="1" {{ old('fixed_amount') ? 'checked' : '' }}>
             </div>
         </div>
 
@@ -186,6 +188,9 @@ function onCategoryChange() {
 
     // Banner
     document.getElementById('matatu-banner').classList.toggle('visible', isMatatu);
+
+    // Fare fields — hidden for matatu (conductor sets route+fare from live view)
+    document.getElementById('fare-fields').style.display = isMatatu ? 'none' : 'block';
 
     // Identifier field
     document.getElementById('reg-wrap').style.display    = isMatatu ? 'block' : 'none';
