@@ -182,7 +182,7 @@ h1 em{font-style:normal;background:linear-gradient(135deg,#25D366,#4ADE80);-webk
         <div style="font-size:14px;color:rgba(255,255,255,.6);line-height:1.65;max-width:480px;margin:0 auto 20px">
             Customer ate and promises to pay later? Record a deni in 30 seconds — enter what they owe, their phone number, and you get a WhatsApp-ready payment link. They tap it, pay via M-Pesa, and the money comes straight to you. No chasing. No awkward reminders. The balance updates in real time on both your admin view and their personal dashboard.
         </div>
-        <a href="{{ route('deni.create') }}" style="display:inline-block;padding:12px 28px;background:rgba(239,68,68,.15);border:1px solid rgba(239,68,68,.3);color:#f87171;font-weight:700;font-size:14px;border-radius:11px;text-decoration:none">Record a Deni →</a>
+        <a href="{{ route('deni.landing') }}" style="display:inline-block;padding:12px 28px;background:rgba(239,68,68,.15);border:1px solid rgba(239,68,68,.3);color:#f87171;font-weight:700;font-size:14px;border-radius:11px;text-decoration:none">Learn About Deni →</a>
     </div>
 </div>
 

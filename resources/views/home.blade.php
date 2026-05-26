@@ -103,7 +103,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 <nav class="nav">
     <a href="{{ route('home') }}" class="logo">Pregota</a>
     <div class="nav-links">
-        <a href="{{ route('deni.create') }}" class="nav-link">Record a Deni</a>
+        <a href="{{ route('deni.landing') }}" class="nav-link">Deni</a>
         <a href="{{ route('redeem') }}" class="nav-link">Redeem a Gift</a>
         <a href="{{ route('buyer.me') }}" class="nav-link nav-cta">My Pregota</a>
     </div>
@@ -194,7 +194,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
         </a>
 
         <!-- Deni -->
-        <a href="{{ route('deni.create') }}" class="mod-card mod-red">
+        <a href="{{ route('deni.landing') }}" class="mod-card mod-red">
             <div class="mod-icon">🧾</div>
             <div class="mod-name">Deni</div>
             <div class="mod-desc">Extended credit at your kibanda? Lent a friend money? Record it — they get a payment link, pay via M-Pesa, money goes straight to you.</div>
@@ -334,7 +334,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
     <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
         <a href="{{ route('gift.home') }}" class="btn-primary" style="font-size:15px;padding:15px 28px">🎁 Send a Gift →</a>
         <a href="{{ route('collection.new') }}" class="btn-secondary" style="font-size:15px;padding:15px 28px">💬 Start a Collection</a>
-        <a href="{{ route('deni.create') }}" class="btn-secondary" style="font-size:15px;padding:15px 28px">🧾 Record a Deni</a>
+        <a href="{{ route('deni.landing') }}" class="btn-secondary" style="font-size:15px;padding:15px 28px">🧾 Record a Deni</a>
     </div>
     <p style="margin-top:20px;font-size:12px;color:rgba(255,255,255,.5)">🔒 Numbers encrypted · ⚡ M-Pesa STK Push · 🔐 Every transaction sealed</p>
 </div>

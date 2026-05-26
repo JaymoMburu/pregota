@@ -192,6 +192,7 @@ Route::get('/dispute/{receipt}', [DisputeController::class, 'show'])->name('disp
 Route::post('/dispute/{receipt}', [DisputeController::class, 'store'])->name('dispute.store');
 
 // ── Madeni (Tabs / Credit) ───────────────────────────────────────────────
+Route::get('/deni', [DeniController::class, 'landing'])->name('deni.landing');
 Route::get('/deni/create', [DeniController::class, 'create'])->name('deni.create');
 Route::post('/deni', [DeniController::class, 'store'])->name('deni.store');
 Route::get('/deni/admin/{token}', [DeniController::class, 'adminView'])->name('deni.admin');

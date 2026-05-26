@@ -18,6 +18,11 @@ class DeniController extends Controller
         private SellerService $seller,
     ) {}
 
+    public function landing()
+    {
+        return view('deni.landing');
+    }
+
     // Public creation page (no auth needed)
     public function create()
     {
