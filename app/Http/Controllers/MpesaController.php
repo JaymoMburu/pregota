@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\BillSplitPayment;
 use App\Models\BulkGift;
+use App\Models\Deni;
+use App\Models\DeniPayment;
 use App\Models\GroupPayment;
 use App\Models\Subscription;
 use App\Models\Collection;
@@ -110,12 +112,22 @@ class MpesaController extends Controller
                                         if ($sub) {
                                             $sub->update(['status' => 'active', 'last_paid_at' => now(), 'next_due_at' => $sub->plan->nextDueDate(), 'receipt_number' => 'PRG-' . now()->format('Ymd') . '-' . strtoupper(\Illuminate\Support\Str::random(6))]);
                                         } else {
-                                            $handled = $this->bulkGifts->confirmPayment($checkoutId, $mpesaCode, $amount);
-                                            if (! $handled) {
-                                                $handled = $this->sellers->confirmPayment($checkoutId, $mpesaCode, $amount);
+                                            // Madeni tab payments
+                                            $deniPayment = DeniPayment::where('checkout_request_id', $checkoutId)->where('status', 'pending')->first();
+                                            if ($deniPayment) {
+                                                $receipt = 'PRG-' . now()->format('Ymd') . '-' . strtoupper(\Illuminate\Support\Str::random(6));
+                                                $deniPayment->update(['status' => 'confirmed', 'receipt_number' => $receipt]);
+                                                $deni = $deniPayment->deni;
+                                                $deni->increment('amount_paid', $deniPayment->amount);
+                                                $deni->syncStatus();
+                                            } else {
+                                                $handled = $this->bulkGifts->confirmPayment($checkoutId, $mpesaCode, $amount);
                                                 if (! $handled) {
-                                                    $handled = $this->vouchers->confirmDeposit($checkoutId, $mpesaCode, $amount);
-                                                    if ($handled) { $this->seal($handled, 'VOUCHER'); }
+                                                    $handled = $this->sellers->confirmPayment($checkoutId, $mpesaCode, $amount);
+                                                    if (! $handled) {
+                                                        $handled = $this->vouchers->confirmDeposit($checkoutId, $mpesaCode, $amount);
+                                                        if ($handled) { $this->seal($handled, 'VOUCHER'); }
+                                                    }
                                                 }
                                             }
                                         }
@@ -165,6 +177,7 @@ class MpesaController extends Controller
                                     } else {
                                         GroupPayment::where('checkout_request_id', $checkoutId)->update(['status' => 'failed']);
                                         Subscription::where('checkout_request_id', $checkoutId)->update(['status' => 'overdue']);
+                                        DeniPayment::where('checkout_request_id', $checkoutId)->update(['status' => 'failed']);
                                         $seller = SellerPayment::where('mpesa_checkout_id', $checkoutId)->first();
                                         if ($seller) {
                                             $this->sellers->failPayment($checkoutId);

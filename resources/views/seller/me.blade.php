@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>My Pregota Spending</title>
+<title>My Pregota — Spending, Groups, Madeni</title>
 @include('partials.pwa')
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
@@ -110,6 +110,38 @@ select option{background:#1a2730}
 .del-btn{background:none;border:none;color:rgba(255,255,255,.25);font-size:18px;cursor:pointer;padding:0 0 0 10px;line-height:1}
 .del-btn:hover{color:#f87171}
 
+/* Quick actions */
+.quick-actions{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:24px}
+.qa-btn{display:flex;flex-direction:column;align-items:center;gap:5px;padding:14px 8px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:14px;font-size:12px;font-weight:700;color:rgba(255,255,255,.7);cursor:pointer;text-decoration:none;transition:.15s}
+.qa-btn:hover{background:rgba(255,255,255,.08)}
+.qa-icon{font-size:22px}
+@media(max-width:420px){.quick-actions{grid-template-columns:repeat(2,1fr)}}
+
+/* Madeni */
+.deni-alert{background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.2);border-radius:12px;padding:12px 16px;margin-bottom:16px;display:flex;justify-content:space-between;align-items:center}
+.deni-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:13px;padding:14px 16px;margin-bottom:8px}
+.deni-prog-track{height:6px;background:rgba(255,255,255,.08);border-radius:999px;overflow:hidden;margin:8px 0 6px}
+.deni-prog-fill{height:100%;background:linear-gradient(90deg,#25D366,#4ADE80);border-radius:999px}
+.pay-deni-btn{display:inline-block;padding:6px 14px;background:linear-gradient(135deg,#25D366,#1aaa52);color:#fff;font-size:12px;font-weight:700;border-radius:8px;text-decoration:none;margin-top:6px}
+
+/* Subscriptions in /me */
+.sub-card{background:rgba(168,85,247,.05);border:1px solid rgba(168,85,247,.12);border-radius:13px;padding:14px 16px;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.sub-badge-active{background:rgba(37,211,102,.1);color:#4ADE80;font-size:11px;font-weight:700;padding:2px 9px;border-radius:999px}
+.sub-badge-overdue{background:rgba(239,68,68,.1);color:#f87171;font-size:11px;font-weight:700;padding:2px 9px;border-radius:999px}
+.renew-btn{display:inline-block;padding:6px 14px;background:linear-gradient(135deg,#25D366,#1aaa52);color:#fff;font-size:12px;font-weight:700;border-radius:8px;text-decoration:none}
+
+/* Groups */
+.grp-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:11px;padding:11px 14px;margin-bottom:7px;display:flex;justify-content:space-between;align-items:center}
+
+/* Pay modal */
+.pay-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:200;align-items:flex-end;justify-content:center;padding:0}
+.pay-modal.open{display:flex}
+.pay-sheet{background:#141e24;border-radius:22px 22px 0 0;padding:28px 24px 40px;width:100%;max-width:480px}
+.pay-sheet h3{font-size:17px;font-weight:900;margin-bottom:16px}
+.pay-sheet input{width:100%;padding:13px 14px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:11px;color:#fff;font-size:15px;outline:none;font-family:inherit;margin-bottom:12px}
+.pay-sheet input:focus{border-color:rgba(37,211,102,.4)}
+.pay-sheet-btn{width:100%;padding:13px;background:linear-gradient(135deg,#25D366,#1aaa52);color:#fff;font-size:15px;font-weight:800;border:none;border-radius:12px;cursor:pointer}
+
 /* Stamps */
 .stamp-card{background:rgba(37,211,102,.04);border:1px solid rgba(37,211,102,.14);border-radius:13px;padding:13px 15px;margin-bottom:9px}
 .sd{width:17px;height:17px;border-radius:50%;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);display:inline-flex;align-items:center;justify-content:center;font-size:8px;margin:0 2px 2px 0}
@@ -131,12 +163,12 @@ select option{background:#1a2730}
 <body>
 <nav class="nav">
     <a href="{{ route('home') }}" class="logo">Pregota</a>
-    <a href="{{ route('seller.directory') }}" style="font-size:13px;color:rgba(255,255,255,.45);text-decoration:none">Find Sellers →</a>
+    <span style="font-size:13px;color:rgba(255,255,255,.45)">My Pregota</span>
 </nav>
 
 <div class="wrap">
-    <h1>My Spending</h1>
-    <div class="sub">Track everything — Pregota payments fill in automatically. Log the rest manually.</div>
+    <h1>My Pregota</h1>
+    <div class="sub">Payments, subscriptions, groups, madeni — all in one place.</div>
 
     {{-- Auth card (3 steps: phone → pin-entry/set → done) --}}
     <div class="auth-card" id="auth-card">
@@ -222,7 +254,50 @@ select option{background:#1a2730}
         </div>
     </div>
 
+    {{-- Pay Modal --}}
+    <div class="pay-modal" id="pay-modal" onclick="if(event.target===this)closePayModal()">
+        <div class="pay-sheet">
+            <h3>Pay a Seller</h3>
+            <input type="text" id="pay-handle" placeholder="Seller handle — e.g. mama-pima" autocomplete="off">
+            <button class="pay-sheet-btn" onclick="goToSeller()">Go to Pay Page →</button>
+        </div>
+    </div>
+
     <div id="results">
+        {{-- Quick Actions --}}
+        <div class="quick-actions">
+            <button class="qa-btn" onclick="openPayModal()"><span class="qa-icon">💳</span>Pay</button>
+            <a href="{{ route('gift.home') }}" class="qa-btn"><span class="qa-icon">🎁</span>Gift</a>
+            <a href="{{ route('redeem') }}" class="qa-btn"><span class="qa-icon">🎟</span>Redeem</a>
+            <a href="{{ route('seller.directory') }}" class="qa-btn"><span class="qa-icon">🔍</span>Find Sellers</a>
+        </div>
+
+        {{-- Madeni alert --}}
+        <div class="deni-alert" id="deni-alert" style="display:none">
+            <div>
+                <div style="font-size:13px;font-weight:700;color:#f87171">⚠️ Outstanding Madeni</div>
+                <div style="font-size:12px;color:rgba(255,255,255,.5);margin-top:2px">You owe <strong id="deni-total-label"></strong> — tap below to pay</div>
+            </div>
+        </div>
+
+        {{-- Madeni section --}}
+        <div id="deni-section" style="display:none">
+            <div class="section-head">🧾 Madeni (What I Owe)</div>
+            <div id="deni-list"></div>
+        </div>
+
+        {{-- Subscriptions section --}}
+        <div id="subs-section" style="display:none">
+            <div class="section-head">♻️ My Subscriptions</div>
+            <div id="subs-list"></div>
+        </div>
+
+        {{-- Groups section --}}
+        <div id="groups-section" style="display:none">
+            <div class="section-head">🤝 Group Contributions</div>
+            <div id="groups-list"></div>
+        </div>
+
         <div class="income-bar" id="income-bar" style="display:none">
             <div>
                 <div style="font-size:13px;font-weight:700">💰 Income / Received</div>
@@ -569,6 +644,62 @@ async function loadData() {
         }).join('');
     }
 
+    // Madeni
+    if (d.deni?.length > 0) {
+        document.getElementById('deni-alert').style.display = 'flex';
+        document.getElementById('deni-total-label').textContent = 'KES ' + d.total_deni.toLocaleString();
+        document.getElementById('deni-section').style.display = 'block';
+        document.getElementById('deni-list').innerHTML = d.deni.map(dn => {
+            const pct = dn.original_amount > 0 ? Math.round((dn.amount_paid / dn.original_amount) * 100) : 0;
+            return `<div class="deni-card">
+                <div style="display:flex;justify-content:space-between;align-items:flex-start">
+                    <div>
+                        <div style="font-size:14px;font-weight:800">${dn.creditor}</div>
+                        <div style="font-size:12px;color:rgba(255,255,255,.5);margin-top:2px">${dn.description}</div>
+                    </div>
+                    <div style="text-align:right;font-size:16px;font-weight:900;color:#f87171">KES ${dn.balance.toLocaleString()}<div style="font-size:10px;color:rgba(255,255,255,.35);font-weight:400">remaining</div></div>
+                </div>
+                <div class="deni-prog-track"><div class="deni-prog-fill" style="width:${pct}%"></div></div>
+                <div style="display:flex;justify-content:space-between;align-items:center">
+                    <div style="font-size:11px;color:rgba(255,255,255,.35)">KES ${dn.amount_paid.toLocaleString()} paid of KES ${dn.original_amount.toLocaleString()}${dn.due_date ? ' · Due '+dn.due_date : ''}</div>
+                    <a href="${dn.pay_link}" class="pay-deni-btn">Pay Now →</a>
+                </div>
+            </div>`;
+        }).join('');
+    }
+
+    // Subscriptions
+    if (d.subscriptions?.length > 0) {
+        document.getElementById('subs-section').style.display = 'block';
+        document.getElementById('subs-list').innerHTML = d.subscriptions.map(s =>
+            `<div class="sub-card">
+                <div>
+                    <div style="font-size:14px;font-weight:800">${s.plan_name}</div>
+                    <div style="font-size:12px;color:rgba(255,255,255,.45)">${s.business_name} · KES ${s.amount.toLocaleString()}/${s.frequency}</div>
+                    ${s.next_due ? `<div style="font-size:11px;color:rgba(255,255,255,.35);margin-top:3px">Next due: ${s.next_due}</div>` : ''}
+                </div>
+                <div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px">
+                    <span class="${s.status === 'overdue' ? 'sub-badge-overdue' : 'sub-badge-active'}">${s.status === 'overdue' ? '⚠️ Overdue' : '✅ Active'}</span>
+                    ${s.is_due ? `<a href="/subscription/reminder/${s.reminder_token}" class="renew-btn">Renew →</a>` : ''}
+                </div>
+            </div>`
+        ).join('');
+    }
+
+    // Group contributions
+    if (d.group_payments?.length > 0) {
+        document.getElementById('groups-section').style.display = 'block';
+        document.getElementById('groups-list').innerHTML = d.group_payments.map(g =>
+            `<div class="grp-card">
+                <div>
+                    <div style="font-size:14px;font-weight:700">🤝 ${g.group_name}</div>
+                    <div style="font-size:11px;color:rgba(255,255,255,.4);margin-top:2px">${g.period} · ${g.date}</div>
+                </div>
+                <div style="font-size:15px;font-weight:900;color:#4ADE80">KES ${g.amount.toLocaleString()}</div>
+            </div>`
+        ).join('');
+    }
+
     // Sellers
     if (d.grouped?.length > 0) {
         document.getElementById('sellers-section').style.display = 'block';
@@ -577,6 +708,24 @@ async function loadData() {
         ).join('');
     }
 }
+
+// ── Quick actions ─────────────────────────────────────────────────────────
+function openPayModal() {
+    document.getElementById('pay-modal').classList.add('open');
+    setTimeout(() => document.getElementById('pay-handle').focus(), 100);
+}
+function closePayModal() {
+    document.getElementById('pay-modal').classList.remove('open');
+}
+function goToSeller() {
+    const handle = document.getElementById('pay-handle').value.trim().toLowerCase();
+    if (!handle) return;
+    window.location.href = '/pay/' + handle;
+}
+document.getElementById('pay-handle').addEventListener('keydown', e => {
+    if (e.key === 'Enter') goToSeller();
+    if (e.key === 'Escape') closePayModal();
+});
 
 // ── Inactivity auto-lock (5 minutes) ──────────────────────────────────────
 const IDLE_MS = 5 * 60 * 1000;

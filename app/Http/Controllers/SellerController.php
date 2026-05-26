@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\BuyerPin;
 use App\Models\BuyerStamp;
+use App\Models\Deni;
+use App\Models\GroupPayment;
 use App\Models\ManualEntry;
 use App\Models\PayLink;
 use App\Models\SellerPayment;
+use App\Models\Subscription;
 use App\Services\SellerService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -88,8 +91,9 @@ class SellerController extends Controller
         $payLink           = PayLink::findOrFail(session('seller_id'));
         $payments          = $payLink->payments()->latest()->take(50)->get();
         $subscriptionPlans = $payLink->subscriptionPlans()->withCount('subscriptions')->latest()->get();
+        $openDeni          = $payLink->deni()->whereIn('status', ['open', 'partial'])->latest()->get();
 
-        return view('seller.dashboard', compact('payLink', 'payments', 'subscriptionPlans'));
+        return view('seller.dashboard', compact('payLink', 'payments', 'subscriptionPlans', 'openDeni'));
     }
 
     // ── Seller: save stamp card settings ─────────────────────────────────
@@ -517,6 +521,54 @@ class SellerController extends Controller
                 'reward_pending'  => $s->reward_pending,
             ]);
 
+        // Group contributions
+        $groupPayments = GroupPayment::where('phone_hash', $hash)
+            ->where('status', 'confirmed')
+            ->with('group')
+            ->latest()
+            ->take(30)
+            ->get()
+            ->map(fn($p) => [
+                'group_name' => $p->group->name,
+                'period'     => $p->period,
+                'amount'     => $p->amount,
+                'date'       => $p->updated_at->format('d M Y'),
+                'receipt'    => $p->receipt_number,
+            ]);
+
+        // Active/overdue subscriptions
+        $subscriptions = Subscription::where('phone_hash', $hash)
+            ->whereIn('status', ['active', 'overdue'])
+            ->with('plan.payLink')
+            ->get()
+            ->map(fn($s) => [
+                'plan_name'      => $s->plan->name,
+                'business_name'  => $s->plan->payLink->business_name,
+                'amount'         => $s->plan->amount,
+                'frequency'      => $s->plan->frequencyLabel(),
+                'status'         => $s->status,
+                'next_due'       => $s->next_due_at?->format('d M Y'),
+                'is_due'         => $s->isDue(),
+                'reminder_token' => $s->reminder_token,
+            ]);
+
+        // Outstanding madeni (debts)
+        $deni = Deni::where('debtor_phone_hash', $hash)
+            ->whereIn('status', ['open', 'partial'])
+            ->with('payLink')
+            ->latest()
+            ->get()
+            ->map(fn($d) => [
+                'creditor'        => $d->creditorLabel(),
+                'description'     => $d->description,
+                'original_amount' => $d->original_amount,
+                'amount_paid'     => $d->amount_paid,
+                'balance'         => $d->balance(),
+                'status'          => $d->status,
+                'due_date'        => $d->due_date?->format('d M Y'),
+                'pay_link'        => url('/deni/' . $d->debtor_token),
+            ]);
+
         return response()->json([
             'found'          => true,
             'total_kes'      => $expenseStream->sum('amount'),
@@ -533,6 +585,10 @@ class SellerController extends Controller
             'grouped'        => $grouped,
             'manual'         => $manualDisplay,
             'stamps'         => $stamps,
+            'group_payments' => $groupPayments,
+            'subscriptions'  => $subscriptions,
+            'deni'           => $deni,
+            'total_deni'     => $deni->sum('balance'),
         ]);
     }
 

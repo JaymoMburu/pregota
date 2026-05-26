@@ -44,6 +44,11 @@ class PayLink extends Model
         return $this->hasMany(SubscriptionPlan::class);
     }
 
+    public function deni()
+    {
+        return $this->hasMany(Deni::class);
+    }
+
     // For transport: kca123a → KCA 123A. Others: return handle as-is.
     public function displayIdentifier(): string
     {

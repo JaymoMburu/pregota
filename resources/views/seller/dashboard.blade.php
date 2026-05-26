@@ -173,6 +173,61 @@ tr:hover td{background:rgba(255,255,255,.03)}
         </form>
     </div>
 
+    {{-- Madeni (Tabs / Credit) --}}
+    <div class="stamp-section" style="background:rgba(239,68,68,.04);border-color:rgba(239,68,68,.15)">
+        <h2 style="color:#f87171">🧾 Madeni — Customer Tabs</h2>
+        <p>Track credit you've extended to customers — restaurant tabs, shop credit, anything owed. Share the payment link with the customer via WhatsApp. They see exactly what they owe and can pay in parts via M-Pesa.</p>
+
+        @if(session('deni_link'))
+        <div style="background:rgba(37,211,102,.06);border:1px solid rgba(37,211,102,.18);border-radius:10px;padding:12px 16px;margin-bottom:14px;display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap">
+            <div style="font-size:12px;color:rgba(37,211,102,.8)">✓ Tab created — send this link to your customer via WhatsApp</div>
+            <div style="font-family:monospace;font-size:12px;color:#4ADE80;word-break:break-all">{{ session('deni_link') }}</div>
+            <button onclick="navigator.clipboard.writeText('{{ session('deni_link') }}');alert('Link copied!')" style="font-size:12px;padding:5px 12px;background:rgba(37,211,102,.12);border:1px solid rgba(37,211,102,.25);border-radius:7px;color:#4ADE80;cursor:pointer">Copy</button>
+        </div>
+        @endif
+
+        <form method="POST" action="{{ route('deni.store') }}">
+            @csrf
+            <div class="form-row">
+                <div class="form-group-sm" style="flex:1;min-width:160px">
+                    <label>What's the tab for?</label>
+                    <input type="text" name="description" maxlength="300" placeholder="e.g. Ugali + fish, 3 Jun" required>
+                </div>
+                <div class="form-group-sm" style="width:120px">
+                    <label>Amount (KES)</label>
+                    <input type="number" name="original_amount" min="1" max="500000" placeholder="120" required>
+                </div>
+                <div class="form-group-sm" style="width:140px">
+                    <label>Customer Phone (opt.)</label>
+                    <input type="tel" name="debtor_phone" placeholder="0712 345 678">
+                </div>
+                <button type="submit" class="save-btn" style="background:rgba(239,68,68,.12);border-color:rgba(239,68,68,.25);color:#f87171">+ New Tab</button>
+            </div>
+        </form>
+
+        @if($openDeni->isNotEmpty())
+        <div style="margin-top:16px;display:flex;flex-direction:column;gap:8px">
+            <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(239,68,68,.5);margin-bottom:4px">Open Tabs</div>
+            @foreach($openDeni as $d)
+            @php $pct = $d->original_amount > 0 ? round(($d->amount_paid / $d->original_amount) * 100) : 0; @endphp
+            <div style="padding:12px 14px;background:rgba(239,68,68,.04);border:1px solid rgba(239,68,68,.12);border-radius:10px">
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;flex-wrap:wrap;gap:6px">
+                    <div>
+                        <div style="font-size:13px;font-weight:700">{{ $d->description }}</div>
+                        <div style="font-size:11px;color:rgba(255,255,255,.4)">{{ $d->status === 'partial' ? 'KES '.number_format($d->amount_paid).' paid · ' : '' }}KES {{ number_format($d->balance()) }} remaining</div>
+                    </div>
+                    <div style="display:flex;gap:8px">
+                        <button onclick="navigator.clipboard.writeText('{{ url('/deni/' . $d->debtor_token) }}');alert('Link copied!')" style="font-size:11px;padding:4px 10px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:6px;color:rgba(255,255,255,.5);cursor:pointer">Copy Link</button>
+                        <a href="{{ url('/deni/admin/' . $d->admin_token) }}" style="font-size:11px;padding:4px 10px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:6px;color:rgba(255,255,255,.5);text-decoration:none">View →</a>
+                    </div>
+                </div>
+                <div style="height:5px;background:rgba(255,255,255,.07);border-radius:999px;overflow:hidden"><div style="height:100%;width:{{ $pct }}%;background:linear-gradient(90deg,#25D366,#4ADE80);border-radius:999px"></div></div>
+            </div>
+            @endforeach
+        </div>
+        @endif
+    </div>
+
     {{-- Subscription Plans --}}
     <div class="stamp-section" style="background:rgba(168,85,247,.05);border-color:rgba(168,85,247,.18)">
         <h2 style="color:#c084fc">♻️ Subscription Plans</h2>

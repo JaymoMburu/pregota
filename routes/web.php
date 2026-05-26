@@ -9,6 +9,7 @@ use App\Http\Controllers\BusinessController;
 use App\Http\Controllers\CollectionController;
 use App\Http\Controllers\CreatorController;
 use App\Http\Controllers\GiftController;
+use App\Http\Controllers\DeniController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\MpesaController;
 use App\Http\Controllers\MultiGiftController;
@@ -189,6 +190,13 @@ Route::get('/pay/{handle}/current', [SellerController::class, 'currentInfo'])->n
 Route::get('/receipt/{receipt}', [ReceiptController::class, 'show'])->name('receipt.show');
 Route::get('/dispute/{receipt}', [DisputeController::class, 'show'])->name('dispute.show');
 Route::post('/dispute/{receipt}', [DisputeController::class, 'store'])->name('dispute.store');
+
+// ── Madeni (Tabs / Credit) ───────────────────────────────────────────────
+Route::post('/deni', [DeniController::class, 'store'])->name('deni.store')->middleware(\App\Http\Middleware\SellerAuth::class);
+Route::get('/deni/admin/{token}', [DeniController::class, 'adminView'])->name('deni.admin');
+Route::get('/deni/{token}', [DeniController::class, 'show'])->name('deni.show');
+Route::post('/deni/{token}/pay', [DeniController::class, 'pay'])->name('deni.pay');
+Route::get('/deni/{token}/status', [DeniController::class, 'payStatus'])->name('deni.status');
 
 // ── Contribution Groups ──────────────────────────────────────────────────
 Route::get('/groups/create', [GroupController::class, 'create'])->name('group.create');
