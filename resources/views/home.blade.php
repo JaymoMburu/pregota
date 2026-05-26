@@ -171,6 +171,34 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
             <div class="mc-cta">Get My Pay Link <span>›</span></div>
         </a>
 
+        <!-- Deni -->
+        <a href="{{ route('deni.create') }}" class="module-card" style="border-color:rgba(239,68,68,.18)">
+            <span class="mc-icon">🧾</span>
+            <div class="mc-name">Deni</div>
+            <div class="mc-desc">Lent a friend money? Extended credit at your kibanda or restaurant? Record it here — they get a payment link, pay via M-Pesa, and money goes straight to you. No account needed.</div>
+            <div class="mc-examples">
+                <span class="mc-tag">Vibanda</span>
+                <span class="mc-tag">Restaurants</span>
+                <span class="mc-tag">Personal loans</span>
+                <span class="mc-tag">Shop credit</span>
+            </div>
+            <div class="mc-cta" style="color:#f87171">Record a Deni <span>›</span></div>
+        </a>
+
+        <!-- My Pregota -->
+        <a href="{{ route('buyer.me') }}" class="module-card" style="border-color:rgba(96,165,250,.18)">
+            <span class="mc-icon">📊</span>
+            <div class="mc-name">My Pregota</div>
+            <div class="mc-desc">Your personal hub — see all your M-Pesa payments, active subscriptions, group contributions, and outstanding deni. One PIN, everything in one place.</div>
+            <div class="mc-examples">
+                <span class="mc-tag">Spending history</span>
+                <span class="mc-tag">Subscriptions</span>
+                <span class="mc-tag">Groups</span>
+                <span class="mc-tag">Madeni</span>
+            </div>
+            <div class="mc-cta" style="color:#60a5fa">Open My Dashboard <span>›</span></div>
+        </a>
+
         <!-- Buyer directory -->
         <a href="{{ route('seller.directory') }}" class="module-card" style="border-color:rgba(37,211,102,.15)">
             <span class="mc-icon">🔍</span>

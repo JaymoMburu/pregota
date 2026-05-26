@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Seller Pay Links — Pregota</title>
-<meta name="description" content="Get paid via M-Pesa without sharing your personal number. One link, instant payments, daily settlement.">
+<title>Seller Pay Links, Subscriptions & Deni — Pregota</title>
+<meta name="description" content="Get paid via M-Pesa. Pay links, till mode, subscriptions, group contributions, and deni tab tracking — all in one place.">
 @include('partials.pwa')
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
@@ -72,9 +72,9 @@ h1 em{font-style:normal;background:linear-gradient(135deg,#25D366,#4ADE80);-webk
 </nav>
 
 <div class="hero">
-    <div class="badge">🛍️ Pay Links · For Sellers & MSMEs</div>
-    <h1>Get paid via M-Pesa.<br><em>No personal number.</em></h1>
-    <p>Share one link. Buyers pay you directly via M-Pesa STK Push. Your personal number stays private — always.</p>
+    <div class="badge">🛍️ Pay Links · Subscriptions · Deni · Groups</div>
+    <h1>Get paid via M-Pesa.<br><em>Every way you need.</em></h1>
+    <p>One-off payments, recurring subscriptions, group contributions, deni tabs — all through M-Pesa STK Push. Your personal number stays private — always.</p>
     <div class="cta-row">
         <a href="{{ route('seller.register') }}" class="btn-primary">Get My Pay Link →</a>
         <a href="{{ route('seller.login') }}" class="btn-sec">I already have one</a>
@@ -152,6 +152,16 @@ h1 em{font-style:normal;background:linear-gradient(135deg,#25D366,#4ADE80);-webk
             <div class="uc-name">Matatus & Transport</div>
             <div class="uc-desc">Conductor silently updates the route and fare on their phone. Passenger scans the QR — sees the exact fare already on screen — enters their number and pays. No shouting. No mishearing. No distraction.</div>
         </div>
+        <div class="uc">
+            <div class="uc-icon">♻️</div>
+            <div class="uc-name">Subscriptions</div>
+            <div class="uc-desc">Create monthly, quarterly, or annual plans. Subscribers pay once and auto-renew. You send WhatsApp reminder links — they tap and pay. Gyms, internet resellers, content services.</div>
+        </div>
+        <div class="uc">
+            <div class="uc-icon">🤝</div>
+            <div class="uc-name">Groups & Chamas</div>
+            <div class="uc-desc">Welfare groups, chamas, churches, and choirs pay their monthly contributions via M-Pesa. Admin sees who has paid per period. No more chasing cash or WhatsApp shouting matches.</div>
+        </div>
     </div>
 </div>
 
@@ -162,6 +172,17 @@ h1 em{font-style:normal;background:linear-gradient(135deg,#25D366,#4ADE80);-webk
         <div style="font-size:14px;color:rgba(255,255,255,.6);line-height:1.65;max-width:440px;margin:0 auto">
             Open Till Mode on any tablet at your counter. Cashier types the total on a big keypad — hands it to the customer — customer enters their M-Pesa number and approves. Screen confirms payment, resets automatically for the next customer. No card machine. No cash. No app to install.
         </div>
+    </div>
+</div>
+
+<div style="padding:0 24px 64px;max-width:760px;margin:0 auto">
+    <div style="background:rgba(239,68,68,.05);border:1px solid rgba(239,68,68,.18);border-radius:20px;padding:32px;text-align:center">
+        <div style="font-size:28px;margin-bottom:12px">🧾</div>
+        <div style="font-size:18px;font-weight:900;margin-bottom:8px">Deni — track customer credit with zero hassle</div>
+        <div style="font-size:14px;color:rgba(255,255,255,.6);line-height:1.65;max-width:480px;margin:0 auto 20px">
+            Customer ate and promises to pay later? Record a deni in 30 seconds — enter what they owe, their phone number, and you get a WhatsApp-ready payment link. They tap it, pay via M-Pesa, and the money comes straight to you. No chasing. No awkward reminders. The balance updates in real time on both your admin view and their personal dashboard.
+        </div>
+        <a href="{{ route('deni.create') }}" style="display:inline-block;padding:12px 28px;background:rgba(239,68,68,.15);border:1px solid rgba(239,68,68,.3);color:#f87171;font-weight:700;font-size:14px;border-radius:11px;text-decoration:none">Record a Deni →</a>
     </div>
 </div>
 
