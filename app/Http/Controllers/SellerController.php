@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\BuyerStamp;
+use App\Models\ManualEntry;
 use App\Models\PayLink;
 use App\Models\SellerPayment;
 use App\Services\SellerService;
@@ -325,60 +326,92 @@ class SellerController extends Controller
         $data = $request->validate(['phone' => ['required', 'string', 'regex:/^(\+?254|0)[17]\d{8}$/']]);
         $hash = $this->seller->hashPhone($data['phone']);
 
-        // Full history for analytics (no limit)
-        $all = SellerPayment::where('buyer_phone_hash', $hash)
+        // Automatic Pregota payments
+        $payments = SellerPayment::where('buyer_phone_hash', $hash)
             ->where('status', 'confirmed')
             ->with('payLink:id,business_name,handle,category')
             ->latest()
             ->get();
 
-        if ($all->isEmpty()) {
+        // Manual entries (expenses only feed into spending analytics)
+        $manual = ManualEntry::where('phone_hash', $hash)
+            ->orderByDesc('entry_date')
+            ->get();
+
+        $hasAny = $payments->isNotEmpty() || $manual->isNotEmpty();
+        if (! $hasAny) {
             return response()->json(['found' => false]);
         }
 
-        $now       = now();
-        $thisMonth = $all->filter(fn($p) => $p->updated_at->isCurrentMonth())->sum('amount');
-        $lastMonth = $all->filter(fn($p) => $p->updated_at->month === $now->copy()->subMonth()->month
-                                         && $p->updated_at->year  === $now->copy()->subMonth()->year)->sum('amount');
-        $thisWeek  = $all->filter(fn($p) => $p->updated_at->isCurrentWeek())->sum('amount');
-        $avgTx     = $all->count() > 0 ? (int) round($all->sum('amount') / $all->count()) : 0;
+        $catEmoji = [
+            'transport' => '🚐', 'food' => '🍱', 'fashion' => '👗',
+            'salon'     => '💇', 'electronics' => '📱', 'services' => '🛠',
+            'groceries' => '🛒', 'other' => '🏪',
+        ];
 
-        // Monthly totals — last 12 months
-        $byMonth = $all->groupBy(fn($p) => $p->updated_at->format('Y-m'))
+        $now = now();
+
+        // Build a unified stream for expense analytics
+        // Automatic payments
+        $autoStream = $payments->map(fn($p) => [
+            'date'     => $p->updated_at,
+            'amount'   => $p->amount,
+            'category' => $p->payLink?->category ?? 'other',
+            'type'     => 'auto',
+        ]);
+        // Manual expenses only (income tracked separately)
+        $manualExpenseStream = $manual->where('type', 'expense')->map(fn($e) => [
+            'date'     => $e->entry_date->toDateTimeString(),
+            'amount'   => $e->amount,
+            'category' => $e->category ?? 'other',
+            'type'     => 'manual',
+        ]);
+        $expenseStream = $autoStream->concat($manualExpenseStream);
+
+        $subMonth = fn($p) => \Carbon\Carbon::parse(is_string($p['date']) ? $p['date'] : $p['date']);
+        $thisMonth = $expenseStream->filter(fn($p) => \Carbon\Carbon::parse($p['date'])->isCurrentMonth())->sum('amount');
+        $lastMonth = $expenseStream->filter(function ($p) use ($now) {
+            $d = \Carbon\Carbon::parse($p['date']);
+            return $d->month === $now->copy()->subMonth()->month && $d->year === $now->copy()->subMonth()->year;
+        })->sum('amount');
+        $thisWeek = $expenseStream->filter(fn($p) => \Carbon\Carbon::parse($p['date'])->isCurrentWeek())->sum('amount');
+        $avgTx    = $expenseStream->count() > 0 ? (int) round($expenseStream->sum('amount') / $expenseStream->count()) : 0;
+
+        // Income totals
+        $totalIncome   = $manual->where('type', 'income')->sum('amount');
+        $incomeThisMonth = $manual->where('type', 'income')
+            ->filter(fn($e) => $e->entry_date->isCurrentMonth())->sum('amount');
+
+        // Monthly expense totals — last 12 months
+        $byMonth = $expenseStream->groupBy(fn($p) => \Carbon\Carbon::parse($p['date'])->format('Y-m'))
             ->map(fn($items, $key) => [
                 'month' => $key,
                 'label' => \Carbon\Carbon::createFromFormat('Y-m', $key)->format('M Y'),
                 'total' => $items->sum('amount'),
                 'count' => $items->count(),
             ])
-            ->sortKeys()
-            ->takeLast(12)
-            ->values();
+            ->sortKeys()->takeLast(12)->values();
 
-        // Category breakdown
-        $catEmoji = [
-            'transport' => '🚐', 'food' => '🍱', 'fashion' => '👗',
-            'salon' => '💇', 'electronics' => '📱', 'services' => '🛠',
-            'groceries' => '🛒', 'other' => '🏪',
-        ];
-        $byCategory = $all->groupBy(fn($p) => $p->payLink?->category ?? 'other')
+        // Category breakdown (expenses)
+        $byCategory = $expenseStream->groupBy(fn($p) => $p['category'])
             ->map(fn($items, $cat) => [
                 'category' => $cat,
                 'emoji'    => $catEmoji[$cat] ?? '🏪',
                 'total'    => $items->sum('amount'),
                 'count'    => $items->count(),
+                'auto'     => $items->where('type', 'auto')->sum('amount'),
+                'manual'   => $items->where('type', 'manual')->sum('amount'),
             ])
-            ->sortByDesc('total')
-            ->values();
+            ->sortByDesc('total')->values();
 
-        // Day-of-week spending (0=Sun … 6=Sat)
+        // Day of week
         $byDow = collect(range(0, 6))->map(fn($d) => [
             'day'   => ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'][$d],
-            'total' => $all->filter(fn($p) => $p->updated_at->dayOfWeek === $d)->sum('amount'),
+            'total' => $expenseStream->filter(fn($p) => \Carbon\Carbon::parse($p['date'])->dayOfWeek === $d)->sum('amount'),
         ]);
 
-        // Grouped detail (last 100 for display)
-        $grouped = $all->take(100)->groupBy('pay_link_id')->map(function ($items) {
+        // Automatic payments grouped by seller
+        $grouped = $payments->take(100)->groupBy('pay_link_id')->map(function ($items) {
             $link = $items->first()->payLink;
             return [
                 'business_name' => $link->business_name,
@@ -399,6 +432,17 @@ class SellerController extends Controller
             ];
         })->values();
 
+        // Manual entries for display (most recent 50)
+        $manualDisplay = $manual->take(50)->map(fn($e) => [
+            'id'          => $e->id,
+            'type'        => $e->type,
+            'amount'      => $e->amount,
+            'category'    => $e->category ?? 'other',
+            'emoji'       => $catEmoji[$e->category ?? 'other'] ?? '🏪',
+            'description' => $e->description,
+            'date'        => $e->entry_date->format('D d M Y'),
+        ]);
+
         // Stamp cards
         $stamps = BuyerStamp::where('phone_hash', $hash)->with('payLink')->get()
             ->map(fn($s) => [
@@ -411,18 +455,58 @@ class SellerController extends Controller
             ]);
 
         return response()->json([
-            'found'       => true,
-            'total_kes'   => $all->sum('amount'),
-            'total_count' => $all->count(),
-            'this_month'  => $thisMonth,
-            'last_month'  => $lastMonth,
-            'this_week'   => $thisWeek,
-            'avg_tx'      => $avgTx,
-            'by_month'    => $byMonth,
-            'by_category' => $byCategory,
-            'by_dow'      => $byDow,
-            'grouped'     => $grouped,
-            'stamps'      => $stamps,
+            'found'          => true,
+            'total_kes'      => $expenseStream->sum('amount'),
+            'total_count'    => $expenseStream->count(),
+            'total_income'   => $totalIncome,
+            'income_month'   => $incomeThisMonth,
+            'this_month'     => $thisMonth,
+            'last_month'     => $lastMonth,
+            'this_week'      => $thisWeek,
+            'avg_tx'         => $avgTx,
+            'by_month'       => $byMonth,
+            'by_category'    => $byCategory,
+            'by_dow'         => $byDow,
+            'grouped'        => $grouped,
+            'manual'         => $manualDisplay,
+            'stamps'         => $stamps,
         ]);
+    }
+
+    // ── Manual entry (save) ───────────────────────────────────────────────
+    public function saveEntry(Request $request)
+    {
+        $data = $request->validate([
+            'phone'       => ['required', 'string', 'regex:/^(\+?254|0)[17]\d{8}$/'],
+            'type'        => ['required', 'in:expense,income'],
+            'amount'      => ['required', 'integer', 'min:1', 'max:9999999'],
+            'category'    => ['nullable', 'string', 'max:40'],
+            'description' => ['nullable', 'string', 'max:200'],
+            'entry_date'  => ['required', 'date', 'before_or_equal:today'],
+        ]);
+
+        $hash = $this->seller->hashPhone($data['phone']);
+
+        $entry = ManualEntry::create([
+            'phone_hash'  => $hash,
+            'type'        => $data['type'],
+            'amount'      => $data['amount'],
+            'category'    => $data['category'] ?? null,
+            'description' => $data['description'] ?? null,
+            'entry_date'  => $data['entry_date'],
+        ]);
+
+        return response()->json(['success' => true, 'id' => $entry->id]);
+    }
+
+    // ── Manual entry (delete) ─────────────────────────────────────────────
+    public function deleteEntry(Request $request, int $id)
+    {
+        $data  = $request->validate(['phone' => ['required', 'string', 'regex:/^(\+?254|0)[17]\d{8}$/']]);
+        $hash  = $this->seller->hashPhone($data['phone']);
+        $entry = ManualEntry::where('id', $id)->where('phone_hash', $hash)->firstOrFail();
+        $entry->delete();
+
+        return response()->json(['success' => true]);
     }
 }
