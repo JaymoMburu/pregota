@@ -13,6 +13,7 @@ class PayLink extends Model
         'default_amount', 'fixed_amount', 'is_active',
         'total_received', 'payment_count',
         'current_route', 'current_fare',
+        'stamps_required', 'stamp_reward',
     ];
 
     protected $casts = [

@@ -60,6 +60,16 @@ tr:hover td{background:rgba(255,255,255,.03)}
 .badge.pending{background:rgba(251,191,36,.15);color:#fbbf24}
 .badge.failed{background:rgba(239,68,68,.12);color:#fca5a5}
 .empty{text-align:center;padding:36px;color:rgba(255,255,255,.45);font-size:13px}
+.stamp-section{background:rgba(37,211,102,.05);border:1px solid rgba(37,211,102,.18);border-radius:16px;padding:20px;margin-bottom:24px}
+.stamp-section h2{font-size:14px;font-weight:700;color:#4ADE80;margin-bottom:4px}
+.stamp-section p{font-size:12px;color:rgba(255,255,255,.55);margin-bottom:16px;line-height:1.55}
+.form-row{display:flex;gap:10px;align-items:flex-end;flex-wrap:wrap}
+.form-group-sm{display:flex;flex-direction:column;gap:5px}
+.form-group-sm label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:rgba(255,255,255,.55)}
+.form-group-sm input{padding:9px 12px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:9px;color:#fff;font-size:13px;outline:none;width:100%}
+.form-group-sm input:focus{border-color:rgba(37,211,102,.4)}
+.save-btn{padding:9px 18px;background:rgba(37,211,102,.15);border:1px solid rgba(37,211,102,.3);color:#4ADE80;font-size:13px;font-weight:700;border-radius:9px;cursor:pointer;white-space:nowrap}
+.save-btn:hover{background:rgba(37,211,102,.25)}
 
 @media(max-width:500px){
     .link-url{font-size:12px}
@@ -130,6 +140,36 @@ tr:hover td{background:rgba(255,255,255,.03)}
             <div class="kpi-label">Pending</div>
             <div class="kpi-val" style="color:#fbbf24">{{ $payments->where('status','pending')->count() }}</div>
         </div>
+    </div>
+
+    {{-- Stamp card settings --}}
+    <div class="stamp-section">
+        <h2>🎟 Stamp Card</h2>
+        <p>Reward repeat customers. After N payments they unlock a reward you define — free ride, discount, free coffee. Buyers see their progress on your pay page and on their receipts page. This brings them back.</p>
+        <form method="POST" action="{{ route('seller.stamp-card') }}">
+            @csrf
+            <div class="form-row">
+                <div class="form-group-sm" style="width:120px">
+                    <label>Stamps to reward</label>
+                    <input type="number" name="stamps_required" min="2" max="50" placeholder="e.g. 10"
+                        value="{{ $payLink->stamps_required }}">
+                </div>
+                <div class="form-group-sm" style="flex:1;min-width:180px">
+                    <label>Reward description</label>
+                    <input type="text" name="stamp_reward" maxlength="200" placeholder="e.g. Free trip · 10th ride free"
+                        value="{{ $payLink->stamp_reward }}">
+                </div>
+                <button type="submit" class="save-btn">Save</button>
+            </div>
+            @if($payLink->stamps_required)
+            <div style="margin-top:10px;font-size:12px;color:rgba(37,211,102,.8)">
+                ✓ Active — customers earn 1 stamp per payment, get <strong>"{{ $payLink->stamp_reward }}"</strong> after {{ $payLink->stamps_required }} stamps.
+                Leave "Stamps to reward" blank and save to disable.
+            </div>
+            @else
+            <div style="margin-top:10px;font-size:11px;color:rgba(255,255,255,.35)">Stamp card is off. Set a number above to activate it.</div>
+            @endif
+        </form>
     </div>
 
     <div class="table-wrap">

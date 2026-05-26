@@ -75,6 +75,22 @@ input:focus{border-color:rgba(37,211,102,.5);background:rgba(255,255,255,.08)}
 /* Route changed warning */
 .route-changed{display:none;background:rgba(251,191,36,.12);border:1px solid rgba(251,191,36,.25);border-radius:10px;padding:10px 14px;font-size:12px;color:#fbbf24;margin-bottom:16px}
 .route-changed.visible{display:block}
+
+/* Social proof */
+.social-proof{font-size:12px;color:rgba(255,255,255,.45);margin-bottom:16px;display:flex;align-items:center;gap:6px}
+.social-proof strong{color:rgba(255,255,255,.75)}
+
+/* Stamp card progress */
+.stamp-bar{display:none;background:rgba(37,211,102,.06);border:1px solid rgba(37,211,102,.18);border-radius:12px;padding:12px 14px;margin-bottom:16px}
+.stamp-bar.visible{display:block}
+.stamp-bar-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.stamp-bar-label{font-size:12px;font-weight:700;color:#4ADE80}
+.stamp-bar-count{font-size:12px;color:rgba(255,255,255,.55)}
+.stamp-dots{display:flex;gap:4px;flex-wrap:wrap}
+.sd{width:18px;height:18px;border-radius:50%;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.12);font-size:9px;display:flex;align-items:center;justify-content:center}
+.sd.on{background:rgba(37,211,102,.25);border-color:#25D366;color:#4ADE80}
+.stamp-reward{font-size:11px;color:rgba(255,255,255,.5);margin-top:6px}
+.stamp-reward-ready{font-size:12px;font-weight:700;color:#fbbf24;margin-top:6px}
 </style>
 </head>
 <body>
@@ -93,6 +109,27 @@ input:focus{border-color:rgba(37,211,102,.5);background:rgba(255,255,255,.08)}
         <div class="biz-cat" style="font-size:13px;letter-spacing:.12em;color:#4ADE80">{{ $payLink->displayIdentifier() }}</div>
         @elseif($payLink->category)
         <div class="biz-cat">{{ ucfirst($payLink->category) }}</div>
+        @endif
+
+        {{-- Social proof --}}
+        @if($payLink->payment_count > 0)
+        <div class="social-proof">
+            <span>✅</span>
+            <span><strong>{{ number_format($payLink->payment_count) }}</strong> {{ $payLink->payment_count === 1 ? 'person has' : 'people have' }} paid here</span>
+        </div>
+        @endif
+
+        {{-- Stamp card progress (populated via JS after phone blur) --}}
+        @if($payLink->stamps_required)
+        <div class="stamp-bar" id="stamp-bar">
+            <div class="stamp-bar-top">
+                <div class="stamp-bar-label">🎟 Your Stamps</div>
+                <div class="stamp-bar-count" id="stamp-count-label">Enter your number to see your progress</div>
+            </div>
+            <div class="stamp-dots" id="stamp-dots"></div>
+            <div class="stamp-reward" id="stamp-reward-text"></div>
+            <div class="stamp-reward-ready" id="stamp-reward-ready" style="display:none">🎉 Reward ready — show to seller after payment!</div>
+        </div>
         @endif
 
         <div id="form-section">
@@ -205,6 +242,9 @@ input:focus{border-color:rgba(37,211,102,.5);background:rgba(255,255,255,.08)}
                 <div style="font-size:11px;color:rgba(255,255,255,.5)">Your number was never shared</div>
             </div>
 
+            {{-- Stamp card progress update --}}
+            <div id="receipt-stamp-info"></div>
+
             {{-- Receipt link (shown once receipt_number arrives) --}}
             <div id="receipt-link-box" style="display:none;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:14px 16px;text-align:center">
                 <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.45);margin-bottom:8px">Save your receipt</div>
@@ -297,6 +337,35 @@ function getAmount() {
     @endif
 }
 
+@if($payLink->stamps_required)
+function loadStamps(phone) {
+    if (!phone || !/^(\+?254|0)[17]\d{8}$/.test(phone.replace(/\s/g,''))) return;
+    fetch('{{ route('seller.stamps', $payLink->handle) }}?phone=' + encodeURIComponent(phone))
+        .then(r => r.json())
+        .then(d => {
+            if (!d.enabled) return;
+            const bar   = document.getElementById('stamp-bar');
+            const dots  = document.getElementById('stamp-dots');
+            const label = document.getElementById('stamp-count-label');
+            const rewardText = document.getElementById('stamp-reward-text');
+            const rewardReady = document.getElementById('stamp-reward-ready');
+
+            const count = d.stamp_count;
+            const total = d.stamps_required;
+            label.textContent = count + ' / ' + total + ' stamps';
+            dots.innerHTML = Array.from({length: total}, (_, i) =>
+                `<div class="sd ${i < count ? 'on' : ''}">✓</div>`
+            ).join('');
+            rewardText.textContent = d.stamps_left > 0
+                ? d.stamps_left + ' more payment' + (d.stamps_left > 1 ? 's' : '') + ' for: ' + (d.reward || 'reward')
+                : '';
+            rewardReady.style.display = d.reward_pending ? 'block' : 'none';
+            bar.classList.add('visible');
+        });
+}
+document.getElementById('phone').addEventListener('blur', function() { loadStamps(this.value.trim()); });
+@endif
+
 function initiatePay() {
     const phone  = document.getElementById('phone').value.trim();
     const amount = getAmount();
@@ -388,6 +457,24 @@ function pollStatus() {
                     document.getElementById('receipt-link').href = data.receipt_url;
                     box.style.display = 'block';
                 }
+                @if($payLink->stamps_required)
+                if (data.stamp_info) {
+                    const s = data.stamp_info;
+                    const count = s.stamp_count;
+                    const total = s.stamps_required;
+                    const dotsHtml = Array.from({length: total}, (_, i) =>
+                        `<div class="sd ${i < count ? 'on' : ''}">✓</div>`
+                    ).join('');
+                    document.getElementById('receipt-stamp-info').innerHTML =
+                        `<div style="margin-top:16px;padding:12px 14px;background:rgba(37,211,102,.08);border:1px solid rgba(37,211,102,.2);border-radius:10px">
+                            <div style="font-size:12px;font-weight:700;color:#4ADE80;margin-bottom:6px">🎟 ${count} / ${total} stamps</div>
+                            <div style="display:flex;gap:4px;flex-wrap:wrap;margin-bottom:6px">${dotsHtml}</div>
+                            ${s.reward_pending
+                                ? '<div style="font-size:12px;color:#fbbf24;font-weight:700">🎉 Reward unlocked — show to seller!</div>'
+                                : `<div style="font-size:11px;color:rgba(255,255,255,.5)">${s.stamps_left} more for: ${s.reward || 'reward'}</div>`}
+                        </div>`;
+                }
+                @endif
             } else if (data.status === 'failed') {
                 clearInterval(pollTimer);
                 showState('failed');

@@ -164,10 +164,16 @@ Route::get('/seller/login', [SellerController::class, 'loginForm'])->name('selle
 Route::post('/seller/login', [SellerController::class, 'login'])->name('seller.login.post');
 Route::post('/seller/logout', [SellerController::class, 'logout'])->name('seller.logout');
 Route::get('/seller/dashboard', [SellerController::class, 'dashboard'])->name('seller.dashboard')->middleware(\App\Http\Middleware\SellerAuth::class);
+Route::post('/seller/stamp-card', [SellerController::class, 'saveStampCard'])->name('seller.stamp-card')->middleware(\App\Http\Middleware\SellerAuth::class);
 Route::get('/seller/status', [SellerController::class, 'checkStatus'])->name('seller.status');
+
+Route::get('/sellers', [SellerController::class, 'directory'])->name('seller.directory');
+Route::get('/me', [SellerController::class, 'me'])->name('buyer.me');
+Route::post('/me/lookup', [SellerController::class, 'meLookup'])->name('buyer.me.lookup');
 
 Route::get('/pay/{handle}', [SellerController::class, 'publicPage'])->name('seller.public');
 Route::post('/pay/{handle}/pay', [SellerController::class, 'pay'])->name('seller.pay');
+Route::get('/pay/{handle}/stamps', [SellerController::class, 'stampInfo'])->name('seller.stamps');
 Route::get('/pay/{handle}/live', [SellerController::class, 'liveView'])->name('seller.live');
 Route::get('/pay/{handle}/recent', [SellerController::class, 'recentPayments'])->name('seller.recent');
 Route::post('/pay/{handle}/route', [SellerController::class, 'setRoute'])->name('seller.set-route');

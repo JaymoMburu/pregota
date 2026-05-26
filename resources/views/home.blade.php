@@ -170,6 +170,20 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
             <div class="mc-cta">Get My Pay Link <span>›</span></div>
         </a>
 
+        <!-- Buyer directory -->
+        <a href="{{ route('seller.directory') }}" class="module-card" style="border-color:rgba(37,211,102,.15)">
+            <span class="mc-icon">🔍</span>
+            <div class="mc-name">Find Sellers</div>
+            <div class="mc-desc">Browse all businesses accepting Pregota payments. Get KRA-valid receipts and track your spending at pregota.com/me.</div>
+            <div class="mc-examples">
+                <span class="mc-tag">Matatus</span>
+                <span class="mc-tag">Food</span>
+                <span class="mc-tag">Salons</span>
+                <span class="mc-tag">Shops</span>
+            </div>
+            <div class="mc-cta" style="color:#25D366">Browse & Pay <span>›</span></div>
+        </a>
+
         <!-- Creator Gifts — full width -->
         <a href="{{ route('creator.landing') }}" class="module-card mc-creator" style="grid-column:1/-1;flex-direction:row;align-items:center;gap:28px;padding:28px 32px">
             <span class="mc-icon" style="margin-bottom:0;font-size:48px;flex-shrink:0">🎤</span>
