@@ -145,7 +145,7 @@ h1 em{font-style:normal;background:linear-gradient(135deg,#25D366,#4ADE80);-webk
         <div class="uc">
             <div class="uc-icon">🚐</div>
             <div class="uc-name">Matatus & Transport</div>
-            <div class="uc-desc">Fixed fare? Set the amount once. Passengers scan your QR code and pay — no change, no fumbling.</div>
+            <div class="uc-desc">Your reg plate is your link — <strong style="color:#25D366">pregota.com/pay/kca123a</strong>. QR code sticker on the window. Conductor calls the fare, passenger types it and pays. Routes change all day — the link stays the same.</div>
         </div>
     </div>
 </div>

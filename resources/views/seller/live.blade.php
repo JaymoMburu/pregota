@@ -70,7 +70,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0a1a0f;color:#fff;m
 </div>
 
 <div class="sharing-hint">
-    📲 <span>Share payment page: <strong>pregota.com/pay/{{ $payLink->handle }}</strong></span>
+    📲 <span>Passenger scans QR or opens: <strong>pregota.com/pay/{{ $payLink->handle }}</strong> — they type the fare you call, then pay</span>
 </div>
 
 <div class="section-label">Recent payments — updates automatically</div>
