@@ -9,6 +9,7 @@ use App\Http\Controllers\BusinessController;
 use App\Http\Controllers\CollectionController;
 use App\Http\Controllers\CreatorController;
 use App\Http\Controllers\GiftController;
+use App\Http\Controllers\GroupController;
 use App\Http\Controllers\MpesaController;
 use App\Http\Controllers\MultiGiftController;
 use App\Http\Controllers\SchoolFeesController;
@@ -16,6 +17,7 @@ use App\Http\Controllers\DisputeController;
 use App\Http\Controllers\ReceiptController;
 use App\Http\Controllers\SellerController;
 use App\Http\Controllers\StaffAuthController;
+use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\TipController;
 use Illuminate\Support\Facades\Route;
 
@@ -187,6 +189,25 @@ Route::get('/pay/{handle}/current', [SellerController::class, 'currentInfo'])->n
 Route::get('/receipt/{receipt}', [ReceiptController::class, 'show'])->name('receipt.show');
 Route::get('/dispute/{receipt}', [DisputeController::class, 'show'])->name('dispute.show');
 Route::post('/dispute/{receipt}', [DisputeController::class, 'store'])->name('dispute.store');
+
+// ── Contribution Groups ──────────────────────────────────────────────────
+Route::get('/groups/create', [GroupController::class, 'create'])->name('group.create');
+Route::post('/groups', [GroupController::class, 'store'])->name('group.store');
+Route::get('/group/{slug}', [GroupController::class, 'show'])->name('group.show');
+Route::post('/group/{slug}/pay', [GroupController::class, 'pay'])->name('group.pay');
+Route::get('/group/{slug}/status', [GroupController::class, 'status'])->name('group.status');
+Route::post('/group/{slug}/admin-login', [GroupController::class, 'adminLogin'])->name('group.admin-login');
+Route::get('/group/{slug}/admin', [GroupController::class, 'admin'])->name('group.admin');
+Route::get('/group/reminder/{token}', [GroupController::class, 'reminder'])->name('group.reminder');
+
+// ── Subscription Plans ───────────────────────────────────────────────────
+Route::get('/subscribe/{plan}', [SubscriptionController::class, 'show'])->name('subscription.show');
+Route::post('/subscribe/{plan}/pay', [SubscriptionController::class, 'pay'])->name('subscription.pay');
+Route::get('/subscribe/{plan}/status', [SubscriptionController::class, 'status'])->name('subscription.status');
+Route::get('/subscription/reminder/{token}', [SubscriptionController::class, 'reminder'])->name('subscription.reminder');
+Route::post('/subscription/plan', [SubscriptionController::class, 'savePlan'])->name('subscription.save-plan')->middleware(\App\Http\Middleware\SellerAuth::class);
+Route::post('/subscription/plan/{plan}/toggle', [SubscriptionController::class, 'togglePlan'])->name('subscription.toggle-plan')->middleware(\App\Http\Middleware\SellerAuth::class);
+Route::get('/subscription/plan/{plan}/subscribers', [SubscriptionController::class, 'subscribers'])->name('subscription.subscribers')->middleware(\App\Http\Middleware\SellerAuth::class);
 
 // ── M-Pesa Daraja webhooks (no CSRF) ─────────────────────────────────────
 Route::prefix('mpesa')->withoutMiddleware([\Illuminate\Foundation\Http\Middleware\VerifyCsrfToken::class])->group(function () {

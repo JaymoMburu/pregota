@@ -173,6 +173,61 @@ tr:hover td{background:rgba(255,255,255,.03)}
         </form>
     </div>
 
+    {{-- Subscription Plans --}}
+    <div class="stamp-section" style="background:rgba(168,85,247,.05);border-color:rgba(168,85,247,.18)">
+        <h2 style="color:#c084fc">♻️ Subscription Plans</h2>
+        <p>Create recurring plans — monthly, quarterly, or annual. Customers subscribe once and you can send them reminder links via WhatsApp when payment is due.</p>
+        <form method="POST" action="{{ route('subscription.save-plan') }}" id="plan-form">
+            @csrf
+            <div class="form-row">
+                <div class="form-group-sm" style="flex:1;min-width:140px">
+                    <label>Plan Name</label>
+                    <input type="text" name="name" maxlength="80" placeholder="e.g. Monthly Premium" required>
+                </div>
+                <div class="form-group-sm" style="width:120px">
+                    <label>Amount (KES)</label>
+                    <input type="number" name="amount" min="10" max="150000" placeholder="500" required>
+                </div>
+                <div class="form-group-sm" style="width:110px">
+                    <label>Frequency</label>
+                    <select name="frequency" style="padding:9px 12px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:9px;color:#fff;font-size:13px;outline:none;width:100%">
+                        <option value="monthly">Monthly</option>
+                        <option value="quarterly">Quarterly</option>
+                        <option value="annually">Annually</option>
+                    </select>
+                </div>
+                <button type="submit" class="save-btn" style="background:rgba(168,85,247,.15);border-color:rgba(168,85,247,.3);color:#c084fc">+ Add Plan</button>
+            </div>
+            <div class="form-group-sm" style="margin-top:10px">
+                <label>Description (optional)</label>
+                <input type="text" name="description" maxlength="200" placeholder="What does this plan include?">
+            </div>
+        </form>
+
+        @if($subscriptionPlans->isNotEmpty())
+        <div style="margin-top:16px;display:flex;flex-direction:column;gap:8px">
+            @foreach($subscriptionPlans as $plan)
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 14px;background:rgba(168,85,247,.06);border:1px solid rgba(168,85,247,.15);border-radius:10px;flex-wrap:wrap;gap:8px">
+                <div>
+                    <div style="font-size:14px;font-weight:700">{{ $plan->name }}</div>
+                    <div style="font-size:12px;color:rgba(255,255,255,.45)">KES {{ number_format($plan->amount) }} / {{ $plan->frequencyLabel() }} · {{ $plan->subscriptions_count }} subscriber{{ $plan->subscriptions_count == 1 ? '' : 's' }}</div>
+                </div>
+                <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+                    <button onclick="navigator.clipboard.writeText('{{ url('/subscribe/' . $plan->id) }}');alert('Subscribe link copied!')" style="font-size:11px;padding:4px 10px;background:rgba(168,85,247,.1);border:1px solid rgba(168,85,247,.2);border-radius:6px;color:#c084fc;cursor:pointer">Copy Subscribe Link</button>
+                    <a href="{{ route('subscription.subscribers', $plan->id) }}" style="font-size:11px;padding:4px 10px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:6px;color:rgba(255,255,255,.6);text-decoration:none">View Subscribers →</a>
+                    <form method="POST" action="{{ route('subscription.toggle-plan', $plan->id) }}" style="display:inline">
+                        @csrf
+                        <button type="submit" style="font-size:11px;padding:4px 10px;background:{{ $plan->is_active ? 'rgba(239,68,68,.1)' : 'rgba(37,211,102,.1)' }};border:1px solid {{ $plan->is_active ? 'rgba(239,68,68,.25)' : 'rgba(37,211,102,.25)' }};border-radius:6px;color:{{ $plan->is_active ? '#f87171' : '#4ADE80' }};cursor:pointer">
+                            {{ $plan->is_active ? 'Deactivate' : 'Activate' }}
+                        </button>
+                    </form>
+                </div>
+            </div>
+            @endforeach
+        </div>
+        @endif
+    </div>
+
     <div class="table-wrap">
         <div class="table-header">
             <h2>Recent Payments</h2>

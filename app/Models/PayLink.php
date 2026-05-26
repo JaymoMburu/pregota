@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Crypt;
+// SubscriptionPlan is auto-resolved by Laravel's Eloquent — no explicit import needed for hasMany
 
 class PayLink extends Model
 {
@@ -36,6 +37,11 @@ class PayLink extends Model
     public function payments()
     {
         return $this->hasMany(SellerPayment::class);
+    }
+
+    public function subscriptionPlans()
+    {
+        return $this->hasMany(SubscriptionPlan::class);
     }
 
     // For transport: kca123a → KCA 123A. Others: return handle as-is.

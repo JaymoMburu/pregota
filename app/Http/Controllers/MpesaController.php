@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\BillSplitPayment;
 use App\Models\BulkGift;
+use App\Models\GroupPayment;
+use App\Models\Subscription;
 use App\Models\Collection;
 use App\Models\CollectionContribution;
 use App\Models\CreatorGift;
@@ -98,12 +100,24 @@ class MpesaController extends Controller
                                 $handled = $this->billSplits->confirmPayment($checkoutId, $mpesaCode);
                                 if ($handled) { $this->seal($handled, 'SPLIT'); }
                                 else {
-                                    $handled = $this->bulkGifts->confirmPayment($checkoutId, $mpesaCode, $amount);
-                                    if (! $handled) {
-                                        $handled = $this->sellers->confirmPayment($checkoutId, $mpesaCode, $amount);
-                                        if (! $handled) {
-                                            $handled = $this->vouchers->confirmDeposit($checkoutId, $mpesaCode, $amount);
-                                            if ($handled) { $this->seal($handled, 'VOUCHER'); }
+                                    // Group contributions
+                                    $groupPayment = GroupPayment::where('checkout_request_id', $checkoutId)->where('status', 'pending')->first();
+                                    if ($groupPayment) {
+                                        $groupPayment->update(['status' => 'confirmed', 'receipt_number' => 'PRG-' . now()->format('Ymd') . '-' . strtoupper(\Illuminate\Support\Str::random(6))]);
+                                    } else {
+                                        // Subscriptions
+                                        $sub = Subscription::where('checkout_request_id', $checkoutId)->first();
+                                        if ($sub) {
+                                            $sub->update(['status' => 'active', 'last_paid_at' => now(), 'next_due_at' => $sub->plan->nextDueDate(), 'receipt_number' => 'PRG-' . now()->format('Ymd') . '-' . strtoupper(\Illuminate\Support\Str::random(6))]);
+                                        } else {
+                                            $handled = $this->bulkGifts->confirmPayment($checkoutId, $mpesaCode, $amount);
+                                            if (! $handled) {
+                                                $handled = $this->sellers->confirmPayment($checkoutId, $mpesaCode, $amount);
+                                                if (! $handled) {
+                                                    $handled = $this->vouchers->confirmDeposit($checkoutId, $mpesaCode, $amount);
+                                                    if ($handled) { $this->seal($handled, 'VOUCHER'); }
+                                                }
+                                            }
                                         }
                                     }
                                 }
@@ -149,6 +163,8 @@ class MpesaController extends Controller
                                     if ($bulk) {
                                         $this->bulkGifts->failPayment($checkoutId);
                                     } else {
+                                        GroupPayment::where('checkout_request_id', $checkoutId)->update(['status' => 'failed']);
+                                        Subscription::where('checkout_request_id', $checkoutId)->update(['status' => 'overdue']);
                                         $seller = SellerPayment::where('mpesa_checkout_id', $checkoutId)->first();
                                         if ($seller) {
                                             $this->sellers->failPayment($checkoutId);

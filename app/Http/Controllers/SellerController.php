@@ -85,10 +85,11 @@ class SellerController extends Controller
     // ── Dashboard ─────────────────────────────────────────────────────────
     public function dashboard()
     {
-        $payLink  = PayLink::findOrFail(session('seller_id'));
-        $payments = $payLink->payments()->latest()->take(50)->get();
+        $payLink           = PayLink::findOrFail(session('seller_id'));
+        $payments          = $payLink->payments()->latest()->take(50)->get();
+        $subscriptionPlans = $payLink->subscriptionPlans()->withCount('subscriptions')->latest()->get();
 
-        return view('seller.dashboard', compact('payLink', 'payments'));
+        return view('seller.dashboard', compact('payLink', 'payments', 'subscriptionPlans'));
     }
 
     // ── Seller: save stamp card settings ─────────────────────────────────
