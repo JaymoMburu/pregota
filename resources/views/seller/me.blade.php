@@ -576,6 +576,45 @@ async function loadData() {
         ).join('');
     }
 }
+
+// ── Inactivity auto-lock (5 minutes) ──────────────────────────────────────
+const IDLE_MS = 5 * 60 * 1000;
+let idleTimer  = null;
+let dataLoaded = false;
+
+function resetIdle() {
+    if (!dataLoaded) return;
+    clearTimeout(idleTimer);
+    idleTimer = setTimeout(lockScreen, IDLE_MS);
+}
+
+function lockScreen() {
+    dataLoaded = false;
+    document.getElementById('log-section').style.display  = 'none';
+    document.getElementById('results').style.display      = 'none';
+    document.getElementById('auth-card').style.display    = 'block';
+    document.getElementById('expired-notice').style.display = 'block';
+    document.getElementById('expired-notice').textContent = '🔒 Locked after 5 minutes of inactivity. Re-enter your PIN.';
+    document.getElementById('pin-sub').textContent        = 'Re-enter your PIN for ' + activePhone + '.';
+    makePinBoxes('enter-pin-boxes', () => {
+        const v = getPinValue('enter-pin-boxes');
+        document.getElementById('enter-pin-btn').disabled = v.length < 4;
+        if (v.length === 4) submitPin('verify');
+    });
+    showStep('step-enter-pin');
+}
+
+['click','keydown','touchstart','scroll'].forEach(ev =>
+    document.addEventListener(ev, resetIdle, {passive: true})
+);
+
+// Start idle timer only after data is first loaded
+const _origLoadData = loadData;
+loadData = async function() {
+    await _origLoadData();
+    dataLoaded = true;
+    resetIdle();
+};
 </script>
 </body>
 </html>

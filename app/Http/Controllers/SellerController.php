@@ -319,6 +319,8 @@ class SellerController extends Controller
     // ── Buyer spending history ────────────────────────────────────────────
     public function me()
     {
+        // Wipe verification on every page load — PIN required on each visit
+        session()->forget(['me_verified', 'me_verified_at']);
         return view('seller.me');
     }
 
