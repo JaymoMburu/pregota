@@ -201,8 +201,9 @@ select option{background:#1a2730}
                     <select id="entry-category">
                         <option value="">— Select —</option>
                         <option value="transport">🚐 Transport</option>
-                        <option value="food">🍱 Food</option>
-                        <option value="groceries">🛒 Groceries</option>
+                        <option value="supermarket">🛒 Supermarket</option>
+                        <option value="food">🍽️ Restaurant / Food</option>
+                        <option value="groceries">🥬 Groceries</option>
                         <option value="salon">💇 Salon & Beauty</option>
                         <option value="fashion">👗 Fashion</option>
                         <option value="electronics">📱 Electronics</option>

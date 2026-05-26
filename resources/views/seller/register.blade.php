@@ -69,13 +69,14 @@ input[type=checkbox]{width:18px!important;height:18px;accent-color:#25D366}
             <select name="category" id="category" onchange="onCategoryChange()">
                 <option value="">— Select category —</option>
                 <option value="transport" {{ old('category') == 'transport' ? 'selected' : '' }}>🚐 Matatu / Transport</option>
+                <option value="supermarket" {{ old('category') == 'supermarket' ? 'selected' : '' }}>🛒 Supermarket / Shop</option>
+                <option value="food" {{ old('category') == 'food' ? 'selected' : '' }}>🍽️ Restaurant / Food</option>
+                <option value="groceries" {{ old('category') == 'groceries' ? 'selected' : '' }}>🥬 Groceries & Kiosk</option>
                 <option value="fashion" {{ old('category') == 'fashion' ? 'selected' : '' }}>👗 Fashion & Clothing</option>
-                <option value="food" {{ old('category') == 'food' ? 'selected' : '' }}>🍱 Food & Restaurant</option>
                 <option value="salon" {{ old('category') == 'salon' ? 'selected' : '' }}>💇 Salon & Beauty</option>
                 <option value="electronics" {{ old('category') == 'electronics' ? 'selected' : '' }}>📱 Electronics</option>
                 <option value="services" {{ old('category') == 'services' ? 'selected' : '' }}>🛠 Services & Freelance</option>
-                <option value="groceries" {{ old('category') == 'groceries' ? 'selected' : '' }}>🛒 Groceries & Kiosk</option>
-                <option value="other" {{ old('category') == 'other' ? 'selected' : '' }}>Other</option>
+                <option value="other" {{ old('category') == 'other' ? 'selected' : '' }}>🏪 Other</option>
             </select>
         </div>
 

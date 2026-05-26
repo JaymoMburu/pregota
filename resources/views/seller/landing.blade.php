@@ -133,9 +133,14 @@ h1 em{font-style:normal;background:linear-gradient(135deg,#25D366,#4ADE80);-webk
             <div class="uc-desc">Print your QR code. Customers scan and pay — no till, no cash.</div>
         </div>
         <div class="uc">
-            <div class="uc-icon">🍱</div>
-            <div class="uc-name">Food & Delivery</div>
-            <div class="uc-desc">Fixed price? Set it once. Customers pay the exact amount automatically.</div>
+            <div class="uc-icon">🍽️</div>
+            <div class="uc-name">Restaurants — Pay Before Eat</div>
+            <div class="uc-desc">Cashier enters the bill on the till tablet. Customer enters their number, pays — food goes out. No card machine needed.</div>
+        </div>
+        <div class="uc">
+            <div class="uc-icon">🛒</div>
+            <div class="uc-name">Supermarkets & Shops</div>
+            <div class="uc-desc">Open Till Mode on a counter tablet. Cashier types the total — customer enters their M-Pesa number and pays. Faster than cash counting.</div>
         </div>
         <div class="uc">
             <div class="uc-icon">💇</div>
@@ -146,6 +151,16 @@ h1 em{font-style:normal;background:linear-gradient(135deg,#25D366,#4ADE80);-webk
             <div class="uc-icon">🚐</div>
             <div class="uc-name">Matatus & Transport</div>
             <div class="uc-desc">Conductor silently updates the route and fare on their phone. Passenger scans the QR — sees the exact fare already on screen — enters their number and pays. No shouting. No mishearing. No distraction.</div>
+        </div>
+    </div>
+</div>
+
+<div style="padding:0 24px 64px;max-width:760px;margin:0 auto">
+    <div style="background:rgba(168,85,247,.06);border:1px solid rgba(168,85,247,.2);border-radius:20px;padding:32px;text-align:center">
+        <div style="font-size:28px;margin-bottom:12px">🖥️</div>
+        <div style="font-size:18px;font-weight:900;margin-bottom:8px">Till Mode — built for the counter</div>
+        <div style="font-size:14px;color:rgba(255,255,255,.6);line-height:1.65;max-width:440px;margin:0 auto">
+            Open Till Mode on any tablet at your counter. Cashier types the total on a big keypad — hands it to the customer — customer enters their M-Pesa number and approves. Screen confirms payment, resets automatically for the next customer. No card machine. No cash. No app to install.
         </div>
     </div>
 </div>

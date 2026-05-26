@@ -406,9 +406,9 @@ class SellerController extends Controller
         }
 
         $catEmoji = [
-            'transport' => '🚐', 'food' => '🍱', 'fashion' => '👗',
-            'salon'     => '💇', 'electronics' => '📱', 'services' => '🛠',
-            'groceries' => '🛒', 'other' => '🏪',
+            'transport'  => '🚐', 'food' => '🍽️', 'fashion' => '👗',
+            'salon'      => '💇', 'electronics' => '📱', 'services' => '🛠',
+            'groceries'  => '🥬', 'supermarket' => '🛒', 'other' => '🏪',
         ];
 
         $now = now();
