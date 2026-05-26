@@ -198,16 +198,6 @@ Route::prefix('investors')->name('investor.')->group(function () {
     });
 });
 
-// ── Temporary migration runner — remove after use ────────────────────────
-Route::get('/run-migrations-pregota-2026', function () {
-    if (request('secret') !== 'pregota-migrate-2026') abort(403);
-    $kernel = app(\Illuminate\Contracts\Console\Kernel::class);
-    ob_start();
-    $status = $kernel->call('migrate', ['--force' => true]);
-    $output = ob_get_clean();
-    return response('<pre style="font-family:monospace;font-size:13px;padding:20px">Exit: '.$status."\n\n".htmlspecialchars($output).'</pre>');
-});
-
 // ── Admin panel ───────────────────────────────────────────────────────────
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/login', [AdminController::class, 'login'])->name('login');
