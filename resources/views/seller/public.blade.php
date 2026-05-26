@@ -105,9 +105,14 @@ input:focus{border-color:rgba(37,211,102,.5);background:rgba(255,255,255,.08)}
         </div>
 
         <div class="status-box success" id="status-success">
-            <div class="status-icon">✅</div>
-            <div class="status-title">Payment confirmed!</div>
-            <div class="status-msg">Your payment to <strong>{{ $payLink->business_name }}</strong> was successful.<br>Thank you!</div>
+            <div style="font-size:64px;margin-bottom:8px">✅</div>
+            <div style="font-size:13px;font-weight:700;color:#25D366;text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px">Payment Confirmed</div>
+            <div id="receipt-amount" style="font-size:40px;font-weight:900;color:#fff;margin-bottom:4px"></div>
+            <div style="font-size:13px;color:rgba(255,255,255,.65);margin-bottom:16px">paid to <strong style="color:#fff">{{ $payLink->business_name }}</strong></div>
+            <div id="receipt-time" style="font-size:12px;color:rgba(255,255,255,.45)"></div>
+            <div style="margin-top:20px;background:rgba(37,211,102,.1);border:1px solid rgba(37,211,102,.2);border-radius:10px;padding:10px 14px;font-size:12px;color:rgba(255,255,255,.6)">
+                Show this screen to the conductor
+            </div>
         </div>
 
         <div class="status-box failed" id="status-failed">
@@ -188,6 +193,17 @@ function poll() {
         .then(data => {
             if (data.status === 'confirmed') {
                 clearInterval(pollTimer);
+                const amt = document.getElementById('receipt-amount');
+                if (amt) {
+                    @if($payLink->fixed_amount && $payLink->default_amount)
+                    amt.textContent = 'KES {{ number_format($payLink->default_amount) }}';
+                    @else
+                    const enteredAmt = document.getElementById('amount')?.value || '';
+                    if (enteredAmt) amt.textContent = 'KES ' + parseInt(enteredAmt).toLocaleString();
+                    @endif
+                }
+                const ts = document.getElementById('receipt-time');
+                if (ts) ts.textContent = new Date().toLocaleTimeString();
                 showState('success');
             } else if (data.status === 'failed') {
                 clearInterval(pollTimer);

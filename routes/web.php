@@ -167,6 +167,8 @@ Route::get('/seller/status', [SellerController::class, 'checkStatus'])->name('se
 
 Route::get('/pay/{handle}', [SellerController::class, 'publicPage'])->name('seller.public');
 Route::post('/pay/{handle}/pay', [SellerController::class, 'pay'])->name('seller.pay');
+Route::get('/pay/{handle}/live', [SellerController::class, 'liveView'])->name('seller.live');
+Route::get('/pay/{handle}/recent', [SellerController::class, 'recentPayments'])->name('seller.recent');
 
 // ── M-Pesa Daraja webhooks (no CSRF) ─────────────────────────────────────
 Route::prefix('mpesa')->withoutMiddleware([\Illuminate\Foundation\Http\Middleware\VerifyCsrfToken::class])->group(function () {

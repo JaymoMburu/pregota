@@ -133,4 +133,30 @@ class SellerController extends Controller
 
         return response()->json(['status' => $payment->status]);
     }
+
+    // ── Conductor live view ───────────────────────────────────────────────
+    public function liveView(string $handle)
+    {
+        $payLink = PayLink::where('handle', $handle)->where('is_active', true)->firstOrFail();
+        return view('seller.live', compact('payLink'));
+    }
+
+    public function recentPayments(string $handle)
+    {
+        $payLink  = PayLink::where('handle', $handle)->where('is_active', true)->firstOrFail();
+        $payments = $payLink->payments()
+            ->where('status', 'confirmed')
+            ->where('created_at', '>=', now()->subHours(3))
+            ->latest()
+            ->take(20)
+            ->get(['id', 'amount', 'buyer_note', 'created_at']);
+
+        return response()->json($payments->map(fn($p) => [
+            'id'        => $p->id,
+            'amount'    => $p->amount,
+            'note'      => $p->buyer_note,
+            'time'      => $p->created_at->diffForHumans(),
+            'time_abs'  => $p->created_at->format('H:i:s'),
+        ]));
+    }
 }
