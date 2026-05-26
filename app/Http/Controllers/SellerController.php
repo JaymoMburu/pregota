@@ -97,6 +97,16 @@ class SellerController extends Controller
         return view('seller.public', compact('payLink', 'fee'));
     }
 
+    public function currentInfo(string $handle)
+    {
+        $payLink = PayLink::where('handle', $handle)->where('is_active', true)->firstOrFail();
+
+        return response()->json([
+            'current_route' => $payLink->current_route,
+            'current_fare'  => $payLink->current_fare,
+        ]);
+    }
+
     public function pay(Request $request, string $handle)
     {
         $payLink = PayLink::where('handle', $handle)->where('is_active', true)->firstOrFail();
@@ -106,12 +116,23 @@ class SellerController extends Controller
             'note'  => ['nullable', 'string', 'max:200'],
         ];
 
-        if (! $payLink->fixed_amount) {
+        // Current fare set by conductor takes precedence; otherwise passenger enters amount
+        $hasConductorFare = $payLink->current_fare && $payLink->current_fare > 0;
+        $hasFixedFare     = $payLink->fixed_amount && $payLink->default_amount;
+
+        if (! $hasConductorFare && ! $hasFixedFare) {
             $rules['amount'] = ['required', 'integer', 'min:10', 'max:150000'];
         }
 
-        $data   = $request->validate($rules);
-        $amount = $payLink->fixed_amount ? (int) $payLink->default_amount : (int) $data['amount'];
+        $data = $request->validate($rules);
+
+        if ($hasConductorFare) {
+            $amount = (int) $payLink->current_fare;
+        } elseif ($hasFixedFare) {
+            $amount = (int) $payLink->default_amount;
+        } else {
+            $amount = (int) $data['amount'];
+        }
 
         $payment = $this->seller->initiate($amount, $data['phone'], $payLink, $data['note'] ?? null);
 
@@ -132,6 +153,29 @@ class SellerController extends Controller
         if (! $payment) return response()->json(['status' => 'not_found']);
 
         return response()->json(['status' => $payment->status]);
+    }
+
+    // ── Set current route / fare (conductor action) ───────────────────────
+    public function setRoute(Request $request, string $handle)
+    {
+        $payLink = PayLink::where('handle', $handle)->where('is_active', true)->firstOrFail();
+
+        $data = $request->validate([
+            'password'      => ['required', 'string'],
+            'current_route' => ['required', 'string', 'max:100'],
+            'current_fare'  => ['required', 'integer', 'min:1', 'max:10000'],
+        ]);
+
+        if (! Hash::check($data['password'], $payLink->password)) {
+            return response()->json(['success' => false, 'message' => 'Wrong password.'], 403);
+        }
+
+        $payLink->update([
+            'current_route' => $data['current_route'],
+            'current_fare'  => $data['current_fare'],
+        ]);
+
+        return response()->json(['success' => true]);
     }
 
     // ── Conductor live view ───────────────────────────────────────────────

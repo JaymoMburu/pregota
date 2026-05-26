@@ -12,6 +12,7 @@ class PayLink extends Model
         'phone_encrypted', 'password',
         'default_amount', 'fixed_amount', 'is_active',
         'total_received', 'payment_count',
+        'current_route', 'current_fare',
     ];
 
     protected $casts = [

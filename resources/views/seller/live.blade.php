@@ -43,6 +43,29 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0a1a0f;color:#fff;m
 
 .sharing-hint{margin:16px 18px;background:rgba(96,165,250,.08);border:1px solid rgba(96,165,250,.18);border-radius:12px;padding:12px 16px;font-size:12px;color:rgba(255,255,255,.6);display:flex;gap:10px;align-items:center}
 .sharing-hint strong{color:#60a5fa}
+
+/* Current route display */
+.current-route-bar{margin:0 18px 0;background:rgba(37,211,102,.1);border:1px solid rgba(37,211,102,.25);border-radius:12px;padding:14px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}
+.current-route-info{flex:1}
+.current-route-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#25D366;margin-bottom:4px}
+.current-route-name{font-size:16px;font-weight:900}
+.current-fare-val{font-size:22px;font-weight:900;color:#25D366;white-space:nowrap}
+.no-route-bar{margin:0 18px 12px;background:rgba(251,191,36,.07);border:1px solid rgba(251,191,36,.2);border-radius:12px;padding:12px 16px;font-size:13px;color:#fbbf24}
+
+/* Change route form */
+.change-route-btn{background:rgba(37,211,102,.12);border:1px solid rgba(37,211,102,.25);color:#25D366;font-size:12px;font-weight:700;padding:8px 14px;border-radius:8px;cursor:pointer;white-space:nowrap}
+.route-form{display:none;margin:0 18px 12px;background:rgba(0,0,0,.3);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:18px}
+.route-form.open{display:block}
+.route-form h4{font-size:14px;font-weight:800;margin-bottom:14px}
+.rf-group{margin-bottom:12px}
+.rf-label{font-size:12px;font-weight:700;color:rgba(255,255,255,.75);margin-bottom:5px;display:block}
+.rf-input{width:100%;padding:10px 12px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:9px;color:#fff;font-size:14px;font-family:inherit;outline:none}
+.rf-input:focus{border-color:rgba(37,211,102,.5)}
+.rf-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.rf-submit{width:100%;padding:11px;background:linear-gradient(135deg,#25D366,#1aaa52);color:#fff;font-weight:800;font-size:14px;border:none;border-radius:9px;cursor:pointer;margin-top:4px}
+.rf-cancel{background:none;border:none;color:rgba(255,255,255,.45);font-size:12px;cursor:pointer;margin-top:8px;display:block;width:100%;text-align:center}
+.rf-error{font-size:12px;color:#fca5a5;margin-top:8px}
+.rf-success{font-size:12px;color:#4ade80;margin-top:8px}
 </style>
 </head>
 <body>
@@ -69,8 +92,46 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0a1a0f;color:#fff;m
     @endif
 </div>
 
+{{-- Current route display --}}
+@if($payLink->current_route && $payLink->current_fare)
+<div class="current-route-bar" id="current-route-bar">
+    <div class="current-route-info">
+        <div class="current-route-label">Current Route</div>
+        <div class="current-route-name" id="live-route-name">{{ $payLink->current_route }}</div>
+    </div>
+    <div class="current-fare-val" id="live-fare-val">KES {{ number_format($payLink->current_fare) }}</div>
+    <button class="change-route-btn" onclick="toggleRouteForm()">Change</button>
+</div>
+@else
+<div class="no-route-bar" id="no-route-bar">
+    ⚠️ No route set yet — tap below to set the current route and fare
+</div>
+@endif
+
+{{-- Change route form --}}
+<div class="route-form" id="route-form">
+    <h4>Set Current Route & Fare</h4>
+    <div class="rf-group">
+        <label class="rf-label">Route</label>
+        <input type="text" class="rf-input" id="rf-route" placeholder="e.g. CBD → Westlands" maxlength="100"
+            value="{{ $payLink->current_route ?? '' }}">
+    </div>
+    <div class="rf-group">
+        <label class="rf-label">Fare (KES)</label>
+        <input type="number" class="rf-input" id="rf-fare" placeholder="e.g. 70" min="1" max="10000"
+            value="{{ $payLink->current_fare ?? '' }}">
+    </div>
+    <div class="rf-group">
+        <label class="rf-label">Password</label>
+        <input type="password" class="rf-input" id="rf-password" placeholder="Your account password">
+    </div>
+    <button class="rf-submit" onclick="submitRoute()">✓ Set Route & Fare</button>
+    <button class="rf-cancel" onclick="toggleRouteForm()">Cancel</button>
+    <div id="rf-msg" style="display:none"></div>
+</div>
+
 <div class="sharing-hint">
-    📲 <span>Passenger scans QR or opens: <strong>pregota.com/pay/{{ $payLink->handle }}</strong> — they type the fare you call, then pay</span>
+    📲 <span>Passenger scans QR or opens: <strong>pregota.com/pay/{{ $payLink->handle }}</strong> — fare is auto-shown on their screen</span>
 </div>
 
 <div class="section-label">Recent payments — updates automatically</div>
@@ -163,12 +224,93 @@ function poll() {
 poll();
 setInterval(poll, 3000);
 
-// Keep display times fresh
-setInterval(() => {
-    document.querySelectorAll('.payment-rel').forEach(el => {
-        // minor update — just show "just now" for recent rows
+// ── Route change form ─────────────────────────────────────────────────────
+function toggleRouteForm() {
+    const form = document.getElementById('route-form');
+    form.classList.toggle('open');
+    if (form.classList.contains('open')) {
+        document.getElementById('rf-route').focus();
+        document.getElementById('rf-msg').style.display = 'none';
+    }
+}
+
+function submitRoute() {
+    const route    = document.getElementById('rf-route').value.trim();
+    const fare     = parseInt(document.getElementById('rf-fare').value);
+    const password = document.getElementById('rf-password').value;
+    const msg      = document.getElementById('rf-msg');
+
+    if (!route) { showMsg('Enter the route name.', false); return; }
+    if (!fare || fare < 1) { showMsg('Enter a valid fare.', false); return; }
+    if (!password) { showMsg('Enter your password.', false); return; }
+
+    const btn = document.querySelector('.rf-submit');
+    btn.disabled = true;
+    btn.textContent = 'Saving…';
+
+    fetch('{{ route('seller.set-route', $payLink->handle) }}', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+        body: new URLSearchParams({
+            current_route: route,
+            current_fare: fare,
+            password,
+            _token: '{{ csrf_token() }}'
+        }).toString(),
+    })
+    .then(r => r.json())
+    .then(data => {
+        btn.disabled = false;
+        btn.textContent = '✓ Set Route & Fare';
+        if (data.success) {
+            showMsg('✓ Route updated — passengers see the new fare immediately.', true);
+            // Update displayed values
+            updateRouteDisplay(route, fare);
+            document.getElementById('rf-password').value = '';
+            setTimeout(() => document.getElementById('route-form').classList.remove('open'), 1500);
+        } else {
+            showMsg(data.message || 'Wrong password.', false);
+        }
+    })
+    .catch(() => {
+        btn.disabled = false;
+        btn.textContent = '✓ Set Route & Fare';
+        showMsg('Network error. Try again.', false);
     });
-}, 30000);
+}
+
+function showMsg(text, success) {
+    const msg = document.getElementById('rf-msg');
+    msg.textContent = text;
+    msg.style.display = 'block';
+    msg.className = success ? 'rf-success' : 'rf-error';
+}
+
+function updateRouteDisplay(route, fare) {
+    // Show or update the current route bar
+    const bar = document.getElementById('current-route-bar');
+    const noBar = document.getElementById('no-route-bar');
+
+    if (noBar) noBar.style.display = 'none';
+
+    if (bar) {
+        document.getElementById('live-route-name').textContent = route;
+        document.getElementById('live-fare-val').textContent   = 'KES ' + fare.toLocaleString();
+    } else {
+        // Create bar dynamically if it wasn't rendered (no route was set initially)
+        const newBar = document.createElement('div');
+        newBar.id        = 'current-route-bar';
+        newBar.className = 'current-route-bar';
+        newBar.innerHTML = `
+            <div class="current-route-info">
+                <div class="current-route-label">Current Route</div>
+                <div class="current-route-name" id="live-route-name">${route}</div>
+            </div>
+            <div class="current-fare-val" id="live-fare-val">KES ${fare.toLocaleString()}</div>
+            <button class="change-route-btn" onclick="toggleRouteForm()">Change</button>`;
+        document.getElementById('route-form').insertAdjacentElement('beforebegin', newBar);
+    }
+}
 </script>
 
 </body>
