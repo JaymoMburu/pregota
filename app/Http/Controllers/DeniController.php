@@ -49,9 +49,9 @@ class DeniController extends Controller
         if (isset($data['debtor_phone'])) {
             $waPhone   = preg_replace('/^(\+?254|0)/', '254', preg_replace('/\s/', '', $data['debtor_phone']));
             $waMessage = $payLink->business_name
-                . ' amekuandikia tab ya KES ' . number_format($data['original_amount'])
-                . ' kwa: ' . $data['description']
-                . '. Angalia na ulipie hapa: ' . $debtorUrl;
+                . ' has recorded a deni of KES ' . number_format($data['original_amount'])
+                . ' for: ' . $data['description']
+                . '. View your balance and pay via M-Pesa: ' . $debtorUrl;
             $flash['deni_whatsapp'] = 'https://wa.me/' . $waPhone . '?text=' . rawurlencode($waMessage);
         }
 
