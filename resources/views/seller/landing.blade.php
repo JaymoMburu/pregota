@@ -95,13 +95,13 @@ h1 em{font-style:normal;background:linear-gradient(135deg,#25D366,#4ADE80);-webk
         </div>
         <div class="step">
             <span class="step-num">🔗</span>
-            <div class="step-title">Share your link</div>
-            <div class="step-desc">Post it on WhatsApp, Instagram, TikTok, or print it as a QR code for your shop.</div>
+            <div class="step-title">Share your link or QR</div>
+            <div class="step-desc">Post on WhatsApp, Instagram, or print a QR code sticker. Matatus: stick it on the window — passengers scan it without you saying a word.</div>
         </div>
         <div class="step">
             <span class="step-num">💚</span>
-            <div class="step-title">Get paid</div>
-            <div class="step-desc">Buyers get an M-Pesa STK Push on their phone. They confirm and the money is yours.</div>
+            <div class="step-title">They see it, they pay</div>
+            <div class="step-desc">The current route and fare are already on screen. Buyer just enters their phone number and confirms the M-Pesa PIN. Done.</div>
         </div>
     </div>
 </div>
@@ -145,7 +145,7 @@ h1 em{font-style:normal;background:linear-gradient(135deg,#25D366,#4ADE80);-webk
         <div class="uc">
             <div class="uc-icon">🚐</div>
             <div class="uc-name">Matatus & Transport</div>
-            <div class="uc-desc">Your reg plate is your link — <strong style="color:#25D366">pregota.com/pay/kca123a</strong>. QR code sticker on the window. Conductor calls the fare, passenger types it and pays. Routes change all day — the link stays the same.</div>
+            <div class="uc-desc">Conductor silently updates the route and fare on their phone. Passenger scans the QR — sees the exact fare already on screen — enters their number and pays. No shouting. No mishearing. No distraction.</div>
         </div>
     </div>
 </div>
