@@ -27,6 +27,15 @@ $kernel->bootstrap();
 
 $log = [];
 
+// Always delete dangerous files if they exist
+foreach (['debug.php', 'extract.php', 'migrate.php'] as $danger) {
+    $path = __DIR__ . '/' . $danger;
+    if (file_exists($path)) {
+        unlink($path);
+        $log[] = "✓ deleted {$danger}";
+    }
+}
+
 foreach (['config:clear', 'route:clear', 'view:clear', 'config:cache', 'route:cache', 'view:cache'] as $cmd) {
     ob_start();
     $status = $kernel->call($cmd);
@@ -34,12 +43,11 @@ foreach (['config:clear', 'route:clear', 'view:clear', 'config:cache', 'route:ca
     $log[]  = ($status === 0 ? '✓' : '✗') . " {$cmd}" . ($output ? ": {$output}" : '');
 }
 
-if (isset($_GET['migrate'])) {
-    ob_start();
-    $status = $kernel->call('migrate', ['--force' => true]);
-    $output = trim(ob_get_clean());
-    $log[]  = ($status === 0 ? '✓' : '✗') . " migrate" . ($output ? ":\n{$output}" : '');
-}
+// Always run migrations
+ob_start();
+$status = $kernel->call('migrate', ['--force' => true]);
+$output = trim(ob_get_clean());
+$log[]  = ($status === 0 ? '✓' : '✗') . " migrate" . ($output ? ":\n{$output}" : '');
 
 if (isset($_GET['log'])) {
     $logFile = __DIR__ . '/../storage/logs/laravel.log';

@@ -216,7 +216,15 @@ tr:hover td{background:rgba(255,255,255,.03)}
                     <td><span class="badge {{ $v->status }}">{{ ucfirst($v->status) }}</span></td>
                     <td>{{ $v->created_at->format('d M, H:i') }}</td>
                     <td>{{ $v->expires_at?->format('d M') ?? '—' }}</td>
-                    <td><a href="{{ route('admin.voucher', $v) }}" class="view-link">View →</a></td>
+                    <td style="display:flex;gap:8px;align-items:center">
+                        <a href="{{ route('admin.voucher', $v) }}" class="view-link">View →</a>
+                        @if($v->status === 'pending')
+                        <form method="POST" action="{{ route('admin.voucher.activate', $v) }}">
+                            @csrf
+                            <button type="submit" style="background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.3);color:#4ade80;font-size:11px;font-weight:700;padding:3px 10px;border-radius:6px;cursor:pointer">Activate</button>
+                        </form>
+                        @endif
+                    </td>
                 </tr>
                 @empty
                 <tr><td colspan="9" style="text-align:center;color:rgba(255,255,255,.82);padding:32px">No vouchers yet.</td></tr>
