@@ -8,8 +8,10 @@ use App\Models\Creator;
 use App\Models\Investor;
 use App\Models\LedgerEntry;
 use App\Models\Partner;
+use App\Models\PayLink;
 use App\Models\SchoolCollection;
 use App\Models\Voucher;
+use App\Services\SellerService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
@@ -57,8 +59,12 @@ class AdminController extends Controller
         $frozenSchoolCollections = SchoolCollection::where('is_frozen', true)->latest()->get();
         $frozenCollections       = Collection::where('is_frozen', true)->latest()->get();
         $pendingPayouts          = Voucher::where('status', 'claimed')->oldest('claimed_at')->get();
+        $sellerPayouts           = PayLink::where('total_received', '>=', SellerService::MIN_PAYOUT_KES)
+                                          ->where('is_active', true)
+                                          ->orderByDesc('total_received')
+                                          ->get();
 
-        return view('admin.dashboard', compact('vouchers', 'stats', 'frozenSchoolCollections', 'frozenCollections', 'pendingPayouts'));
+        return view('admin.dashboard', compact('vouchers', 'stats', 'frozenSchoolCollections', 'frozenCollections', 'pendingPayouts', 'sellerPayouts'));
     }
 
     public function unfreezeSchoolCollection(SchoolCollection $schoolCollection)

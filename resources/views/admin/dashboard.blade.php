@@ -186,6 +186,40 @@ tr:hover td{background:rgba(255,255,255,.03)}
     </div>
     @endif
 
+    @if($sellerPayouts->count())
+    <div class="payout-section" style="background:rgba(37,211,102,.04);border-color:rgba(37,211,102,.2);margin-bottom:28px">
+        <div class="table-header" style="border-bottom-color:rgba(37,211,102,.12)">
+            <h2 style="color:#25D366">💚 Seller Payouts — Ready to Send</h2>
+            <span style="color:rgba(37,211,102,.5);font-size:12px">{{ $sellerPayouts->count() }} sellers · min KES {{ number_format(\App\Services\SellerService::MIN_PAYOUT_KES) }} reached</span>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Handle</th>
+                    <th>Business</th>
+                    <th>Category</th>
+                    <th>Send This Amount</th>
+                    <th>Payments</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($sellerPayouts as $sl)
+                <tr>
+                    <td><span class="code">{{ $sl->handle }}</span></td>
+                    <td style="font-weight:700">{{ $sl->business_name }}</td>
+                    <td style="font-size:12px;color:rgba(255,255,255,.55)">{{ ucfirst($sl->category ?? '—') }}</td>
+                    <td style="font-size:15px;font-weight:800;color:#25D366">KES {{ number_format($sl->total_received) }}</td>
+                    <td style="color:rgba(255,255,255,.6)">{{ number_format($sl->payment_count) }}</td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+        <div style="padding:10px 18px;font-size:11px;color:rgba(255,255,255,.4)">
+            Send via M-Pesa to each seller's registered number. After sending, manually reset their total_received to 0 in the DB until automated B2C is live.
+        </div>
+    </div>
+    @endif
+
     <div class="table-wrap">
         <div class="table-header">
             <h2>All Vouchers</h2>
