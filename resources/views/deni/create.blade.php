@@ -34,7 +34,7 @@ h1{font-size:24px;font-weight:900;margin-bottom:6px}
 
 <div class="wrap">
     <h1>🧾 Record a Deni</h1>
-    <div class="sub">Track what a customer owes you. They get a payment link — you see every payment in real time. No account needed.</div>
+    <div class="sub">Lent a friend money? Extended credit at your shop? Record it here. They get a payment link, you see every payment in real time. No account needed.</div>
 
     <div class="how-it-works">
         <h3>How it works</h3>
@@ -47,12 +47,12 @@ h1{font-size:24px;font-weight:900;margin-bottom:6px}
     <form method="POST" action="{{ route('deni.store') }}">
         @csrf
         <div class="field">
-            <label>Your Business / Stall Name</label>
-            <input type="text" name="creditor_name" placeholder="e.g. Mama Pima Vibanda" maxlength="100" required value="{{ old('creditor_name') }}">
+            <label>Your Name or Business</label>
+            <input type="text" name="creditor_name" placeholder="e.g. James Mburu or Mama Pima Vibanda" maxlength="100" required value="{{ old('creditor_name') }}">
         </div>
         <div class="field">
             <label>What is the deni for?</label>
-            <input type="text" name="description" placeholder="e.g. Lunch — rice + beef stew" maxlength="300" required value="{{ old('description') }}">
+            <input type="text" name="description" placeholder="e.g. Lunch · rice + beef, or Fare I lent you Friday" maxlength="300" required value="{{ old('description') }}">
         </div>
         <div class="field">
             <label>Amount Owed (KES)</label>
