@@ -322,19 +322,64 @@ class SellerController extends Controller
 
     public function meLookup(Request $request)
     {
-        $data  = $request->validate(['phone' => ['required', 'string', 'regex:/^(\+?254|0)[17]\d{8}$/']]);
-        $hash  = $this->seller->hashPhone($data['phone']);
+        $data = $request->validate(['phone' => ['required', 'string', 'regex:/^(\+?254|0)[17]\d{8}$/']]);
+        $hash = $this->seller->hashPhone($data['phone']);
 
-        $payments = SellerPayment::where('buyer_phone_hash', $hash)
+        // Full history for analytics (no limit)
+        $all = SellerPayment::where('buyer_phone_hash', $hash)
             ->where('status', 'confirmed')
-            ->with('payLink')
+            ->with('payLink:id,business_name,handle,category')
             ->latest()
-            ->take(100)
             ->get();
 
-        // Group by pay_link for a cleaner UI
-        $grouped = $payments->groupBy('pay_link_id')->map(function ($items) {
-            $link  = $items->first()->payLink;
+        if ($all->isEmpty()) {
+            return response()->json(['found' => false]);
+        }
+
+        $now       = now();
+        $thisMonth = $all->filter(fn($p) => $p->updated_at->isCurrentMonth())->sum('amount');
+        $lastMonth = $all->filter(fn($p) => $p->updated_at->month === $now->copy()->subMonth()->month
+                                         && $p->updated_at->year  === $now->copy()->subMonth()->year)->sum('amount');
+        $thisWeek  = $all->filter(fn($p) => $p->updated_at->isCurrentWeek())->sum('amount');
+        $avgTx     = $all->count() > 0 ? (int) round($all->sum('amount') / $all->count()) : 0;
+
+        // Monthly totals — last 12 months
+        $byMonth = $all->groupBy(fn($p) => $p->updated_at->format('Y-m'))
+            ->map(fn($items, $key) => [
+                'month' => $key,
+                'label' => \Carbon\Carbon::createFromFormat('Y-m', $key)->format('M Y'),
+                'total' => $items->sum('amount'),
+                'count' => $items->count(),
+            ])
+            ->sortKeys()
+            ->takeLast(12)
+            ->values();
+
+        // Category breakdown
+        $catEmoji = [
+            'transport' => '🚐', 'food' => '🍱', 'fashion' => '👗',
+            'salon' => '💇', 'electronics' => '📱', 'services' => '🛠',
+            'groceries' => '🛒', 'other' => '🏪',
+        ];
+        $byCategory = $all->groupBy(fn($p) => $p->payLink?->category ?? 'other')
+            ->map(fn($items, $cat) => [
+                'category' => $cat,
+                'emoji'    => $catEmoji[$cat] ?? '🏪',
+                'total'    => $items->sum('amount'),
+                'count'    => $items->count(),
+            ])
+            ->sortByDesc('total')
+            ->values();
+
+        // Day-of-week spending (0=Sun … 6=Sat)
+        $byDow = collect(range(0, 6))->map(fn($d) => [
+            'day'   => ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'][$d],
+            'total' => $all->filter(fn($p) => $p->updated_at->dayOfWeek === $d)->sum('amount'),
+        ]);
+
+        // Grouped detail (last 100 for display)
+        $grouped = $all->take(100)->groupBy('pay_link_id')->map(function ($items) {
+            $link = $items->first()->payLink;
             return [
                 'business_name' => $link->business_name,
                 'handle'        => $link->handle,
@@ -355,9 +400,7 @@ class SellerController extends Controller
         })->values();
 
         // Stamp cards
-        $stamps = \App\Models\BuyerStamp::where('phone_hash', $hash)
-            ->with('payLink')
-            ->get()
+        $stamps = BuyerStamp::where('phone_hash', $hash)->with('payLink')->get()
             ->map(fn($s) => [
                 'business_name'   => $s->payLink->business_name,
                 'handle'          => $s->payLink->handle,
@@ -368,10 +411,18 @@ class SellerController extends Controller
             ]);
 
         return response()->json([
-            'found'    => $payments->count() > 0,
-            'grouped'  => $grouped,
-            'stamps'   => $stamps,
-            'total_kes'=> $payments->sum('amount'),
+            'found'       => true,
+            'total_kes'   => $all->sum('amount'),
+            'total_count' => $all->count(),
+            'this_month'  => $thisMonth,
+            'last_month'  => $lastMonth,
+            'this_week'   => $thisWeek,
+            'avg_tx'      => $avgTx,
+            'by_month'    => $byMonth,
+            'by_category' => $byCategory,
+            'by_dow'      => $byDow,
+            'grouped'     => $grouped,
+            'stamps'      => $stamps,
         ]);
     }
 }
