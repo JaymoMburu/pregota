@@ -165,7 +165,13 @@ class SellerController extends Controller
 
         if (! $payment) return response()->json(['status' => 'not_found']);
 
-        return response()->json(['status' => $payment->status]);
+        return response()->json([
+            'status'         => $payment->status,
+            'receipt_number' => $payment->receipt_number,
+            'receipt_url'    => $payment->receipt_number
+                ? route('receipt.show', $payment->receipt_number)
+                : null,
+        ]);
     }
 
     // ── Set current route / fare (conductor action) ───────────────────────

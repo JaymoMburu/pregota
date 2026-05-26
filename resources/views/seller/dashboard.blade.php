@@ -147,6 +147,7 @@ tr:hover td{background:rgba(255,255,255,.03)}
                     <th>Pregota Fee</th>
                     <th>Your Net</th>
                     <th>Note</th>
+                    <th>Receipt</th>
                     <th>Status</th>
                     <th>Time</th>
                 </tr>
@@ -158,6 +159,13 @@ tr:hover td{background:rgba(255,255,255,.03)}
                     <td style="color:rgba(255,255,255,.5)">KES {{ number_format($p->fee) }}</td>
                     <td style="color:#4ade80;font-weight:700">KES {{ number_format($p->net_amount) }}</td>
                     <td style="color:rgba(255,255,255,.55);font-size:12px">{{ $p->buyer_note ?: '—' }}</td>
+                    <td style="font-size:11px">
+                        @if($p->receipt_number)
+                        <a href="{{ route('receipt.show', $p->receipt_number) }}" target="_blank" style="color:#a78bfa;font-family:monospace;text-decoration:none">{{ $p->receipt_number }}</a>
+                        @else
+                        <span style="color:rgba(255,255,255,.3)">—</span>
+                        @endif
+                    </td>
                     <td><span class="badge {{ $p->status }}">{{ ucfirst($p->status) }}</span></td>
                     <td style="font-size:12px;color:rgba(255,255,255,.55)">{{ $p->created_at->format('d M, H:i') }}</td>
                 </tr>

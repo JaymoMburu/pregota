@@ -200,9 +200,16 @@ input:focus{border-color:rgba(37,211,102,.5);background:rgba(255,255,255,.08)}
             <div id="receipt-time" style="font-size:15px;font-weight:700;color:rgba(255,255,255,.75);margin-bottom:20px"></div>
 
             {{-- Show-to-conductor prompt --}}
-            <div style="background:rgba(37,211,102,.12);border:2px solid rgba(37,211,102,.4);border-radius:12px;padding:14px 16px">
+            <div style="background:rgba(37,211,102,.12);border:2px solid rgba(37,211,102,.4);border-radius:12px;padding:14px 16px;margin-bottom:14px">
                 <div style="font-size:17px;font-weight:900;color:#4ade80;margin-bottom:3px">✓ Show this to the conductor</div>
                 <div style="font-size:11px;color:rgba(255,255,255,.5)">Your number was never shared</div>
+            </div>
+
+            {{-- Receipt link (shown once receipt_number arrives) --}}
+            <div id="receipt-link-box" style="display:none;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:14px 16px;text-align:center">
+                <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.45);margin-bottom:8px">Save your receipt</div>
+                <a id="receipt-link" href="#" target="_blank" style="display:inline-block;padding:9px 20px;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.18);border-radius:8px;font-size:13px;font-weight:700;color:#fff;text-decoration:none;margin-bottom:8px">🧾 Open Receipt</a>
+                <div style="font-size:11px;color:rgba(255,255,255,.4)">Valid for KRA expense records · printable PDF</div>
             </div>
         </div>
 
@@ -376,6 +383,11 @@ function pollStatus() {
                     now.toLocaleDateString('en-KE', {weekday:'short', day:'numeric', month:'short'})
                     + ' · ' + now.toLocaleTimeString('en-KE', {hour:'2-digit', minute:'2-digit', second:'2-digit'});
                 showState('success');
+                if (data.receipt_url) {
+                    const box = document.getElementById('receipt-link-box');
+                    document.getElementById('receipt-link').href = data.receipt_url;
+                    box.style.display = 'block';
+                }
             } else if (data.status === 'failed') {
                 clearInterval(pollTimer);
                 showState('failed');

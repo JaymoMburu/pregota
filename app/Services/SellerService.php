@@ -8,14 +8,24 @@ use Illuminate\Support\Facades\DB;
 
 class SellerService
 {
+    // Minimum accumulated net balance before a payout is triggered.
+    // Below this, B2C cost would eat into Pregota's fee on small-volume days.
+    // At KES 500+: B2C costs ~KES 13, fees collected ~KES 15+ → profitable.
+    public const MIN_PAYOUT_KES = 500;
+
     public function __construct(private DarajaService $daraja) {}
 
     public function calculateFee(int $amount): array
     {
-        $fee       = (int) max(1, ceil($amount * 0.01));
+        $fee       = (int) max(2, ceil($amount * 0.01));
         $netAmount = $amount - $fee;
 
         return ['fee' => $fee, 'net_amount' => $netAmount];
+    }
+
+    public function isPayoutReady(PayLink $payLink): bool
+    {
+        return $payLink->total_received >= self::MIN_PAYOUT_KES;
     }
 
     public function initiate(
@@ -68,9 +78,12 @@ class SellerService
         $payment = SellerPayment::where('mpesa_checkout_id', $checkoutId)->first();
         if (! $payment) return null;
 
+        $receiptNumber = 'PRG-' . now()->format('Ymd') . '-' . strtoupper(\Illuminate\Support\Str::random(6));
+
         $payment->update([
-            'status'    => 'confirmed',
-            'mpesa_ref' => $mpesaRef,
+            'status'         => 'confirmed',
+            'mpesa_ref'      => $mpesaRef,
+            'receipt_number' => $receiptNumber,
         ]);
 
         $link = $payment->payLink;

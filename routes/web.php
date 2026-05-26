@@ -12,6 +12,7 @@ use App\Http\Controllers\GiftController;
 use App\Http\Controllers\MpesaController;
 use App\Http\Controllers\MultiGiftController;
 use App\Http\Controllers\SchoolFeesController;
+use App\Http\Controllers\ReceiptController;
 use App\Http\Controllers\SellerController;
 use App\Http\Controllers\StaffAuthController;
 use App\Http\Controllers\TipController;
@@ -171,6 +172,7 @@ Route::get('/pay/{handle}/live', [SellerController::class, 'liveView'])->name('s
 Route::get('/pay/{handle}/recent', [SellerController::class, 'recentPayments'])->name('seller.recent');
 Route::post('/pay/{handle}/route', [SellerController::class, 'setRoute'])->name('seller.set-route');
 Route::get('/pay/{handle}/current', [SellerController::class, 'currentInfo'])->name('seller.current');
+Route::get('/receipt/{receipt}', [ReceiptController::class, 'show'])->name('receipt.show');
 
 // ── M-Pesa Daraja webhooks (no CSRF) ─────────────────────────────────────
 Route::prefix('mpesa')->withoutMiddleware([\Illuminate\Foundation\Http\Middleware\VerifyCsrfToken::class])->group(function () {

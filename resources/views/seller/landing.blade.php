@@ -110,9 +110,9 @@ h1 em{font-style:normal;background:linear-gradient(135deg,#25D366,#4ADE80);-webk
     <div class="fee-box">
         <h3>Simple, honest pricing</h3>
         <div class="fee-big">1%</div>
-        <div class="fee-note">1% per transaction, rounded up to the nearest shilling. Buyers pay the full amount — the fee is deducted from your daily payout.</div>
+        <div class="fee-note">1% per transaction, rounded up — minimum KES 2. Buyers pay the full amount — the fee is deducted from your daily payout.</div>
         <div class="fee-examples">
-            <span class="fee-ex">KES 70 → you get KES 69</span>
+            <span class="fee-ex">KES 70 → you get KES 68</span>
             <span class="fee-ex">KES 500 → you get KES 495</span>
             <span class="fee-ex">KES 2,000 → you get KES 1,980</span>
         </div>

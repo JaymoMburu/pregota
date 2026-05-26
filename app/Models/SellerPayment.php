@@ -10,7 +10,7 @@ class SellerPayment extends Model
         'pay_link_id', 'mpesa_checkout_id', 'mpesa_ref',
         'amount', 'fee', 'net_amount',
         'tip_amount', 'tip_recipient', 'tip_comment',
-        'buyer_note', 'status',
+        'buyer_note', 'status', 'receipt_number',
     ];
 
     public function payLink()
