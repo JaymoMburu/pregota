@@ -179,10 +179,15 @@ tr:hover td{background:rgba(255,255,255,.03)}
         <p>Track credit you've extended to customers — restaurant tabs, shop credit, anything owed. Share the payment link with the customer via WhatsApp. They see exactly what they owe and can pay in parts via M-Pesa.</p>
 
         @if(session('deni_link'))
-        <div style="background:rgba(37,211,102,.06);border:1px solid rgba(37,211,102,.18);border-radius:10px;padding:12px 16px;margin-bottom:14px;display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap">
-            <div style="font-size:12px;color:rgba(37,211,102,.8)">✓ Tab created — send this link to your customer via WhatsApp</div>
-            <div style="font-family:monospace;font-size:12px;color:#4ADE80;word-break:break-all">{{ session('deni_link') }}</div>
-            <button onclick="navigator.clipboard.writeText('{{ session('deni_link') }}');alert('Link copied!')" style="font-size:12px;padding:5px 12px;background:rgba(37,211,102,.12);border:1px solid rgba(37,211,102,.25);border-radius:7px;color:#4ADE80;cursor:pointer">Copy</button>
+        <div style="background:rgba(37,211,102,.06);border:1px solid rgba(37,211,102,.18);border-radius:10px;padding:14px 16px;margin-bottom:14px">
+            <div style="font-size:12px;color:rgba(37,211,102,.8);margin-bottom:8px">✓ Tab created</div>
+            <div style="font-family:monospace;font-size:12px;color:#4ADE80;word-break:break-all;margin-bottom:10px">{{ session('deni_link') }}</div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap">
+                <button onclick="navigator.clipboard.writeText('{{ session('deni_link') }}');this.textContent='✓ Copied!'" style="font-size:12px;padding:6px 14px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:7px;color:rgba(255,255,255,.7);cursor:pointer">📋 Copy Link</button>
+                @if(session('deni_whatsapp'))
+                <a href="{{ session('deni_whatsapp') }}" target="_blank" style="font-size:12px;padding:6px 14px;background:rgba(37,211,102,.15);border:1px solid rgba(37,211,102,.3);border-radius:7px;color:#4ADE80;text-decoration:none;font-weight:700">💬 Send via WhatsApp</a>
+                @endif
+            </div>
         </div>
         @endif
 
