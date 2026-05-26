@@ -120,7 +120,7 @@ class SellerController extends Controller
     // ── Public pay page ───────────────────────────────────────────────────
     public function publicPage(string $handle, Request $request)
     {
-        $payLink    = PayLink::where('handle', $handle)->where('is_active', true)->firstOrFail();
+        $payLink    = PayLink::where('handle', $handle)->where('is_active', true)->where('is_suspended', false)->firstOrFail();
         $tillAmount = null;
         if ($request->filled('amount')) {
             $val = (int) $request->query('amount');

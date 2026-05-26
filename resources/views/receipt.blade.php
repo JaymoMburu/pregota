@@ -172,6 +172,9 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
     <button class="btn btn-print" onclick="window.print()">🖨 Print / Save PDF</button>
     <a href="{{ route('seller.public', $payment->payLink->handle) }}" class="btn btn-back">← Back</a>
 </div>
+<div style="text-align:center;margin-top:16px;padding-bottom:32px" class="no-print">
+    <a href="{{ route('dispute.show', $payment->receipt_number) }}" style="font-size:13px;color:rgba(255,255,255,.3);text-decoration:none">Problem with this payment? Report it →</a>
+</div>
 
 </body>
 </html>

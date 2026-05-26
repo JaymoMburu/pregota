@@ -64,6 +64,7 @@ tr:hover td{background:rgba(255,255,255,.03)}
         </a>
         @endif
         <a href="{{ route('admin.creators') }}" style="color:#25D366;font-size:13px;text-decoration:none;font-weight:600;margin-right:16px">Creators @if(\App\Models\Creator::where('is_active',false)->exists()) <span style="background:rgba(239,68,68,.8);color:#fff;border-radius:20px;padding:1px 7px;font-size:10px">{{ \App\Models\Creator::where('is_active',false)->count() }}</span> @endif</a>
+        <a href="{{ route('admin.disputes') }}" style="color:#f87171;font-size:13px;text-decoration:none;font-weight:600;margin-right:16px">Disputes @if(\App\Models\Dispute::where('status','open')->exists()) <span style="background:rgba(239,68,68,.8);color:#fff;border-radius:20px;padding:1px 7px;font-size:10px">{{ \App\Models\Dispute::where('status','open')->count() }}</span> @endif</a>
         <a href="{{ route('admin.partners') }}" style="color:#a78bfa;font-size:13px;text-decoration:none;font-weight:600;margin-right:16px">Partners</a>
         <a href="{{ route('home') }}" style="color:rgba(255,255,255,.68);font-size:13px;text-decoration:none">← Live Site</a>
         <form method="POST" action="{{ route('admin.logout') }}" style="display:inline">

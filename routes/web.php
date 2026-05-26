@@ -12,6 +12,7 @@ use App\Http\Controllers\GiftController;
 use App\Http\Controllers\MpesaController;
 use App\Http\Controllers\MultiGiftController;
 use App\Http\Controllers\SchoolFeesController;
+use App\Http\Controllers\DisputeController;
 use App\Http\Controllers\ReceiptController;
 use App\Http\Controllers\SellerController;
 use App\Http\Controllers\StaffAuthController;
@@ -184,6 +185,8 @@ Route::get('/pay/{handle}/recent', [SellerController::class, 'recentPayments'])-
 Route::post('/pay/{handle}/route', [SellerController::class, 'setRoute'])->name('seller.set-route');
 Route::get('/pay/{handle}/current', [SellerController::class, 'currentInfo'])->name('seller.current');
 Route::get('/receipt/{receipt}', [ReceiptController::class, 'show'])->name('receipt.show');
+Route::get('/dispute/{receipt}', [DisputeController::class, 'show'])->name('dispute.show');
+Route::post('/dispute/{receipt}', [DisputeController::class, 'store'])->name('dispute.store');
 
 // ── M-Pesa Daraja webhooks (no CSRF) ─────────────────────────────────────
 Route::prefix('mpesa')->withoutMiddleware([\Illuminate\Foundation\Http\Middleware\VerifyCsrfToken::class])->group(function () {
@@ -235,5 +238,10 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/creators',                                     [AdminController::class, 'creators'])->name('creators');
         Route::post('/creators/{creator}/approve',                  [AdminController::class, 'approveCreator'])->name('creators.approve');
         Route::delete('/creators/{creator}',                        [AdminController::class, 'rejectCreator'])->name('creators.reject');
+
+        Route::get('/disputes',                                     [AdminController::class, 'disputes'])->name('disputes');
+        Route::post('/disputes/{dispute}/status',                   [AdminController::class, 'disputeStatus'])->name('disputes.status');
+        Route::post('/sellers/{payLink}/suspend',                   [AdminController::class, 'suspendSeller'])->name('sellers.suspend');
+        Route::post('/sellers/{payLink}/reinstate',                 [AdminController::class, 'reinstateSeller'])->name('sellers.reinstate');
     });
 });

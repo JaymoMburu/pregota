@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Business;
 use App\Models\Collection;
 use App\Models\Creator;
+use App\Models\Dispute;
 use App\Models\Investor;
 use App\Models\LedgerEntry;
 use App\Models\Partner;
@@ -12,6 +13,7 @@ use App\Models\PayLink;
 use App\Models\SchoolCollection;
 use App\Models\Voucher;
 use App\Services\SellerService;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
@@ -268,5 +270,43 @@ class AdminController extends Controller
         ]);
 
         return back()->with('success', "Voucher {$voucher->code} cancelled.");
+    }
+
+    // ── Disputes ──────────────────────────────────────────────────────────
+    public function disputes()
+    {
+        $disputes = Dispute::with('payment.payLink')
+            ->latest()
+            ->paginate(50);
+
+        // Decrypt phones for display
+        $disputes->each(function ($d) {
+            try { $d->buyer_phone = Crypt::decryptString($d->buyer_phone_encrypted); }
+            catch (\Exception $e) { $d->buyer_phone = '—'; }
+        });
+
+        return view('admin.disputes', compact('disputes'));
+    }
+
+    public function disputeStatus(Request $request, Dispute $dispute)
+    {
+        $data = $request->validate([
+            'status'     => ['required', 'in:open,investigating,resolved,dismissed'],
+            'admin_note' => ['nullable', 'string', 'max:500'],
+        ]);
+        $dispute->update($data);
+        return back()->with('success', 'Dispute updated.');
+    }
+
+    public function suspendSeller(Request $request, PayLink $payLink)
+    {
+        $payLink->update(['is_suspended' => true]);
+        return back()->with('success', "{$payLink->business_name} suspended.");
+    }
+
+    public function reinstateSeller(Request $request, PayLink $payLink)
+    {
+        $payLink->update(['is_suspended' => false]);
+        return back()->with('success', "{$payLink->business_name} reinstated.");
     }
 }
