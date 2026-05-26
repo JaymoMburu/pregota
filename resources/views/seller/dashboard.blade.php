@@ -111,6 +111,7 @@ tr:hover td{background:rgba(255,255,255,.03)}
             <button class="action-btn qr" onclick="showQr()">📲 Download QR Code</button>
             <button class="action-btn share" onclick="shareLink()">🔗 Share Link</button>
             <a href="{{ route('seller.live', $payLink->handle) }}" class="action-btn" style="background:rgba(251,191,36,.1);border:1px solid rgba(251,191,36,.25);color:#fbbf24;text-decoration:none" target="_blank">👁 Conductor View</a>
+            <a href="{{ route('seller.till', $payLink->handle) }}" class="action-btn" style="background:rgba(168,85,247,.1);border:1px solid rgba(168,85,247,.25);color:#c084fc;text-decoration:none" target="_blank">🖥 Till Mode</a>
         </div>
     </div>
 

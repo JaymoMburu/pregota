@@ -165,6 +165,7 @@ Route::post('/seller/login', [SellerController::class, 'login'])->name('seller.l
 Route::post('/seller/logout', [SellerController::class, 'logout'])->name('seller.logout');
 Route::get('/seller/dashboard', [SellerController::class, 'dashboard'])->name('seller.dashboard')->middleware(\App\Http\Middleware\SellerAuth::class);
 Route::post('/seller/stamp-card', [SellerController::class, 'saveStampCard'])->name('seller.stamp-card')->middleware(\App\Http\Middleware\SellerAuth::class);
+Route::get('/till/{handle}', [SellerController::class, 'till'])->name('seller.till')->middleware(\App\Http\Middleware\SellerAuth::class);
 Route::get('/seller/status', [SellerController::class, 'checkStatus'])->name('seller.status');
 
 Route::get('/sellers', [SellerController::class, 'directory'])->name('seller.directory');

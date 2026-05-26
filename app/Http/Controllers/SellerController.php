@@ -109,6 +109,14 @@ class SellerController extends Controller
         return back()->with('success', 'Stamp card settings saved.');
     }
 
+    // ── Till mode ─────────────────────────────────────────────────────────
+    public function till(string $handle)
+    {
+        $payLink = PayLink::findOrFail(session('seller_id'));
+        if ($payLink->handle !== $handle) abort(403);
+        return view('seller.till', compact('payLink'));
+    }
+
     // ── Public pay page ───────────────────────────────────────────────────
     public function publicPage(string $handle, Request $request)
     {
