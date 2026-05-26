@@ -17,24 +17,37 @@ class DeniController extends Controller
         private SellerService $seller,
     ) {}
 
-    // Seller creates a tab from dashboard
+    // Public creation page (no auth needed)
+    public function create()
+    {
+        return view('deni.create');
+    }
+
+    // Anyone creates a tab — seller or vibanda owner
     public function store(Request $request)
     {
-        $payLink = PayLink::findOrFail(session('seller_id'));
+        $isSeller = session()->has('seller_id');
+        $payLink  = $isSeller ? PayLink::findOrFail(session('seller_id')) : null;
 
-        $data = $request->validate([
+        $rules = [
             'description'     => ['required', 'string', 'max:300'],
             'original_amount' => ['required', 'integer', 'min:1', 'max:500000'],
             'debtor_phone'    => ['nullable', 'string', 'regex:/^(\+?254|0)[17]\d{8}$/'],
             'due_date'        => ['nullable', 'date', 'after:today'],
-        ]);
+        ];
 
-        $debtorHash = isset($data['debtor_phone'])
-            ? $this->seller->hashPhone($data['debtor_phone'])
-            : null;
+        if (! $isSeller) {
+            $rules['creditor_name'] = ['required', 'string', 'max:100'];
+        }
+
+        $data = $request->validate($rules);
+
+        $debtorHash    = isset($data['debtor_phone']) ? $this->seller->hashPhone($data['debtor_phone']) : null;
+        $creditorLabel = $payLink?->business_name ?? $data['creditor_name'];
 
         $deni = Deni::create([
-            'pay_link_id'       => $payLink->id,
+            'pay_link_id'       => $payLink?->id,
+            'creditor_name'     => $payLink ? null : $data['creditor_name'],
             'admin_token'       => Str::random(48),
             'debtor_token'      => Str::random(48),
             'debtor_phone_hash' => $debtorHash,
@@ -44,15 +57,25 @@ class DeniController extends Controller
         ]);
 
         $debtorUrl = url('/deni/' . $deni->debtor_token);
-        $flash = ['deni_link' => $debtorUrl];
+        $adminUrl  = url('/deni/admin/' . $deni->admin_token);
+
+        $flash = [
+            'deni_link'       => $debtorUrl,
+            'deni_admin_link' => $adminUrl,
+        ];
 
         if (isset($data['debtor_phone'])) {
             $waPhone   = preg_replace('/^(\+?254|0)/', '254', preg_replace('/\s/', '', $data['debtor_phone']));
-            $waMessage = $payLink->business_name
+            $waMessage = $creditorLabel
                 . ' has recorded a deni of KES ' . number_format($data['original_amount'])
                 . ' for: ' . $data['description']
                 . '. View your balance and pay via M-Pesa: ' . $debtorUrl;
             $flash['deni_whatsapp'] = 'https://wa.me/' . $waPhone . '?text=' . rawurlencode($waMessage);
+        }
+
+        // Non-sellers go to their admin page (that's their "account" — they bookmark it)
+        if (! $isSeller) {
+            return redirect(url('/deni/admin/' . $deni->admin_token))->with($flash);
         }
 
         return back()->with($flash);
@@ -123,7 +146,7 @@ class DeniController extends Controller
         ]);
     }
 
-    // Seller admin view (via admin_token)
+    // Admin view — anyone with the admin_token can manage their deni
     public function adminView(string $token)
     {
         $deni = Deni::where('admin_token', $token)->with(['payLink', 'payments'])->firstOrFail();

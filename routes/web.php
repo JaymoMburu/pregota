@@ -192,7 +192,8 @@ Route::get('/dispute/{receipt}', [DisputeController::class, 'show'])->name('disp
 Route::post('/dispute/{receipt}', [DisputeController::class, 'store'])->name('dispute.store');
 
 // ── Madeni (Tabs / Credit) ───────────────────────────────────────────────
-Route::post('/deni', [DeniController::class, 'store'])->name('deni.store')->middleware(\App\Http\Middleware\SellerAuth::class);
+Route::get('/deni/create', [DeniController::class, 'create'])->name('deni.create');
+Route::post('/deni', [DeniController::class, 'store'])->name('deni.store');
 Route::get('/deni/admin/{token}', [DeniController::class, 'adminView'])->name('deni.admin');
 Route::get('/deni/{token}', [DeniController::class, 'show'])->name('deni.show');
 Route::post('/deni/{token}/pay', [DeniController::class, 'pay'])->name('deni.pay');
