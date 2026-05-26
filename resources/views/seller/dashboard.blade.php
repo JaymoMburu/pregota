@@ -22,6 +22,23 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 .link-url{font-family:monospace;font-size:16px;font-weight:900;color:#fff;background:rgba(0,0,0,.3);border-radius:10px;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px}
 .copy-btn{background:rgba(37,211,102,.15);border:1px solid rgba(37,211,102,.3);color:#25D366;font-size:12px;font-weight:700;padding:6px 14px;border-radius:8px;cursor:pointer;white-space:nowrap;transition:.15s}
 .copy-btn:hover{background:rgba(37,211,102,.25)}
+.link-actions{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap}
+.action-btn{display:inline-flex;align-items:center;gap:6px;padding:9px 16px;border-radius:9px;font-size:13px;font-weight:700;cursor:pointer;transition:.15s;text-decoration:none;border:none}
+.action-btn.qr{background:rgba(96,165,250,.12);border:1px solid rgba(96,165,250,.25);color:#60a5fa}
+.action-btn.qr:hover{background:rgba(96,165,250,.2)}
+.action-btn.share{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.85)}
+.action-btn.share:hover{background:rgba(255,255,255,.12)}
+
+/* QR modal */
+.qr-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:100;align-items:center;justify-content:center;padding:24px}
+.qr-modal.open{display:flex}
+.qr-card{background:#141e24;border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:32px;max-width:360px;width:100%;text-align:center}
+.qr-card h3{font-size:16px;font-weight:900;margin-bottom:4px}
+.qr-card p{font-size:12px;color:rgba(255,255,255,.55);margin-bottom:20px}
+#qr-canvas{border-radius:12px;background:#fff;padding:12px}
+.qr-btns{display:flex;gap:10px;margin-top:20px;justify-content:center}
+.qr-dl{padding:10px 20px;background:linear-gradient(135deg,#25D366,#1aaa52);color:#fff;font-weight:700;font-size:13px;border:none;border-radius:10px;cursor:pointer}
+.qr-close{padding:10px 20px;background:rgba(255,255,255,.07);color:rgba(255,255,255,.75);font-weight:700;font-size:13px;border:1px solid rgba(255,255,255,.1);border-radius:10px;cursor:pointer}
 
 .kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:24px}
 @media(max-width:480px){.kpis{grid-template-columns:1fr 1fr}}
@@ -80,6 +97,23 @@ tr:hover td{background:rgba(255,255,255,.03)}
             <span id="pay-url">pregota.com/pay/{{ $payLink->handle }}</span>
             <button class="copy-btn" onclick="copyLink()">📋 Copy</button>
         </div>
+        <div class="link-actions">
+            <button class="action-btn qr" onclick="showQr()">📲 Download QR Code</button>
+            <button class="action-btn share" onclick="shareLink()">🔗 Share Link</button>
+        </div>
+    </div>
+
+    <!-- QR Modal -->
+    <div class="qr-modal" id="qr-modal" onclick="if(event.target===this)closeQr()">
+        <div class="qr-card">
+            <h3>{{ $payLink->business_name }}</h3>
+            <p>Print this and stick it where customers can scan it</p>
+            <canvas id="qr-canvas" width="220" height="220"></canvas>
+            <div class="qr-btns">
+                <button class="qr-dl" onclick="downloadQr()">⬇ Download PNG</button>
+                <button class="qr-close" onclick="closeQr()">Close</button>
+            </div>
+        </div>
     </div>
 
     <div class="kpis">
@@ -133,14 +167,55 @@ tr:hover td{background:rgba(255,255,255,.03)}
     </div>
 </div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" integrity="sha512-CNgIRecGo7nphbeZ04Sc13ka07paqdeTu0WR1IM4kNcpmBAUSHSe1HDAH/bxRHZ2rOS6QTLXT8ROuJq9q0BGQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
+const PAY_URL = 'https://pregota.com/pay/{{ $payLink->handle }}';
+
 function copyLink() {
-    const url = 'https://pregota.com/pay/{{ $payLink->handle }}';
-    navigator.clipboard.writeText(url).then(() => {
+    navigator.clipboard.writeText(PAY_URL).then(() => {
         const btn = document.querySelector('.copy-btn');
         btn.textContent = '✓ Copied!';
         setTimeout(() => btn.textContent = '📋 Copy', 2000);
     });
+}
+
+function shareLink() {
+    if (navigator.share) {
+        navigator.share({
+            title: 'Pay {{ $payLink->business_name }} via M-Pesa',
+            url: PAY_URL,
+        });
+    } else {
+        copyLink();
+    }
+}
+
+let qrGenerated = false;
+function showQr() {
+    document.getElementById('qr-modal').classList.add('open');
+    if (!qrGenerated) {
+        new QRCode(document.getElementById('qr-canvas'), {
+            text: PAY_URL,
+            width: 220,
+            height: 220,
+            colorDark: '#000000',
+            colorLight: '#ffffff',
+            correctLevel: QRCode.CorrectLevel.H,
+        });
+        qrGenerated = true;
+    }
+}
+
+function closeQr() {
+    document.getElementById('qr-modal').classList.remove('open');
+}
+
+function downloadQr() {
+    const canvas = document.querySelector('#qr-canvas canvas') || document.getElementById('qr-canvas');
+    const link = document.createElement('a');
+    link.download = 'pregota-pay-{{ $payLink->handle }}.png';
+    link.href = canvas.toDataURL('image/png');
+    link.click();
 }
 </script>
 </body>
