@@ -103,7 +103,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 <nav class="nav">
     <a href="{{ route('home') }}" class="logo">Pregota</a>
     <div style="display:flex;gap:10px;align-items:center">
-        <a href="{{ route('buyer.me') }}" style="color:rgba(255,255,255,.6);font-size:13px;font-weight:600;text-decoration:none">My Pregota</a>
+        <a href="{{ route('creditor.login') }}" style="color:rgba(255,255,255,.6);font-size:13px;font-weight:600;text-decoration:none">Creditor Login</a>
         <a href="{{ route('deni.create') }}" class="nav-cta">Record a Deni →</a>
     </div>
 </nav>
@@ -115,8 +115,9 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
     <p>Record a customer tab or personal loan in 30 seconds. They get a payment link — pay via M-Pesa, money lands straight in your account. No chasing. No awkward reminders. Real-time balance on both sides.</p>
     <div class="hero-btns">
         <a href="{{ route('deni.create') }}" class="btn-primary">Record a Deni — Free →</a>
-        <a href="#how-it-works" class="btn-secondary">See How It Works</a>
+        <a href="{{ route('creditor.login') }}" class="btn-secondary">🧾 Creditor Account</a>
     </div>
+    <div style="margin-top:14px;font-size:12px;color:rgba(255,255,255,.35)">Record many deni? Get one login to manage all your tabs in one place.</div>
 </div>
 
 <!-- Demo preview -->

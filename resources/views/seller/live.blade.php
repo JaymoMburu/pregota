@@ -66,6 +66,25 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0a1a0f;color:#fff;m
 .rf-cancel{background:none;border:none;color:rgba(255,255,255,.45);font-size:12px;cursor:pointer;margin-top:8px;display:block;width:100%;text-align:center}
 .rf-error{font-size:12px;color:#fca5a5;margin-top:8px}
 .rf-success{font-size:12px;color:#4ade80;margin-top:8px}
+
+/* Conductor prompt panel */
+.prompt-panel{margin:0 18px 14px;background:rgba(96,165,250,.07);border:1px solid rgba(96,165,250,.2);border-radius:14px;overflow:hidden}
+.prompt-panel-header{padding:12px 16px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;user-select:none}
+.prompt-panel-title{font-size:13px;font-weight:800;color:#60a5fa}
+.prompt-panel-sub{font-size:11px;color:rgba(255,255,255,.45);margin-top:1px}
+.prompt-toggle{font-size:18px;color:rgba(96,165,250,.5);transition:.2s}
+.prompt-body{display:none;padding:0 16px 16px}
+.prompt-body.open{display:block}
+.prompt-fare-row{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:14px}
+.pf-btn{padding:8px 14px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:10px;color:#fff;font-size:12px;font-weight:700;cursor:pointer;transition:.15s;text-align:center;line-height:1.3}
+.pf-btn:hover{background:rgba(96,165,250,.12);border-color:rgba(96,165,250,.3)}
+.pf-btn.selected{background:rgba(96,165,250,.18);border-color:#60a5fa;color:#93c5fd}
+.pf-btn-amt{display:block;font-size:15px;font-weight:900;color:#60a5fa;margin-top:2px}
+.pf-btn.selected .pf-btn-amt{color:#bfdbfe}
+.prompt-waiting{display:none;background:rgba(251,191,36,.08);border:1px solid rgba(251,191,36,.2);border-radius:10px;padding:12px 14px;margin-top:10px;font-size:13px;color:#fbbf24;text-align:center}
+.prompt-confirmed{display:none;background:rgba(37,211,102,.08);border:1px solid rgba(37,211,102,.2);border-radius:10px;padding:12px 14px;margin-top:10px;text-align:center}
+.prompt-failed{display:none;background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.2);border-radius:10px;padding:12px 14px;margin-top:10px;font-size:13px;color:#f87171;text-align:center}
+.prompt-locked{padding:10px 16px 14px;font-size:12px;color:rgba(255,255,255,.4)}
 </style>
 </head>
 <body>
@@ -139,8 +158,69 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0a1a0f;color:#fff;m
     <div id="rf-msg" style="display:none"></div>
 </div>
 
-<div class="sharing-hint">
-    📲 <span>Passenger scans the QR sticker — they see the route and fare already on their screen. No need to say anything.</span>
+{{-- Conductor: Prompt Passenger --}}
+<div class="prompt-panel">
+    <div class="prompt-panel-header" onclick="togglePrompt()">
+        <div>
+            <div class="prompt-panel-title">📱 Prompt Passenger</div>
+            <div class="prompt-panel-sub">Enter their number — send M-Pesa prompt directly</div>
+        </div>
+        <div class="prompt-toggle" id="prompt-chevron">›</div>
+    </div>
+
+    @if($conductorUnlocked)
+    <div class="prompt-body" id="prompt-body">
+
+        {{-- Fare stage quick-select --}}
+        @if($fares->isNotEmpty() || ($payLink->current_fare && $payLink->current_fare > 0))
+        <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.4);margin-bottom:8px">Select fare</div>
+        <div class="prompt-fare-row" id="pf-buttons">
+            @if($payLink->current_fare && $payLink->current_fare > 0)
+            <button class="pf-btn" id="pf-live" onclick="selectPromptFare(this, {{ (int)$payLink->current_fare }}, '{{ addslashes($payLink->current_route ?? 'Current') }}')">
+                {{ $payLink->current_route ?? 'Active fare' }}
+                <span class="pf-btn-amt">KES {{ number_format($payLink->current_fare) }}</span>
+            </button>
+            @endif
+            @foreach($fares as $fare)
+            <button class="pf-btn" onclick="selectPromptFare(this, {{ $fare->amount }}, '{{ addslashes($fare->label) }}')">
+                {{ $fare->label }}
+                <span class="pf-btn-amt">KES {{ number_format($fare->amount) }}</span>
+            </button>
+            @endforeach
+        </div>
+        @endif
+
+        <div class="rf-group" style="margin-bottom:10px">
+            <label class="rf-label">Amount (KES)</label>
+            <input type="number" id="prompt-amount" class="rf-input" placeholder="e.g. 70" min="1" max="10000">
+        </div>
+        <div class="rf-group" style="margin-bottom:12px">
+            <label class="rf-label">Passenger's M-Pesa number</label>
+            <input type="tel" id="prompt-phone" class="rf-input" placeholder="0712 345 678" autocomplete="off">
+        </div>
+
+        <button class="rf-submit" id="prompt-btn" onclick="sendPrompt()">📱 Send M-Pesa Prompt</button>
+
+        <div class="prompt-waiting" id="prompt-waiting">
+            📱 Prompt sent — waiting for passenger to enter PIN…
+            <div style="font-size:11px;color:rgba(255,255,255,.4);margin-top:4px" id="prompt-wait-detail"></div>
+        </div>
+        <div class="prompt-confirmed" id="prompt-confirmed">
+            <div style="font-size:28px">✅</div>
+            <div style="font-size:15px;font-weight:900;color:#4ade80;margin-top:4px" id="prompt-confirmed-amt"></div>
+            <div style="font-size:12px;color:rgba(255,255,255,.5);margin-top:2px">Payment confirmed</div>
+            <button onclick="resetPrompt()" style="margin-top:10px;background:rgba(37,211,102,.12);border:1px solid rgba(37,211,102,.3);border-radius:8px;color:#4ade80;font-size:12px;font-weight:700;padding:6px 16px;cursor:pointer">Prompt another</button>
+        </div>
+        <div class="prompt-failed" id="prompt-failed">
+            ❌ Payment failed or declined.
+            <button onclick="resetPrompt()" style="margin-left:10px;background:none;border:none;color:rgba(255,255,255,.5);font-size:12px;cursor:pointer;text-decoration:underline">Try again</button>
+        </div>
+    </div>
+    @else
+    <div class="prompt-locked" id="prompt-body">
+        🔒 Set your route above first — entering your password unlocks this for the session.
+    </div>
+    @endif
 </div>
 
 <div class="section-label">Recent payments — updates automatically</div>
@@ -310,7 +390,6 @@ function showMsg(text, success) {
 }
 
 function updateRouteDisplay(route, fare) {
-    // Show or update the current route bar
     const bar = document.getElementById('current-route-bar');
     const noBar = document.getElementById('no-route-bar');
 
@@ -320,7 +399,6 @@ function updateRouteDisplay(route, fare) {
         document.getElementById('live-route-name').textContent = route;
         document.getElementById('live-fare-val').textContent   = 'KES ' + fare.toLocaleString();
     } else {
-        // Create bar dynamically if it wasn't rendered (no route was set initially)
         const newBar = document.createElement('div');
         newBar.id        = 'current-route-bar';
         newBar.className = 'current-route-bar';
@@ -333,6 +411,124 @@ function updateRouteDisplay(route, fare) {
             <button class="change-route-btn" onclick="toggleRouteForm()">Change</button>`;
         document.getElementById('route-form').insertAdjacentElement('beforebegin', newBar);
     }
+
+    // When conductor sets a live fare, update the live-fare button in the prompt panel
+    const liveBtn = document.getElementById('pf-live');
+    if (liveBtn) {
+        liveBtn.querySelector('.pf-btn-amt').textContent = 'KES ' + fare.toLocaleString();
+        liveBtn.onclick = () => selectPromptFare(liveBtn, fare, route);
+    } else {
+        // Inject a live-fare button if there wasn't one before
+        const pfButtons = document.getElementById('pf-buttons');
+        if (pfButtons) {
+            const btn = document.createElement('button');
+            btn.id = 'pf-live';
+            btn.className = 'pf-btn';
+            btn.innerHTML = `${route}<span class="pf-btn-amt">KES ${fare.toLocaleString()}</span>`;
+            btn.onclick = () => selectPromptFare(btn, fare, route);
+            pfButtons.insertBefore(btn, pfButtons.firstChild);
+        }
+    }
+
+    // Unlock prompt panel if it was locked (session established by setRoute)
+    const locked = document.querySelector('.prompt-locked');
+    if (locked) {
+        locked.innerHTML = '<div class="prompt-body open" style="padding-bottom:16px">✓ Unlocked — enter passenger phone below.</div>';
+    }
+}
+
+// ── Conductor Prompt ──────────────────────────────────────────────────────
+let promptPollTimer = null;
+let promptOpen = false;
+
+function togglePrompt() {
+    promptOpen = !promptOpen;
+    document.getElementById('prompt-body').classList.toggle('open', promptOpen);
+    document.getElementById('prompt-chevron').style.transform = promptOpen ? 'rotate(90deg)' : '';
+}
+
+function selectPromptFare(btn, amount, label) {
+    document.querySelectorAll('.pf-btn').forEach(b => b.classList.remove('selected'));
+    btn.classList.add('selected');
+    document.getElementById('prompt-amount').value = amount;
+}
+
+let promptPaymentId = null;
+
+function sendPrompt() {
+    const phone  = document.getElementById('prompt-phone').value.trim();
+    const amount = parseInt(document.getElementById('prompt-amount').value);
+
+    if (!phone || !/^(\+?254|0)[17]\d{8}$/.test(phone)) {
+        alert('Enter a valid Safaricom number.');
+        return;
+    }
+    if (!amount || amount < 1) {
+        alert('Select a fare or enter an amount.');
+        return;
+    }
+
+    const btn = document.getElementById('prompt-btn');
+    btn.disabled = true;
+    btn.textContent = 'Sending…';
+
+    fetch('{{ route('seller.conductor.prompt', $payLink->handle) }}', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+        body: new URLSearchParams({phone, amount, _token: '{{ csrf_token() }}'}).toString(),
+    })
+    .then(r => r.json())
+    .then(data => {
+        if (data.success) {
+            promptPaymentId = data.payment_id;
+            document.getElementById('prompt-btn').style.display = 'none';
+            document.getElementById('prompt-wait-detail').textContent = 'KES ' + amount.toLocaleString() + ' → ' + phone;
+            document.getElementById('prompt-waiting').style.display = 'block';
+            promptPollTimer = setInterval(pollPromptStatus, 3000);
+        } else {
+            btn.disabled = false;
+            btn.textContent = '📱 Send M-Pesa Prompt';
+            alert(data.message || 'Failed. Try again.');
+        }
+    })
+    .catch(() => {
+        btn.disabled = false;
+        btn.textContent = '📱 Send M-Pesa Prompt';
+        alert('Network error.');
+    });
+}
+
+function pollPromptStatus() {
+    if (!promptPaymentId) return;
+    fetch('{{ route('seller.status') }}?payment_id=' + promptPaymentId)
+        .then(r => r.json())
+        .then(data => {
+            if (data.status === 'confirmed') {
+                clearInterval(promptPollTimer);
+                const amount = parseInt(document.getElementById('prompt-amount').value);
+                document.getElementById('prompt-waiting').style.display = 'none';
+                document.getElementById('prompt-confirmed-amt').textContent = 'KES ' + amount.toLocaleString();
+                document.getElementById('prompt-confirmed').style.display = 'block';
+            } else if (data.status === 'failed') {
+                clearInterval(promptPollTimer);
+                document.getElementById('prompt-waiting').style.display = 'none';
+                document.getElementById('prompt-failed').style.display = 'block';
+            }
+        });
+}
+
+function resetPrompt() {
+    clearInterval(promptPollTimer);
+    promptPaymentId = null;
+    document.getElementById('prompt-phone').value  = '';
+    document.getElementById('prompt-amount').value = '';
+    document.querySelectorAll('.pf-btn').forEach(b => b.classList.remove('selected'));
+    document.getElementById('prompt-btn').style.display = 'block';
+    document.getElementById('prompt-btn').disabled = false;
+    document.getElementById('prompt-btn').textContent = '📱 Send M-Pesa Prompt';
+    document.getElementById('prompt-waiting').style.display  = 'none';
+    document.getElementById('prompt-confirmed').style.display = 'none';
+    document.getElementById('prompt-failed').style.display   = 'none';
 }
 </script>
 

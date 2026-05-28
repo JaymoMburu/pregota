@@ -143,6 +143,44 @@ tr:hover td{background:rgba(255,255,255,.03)}
         </div>
     </div>
 
+    {{-- Fare Stages (transport only) --}}
+    @if($payLink->category === 'transport')
+    <div class="stamp-section" style="background:rgba(251,191,36,.04);border-color:rgba(251,191,36,.2)">
+        <h2 style="color:#fbbf24">🚦 Fare Stages</h2>
+        <p>Set the fares for each stop on your route — CBD, Stage 4, Rongai, etc. Passengers tap their stop and the amount locks automatically. Add or remove stages any time.</p>
+
+        <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px" id="fare-list">
+            @foreach($fares as $fare)
+            <div style="display:inline-flex;align-items:center;gap:8px;padding:8px 12px;background:rgba(251,191,36,.08);border:1px solid rgba(251,191,36,.22);border-radius:10px" id="fare-chip-{{ $fare->id }}">
+                <div>
+                    <span style="font-size:13px;font-weight:700;color:#fff">{{ $fare->label }}</span>
+                    <span style="font-size:12px;color:#fbbf24;font-weight:700;margin-left:6px">KES {{ number_format($fare->amount) }}</span>
+                </div>
+                <button onclick="deleteFare({{ $fare->id }})" style="background:none;border:none;color:rgba(239,68,68,.6);cursor:pointer;font-size:15px;line-height:1;padding:0 2px" title="Remove">×</button>
+            </div>
+            @endforeach
+            @if($fares->isEmpty())
+            <div id="no-fares-msg" style="font-size:12px;color:rgba(255,255,255,.35)">No fare stages yet. Add your first stop below.</div>
+            @else
+            <div id="no-fares-msg" style="display:none;font-size:12px;color:rgba(255,255,255,.35)">No fare stages yet. Add your first stop below.</div>
+            @endif
+        </div>
+
+        <div class="form-row" id="add-fare-row">
+            <div class="form-group-sm" style="flex:1;min-width:140px">
+                <label>Stop / Stage Name</label>
+                <input type="text" id="fare-label" maxlength="80" placeholder="e.g. CBD, Rongai, Stage 4">
+            </div>
+            <div class="form-group-sm" style="width:120px">
+                <label>Fare (KES)</label>
+                <input type="number" id="fare-amount" min="1" max="10000" placeholder="70">
+            </div>
+            <button onclick="addFare()" class="save-btn" style="background:rgba(251,191,36,.12);border-color:rgba(251,191,36,.3);color:#fbbf24" id="add-fare-btn">+ Add Stage</button>
+        </div>
+        <div id="fare-msg" style="margin-top:8px;font-size:12px;display:none"></div>
+    </div>
+    @endif
+
     {{-- Stamp card settings --}}
     <div class="stamp-section">
         <h2>🎟 Stamp Card</h2>
@@ -214,13 +252,34 @@ tr:hover td{background:rgba(255,255,255,.03)}
             </div>
         </form>
 
+        {{-- Deni stats --}}
+        @if($openDeni->count() > 0 || $settledDeni->count() > 0)
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:14px;margin-bottom:2px">
+            <div style="background:rgba(239,68,68,.06);border:1px solid rgba(239,68,68,.15);border-radius:10px;padding:12px;text-align:center">
+                <div style="font-size:16px;font-weight:900;color:#f87171">KES {{ number_format($deniOutstanding) }}</div>
+                <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:rgba(255,255,255,.35);margin-top:3px">Outstanding</div>
+            </div>
+            <div style="background:rgba(37,211,102,.05);border:1px solid rgba(37,211,102,.12);border-radius:10px;padding:12px;text-align:center">
+                <div style="font-size:16px;font-weight:900;color:#4ADE80">KES {{ number_format($deniCollected) }}</div>
+                <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:rgba(255,255,255,.35);margin-top:3px">Collected</div>
+            </div>
+            <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:10px;padding:12px;text-align:center">
+                <div style="font-size:16px;font-weight:900">{{ $openDeni->count() }}</div>
+                <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:rgba(255,255,255,.35);margin-top:3px">Open Tabs</div>
+            </div>
+        </div>
+        @endif
+
+        {{-- Open / Partial tabs --}}
         @if($openDeni->isNotEmpty())
         <div style="margin-top:16px;display:flex;flex-direction:column;gap:8px">
             <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(239,68,68,.5);margin-bottom:4px">Open Tabs ({{ $openDeni->count() }})</div>
             @foreach($openDeni as $d)
-            @php $pct = $d->original_amount > 0 ? round(($d->amount_paid / $d->original_amount) * 100) : 0; @endphp
+            @php
+                $pct   = $d->original_amount > 0 ? round(($d->amount_paid / $d->original_amount) * 100) : 0;
+                $waMsg = $payLink->business_name . ' amekuandikia deni ya KES ' . number_format($d->original_amount) . ' kwa: ' . $d->description . '. Lipa hapa: ' . url('/deni/' . $d->debtor_token);
+            @endphp
             <div style="background:rgba(239,68,68,.04);border:1px solid rgba(239,68,68,.12);border-radius:10px;overflow:hidden">
-                {{-- Tab summary row --}}
                 <div style="padding:12px 14px">
                     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;flex-wrap:wrap;gap:6px">
                         <div>
@@ -232,6 +291,7 @@ tr:hover td{background:rgba(255,255,255,.03)}
                         </div>
                         <div style="display:flex;gap:6px;flex-wrap:wrap">
                             <button onclick="toggleCharge('{{ $d->admin_token }}')" style="font-size:11px;padding:5px 12px;background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.25);border-radius:6px;color:#f87171;cursor:pointer;font-weight:600">+ Add Charge</button>
+                            <a href="https://wa.me/?text={{ rawurlencode($waMsg) }}" target="_blank" style="font-size:11px;padding:5px 10px;background:rgba(37,211,102,.1);border:1px solid rgba(37,211,102,.2);border-radius:6px;color:#4ADE80;text-decoration:none">💬 WhatsApp</a>
                             <button onclick="navigator.clipboard.writeText('{{ url('/deni/' . $d->debtor_token) }}');this.textContent='✓ Copied!'" style="font-size:11px;padding:5px 10px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:6px;color:rgba(255,255,255,.5);cursor:pointer">Copy Link</button>
                             <a href="{{ url('/deni/admin/' . $d->admin_token) }}" style="font-size:11px;padding:5px 10px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:6px;color:rgba(255,255,255,.5);text-decoration:none">View →</a>
                         </div>
@@ -240,7 +300,6 @@ tr:hover td{background:rgba(255,255,255,.03)}
                         <div style="height:100%;width:{{ $pct }}%;background:linear-gradient(90deg,#ef4444,#fbbf24);border-radius:999px"></div>
                     </div>
                 </div>
-                {{-- Inline Add Charge form (hidden by default) --}}
                 <div id="charge-{{ $d->admin_token }}" style="display:none;border-top:1px solid rgba(239,68,68,.15);padding:12px 14px;background:rgba(239,68,68,.06)">
                     <form method="POST" action="{{ route('deni.charge', $d->admin_token) }}" style="display:flex;gap:8px;flex-wrap:wrap;align-items:flex-end">
                         @csrf
@@ -259,6 +318,21 @@ tr:hover td{background:rgba(255,255,255,.03)}
                 </div>
             </div>
             @endforeach
+        </div>
+        @endif
+
+        {{-- Settled tabs --}}
+        @if($settledDeni->isNotEmpty())
+        <div style="margin-top:16px">
+            <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(74,222,128,.4);margin-bottom:8px">Settled ({{ $settledDeni->count() }})</div>
+            <div style="display:flex;flex-direction:column;gap:6px">
+            @foreach($settledDeni->take(10) as $d)
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 14px;background:rgba(37,211,102,.03);border:1px solid rgba(37,211,102,.1);border-radius:9px;opacity:.7">
+                <div style="font-size:13px;font-weight:600">{{ $d->description }}</div>
+                <div style="font-size:12px;color:#4ADE80;font-weight:700">KES {{ number_format($d->amount_paid) }} ✅</div>
+            </div>
+            @endforeach
+            </div>
         </div>
         @endif
     </div>
@@ -365,6 +439,73 @@ tr:hover td{background:rgba(255,255,255,.03)}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" integrity="sha512-CNgIRecGo7nphbeZ04Sc13ka07paqdeTu0WR1IM4kNcpmBAUSHSe1HDAH/bxRHZ2rOS6QTLXT8ROuJq9q0BGQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
 const PAY_URL = 'https://pregota.com/pay/{{ $payLink->handle }}';
+
+@if($payLink->category === 'transport')
+function addFare() {
+    const label  = document.getElementById('fare-label').value.trim();
+    const amount = parseInt(document.getElementById('fare-amount').value);
+    const msg    = document.getElementById('fare-msg');
+
+    if (!label) { showFareMsg('Enter a stop name.', '#f87171'); return; }
+    if (!amount || amount < 1) { showFareMsg('Enter a valid fare amount.', '#f87171'); return; }
+
+    const btn = document.getElementById('add-fare-btn');
+    btn.disabled = true;
+    btn.textContent = 'Saving…';
+
+    fetch('{{ route('seller.fare.save', $payLink->handle) }}', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json', 'X-CSRF-TOKEN': '{{ csrf_token() }}'},
+        body: JSON.stringify({label, amount}),
+    })
+    .then(r => r.json())
+    .then(data => {
+        btn.disabled = false;
+        btn.textContent = '+ Add Stage';
+        if (data.error) { showFareMsg(data.error, '#f87171'); return; }
+
+        document.getElementById('no-fares-msg').style.display = 'none';
+        document.getElementById('fare-label').value  = '';
+        document.getElementById('fare-amount').value = '';
+
+        const chip = document.createElement('div');
+        chip.id = 'fare-chip-' + data.id;
+        chip.style.cssText = 'display:inline-flex;align-items:center;gap:8px;padding:8px 12px;background:rgba(251,191,36,.08);border:1px solid rgba(251,191,36,.22);border-radius:10px';
+        chip.innerHTML = `<div><span style="font-size:13px;font-weight:700;color:#fff">${data.label}</span><span style="font-size:12px;color:#fbbf24;font-weight:700;margin-left:6px">KES ${data.amount.toLocaleString()}</span></div><button onclick="deleteFare(${data.id})" style="background:none;border:none;color:rgba(239,68,68,.6);cursor:pointer;font-size:15px;line-height:1;padding:0 2px" title="Remove">×</button>`;
+        document.getElementById('fare-list').insertBefore(chip, document.getElementById('add-fare-row'));
+        showFareMsg('Stage added.', '#4ADE80');
+    })
+    .catch(() => {
+        btn.disabled = false;
+        btn.textContent = '+ Add Stage';
+        showFareMsg('Network error. Try again.', '#f87171');
+    });
+}
+
+function deleteFare(id) {
+    fetch('{{ url('/pay/' . $payLink->handle . '/fares') }}/' + id, {
+        method: 'DELETE',
+        headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}'},
+    })
+    .then(r => r.json())
+    .then(data => {
+        if (data.deleted) {
+            const chip = document.getElementById('fare-chip-' + id);
+            if (chip) chip.remove();
+            const chips = document.querySelectorAll('[id^="fare-chip-"]');
+            if (chips.length === 0) document.getElementById('no-fares-msg').style.display = 'block';
+        }
+    });
+}
+
+function showFareMsg(text, color) {
+    const el = document.getElementById('fare-msg');
+    el.style.display = 'block';
+    el.style.color   = color;
+    el.textContent   = text;
+    setTimeout(() => el.style.display = 'none', 3000);
+}
+@endif
 
 function toggleCharge(token) {
     const el = document.getElementById('charge-' + token);

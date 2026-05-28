@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\BillSplitPayment;
 use App\Models\BulkGift;
+use App\Models\CreditorAuthSession;
 use App\Models\Deni;
 use App\Models\DeniPayment;
 use App\Models\GroupPayment;
+use App\Models\PregotaPass;
 use App\Models\Subscription;
 use App\Models\Collection;
 use App\Models\CollectionContribution;
@@ -23,6 +25,7 @@ use Illuminate\Support\Facades\Crypt;
 use App\Services\BillSplitService;
 use App\Services\BulkGiftService;
 use App\Services\CollectionService;
+use App\Services\DarajaService;
 use App\Services\DirectGiftService;
 use App\Services\MultiGiftService;
 use App\Services\SchoolFeesService;
@@ -47,6 +50,7 @@ class MpesaController extends Controller
         private MultiGiftService $multiGifts,
         private SellerService $sellers,
         private TxHashService $txHash,
+        private DarajaService $daraja,
     ) {}
 
     public function stkCallback(Request $request)
@@ -67,6 +71,26 @@ class MpesaController extends Controller
             $items     = collect($callback['CallbackMetadata']['Item'] ?? []);
             $amount    = (float) ($items->firstWhere('Name', 'Amount')['Value'] ?? 0);
             $mpesaCode = $items->firstWhere('Name', 'MpesaReceiptNumber')['Value'] ?? '';
+
+            // Creditor auth login (KES 2 STK Push)
+            $creditorAuth = CreditorAuthSession::where('checkout_request_id', $checkoutId)->where('status', 'pending')->first();
+            if ($creditorAuth) {
+                $creditorAuth->update(['status' => 'confirmed']);
+                return response()->json(['ResultCode' => 0, 'ResultDesc' => 'Accepted']);
+            }
+
+            // Pregota Pass activation
+            $pass = PregotaPass::where('checkout_request_id', $checkoutId)->where('status', 'pending')->first();
+            if ($pass) {
+                $days      = config('pregota.passes.' . $pass->pass_type . '.days', 1);
+                $receipt   = 'PRG-' . now()->format('Ymd') . '-' . strtoupper(\Illuminate\Support\Str::random(6));
+                $pass->update([
+                    'status'         => 'active',
+                    'receipt_number' => $receipt,
+                    'expires_at'     => now()->addDays($days),
+                ]);
+                return response()->json(['ResultCode' => 0, 'ResultDesc' => 'Accepted']);
+            }
 
             // Phone verification callbacks — handle before all other checks
             if (SchoolCollection::where('verification_checkout_id', $checkoutId)->exists()) {
@@ -118,14 +142,15 @@ class MpesaController extends Controller
                                             if ($deniPayment) {
                                                 $receipt = 'PRG-' . now()->format('Ymd') . '-' . strtoupper(\Illuminate\Support\Str::random(6));
                                                 $deniPayment->update(['status' => 'confirmed', 'receipt_number' => $receipt]);
-                                                $deni = $deniPayment->deni;
-                                                $deni->increment('amount_paid', $deniPayment->amount);
+                                                $deni      = $deniPayment->deni;
+                                                $faceValue = $deniPayment->face_value ?: $deniPayment->amount;
+                                                $deni->increment('amount_paid', $faceValue);
                                                 $deni->syncStatus();
-                                                // Pay the lender immediately via B2C
+                                                // Pay the lender the full face value via B2C
                                                 if ($deni->lender_phone_encrypted) {
                                                     $lenderPhone = Crypt::decryptString($deni->lender_phone_encrypted);
                                                     $this->daraja->b2cPayout(
-                                                        amount: $deniPayment->amount,
+                                                        amount: $faceValue,
                                                         phone: $lenderPhone,
                                                         remarks: 'Deni: ' . mb_substr($deni->description, 0, 40),
                                                     );
@@ -150,6 +175,9 @@ class MpesaController extends Controller
             }
         } else {
             $reason = $callback['ResultDesc'] ?? 'Unknown';
+
+            CreditorAuthSession::where('checkout_request_id', $checkoutId)->where('status', 'pending')->update(['status' => 'failed']);
+            PregotaPass::where('checkout_request_id', $checkoutId)->where('status', 'pending')->update(['status' => 'failed']);
 
             $multi = MultiGift::where('mpesa_checkout_id', $checkoutId)->first();
             if ($multi) {

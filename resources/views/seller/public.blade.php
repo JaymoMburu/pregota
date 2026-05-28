@@ -76,6 +76,18 @@ input:focus{border-color:rgba(37,211,102,.5);background:rgba(255,255,255,.08)}
 .route-changed{display:none;background:rgba(251,191,36,.12);border:1px solid rgba(251,191,36,.25);border-radius:10px;padding:10px 14px;font-size:12px;color:#fbbf24;margin-bottom:16px}
 .route-changed.visible{display:block}
 
+/* Fare stage buttons */
+.fare-stages-wrap{margin-bottom:20px}
+.fare-stages-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.55);margin-bottom:10px}
+.fare-btns{display:flex;gap:8px;flex-wrap:wrap}
+.fare-btn{padding:10px 16px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:12px;color:#fff;font-size:13px;font-weight:700;cursor:pointer;transition:.15s;text-align:center;line-height:1.4;min-width:90px}
+.fare-btn:hover{background:rgba(37,211,102,.1);border-color:rgba(37,211,102,.3)}
+.fare-btn.selected{background:rgba(37,211,102,.15);border-color:rgba(37,211,102,.5);color:#4ADE80}
+.fare-btn-amount{display:block;font-size:17px;font-weight:900;color:#4ADE80;margin-top:3px}
+.fare-btn.selected .fare-btn-amount{color:#25D366}
+.change-stop{font-size:11px;color:rgba(255,255,255,.45);cursor:pointer;margin-top:6px;display:inline-block}
+.change-stop:hover{color:#25D366}
+
 /* Social proof */
 .social-proof{font-size:12px;color:rgba(255,255,255,.45);margin-bottom:16px;display:flex;align-items:center;gap:6px}
 .social-proof strong{color:rgba(255,255,255,.75)}
@@ -159,6 +171,30 @@ input:focus{border-color:rgba(37,211,102,.5);background:rgba(255,255,255,.08)}
                 <div class="route-label">Amount</div>
                 <div class="fare-big">KES {{ number_format($tillAmount) }}</div>
                 <div class="fare-locked">🔒 Set by cashier</div>
+            </div>
+            @elseif($fares->isNotEmpty())
+            {{-- Fare stage buttons — passenger taps their stop --}}
+            <div class="fare-stages-wrap" id="fare-stages">
+                <div class="fare-stages-label">Select your stop</div>
+                <div class="fare-btns" id="fare-btns">
+                    @foreach($fares as $fare)
+                    <button class="fare-btn"
+                            data-amount="{{ $fare->amount }}"
+                            onclick="selectFare(this, {{ $fare->amount }}, '{{ addslashes($fare->label) }}')">
+                        {{ $fare->label }}
+                        <span class="fare-btn-amount">KES {{ number_format($fare->amount) }}</span>
+                    </button>
+                    @endforeach
+                </div>
+                <div id="fare-selected-card" style="display:none">
+                    <div class="route-card">
+                        <div class="route-label">Your Fare</div>
+                        <div class="route-name" id="fare-selected-label"></div>
+                        <div class="fare-big" id="fare-selected-amount"></div>
+                        <div class="fare-label">per passenger</div>
+                    </div>
+                    <span class="change-stop" onclick="clearFare()">✏️ Change stop</span>
+                </div>
             </div>
             @else
             <div class="no-route-note" id="no-route-note">
@@ -280,6 +316,28 @@ let routePollTimer = null;
 let conductorFare  = {{ $payLink->current_fare ?? 'null' }};
 let conductorRoute = {{ $payLink->current_route ? json_encode($payLink->current_route) : 'null' }};
 const isTransport  = {{ $payLink->category === 'transport' ? 'true' : 'false' }};
+const hasFareStages = {{ $fares->isNotEmpty() ? 'true' : 'false' }};
+
+let selectedFareAmount = 0;
+
+function selectFare(btn, amount, label) {
+    document.querySelectorAll('.fare-btn').forEach(b => b.classList.remove('selected'));
+    btn.classList.add('selected');
+    selectedFareAmount = amount;
+    document.getElementById('fare-selected-label').textContent = label;
+    document.getElementById('fare-selected-amount').textContent = 'KES ' + amount.toLocaleString();
+    document.getElementById('fare-selected-card').style.display = 'block';
+    document.getElementById('fare-btns').style.display = 'none';
+    updateTipTotal();
+}
+
+function clearFare() {
+    selectedFareAmount = 0;
+    document.querySelectorAll('.fare-btn').forEach(b => b.classList.remove('selected'));
+    document.getElementById('fare-selected-card').style.display = 'none';
+    document.getElementById('fare-btns').style.display = 'flex';
+    updateTipTotal();
+}
 
 // ── Tip logic ─────────────────────────────────────────────────────────────
 let selectedTip       = 0;
@@ -341,6 +399,7 @@ function getAmount() {
     @elseif($tillAmount)
     return {{ $tillAmount }};
     @else
+    if (hasFareStages) return selectedFareAmount;
     return parseInt(document.getElementById('amount')?.value || '0');
     @endif
 }
@@ -384,7 +443,12 @@ function initiatePay() {
     }
 
     @if(!$payLink->current_fare && !($payLink->fixed_amount && $payLink->default_amount) && !$tillAmount)
-    if (!amount || amount < 10) {
+    if (hasFareStages) {
+        if (!selectedFareAmount) {
+            alert('Please select your stop first.');
+            return;
+        }
+    } else if (!amount || amount < 10) {
         alert('Enter an amount of at least KES 10.');
         return;
     }
@@ -515,16 +579,32 @@ function pollRoute() {
             const noRouteNote = document.getElementById('no-route-note');
             const amountGroup = document.getElementById('amount-group');
 
+            const fareStages = document.getElementById('fare-stages');
+
             if (newFare && newRoute) {
                 if (routeCard) {
                     document.getElementById('route-name') && (document.getElementById('route-name').textContent = newRoute);
                     document.getElementById('fare-display') && (document.getElementById('fare-display').textContent = 'KES ' + newFare.toLocaleString());
+                } else if (fareStages) {
+                    // Conductor override while fare stages were showing — inject route card
+                    const card = document.createElement('div');
+                    card.id = 'route-card';
+                    card.className = 'route-card';
+                    card.innerHTML = `<div class="route-label">Current Route</div><div class="route-name" id="route-name">${newRoute}</div><div class="fare-big" id="fare-display">KES ${newFare.toLocaleString()}</div><div class="fare-label">fare per passenger</div><div class="fare-locked">🔒 Set by conductor · cannot be changed</div>`;
+                    fareStages.parentNode.insertBefore(card, fareStages);
                 }
                 if (noRouteNote) noRouteNote.style.display = 'none';
                 if (amountGroup) amountGroup.style.display = 'none';
+                if (fareStages) fareStages.style.display = 'none';
             } else if (!newFare) {
-                if (noRouteNote) noRouteNote.style.display = 'block';
-                if (amountGroup) amountGroup.style.display = 'block';
+                if (hasFareStages) {
+                    if (fareStages) fareStages.style.display = 'block';
+                    if (noRouteNote) noRouteNote.style.display = 'none';
+                    if (amountGroup) amountGroup.style.display = 'none';
+                } else {
+                    if (noRouteNote) noRouteNote.style.display = 'block';
+                    if (amountGroup) amountGroup.style.display = 'block';
+                }
             }
         })
         .catch(() => {});

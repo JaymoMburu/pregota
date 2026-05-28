@@ -290,31 +290,25 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
         <p style="font-size:15px;color:rgba(255,255,255,.78);margin-top:8px">We show you exactly what you'll pay before you confirm. The recipient always gets the full amount you entered.</p>
 
         <div class="fee-box">
-            <div class="fee-row">
-                <span class="fee-label">You want them to receive</span>
-                <span class="fee-value" style="color:#25D366">KES 2,000</span>
+            <div class="fee-row" style="font-size:10px;text-transform:uppercase;letter-spacing:.1em;padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,.08)">
+                <span style="color:rgba(255,255,255,.45)">Gift amount you enter</span>
+                <span style="color:rgba(255,255,255,.45)">Your fee</span>
             </div>
+            @foreach(config('pregota.gift_tiers') as $tier)
             <div class="fee-row">
-                <span class="fee-label">Payout fee ({{ config('pregota.fee_out_pct') }}%)</span>
-                <span class="fee-value" style="color:rgba(255,255,255,.78)">+ KES {{ number_format(2000 * config('pregota.fee_out_pct') / (100 - config('pregota.fee_out_pct')), 0) }}</span>
+                <span class="fee-label">KES {{ number_format($tier['min']) }} – KES {{ number_format($tier['max']) }}</span>
+                <span class="fee-value" style="color:#25D366">
+                    @if($tier['type'] === 'flat')
+                        KES {{ $tier['value'] }} flat
+                    @else
+                        {{ $tier['value'] }}%
+                    @endif
+                </span>
             </div>
-            <div class="fee-row">
-                <span class="fee-label">Deposit fee ({{ config('pregota.fee_in_pct') }}%)</span>
-                <span class="fee-value" style="color:rgba(255,255,255,.78)">+ KES {{ number_format((2000 + 2000 * config('pregota.fee_out_pct') / (100 - config('pregota.fee_out_pct'))) * config('pregota.fee_in_pct') / (100 - config('pregota.fee_in_pct')), 0) }}</span>
-            </div>
-            <div class="fee-row">
-                <span class="fee-label">You pay via M-Pesa</span>
-                @php
-                    $feeOut = 2000 * config('pregota.fee_out_pct') / (100 - config('pregota.fee_out_pct'));
-                    $faceVal = 2000 + $feeOut;
-                    $feeIn = $faceVal * config('pregota.fee_in_pct') / (100 - config('pregota.fee_in_pct'));
-                    $gross = ceil($faceVal + $feeIn);
-                @endphp
-                <span class="fee-value">KES {{ number_format($gross, 0) }}</span>
-            </div>
-            <div class="fee-row" style="margin-top:4px;padding-top:12px;border-top:1px solid rgba(255,255,255,.08)">
-                <span class="fee-label">Recipient receives</span>
-                <span class="fee-value" style="color:#25D366;font-size:15px">KES 2,000 — exactly what you chose</span>
+            @endforeach
+            <div class="fee-row" style="margin-top:8px;padding-top:12px;border-top:1px solid rgba(255,255,255,.08)">
+                <span class="fee-label">Recipient always receives</span>
+                <span class="fee-value" style="color:#25D366;font-size:15px">100% of what you enter</span>
             </div>
         </div>
 

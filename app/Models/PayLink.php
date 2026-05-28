@@ -44,6 +44,11 @@ class PayLink extends Model
         return $this->hasMany(SubscriptionPlan::class);
     }
 
+    public function fares()
+    {
+        return $this->hasMany(PayLinkFare::class)->orderBy('sort_order');
+    }
+
     public function deni()
     {
         return $this->hasMany(Deni::class);

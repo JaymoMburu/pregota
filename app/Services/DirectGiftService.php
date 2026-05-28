@@ -11,10 +11,24 @@ class DirectGiftService
 
     public function calculateFees(float $giftAmount): array
     {
-        $fee   = (int) config('pregota.gift_direct_fee', 75);
+        $fee   = $this->tierFee($giftAmount);
         $gross = (int) ceil($giftAmount + $fee);
 
         return ['fee' => $fee, 'giftAmount' => $giftAmount, 'gross' => $gross];
+    }
+
+    private function tierFee(float $amount): float
+    {
+        foreach (config('pregota.gift_tiers') as $tier) {
+            if ($amount >= $tier['min'] && $amount <= $tier['max']) {
+                return $tier['type'] === 'flat'
+                    ? (float) $tier['value']
+                    : round($amount * $tier['value'] / 100, 2);
+            }
+        }
+        $tiers = config('pregota.gift_tiers');
+        $last  = end($tiers);
+        return round($amount * $last['value'] / 100, 2);
     }
 
     public function initiate(float $giftAmount, string $senderPhone, string $recipientPhone): DirectGift

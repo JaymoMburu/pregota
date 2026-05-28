@@ -228,8 +228,7 @@ textarea{resize:none;height:68px}
 
                     <div class="fee-preview" id="feePreview">
                         <div class="fee-row"><span>Recipient gets</span><span id="fRecipient">—</span></div>
-                        <div class="fee-row"><span id="fFeeOutLabel">Payout fee</span><span id="fFeeOut">—</span></div>
-                        <div class="fee-row"><span id="fFeeInLabel">Deposit fee</span><span id="fFeeIn">—</span></div>
+                        <div class="fee-row"><span id="fFeeLabel">Service fee</span><span id="fFee">—</span></div>
                         <div class="fee-row total"><span>You pay (M-Pesa)</span><span id="fGross">—</span></div>
                     </div>
 
@@ -256,7 +255,7 @@ textarea{resize:none;height:68px}
             <!-- TAB: Direct Gift -->
             <div class="tab-pane" id="tabDirect">
                 <div class="form-title" style="font-size:18px;margin-bottom:6px">Direct Gift</div>
-                <div style="font-size:12px;color:rgba(255,255,255,.68);margin-bottom:16px;line-height:1.6">Money goes straight to the recipient's M-Pesa — no code, no claiming. KES {{ config('pregota.gift_direct_fee') }} flat fee.</div>
+                <div style="font-size:12px;color:rgba(255,255,255,.68);margin-bottom:16px;line-height:1.6">Money goes straight to the recipient's M-Pesa — no code, no claiming. Small fee based on amount.</div>
 
                 <!-- Direct gift form -->
                 <div id="directForm">
@@ -268,7 +267,7 @@ textarea{resize:none;height:68px}
 
                     <div class="fee-preview" id="dFeePreview">
                         <div class="fee-row"><span>Recipient gets</span><span id="dRecipient">—</span></div>
-                        <div class="fee-row"><span>Service fee (flat)</span><span>KES {{ config('pregota.gift_direct_fee') }}</span></div>
+                        <div class="fee-row"><span id="dFeeLabel">Service fee</span><span id="dFee">—</span></div>
                         <div class="fee-row total"><span>You pay (M-Pesa)</span><span id="dGross">—</span></div>
                     </div>
 
@@ -343,11 +342,29 @@ textarea{resize:none;height:68px}
 <script>
 const fmt       = n => 'KES ' + Number(n).toLocaleString('en-KE', {minimumFractionDigits:2});
 const CSRF      = document.querySelector('meta[name=csrf-token]').content;
-const DIRECT_FEE  = {{ config('pregota.gift_direct_fee') }};
-const MIN_AMT     = {{ config('pregota.min_amount') }};
-const FEE_IN_PCT  = {{ config('pregota.fee_in_pct') }};
-const FEE_OUT_PCT = {{ config('pregota.fee_out_pct') }};
-const FEE_MIN     = {{ config('pregota.fee_min_kes') }};
+const MIN_AMT   = {{ config('pregota.min_amount') }};
+const MAX_AMT   = {{ config('pregota.max_amount') }};
+const GIFT_TIERS = @json(config('pregota.gift_tiers'));
+
+function tierFee(amount) {
+    for (const t of GIFT_TIERS) {
+        if (amount >= t.min && amount <= t.max) {
+            return t.type === 'flat' ? t.value : Math.round(amount * t.value) / 100;
+        }
+    }
+    const last = GIFT_TIERS[GIFT_TIERS.length - 1];
+    return Math.round(amount * last.value) / 100;
+}
+
+function tierLabel(amount) {
+    for (const t of GIFT_TIERS) {
+        if (amount >= t.min && amount <= t.max) {
+            return t.type === 'flat' ? `KES ${t.value} flat fee` : `${t.value}% service fee`;
+        }
+    }
+    const last = GIFT_TIERS[GIFT_TIERS.length - 1];
+    return `${last.value}% service fee`;
+}
 
 // ── Tab switching ──────────────────────────────────────────────────────────
 function switchTab(tab) {
@@ -379,18 +396,12 @@ function switchTab(tab) {
 function updateVoucherFee(v) {
     const preview = document.getElementById('feePreview');
     if (!v || v < MIN_AMT) { preview.style.display = 'none'; return; }
-    const feeOutCalc = v * FEE_OUT_PCT / (100 - FEE_OUT_PCT);
-    const feeOut     = Math.max(FEE_MIN / 2, feeOutCalc);
-    const faceValue  = v + feeOut;
-    const feeInCalc  = faceValue * FEE_IN_PCT / (100 - FEE_IN_PCT);
-    const feeIn      = Math.max(FEE_MIN, feeInCalc);
-    const gross      = Math.ceil(faceValue + feeIn);
-    document.getElementById('fRecipient').textContent   = fmt(v);
-    document.getElementById('fFeeOut').textContent      = fmt(feeOut);
-    document.getElementById('fFeeIn').textContent       = fmt(feeIn);
-    document.getElementById('fGross').textContent       = fmt(gross);
-    document.getElementById('fFeeOutLabel').textContent = feeOutCalc < FEE_MIN/2 ? 'Payout fee (minimum)' : `Payout fee (${FEE_OUT_PCT}%)`;
-    document.getElementById('fFeeInLabel').textContent  = feeInCalc  < FEE_MIN   ? 'Deposit fee (minimum)' : `Deposit fee (${FEE_IN_PCT}%)`;
+    const fee   = tierFee(v);
+    const gross = Math.ceil(v + fee);
+    document.getElementById('fRecipient').textContent = fmt(v);
+    document.getElementById('fFee').textContent       = fmt(fee);
+    document.getElementById('fGross').textContent     = fmt(gross);
+    document.getElementById('fFeeLabel').textContent  = tierLabel(v);
     preview.style.display = 'block';
 }
 
@@ -489,8 +500,12 @@ function copyRecallToken() {
 function updateDirectFee(v) {
     const preview = document.getElementById('dFeePreview');
     if (!v || v < MIN_AMT) { preview.style.display = 'none'; return; }
+    const fee   = tierFee(v);
+    const gross = Math.ceil(v + fee);
     document.getElementById('dRecipient').textContent = fmt(v);
-    document.getElementById('dGross').textContent     = fmt(Math.ceil(v + DIRECT_FEE));
+    document.getElementById('dFee').textContent       = fmt(fee);
+    document.getElementById('dGross').textContent     = fmt(gross);
+    document.getElementById('dFeeLabel').textContent  = tierLabel(v);
     preview.style.display = 'block';
 }
 document.getElementById('dAmount').addEventListener('input', function() {

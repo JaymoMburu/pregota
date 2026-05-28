@@ -13,25 +13,30 @@ class VoucherService
 
     public function calculateFees(float $payoutAmount): array
     {
-        $feeInPct  = (float) config('pregota.fee_in_pct');
-        $feeOutPct = (float) config('pregota.fee_out_pct');
-        $feeMin    = (float) config('pregota.fee_min_kes');
-
-        // Reverse: derive face_value from what recipient gets
-        $feeOut    = round(max($feeMin / 2, $payoutAmount * $feeOutPct / (100 - $feeOutPct)), 2);
-        $faceValue = round($payoutAmount + $feeOut, 2);
-
-        // Reverse: derive gross from face_value
-        $feeIn    = round(max($feeMin, $faceValue * $feeInPct / (100 - $feeInPct)), 2);
-        $gross    = (int) ceil($faceValue + $feeIn);
+        $fee   = $this->tierFee($payoutAmount);
+        $gross = (int) ceil($payoutAmount + $fee);
 
         return [
-            'feeIn'      => $feeIn,
-            'faceValue'  => $faceValue,
-            'feeOut'     => $feeOut,
-            'payout'     => $payoutAmount,
-            'gross'      => $gross,
+            'feeIn'     => $fee,
+            'faceValue' => $payoutAmount,
+            'feeOut'    => 0,
+            'payout'    => $payoutAmount,
+            'gross'     => $gross,
         ];
+    }
+
+    private function tierFee(float $amount): float
+    {
+        foreach (config('pregota.gift_tiers') as $tier) {
+            if ($amount >= $tier['min'] && $amount <= $tier['max']) {
+                return $tier['type'] === 'flat'
+                    ? (float) $tier['value']
+                    : round($amount * $tier['value'] / 100, 2);
+            }
+        }
+        $tiers = config('pregota.gift_tiers');
+        $last  = end($tiers);
+        return round($amount * $last['value'] / 100, 2);
     }
 
     public function initiate(float $payoutAmount, string $senderPhone, ?string $message, ?string $senderName = null): Voucher

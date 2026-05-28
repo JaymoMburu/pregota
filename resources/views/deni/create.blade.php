@@ -59,6 +59,8 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
     <a href="{{ route('home') }}" class="logo">Pregota</a>
     @if(session()->has('seller_id'))
         <a href="{{ route('seller.dashboard') }}" class="nav-back">← Dashboard</a>
+    @elseif(session()->has('creditor_phone_hash'))
+        <a href="{{ route('creditor.dashboard') }}" class="nav-back">← My Deni</a>
     @else
         <a href="{{ route('deni.landing') }}" class="nav-back">← How Deni Works</a>
     @endif
@@ -72,10 +74,10 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
     <div class="how-strip">
         <div class="how-strip-title">How it works</div>
         <div class="how-steps">
-            <div class="how-step"><div class="how-num">1</div><div>Fill in the details below — what's owed and how much.</div></div>
-            <div class="how-step"><div class="how-num">2</div><div>You get an <strong style="color:rgba(255,255,255,.8)">admin link</strong> (bookmark it) and a <strong style="color:rgba(255,255,255,.8)">customer payment link</strong>.</div></div>
-            <div class="how-step"><div class="how-num">3</div><div>Send the payment link to your customer via WhatsApp — they pay via M-Pesa.</div></div>
-            <div class="how-step"><div class="how-num">4</div><div>Money lands in your M-Pesa instantly. Open your admin link anytime to check payments.</div></div>
+            <div class="how-step"><div class="how-num">1</div><div>Fill in what's owed, how much, and their phone number.</div></div>
+            <div class="how-step"><div class="how-num">2</div><div>The deni appears on their <strong style="color:rgba(255,255,255,.8)">pregota.com/me</strong> dashboard automatically — no link needed.</div></div>
+            <div class="how-step"><div class="how-num">3</div><div>They open their dashboard, tap pay, and confirm on M-Pesa.</div></div>
+            <div class="how-step"><div class="how-num">4</div><div>Money lands in your M-Pesa instantly. You get an admin link to track all payments.</div></div>
         </div>
     </div>
 
@@ -89,10 +91,22 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
         @csrf
 
         {{-- Section: About you --}}
+        @if(session()->has('creditor_phone_hash'))
+        <div class="form-section">
+            <div class="form-section-label">Recording as</div>
+            <div style="display:flex;align-items:center;gap:12px;background:rgba(239,68,68,.07);border:1px solid rgba(239,68,68,.2);border-radius:11px;padding:13px 16px;margin-bottom:4px">
+                <div style="width:36px;height:36px;border-radius:50%;background:rgba(239,68,68,.15);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0">🧾</div>
+                <div>
+                    <div style="font-size:14px;font-weight:700;color:#fff">{{ session('creditor_name') }}</div>
+                    <div style="font-size:12px;color:rgba(255,255,255,.4);margin-top:2px">Payments go straight to your M-Pesa</div>
+                </div>
+                <a href="{{ route('creditor.logout') }}" style="margin-left:auto;font-size:11px;color:rgba(239,68,68,.5);text-decoration:none" onclick="event.preventDefault();document.getElementById('logout-form').submit()">Switch</a>
+            </div>
+        </div>
+        <form id="logout-form" method="POST" action="{{ route('creditor.logout') }}" style="display:none">@csrf</form>
+        @elseif(!session()->has('seller_id'))
         <div class="form-section">
             <div class="form-section-label">About you</div>
-
-            @if(!session()->has('seller_id'))
             <div class="field">
                 <label>Your Name or Business</label>
                 <input type="text" name="creditor_name" placeholder="e.g. Mama Njeri Kibanda or James Mburu" maxlength="100" required value="{{ old('creditor_name') }}">
@@ -102,8 +116,11 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
                 <input type="tel" name="lender_phone" placeholder="0712 345 678" required value="{{ old('lender_phone') }}">
                 <div class="hint">💰 This is where M-Pesa will send the money the moment they pay.</div>
             </div>
-            @endif
+            <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:11px;padding:12px 16px;font-size:13px;color:rgba(255,255,255,.45);line-height:1.6">
+                💡 Record many deni? <a href="{{ route('creditor.login') }}" style="color:#f87171;text-decoration:none;font-weight:600">Get a creditor account</a> — one login, all your tabs in one place.
+            </div>
         </div>
+        @endif
 
         {{-- Section: The deni --}}
         <div class="form-section">
@@ -121,21 +138,44 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
             </div>
         </div>
 
-        {{-- Section: Customer details (optional) --}}
+        {{-- Section: Customer phone --}}
         <div class="form-section">
-            <div class="form-section-label">Customer details <span class="optional-badge">optional</span></div>
+            <div class="form-section-label">Their phone number</div>
+
+            <div style="background:rgba(37,211,102,.06);border:1px solid rgba(37,211,102,.2);border-radius:12px;padding:14px 16px;margin-bottom:16px;display:flex;gap:12px;align-items:flex-start">
+                <div style="font-size:20px;flex-shrink:0;margin-top:1px">📲</div>
+                <div>
+                    <div style="font-size:13px;font-weight:700;color:#4ADE80;margin-bottom:3px">No link sharing needed</div>
+                    @if(session()->has('creditor_phone_hash'))
+                    <div style="font-size:13px;color:rgba(255,255,255,.6);line-height:1.6">Their phone number is <strong style="color:#4ADE80">required</strong> — it's how the deni lands on their Pregota dashboard automatically. They open <strong style="color:rgba(255,255,255,.8)">pregota.com/me</strong> and pay without you chasing them.</div>
+                    @else
+                    <div style="font-size:13px;color:rgba(255,255,255,.6);line-height:1.6">Enter their M-Pesa number and this deni appears automatically on their Pregota dashboard. They just open <strong style="color:rgba(255,255,255,.8)">pregota.com/me</strong> and pay — no link, no WhatsApp, no chasing.</div>
+                    @endif
+                </div>
+            </div>
 
             <div class="field-row">
                 <div class="field">
-                    <label>Their Phone</label>
-                    <input type="tel" name="debtor_phone" placeholder="0712 345 678" value="{{ old('debtor_phone') }}">
-                    <div class="hint">If entered, the deni appears on their Pregota dashboard automatically.</div>
+                    <label>Customer's Name <span class="optional-badge">optional</span></label>
+                    <input type="text" name="debtor_name" placeholder="e.g. Kamau, Mama Amina" maxlength="100" value="{{ old('debtor_name') }}">
+                    <div class="hint">Helps you identify them on your dashboard.</div>
                 </div>
                 <div class="field">
-                    <label>Due Date</label>
-                    <input type="date" name="due_date" value="{{ old('due_date') }}">
-                    <div class="hint">Shown on the customer's payment page.</div>
+                    @if(session()->has('creditor_phone_hash'))
+                    <label>Customer's Phone</label>
+                    <input type="tel" name="debtor_phone" placeholder="0712 345 678" value="{{ old('debtor_phone') }}" required>
+                    <div class="hint">Required — this is how the deni appears on their dashboard.</div>
+                    @else
+                    <label>Customer's Phone <span class="optional-badge">optional</span></label>
+                    <input type="tel" name="debtor_phone" placeholder="0712 345 678" value="{{ old('debtor_phone') }}">
+                    <div class="hint">They'll see this on their Pregota dashboard.</div>
+                    @endif
                 </div>
+            </div>
+
+            <div class="field">
+                <label>Due Date <span class="optional-badge">optional</span></label>
+                <input type="date" name="due_date" value="{{ old('due_date') }}">
             </div>
         </div>
 

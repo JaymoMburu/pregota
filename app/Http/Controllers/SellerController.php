@@ -8,6 +8,7 @@ use App\Models\Deni;
 use App\Models\GroupPayment;
 use App\Models\ManualEntry;
 use App\Models\PayLink;
+use App\Models\PayLinkFare;
 use App\Models\SellerPayment;
 use App\Models\Subscription;
 use App\Services\SellerService;
@@ -57,6 +58,7 @@ class SellerController extends Controller
         ]);
 
         Session::put('seller_id', $payLink->id);
+        Session::put('seller_verified_at', now()->timestamp);
         return redirect()->route('seller.dashboard')->with('success', 'Your pay link is live! Share pregota.com/pay/' . $payLink->handle);
     }
 
@@ -76,24 +78,35 @@ class SellerController extends Controller
         }
 
         Session::put('seller_id', $payLink->id);
+        Session::put('seller_verified_at', now()->timestamp);
         return redirect()->route('seller.dashboard');
     }
 
     public function logout()
     {
-        Session::forget('seller_id');
+        Session::forget(['seller_id', 'seller_verified_at']);
         return redirect()->route('seller.login');
     }
 
     // ── Dashboard ─────────────────────────────────────────────────────────
     public function dashboard()
     {
+        if (! $this->isSellerSessionValid()) {
+            Session::forget(['seller_id', 'seller_verified_at']);
+            return redirect()->route('seller.login')->withErrors(['handle' => 'Session expired. Please log in again.']);
+        }
+
         $payLink           = PayLink::findOrFail(session('seller_id'));
         $payments          = $payLink->payments()->latest()->take(50)->get();
         $subscriptionPlans = $payLink->subscriptionPlans()->withCount('subscriptions')->latest()->get();
-        $openDeni          = $payLink->deni()->whereIn('status', ['open', 'partial'])->latest()->get();
+        $allDeni           = $payLink->deni()->with(['payments', 'items'])->latest()->get();
+        $openDeni          = $allDeni->whereIn('status', ['open', 'partial']);
+        $settledDeni       = $allDeni->where('status', 'settled');
+        $deniOutstanding   = $openDeni->sum(fn($d) => $d->balance());
+        $deniCollected     = $allDeni->sum('amount_paid');
+        $fares             = $payLink->fares()->get();
 
-        return view('seller.dashboard', compact('payLink', 'payments', 'subscriptionPlans', 'openDeni'));
+        return view('seller.dashboard', compact('payLink', 'payments', 'subscriptionPlans', 'openDeni', 'settledDeni', 'deniOutstanding', 'deniCollected', 'fares'));
     }
 
     // ── Seller: save stamp card settings ─────────────────────────────────
@@ -126,6 +139,7 @@ class SellerController extends Controller
     public function publicPage(string $handle, Request $request)
     {
         $payLink    = PayLink::where('handle', $handle)->where('is_active', true)->where('is_suspended', false)->firstOrFail();
+        $fares      = $payLink->fares()->get();
         $tillAmount = null;
         if ($request->filled('amount')) {
             $val = (int) $request->query('amount');
@@ -133,7 +147,7 @@ class SellerController extends Controller
         }
         $fee = $this->seller->calculateFee($tillAmount ?? $payLink->default_amount ?? 100);
 
-        return view('seller.public', compact('payLink', 'fee', 'tillAmount'));
+        return view('seller.public', compact('payLink', 'fee', 'tillAmount', 'fares'));
     }
 
     public function currentInfo(string $handle)
@@ -246,6 +260,48 @@ class SellerController extends Controller
         ]);
     }
 
+    // ── Fare stages (transport pay links) ────────────────────────────────
+    public function saveFare(Request $request, string $handle)
+    {
+        if (! $this->isSellerSessionValid()) return response()->json(['error' => 'Unauthorised'], 403);
+
+        $payLink = PayLink::findOrFail(session('seller_id'));
+        if ($payLink->handle !== $handle || $payLink->category !== 'transport') {
+            return response()->json(['error' => 'Unauthorised'], 403);
+        }
+
+        $data = $request->validate([
+            'label'  => ['required', 'string', 'max:80'],
+            'amount' => ['required', 'integer', 'min:1', 'max:10000'],
+        ]);
+
+        $count = PayLinkFare::where('pay_link_id', $payLink->id)->count();
+        if ($count >= 15) {
+            return response()->json(['error' => 'Maximum 15 fare stages allowed.'], 422);
+        }
+
+        $fare = PayLinkFare::create([
+            'pay_link_id' => $payLink->id,
+            'label'       => $data['label'],
+            'amount'      => $data['amount'],
+            'sort_order'  => $count,
+        ]);
+
+        return response()->json(['id' => $fare->id, 'label' => $fare->label, 'amount' => $fare->amount]);
+    }
+
+    public function deleteFare(string $handle, int $id)
+    {
+        if (! $this->isSellerSessionValid()) return response()->json(['error' => 'Unauthorised'], 403);
+
+        $payLink = PayLink::findOrFail(session('seller_id'));
+        if ($payLink->handle !== $handle) return response()->json(['error' => 'Unauthorised'], 403);
+
+        PayLinkFare::where('id', $id)->where('pay_link_id', $payLink->id)->delete();
+
+        return response()->json(['deleted' => true]);
+    }
+
     // ── Set current route / fare (conductor action) ───────────────────────
     public function setRoute(Request $request, string $handle)
     {
@@ -266,14 +322,38 @@ class SellerController extends Controller
             'current_fare'  => $data['current_fare'],
         ]);
 
+        session(['conductor_verified_' . $payLink->id => now()->timestamp]);
+
         return response()->json(['success' => true]);
+    }
+
+    // ── Conductor-initiated STK Push to passenger ─────────────────────────
+    public function conductorPrompt(Request $request, string $handle)
+    {
+        $payLink = PayLink::where('handle', $handle)->where('is_active', true)->firstOrFail();
+
+        $ts = session('conductor_verified_' . $payLink->id, 0);
+        if ($ts < now()->subHours(4)->timestamp) {
+            return response()->json(['success' => false, 'message' => 'Session expired. Set route to re-authenticate.'], 403);
+        }
+
+        $data = $request->validate([
+            'phone'  => ['required', 'string', 'regex:/^(\+?254|0)[17]\d{8}$/'],
+            'amount' => ['required', 'integer', 'min:1', 'max:10000'],
+        ]);
+
+        $payment = $this->seller->initiate($data['amount'], $data['phone'], $payLink, null, 0, null, null);
+
+        return response()->json(['success' => true, 'payment_id' => $payment->id]);
     }
 
     // ── Conductor live view ───────────────────────────────────────────────
     public function liveView(string $handle)
     {
-        $payLink = PayLink::where('handle', $handle)->where('is_active', true)->firstOrFail();
-        return view('seller.live', compact('payLink'));
+        $payLink           = PayLink::where('handle', $handle)->where('is_active', true)->firstOrFail();
+        $fares             = $payLink->fares()->get();
+        $conductorUnlocked = session('conductor_verified_' . $payLink->id, 0) > now()->subHours(4)->timestamp;
+        return view('seller.live', compact('payLink', 'fares', 'conductorUnlocked'));
     }
 
     public function recentPayments(string $handle)
@@ -337,9 +417,7 @@ class SellerController extends Controller
     // ── Buyer spending history ────────────────────────────────────────────
     public function me()
     {
-        // Wipe verification on every page load — PIN required on each visit
-        session()->forget(['me_verified', 'me_verified_at']);
-        return view('seller.me');
+        return response()->view('seller.me')->header('Cache-Control', 'no-store, no-cache, must-revalidate');
     }
 
     public function meHasPin(Request $request)
@@ -507,6 +585,7 @@ class SellerController extends Controller
             'category'    => $e->category ?? 'other',
             'emoji'       => $catEmoji[$e->category ?? 'other'] ?? '🏪',
             'description' => $e->description,
+            'source'      => $e->source,
             'date'        => $e->entry_date->format('D d M Y'),
         ]);
 
@@ -609,6 +688,7 @@ class SellerController extends Controller
             'amount'      => ['required', 'integer', 'min:1', 'max:9999999'],
             'category'    => ['nullable', 'string', 'max:40'],
             'description' => ['nullable', 'string', 'max:200'],
+            'source'      => ['nullable', 'string', 'max:100'],
             'entry_date'  => ['required', 'date', 'before_or_equal:today'],
         ]);
 
@@ -620,6 +700,7 @@ class SellerController extends Controller
             'amount'      => $data['amount'],
             'category'    => $data['category'] ?? null,
             'description' => $data['description'] ?? null,
+            'source'      => $data['source'] ?? null,
             'entry_date'  => $data['entry_date'],
         ]);
 
@@ -655,6 +736,12 @@ class SellerController extends Controller
     private function isSessionValid(string $hash): bool
     {
         return session('me_verified') === $hash
-            && session('me_verified_at', 0) > now()->subHours(24)->timestamp;
+            && session('me_verified_at', 0) > now()->subHour()->timestamp;
+    }
+
+    private function isSellerSessionValid(): bool
+    {
+        return session()->has('seller_id')
+            && session('seller_verified_at', 0) > now()->subHour()->timestamp;
     }
 }

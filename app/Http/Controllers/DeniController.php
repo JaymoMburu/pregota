@@ -30,41 +30,57 @@ class DeniController extends Controller
         return view('deni.create');
     }
 
-    // Anyone creates a tab — seller or vibanda owner
+    // Anyone creates a tab — seller, creditor account, or anonymous
     public function store(Request $request)
     {
-        $isSeller = session()->has('seller_id');
-        $payLink  = $isSeller ? PayLink::findOrFail(session('seller_id')) : null;
+        $isSeller   = session()->has('seller_id');
+        $isCreditor = session()->has('creditor_phone_hash');
+        $payLink    = $isSeller ? PayLink::findOrFail(session('seller_id')) : null;
 
         $rules = [
             'description'     => ['required', 'string', 'max:300'],
             'original_amount' => ['required', 'integer', 'min:1', 'max:500000'],
-            'debtor_phone'    => ['nullable', 'string', 'regex:/^(\+?254|0)[17]\d{8}$/'],
+            'debtor_name'     => ['nullable', 'string', 'max:100'],
+            'debtor_phone'    => [$isCreditor ? 'required' : 'nullable', 'string', 'regex:/^(\+?254|0)[17]\d{8}$/'],
             'due_date'        => ['nullable', 'date', 'after:today'],
         ];
 
-        if (! $isSeller) {
+        if (! $isSeller && ! $isCreditor) {
             $rules['creditor_name']  = ['required', 'string', 'max:100'];
             $rules['lender_phone']   = ['required', 'string', 'regex:/^(\+?254|0)[17]\d{8}$/'];
         }
 
         $data = $request->validate($rules);
 
-        $debtorHash    = isset($data['debtor_phone']) ? $this->seller->hashPhone($data['debtor_phone']) : null;
-        $creditorLabel = $payLink?->business_name ?? $data['creditor_name'];
+        $debtorHash      = isset($data['debtor_phone']) ? $this->seller->hashPhone($data['debtor_phone']) : null;
+        $debtorEncrypted = isset($data['debtor_phone']) ? Crypt::encryptString($data['debtor_phone']) : null;
 
-        // Lender's M-Pesa: seller uses their registered phone, personal uses the provided one
-        $lenderPhone = $isSeller
-            ? Crypt::decryptString($payLink->phone_encrypted)
-            : $data['lender_phone'];
+        if ($isSeller) {
+            $lenderPhone   = Crypt::decryptString($payLink->phone_encrypted);
+            $creditorLabel = $payLink->business_name;
+            $creditorName  = null;
+        } elseif ($isCreditor) {
+            $lenderPhone   = Crypt::decryptString(session('creditor_phone_encrypted'));
+            $creditorLabel = session('creditor_name');
+            $creditorName  = session('creditor_name');
+        } else {
+            $lenderPhone   = $data['lender_phone'];
+            $creditorLabel = $data['creditor_name'];
+            $creditorName  = $data['creditor_name'];
+        }
+
+        $lenderHash = $this->seller->hashPhone($lenderPhone);
 
         $deni = Deni::create([
             'pay_link_id'            => $payLink?->id,
-            'creditor_name'          => $payLink ? null : $data['creditor_name'],
+            'creditor_name'          => $isSeller ? null : $creditorName,
             'admin_token'            => Str::random(48),
             'debtor_token'           => Str::random(48),
             'debtor_phone_hash'      => $debtorHash,
+            'debtor_phone_encrypted' => $debtorEncrypted,
+            'debtor_name'            => $data['debtor_name'] ?? null,
             'lender_phone_encrypted' => Crypt::encryptString($lenderPhone),
+            'lender_phone_hash'      => $lenderHash,
             'description'            => $data['description'],
             'original_amount'        => $data['original_amount'],
             'due_date'               => $data['due_date'] ?? null,
@@ -87,7 +103,10 @@ class DeniController extends Controller
             $flash['deni_whatsapp'] = 'https://wa.me/' . $waPhone . '?text=' . rawurlencode($waMessage);
         }
 
-        // Non-sellers go to their admin page (that's their "account" — they bookmark it)
+        if ($isCreditor) {
+            return redirect()->route('creditor.dashboard')->with('charge_added', true);
+        }
+
         if (! $isSeller) {
             return redirect(url('/deni/admin/' . $deni->admin_token))->with($flash);
         }
@@ -96,16 +115,51 @@ class DeniController extends Controller
     }
 
     // Debtor's payment page
-    public function show(string $token)
+    public function show(string $token, Request $request)
     {
         $deni = Deni::where('debtor_token', $token)->with(['payLink', 'items'])->firstOrFail();
-        return view('deni.pay', compact('deni'));
+
+        // No phone restriction — open to anyone
+        if (! $deni->debtor_phone_hash) {
+            return view('deni.pay', ['deni' => $deni, 'verified' => true]);
+        }
+
+        // Check session verification for this specific deni
+        $sessionKey = 'deni_verified_' . $deni->id;
+        if (session($sessionKey) === $deni->debtor_phone_hash) {
+            return view('deni.pay', ['deni' => $deni, 'verified' => true]);
+        }
+
+        return view('deni.pay', ['deni' => $deni, 'verified' => false]);
+    }
+
+    // Verify debtor phone before showing deni
+    public function verify(string $token, Request $request)
+    {
+        $deni = Deni::where('debtor_token', $token)->firstOrFail();
+
+        $data = $request->validate([
+            'phone' => ['required', 'string', 'regex:/^(\+?254|0)[17]\d{8}$/'],
+        ]);
+
+        $hash = $this->seller->hashPhone($data['phone']);
+
+        if ($hash !== $deni->debtor_phone_hash) {
+            return response()->json(['match' => false]);
+        }
+
+        session(['deni_verified_' . $deni->id => $hash]);
+        return response()->json(['match' => true]);
     }
 
     // Debtor initiates STK Push
     public function pay(string $token, Request $request)
     {
         $deni = Deni::where('debtor_token', $token)->firstOrFail();
+
+        if ($deni->debtor_phone_hash && session('deni_verified_' . $deni->id) !== $deni->debtor_phone_hash) {
+            return response()->json(['message' => 'Please verify your number first.'], 403);
+        }
 
         if ($deni->status === 'settled') {
             return response()->json(['message' => 'This debt is fully settled.'], 422);
@@ -116,13 +170,17 @@ class DeniController extends Controller
             'amount' => ['required', 'integer', 'min:1', 'max:' . $deni->balance()],
         ]);
 
+        $faceValue = (int) $data['amount'];
+        $fee       = $this->deniTierFee($faceValue);
+        $total     = $faceValue + $fee;
+
         if (! $deni->debtor_phone_hash) {
             $deni->update(['debtor_phone_hash' => $this->seller->hashPhone($data['phone'])]);
         }
 
         $result = $this->daraja->stkPush(
             phone: $data['phone'],
-            amount: $data['amount'],
+            amount: $total,
             accountRef: 'DENI-' . $deni->id,
             description: 'Tab: ' . mb_substr($deni->description, 0, 40),
         );
@@ -133,11 +191,30 @@ class DeniController extends Controller
 
         DeniPayment::create([
             'deni_id'             => $deni->id,
-            'amount'              => $data['amount'],
+            'amount'              => $total,
+            'face_value'          => $faceValue,
+            'fee'                 => $fee,
             'checkout_request_id' => $result['CheckoutRequestID'],
         ]);
 
-        return response()->json(['checkout_request_id' => $result['CheckoutRequestID']]);
+        return response()->json([
+            'checkout_request_id' => $result['CheckoutRequestID'],
+            'face_value'          => $faceValue,
+            'fee'                 => $fee,
+            'total'               => $total,
+        ]);
+    }
+
+    private function deniTierFee(int $amount): int
+    {
+        foreach (config('pregota.deni_tiers') as $tier) {
+            if ($amount >= $tier['min'] && ($tier['max'] === null || $amount <= $tier['max'])) {
+                return $tier['type'] === 'flat'
+                    ? (int) $tier['value']
+                    : (int) ceil($amount * $tier['value'] / 100);
+            }
+        }
+        return 0;
     }
 
     // Poll payment status
@@ -167,6 +244,61 @@ class DeniController extends Controller
         return view('deni.admin', compact('deni'));
     }
 
+    // Creditor quick-add: create deni for a known customer (phone already stored)
+    public function quickStore(Request $request)
+    {
+        $isCreditor = session()->has('creditor_phone_hash');
+        $isSeller   = session()->has('seller_id');
+
+        if (! $isCreditor && ! $isSeller) {
+            return response()->json(['message' => 'Unauthorised'], 403);
+        }
+
+        $data = $request->validate([
+            'debtor_phone_hash'      => ['required', 'string', 'size:64'],
+            'debtor_phone_encrypted' => ['required', 'string'],
+            'debtor_name'            => ['nullable', 'string', 'max:100'],
+            'description'            => ['required', 'string', 'max:300'],
+            'original_amount'        => ['required', 'integer', 'min:1', 'max:500000'],
+            'due_date'               => ['nullable', 'date', 'after:today'],
+        ]);
+
+        if ($isCreditor) {
+            $lenderPhone  = Crypt::decryptString(session('creditor_phone_encrypted'));
+            $creditorName = session('creditor_name');
+            $payLink      = null;
+        } else {
+            $payLink     = PayLink::findOrFail(session('seller_id'));
+            $lenderPhone = Crypt::decryptString($payLink->phone_encrypted);
+            $creditorName = null;
+        }
+
+        $lenderHash = $this->seller->hashPhone($lenderPhone);
+
+        $deni = Deni::create([
+            'pay_link_id'            => $payLink?->id,
+            'creditor_name'          => $creditorName,
+            'admin_token'            => Str::random(48),
+            'debtor_token'           => Str::random(48),
+            'debtor_phone_hash'      => $data['debtor_phone_hash'],
+            'debtor_phone_encrypted' => $data['debtor_phone_encrypted'],
+            'debtor_name'            => $data['debtor_name'] ?? null,
+            'lender_phone_encrypted' => Crypt::encryptString($lenderPhone),
+            'lender_phone_hash'      => $lenderHash,
+            'description'            => $data['description'],
+            'original_amount'        => $data['original_amount'],
+            'due_date'               => $data['due_date'] ?? null,
+        ]);
+
+        return response()->json([
+            'success'    => true,
+            'deni_id'    => $deni->id,
+            'pay_link'   => url('/deni/' . $deni->debtor_token),
+            'admin_link' => url('/deni/admin/' . $deni->admin_token),
+            'balance'    => $deni->balance(),
+        ]);
+    }
+
     // Add a charge to an existing open tab
     public function addCharge(Request $request, string $token)
     {
@@ -187,6 +319,9 @@ class DeniController extends Controller
         $from = $request->input('from', 'admin');
         if ($from === 'dashboard') {
             return redirect()->route('seller.dashboard')->with('charge_added', $deni->description);
+        }
+        if ($from === 'creditor') {
+            return redirect()->route('creditor.dashboard')->with('charge_added', true);
         }
         return redirect()->route('deni.admin', $token)->with('charge_added', true);
     }

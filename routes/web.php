@@ -9,6 +9,7 @@ use App\Http\Controllers\BusinessController;
 use App\Http\Controllers\CollectionController;
 use App\Http\Controllers\CreatorController;
 use App\Http\Controllers\GiftController;
+use App\Http\Controllers\CreditorController;
 use App\Http\Controllers\DeniController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\MpesaController;
@@ -16,6 +17,7 @@ use App\Http\Controllers\MultiGiftController;
 use App\Http\Controllers\SchoolFeesController;
 use App\Http\Controllers\DisputeController;
 use App\Http\Controllers\ReceiptController;
+use App\Http\Controllers\PassController;
 use App\Http\Controllers\SellerController;
 use App\Http\Controllers\StaffAuthController;
 use App\Http\Controllers\SubscriptionController;
@@ -186,18 +188,37 @@ Route::get('/pay/{handle}/stamps', [SellerController::class, 'stampInfo'])->name
 Route::get('/pay/{handle}/live', [SellerController::class, 'liveView'])->name('seller.live');
 Route::get('/pay/{handle}/recent', [SellerController::class, 'recentPayments'])->name('seller.recent');
 Route::post('/pay/{handle}/route', [SellerController::class, 'setRoute'])->name('seller.set-route');
+Route::post('/pay/{handle}/prompt', [SellerController::class, 'conductorPrompt'])->name('seller.conductor.prompt');
 Route::get('/pay/{handle}/current', [SellerController::class, 'currentInfo'])->name('seller.current');
+Route::post('/pay/{handle}/fares', [SellerController::class, 'saveFare'])->name('seller.fare.save')->middleware(\App\Http\Middleware\SellerAuth::class);
+Route::delete('/pay/{handle}/fares/{id}', [SellerController::class, 'deleteFare'])->name('seller.fare.delete')->middleware(\App\Http\Middleware\SellerAuth::class);
 Route::get('/receipt/{receipt}', [ReceiptController::class, 'show'])->name('receipt.show');
 Route::get('/dispute/{receipt}', [DisputeController::class, 'show'])->name('dispute.show');
 Route::post('/dispute/{receipt}', [DisputeController::class, 'store'])->name('dispute.store');
+
+// ── Pregota Pass (access bundles) ───────────────────────────────────────
+Route::get('/pass', [PassController::class, 'buyPage'])->name('pass.buy');
+Route::post('/pass/purchase', [PassController::class, 'purchase'])->name('pass.purchase');
+Route::get('/pass/poll', [PassController::class, 'poll'])->name('pass.poll');
+
+// ── Creditor accounts (Deni dashboard for boda bodas, vibandas, etc.) ───
+Route::get('/creditor', [CreditorController::class, 'loginPage'])->name('creditor.login');
+Route::post('/creditor/auth', [CreditorController::class, 'initiateAuth'])->name('creditor.auth');
+Route::get('/creditor/auth/poll', [CreditorController::class, 'pollAuth'])->name('creditor.poll');
+Route::get('/creditor/dashboard', [CreditorController::class, 'dashboard'])->name('creditor.dashboard');
+Route::post('/creditor/presets', [CreditorController::class, 'savePreset'])->name('creditor.preset.save');
+Route::delete('/creditor/presets/{id}', [CreditorController::class, 'deletePreset'])->name('creditor.preset.delete');
+Route::post('/creditor/logout', [CreditorController::class, 'logout'])->name('creditor.logout');
 
 // ── Madeni (Tabs / Credit) ───────────────────────────────────────────────
 Route::get('/deni', [DeniController::class, 'landing'])->name('deni.landing');
 Route::get('/deni/create', [DeniController::class, 'create'])->name('deni.create');
 Route::post('/deni', [DeniController::class, 'store'])->name('deni.store');
+Route::post('/deni/quick', [DeniController::class, 'quickStore'])->name('deni.quick');
 Route::get('/deni/admin/{token}', [DeniController::class, 'adminView'])->name('deni.admin');
 Route::post('/deni/admin/{token}/charge', [DeniController::class, 'addCharge'])->name('deni.charge');
 Route::get('/deni/{token}', [DeniController::class, 'show'])->name('deni.show');
+Route::post('/deni/{token}/verify', [DeniController::class, 'verify'])->name('deni.verify');
 Route::post('/deni/{token}/pay', [DeniController::class, 'pay'])->name('deni.pay');
 Route::get('/deni/{token}/status', [DeniController::class, 'payStatus'])->name('deni.status');
 

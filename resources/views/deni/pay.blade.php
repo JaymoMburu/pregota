@@ -35,6 +35,55 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 <body>
 <div class="card">
     <a href="{{ route('home') }}" class="logo">Pregota</a>
+
+    @if(! $verified)
+    {{-- Phone verification gate --}}
+    <div class="icon">🔒</div>
+    <div class="biz">{{ $deni->creditorLabel() }}</div>
+    <div class="desc" style="font-size:15px;color:rgba(255,255,255,.55);font-weight:400">This tab is private. Enter your M-Pesa number to view it.</div>
+
+    <div style="margin-top:20px">
+        <div class="field">
+            <label>Your M-Pesa Number</label>
+            <input type="tel" id="verify-phone" placeholder="0712 345 678" autocomplete="tel">
+        </div>
+        <div class="err" id="verify-err" style="display:none"></div>
+        <button class="pay-btn" onclick="doVerify()">Confirm Identity →</button>
+    </div>
+
+    <script>
+    async function doVerify() {
+        const phone = document.getElementById('verify-phone').value.trim();
+        const errEl = document.getElementById('verify-err');
+        errEl.style.display = 'none';
+
+        if (!phone || !/^(\+?254|0)[17]\d{8}$/.test(phone)) {
+            errEl.textContent = 'Enter a valid Safaricom number.';
+            errEl.style.display = 'block'; return;
+        }
+
+        const btn = document.querySelector('.pay-btn');
+        btn.disabled = true; btn.textContent = 'Checking…';
+
+        const res  = await fetch('{{ route('deni.verify', $deni->debtor_token) }}', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json', 'X-CSRF-TOKEN': '{{ csrf_token() }}'},
+            body: JSON.stringify({ phone }),
+        });
+        const data = await res.json();
+
+        if (data.match) {
+            location.reload();
+        } else {
+            errEl.textContent = 'This tab was not sent to that number.';
+            errEl.style.display = 'block';
+            btn.disabled = false; btn.textContent = 'Confirm Identity →';
+        }
+    }
+    </script>
+
+    @else
+    {{-- Verified: show full deni --}}
     <div class="icon">🧾</div>
     <div class="biz">{{ $deni->creditorLabel() }}</div>
     <div class="desc">{{ $deni->description }}</div>
@@ -76,13 +125,28 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
         <div id="pay-form">
             <div class="field">
                 <label>Amount to Pay (KES)</label>
-                <input type="number" id="pay-amount" value="{{ $deni->balance() }}" min="1" max="{{ $deni->balance() }}">
+                <input type="number" id="pay-amount" value="{{ $deni->balance() }}" min="1" max="{{ $deni->balance() }}" oninput="updateFee()">
             </div>
+
+            <div id="fee-box" style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:11px;padding:12px 14px;margin-bottom:14px;font-size:13px">
+                <div style="display:flex;justify-content:space-between;color:rgba(255,255,255,.55);margin-bottom:6px">
+                    <span>Goes to {{ $deni->creditorLabel() }}</span>
+                    <span id="fee-face">KES {{ number_format($deni->balance()) }}</span>
+                </div>
+                <div style="display:flex;justify-content:space-between;color:rgba(255,255,255,.4);margin-bottom:8px">
+                    <span>Pregota service fee</span>
+                    <span id="fee-amount">—</span>
+                </div>
+                <div style="display:flex;justify-content:space-between;font-weight:900;border-top:1px solid rgba(255,255,255,.07);padding-top:8px">
+                    <span>You pay (M-Pesa)</span>
+                    <span id="fee-total" style="color:#4ADE80">—</span>
+                </div>
+            </div>
+
             <div class="field">
                 <label>Your M-Pesa Number</label>
                 <input type="tel" id="pay-phone" placeholder="0712 345 678" autocomplete="tel">
             </div>
-            <div style="font-size:11px;color:rgba(255,255,255,.3);text-align:center;margin-bottom:10px">Payment goes directly to {{ $deni->creditorLabel() }} via M-Pesa</div>
             <div class="err" id="err-msg"></div>
             <button class="pay-btn" id="pay-btn" onclick="doPay()">Pay via M-Pesa →</button>
         </div>
@@ -99,12 +163,37 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
             <div id="balance-msg" style="font-size:14px;color:rgba(255,255,255,.55)"></div>
         </div>
     @endif
+    @endif {{-- end verified --}}
 </div>
 
 <script>
-const CSRF  = '{{ csrf_token() }}';
-const TOKEN = '{{ $deni->debtor_token }}';
-let checkoutId = null;
+const CSRF      = '{{ csrf_token() }}';
+const TOKEN     = '{{ $deni->debtor_token }}';
+const DENI_TIERS = @json(config('pregota.deni_tiers'));
+let checkoutId  = null;
+
+function calcFee(amount) {
+    for (const tier of DENI_TIERS) {
+        if (amount >= tier.min && (tier.max === null || amount <= tier.max)) {
+            return tier.type === 'flat'
+                ? tier.value
+                : Math.ceil(amount * tier.value / 100);
+        }
+    }
+    return 0;
+}
+
+function updateFee() {
+    const amount = parseInt(document.getElementById('pay-amount').value) || 0;
+    if (amount < 1) return;
+    const fee   = calcFee(amount);
+    const total = amount + fee;
+    document.getElementById('fee-face').textContent   = 'KES ' + amount.toLocaleString();
+    document.getElementById('fee-amount').textContent = 'KES ' + fee.toLocaleString();
+    document.getElementById('fee-total').textContent  = 'KES ' + total.toLocaleString();
+}
+
+updateFee();
 
 async function doPay() {
     const phone  = document.getElementById('pay-phone').value.trim();

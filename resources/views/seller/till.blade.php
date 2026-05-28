@@ -239,8 +239,8 @@ async function initiatePay() {
     try {
         const res  = await fetch(`/pay/${HANDLE}/pay`, {method:'POST', body});
         const data = await res.json();
-        if (!res.ok || !data.checkout_request_id) throw new Error(data.message || 'Failed');
-        checkoutId = data.checkout_request_id;
+        if (!res.ok || !data.payment_id) throw new Error(data.message || 'Failed');
+        checkoutId = data.payment_id;
         pollStatus();
     } catch(e) {
         show('phase-phone');
@@ -253,7 +253,7 @@ async function initiatePay() {
 // ── Poll ─────────────────────────────────────────────────────────────────
 function pollStatus() {
     if (!checkoutId) return;
-    fetch(`/seller/status?checkout_request_id=${checkoutId}`)
+    fetch(`/seller/status?payment_id=${checkoutId}`)
         .then(r => r.json())
         .then(d => {
             if (d.status === 'confirmed') {

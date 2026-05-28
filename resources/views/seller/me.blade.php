@@ -230,23 +230,43 @@ select option{background:#1a2730}
                 </div>
                 <div class="form-field">
                     <label>Category</label>
-                    <select id="entry-category">
+                    <select id="entry-cat-expense">
                         <option value="">— Select —</option>
                         <option value="transport">🚐 Transport</option>
                         <option value="supermarket">🛒 Supermarket</option>
                         <option value="food">🍽️ Restaurant / Food</option>
                         <option value="groceries">🥬 Groceries</option>
-                        <option value="salon">💇 Salon & Beauty</option>
+                        <option value="salon">💇 Salon &amp; Beauty</option>
                         <option value="fashion">👗 Fashion</option>
                         <option value="electronics">📱 Electronics</option>
                         <option value="services">🛠 Services</option>
-                        <option value="other">🏪 Other</option>
+                        <option value="airtime">📶 Airtime &amp; Data</option>
+                        <option value="rent">🏠 Rent</option>
+                        <option value="health">💊 Health</option>
+                        <option value="education">📚 Education</option>
+                        <option value="entertainment">🎬 Entertainment</option>
+                        <option value="savings">🏦 Savings</option>
+                        <option value="other">📦 Other</option>
+                    </select>
+                    <select id="entry-cat-income" style="display:none">
+                        <option value="">— Select —</option>
+                        <option value="salary">💼 Salary</option>
+                        <option value="business">🏪 Business</option>
+                        <option value="freelance">💻 Freelance</option>
+                        <option value="rental">🏠 Rental Income</option>
+                        <option value="friends_family">🤝 Friends &amp; Family</option>
+                        <option value="side_hustle">⚡ Side Hustle</option>
+                        <option value="gift">🎁 Gift</option>
+                        <option value="other">✨ Other</option>
                     </select>
                 </div>
                 <div class="form-field">
                     <label>Date</label>
                     <input type="date" id="entry-date">
                 </div>
+            </div>
+            <div id="from-field" style="display:none;margin-bottom:10px">
+                <input type="text" class="desc-input" id="entry-source" placeholder="From — e.g. John Kamau, Mum, Equity Bank salary" maxlength="100">
             </div>
             <input type="text" class="desc-input" id="entry-desc" placeholder="Description — e.g. Lunch at Java, CBD → Westlands" maxlength="200">
             <button class="save-btn" onclick="saveEntry()">Save</button>
@@ -513,11 +533,24 @@ function toggleLog() {
     const open = document.getElementById('log-body').classList.toggle('open');
     document.getElementById('log-chevron').style.transform = open ? 'rotate(90deg)' : '';
 }
+
 function setType(t) {
     entryType = t;
     document.getElementById('type-exp').className = 'type-btn' + (t === 'expense' ? ' active-exp' : '');
     document.getElementById('type-inc').className = 'type-btn' + (t === 'income'  ? ' active-inc' : '');
+
+    document.getElementById('entry-cat-expense').style.display = t === 'expense' ? '' : 'none';
+    document.getElementById('entry-cat-income').style.display  = t === 'income'  ? '' : 'none';
+
+    document.getElementById('from-field').style.display = t === 'income' ? 'block' : 'none';
+
+    document.getElementById('entry-desc').placeholder = t === 'income'
+        ? 'Note — e.g. End of month, bonus payment'
+        : 'Description — e.g. Lunch at Java, CBD → Westlands';
 }
+
+// Initialise category list on load
+setType('expense');
 async function saveEntry() {
     const amount = parseInt(document.getElementById('entry-amount').value);
     const date   = document.getElementById('entry-date').value;
@@ -527,8 +560,11 @@ async function saveEntry() {
         method: 'POST',
         headers: {'Content-Type':'application/json','X-CSRF-TOKEN': CSRF},
         body: JSON.stringify({phone: activePhone, type: entryType, amount,
-            category: document.getElementById('entry-category').value || null,
+            category: (entryType === 'income'
+                ? document.getElementById('entry-cat-income')
+                : document.getElementById('entry-cat-expense')).value || null,
             description: document.getElementById('entry-desc').value || null,
+            source: document.getElementById('entry-source').value.trim() || null,
             entry_date: date}),
     });
     const data = await res.json();
@@ -537,6 +573,7 @@ async function saveEntry() {
         document.getElementById('entry-ok').style.display = 'block';
         document.getElementById('entry-amount').value = '';
         document.getElementById('entry-desc').value = '';
+        document.getElementById('entry-source').value = '';
         document.getElementById('entry-date').value = new Date().toISOString().slice(0,10);
         setTimeout(() => document.getElementById('entry-ok').style.display = 'none', 2000);
         loadData();
@@ -623,7 +660,8 @@ async function loadData() {
         document.getElementById('manual-list').innerHTML = d.manual.map(e =>
             `<div class="me-row ${e.type}" id="me-${e.id}">
                 <div>
-                    <div class="me-cat">${e.emoji} ${e.category.charAt(0).toUpperCase()+e.category.slice(1)} <span style="font-size:10px;font-weight:400;color:rgba(255,255,255,.35)">${e.type}</span></div>
+                    <div class="me-cat">${e.emoji} ${e.category.replace('_',' ').replace(/\b\w/g,c=>c.toUpperCase())} <span style="font-size:10px;font-weight:400;color:rgba(255,255,255,.35)">${e.type}</span></div>
+                    ${e.source?`<div class="me-desc" style="color:rgba(74,222,128,.75);font-style:normal;font-weight:600">From: ${e.source}</div>`:''}
                     ${e.description?`<div class="me-desc">${e.description}</div>`:''}
                     <div class="me-date">${e.date}</div>
                 </div>
