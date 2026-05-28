@@ -397,6 +397,31 @@ class CreditorController extends Controller
         ]);
     }
 
+    public function devLogin(Request $request)
+    {
+        $token = env('DEV_BYPASS_TOKEN');
+        if (! $token || $request->query('token') !== $token) {
+            abort(404);
+        }
+
+        $data = $request->validate([
+            'phone' => ['required', 'string', 'regex:/^(\+?254|0)[17]\d{8}$/'],
+            'name'  => ['required', 'string', 'max:100'],
+        ]);
+
+        $hash = $this->seller->hashPhone($data['phone']);
+
+        session([
+            'creditor_phone_hash'      => $hash,
+            'creditor_phone_encrypted' => Crypt::encryptString($data['phone']),
+            'creditor_name'            => $data['name'],
+            'creditor_verified_at'     => now()->timestamp,
+            'creditor_verified_day'    => now()->toDateString(),
+        ]);
+
+        return redirect()->route('creditor.dashboard');
+    }
+
     public function logout()
     {
         session()->forget(['creditor_phone_hash', 'creditor_phone_encrypted', 'creditor_name', 'creditor_verified_at']);
