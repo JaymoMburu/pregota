@@ -650,14 +650,28 @@ function toggleAddPayee() {
     form.style.display = form.style.display === 'none' ? 'block' : 'none';
 }
 
+function showPayeeErr(msg) {
+    const err = document.getElementById('np-err');
+    err.style.display = 'block';
+    err.textContent   = msg;
+    err.scrollIntoView({behavior:'smooth', block:'nearest'});
+}
+
 async function savePayee() {
     const name  = document.getElementById('np-name').value.trim();
     const till  = document.getElementById('np-till').value.trim();
     const phone = document.getElementById('np-phone').value.trim();
-    const err   = document.getElementById('np-err');
 
-    if (!name) { err.style.display='block'; err.textContent='Name is required.'; return; }
-    if (!till && !phone) { err.style.display='block'; err.textContent='Enter a till number or phone.'; return; }
+    document.getElementById('np-err').style.display = 'none';
+
+    if (!name)            { showPayeeErr('Name is required.'); return; }
+    if (!till && !phone)  { showPayeeErr('Enter a till number or a phone number.'); return; }
+    if (phone && !/^(0[17]\d{8}|\+?254[17]\d{8})$/.test(phone)) {
+        showPayeeErr('Phone must be 10 digits e.g. 0712 345 678'); return;
+    }
+    if (till && !/^\d{5,7}$/.test(till)) {
+        showPayeeErr('Till number must be 5–7 digits.'); return;
+    }
 
     const res  = await fetch('{{ route("creditor.contact.save") }}', {
         method: 'POST',
@@ -679,11 +693,13 @@ async function savePayee() {
         document.getElementById('np-name').value  = '';
         document.getElementById('np-till').value  = '';
         document.getElementById('np-phone').value = '';
-        err.style.display = 'none';
+        document.getElementById('np-err').style.display = 'none';
         document.getElementById('add-payee-form').style.display = 'none';
     } else {
-        err.style.display = 'block';
-        err.textContent = data.error || 'Error saving. Try again.';
+        const msg = data.error
+            || (data.errors ? Object.values(data.errors).flat()[0] : null)
+            || 'Error saving. Try again.';
+        showPayeeErr(msg);
     }
 }
 
