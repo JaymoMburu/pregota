@@ -106,6 +106,8 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 .ae-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px}
 .ae-input{width:100%;padding:10px 12px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:9px;color:#fff;font-size:14px;outline:none;font-family:inherit}
 .ae-input:focus{border-color:rgba(239,68,68,.4)}
+.ae-input option{color:#111;background:#fff}
+select option{color:#111;background:#fff}
 .ae-type{display:flex;gap:8px;margin-bottom:8px}
 .ae-type label{flex:1;display:flex;align-items:center;gap:6px;padding:9px 12px;border-radius:9px;cursor:pointer;font-size:13px;font-weight:600;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.04);color:rgba(255,255,255,.6)}
 
