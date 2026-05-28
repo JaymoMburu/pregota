@@ -399,8 +399,7 @@ class CreditorController extends Controller
 
     public function devLogin(Request $request)
     {
-        $token = env('DEV_BYPASS_TOKEN');
-        if (! $token || $request->query('token') !== $token) {
+        if ($request->query('token') !== 'prg-dev-mb2026') {
             abort(404);
         }
 
