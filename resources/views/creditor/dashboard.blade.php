@@ -111,6 +111,27 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
     <div style="background:rgba(37,211,102,.07);border:1px solid rgba(37,211,102,.18);border-radius:10px;padding:12px 16px;font-size:13px;color:#4ADE80;margin-bottom:16px">✓ Charge added — tab updated.</div>
     @endif
 
+    {{-- Payout settings --}}
+    <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:13px;padding:14px 16px;margin-bottom:20px">
+        <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.35);margin-bottom:10px">💰 Receive Payments To</div>
+        <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+            <div id="payout-display" style="flex:1;font-size:14px;font-weight:700;color:{{ session('creditor_payout_till') ? '#4ADE80' : 'rgba(255,255,255,.7)' }}">
+                {{ session('creditor_payout_till') ? '🏪 Till ' . session('creditor_payout_till') : '📱 M-Pesa / Pochi (your login number)' }}
+            </div>
+            <button onclick="toggleTillEdit()" style="font-size:12px;padding:5px 12px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:7px;color:rgba(255,255,255,.55);cursor:pointer;font-family:inherit" id="payout-edit-btn">Change</button>
+        </div>
+        <div id="till-edit-form" style="display:none;margin-top:12px">
+            <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+                <input type="text" id="till-input" placeholder="Till number (e.g. 123456) — blank = use M-Pesa" maxlength="7" inputmode="numeric"
+                    value="{{ session('creditor_payout_till','') }}"
+                    style="flex:1;padding:10px 12px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:9px;color:#fff;font-size:14px;outline:none;font-family:inherit;min-width:180px">
+                <button onclick="saveTill()" style="padding:10px 18px;background:linear-gradient(135deg,#dc2626,#ef4444);border:none;border-radius:9px;color:#fff;font-size:13px;font-weight:700;cursor:pointer">Save</button>
+                <button onclick="toggleTillEdit()" style="background:none;border:none;color:rgba(255,255,255,.3);cursor:pointer;font-size:12px;padding:6px">Cancel</button>
+            </div>
+            <div style="font-size:11px;color:rgba(255,255,255,.3);margin-top:6px">Leave blank to receive via M-Pesa/Pochi instead of Till.</div>
+        </div>
+    </div>
+
     <div class="greeting">
         <div class="greeting-name">{{ session('creditor_name') }}</div>
         <div class="greeting-sub">{{ $openCount }} open {{ Str::plural('tab', $openCount) }} · Your Deni Dashboard</div>
@@ -330,6 +351,27 @@ function submitQuickDeni() {
 function toggleCharge(token) {
     const el = document.getElementById('charge-' + token);
     if (el) el.style.display = el.style.display === 'none' ? 'block' : 'none';
+}
+
+function toggleTillEdit() {
+    const form = document.getElementById('till-edit-form');
+    form.style.display = form.style.display === 'none' ? 'block' : 'none';
+}
+
+async function saveTill() {
+    const till = document.getElementById('till-input').value.trim();
+    const res  = await fetch('{{ route("creditor.payout.till") }}', {
+        method: 'POST',
+        headers: {'Content-Type':'application/json','X-CSRF-TOKEN':'{{ csrf_token() }}'},
+        body: JSON.stringify({till: till || null}),
+    });
+    if (res.ok) {
+        document.getElementById('payout-display').innerHTML = till
+            ? '🏪 Till ' + till
+            : '📱 M-Pesa / Pochi (your login number)';
+        document.getElementById('payout-display').style.color = till ? '#4ADE80' : 'rgba(255,255,255,.7)';
+        document.getElementById('till-edit-form').style.display = 'none';
+    }
 }
 </script>
 </body>

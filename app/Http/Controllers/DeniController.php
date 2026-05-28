@@ -69,6 +69,11 @@ class DeniController extends Controller
             $lenderPhone   = Crypt::decryptString(session('creditor_phone_encrypted'));
             $creditorLabel = session('creditor_name');
             $creditorName  = session('creditor_name');
+            // Use Till payout if creditor has set one (phone hash still stored for dashboard query)
+            if (session('creditor_payout_till')) {
+                $lenderTill  = session('creditor_payout_till');
+                $lenderPhone = null;
+            }
         } else {
             $creditorLabel = $data['creditor_name'];
             $creditorName  = $data['creditor_name'];
@@ -81,6 +86,9 @@ class DeniController extends Controller
 
         if ($lenderPhone) {
             $lenderHash = $this->seller->hashPhone($lenderPhone);
+        } elseif ($isCreditor) {
+            // When creditor uses Till payout, still hash their phone for dashboard queries
+            $lenderHash = $this->seller->hashPhone(Crypt::decryptString(session('creditor_phone_encrypted')));
         }
 
         $deni = Deni::create([
@@ -276,17 +284,24 @@ class DeniController extends Controller
             'due_date'               => ['nullable', 'date', 'after:today'],
         ]);
 
+        $lenderTill = null;
         if ($isCreditor) {
             $lenderPhone  = Crypt::decryptString(session('creditor_phone_encrypted'));
             $creditorName = session('creditor_name');
             $payLink      = null;
+            if (session('creditor_payout_till')) {
+                $lenderTill  = session('creditor_payout_till');
+                $lenderPhone = null;
+            }
         } else {
             $payLink     = PayLink::findOrFail(session('seller_id'));
             $lenderPhone = Crypt::decryptString($payLink->phone_encrypted);
             $creditorName = null;
         }
 
-        $lenderHash = $this->seller->hashPhone($lenderPhone);
+        $lenderHash = $lenderPhone
+            ? $this->seller->hashPhone($lenderPhone)
+            : $this->seller->hashPhone(Crypt::decryptString(session('creditor_phone_encrypted')));
 
         $deni = Deni::create([
             'pay_link_id'            => $payLink?->id,
@@ -296,8 +311,9 @@ class DeniController extends Controller
             'debtor_phone_hash'      => $data['debtor_phone_hash'],
             'debtor_phone_encrypted' => $data['debtor_phone_encrypted'],
             'debtor_name'            => $data['debtor_name'] ?? null,
-            'lender_phone_encrypted' => Crypt::encryptString($lenderPhone),
+            'lender_phone_encrypted' => $lenderPhone ? Crypt::encryptString($lenderPhone) : null,
             'lender_phone_hash'      => $lenderHash,
+            'lender_till'            => $lenderTill,
             'description'            => $data['description'],
             'original_amount'        => $data['original_amount'],
             'due_date'               => $data['due_date'] ?? null,

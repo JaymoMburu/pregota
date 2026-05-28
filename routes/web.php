@@ -208,6 +208,7 @@ Route::get('/creditor/auth/poll', [CreditorController::class, 'pollAuth'])->name
 Route::get('/creditor/dashboard', [CreditorController::class, 'dashboard'])->name('creditor.dashboard');
 Route::post('/creditor/presets', [CreditorController::class, 'savePreset'])->name('creditor.preset.save');
 Route::delete('/creditor/presets/{id}', [CreditorController::class, 'deletePreset'])->name('creditor.preset.delete');
+Route::post('/creditor/payout-till', [CreditorController::class, 'setPayoutTill'])->name('creditor.payout.till');
 Route::post('/creditor/logout', [CreditorController::class, 'logout'])->name('creditor.logout');
 
 // ── Madeni (Tabs / Credit) ───────────────────────────────────────────────

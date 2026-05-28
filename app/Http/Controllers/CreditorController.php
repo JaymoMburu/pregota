@@ -89,8 +89,8 @@ class CreditorController extends Controller
     public function dashboard()
     {
         $verifiedAt = session('creditor_verified_at', 0);
-        if (! session()->has('creditor_phone_hash') || $verifiedAt <= now()->subHour()->timestamp) {
-            session()->forget(['creditor_phone_hash', 'creditor_phone_encrypted', 'creditor_name', 'creditor_verified_at']);
+        if (! session()->has('creditor_phone_hash') || $verifiedAt <= now()->subHours(12)->timestamp) {
+            session()->forget(['creditor_phone_hash', 'creditor_phone_encrypted', 'creditor_name', 'creditor_verified_at', 'creditor_payout_till']);
             return redirect()->route('creditor.login');
         }
 
@@ -100,6 +100,12 @@ class CreditorController extends Controller
             ->with(['payments', 'items'])
             ->latest()
             ->get();
+
+        // Restore Till payout preference from most recent deni that has one
+        if (! session()->has('creditor_payout_till')) {
+            $savedTill = $allDeni->whereNotNull('lender_till')->first()?->lender_till;
+            if ($savedTill) session(['creditor_payout_till' => $savedTill]);
+        }
 
         $totalOutstanding = $allDeni->where('status', '!=', 'settled')->sum(fn($d) => $d->balance());
         $totalCollected   = $allDeni->sum('amount_paid');
@@ -130,6 +136,23 @@ class CreditorController extends Controller
         $settledDeni = $allDeni->where('status', 'settled');
 
         return view('creditor.dashboard', compact('openDeni', 'settledDeni', 'totalOutstanding', 'totalCollected', 'openCount', 'customers'));
+    }
+
+    public function setPayoutTill(Request $request)
+    {
+        if (! session()->has('creditor_phone_hash')) return response()->json(['error' => 'Unauthorised'], 403);
+
+        $data = $request->validate([
+            'till' => ['nullable', 'string', 'regex:/^\d{5,7}$/'],
+        ]);
+
+        if ($data['till']) {
+            session(['creditor_payout_till' => $data['till']]);
+        } else {
+            session()->forget('creditor_payout_till');
+        }
+
+        return response()->json(['saved' => true, 'till' => $data['till'] ?? null]);
     }
 
     public function savePreset(Request $request)
