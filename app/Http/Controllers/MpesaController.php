@@ -146,8 +146,16 @@ class MpesaController extends Controller
                                                 $faceValue = $deniPayment->face_value ?: $deniPayment->amount;
                                                 $deni->increment('amount_paid', $faceValue);
                                                 $deni->syncStatus();
-                                                // Pay the lender the full face value via B2C
-                                                if ($deni->lender_phone_encrypted) {
+                                                // Pay the lender via Till (B2B) or phone (B2C)
+                                                if ($deni->lender_till) {
+                                                    $this->daraja->b2bPayout(
+                                                        amount: $faceValue,
+                                                        destination: $deni->lender_till,
+                                                        type: 'till',
+                                                        accountRef: 'DENI-' . $deni->id,
+                                                        remarks: 'Deni: ' . mb_substr($deni->description, 0, 40),
+                                                    );
+                                                } elseif ($deni->lender_phone_encrypted) {
                                                     $lenderPhone = Crypt::decryptString($deni->lender_phone_encrypted);
                                                     $this->daraja->b2cPayout(
                                                         amount: $faceValue,

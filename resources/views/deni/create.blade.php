@@ -111,11 +111,31 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
                 <label>Your Name or Business</label>
                 <input type="text" name="creditor_name" placeholder="e.g. Mama Njeri Kibanda or James Mburu" maxlength="100" required value="{{ old('creditor_name') }}">
             </div>
+
+            {{-- Payout destination toggle --}}
             <div class="field">
-                <label>Your M-Pesa Number</label>
-                <input type="tel" name="lender_phone" placeholder="0712 345 678" required value="{{ old('lender_phone') }}">
-                <div class="hint">💰 This is where M-Pesa will send the money the moment they pay.</div>
+                <label>Receive payments to</label>
+                <div style="display:flex;gap:10px;margin-bottom:12px">
+                    <label style="flex:1;display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:11px 14px;cursor:pointer;font-size:14px;font-weight:600;color:rgba(255,255,255,.8)" id="opt-phone-label">
+                        <input type="radio" name="payout_type" value="phone" id="opt-phone" {{ old('payout_type','phone')==='phone'?'checked':'' }} onchange="togglePayout()" style="accent-color:#f87171">
+                        📱 M-Pesa / Pochi
+                    </label>
+                    <label style="flex:1;display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:11px 14px;cursor:pointer;font-size:14px;font-weight:600;color:rgba(255,255,255,.8)" id="opt-till-label">
+                        <input type="radio" name="payout_type" value="till" id="opt-till" {{ old('payout_type')==='till'?'checked':'' }} onchange="togglePayout()" style="accent-color:#f87171">
+                        🏪 Till Number
+                    </label>
+                </div>
+
+                <div id="payout-phone" style="{{ old('payout_type')==='till'?'display:none':'' }}">
+                    <input type="tel" name="lender_phone" placeholder="0712 345 678" value="{{ old('lender_phone') }}" id="lender_phone_input">
+                    <div class="hint">💰 Payments land in your M-Pesa or Pochi la Biashara instantly.</div>
+                </div>
+                <div id="payout-till" style="{{ old('payout_type')==='till'?'':'display:none' }}">
+                    <input type="text" name="lender_till" placeholder="e.g. 123456" value="{{ old('lender_till') }}" id="lender_till_input" maxlength="7" inputmode="numeric">
+                    <div class="hint">🏪 Payments go directly to your Till (Buy Goods). Enter your 5–7 digit Till number.</div>
+                </div>
             </div>
+
             <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:11px;padding:12px 16px;font-size:13px;color:rgba(255,255,255,.45);line-height:1.6">
                 💡 Record many deni? <a href="{{ route('creditor.login') }}" style="color:#f87171;text-decoration:none;font-weight:600">Get a creditor account</a> — one login, all your tabs in one place.
             </div>
@@ -183,5 +203,16 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
         <div class="privacy-note">🔒 Your M-Pesa number is encrypted and never shown to the customer.<br>Money goes straight to your M-Pesa via <span>M-Pesa B2C</span> the moment they pay.</div>
     </form>
 </div>
+<script>
+function togglePayout() {
+    const isTill = document.getElementById('opt-till').checked;
+    document.getElementById('payout-phone').style.display = isTill ? 'none' : '';
+    document.getElementById('payout-till').style.display  = isTill ? '' : 'none';
+    document.getElementById('lender_phone_input').required = !isTill;
+    document.getElementById('lender_till_input').required  = isTill;
+}
+// Set initial required state
+togglePayout();
+</script>
 </body>
 </html>

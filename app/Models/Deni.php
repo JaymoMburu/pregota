@@ -10,7 +10,8 @@ class Deni extends Model
 
     protected $fillable = [
         'pay_link_id', 'creditor_name', 'admin_token', 'debtor_token',
-        'debtor_phone_hash', 'debtor_phone_encrypted', 'debtor_name', 'lender_phone_encrypted', 'lender_phone_hash',
+        'debtor_phone_hash', 'debtor_phone_encrypted', 'debtor_name',
+        'lender_phone_encrypted', 'lender_phone_hash', 'lender_till',
         'description', 'original_amount', 'amount_paid', 'status', 'due_date',
     ];
 

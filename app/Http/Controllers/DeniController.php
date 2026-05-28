@@ -46,14 +46,20 @@ class DeniController extends Controller
         ];
 
         if (! $isSeller && ! $isCreditor) {
-            $rules['creditor_name']  = ['required', 'string', 'max:100'];
-            $rules['lender_phone']   = ['required', 'string', 'regex:/^(\+?254|0)[17]\d{8}$/'];
+            $rules['creditor_name'] = ['required', 'string', 'max:100'];
+            $rules['payout_type']   = ['required', 'in:phone,till'];
+            $rules['lender_phone']  = ['required_if:payout_type,phone', 'nullable', 'string', 'regex:/^(\+?254|0)[17]\d{8}$/'];
+            $rules['lender_till']   = ['required_if:payout_type,till', 'nullable', 'string', 'regex:/^\d{5,7}$/'];
         }
 
         $data = $request->validate($rules);
 
         $debtorHash      = isset($data['debtor_phone']) ? $this->seller->hashPhone($data['debtor_phone']) : null;
         $debtorEncrypted = isset($data['debtor_phone']) ? Crypt::encryptString($data['debtor_phone']) : null;
+
+        $lenderTill  = null;
+        $lenderPhone = null;
+        $lenderHash  = null;
 
         if ($isSeller) {
             $lenderPhone   = Crypt::decryptString($payLink->phone_encrypted);
@@ -64,12 +70,18 @@ class DeniController extends Controller
             $creditorLabel = session('creditor_name');
             $creditorName  = session('creditor_name');
         } else {
-            $lenderPhone   = $data['lender_phone'];
             $creditorLabel = $data['creditor_name'];
             $creditorName  = $data['creditor_name'];
+            if (($data['payout_type'] ?? 'phone') === 'till') {
+                $lenderTill = $data['lender_till'];
+            } else {
+                $lenderPhone = $data['lender_phone'];
+            }
         }
 
-        $lenderHash = $this->seller->hashPhone($lenderPhone);
+        if ($lenderPhone) {
+            $lenderHash = $this->seller->hashPhone($lenderPhone);
+        }
 
         $deni = Deni::create([
             'pay_link_id'            => $payLink?->id,
@@ -79,8 +91,9 @@ class DeniController extends Controller
             'debtor_phone_hash'      => $debtorHash,
             'debtor_phone_encrypted' => $debtorEncrypted,
             'debtor_name'            => $data['debtor_name'] ?? null,
-            'lender_phone_encrypted' => Crypt::encryptString($lenderPhone),
+            'lender_phone_encrypted' => $lenderPhone ? Crypt::encryptString($lenderPhone) : null,
             'lender_phone_hash'      => $lenderHash,
+            'lender_till'            => $lenderTill,
             'description'            => $data['description'],
             'original_amount'        => $data['original_amount'],
             'due_date'               => $data['due_date'] ?? null,
