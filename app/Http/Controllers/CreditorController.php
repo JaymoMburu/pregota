@@ -33,9 +33,8 @@ class CreditorController extends Controller
             'display_name' => ['required', 'string', 'max:100'],
         ]);
 
-        $hash       = $this->seller->hashPhone($data['phone']);
-        $activePass = PregotaPass::activeFor($hash);
-        $loginFee   = $activePass ? 1 : 2;
+        $hash     = $this->seller->hashPhone($data['phone']);
+        $loginFee = 20;
 
         $stk = $this->daraja->stkPush(
             phone: $data['phone'],
@@ -75,6 +74,7 @@ class CreditorController extends Controller
                 'creditor_phone_encrypted' => $auth->phone_encrypted,
                 'creditor_name'            => $auth->display_name,
                 'creditor_verified_at'     => now()->timestamp,
+                'creditor_verified_day'    => now()->toDateString(),
             ]);
             return response()->json(['status' => 'confirmed', 'redirect' => route('creditor.dashboard')]);
         }
@@ -88,9 +88,8 @@ class CreditorController extends Controller
 
     public function dashboard()
     {
-        $verifiedAt = session('creditor_verified_at', 0);
-        if (! session()->has('creditor_phone_hash') || $verifiedAt <= now()->subHours(12)->timestamp) {
-            session()->forget(['creditor_phone_hash', 'creditor_phone_encrypted', 'creditor_name', 'creditor_verified_at', 'creditor_payout_till']);
+        if (! session()->has('creditor_phone_hash') || session('creditor_verified_day') !== now()->toDateString()) {
+            session()->forget(['creditor_phone_hash', 'creditor_phone_encrypted', 'creditor_name', 'creditor_verified_at', 'creditor_verified_day', 'creditor_payout_till']);
             return redirect()->route('creditor.login');
         }
 

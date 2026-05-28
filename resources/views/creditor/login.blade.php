@@ -54,8 +54,8 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
             <input type="tel" id="phone" placeholder="07XX XXX XXX" autocomplete="tel">
         </div>
         <div class="err" id="err-msg"></div>
-        <button class="btn" id="auth-btn" onclick="doAuth()">Get Access — KES 2 STK Push →</button>
-        <div class="note">KES 2 is charged to verify your number. This is your login — no password needed.</div>
+        <button class="btn" id="auth-btn" onclick="doAuth()">Get Access — KES 20 / day →</button>
+        <div class="note">KES 20 is charged once per day via M-Pesa. Access your dashboard all day until midnight — no password needed.</div>
     </div>
 
     <div class="pending" id="pending-view">
