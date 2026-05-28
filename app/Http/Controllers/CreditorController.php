@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BusinessLedgerEntry;
 use App\Models\CreditorAuthSession;
 use App\Models\CreditorPreset;
 use App\Models\Deni;
@@ -134,7 +135,88 @@ class CreditorController extends Controller
         $openDeni    = $allDeni->whereIn('status', ['open', 'partial']);
         $settledDeni = $allDeni->where('status', 'settled');
 
-        return view('creditor.dashboard', compact('openDeni', 'settledDeni', 'totalOutstanding', 'totalCollected', 'openCount', 'customers'));
+        // Ledger — last 30 days
+        $ledger = BusinessLedgerEntry::where('creditor_phone_hash', $hash)
+            ->where('entry_date', '>=', now()->subDays(30)->toDateString())
+            ->orderByDesc('entry_date')->orderByDesc('id')
+            ->get();
+
+        $todayIncome   = $ledger->where('type', 'income')->where('entry_date', now()->toDateString())->sum('amount');
+        $todayExpense  = $ledger->where('type', 'expense')->where('entry_date', now()->toDateString())->sum('amount');
+        $monthIncome   = $ledger->where('type', 'income')->sum('amount');
+        $monthExpense  = $ledger->where('type', 'expense')->sum('amount');
+
+        // Unread notifications: confirmed payments today
+        $todayPayments = \App\Models\DeniPayment::whereHas('deni', fn($q) => $q->where('lender_phone_hash', $hash))
+            ->where('status', 'confirmed')
+            ->whereDate('updated_at', today())
+            ->count();
+
+        return view('creditor.dashboard', compact(
+            'openDeni', 'settledDeni', 'totalOutstanding', 'totalCollected', 'openCount',
+            'customers', 'ledger', 'todayIncome', 'todayExpense', 'monthIncome', 'monthExpense', 'todayPayments'
+        ));
+    }
+
+    public function notifications()
+    {
+        if (! session()->has('creditor_phone_hash')) return response()->json(['error' => 'Unauthorised'], 403);
+
+        $hash     = session('creditor_phone_hash');
+        $payments = \App\Models\DeniPayment::with('deni')
+            ->whereHas('deni', fn($q) => $q->where('lender_phone_hash', $hash))
+            ->where('status', 'confirmed')
+            ->orderByDesc('updated_at')
+            ->limit(20)
+            ->get()
+            ->map(fn($p) => [
+                'id'          => $p->id,
+                'amount'      => $p->face_value ?: $p->amount,
+                'description' => $p->deni?->description,
+                'debtor_name' => $p->deni?->debtor_name,
+                'receipt'     => $p->receipt_number,
+                'paid_at'     => $p->updated_at->diffForHumans(),
+                'today'       => $p->updated_at->isToday(),
+            ]);
+
+        return response()->json(['payments' => $payments]);
+    }
+
+    public function saveLedgerEntry(Request $request)
+    {
+        if (! session()->has('creditor_phone_hash')) return response()->json(['error' => 'Unauthorised'], 403);
+
+        $data = $request->validate([
+            'type'        => ['required', 'in:income,expense'],
+            'category'    => ['required', 'string', 'max:60'],
+            'amount'      => ['required', 'integer', 'min:1', 'max:10000000'],
+            'description' => ['nullable', 'string', 'max:300'],
+            'entry_date'  => ['required', 'date'],
+        ]);
+
+        $entry = BusinessLedgerEntry::create([
+            'creditor_phone_hash' => session('creditor_phone_hash'),
+            'type'                => $data['type'],
+            'category'            => $data['category'],
+            'amount'              => $data['amount'],
+            'description'         => $data['description'] ?? null,
+            'source'              => 'manual',
+            'entry_date'          => $data['entry_date'],
+        ]);
+
+        return response()->json(['success' => true, 'id' => $entry->id]);
+    }
+
+    public function deleteLedgerEntry(int $id)
+    {
+        if (! session()->has('creditor_phone_hash')) return response()->json(['error' => 'Unauthorised'], 403);
+
+        BusinessLedgerEntry::where('id', $id)
+            ->where('creditor_phone_hash', session('creditor_phone_hash'))
+            ->where('source', 'manual')
+            ->delete();
+
+        return response()->json(['deleted' => true]);
     }
 
     public function setPayoutTill(Request $request)

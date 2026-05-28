@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\BillSplitPayment;
+use App\Models\BusinessLedgerEntry;
 use App\Models\BulkGift;
 use App\Models\CreditorAuthSession;
 use App\Models\Deni;
@@ -146,6 +147,22 @@ class MpesaController extends Controller
                                                 $faceValue = $deniPayment->face_value ?: $deniPayment->amount;
                                                 $deni->increment('amount_paid', $faceValue);
                                                 $deni->syncStatus();
+                                                // Auto-log income to business ledger
+                                                if ($deni->lender_phone_hash) {
+                                                    BusinessLedgerEntry::firstOrCreate(
+                                                        ['deni_payment_id' => $deniPayment->id],
+                                                        [
+                                                            'creditor_phone_hash' => $deni->lender_phone_hash,
+                                                            'type'                => 'income',
+                                                            'category'            => 'deni_payment',
+                                                            'amount'              => $faceValue,
+                                                            'description'         => $deni->description,
+                                                            'source'              => 'deni_payment',
+                                                            'entry_date'          => now()->toDateString(),
+                                                        ]
+                                                    );
+                                                }
+
                                                 // Pay the lender via Till (B2B) or phone (B2C)
                                                 if ($deni->lender_till) {
                                                     $this->daraja->b2bPayout(

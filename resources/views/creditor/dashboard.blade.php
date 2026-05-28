@@ -86,9 +86,45 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 
 .empty{text-align:center;padding:40px 20px;color:rgba(255,255,255,.3);font-size:14px}
 
+/* Tabs */
+.tab-bar{display:flex;gap:4px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:4px;margin-bottom:20px}
+.tab-btn{flex:1;padding:9px;border-radius:9px;font-size:13px;font-weight:700;cursor:pointer;text-align:center;background:none;border:none;color:rgba(255,255,255,.45);font-family:inherit;transition:.15s}
+.tab-btn.active{background:rgba(255,255,255,.08);color:#fff}
+
+/* Ledger */
+.ledger-summary{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:20px}
+.led-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:14px;text-align:center}
+.led-val{font-size:17px;font-weight:900}
+.led-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:rgba(255,255,255,.35);margin-top:3px}
+.led-entry{display:flex;justify-content:space-between;align-items:center;padding:11px 0;border-bottom:1px solid rgba(255,255,255,.05)}
+.led-entry:last-child{border-bottom:none}
+.led-cat{font-size:11px;color:rgba(255,255,255,.4);margin-top:2px}
+.led-amount{font-size:15px;font-weight:900}
+.led-del{background:none;border:none;color:rgba(255,255,255,.2);cursor:pointer;font-size:16px;padding:2px 6px}
+.led-del:hover{color:#f87171}
+.add-entry-form{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:13px;padding:16px;margin-bottom:16px}
+.ae-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px}
+.ae-input{width:100%;padding:10px 12px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:9px;color:#fff;font-size:14px;outline:none;font-family:inherit}
+.ae-input:focus{border-color:rgba(239,68,68,.4)}
+.ae-type{display:flex;gap:8px;margin-bottom:8px}
+.ae-type label{flex:1;display:flex;align-items:center;gap:6px;padding:9px 12px;border-radius:9px;cursor:pointer;font-size:13px;font-weight:600;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.04);color:rgba(255,255,255,.6)}
+
+/* Notification bell */
+.bell-btn{position:relative;background:none;border:none;color:rgba(255,255,255,.5);cursor:pointer;padding:4px 8px;font-size:20px}
+.bell-badge{position:absolute;top:0;right:2px;background:#ef4444;color:#fff;font-size:9px;font-weight:900;border-radius:999px;padding:1px 5px;min-width:16px;text-align:center}
+.notif-panel{display:none;position:absolute;right:0;top:44px;width:300px;background:#1a2730;border:1px solid rgba(255,255,255,.1);border-radius:14px;box-shadow:0 12px 40px rgba(0,0,0,.5);z-index:100;max-height:360px;overflow-y:auto}
+.notif-item{padding:12px 16px;border-bottom:1px solid rgba(255,255,255,.06);font-size:13px}
+.notif-item:last-child{border-bottom:none}
+.notif-amount{font-weight:900;color:#4ADE80}
+.notif-desc{color:rgba(255,255,255,.5);font-size:12px;margin-top:2px}
+.notif-time{font-size:11px;color:rgba(255,255,255,.3);margin-top:2px}
+.notif-empty{padding:20px;text-align:center;color:rgba(255,255,255,.3);font-size:13px}
+
 @media(max-width:480px){
     .stats{grid-template-columns:repeat(3,1fr)}
     .stat-val{font-size:15px}
+    .ledger-summary{grid-template-columns:1fr 1fr}
+    .ae-row{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -96,7 +132,16 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 
 <nav class="nav">
     <a href="{{ route('home') }}" class="logo">Pregota</a>
-    <div class="nav-right">
+    <div class="nav-right" style="position:relative">
+        <div style="position:relative">
+            <button class="bell-btn" onclick="toggleNotif()" id="bell-btn">🔔
+                @if($todayPayments > 0)<span class="bell-badge">{{ $todayPayments }}</span>@endif
+            </button>
+            <div class="notif-panel" id="notif-panel">
+                <div style="padding:12px 16px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.35);border-bottom:1px solid rgba(255,255,255,.06)">Recent Payments</div>
+                <div id="notif-list"><div class="notif-empty">Loading…</div></div>
+            </div>
+        </div>
         <span style="font-size:12px;color:rgba(255,255,255,.4)">{{ session('creditor_name') }}</span>
         <form method="POST" action="{{ route('creditor.logout') }}" style="display:inline">
             @csrf
@@ -152,6 +197,109 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
             <div class="stat-label">Total Tabs</div>
         </div>
     </div>
+
+    {{-- Tab bar --}}
+    <div class="tab-bar">
+        <button class="tab-btn active" id="tab-deni-btn" onclick="showTab('deni')">🧾 Madeni</button>
+        <button class="tab-btn" id="tab-ledger-btn" onclick="showTab('ledger')">📒 Ledger</button>
+    </div>
+
+    {{-- LEDGER TAB --}}
+    <div id="tab-ledger" style="display:none">
+
+        {{-- P&L Summary --}}
+        <div class="ledger-summary">
+            <div class="led-card">
+                <div class="led-val" style="color:#4ADE80">KES {{ number_format($todayIncome) }}</div>
+                <div class="led-label">Today's Income</div>
+            </div>
+            <div class="led-card">
+                <div class="led-val" style="color:#f87171">KES {{ number_format($todayExpense) }}</div>
+                <div class="led-label">Today's Expenses</div>
+            </div>
+            <div class="led-card">
+                <div class="led-val" style="color:{{ ($todayIncome - $todayExpense) >= 0 ? '#4ADE80' : '#f87171' }}">
+                    KES {{ number_format(abs($todayIncome - $todayExpense)) }}
+                </div>
+                <div class="led-label">Today's {{ ($todayIncome - $todayExpense) >= 0 ? 'Profit' : 'Loss' }}</div>
+            </div>
+        </div>
+        <div style="display:flex;gap:10px;margin-bottom:20px">
+            <div style="flex:1;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:10px;padding:12px;text-align:center">
+                <div style="font-size:14px;font-weight:900;color:#4ADE80">KES {{ number_format($monthIncome) }}</div>
+                <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:rgba(255,255,255,.3);margin-top:3px">30-Day Income</div>
+            </div>
+            <div style="flex:1;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:10px;padding:12px;text-align:center">
+                <div style="font-size:14px;font-weight:900;color:#f87171">KES {{ number_format($monthExpense) }}</div>
+                <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:rgba(255,255,255,.3);margin-top:3px">30-Day Expenses</div>
+            </div>
+            <div style="flex:1;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:10px;padding:12px;text-align:center">
+                <div style="font-size:14px;font-weight:900;color:{{ ($monthIncome-$monthExpense)>=0?'#4ADE80':'#f87171' }}">KES {{ number_format(abs($monthIncome-$monthExpense)) }}</div>
+                <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:rgba(255,255,255,.3);margin-top:3px">30-Day {{ ($monthIncome-$monthExpense)>=0?'Profit':'Loss' }}</div>
+            </div>
+        </div>
+
+        {{-- Add entry form --}}
+        <div class="add-entry-form">
+            <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.35);margin-bottom:10px">Record Entry</div>
+            <div class="ae-type">
+                <label style="border-color:rgba(37,211,102,.25);background:rgba(37,211,102,.06)">
+                    <input type="radio" name="ae-type" value="income" id="ae-income" checked style="accent-color:#4ADE80"> 💰 Income
+                </label>
+                <label style="border-color:rgba(239,68,68,.25);background:rgba(239,68,68,.06)">
+                    <input type="radio" name="ae-type" value="expense" id="ae-expense" style="accent-color:#f87171"> 💸 Expense
+                </label>
+            </div>
+            <div class="ae-row">
+                <div>
+                    <select id="ae-category" class="ae-input">
+                        <option value="">Category</option>
+                    </select>
+                </div>
+                <div>
+                    <input type="number" id="ae-amount" class="ae-input" placeholder="Amount (KES)" min="1">
+                </div>
+            </div>
+            <input type="text" id="ae-desc" class="ae-input" placeholder="Description — e.g. Unga 5kg, maziwa, chapati sales" maxlength="300" style="margin-bottom:8px">
+            <div style="display:flex;gap:8px;align-items:center">
+                <input type="date" id="ae-date" class="ae-input" style="flex:1">
+                <button onclick="saveLedgerEntry()" style="padding:10px 20px;background:linear-gradient(135deg,#dc2626,#ef4444);border:none;border-radius:9px;color:#fff;font-size:14px;font-weight:700;cursor:pointer;white-space:nowrap">Add →</button>
+            </div>
+            <div id="ae-ok" style="display:none;margin-top:8px;font-size:13px;color:#4ADE80">✓ Saved!</div>
+        </div>
+
+        {{-- Entry list --}}
+        <div id="ledger-list">
+        @forelse($ledger as $entry)
+        <div class="led-entry" id="led-{{ $entry->id }}">
+            <div style="flex:1">
+                <div style="font-size:14px;font-weight:700">
+                    {{ $entry->source === 'deni_payment' ? '🧾 ' : ($entry->type === 'income' ? '💰 ' : '💸 ') }}
+                    {{ $entry->description ?: ucfirst(str_replace('_',' ',$entry->category)) }}
+                </div>
+                <div class="led-cat">
+                    {{ ucfirst(str_replace('_',' ',$entry->category)) }}
+                    @if($entry->source === 'deni_payment') · Auto from deni payment @endif
+                    · {{ $entry->entry_date->format('d M') }}
+                </div>
+            </div>
+            <div style="text-align:right;display:flex;align-items:center;gap:8px">
+                <div class="led-amount" style="color:{{ $entry->type==='income'?'#4ADE80':'#f87171' }}">
+                    {{ $entry->type === 'income' ? '+' : '-' }}KES {{ number_format($entry->amount) }}
+                </div>
+                @if($entry->source === 'manual')
+                <button class="led-del" onclick="deleteLedgerEntry({{ $entry->id }})">×</button>
+                @endif
+            </div>
+        </div>
+        @empty
+        <div class="empty">No entries yet. Record your first income or expense above.</div>
+        @endforelse
+        </div>
+    </div>
+
+    {{-- DENI TAB --}}
+    <div id="tab-deni">
 
     {{-- Quick-add from known customers --}}
     @if($customers->isNotEmpty())
@@ -274,6 +422,8 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 
 </div>
 
+</div>{{-- /.wrap --}}
+
 <script>
 let activeHash = null;
 let activeEncrypted = null;
@@ -371,6 +521,146 @@ async function saveTill() {
             : '📱 M-Pesa / Pochi (your login number)';
         document.getElementById('payout-display').style.color = till ? '#4ADE80' : 'rgba(255,255,255,.7)';
         document.getElementById('till-edit-form').style.display = 'none';
+    }
+}
+
+// ── Tabs ──────────────────────────────────────────────────────────
+function showTab(tab) {
+    document.getElementById('tab-deni').style.display   = tab === 'deni'   ? '' : 'none';
+    document.getElementById('tab-ledger').style.display = tab === 'ledger' ? '' : 'none';
+    document.getElementById('tab-deni-btn').className   = 'tab-btn' + (tab === 'deni'   ? ' active' : '');
+    document.getElementById('tab-ledger-btn').className = 'tab-btn' + (tab === 'ledger' ? ' active' : '');
+}
+
+// ── Notifications ─────────────────────────────────────────────────
+let notifLoaded = false;
+function toggleNotif() {
+    const panel = document.getElementById('notif-panel');
+    const isOpen = panel.style.display === 'block';
+    panel.style.display = isOpen ? 'none' : 'block';
+    if (!isOpen && !notifLoaded) {
+        notifLoaded = true;
+        fetch('{{ route("creditor.notifications") }}')
+            .then(r => r.json())
+            .then(data => {
+                const list = document.getElementById('notif-list');
+                if (!data.payments || !data.payments.length) {
+                    list.innerHTML = '<div class="notif-empty">No payments yet.</div>';
+                    return;
+                }
+                list.innerHTML = data.payments.map(p =>
+                    `<div class="notif-item">
+                        <div><span class="notif-amount">+KES ${Number(p.amount).toLocaleString()}</span>${p.debtor_name ? ' from ' + p.debtor_name : ''}</div>
+                        <div class="notif-desc">${p.description || ''}</div>
+                        <div class="notif-time">${p.paid_at}${p.receipt ? ' · ' + p.receipt : ''}</div>
+                    </div>`
+                ).join('');
+            })
+            .catch(() => {
+                document.getElementById('notif-list').innerHTML = '<div class="notif-empty">Could not load.</div>';
+            });
+    }
+}
+document.addEventListener('click', e => {
+    const panel = document.getElementById('notif-panel');
+    const btn   = document.getElementById('bell-btn');
+    if (panel && !panel.contains(e.target) && !btn.contains(e.target)) {
+        panel.style.display = 'none';
+    }
+});
+
+// ── Ledger categories ─────────────────────────────────────────────
+const INCOME_CATS = [
+    ['deni_payment','🧾 Deni Payment'],['salary','💼 Salary'],['business','🏪 Business Sales'],
+    ['freelance','💻 Freelance'],['rental','🏠 Rental Income'],['friends_family','🤝 Friends & Family'],
+    ['side_hustle','⚡ Side Hustle'],['other','✨ Other'],
+];
+const EXPENSE_CATS = [
+    ['stock','📦 Stock / Restocking'],['transport','🚐 Transport'],['food','🍽️ Food & Meals'],
+    ['groceries','🥬 Groceries'],['airtime','📶 Airtime & Data'],['rent','🏠 Rent / Stall Fee'],
+    ['health','💊 Health'],['wages','👷 Wages Paid'],['utilities','💡 Utilities'],
+    ['savings','🏦 Savings'],['other','📦 Other'],
+];
+
+function refreshCategories() {
+    const isIncome = document.getElementById('ae-income').checked;
+    const cats     = isIncome ? INCOME_CATS : EXPENSE_CATS;
+    const sel      = document.getElementById('ae-category');
+    sel.innerHTML  = '<option value="">— Category —</option>' +
+        cats.map(([v, l]) => `<option value="${v}">${l}</option>`).join('');
+}
+
+document.getElementById('ae-income').addEventListener('change',  refreshCategories);
+document.getElementById('ae-expense').addEventListener('change', refreshCategories);
+refreshCategories();
+document.getElementById('ae-date').valueAsDate = new Date();
+
+// ── Save ledger entry ─────────────────────────────────────────────
+async function saveLedgerEntry() {
+    const isIncome = document.getElementById('ae-income').checked;
+    const cat      = document.getElementById('ae-category').value;
+    const amount   = parseInt(document.getElementById('ae-amount').value) || 0;
+    const desc     = document.getElementById('ae-desc').value.trim();
+    const date     = document.getElementById('ae-date').value;
+    const ok       = document.getElementById('ae-ok');
+
+    if (!cat || !amount || !date) {
+        ok.style.display = 'block'; ok.style.color = '#f87171';
+        ok.textContent   = 'Fill in category, amount and date.';
+        return;
+    }
+
+    const res = await fetch('{{ route("creditor.ledger.save") }}', {
+        method: 'POST',
+        headers: {'Content-Type':'application/json','X-CSRF-TOKEN':'{{ csrf_token() }}'},
+        body: JSON.stringify({
+            type: isIncome ? 'income' : 'expense', category: cat,
+            amount, description: desc || null, entry_date: date,
+        }),
+    });
+    const data = await res.json();
+    if (data.success) {
+        ok.style.display = 'block'; ok.style.color = '#4ADE80'; ok.textContent = '✓ Saved!';
+        document.getElementById('ae-amount').value = '';
+        document.getElementById('ae-desc').value   = '';
+        refreshCategories();
+        const sign     = isIncome ? '+' : '-';
+        const color    = isIncome ? '#4ADE80' : '#f87171';
+        const catLabel = (isIncome ? INCOME_CATS : EXPENSE_CATS).find(([v]) => v === cat)?.[1] || cat;
+        const today    = new Date(date).toLocaleDateString('en-GB', {day:'2-digit', month:'short'});
+        const row      = document.createElement('div');
+        row.className  = 'led-entry'; row.id = 'led-' + data.id;
+        row.innerHTML  = `
+            <div style="flex:1">
+                <div style="font-size:14px;font-weight:700">${isIncome ? '💰 ' : '💸 '}${desc || catLabel}</div>
+                <div class="led-cat">${catLabel} · ${today}</div>
+            </div>
+            <div style="text-align:right;display:flex;align-items:center;gap:8px">
+                <div class="led-amount" style="color:${color}">${sign}KES ${amount.toLocaleString()}</div>
+                <button class="led-del" onclick="deleteLedgerEntry(${data.id})">×</button>
+            </div>`;
+        const list  = document.getElementById('ledger-list');
+        const empty = list.querySelector('.empty');
+        if (empty) empty.remove();
+        list.prepend(row);
+        setTimeout(() => { ok.style.display = 'none'; }, 2200);
+    } else {
+        ok.style.display = 'block'; ok.style.color = '#f87171';
+        ok.textContent   = data.errors ? Object.values(data.errors).flat().join(' ') : 'Error saving.';
+    }
+}
+
+// ── Delete ledger entry ───────────────────────────────────────────
+async function deleteLedgerEntry(id) {
+    if (!confirm('Delete this entry?')) return;
+    const res = await fetch(`/creditor/ledger/${id}`, {
+        method: 'DELETE',
+        headers: {'X-CSRF-TOKEN':'{{ csrf_token() }}'},
+    });
+    const data = await res.json();
+    if (data.deleted) {
+        const row = document.getElementById('led-' + id);
+        if (row) row.remove();
     }
 }
 </script>
