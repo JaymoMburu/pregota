@@ -212,6 +212,10 @@ Route::post('/creditor/payout-till', [CreditorController::class, 'setPayoutTill'
 Route::post('/creditor/ledger', [CreditorController::class, 'saveLedgerEntry'])->name('creditor.ledger.save');
 Route::delete('/creditor/ledger/{id}', [CreditorController::class, 'deleteLedgerEntry'])->name('creditor.ledger.delete');
 Route::get('/creditor/notifications', [CreditorController::class, 'notifications'])->name('creditor.notifications');
+Route::post('/creditor/contacts', [CreditorController::class, 'saveContact'])->name('creditor.contact.save');
+Route::delete('/creditor/contacts/{id}', [CreditorController::class, 'deleteContact'])->name('creditor.contact.delete');
+Route::post('/creditor/payout/initiate', [CreditorController::class, 'initiatePayout'])->name('creditor.payout.initiate');
+Route::get('/creditor/payout/poll', [CreditorController::class, 'pollPayout'])->name('creditor.payout.poll');
 Route::post('/creditor/logout', [CreditorController::class, 'logout'])->name('creditor.logout');
 
 // ── Madeni (Tabs / Credit) ───────────────────────────────────────────────

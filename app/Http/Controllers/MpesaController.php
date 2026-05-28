@@ -6,6 +6,7 @@ use App\Models\BillSplitPayment;
 use App\Models\BusinessLedgerEntry;
 use App\Models\BulkGift;
 use App\Models\CreditorAuthSession;
+use App\Models\CreditorPayout;
 use App\Models\Deni;
 use App\Models\DeniPayment;
 use App\Models\GroupPayment;
@@ -73,10 +74,46 @@ class MpesaController extends Controller
             $amount    = (float) ($items->firstWhere('Name', 'Amount')['Value'] ?? 0);
             $mpesaCode = $items->firstWhere('Name', 'MpesaReceiptNumber')['Value'] ?? '';
 
-            // Creditor auth login (KES 2 STK Push)
+            // Creditor auth login
             $creditorAuth = CreditorAuthSession::where('checkout_request_id', $checkoutId)->where('status', 'pending')->first();
             if ($creditorAuth) {
                 $creditorAuth->update(['status' => 'confirmed']);
+                return response()->json(['ResultCode' => 0, 'ResultDesc' => 'Accepted']);
+            }
+
+            // Creditor payout (owner pays worker/supplier via Pregota)
+            $creditorPayout = CreditorPayout::where('checkout_request_id', $checkoutId)->where('status', 'pending')->first();
+            if ($creditorPayout) {
+                $receipt = 'PRG-' . now()->format('Ymd') . '-' . strtoupper(\Illuminate\Support\Str::random(6));
+                $creditorPayout->update(['status' => 'confirmed', 'receipt_number' => $receipt]);
+
+                BusinessLedgerEntry::create([
+                    'creditor_phone_hash' => $creditorPayout->creditor_phone_hash,
+                    'type'                => 'expense',
+                    'category'            => $creditorPayout->category,
+                    'amount'              => $creditorPayout->amount,
+                    'description'         => $creditorPayout->description ?: ('Paid: ' . $creditorPayout->recipient_name),
+                    'source'              => 'creditor_payout',
+                    'entry_date'          => now()->toDateString(),
+                ]);
+
+                if ($creditorPayout->recipient_till) {
+                    $this->daraja->b2bPayout(
+                        amount: $creditorPayout->amount,
+                        destination: $creditorPayout->recipient_till,
+                        type: 'till',
+                        accountRef: 'PAY-' . $creditorPayout->id,
+                        remarks: mb_substr($creditorPayout->description ?: ('Pay ' . $creditorPayout->recipient_name), 0, 40),
+                    );
+                } elseif ($creditorPayout->recipient_phone_encrypted) {
+                    $recipientPhone = Crypt::decryptString($creditorPayout->recipient_phone_encrypted);
+                    $this->daraja->b2cPayout(
+                        amount: $creditorPayout->amount,
+                        phone: $recipientPhone,
+                        remarks: mb_substr($creditorPayout->description ?: ('Pay ' . $creditorPayout->recipient_name), 0, 40),
+                    );
+                }
+
                 return response()->json(['ResultCode' => 0, 'ResultDesc' => 'Accepted']);
             }
 
@@ -202,6 +239,7 @@ class MpesaController extends Controller
             $reason = $callback['ResultDesc'] ?? 'Unknown';
 
             CreditorAuthSession::where('checkout_request_id', $checkoutId)->where('status', 'pending')->update(['status' => 'failed']);
+            CreditorPayout::where('checkout_request_id', $checkoutId)->where('status', 'pending')->update(['status' => 'failed']);
             PregotaPass::where('checkout_request_id', $checkoutId)->where('status', 'pending')->update(['status' => 'failed']);
 
             $multi = MultiGift::where('mpesa_checkout_id', $checkoutId)->first();

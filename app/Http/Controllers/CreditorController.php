@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\BusinessLedgerEntry;
 use App\Models\CreditorAuthSession;
+use App\Models\CreditorContact;
+use App\Models\CreditorPayout;
 use App\Models\CreditorPreset;
 use App\Models\Deni;
 use App\Models\PregotaPass;
@@ -135,6 +137,10 @@ class CreditorController extends Controller
         $openDeni    = $allDeni->whereIn('status', ['open', 'partial']);
         $settledDeni = $allDeni->where('status', 'settled');
 
+        // Contacts & recent payouts
+        $contacts      = CreditorContact::where('creditor_phone_hash', $hash)->orderBy('name')->get();
+        $recentPayouts = CreditorPayout::where('creditor_phone_hash', $hash)->latest()->limit(10)->get();
+
         // Ledger — last 30 days
         $ledger = BusinessLedgerEntry::where('creditor_phone_hash', $hash)
             ->where('entry_date', '>=', now()->subDays(30)->toDateString())
@@ -154,7 +160,8 @@ class CreditorController extends Controller
 
         return view('creditor.dashboard', compact(
             'openDeni', 'settledDeni', 'totalOutstanding', 'totalCollected', 'openCount',
-            'customers', 'ledger', 'todayIncome', 'todayExpense', 'monthIncome', 'monthExpense', 'todayPayments'
+            'customers', 'ledger', 'todayIncome', 'todayExpense', 'monthIncome', 'monthExpense',
+            'todayPayments', 'contacts', 'recentPayouts'
         ));
     }
 
@@ -271,6 +278,123 @@ class CreditorController extends Controller
             ->delete();
 
         return response()->json(['deleted' => true]);
+    }
+
+    public function saveContact(Request $request)
+    {
+        if (! session()->has('creditor_phone_hash')) return response()->json(['error' => 'Unauthorised'], 403);
+
+        $data = $request->validate([
+            'name' => ['required', 'string', 'max:100'],
+            'phone' => ['nullable', 'string', 'regex:/^(\+?254|0)[17]\d{8}$/'],
+            'till'  => ['nullable', 'string', 'regex:/^\d{5,7}$/'],
+        ]);
+
+        if (empty($data['phone']) && empty($data['till'])) {
+            return response()->json(['error' => 'Phone or Till number required.'], 422);
+        }
+
+        $hash  = session('creditor_phone_hash');
+        $count = CreditorContact::where('creditor_phone_hash', $hash)->count();
+        if ($count >= 50) {
+            return response()->json(['error' => 'Maximum 50 contacts reached.'], 422);
+        }
+
+        $contact = CreditorContact::create([
+            'creditor_phone_hash' => $hash,
+            'name'                => $data['name'],
+            'phone_encrypted'     => ! empty($data['phone']) ? Crypt::encryptString($data['phone']) : null,
+            'till'                => $data['till'] ?? null,
+        ]);
+
+        $masked = null;
+        if (! empty($data['phone'])) {
+            $masked = preg_replace('/^(0\d{3}|\+?254\d{3})(\d{3})(\d{3})$/', '$1 $2 $3', $data['phone']);
+        }
+
+        return response()->json([
+            'id'     => $contact->id,
+            'name'   => $contact->name,
+            'till'   => $contact->till,
+            'masked' => $masked,
+        ]);
+    }
+
+    public function deleteContact(int $id)
+    {
+        if (! session()->has('creditor_phone_hash')) return response()->json(['error' => 'Unauthorised'], 403);
+
+        CreditorContact::where('id', $id)
+            ->where('creditor_phone_hash', session('creditor_phone_hash'))
+            ->delete();
+
+        return response()->json(['deleted' => true]);
+    }
+
+    public function initiatePayout(Request $request)
+    {
+        if (! session()->has('creditor_phone_hash')) return response()->json(['error' => 'Unauthorised'], 403);
+
+        $data = $request->validate([
+            'contact_id'  => ['required', 'integer'],
+            'amount'      => ['required', 'integer', 'min:10', 'max:150000'],
+            'category'    => ['required', 'in:salary,stock,utilities,rent,other'],
+            'description' => ['nullable', 'string', 'max:200'],
+        ]);
+
+        $hash    = session('creditor_phone_hash');
+        $contact = CreditorContact::where('id', $data['contact_id'])
+            ->where('creditor_phone_hash', $hash)
+            ->firstOrFail();
+
+        $ownerPhone = Crypt::decryptString(session('creditor_phone_encrypted'));
+
+        $stk = $this->daraja->stkPush(
+            phone: $ownerPhone,
+            amount: $data['amount'],
+            accountRef: 'PAYOUT',
+            description: ($data['description'] ?: ('Pay ' . $contact->name)),
+        );
+
+        if (! isset($stk['CheckoutRequestID'])) {
+            return response()->json(['success' => false, 'message' => 'STK Push failed. Please try again.'], 422);
+        }
+
+        CreditorPayout::create([
+            'creditor_phone_hash'     => $hash,
+            'contact_id'              => $contact->id,
+            'recipient_name'          => $contact->name,
+            'recipient_phone_encrypted' => $contact->phone_encrypted,
+            'recipient_till'          => $contact->till,
+            'amount'                  => $data['amount'],
+            'category'                => $data['category'],
+            'description'             => $data['description'] ?? null,
+            'checkout_request_id'     => $stk['CheckoutRequestID'],
+            'status'                  => 'pending',
+        ]);
+
+        return response()->json([
+            'success'             => true,
+            'checkout_request_id' => $stk['CheckoutRequestID'],
+        ]);
+    }
+
+    public function pollPayout(Request $request)
+    {
+        if (! session()->has('creditor_phone_hash')) return response()->json(['error' => 'Unauthorised'], 403);
+
+        $payout = CreditorPayout::where('checkout_request_id', $request->query('checkout_request_id'))
+            ->where('creditor_phone_hash', session('creditor_phone_hash'))
+            ->first();
+
+        if (! $payout) return response()->json(['status' => 'not_found']);
+
+        return response()->json([
+            'status'  => $payout->status,
+            'receipt' => $payout->receipt_number,
+            'amount'  => $payout->amount,
+            'name'    => $payout->recipient_name,
+        ]);
     }
 
     public function logout()

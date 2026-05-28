@@ -200,8 +200,9 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 
     {{-- Tab bar --}}
     <div class="tab-bar">
-        <button class="tab-btn active" id="tab-deni-btn" onclick="showTab('deni')">🧾 Madeni</button>
-        <button class="tab-btn" id="tab-ledger-btn" onclick="showTab('ledger')">📒 Ledger</button>
+        <button class="tab-btn active" id="tab-deni-btn"   onclick="showTab('deni')">🧾 Madeni</button>
+        <button class="tab-btn"        id="tab-ledger-btn" onclick="showTab('ledger')">📒 Ledger</button>
+        <button class="tab-btn"        id="tab-payout-btn" onclick="showTab('payout')">💸 Pay Out</button>
     </div>
 
     {{-- LEDGER TAB --}}
@@ -296,6 +297,95 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
         <div class="empty">No entries yet. Record your first income or expense above.</div>
         @endforelse
         </div>
+    </div>
+
+    {{-- PAY OUT TAB --}}
+    <div id="tab-payout" style="display:none">
+
+        {{-- Saved contacts --}}
+        <div class="section-head">Saved Payees</div>
+        <div class="customer-chips" id="payee-chips">
+            @foreach($contacts as $c)
+            <div class="customer-chip" id="payee-chip-{{ $c->id }}"
+                onclick="selectPayee({{ $c->id }}, '{{ addslashes($c->name) }}', '{{ $c->till ? '🏪 Till '.$c->till : '' }}')">
+                <div class="chip-phone" style="font-size:13px;color:#fff">{{ $c->name }}</div>
+                <div style="font-size:10px;color:rgba(255,255,255,.35);margin-top:2px">
+                    {{ $c->till ? '🏪 Till '.$c->till : '📱 Phone' }}
+                </div>
+            </div>
+            @endforeach
+            <div class="customer-chip" onclick="toggleAddPayee()" id="add-payee-chip" style="border-style:dashed;color:rgba(255,255,255,.4)">
+                <div style="font-size:20px">＋</div>
+                <div style="font-size:11px;margin-top:2px">Add Payee</div>
+            </div>
+        </div>
+
+        {{-- Add payee form --}}
+        <div id="add-payee-form" style="display:none;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:13px;padding:16px;margin-bottom:16px">
+            <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.35);margin-bottom:10px">New Payee</div>
+            <div class="ae-row" style="margin-bottom:8px">
+                <input type="text" id="np-name" class="ae-input" placeholder="Name — e.g. Amina, Kariuki Supplier" maxlength="100">
+                <input type="text" id="np-till" class="ae-input" placeholder="Till number (or leave blank)" inputmode="numeric" maxlength="7">
+            </div>
+            <input type="tel" id="np-phone" class="ae-input" placeholder="Phone (if no Till) — e.g. 0712345678" style="margin-bottom:8px">
+            <div style="display:flex;gap:8px">
+                <button onclick="savePayee()" style="padding:10px 20px;background:linear-gradient(135deg,#dc2626,#ef4444);border:none;border-radius:9px;color:#fff;font-size:14px;font-weight:700;cursor:pointer">Save Payee</button>
+                <button onclick="toggleAddPayee()" style="background:none;border:none;color:rgba(255,255,255,.3);cursor:pointer;font-size:13px;padding:6px">Cancel</button>
+            </div>
+            <div id="np-err" style="display:none;margin-top:8px;font-size:13px;color:#f87171"></div>
+        </div>
+
+        {{-- Pay form --}}
+        <div id="pay-form" style="display:none;background:rgba(239,68,68,.04);border:1px solid rgba(239,68,68,.15);border-radius:13px;padding:16px;margin-bottom:16px">
+            <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.35);margin-bottom:6px">Pay</div>
+            <div id="pay-to-label" style="font-size:15px;font-weight:700;color:#f87171;margin-bottom:12px"></div>
+            <div class="ae-row" style="margin-bottom:8px">
+                <input type="number" id="pay-amount" class="ae-input" placeholder="Amount (KES)" min="10">
+                <select id="pay-category" class="ae-input">
+                    <option value="salary">💼 Salary / Wages</option>
+                    <option value="stock">📦 Stock / Supplier</option>
+                    <option value="utilities">💡 Utilities</option>
+                    <option value="rent">🏠 Rent</option>
+                    <option value="other">📦 Other</option>
+                </select>
+            </div>
+            <input type="text" id="pay-desc" class="ae-input" placeholder="Note — e.g. May salary, Unga 10 bags" maxlength="200" style="margin-bottom:8px">
+            <div style="display:flex;gap:8px;align-items:center">
+                <button onclick="initiatePayout()" id="pay-btn" style="flex:1;padding:12px;background:linear-gradient(135deg,#dc2626,#ef4444);border:none;border-radius:9px;color:#fff;font-size:15px;font-weight:700;cursor:pointer">Pay Now via M-Pesa →</button>
+                <button onclick="clearPayee()" style="background:none;border:none;color:rgba(255,255,255,.3);cursor:pointer;font-size:13px;padding:6px">Cancel</button>
+            </div>
+            <div id="pay-status" style="display:none;margin-top:10px;padding:10px 14px;border-radius:9px;font-size:13px"></div>
+        </div>
+
+        {{-- Recent payouts --}}
+        @if($recentPayouts->isNotEmpty())
+        <div class="section-head" style="margin-top:4px">Recent Payouts</div>
+        @foreach($recentPayouts as $p)
+        <div class="led-entry">
+            <div style="flex:1">
+                <div style="font-size:14px;font-weight:700">
+                    {{ $p->status === 'confirmed' ? '✅' : ($p->status === 'failed' ? '❌' : '⏳') }}
+                    {{ $p->recipient_name }}
+                </div>
+                <div class="led-cat">
+                    {{ ucfirst($p->category) }} · {{ $p->created_at->format('d M') }}
+                    @if($p->description) · {{ $p->description }} @endif
+                    @if($p->receipt_number) · {{ $p->receipt_number }} @endif
+                </div>
+            </div>
+            <div class="led-amount" style="color:{{ $p->status==='confirmed'?'#f87171':($p->status==='failed'?'rgba(255,255,255,.3)':'#fbbf24') }}">
+                -KES {{ number_format($p->amount) }}
+            </div>
+        </div>
+        @endforeach
+        @else
+        <div class="empty" style="padding:30px 20px">
+            <div style="font-size:28px;margin-bottom:10px">💸</div>
+            <div>No payouts yet.</div>
+            <div style="font-size:12px;margin-top:4px">Add a payee above to get started.</div>
+        </div>
+        @endif
+
     </div>
 
     {{-- DENI TAB --}}
@@ -526,10 +616,146 @@ async function saveTill() {
 
 // ── Tabs ──────────────────────────────────────────────────────────
 function showTab(tab) {
-    document.getElementById('tab-deni').style.display   = tab === 'deni'   ? '' : 'none';
-    document.getElementById('tab-ledger').style.display = tab === 'ledger' ? '' : 'none';
-    document.getElementById('tab-deni-btn').className   = 'tab-btn' + (tab === 'deni'   ? ' active' : '');
-    document.getElementById('tab-ledger-btn').className = 'tab-btn' + (tab === 'ledger' ? ' active' : '');
+    ['deni','ledger','payout'].forEach(t => {
+        document.getElementById('tab-' + t).style.display      = t === tab ? '' : 'none';
+        document.getElementById('tab-' + t + '-btn').className = 'tab-btn' + (t === tab ? ' active' : '');
+    });
+}
+
+// ── Pay Out ───────────────────────────────────────────────────────
+let activePayeeId = null;
+let payPollTimer  = null;
+
+function selectPayee(id, name, detail) {
+    document.querySelectorAll('.customer-chip').forEach(c => c.classList.remove('active'));
+    if (activePayeeId === id) { activePayeeId = null; clearPayee(); return; }
+    activePayeeId = id;
+    document.getElementById('payee-chip-' + id).classList.add('active');
+    document.getElementById('pay-to-label').textContent = name + (detail ? '  ·  ' + detail : '');
+    document.getElementById('pay-form').style.display = 'block';
+    document.getElementById('pay-status').style.display = 'none';
+    document.getElementById('pay-amount').focus();
+}
+
+function clearPayee() {
+    activePayeeId = null;
+    document.querySelectorAll('.customer-chip').forEach(c => c.classList.remove('active'));
+    document.getElementById('pay-form').style.display = 'none';
+}
+
+function toggleAddPayee() {
+    const form = document.getElementById('add-payee-form');
+    form.style.display = form.style.display === 'none' ? 'block' : 'none';
+}
+
+async function savePayee() {
+    const name  = document.getElementById('np-name').value.trim();
+    const till  = document.getElementById('np-till').value.trim();
+    const phone = document.getElementById('np-phone').value.trim();
+    const err   = document.getElementById('np-err');
+
+    if (!name) { err.style.display='block'; err.textContent='Name is required.'; return; }
+    if (!till && !phone) { err.style.display='block'; err.textContent='Enter a till number or phone.'; return; }
+
+    const res  = await fetch('{{ route("creditor.contact.save") }}', {
+        method: 'POST',
+        headers: {'Content-Type':'application/json','X-CSRF-TOKEN':'{{ csrf_token() }}'},
+        body: JSON.stringify({name, till: till||null, phone: phone||null}),
+    });
+    const data = await res.json();
+    if (data.id) {
+        const detail = data.till ? '🏪 Till ' + data.till : '📱 Phone';
+        const chips  = document.getElementById('payee-chips');
+        const addBtn = document.getElementById('add-payee-chip');
+        const chip   = document.createElement('div');
+        chip.className = 'customer-chip';
+        chip.id = 'payee-chip-' + data.id;
+        chip.setAttribute('onclick', `selectPayee(${data.id}, '${name.replace(/'/g,"\\'")}', '${detail}')`);
+        chip.innerHTML = `<div class="chip-phone" style="font-size:13px;color:#fff">${name}</div>
+            <div style="font-size:10px;color:rgba(255,255,255,.35);margin-top:2px">${detail}</div>`;
+        chips.insertBefore(chip, addBtn);
+        document.getElementById('np-name').value  = '';
+        document.getElementById('np-till').value  = '';
+        document.getElementById('np-phone').value = '';
+        err.style.display = 'none';
+        document.getElementById('add-payee-form').style.display = 'none';
+    } else {
+        err.style.display = 'block';
+        err.textContent = data.error || 'Error saving. Try again.';
+    }
+}
+
+async function initiatePayout() {
+    if (!activePayeeId) return;
+    const amount  = parseInt(document.getElementById('pay-amount').value) || 0;
+    const cat     = document.getElementById('pay-category').value;
+    const desc    = document.getElementById('pay-desc').value.trim();
+    const status  = document.getElementById('pay-status');
+    const btn     = document.getElementById('pay-btn');
+
+    if (!amount || amount < 10) {
+        status.style.display = 'block';
+        status.style.background = 'rgba(239,68,68,.1)';
+        status.style.color = '#f87171';
+        status.textContent = 'Enter an amount (minimum KES 10).';
+        return;
+    }
+
+    btn.disabled = true; btn.textContent = 'Sending STK Push…';
+    status.style.display = 'none';
+
+    const res  = await fetch('{{ route("creditor.payout.initiate") }}', {
+        method: 'POST',
+        headers: {'Content-Type':'application/json','X-CSRF-TOKEN':'{{ csrf_token() }}'},
+        body: JSON.stringify({contact_id: activePayeeId, amount, category: cat, description: desc||null}),
+    });
+    const data = await res.json();
+
+    if (data.success) {
+        status.style.display = 'block';
+        status.style.background = 'rgba(251,191,36,.07)';
+        status.style.color = '#fbbf24';
+        status.textContent = '📲 Check your phone — approve the M-Pesa prompt…';
+        pollPayout(data.checkout_request_id, 0);
+    } else {
+        btn.disabled = false; btn.textContent = 'Pay Now via M-Pesa →';
+        status.style.display = 'block';
+        status.style.background = 'rgba(239,68,68,.1)';
+        status.style.color = '#f87171';
+        status.textContent = data.message || 'Failed. Try again.';
+    }
+}
+
+function pollPayout(checkoutId, attempts) {
+    if (attempts > 30) {
+        document.getElementById('pay-status').textContent = 'Timed out. Check your M-Pesa messages.';
+        document.getElementById('pay-btn').disabled = false;
+        document.getElementById('pay-btn').textContent = 'Pay Now via M-Pesa →';
+        return;
+    }
+    payPollTimer = setTimeout(async () => {
+        const res  = await fetch(`{{ route("creditor.payout.poll") }}?checkout_request_id=${checkoutId}`);
+        const data = await res.json();
+        const status = document.getElementById('pay-status');
+        if (data.status === 'confirmed') {
+            status.style.background = 'rgba(37,211,102,.07)';
+            status.style.color = '#4ADE80';
+            status.textContent = `✅ KES ${Number(data.amount).toLocaleString()} sent to ${data.name}! Logged as expense.`;
+            document.getElementById('pay-btn').disabled = false;
+            document.getElementById('pay-btn').textContent = 'Pay Now via M-Pesa →';
+            document.getElementById('pay-amount').value = '';
+            document.getElementById('pay-desc').value = '';
+            setTimeout(() => location.reload(), 2000);
+        } else if (data.status === 'failed') {
+            status.style.background = 'rgba(239,68,68,.1)';
+            status.style.color = '#f87171';
+            status.textContent = '❌ Payment failed or cancelled.';
+            document.getElementById('pay-btn').disabled = false;
+            document.getElementById('pay-btn').textContent = 'Pay Now via M-Pesa →';
+        } else {
+            pollPayout(checkoutId, attempts + 1);
+        }
+    }, 3000);
 }
 
 // ── Notifications ─────────────────────────────────────────────────
