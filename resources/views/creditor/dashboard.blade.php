@@ -309,10 +309,10 @@ select option{color:#111;background:#fff}
         <div class="customer-chips" id="payee-chips">
             @foreach($contacts as $c)
             <div class="customer-chip" id="payee-chip-{{ $c->id }}"
-                onclick="selectPayee({{ $c->id }}, '{{ addslashes($c->name) }}', '{{ $c->till ? '🏪 Till '.$c->till : '' }}')">
+                onclick="selectPayee({{ $c->id }}, '{{ addslashes($c->name) }}', '{{ $c->till ? '🏪 Till '.$c->till : ($c->phone_masked ?? '📱 Phone') }}')">
                 <div class="chip-phone" style="font-size:13px;color:#fff">{{ $c->name }}</div>
                 <div style="font-size:10px;color:rgba(255,255,255,.35);margin-top:2px">
-                    {{ $c->till ? '🏪 Till '.$c->till : '📱 Phone' }}
+                    {{ $c->till ? '🏪 Till '.$c->till : ($c->phone_masked ?? '📱 Phone') }}
                 </div>
             </div>
             @endforeach

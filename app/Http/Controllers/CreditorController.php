@@ -161,7 +161,19 @@ class CreditorController extends Controller
         $settledDeni = $allDeni->where('status', 'settled');
 
         // Contacts & recent payouts
-        $contacts      = CreditorContact::where('creditor_phone_hash', $hash)->orderBy('name')->get();
+        $contacts = CreditorContact::where('creditor_phone_hash', $hash)->orderBy('name')->get()->map(function ($c) {
+            if ($c->phone_encrypted) {
+                try {
+                    $phone = Crypt::decryptString($c->phone_encrypted);
+                    $c->phone_masked = substr($phone, 0, 4) . str_repeat('*', strlen($phone) - 7) . substr($phone, -3);
+                } catch (\Exception $e) {
+                    $c->phone_masked = '📱 Phone';
+                }
+            } else {
+                $c->phone_masked = null;
+            }
+            return $c;
+        });
         $recentPayouts = CreditorPayout::where('creditor_phone_hash', $hash)->latest()->limit(10)->get();
 
         // Ledger — last 30 days
