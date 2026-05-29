@@ -37,7 +37,7 @@ class CreditorController extends Controller
         ]);
 
         $hash     = $this->seller->hashPhone($data['phone']);
-        $loginFee = 20;
+        $loginFee = 1; // TODO: restore to 20 after testing
 
         $stk = $this->daraja->stkPush(
             phone: $data['phone'],
