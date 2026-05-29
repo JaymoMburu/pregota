@@ -482,9 +482,47 @@ class CreditorController extends Controller
 
         if (! $payout) return response()->json(['status' => 'not_found']);
 
+        // Callback may not arrive — query Safaricom directly after 10s
+        if ($payout->status === 'pending' && $payout->created_at->diffInSeconds(now()) >= 10) {
+            $query = $this->daraja->stkQuery($payout->checkout_request_id);
+            if (($query['ResultCode'] ?? null) === 0 || ($query['ResultCode'] ?? null) === '0') {
+                $receipt = 'PRG-' . now()->format('Ymd') . '-' . strtoupper(\Illuminate\Support\Str::random(6));
+                $payout->update(['status' => 'confirmed', 'receipt_number' => $receipt]);
+
+                \App\Models\BusinessLedgerEntry::firstOrCreate(
+                    ['creditor_phone_hash' => $payout->creditor_phone_hash, 'source' => 'creditor_payout', 'description' => $payout->description ?: ('Paid: ' . $payout->recipient_name)],
+                    [
+                        'type'       => 'expense',
+                        'category'   => $payout->category,
+                        'amount'     => $payout->amount,
+                        'entry_date' => now()->toDateString(),
+                    ]
+                );
+
+                if ($payout->recipient_till) {
+                    $this->daraja->b2bPayout(
+                        amount: $payout->amount,
+                        destination: $payout->recipient_till,
+                        type: 'till',
+                        accountRef: 'PAY-' . $payout->id,
+                        remarks: mb_substr($payout->description ?: ('Pay ' . $payout->recipient_name), 0, 40),
+                    );
+                } elseif ($payout->recipient_phone_encrypted) {
+                    $recipientPhone = Crypt::decryptString($payout->recipient_phone_encrypted);
+                    $this->daraja->b2cPayout(
+                        amount: $payout->amount,
+                        phone: $recipientPhone,
+                        remarks: mb_substr($payout->description ?: ('Pay ' . $payout->recipient_name), 0, 40),
+                    );
+                }
+            } elseif (isset($query['ResultCode']) && ($query['ResponseCode'] ?? '') === '0' && $query['ResultCode'] != 0) {
+                $payout->update(['status' => 'failed']);
+            }
+        }
+
         return response()->json([
-            'status'  => $payout->status,
-            'receipt' => $payout->receipt_number,
+            'status'  => $payout->fresh()->status,
+            'receipt' => $payout->fresh()->receipt_number,
             'amount'  => $payout->amount,
             'name'    => $payout->recipient_name,
         ]);
