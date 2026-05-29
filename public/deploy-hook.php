@@ -60,11 +60,24 @@ if (isset($_GET['log'])) {
     }
     $log[] = "\n=== Log files ===\n" . implode("\n", $listing);
 
-    // Show last 60 lines of the most recently modified log
+    // Show stk_callbacks.log if it exists
+    $stkLog = $logDir . 'stk_callbacks.log';
+    if (file_exists($stkLog)) {
+        $log[] = "\n=== stk_callbacks.log ===\n" . file_get_contents($stkLog);
+    } else {
+        $log[] = "\n=== stk_callbacks.log: NOT FOUND (callback never reached server) ===";
+    }
+
+    // Grep laravel.log for STK/Daraja entries
     if ($allLogs) {
-        $logFile = $allLogs[0];
-        $lines   = array_slice(file($logFile), -60);
-        $log[]   = "\n=== Last 60 lines of " . basename($logFile) . " ===\n" . implode('', $lines);
+        $logFile  = $allLogs[0];
+        $relevant = [];
+        foreach (file($logFile) as $line) {
+            if (stripos($line, 'STK') !== false || stripos($line, 'Daraja') !== false || stripos($line, 'daraja') !== false) {
+                $relevant[] = $line;
+            }
+        }
+        $log[] = "\n=== Daraja/STK entries in " . basename($logFile) . " (" . count($relevant) . " lines) ===\n" . implode('', array_slice($relevant, -30));
     }
 }
 
