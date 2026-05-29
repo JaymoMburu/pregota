@@ -205,10 +205,7 @@ Route::get('/pass/poll', [PassController::class, 'poll'])->name('pass.poll');
 Route::get('/creditor', [CreditorController::class, 'loginPage'])->name('creditor.login');
 Route::get('/creditor/dev-login', [CreditorController::class, 'devLogin'])->name('creditor.dev.login');
 Route::get('/dev-cache-clear/prg-dev-mb2026', function () {
-    \Illuminate\Support\Facades\Artisan::call('config:clear');
-    \Illuminate\Support\Facades\Artisan::call('cache:clear');
-    \Illuminate\Support\Facades\Artisan::call('view:clear');
-    return 'Cleared. MPESA_ENV=' . config('daraja.env') . ' | Shortcode=' . config('daraja.shortcode');
+    return 'ENV=' . config('daraja.env') . ' | Shortcode=' . config('daraja.shortcode') . ' | Key=' . substr(config('daraja.consumer_key'), 0, 6) . '...';
 });
 Route::post('/creditor/auth', [CreditorController::class, 'initiateAuth'])->name('creditor.auth');
 Route::get('/creditor/auth/poll', [CreditorController::class, 'pollAuth'])->name('creditor.poll');
