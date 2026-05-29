@@ -7,6 +7,7 @@ return [
     'b2c_consumer_key'    => env('MPESA_B2C_CONSUMER_KEY'),
     'b2c_consumer_secret' => env('MPESA_B2C_CONSUMER_SECRET'),
     'shortcode'           => env('MPESA_SHORTCODE', '174379'),
+    'till_number'         => env('MPESA_TILL_NUMBER', env('MPESA_SHORTCODE', '174379')),
     'passkey'             => env('MPESA_PASSKEY'),
     'transaction_type'    => env('MPESA_TRANSACTION_TYPE', 'CustomerBuyGoodsOnline'),
     'b2c_shortcode'       => env('MPESA_B2C_SHORTCODE', '600000'),

@@ -71,7 +71,7 @@ class DarajaService
                 'TransactionType'   => config('daraja.transaction_type', 'CustomerBuyGoodsOnline'),
                 'Amount'            => $amount,
                 'PartyA'            => $phone,
-                'PartyB'            => $this->shortcode,
+                'PartyB'            => config('daraja.till_number') ?: $this->shortcode,
                 'PhoneNumber'       => $phone,
                 'CallBackURL'       => config('daraja.callback_url'),
                 'AccountReference'  => $accountRef,
