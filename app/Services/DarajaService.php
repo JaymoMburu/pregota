@@ -78,7 +78,7 @@ class DarajaService
                 'TransactionDesc'   => $description,
             ]);
 
-        Log::info('STK Push', ['phone_masked' => substr($phone, 0, 6) . '****', 'amount' => $amount, 'response' => $response->json()]);
+        Log::info('STK Push', ['env' => config('daraja.env'), 'url' => $this->baseUrl, 'phone_masked' => substr($phone, 0, 6) . '****', 'amount' => $amount, 'response' => $response->json()]);
 
         return $response->json() ?? [];
     }

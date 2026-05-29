@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'env'                 => env('MPESA_ENV', 'sandbox'),
+    'env'                 => env('MPESA_ENV', 'production'),
     'consumer_key'        => env('MPESA_CONSUMER_KEY'),
     'consumer_secret'     => env('MPESA_CONSUMER_SECRET'),
     'b2c_consumer_key'    => env('MPESA_B2C_CONSUMER_KEY'),
