@@ -803,8 +803,14 @@ function pollPayout(checkoutId, attempts) {
         return;
     }
     payPollTimer = setTimeout(async () => {
-        const res  = await fetch(`{{ route("creditor.payout.poll") }}?checkout_request_id=${checkoutId}`);
-        const data = await res.json();
+        let data;
+        try {
+            const res = await fetch(`{{ route("creditor.payout.poll") }}?checkout_request_id=${checkoutId}`);
+            data = await res.json();
+        } catch (e) {
+            pollPayout(checkoutId, attempts + 1);
+            return;
+        }
         const status = document.getElementById('pay-status');
         if (data.status === 'confirmed') {
             status.style.background = 'rgba(37,211,102,.07)';

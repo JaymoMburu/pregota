@@ -499,21 +499,25 @@ class CreditorController extends Controller
                     ]
                 );
 
-                if ($payout->recipient_till) {
-                    $this->daraja->b2bPayout(
-                        amount: $payout->amount,
-                        destination: $payout->recipient_till,
-                        type: 'till',
-                        accountRef: 'PAY-' . $payout->id,
-                        remarks: mb_substr($payout->description ?: ('Pay ' . $payout->recipient_name), 0, 40),
-                    );
-                } elseif ($payout->recipient_phone_encrypted) {
-                    $recipientPhone = Crypt::decryptString($payout->recipient_phone_encrypted);
-                    $this->daraja->b2cPayout(
-                        amount: $payout->amount,
-                        phone: $recipientPhone,
-                        remarks: mb_substr($payout->description ?: ('Pay ' . $payout->recipient_name), 0, 40),
-                    );
+                try {
+                    if ($payout->recipient_till) {
+                        $this->daraja->b2bPayout(
+                            amount: $payout->amount,
+                            destination: $payout->recipient_till,
+                            type: 'till',
+                            accountRef: 'PAY-' . $payout->id,
+                            remarks: mb_substr($payout->description ?: ('Pay ' . $payout->recipient_name), 0, 40),
+                        );
+                    } elseif ($payout->recipient_phone_encrypted) {
+                        $recipientPhone = Crypt::decryptString($payout->recipient_phone_encrypted);
+                        $this->daraja->b2cPayout(
+                            amount: $payout->amount,
+                            phone: $recipientPhone,
+                            remarks: mb_substr($payout->description ?: ('Pay ' . $payout->recipient_name), 0, 40),
+                        );
+                    }
+                } catch (\Exception $e) {
+                    Log::error('Payout dispatch failed', ['payout_id' => $payout->id, 'error' => $e->getMessage()]);
                 }
             } elseif (isset($query['ResultCode']) && ($query['ResponseCode'] ?? '') === '0' && $query['ResultCode'] != 0) {
                 $payout->update(['status' => 'failed']);
