@@ -50,22 +50,21 @@ $output = trim(ob_get_clean());
 $log[]  = ($status === 0 ? '✓' : '✗') . " migrate" . ($output ? ":\n{$output}" : '');
 
 if (isset($_GET['log'])) {
-    $logDir   = __DIR__ . '/../storage/logs/';
-    $today    = date('Y-m-d');
-    $candidates = [
-        $logDir . 'laravel-' . $today . '.log',
-        $logDir . 'laravel.log',
-    ];
-    $logFile = null;
-    foreach ($candidates as $f) {
-        if (file_exists($f)) { $logFile = $f; break; }
+    $logDir  = __DIR__ . '/../storage/logs/';
+    $allLogs = glob($logDir . '*.log') ?: [];
+    usort($allLogs, fn($a, $b) => filemtime($b) - filemtime($a));
+
+    $listing = [];
+    foreach ($allLogs as $f) {
+        $listing[] = basename($f) . ' (' . round(filesize($f)/1024, 1) . 'KB, modified ' . date('Y-m-d H:i:s', filemtime($f)) . ')';
     }
-    if ($logFile) {
-        $lines = array_slice(file($logFile), -80);
-        $log[] = "\n=== Last 80 lines of " . basename($logFile) . " ===\n" . implode('', $lines);
-    } else {
-        $allLogs = glob($logDir . '*.log');
-        $log[] = "\n=== No log file found. Available: " . implode(', ', array_map('basename', $allLogs ?: [])) . " ===";
+    $log[] = "\n=== Log files ===\n" . implode("\n", $listing);
+
+    // Show last 60 lines of the most recently modified log
+    if ($allLogs) {
+        $logFile = $allLogs[0];
+        $lines   = array_slice(file($logFile), -60);
+        $log[]   = "\n=== Last 60 lines of " . basename($logFile) . " ===\n" . implode('', $lines);
     }
 }
 
