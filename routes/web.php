@@ -205,7 +205,11 @@ Route::get('/pass/poll', [PassController::class, 'poll'])->name('pass.poll');
 Route::get('/creditor', [CreditorController::class, 'loginPage'])->name('creditor.login');
 Route::get('/creditor/dev-login', [CreditorController::class, 'devLogin'])->name('creditor.dev.login');
 Route::get('/dev-cache-clear/prg-dev-mb2026', function () {
-    return 'ENV=' . config('daraja.env') . ' | Shortcode=' . config('daraja.shortcode') . ' | Key=' . substr(config('daraja.consumer_key'), 0, 6) . '...';
+    return response()->json([
+        'env'      => env('MPESA_ENV'),
+        'shortcode'=> env('MPESA_SHORTCODE'),
+        'key'      => substr(env('MPESA_CONSUMER_KEY',''), 0, 6) . '...',
+    ]);
 });
 Route::post('/creditor/auth', [CreditorController::class, 'initiateAuth'])->name('creditor.auth');
 Route::get('/creditor/auth/poll', [CreditorController::class, 'pollAuth'])->name('creditor.poll');
