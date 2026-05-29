@@ -60,7 +60,6 @@ class MpesaController extends Controller
         $body     = $request->all();
         $callback = $body['Body']['stkCallback'] ?? null;
 
-        file_put_contents(storage_path('logs/stk_callbacks.log'), date('Y-m-d H:i:s') . ' RC:' . ($callback['ResultCode'] ?? '?') . ' ID:' . ($callback['CheckoutRequestID'] ?? '-') . "\n", FILE_APPEND);
         Log::info('STK Callback received', ['result_code' => $callback['ResultCode'] ?? 'unknown']);
 
         if (! $callback) {
