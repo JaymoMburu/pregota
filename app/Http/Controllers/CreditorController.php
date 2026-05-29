@@ -89,6 +89,26 @@ class CreditorController extends Controller
             return response()->json(['status' => 'failed']);
         }
 
+        // Callback may not arrive — query Safaricom directly if pending for >10s
+        if ($auth->created_at->diffInSeconds(now()) >= 10) {
+            $query = $this->daraja->stkQuery($auth->checkout_request_id);
+            if (($query['ResultCode'] ?? null) === 0 || ($query['ResultCode'] ?? null) === '0') {
+                $auth->update(['status' => 'confirmed']);
+                session([
+                    'creditor_phone_hash'      => $auth->phone_hash,
+                    'creditor_phone_encrypted' => $auth->phone_encrypted,
+                    'creditor_name'            => $auth->display_name,
+                    'creditor_verified_at'     => now()->timestamp,
+                    'creditor_verified_day'    => now()->toDateString(),
+                ]);
+                return response()->json(['status' => 'confirmed', 'redirect' => route('creditor.dashboard')]);
+            }
+            if (isset($query['ResultCode']) && $query['ResultCode'] != 0 && $query['ResultCode'] != '0' && ($query['ResponseCode'] ?? '') === '0') {
+                $auth->update(['status' => 'failed']);
+                return response()->json(['status' => 'failed']);
+            }
+        }
+
         return response()->json(['status' => 'pending']);
     }
 

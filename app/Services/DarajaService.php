@@ -101,6 +101,25 @@ class DarajaService
         return null;
     }
 
+    public function stkQuery(string $checkoutRequestId): array
+    {
+        $token     = $this->getAccessToken();
+        $timestamp = now()->format('YmdHis');
+        $password  = base64_encode($this->shortcode . $this->passkey . $timestamp);
+
+        $response = Http::withToken($token)
+            ->post("{$this->baseUrl}/mpesa/stkpushquery/v1/query", [
+                'BusinessShortCode'  => $this->shortcode,
+                'Password'           => $password,
+                'Timestamp'          => $timestamp,
+                'CheckoutRequestID'  => $checkoutRequestId,
+            ]);
+
+        Log::info('STK Query', ['checkout_id' => $checkoutRequestId, 'response' => $response->json()]);
+
+        return $response->json() ?? [];
+    }
+
     public function b2cPayout(int $amount, string $phone, string $remarks): array
     {
         $token = $this->getB2cAccessToken();
