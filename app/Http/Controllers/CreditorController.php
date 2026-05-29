@@ -355,6 +355,64 @@ class CreditorController extends Controller
         ]);
     }
 
+    public function getContact(int $id)
+    {
+        if (! session()->has('creditor_phone_hash')) return response()->json(['error' => 'Unauthorised'], 403);
+
+        $contact = CreditorContact::where('id', $id)
+            ->where('creditor_phone_hash', session('creditor_phone_hash'))
+            ->firstOrFail();
+
+        $phone = null;
+        if ($contact->phone_encrypted) {
+            try { $phone = Crypt::decryptString($contact->phone_encrypted); } catch (\Exception $e) {}
+        }
+
+        return response()->json([
+            'id'    => $contact->id,
+            'name'  => $contact->name,
+            'till'  => $contact->till,
+            'phone' => $phone,
+        ]);
+    }
+
+    public function updateContact(Request $request, int $id)
+    {
+        if (! session()->has('creditor_phone_hash')) return response()->json(['error' => 'Unauthorised'], 403);
+
+        $data = $request->validate([
+            'name'  => ['required', 'string', 'max:100'],
+            'phone' => ['nullable', 'string', 'regex:/^(\+?254|0)[17]\d{8}$/'],
+            'till'  => ['nullable', 'string', 'regex:/^\d{5,7}$/'],
+        ]);
+
+        if (empty($data['phone']) && empty($data['till'])) {
+            return response()->json(['error' => 'Enter a phone number or till number.'], 422);
+        }
+
+        $contact = CreditorContact::where('id', $id)
+            ->where('creditor_phone_hash', session('creditor_phone_hash'))
+            ->firstOrFail();
+
+        $contact->name            = $data['name'];
+        $contact->till            = $data['till'] ?? null;
+        $contact->phone_encrypted = ! empty($data['phone']) ? Crypt::encryptString($data['phone']) : null;
+        $contact->save();
+
+        $phone_masked = null;
+        if (! empty($data['phone'])) {
+            $p = $data['phone'];
+            $phone_masked = substr($p, 0, 4) . str_repeat('*', strlen($p) - 7) . substr($p, -3);
+        }
+
+        return response()->json([
+            'id'           => $contact->id,
+            'name'         => $contact->name,
+            'till'         => $contact->till,
+            'phone_masked' => $phone_masked,
+        ]);
+    }
+
     public function deleteContact(int $id)
     {
         if (! session()->has('creditor_phone_hash')) return response()->json(['error' => 'Unauthorised'], 403);

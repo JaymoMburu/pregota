@@ -213,6 +213,8 @@ Route::post('/creditor/ledger', [CreditorController::class, 'saveLedgerEntry'])-
 Route::delete('/creditor/ledger/{id}', [CreditorController::class, 'deleteLedgerEntry'])->name('creditor.ledger.delete');
 Route::get('/creditor/notifications', [CreditorController::class, 'notifications'])->name('creditor.notifications');
 Route::post('/creditor/contacts', [CreditorController::class, 'saveContact'])->name('creditor.contact.save');
+Route::get('/creditor/contacts/{id}', [CreditorController::class, 'getContact'])->name('creditor.contact.get');
+Route::put('/creditor/contacts/{id}', [CreditorController::class, 'updateContact'])->name('creditor.contact.update');
 Route::delete('/creditor/contacts/{id}', [CreditorController::class, 'deleteContact'])->name('creditor.contact.delete');
 Route::post('/creditor/payout/initiate', [CreditorController::class, 'initiatePayout'])->name('creditor.payout.initiate');
 Route::get('/creditor/payout/poll', [CreditorController::class, 'pollPayout'])->name('creditor.payout.poll');

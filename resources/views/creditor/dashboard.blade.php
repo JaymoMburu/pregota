@@ -314,6 +314,10 @@ select option{color:#111;background:#fff}
                 <div style="font-size:10px;color:rgba(255,255,255,.35);margin-top:2px">
                     {{ $c->till ? '🏪 Till '.$c->till : ($c->phone_masked ?? '📱 Phone') }}
                 </div>
+                <div style="margin-top:6px;display:flex;gap:6px;justify-content:center">
+                    <span onclick="event.stopPropagation();editPayee({{ $c->id }})"
+                          style="font-size:11px;color:rgba(255,255,255,.4);cursor:pointer;padding:2px 6px;border:1px solid rgba(255,255,255,.12);border-radius:5px">✏️ Edit</span>
+                </div>
             </div>
             @endforeach
             <div class="customer-chip" onclick="toggleAddPayee()" id="add-payee-chip" style="border-style:dashed;color:rgba(255,255,255,.4)">
@@ -322,17 +326,18 @@ select option{color:#111;background:#fff}
             </div>
         </div>
 
-        {{-- Add payee form --}}
+        {{-- Add / Edit payee form --}}
         <div id="add-payee-form" style="display:none;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:13px;padding:16px;margin-bottom:16px">
-            <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.35);margin-bottom:10px">New Payee</div>
+            <div id="np-form-title" style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.35);margin-bottom:10px">New Payee</div>
+            <input type="hidden" id="np-edit-id" value="">
             <div class="ae-row" style="margin-bottom:8px">
                 <input type="text" id="np-name" class="ae-input" placeholder="Name — e.g. Amina, Kariuki Supplier" maxlength="100">
                 <input type="text" id="np-till" class="ae-input" placeholder="Till number (or leave blank)" inputmode="numeric" maxlength="7">
             </div>
             <input type="tel" id="np-phone" class="ae-input" placeholder="Phone (if no Till) — e.g. 0712345678" style="margin-bottom:8px">
             <div style="display:flex;gap:8px">
-                <button onclick="savePayee()" style="padding:10px 20px;background:linear-gradient(135deg,#dc2626,#ef4444);border:none;border-radius:9px;color:#fff;font-size:14px;font-weight:700;cursor:pointer">Save Payee</button>
-                <button onclick="toggleAddPayee()" style="background:none;border:none;color:rgba(255,255,255,.3);cursor:pointer;font-size:13px;padding:6px">Cancel</button>
+                <button id="np-save-btn" onclick="savePayee()" style="padding:10px 20px;background:linear-gradient(135deg,#dc2626,#ef4444);border:none;border-radius:9px;color:#fff;font-size:14px;font-weight:700;cursor:pointer">Save Payee</button>
+                <button onclick="cancelPayeeForm()" style="background:none;border:none;color:rgba(255,255,255,.3);cursor:pointer;font-size:13px;padding:6px">Cancel</button>
             </div>
             <div id="np-err" style="display:none;margin-top:8px;font-size:13px;color:#f87171"></div>
         </div>
@@ -646,8 +651,37 @@ function clearPayee() {
 }
 
 function toggleAddPayee() {
+    cancelPayeeForm();
     const form = document.getElementById('add-payee-form');
     form.style.display = form.style.display === 'none' ? 'block' : 'none';
+}
+
+function cancelPayeeForm() {
+    document.getElementById('np-edit-id').value = '';
+    document.getElementById('np-name').value    = '';
+    document.getElementById('np-till').value    = '';
+    document.getElementById('np-phone').value   = '';
+    document.getElementById('np-form-title').textContent = 'New Payee';
+    document.getElementById('np-save-btn').textContent   = 'Save Payee';
+    document.getElementById('np-err').style.display = 'none';
+    document.getElementById('add-payee-form').style.display = 'none';
+}
+
+async function editPayee(id) {
+    const res  = await fetch(`/creditor/contacts/${id}`, {
+        headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}', 'Accept': 'application/json'},
+    });
+    const data = await res.json();
+    if (!data.id) return;
+    document.getElementById('np-edit-id').value  = id;
+    document.getElementById('np-name').value     = data.name || '';
+    document.getElementById('np-till').value     = data.till || '';
+    document.getElementById('np-phone').value    = data.phone || '';
+    document.getElementById('np-form-title').textContent = 'Edit Payee';
+    document.getElementById('np-save-btn').textContent   = 'Update Payee';
+    document.getElementById('np-err').style.display = 'none';
+    document.getElementById('add-payee-form').style.display = 'block';
+    document.getElementById('np-name').focus();
 }
 
 function showPayeeErr(msg) {
@@ -658,9 +692,10 @@ function showPayeeErr(msg) {
 }
 
 async function savePayee() {
-    const name  = document.getElementById('np-name').value.trim();
-    const till  = document.getElementById('np-till').value.trim();
-    const phone = document.getElementById('np-phone').value.trim();
+    const name   = document.getElementById('np-name').value.trim();
+    const till   = document.getElementById('np-till').value.trim();
+    const phone  = document.getElementById('np-phone').value.trim();
+    const editId = document.getElementById('np-edit-id').value;
 
     document.getElementById('np-err').style.display = 'none';
 
@@ -673,28 +708,44 @@ async function savePayee() {
         showPayeeErr('Till number must be 5–7 digits.'); return;
     }
 
-    const res  = await fetch('{{ route("creditor.contact.save") }}', {
-        method: 'POST',
+    const url    = editId ? `/creditor/contacts/${editId}` : '{{ route("creditor.contact.save") }}';
+    const method = editId ? 'PUT' : 'POST';
+
+    const res  = await fetch(url, {
+        method,
         headers: {'Content-Type':'application/json','X-CSRF-TOKEN':'{{ csrf_token() }}'},
         body: JSON.stringify({name, till: till||null, phone: phone||null}),
     });
     const data = await res.json();
     if (data.id) {
-        const detail = data.till ? '🏪 Till ' + data.till : '📱 Phone';
-        const chips  = document.getElementById('payee-chips');
-        const addBtn = document.getElementById('add-payee-chip');
-        const chip   = document.createElement('div');
-        chip.className = 'customer-chip';
-        chip.id = 'payee-chip-' + data.id;
-        chip.setAttribute('onclick', `selectPayee(${data.id}, '${name.replace(/'/g,"\\'")}', '${detail}')`);
-        chip.innerHTML = `<div class="chip-phone" style="font-size:13px;color:#fff">${name}</div>
-            <div style="font-size:10px;color:rgba(255,255,255,.35);margin-top:2px">${detail}</div>`;
-        chips.insertBefore(chip, addBtn);
-        document.getElementById('np-name').value  = '';
-        document.getElementById('np-till').value  = '';
-        document.getElementById('np-phone').value = '';
-        document.getElementById('np-err').style.display = 'none';
-        document.getElementById('add-payee-form').style.display = 'none';
+        const detail = data.till ? '🏪 Till ' + data.till : (data.phone_masked || '📱 Phone');
+        const safeName = name.replace(/'/g,"\\'");
+        if (editId) {
+            // Update existing chip in place
+            const chip = document.getElementById('payee-chip-' + editId);
+            if (chip) {
+                chip.setAttribute('onclick', `selectPayee(${editId}, '${safeName}', '${detail}')`);
+                chip.innerHTML = `<div class="chip-phone" style="font-size:13px;color:#fff">${name}</div>
+                    <div style="font-size:10px;color:rgba(255,255,255,.35);margin-top:2px">${detail}</div>
+                    <div style="margin-top:6px;display:flex;gap:6px;justify-content:center">
+                        <span onclick="event.stopPropagation();editPayee(${editId})" style="font-size:11px;color:rgba(255,255,255,.4);cursor:pointer;padding:2px 6px;border:1px solid rgba(255,255,255,.12);border-radius:5px">✏️ Edit</span>
+                    </div>`;
+            }
+        } else {
+            const chips  = document.getElementById('payee-chips');
+            const addBtn = document.getElementById('add-payee-chip');
+            const chip   = document.createElement('div');
+            chip.className = 'customer-chip';
+            chip.id = 'payee-chip-' + data.id;
+            chip.setAttribute('onclick', `selectPayee(${data.id}, '${safeName}', '${detail}')`);
+            chip.innerHTML = `<div class="chip-phone" style="font-size:13px;color:#fff">${name}</div>
+                <div style="font-size:10px;color:rgba(255,255,255,.35);margin-top:2px">${detail}</div>
+                <div style="margin-top:6px;display:flex;gap:6px;justify-content:center">
+                    <span onclick="event.stopPropagation();editPayee(${data.id})" style="font-size:11px;color:rgba(255,255,255,.4);cursor:pointer;padding:2px 6px;border:1px solid rgba(255,255,255,.12);border-radius:5px">✏️ Edit</span>
+                </div>`;
+            chips.insertBefore(chip, addBtn);
+        }
+        cancelPayeeForm();
     } else {
         const msg = data.error
             || (data.errors ? Object.values(data.errors).flat()[0] : null)
