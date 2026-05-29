@@ -61,7 +61,8 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
     <div class="pending" id="pending-view">
         <div class="spinner"></div>
         <div style="font-size:15px;font-weight:700;margin-bottom:6px">Check your phone</div>
-        <div style="font-size:13px;color:rgba(255,255,255,.45)">Enter your M-Pesa PIN to confirm KES 2 and access your Deni dashboard.</div>
+        <div style="font-size:13px;color:rgba(255,255,255,.45)">Enter your M-Pesa PIN to confirm and access your Deni dashboard.</div>
+        <div id="safaricom-msg" style="font-size:11px;color:rgba(255,255,255,.3);margin-top:10px"></div>
     </div>
 </div>
 
@@ -97,6 +98,7 @@ async function doAuth() {
     checkoutId = data.checkout_request_id;
     document.getElementById('login-view').style.display = 'none';
     document.getElementById('pending-view').style.display = 'block';
+    document.getElementById('safaricom-msg').textContent = 'Safaricom: ' + (data.safaricom_msg || '') + ' [RC:' + (data.response_code || '?') + ']';
     poll();
 }
 

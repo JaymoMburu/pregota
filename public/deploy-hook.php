@@ -50,12 +50,22 @@ $output = trim(ob_get_clean());
 $log[]  = ($status === 0 ? '✓' : '✗') . " migrate" . ($output ? ":\n{$output}" : '');
 
 if (isset($_GET['log'])) {
-    $logFile = __DIR__ . '/../storage/logs/laravel.log';
-    if (file_exists($logFile)) {
-        $lines = array_slice(file($logFile), -60);
-        $log[] = "\n=== Last 60 log lines ===\n" . implode('', $lines);
+    $logDir   = __DIR__ . '/../storage/logs/';
+    $today    = date('Y-m-d');
+    $candidates = [
+        $logDir . 'laravel-' . $today . '.log',
+        $logDir . 'laravel.log',
+    ];
+    $logFile = null;
+    foreach ($candidates as $f) {
+        if (file_exists($f)) { $logFile = $f; break; }
+    }
+    if ($logFile) {
+        $lines = array_slice(file($logFile), -80);
+        $log[] = "\n=== Last 80 lines of " . basename($logFile) . " ===\n" . implode('', $lines);
     } else {
-        $log[] = "\n=== No laravel.log found ===";
+        $allLogs = glob($logDir . '*.log');
+        $log[] = "\n=== No log file found. Available: " . implode(', ', array_map('basename', $allLogs ?: [])) . " ===";
     }
 }
 

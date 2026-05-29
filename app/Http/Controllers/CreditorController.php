@@ -47,7 +47,8 @@ class CreditorController extends Controller
         );
 
         if (! isset($stk['CheckoutRequestID'])) {
-            return response()->json(['success' => false, 'message' => 'STK Push failed. Please try again.'], 422);
+            $errMsg = $stk['errorMessage'] ?? $stk['ResponseDescription'] ?? 'STK Push failed. Please try again.';
+            return response()->json(['success' => false, 'message' => $errMsg . ' [RC:' . ($stk['ResponseCode'] ?? '?') . ']'], 422);
         }
 
         CreditorAuthSession::create([
@@ -60,6 +61,8 @@ class CreditorController extends Controller
         return response()->json([
             'success'             => true,
             'checkout_request_id' => $stk['CheckoutRequestID'],
+            'safaricom_msg'       => $stk['CustomerMessage'] ?? $stk['ResponseDescription'] ?? '',
+            'response_code'       => $stk['ResponseCode'] ?? '?',
         ]);
     }
 
