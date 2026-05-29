@@ -822,6 +822,12 @@ function pollPayout(checkoutId, attempts) {
             document.getElementById('pay-btn').disabled = false;
             document.getElementById('pay-btn').textContent = 'Pay Now via M-Pesa →';
         } else {
+            if (data._query_debug) {
+                status.style.display = 'block';
+                status.style.background = 'rgba(255,255,255,.05)';
+                status.style.color = '#facc15';
+                status.textContent = 'Safaricom query: RC=' + (data._query_debug.ResultCode ?? '?') + ' ' + (data._query_debug.ResultDesc ?? data._query_debug.errorMessage ?? JSON.stringify(data._query_debug));
+            }
             pollPayout(checkoutId, attempts + 1);
         }
     }, 3000);

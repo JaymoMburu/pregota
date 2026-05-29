@@ -520,11 +520,14 @@ class CreditorController extends Controller
             }
         }
 
+        $fresh = $payout->fresh();
         return response()->json([
-            'status'  => $payout->fresh()->status,
-            'receipt' => $payout->fresh()->receipt_number,
-            'amount'  => $payout->amount,
-            'name'    => $payout->recipient_name,
+            'status'       => $fresh->status,
+            'receipt'      => $fresh->receipt_number,
+            'amount'       => $payout->amount,
+            'name'         => $payout->recipient_name,
+            '_query_debug' => $payout->status === 'pending' && $payout->created_at->diffInSeconds(now()) >= 10
+                ? ($query ?? null) : null,
         ]);
     }
 
