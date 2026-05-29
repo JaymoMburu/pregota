@@ -187,6 +187,11 @@ class DarajaService
 
     private function encryptInitiatorPassword(): string
     {
+        $preGenerated = config('daraja.b2c_security_credential');
+        if ($preGenerated) {
+            return $preGenerated;
+        }
+
         $certPath = config('daraja.env') === 'sandbox'
             ? storage_path('app/daraja/sandbox-cert.cer')
             : storage_path('app/daraja/production-cert.cer');
