@@ -18,6 +18,7 @@ use App\Http\Controllers\SchoolFeesController;
 use App\Http\Controllers\DisputeController;
 use App\Http\Controllers\ReceiptController;
 use App\Http\Controllers\PassController;
+use App\Http\Controllers\SakaKejaController;
 use App\Http\Controllers\SellerController;
 use App\Http\Controllers\StaffAuthController;
 use App\Http\Controllers\SubscriptionController;
@@ -200,6 +201,22 @@ Route::post('/dispute/{receipt}', [DisputeController::class, 'store'])->name('di
 Route::get('/pass', [PassController::class, 'buyPage'])->name('pass.buy');
 Route::post('/pass/purchase', [PassController::class, 'purchase'])->name('pass.purchase');
 Route::get('/pass/poll', [PassController::class, 'poll'])->name('pass.poll');
+
+// ── Saka Keja ─────────────────────────────────────────────────────────────
+Route::get('/saka-keja', [SakaKejaController::class, 'browse'])->name('saka-keja.browse');
+Route::get('/saka-keja/list', [SakaKejaController::class, 'listForm'])->name('saka-keja.list');
+Route::post('/saka-keja/list', [SakaKejaController::class, 'submitListing'])->name('saka-keja.list.post');
+Route::get('/saka-keja/list/poll', [SakaKejaController::class, 'pollListing'])->name('saka-keja.list.poll');
+Route::get('/saka-keja/landlord', [SakaKejaController::class, 'landlordPage'])->name('saka-keja.landlord');
+Route::post('/saka-keja/landlord/auth', [SakaKejaController::class, 'initiateLogin'])->name('saka-keja.landlord.auth');
+Route::get('/saka-keja/landlord/poll', [SakaKejaController::class, 'pollLogin'])->name('saka-keja.landlord.poll');
+Route::get('/saka-keja/landlord/dashboard', [SakaKejaController::class, 'dashboard'])->name('saka-keja.dashboard');
+Route::post('/saka-keja/landlord/logout', [SakaKejaController::class, 'landlordLogout'])->name('saka-keja.landlord.logout');
+Route::get('/saka-keja/connect/poll', [SakaKejaController::class, 'pollConnect'])->name('saka-keja.connect.poll');
+Route::get('/saka-keja/{id}', [SakaKejaController::class, 'show'])->name('saka-keja.show')->where('id', '[0-9]+');
+Route::post('/saka-keja/{id}/connect', [SakaKejaController::class, 'initiateConnect'])->name('saka-keja.connect')->where('id', '[0-9]+');
+Route::post('/saka-keja/{id}/rented', [SakaKejaController::class, 'markRented'])->name('saka-keja.rented')->where('id', '[0-9]+');
+Route::delete('/saka-keja/{id}', [SakaKejaController::class, 'deleteListing'])->name('saka-keja.delete')->where('id', '[0-9]+');
 
 // ── Creditor accounts (Deni dashboard for boda bodas, vibandas, etc.) ───
 Route::get('/creditor', [CreditorController::class, 'loginPage'])->name('creditor.login');

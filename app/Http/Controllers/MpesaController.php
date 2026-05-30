@@ -7,6 +7,9 @@ use App\Models\BusinessLedgerEntry;
 use App\Models\BulkGift;
 use App\Models\CreditorAuthSession;
 use App\Models\CreditorPayout;
+use App\Models\SakaKejaAuthSession;
+use App\Models\SakaKejaConnection;
+use App\Models\SakaKejaListing;
 use App\Models\Deni;
 use App\Models\DeniPayment;
 use App\Models\GroupPayment;
@@ -73,6 +76,28 @@ class MpesaController extends Controller
             $items     = collect($callback['CallbackMetadata']['Item'] ?? []);
             $amount    = (float) ($items->firstWhere('Name', 'Amount')['Value'] ?? 0);
             $mpesaCode = $items->firstWhere('Name', 'MpesaReceiptNumber')['Value'] ?? '';
+
+            // Saka Keja landlord auth
+            $sakaAuth = SakaKejaAuthSession::where('checkout_request_id', $checkoutId)->where('status', 'pending')->first();
+            if ($sakaAuth) {
+                $sakaAuth->update(['status' => 'confirmed']);
+                return response()->json(['ResultCode' => 0, 'ResultDesc' => 'Accepted']);
+            }
+
+            // Saka Keja listing verification
+            $sakaListing = SakaKejaListing::where('verification_checkout_id', $checkoutId)->where('status', 'pending_verification')->first();
+            if ($sakaListing) {
+                $sakaListing->update(['status' => 'active']);
+                return response()->json(['ResultCode' => 0, 'ResultDesc' => 'Accepted']);
+            }
+
+            // Saka Keja connection payment
+            $sakaConnection = SakaKejaConnection::where('checkout_request_id', $checkoutId)->where('status', 'pending')->first();
+            if ($sakaConnection) {
+                $receipt = 'PRG-' . now()->format('Ymd') . '-' . strtoupper(\Illuminate\Support\Str::random(6));
+                $sakaConnection->update(['status' => 'confirmed', 'receipt_number' => $receipt]);
+                return response()->json(['ResultCode' => 0, 'ResultDesc' => 'Accepted']);
+            }
 
             // Creditor auth login
             $creditorAuth = CreditorAuthSession::where('checkout_request_id', $checkoutId)->where('status', 'pending')->first();
@@ -243,6 +268,9 @@ class MpesaController extends Controller
         } else {
             $reason = $callback['ResultDesc'] ?? 'Unknown';
 
+            SakaKejaAuthSession::where('checkout_request_id', $checkoutId)->where('status', 'pending')->update(['status' => 'failed']);
+            SakaKejaListing::where('verification_checkout_id', $checkoutId)->where('status', 'pending_verification')->update(['status' => 'failed']);
+            SakaKejaConnection::where('checkout_request_id', $checkoutId)->where('status', 'pending')->update(['status' => 'failed']);
             CreditorAuthSession::where('checkout_request_id', $checkoutId)->where('status', 'pending')->update(['status' => 'failed']);
             CreditorPayout::where('checkout_request_id', $checkoutId)->where('status', 'pending')->update(['status' => 'failed']);
             PregotaPass::where('checkout_request_id', $checkoutId)->where('status', 'pending')->update(['status' => 'failed']);
