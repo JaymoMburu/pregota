@@ -381,6 +381,23 @@ class SellerController extends Controller
 
         if (! $payment) return response()->json(['status' => 'not_found']);
 
+        // If still pending and >20s old, query Safaricom directly as callback may have been missed
+        if ($payment->status === 'pending' && $payment->mpesa_checkout_id && $payment->created_at->diffInSeconds(now()) > 20) {
+            $query = $this->daraja->stkQuery($payment->mpesa_checkout_id);
+            $code  = $query['ResultCode'] ?? null;
+            if ($code === 0 || $code === '0') {
+                $this->seller->confirmPayment(
+                    $payment->mpesa_checkout_id,
+                    $query['MpesaReceiptNumber'] ?? ('AUTO-' . $payment->id),
+                    (float) $payment->amount
+                );
+                $payment->refresh();
+            } elseif (isset($code) && $code !== null && $code != 1032) {
+                $this->seller->failPayment($payment->mpesa_checkout_id);
+                $payment->refresh();
+            }
+        }
+
         $stampInfo = null;
         if ($payment->status === 'confirmed' && $payment->buyer_phone_hash) {
             $stampInfo = $this->seller->stampInfo($payment->payLink, '');

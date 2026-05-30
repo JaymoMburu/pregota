@@ -315,6 +315,7 @@ input:focus{border-color:rgba(37,211,102,.5);background:rgba(255,255,255,.08)}
 <script>
 let paymentId    = null;
 let pollTimer    = null;
+let pollCount    = 0;
 let routePollTimer = null;
 
 // Track current conductor-set fare
@@ -493,9 +494,10 @@ function initiatePay() {
     .then(data => {
         if (data.success) {
             paymentId = data.payment_id;
+            pollCount = 0;
             stopRoutePoll();
             showState('waiting');
-            pollTimer = setInterval(pollStatus, 3000);
+            pollTimer = setInterval(pollStatus, 2500);
         } else {
             btn.disabled = false;
             document.getElementById('btn-text').textContent = 'Pay via M-Pesa →';
@@ -511,6 +513,13 @@ function initiatePay() {
 
 function pollStatus() {
     if (!paymentId) return;
+    pollCount++;
+    // Give up after 2 minutes (48 × 2.5s)
+    if (pollCount > 48) {
+        clearInterval(pollTimer);
+        showState('failed');
+        return;
+    }
     fetch('{{ route('seller.status') }}?payment_id=' + paymentId)
         .then(r => r.json())
         .then(data => {
