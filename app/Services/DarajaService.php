@@ -122,7 +122,7 @@ class DarajaService
 
     public function b2cPayout(int $amount, string $phone, string $remarks): array
     {
-        $token = $this->getB2cAccessToken();
+        $token = $this->getAccessToken();
         $phone = $this->formatPhone($phone);
 
         $response = Http::withToken($token)
@@ -147,7 +147,7 @@ class DarajaService
 
     public function b2bPayout(int $amount, string $destination, string $type, string $accountRef, string $remarks = 'Pregota Bill Split'): array
     {
-        $token = $this->getB2cAccessToken();
+        $token = $this->getAccessToken();
 
         $commandId      = $type === 'till' ? 'BusinessBuyGoods' : 'BusinessPayBill';
         $receiverIdType = $type === 'till' ? 2                   : 4;
