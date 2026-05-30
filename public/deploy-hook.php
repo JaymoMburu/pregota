@@ -56,9 +56,19 @@ foreach ($logFiles as $f) {
 $testPath = storage_path('logs/hook-test.log');
 file_put_contents($testPath, now()->toDateTimeString() . " hook ran\n", FILE_APPEND);
 $log[] = 'Direct write test: ' . (file_exists($testPath) ? 'ok ('.filesize($testPath).'B)' : 'FAILED');
+$laravelLog = storage_path('logs/laravel.log');
+$sizeBefore = file_exists($laravelLog) ? filesize($laravelLog) : 0;
 try {
     \Illuminate\Support\Facades\Log::info('Deploy hook test at ' . now()->toDateTimeString());
-    $log[] = '✓ Log::info test written';
+    clearstatcache(true, $laravelLog);
+    $sizeAfter = file_exists($laravelLog) ? filesize($laravelLog) : 0;
+    $log[] = "Log::info called. laravel.log: {$sizeBefore}B → {$sizeAfter}B " . ($sizeAfter > $sizeBefore ? '✓ grew' : '✗ did NOT grow');
+    // Try to find where Monolog is actually writing
+    $handlers = app('log')->getLogger()->getHandlers();
+    foreach ($handlers as $i => $h) {
+        $url = method_exists($h, 'getUrl') ? $h->getUrl() : (property_exists($h, 'url') ? $h->url : get_class($h));
+        $log[] = "  Handler[$i]: {$url}";
+    }
 } catch (\Exception $e) {
     $log[] = '✗ Log::info failed: ' . $e->getMessage();
 }
