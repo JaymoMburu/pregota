@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>{{ session('creditor_name') }} — Deni Dashboard · Pregota</title>
+<title>{{ session('creditor_name') }} — Business Dashboard · Pregota</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800;900&display=swap" rel="stylesheet">
@@ -184,7 +184,7 @@ select option{color:#111;background:#fff}
 
     <div class="greeting">
         <div class="greeting-name">{{ session('creditor_name') }}</div>
-        <div class="greeting-sub">{{ $openCount }} open {{ Str::plural('tab', $openCount) }} · Your Deni Dashboard</div>
+        <div class="greeting-sub">{{ $openCount }} open {{ Str::plural('tab', $openCount) }} · Business Dashboard</div>
     </div>
 
 
@@ -274,10 +274,17 @@ select option{color:#111;background:#fff}
             <div id="ae-ok" style="display:none;margin-top:8px;font-size:13px;color:#4ADE80">✓ Saved!</div>
         </div>
 
+        {{-- Entry list filter --}}
+        <div style="display:flex;gap:6px;margin-bottom:12px">
+            <button onclick="filterLedger('all')"     id="lf-all"     style="flex:1;padding:8px;border-radius:9px;font-size:12px;font-weight:700;cursor:pointer;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.08);color:#fff;font-family:inherit">All</button>
+            <button onclick="filterLedger('income')"  id="lf-income"  style="flex:1;padding:8px;border-radius:9px;font-size:12px;font-weight:700;cursor:pointer;border:1px solid rgba(37,211,102,.2);background:rgba(37,211,102,.05);color:#4ADE80;font-family:inherit">💰 Income</button>
+            <button onclick="filterLedger('expense')" id="lf-expense" style="flex:1;padding:8px;border-radius:9px;font-size:12px;font-weight:700;cursor:pointer;border:1px solid rgba(239,68,68,.2);background:rgba(239,68,68,.05);color:#f87171;font-family:inherit">💸 Expenses</button>
+        </div>
+
         {{-- Entry list --}}
         <div id="ledger-list">
         @forelse($ledger as $entry)
-        <div class="led-entry" id="led-{{ $entry->id }}">
+        <div class="led-entry" id="led-{{ $entry->id }}" data-type="{{ $entry->type }}">
             <div style="flex:1">
                 <div style="font-size:14px;font-weight:700">
                     {{ $entry->source === 'deni_payment' ? '🧾 ' : ($entry->type === 'income' ? '💰 ' : '💸 ') }}
@@ -299,7 +306,7 @@ select option{color:#111;background:#fff}
             </div>
         </div>
         @empty
-        <div class="empty">No entries yet. Record your first income or expense above.</div>
+        <div class="empty" id="ledger-empty">No entries yet. Record your first income or expense above.</div>
         @endforelse
         </div>
     </div>
@@ -938,8 +945,11 @@ async function saveLedgerEntry() {
         const color    = isIncome ? '#4ADE80' : '#f87171';
         const catLabel = (isIncome ? INCOME_CATS : EXPENSE_CATS).find(([v]) => v === cat)?.[1] || cat;
         const today    = new Date(date).toLocaleDateString('en-GB', {day:'2-digit', month:'short'});
+        const entryType = isIncome ? 'income' : 'expense';
         const row      = document.createElement('div');
         row.className  = 'led-entry'; row.id = 'led-' + data.id;
+        row.dataset.type = entryType;
+        row.style.display = (activeLedgerFilter === 'all' || activeLedgerFilter === entryType) ? '' : 'none';
         row.innerHTML  = `
             <div style="flex:1">
                 <div style="font-size:14px;font-weight:700">${isIncome ? '💰 ' : '💸 '}${desc || catLabel}</div>
@@ -958,6 +968,21 @@ async function saveLedgerEntry() {
         ok.style.display = 'block'; ok.style.color = '#f87171';
         ok.textContent   = data.errors ? Object.values(data.errors).flat().join(' ') : 'Error saving.';
     }
+}
+
+// ── Ledger filter ─────────────────────────────────────────────────
+let activeLedgerFilter = 'all';
+function filterLedger(type) {
+    activeLedgerFilter = type;
+    document.querySelectorAll('#ledger-list .led-entry').forEach(row => {
+        row.style.display = (type === 'all' || row.dataset.type === type) ? '' : 'none';
+    });
+    ['all','income','expense'].forEach(t => {
+        const btn = document.getElementById('lf-' + t);
+        if (!btn) return;
+        btn.style.opacity = t === type ? '1' : '0.45';
+        btn.style.fontWeight = t === type ? '900' : '700';
+    });
 }
 
 // ── Delete ledger entry ───────────────────────────────────────────
