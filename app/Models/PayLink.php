@@ -10,7 +10,7 @@ class PayLink extends Model
 {
     protected $fillable = [
         'handle', 'business_name', 'category', 'description',
-        'phone_encrypted', 'password',
+        'phone_encrypted', 'phone_hash', 'password',
         'default_amount', 'fixed_amount', 'is_active',
         'total_received', 'payment_count',
         'current_route', 'current_fare',

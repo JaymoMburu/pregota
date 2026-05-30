@@ -247,6 +247,7 @@ Route::delete('/creditor/contacts/{id}', [CreditorController::class, 'deleteCont
 Route::post('/creditor/payout/initiate', [CreditorController::class, 'initiatePayout'])->name('creditor.payout.initiate');
 Route::get('/creditor/payout/poll', [CreditorController::class, 'pollPayout'])->name('creditor.payout.poll');
 Route::post('/creditor/logout', [CreditorController::class, 'logout'])->name('creditor.logout');
+Route::get('/creditor/seller/{handle}/access', [CreditorController::class, 'sellerAccess'])->name('creditor.seller.access');
 
 // ── Madeni (Tabs / Credit) ───────────────────────────────────────────────
 Route::get('/deni', [DeniController::class, 'landing'])->name('deni.landing');

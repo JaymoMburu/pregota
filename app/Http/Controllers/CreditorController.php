@@ -8,6 +8,7 @@ use App\Models\CreditorContact;
 use App\Models\CreditorPayout;
 use App\Models\CreditorPreset;
 use App\Models\Deni;
+use App\Models\PayLink;
 use App\Models\PregotaPass;
 use App\Services\DarajaService;
 use App\Services\SellerService;
@@ -193,10 +194,38 @@ class CreditorController extends Controller
             ->whereDate('updated_at', today())
             ->count();
 
+        // Pay Links owned by this phone
+        $payLinks = PayLink::where('phone_hash', $hash)
+            ->with(['payments' => fn($q) => $q->where('status', 'confirmed')->latest()->limit(20)])
+            ->get()
+            ->map(function ($pl) {
+                $payments     = $pl->payments;
+                $todayRec     = $payments->filter(fn($p) => $p->updated_at->isToday())->sum('net_amount');
+                $todayCount   = $payments->filter(fn($p) => $p->updated_at->isToday())->count();
+                $recent       = $payments->take(5)->map(fn($p) => [
+                    'amount'  => $p->net_amount ?: $p->amount,
+                    'receipt' => $p->receipt_number,
+                    'paid_at' => $p->updated_at->diffForHumans(),
+                ]);
+                return [
+                    'id'             => $pl->id,
+                    'handle'         => $pl->handle,
+                    'business_name'  => $pl->business_name,
+                    'category'       => $pl->category,
+                    'total_received' => $pl->total_received ?? 0,
+                    'payment_count'  => $pl->payment_count ?? 0,
+                    'today_received' => $todayRec,
+                    'today_count'    => $todayCount,
+                    'recent'         => $recent,
+                    'public_url'     => url('/pay/' . $pl->handle),
+                    'dashboard_url'  => route('creditor.seller.access', $pl->handle),
+                ];
+            });
+
         return view('creditor.dashboard', compact(
             'openDeni', 'settledDeni', 'totalOutstanding', 'totalCollected', 'openCount',
             'customers', 'ledger', 'todayIncome', 'todayExpense', 'monthIncome', 'monthExpense',
-            'todayPayments', 'contacts', 'recentPayouts'
+            'todayPayments', 'contacts', 'recentPayouts', 'payLinks'
         ));
     }
 
@@ -535,6 +564,20 @@ class CreditorController extends Controller
             '_query_debug' => $payout->status === 'pending' && $payout->created_at->diffInSeconds(now()) >= 10
                 ? ($query ?? null) : null,
         ]);
+    }
+
+    public function sellerAccess(string $handle)
+    {
+        if (! session()->has('creditor_phone_hash') || session('creditor_verified_day') !== now()->toDateString()) {
+            return redirect()->route('creditor.login');
+        }
+
+        $payLink = PayLink::where('handle', $handle)
+            ->where('phone_hash', session('creditor_phone_hash'))
+            ->firstOrFail();
+
+        session(['seller_id' => $payLink->id, 'seller_verified_at' => now()->timestamp]);
+        return redirect()->route('seller.dashboard');
     }
 
     public function logout()

@@ -53,6 +53,7 @@ class SellerController extends Controller
             'category'       => $data['category'] ?? null,
             'description'    => $data['description'] ?? null,
             'phone_encrypted'=> \Illuminate\Support\Facades\Crypt::encryptString($data['phone']),
+            'phone_hash'     => $this->seller->hashPhone($data['phone']),
             'default_amount' => $data['default_amount'] ?? null,
             'fixed_amount'   => ! empty($data['fixed_amount']),
             'password'       => Hash::make($data['password']),
@@ -77,6 +78,14 @@ class SellerController extends Controller
 
         if (! $payLink || ! Hash::check($data['password'], $payLink->password)) {
             return back()->withErrors(['handle' => 'Invalid handle or password.']);
+        }
+
+        // Backfill phone_hash for sellers registered before this feature
+        if (! $payLink->phone_hash) {
+            try {
+                $phone = \Illuminate\Support\Facades\Crypt::decryptString($payLink->phone_encrypted);
+                $payLink->updateQuietly(['phone_hash' => $this->seller->hashPhone($phone)]);
+            } catch (\Throwable $e) {}
         }
 
         Session::put('seller_id', $payLink->id);

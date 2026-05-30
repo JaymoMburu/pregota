@@ -205,9 +205,67 @@ select option{color:#111;background:#fff}
 
     {{-- Tab bar --}}
     <div class="tab-bar">
-        <button class="tab-btn active" id="tab-deni-btn"   onclick="showTab('deni')">🧾 Madeni</button>
-        <button class="tab-btn"        id="tab-ledger-btn" onclick="showTab('ledger')">📒 Ledger</button>
-        <button class="tab-btn"        id="tab-payout-btn" onclick="showTab('payout')">💸 Pay Out</button>
+        <button class="tab-btn active" id="tab-deni-btn"     onclick="showTab('deni')">🧾 Madeni</button>
+        <button class="tab-btn"        id="tab-paylinks-btn" onclick="showTab('paylinks')">🔗 Pay Links</button>
+        <button class="tab-btn"        id="tab-ledger-btn"   onclick="showTab('ledger')">📒 Ledger</button>
+        <button class="tab-btn"        id="tab-payout-btn"   onclick="showTab('payout')">💸 Pay Out</button>
+    </div>
+
+    {{-- PAY LINKS TAB --}}
+    <div id="tab-paylinks" style="display:none">
+        @if($payLinks->isEmpty())
+        <div class="empty">
+            <div style="font-size:36px;margin-bottom:12px">🔗</div>
+            <div style="font-size:15px;font-weight:700;margin-bottom:6px">No Pay Links yet</div>
+            <div style="font-size:13px;color:rgba(255,255,255,.35);margin-bottom:20px">Create a pay link so customers can pay you via M-Pesa — without you sharing your number.</div>
+            <a href="{{ route('seller.register') }}" style="display:inline-block;padding:12px 24px;background:linear-gradient(135deg,#25D366,#1aaa52);border-radius:11px;color:#fff;font-weight:800;text-decoration:none;font-size:14px">Create a Pay Link →</a>
+        </div>
+        @else
+        @foreach($payLinks as $pl)
+        <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:18px;margin-bottom:14px">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px;flex-wrap:wrap;gap:10px">
+                <div>
+                    <div style="font-size:16px;font-weight:900">{{ $pl['business_name'] }}</div>
+                    <div style="font-size:12px;color:rgba(255,255,255,.4);margin-top:2px">pregota.com/pay/{{ $pl['handle'] }}</div>
+                </div>
+                <div style="display:flex;gap:8px">
+                    <a href="{{ $pl['public_url'] }}" target="_blank" style="font-size:12px;padding:6px 12px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:8px;color:rgba(255,255,255,.6);text-decoration:none">View →</a>
+                    <a href="{{ $pl['dashboard_url'] }}" style="font-size:12px;padding:6px 12px;background:linear-gradient(135deg,#25D366,#1aaa52);border-radius:8px;color:#fff;text-decoration:none;font-weight:700">Manage →</a>
+                </div>
+            </div>
+
+            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px">
+                <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:10px;padding:12px;text-align:center">
+                    <div style="font-size:16px;font-weight:900;color:#4ADE80">KES {{ number_format($pl['today_received']) }}</div>
+                    <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:rgba(255,255,255,.35);margin-top:3px">Today</div>
+                </div>
+                <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:10px;padding:12px;text-align:center">
+                    <div style="font-size:16px;font-weight:900">{{ $pl['today_count'] }}</div>
+                    <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:rgba(255,255,255,.35);margin-top:3px">Payments</div>
+                </div>
+                <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:10px;padding:12px;text-align:center">
+                    <div style="font-size:16px;font-weight:900">KES {{ number_format($pl['total_received']) }}</div>
+                    <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:rgba(255,255,255,.35);margin-top:3px">All Time</div>
+                </div>
+            </div>
+
+            @if(count($pl['recent']) > 0)
+            <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.3);margin-bottom:8px">Recent Payments</div>
+            @foreach($pl['recent'] as $rp)
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.05)">
+                <div>
+                    <div style="font-size:13px;font-weight:700;color:#4ADE80">KES {{ number_format($rp['amount']) }}</div>
+                    <div style="font-size:11px;color:rgba(255,255,255,.3);margin-top:1px">{{ $rp['paid_at'] }}</div>
+                </div>
+                <div style="font-size:11px;color:rgba(255,255,255,.3)">{{ $rp['receipt'] }}</div>
+            </div>
+            @endforeach
+            @endif
+        </div>
+        @endforeach
+
+        <a href="{{ route('seller.register') }}" style="display:block;text-align:center;padding:13px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:12px;color:rgba(255,255,255,.5);font-size:13px;font-weight:700;text-decoration:none;margin-top:4px">+ Add Another Pay Link</a>
+        @endif
     </div>
 
     {{-- LEDGER TAB --}}
@@ -633,7 +691,7 @@ async function saveTill() {
 
 // ── Tabs ──────────────────────────────────────────────────────────
 function showTab(tab) {
-    ['deni','ledger','payout'].forEach(t => {
+    ['deni','paylinks','ledger','payout'].forEach(t => {
         document.getElementById('tab-' + t).style.display      = t === tab ? '' : 'none';
         document.getElementById('tab-' + t + '-btn').className = 'tab-btn' + (t === tab ? ' active' : '');
     });
