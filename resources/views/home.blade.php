@@ -194,15 +194,15 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
             <div class="mod-cta">Get My Pay Link <span>›</span></div>
         </a>
 
-        <!-- Deni -->
+        <!-- Deni / Smart Biashara -->
         <a href="{{ route('deni.landing') }}" class="mod-card mod-red">
             <div class="mod-icon">🧾</div>
             <div class="mod-name">Deni</div>
-            <div class="mod-desc">Extended credit at your kibanda? Lent a friend money? Record it — they get a payment link, pay via M-Pesa, money goes straight to you.</div>
+            <div class="mod-desc">Run a kibanda, lend to customers, or lent a friend cash? Record it — they get a payment link, pay via M-Pesa, money goes straight to you. Use Smart Biashara to manage all your madeni in one place.</div>
             <div class="mod-tags">
                 <span class="mod-tag">Vibanda</span>
-                <span class="mod-tag">Restaurants</span>
                 <span class="mod-tag">Personal loans</span>
+                <span class="mod-tag">Smart Biashara</span>
             </div>
             <div class="mod-cta" style="color:#f87171">Record a Deni <span>›</span></div>
         </a>

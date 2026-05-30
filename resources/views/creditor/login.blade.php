@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Deni — Creditor Access · Pregota</title>
+<title>Smart Biashara · Pregota</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800;900&display=swap" rel="stylesheet">
@@ -38,9 +38,9 @@ body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;col
     <a href="{{ route('home') }}" class="logo">Pregota</a>
 
     <div id="login-view">
-        <div class="icon">🧾</div>
-        <div class="title">Deni Dashboard</div>
-        <div class="sub">Track all your madeni in one place. Pay KES 2 to verify your number and access your account.</div>
+        <div class="icon">🏢</div>
+        <div class="title">Smart Biashara</div>
+        <div class="sub">Track all your madeni in one place — personal loans, customer credit, or business tabs. KES 20 per day, charged via M-Pesa.</div>
 
         <div class="use-cases">
             <div class="uc"><div class="uc-icon">🏍️</div><div class="uc-label">Boda Boda</div></div>

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>{{ session('creditor_name') }} — Business Dashboard · Pregota</title>
+<title>{{ session('creditor_name') }} — Smart Biashara · Pregota</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800;900&display=swap" rel="stylesheet">
@@ -184,7 +184,7 @@ select option{color:#111;background:#fff}
 
     <div class="greeting">
         <div class="greeting-name">{{ session('creditor_name') }}</div>
-        <div class="greeting-sub">{{ $openCount }} open {{ Str::plural('tab', $openCount) }} · Business Dashboard</div>
+        <div class="greeting-sub">{{ $openCount }} open {{ Str::plural('tab', $openCount) }} · Smart Biashara</div>
     </div>
 
 

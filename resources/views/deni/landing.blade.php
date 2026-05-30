@@ -5,10 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Deni — Track Credit & Collect What You're Owed · Pregota</title>
 <meta name="description" content="Record a customer tab or personal loan in 30 seconds. They get a payment link, pay via M-Pesa, money goes straight to you. Real-time balance tracking for vibanda, restaurants, shops, and friends.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800;900&display=swap" rel="stylesheet">
 @include('partials.pwa')
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;min-height:100vh}
+body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;color:#fff;min-height:100vh}
 
 .nav{padding:14px 24px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,.08);position:sticky;top:0;background:#0B141A;z-index:10}
 .logo{font-size:20px;font-weight:900;background:linear-gradient(135deg,#25D366,#4ADE80);-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-decoration:none}
@@ -103,21 +106,21 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 <nav class="nav">
     <a href="{{ route('home') }}" class="logo">Pregota</a>
     <div style="display:flex;gap:10px;align-items:center">
-        <a href="{{ route('creditor.login') }}" style="color:rgba(255,255,255,.6);font-size:13px;font-weight:600;text-decoration:none">Creditor Login</a>
+        <a href="{{ route('creditor.login') }}" style="color:rgba(255,255,255,.6);font-size:13px;font-weight:600;text-decoration:none">Smart Biashara →</a>
         <a href="{{ route('deni.create') }}" class="nav-cta">Record a Deni →</a>
     </div>
 </nav>
 
 <!-- Hero -->
 <div class="hero">
-    <div class="badge">🧾 Deni · Credit Tracking via M-Pesa</div>
+    <div class="badge">🧾 Deni — For Lenders &amp; Businesses</div>
     <h1>Credit given.<br><em>Always collected.</em></h1>
-    <p>Record a customer tab or personal loan in 30 seconds. They get a payment link — pay via M-Pesa, money lands straight in your account. No chasing. No awkward reminders. Real-time balance on both sides.</p>
+    <p>Whether you run a kibanda extending lunch credit or you're a friend who lent money — record it in 30 seconds. They get a payment link, pay via M-Pesa, money lands straight in your account. No chasing. No awkward reminders.</p>
     <div class="hero-btns">
         <a href="{{ route('deni.create') }}" class="btn-primary">Record a Deni — Free →</a>
-        <a href="{{ route('creditor.login') }}" class="btn-secondary">🧾 Creditor Account</a>
+        <a href="{{ route('creditor.login') }}" class="btn-secondary">🏢 Smart Biashara →</a>
     </div>
-    <div style="margin-top:14px;font-size:12px;color:rgba(255,255,255,.35)">Record many deni? Get one login to manage all your tabs in one place.</div>
+    <div style="margin-top:14px;font-size:12px;color:rgba(255,255,255,.35)">Creditor or business? <a href="{{ route('creditor.login') }}" style="color:#f87171;text-decoration:none;font-weight:700">Smart Biashara →</a> — one dashboard for all your madeni.</div>
 </div>
 
 <!-- Demo preview -->
@@ -143,14 +146,14 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 <!-- Who it's for -->
 <div class="section">
     <div class="section-tag">Who Uses Deni</div>
-    <h2>Anyone who gives before they receive.</h2>
-    <p>From the kibanda owner extending lunch credit to the friend who always covers the bill — Deni turns informal trust into a trackable, payable record.</p>
+    <h2>For personal lenders and businesses.</h2>
+    <p>Whether you run a kibanda, a shop, or a boda boda — or you're a friend who regularly lends cash — Deni tracks every shilling owed and collects it via M-Pesa. No awkward conversations. No lost money.</p>
 
     <div class="who-grid">
         <div class="who-card">
             <div class="who-icon">🍲</div>
             <div class="who-title">Vibanda & Restaurants</div>
-            <div class="who-desc">Customer eats and promises to pay later. Record the tab in seconds — they get a link, you get the money when they pay.</div>
+            <div class="who-desc">Customer eats and promises to pay later. Record the tab in seconds — they get a link, you get the money when they pay. Track partial payments automatically.</div>
             <div class="who-tags">
                 <span class="who-tag">Lunch tabs</span>
                 <span class="who-tag">Running credit</span>
@@ -159,18 +162,18 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
         </div>
         <div class="who-card">
             <div class="who-icon">🏪</div>
-            <div class="who-title">Shops & Kiosks</div>
-            <div class="who-desc">Sold goods on credit? Record what's owed, send the payment link via WhatsApp — customer pays their balance directly via M-Pesa.</div>
+            <div class="who-title">Shops & Businesses</div>
+            <div class="who-desc">Sold goods on credit or offer business-to-customer lending? Record what's owed, send the payment link via WhatsApp — customer pays via M-Pesa, balance updates in real time.</div>
             <div class="who-tags">
                 <span class="who-tag">Shop credit</span>
+                <span class="who-tag">B2C lending</span>
                 <span class="who-tag">Goods on account</span>
-                <span class="who-tag">Neighbourhood shops</span>
             </div>
         </div>
         <div class="who-card">
-            <div class="who-icon">🤝</div>
-            <div class="who-title">Friends & Family</div>
-            <div class="who-desc">Lent a friend money or covered their fare? Use Direct Gift to send the cash via Pregota, then create a deni to track repayment.</div>
+            <div class="who-icon">💰</div>
+            <div class="who-title">Personal Lenders</div>
+            <div class="who-desc">Lent a friend cash, covered a bill, or helped someone in an emergency? Create a deni — they get a payment link and you track every partial payment until it's fully repaid.</div>
             <div class="who-tags">
                 <span class="who-tag">Personal loans</span>
                 <span class="who-tag">Fare covered</span>
