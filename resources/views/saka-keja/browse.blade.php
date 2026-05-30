@@ -5,10 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Saka Keja — Find a House, No Agents · Pregota</title>
 <meta name="description" content="Browse verified landlord listings in Kenya. Pay deposit safely through Pregota escrow. No agents, no lost money.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800;900&display=swap" rel="stylesheet">
 @include('partials.pwa')
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;min-height:100vh}
+body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;color:#fff;min-height:100vh}
 
 /* Nav */
 .nav{padding:14px 24px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;background:rgba(11,20,26,.92);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.06);z-index:50}
@@ -21,7 +24,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 /* Hero */
 .hero{padding:64px 24px 56px;text-align:center;max-width:640px;margin:0 auto;position:relative}
 .hero-badge{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.25);border-radius:999px;font-size:12px;font-weight:700;color:#f59e0b;margin-bottom:20px}
-.hero-title{font-size:clamp(32px,7vw,54px);font-weight:900;line-height:1.1;margin-bottom:16px;letter-spacing:-.02em}
+.hero-title{font-size:clamp(34px,7vw,58px);font-weight:900;line-height:1.05;margin-bottom:16px;letter-spacing:-.03em}
 .hero-title .green{background:linear-gradient(135deg,#25D366,#4ADE80);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 .hero-title .amber{background:linear-gradient(135deg,#f59e0b,#fbbf24);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 .hero-sub{font-size:16px;color:rgba(255,255,255,.55);line-height:1.7;margin-bottom:32px;max-width:480px;margin-left:auto;margin-right:auto}
