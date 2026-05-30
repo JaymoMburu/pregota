@@ -10,6 +10,6 @@ class CreditorPayout extends Model
         'creditor_phone_hash', 'contact_id', 'recipient_name',
         'recipient_phone_encrypted', 'recipient_till',
         'amount', 'category', 'description',
-        'checkout_request_id', 'status', 'receipt_number',
+        'checkout_request_id', 'status', 'receipt_number', 'b2c_response',
     ];
 }
