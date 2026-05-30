@@ -56,7 +56,11 @@ foreach ($logFiles as $f) {
 $testPath = storage_path('logs/hook-test.log');
 file_put_contents($testPath, now()->toDateTimeString() . " hook ran\n", FILE_APPEND);
 $log[] = 'Direct write test: ' . (file_exists($testPath) ? 'ok ('.filesize($testPath).'B)' : 'FAILED');
+// Test direct write to laravel.log
 $laravelLog = storage_path('logs/laravel.log');
+$directWrite = file_put_contents($laravelLog, '[HOOK-TEST] ' . now()->toDateTimeString() . "\n", FILE_APPEND | LOCK_EX);
+clearstatcache(true, $laravelLog);
+$log[] = "Direct write to laravel.log: " . ($directWrite !== false ? "{$directWrite}B written, new size=" . filesize($laravelLog) : 'FAILED');
 $sizeBefore = file_exists($laravelLog) ? filesize($laravelLog) : 0;
 try {
     \Illuminate\Support\Facades\Log::info('Deploy hook test at ' . now()->toDateTimeString());
