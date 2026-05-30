@@ -45,7 +45,17 @@ if (function_exists('opcache_reset')) {
     $log[] = '– opcache_reset not available';
 }
 
-// Test if logging works
+// Diagnose logging
+$log[] = 'LOG_CHANNEL: ' . config('logging.default');
+$log[] = 'Storage path: ' . storage_path('logs');
+$logFiles = glob(storage_path('logs') . '/*.log') ?: [];
+foreach ($logFiles as $f) {
+    $log[] = '  ' . basename($f) . ' (' . round(filesize($f)/1024,1) . 'KB, writable=' . (is_writable($f)?'yes':'no') . ')';
+}
+// Write directly to test writability
+$testPath = storage_path('logs/hook-test.log');
+file_put_contents($testPath, now()->toDateTimeString() . " hook ran\n", FILE_APPEND);
+$log[] = 'Direct write test: ' . (file_exists($testPath) ? 'ok ('.filesize($testPath).'B)' : 'FAILED');
 try {
     \Illuminate\Support\Facades\Log::info('Deploy hook test at ' . now()->toDateTimeString());
     $log[] = '✓ Log::info test written';
