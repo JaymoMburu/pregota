@@ -1,11 +1,11 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Live — {{ $payLink->business_name }}</title>
+<title>Live â€” {{ $payLink->business_name }}</title>
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
+*{box-sizing:border-box;margin:0;padding:0}input,textarea,select,button{font-family:inherit;font-size:inherit}
 html,body{height:100%}
 body{font-family:'Segoe UI',system-ui,sans-serif;background:#0a1a0f;color:#fff;min-height:100vh}
 
@@ -101,15 +101,15 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0a1a0f;color:#fff;m
 
 <div class="today-bar">
     <div class="today-stat">
-        <div class="today-val" id="today-count">—</div>
+        <div class="today-val" id="today-count">â€”</div>
         <div class="today-label">Payments today</div>
     </div>
     <div class="today-stat">
-        <div class="today-val" id="today-total">—</div>
+        <div class="today-val" id="today-total">â€”</div>
         <div class="today-label">Total collected</div>
     </div>
     <div class="today-stat" id="tips-stat" style="display:none">
-        <div class="today-val" id="today-tips" style="color:#fbbf24">—</div>
+        <div class="today-val" id="today-tips" style="color:#fbbf24">â€”</div>
         <div class="today-label">Tips today</div>
     </div>
     @if($payLink->fixed_amount && $payLink->default_amount)
@@ -132,7 +132,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0a1a0f;color:#fff;m
 </div>
 @else
 <div class="no-route-bar" id="no-route-bar">
-    ⚠️ No route set yet — tap below to set the current route and fare
+    âš ï¸ No route set yet â€” tap below to set the current route and fare
 </div>
 @endif
 
@@ -141,7 +141,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0a1a0f;color:#fff;m
     <h4>Set Current Route & Fare</h4>
     <div class="rf-group">
         <label class="rf-label">Route</label>
-        <input type="text" class="rf-input" id="rf-route" placeholder="e.g. CBD → Westlands" maxlength="100"
+        <input type="text" class="rf-input" id="rf-route" placeholder="e.g. CBD â†’ Westlands" maxlength="100"
             value="{{ $payLink->current_route ?? '' }}">
     </div>
     <div class="rf-group">
@@ -153,7 +153,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0a1a0f;color:#fff;m
         <label class="rf-label">Password</label>
         <input type="password" class="rf-input" id="rf-password" placeholder="Your account password">
     </div>
-    <button class="rf-submit" onclick="submitRoute()">✓ Set Route & Fare</button>
+    <button class="rf-submit" onclick="submitRoute()">âœ“ Set Route & Fare</button>
     <button class="rf-cancel" onclick="toggleRouteForm()">Cancel</button>
     <div id="rf-msg" style="display:none"></div>
 </div>
@@ -162,10 +162,10 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0a1a0f;color:#fff;m
 <div class="prompt-panel">
     <div class="prompt-panel-header" onclick="togglePrompt()">
         <div>
-            <div class="prompt-panel-title">📱 Prompt Passenger</div>
-            <div class="prompt-panel-sub">Enter their number — send M-Pesa prompt directly</div>
+            <div class="prompt-panel-title">ðŸ“± Prompt Passenger</div>
+            <div class="prompt-panel-sub">Enter their number â€” send M-Pesa prompt directly</div>
         </div>
-        <div class="prompt-toggle" id="prompt-chevron">›</div>
+        <div class="prompt-toggle" id="prompt-chevron">â€º</div>
     </div>
 
     @if($conductorUnlocked)
@@ -199,40 +199,40 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0a1a0f;color:#fff;m
             <input type="tel" id="prompt-phone" class="rf-input" placeholder="0712 345 678" autocomplete="off">
         </div>
 
-        <button class="rf-submit" id="prompt-btn" onclick="sendPrompt()">📱 Send M-Pesa Prompt</button>
+        <button class="rf-submit" id="prompt-btn" onclick="sendPrompt()">ðŸ“± Send M-Pesa Prompt</button>
 
         <div class="prompt-waiting" id="prompt-waiting">
-            📱 Prompt sent — waiting for passenger to enter PIN…
+            ðŸ“± Prompt sent â€” waiting for passenger to enter PINâ€¦
             <div style="font-size:11px;color:rgba(255,255,255,.4);margin-top:4px" id="prompt-wait-detail"></div>
         </div>
         <div class="prompt-confirmed" id="prompt-confirmed">
-            <div style="font-size:28px">✅</div>
+            <div style="font-size:28px">âœ…</div>
             <div style="font-size:15px;font-weight:900;color:#4ade80;margin-top:4px" id="prompt-confirmed-amt"></div>
             <div style="font-size:12px;color:rgba(255,255,255,.5);margin-top:2px">Payment confirmed</div>
             <button onclick="resetPrompt()" style="margin-top:10px;background:rgba(37,211,102,.12);border:1px solid rgba(37,211,102,.3);border-radius:8px;color:#4ade80;font-size:12px;font-weight:700;padding:6px 16px;cursor:pointer">Prompt another</button>
         </div>
         <div class="prompt-failed" id="prompt-failed">
-            ❌ Payment failed or declined.
+            âŒ Payment failed or declined.
             <button onclick="resetPrompt()" style="margin-left:10px;background:none;border:none;color:rgba(255,255,255,.5);font-size:12px;cursor:pointer;text-decoration:underline">Try again</button>
         </div>
     </div>
     @else
     <div class="prompt-locked" id="prompt-body">
-        🔒 Set your route above first — entering your password unlocks this for the session.
+        ðŸ”’ Set your route above first â€” entering your password unlocks this for the session.
     </div>
     @endif
 </div>
 
-<div class="section-label">Recent payments — updates automatically</div>
+<div class="section-label">Recent payments â€” updates automatically</div>
 
 <div id="payment-list">
     <div class="empty">
-        <div class="empty-icon">⏳</div>
-        <div class="empty-text">Waiting for payments…</div>
+        <div class="empty-icon">â³</div>
+        <div class="empty-text">Waiting for paymentsâ€¦</div>
     </div>
 </div>
 
-<div class="status-bar" id="status-bar">Connecting…</div>
+<div class="status-bar" id="status-bar">Connectingâ€¦</div>
 
 <script>
 let knownIds    = new Set();
@@ -249,7 +249,7 @@ function renderPayments(payments) {
 
     if (payments.length === 0) {
         if (firstLoad) {
-            list.innerHTML = '<div class="empty"><div class="empty-icon">⏳</div><div class="empty-text">Waiting for payments…</div></div>';
+            list.innerHTML = '<div class="empty"><div class="empty-icon">â³</div><div class="empty-text">Waiting for paymentsâ€¦</div></div>';
         }
         firstLoad = false;
         return;
@@ -276,14 +276,14 @@ function renderPayments(payments) {
 
         const hasTip  = p.tip_amount > 0;
         const tipLine = hasTip
-            ? `<div style="font-size:11px;color:#fbbf24;font-weight:700;margin-top:2px">🙏 +${fmt(p.tip_amount)} tip${p.tip_recipient ? ' → ' + p.tip_recipient : ''}${p.tip_comment ? ' · "' + p.tip_comment + '"' : ''}</div>`
+            ? `<div style="font-size:11px;color:#fbbf24;font-weight:700;margin-top:2px">ðŸ™ +${fmt(p.tip_amount)} tip${p.tip_recipient ? ' â†’ ' + p.tip_recipient : ''}${p.tip_comment ? ' Â· "' + p.tip_comment + '"' : ''}</div>`
             : '';
 
         const row = document.createElement('div');
         row.className = 'payment-row' + (firstLoad ? '' : ' new-flash');
         row.id        = 'pay-' + p.id;
         row.innerHTML = `
-            <div class="payment-icon">${hasTip ? '🙏' : '✅'}</div>
+            <div class="payment-icon">${hasTip ? 'ðŸ™' : 'âœ…'}</div>
             <div class="payment-info">
                 <div class="payment-amount">${fmt(p.amount)}${hasTip ? ` <span style="font-size:13px;color:rgba(255,255,255,.5)">+ ${fmt(p.tip_amount)} tip</span>` : ''}</div>
                 ${tipLine}
@@ -320,14 +320,14 @@ function poll() {
             document.getElementById('status-bar').textContent = 'Updated ' + new Date().toLocaleTimeString();
         })
         .catch(() => {
-            document.getElementById('status-bar').textContent = 'Connection error — retrying…';
+            document.getElementById('status-bar').textContent = 'Connection error â€” retryingâ€¦';
         });
 }
 
 poll();
 setInterval(poll, 3000);
 
-// ── Route change form ─────────────────────────────────────────────────────
+// â”€â”€ Route change form â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 function toggleRouteForm() {
     const form = document.getElementById('route-form');
     form.classList.toggle('open');
@@ -349,7 +349,7 @@ function submitRoute() {
 
     const btn = document.querySelector('.rf-submit');
     btn.disabled = true;
-    btn.textContent = 'Saving…';
+    btn.textContent = 'Savingâ€¦';
 
     fetch('{{ route('seller.set-route', $payLink->handle) }}', {
         method: 'POST',
@@ -364,9 +364,9 @@ function submitRoute() {
     .then(r => r.json())
     .then(data => {
         btn.disabled = false;
-        btn.textContent = '✓ Set Route & Fare';
+        btn.textContent = 'âœ“ Set Route & Fare';
         if (data.success) {
-            showMsg('✓ Route updated — passengers see the new fare immediately.', true);
+            showMsg('âœ“ Route updated â€” passengers see the new fare immediately.', true);
             // Update displayed values
             updateRouteDisplay(route, fare);
             document.getElementById('rf-password').value = '';
@@ -377,7 +377,7 @@ function submitRoute() {
     })
     .catch(() => {
         btn.disabled = false;
-        btn.textContent = '✓ Set Route & Fare';
+        btn.textContent = 'âœ“ Set Route & Fare';
         showMsg('Network error. Try again.', false);
     });
 }
@@ -433,11 +433,11 @@ function updateRouteDisplay(route, fare) {
     // Unlock prompt panel if it was locked (session established by setRoute)
     const locked = document.querySelector('.prompt-locked');
     if (locked) {
-        locked.innerHTML = '<div class="prompt-body open" style="padding-bottom:16px">✓ Unlocked — enter passenger phone below.</div>';
+        locked.innerHTML = '<div class="prompt-body open" style="padding-bottom:16px">âœ“ Unlocked â€” enter passenger phone below.</div>';
     }
 }
 
-// ── Conductor Prompt ──────────────────────────────────────────────────────
+// â”€â”€ Conductor Prompt â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 let promptPollTimer = null;
 let promptOpen = false;
 
@@ -470,7 +470,7 @@ function sendPrompt() {
 
     const btn = document.getElementById('prompt-btn');
     btn.disabled = true;
-    btn.textContent = 'Sending…';
+    btn.textContent = 'Sendingâ€¦';
 
     fetch('{{ route('seller.conductor.prompt', $payLink->handle) }}', {
         method: 'POST',
@@ -482,18 +482,18 @@ function sendPrompt() {
         if (data.success) {
             promptPaymentId = data.payment_id;
             document.getElementById('prompt-btn').style.display = 'none';
-            document.getElementById('prompt-wait-detail').textContent = 'KES ' + amount.toLocaleString() + ' → ' + phone;
+            document.getElementById('prompt-wait-detail').textContent = 'KES ' + amount.toLocaleString() + ' â†’ ' + phone;
             document.getElementById('prompt-waiting').style.display = 'block';
             promptPollTimer = setInterval(pollPromptStatus, 3000);
         } else {
             btn.disabled = false;
-            btn.textContent = '📱 Send M-Pesa Prompt';
+            btn.textContent = 'ðŸ“± Send M-Pesa Prompt';
             alert(data.message || 'Failed. Try again.');
         }
     })
     .catch(() => {
         btn.disabled = false;
-        btn.textContent = '📱 Send M-Pesa Prompt';
+        btn.textContent = 'ðŸ“± Send M-Pesa Prompt';
         alert('Network error.');
     });
 }
@@ -525,7 +525,7 @@ function resetPrompt() {
     document.querySelectorAll('.pf-btn').forEach(b => b.classList.remove('selected'));
     document.getElementById('prompt-btn').style.display = 'block';
     document.getElementById('prompt-btn').disabled = false;
-    document.getElementById('prompt-btn').textContent = '📱 Send M-Pesa Prompt';
+    document.getElementById('prompt-btn').textContent = 'ðŸ“± Send M-Pesa Prompt';
     document.getElementById('prompt-waiting').style.display  = 'none';
     document.getElementById('prompt-confirmed').style.display = 'none';
     document.getElementById('prompt-failed').style.display   = 'none';
@@ -534,3 +534,4 @@ function resetPrompt() {
 
 </body>
 </html>
+

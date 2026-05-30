@@ -1,12 +1,12 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>{{ $plan->name }} — {{ $plan->payLink->business_name }}</title>
+<title>{{ $plan->name }} â€” {{ $plan->payLink->business_name }}</title>
 @include('partials.pwa')
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
+*{box-sizing:border-box;margin:0;padding:0}input,textarea,select,button{font-family:inherit;font-size:inherit}
 body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;min-height:100vh}
 .nav{padding:14px 24px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,.07)}
 .logo{font-size:20px;font-weight:900;background:linear-gradient(135deg,#25D366,#4ADE80);-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-decoration:none}
@@ -53,10 +53,10 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
         <div class="field">
             <label>Your M-Pesa Number</label>
             <input type="tel" id="phone" placeholder="0712 345 678" autocomplete="tel">
-            <div class="hint">You'll get an M-Pesa prompt — enter your PIN to subscribe</div>
+            <div class="hint">You'll get an M-Pesa prompt â€” enter your PIN to subscribe</div>
         </div>
         <div class="err" id="err-msg"></div>
-        <button class="sub-btn" id="sub-btn" onclick="subscribe()">Subscribe & Pay →</button>
+        <button class="sub-btn" id="sub-btn" onclick="subscribe()">Subscribe & Pay â†’</button>
     </div>
 
     <div class="pending-state" id="pending-state">
@@ -66,7 +66,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
     </div>
 
     <div class="confirmed-state" id="confirmed-state">
-        <div class="conf-icon">✅</div>
+        <div class="conf-icon">âœ…</div>
         <div style="font-size:28px;font-weight:900;color:#4ADE80;margin-bottom:6px">Subscribed!</div>
         <div style="font-size:15px;font-weight:700;margin-bottom:4px">{{ $plan->name }}</div>
         <div style="font-size:13px;color:rgba(255,255,255,.45);margin-bottom:8px">{{ $plan->payLink->business_name }}</div>
@@ -124,3 +124,4 @@ function poll() {
 </script>
 </body>
 </html>
+

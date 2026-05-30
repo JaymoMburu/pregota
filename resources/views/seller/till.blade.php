@@ -1,14 +1,14 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-<title>Till — {{ $payLink->business_name }}</title>
+<title>Till â€” {{ $payLink->business_name }}</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800;900&display=swap" rel="stylesheet">
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
+*{box-sizing:border-box;margin:0;padding:0}input,textarea,select,button{font-family:inherit;font-size:inherit}
 body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;color:#fff;min-height:100vh;display:flex;flex-direction:column;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
 
 /* Header */
@@ -82,7 +82,7 @@ body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;col
     </div>
     <div style="display:flex;gap:12px;align-items:center">
         <span class="till-badge">Till Mode</span>
-        <a href="{{ route('seller.dashboard') }}" class="dash-link">Dashboard →</a>
+        <a href="{{ route('seller.dashboard') }}" class="dash-link">Dashboard â†’</a>
     </div>
 </div>
 
@@ -91,7 +91,7 @@ body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;col
 
         {{-- Phase 1: Cashier enters amount --}}
         <div id="phase-amount">
-            <div class="phase-label">Cashier — Enter Total</div>
+            <div class="phase-label">Cashier â€” Enter Total</div>
             <div class="amount-display" id="amt-display">0</div>
             <div class="amount-hint" id="amt-hint">Use keypad below</div>
 
@@ -106,21 +106,21 @@ body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;col
                 <div class="key" onclick="key('8')">8</div>
                 <div class="key" onclick="key('9')">9</div>
                 <div class="key zero" onclick="key('0')">0</div>
-                <div class="key del" onclick="del()">⌫</div>
+                <div class="key del" onclick="del()">âŒ«</div>
             </div>
 
-            <button class="btn-primary" id="ready-btn" onclick="goPhoneEntry()" disabled>Ready — Hand to Customer →</button>
+            <button class="btn-primary" id="ready-btn" onclick="goPhoneEntry()" disabled>Ready â€” Hand to Customer â†’</button>
             <button class="btn-reset" onclick="resetTill()">Clear</button>
         </div>
 
         {{-- Phase 2: Customer enters phone --}}
         <div id="phase-phone" style="display:none">
-            <div class="phase-label">Customer — Enter Your M-Pesa Number</div>
+            <div class="phase-label">Customer â€” Enter Your M-Pesa Number</div>
 
             <div class="locked-amount">
                 <div class="locked-label">Amount to Pay</div>
                 <div class="locked-val">KES <span id="locked-amt">0</span></div>
-                <div class="locked-fee">Fee: KES <span id="locked-fee">0</span> · You pay KES <span id="locked-total">0</span></div>
+                <div class="locked-fee">Fee: KES <span id="locked-fee">0</span> Â· You pay KES <span id="locked-total">0</span></div>
             </div>
 
             <div class="err-box" id="phone-err"></div>
@@ -128,11 +128,11 @@ body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;col
             <div class="phone-wrap">
                 <label class="phone-label">Your Safaricom Number</label>
                 <input type="tel" id="phone-input" class="phone-input" placeholder="0712 345 678" autocomplete="tel" inputmode="tel">
-                <div class="phone-hint">You'll get an M-Pesa prompt — enter your PIN to pay</div>
+                <div class="phone-hint">You'll get an M-Pesa prompt â€” enter your PIN to pay</div>
             </div>
 
             <button class="btn-primary" id="pay-btn" onclick="initiatePay()">Pay with M-Pesa</button>
-            <button class="btn-reset" onclick="backToAmount()">← Back (Cashier)</button>
+            <button class="btn-reset" onclick="backToAmount()">â† Back (Cashier)</button>
         </div>
 
         {{-- Phase 3: Pending STK --}}
@@ -145,13 +145,13 @@ body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;col
 
         {{-- Phase 4: Confirmed --}}
         <div id="phase-confirmed" style="display:none">
-            <div class="check">✅</div>
+            <div class="check">âœ…</div>
             <div class="confirmed-amount">KES <span id="conf-amt">0</span></div>
             <div style="font-size:16px;font-weight:700;margin-bottom:20px">Payment Confirmed</div>
             <div class="confirmed-receipt">Receipt</div>
             <a id="conf-receipt-link" class="receipt-link" href="#" target="_blank"></a>
             <div class="countdown" id="countdown"></div>
-            <button class="btn-reset" style="margin-top:20px" onclick="resetTill()">Next Customer →</button>
+            <button class="btn-reset" style="margin-top:20px" onclick="resetTill()">Next Customer â†’</button>
         </div>
 
     </div>
@@ -165,7 +165,7 @@ let checkoutId = null;
 let pollTimer  = null;
 let cdTimer    = null;
 
-// ── Keypad ────────────────────────────────────────────────────────────────
+// â”€â”€ Keypad â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 function key(d) {
     if (amountRaw.length >= 6) return;
     amountRaw += d;
@@ -189,7 +189,7 @@ function render() {
     document.getElementById('ready-btn').disabled = val < 10 || val > 150000;
 }
 
-// ── Phase transitions ─────────────────────────────────────────────────────
+// â”€â”€ Phase transitions â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 function show(id) {
     ['phase-amount','phase-phone','phase-pending','phase-confirmed'].forEach(p =>
         document.getElementById(p).style.display = 'none'
@@ -222,7 +222,7 @@ function resetTill() {
     show('phase-amount');
 }
 
-// ── Pay ───────────────────────────────────────────────────────────────────
+// â”€â”€ Pay â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 async function initiatePay() {
     const phone  = document.getElementById('phone-input').value.trim();
     const amount = parseInt(amountRaw || '0');
@@ -253,7 +253,7 @@ async function initiatePay() {
     }
 }
 
-// ── Poll ─────────────────────────────────────────────────────────────────
+// â”€â”€ Poll â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 function pollStatus() {
     if (!checkoutId) return;
     fetch(`/seller/status?payment_id=${checkoutId}`)
@@ -289,7 +289,7 @@ function showConfirmed(d) {
     // Auto-reset countdown
     let secs = 8;
     function tick() {
-        document.getElementById('countdown').textContent = `Next customer in ${secs}s…`;
+        document.getElementById('countdown').textContent = `Next customer in ${secs}sâ€¦`;
         if (secs-- <= 0) { resetTill(); return; }
         cdTimer = setTimeout(tick, 1000);
     }
@@ -305,3 +305,4 @@ render();
 </script>
 </body>
 </html>
+

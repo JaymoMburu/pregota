@@ -1,11 +1,11 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Alert Overlay</title>
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
+*{box-sizing:border-box;margin:0;padding:0}input,textarea,select,button{font-family:inherit;font-size:inherit}
 body{background:transparent;font-family:'Segoe UI',system-ui,sans-serif;overflow:hidden;width:420px}
 
 .alert-wrap{position:fixed;bottom:24px;left:24px;width:380px;pointer-events:none}
@@ -35,7 +35,7 @@ body{background:transparent;font-family:'Segoe UI',system-ui,sans-serif;overflow
 <body>
 <div class="alert-wrap">
     <div class="gift-alert" id="alert">
-        <div class="alert-emoji">🎁</div>
+        <div class="alert-emoji">ðŸŽ</div>
         <div class="alert-body">
             <div class="alert-from" id="alertFrom">Someone</div>
             <div class="alert-amount" id="alertAmount">KES 0</div>
@@ -88,3 +88,4 @@ poll();
 </script>
 </body>
 </html>
+

@@ -1,13 +1,13 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bulk Gift Codes — Pregota for Business</title>
-<meta name="description" content="Buy M-Pesa gift codes in bulk. One payment, multiple codes — each redeemable by any Kenyan phone.">
+<title>Bulk Gift Codes â€” Pregota for Business</title>
+<meta name="description" content="Buy M-Pesa gift codes in bulk. One payment, multiple codes â€” each redeemable by any Kenyan phone.">
 @include('partials.pwa')
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
+*{box-sizing:border-box;margin:0;padding:0}input,textarea,select,button{font-family:inherit;font-size:inherit}
 body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;min-height:100vh}
 .nav{padding:14px 24px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,.07);background:#0B141A;position:sticky;top:0;z-index:10}
 .logo{font-size:20px;font-weight:900;background:linear-gradient(135deg,#25D366,#4ADE80);-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-decoration:none}
@@ -95,16 +95,16 @@ input::placeholder{color:rgba(255,255,255,.25)}
 
 <nav class="nav">
     <a href="{{ route('home') }}" class="logo">Pregota</a>
-    <a href="{{ route('gift.home') }}" class="nav-back">← Gift Vouchers</a>
+    <a href="{{ route('gift.home') }}" class="nav-back">â† Gift Vouchers</a>
 </nav>
 
 <div class="wrap">
 
     <!-- FORM SCREEN -->
     <div class="screen active" id="screen-form">
-        <div class="badge-corp">🏢 For Businesses &amp; Organisations</div>
+        <div class="badge-corp">ðŸ¢ For Businesses &amp; Organisations</div>
         <h1>Bulk Gift Codes<br><em>One payment. Many gifts.</em></h1>
-        <p class="sub">Buy gift codes in bulk — pay once via M-Pesa, get a set of unique codes. Share them with staff, clients, or partners. Each code is redeemed independently to any Kenyan number.</p>
+        <p class="sub">Buy gift codes in bulk â€” pay once via M-Pesa, get a set of unique codes. Share them with staff, clients, or partners. Each code is redeemed independently to any Kenyan number.</p>
 
         <div class="how">
             <div class="how-step">
@@ -159,21 +159,21 @@ input::placeholder{color:rgba(255,255,255,.25)}
                         <span>Codes</span><span class="val" id="p-count">10</span>
                     </div>
                     <div class="preview-row">
-                        <span>Each recipient gets</span><span class="val" id="p-per">KES —</span>
+                        <span>Each recipient gets</span><span class="val" id="p-per">KES â€”</span>
                     </div>
                     <div class="preview-row">
-                        <span>Pregota fee</span><span class="val" id="p-fee">KES —</span>
+                        <span>Pregota fee</span><span class="val" id="p-fee">KES â€”</span>
                     </div>
                     <div class="preview-row total">
-                        <span>You pay via M-Pesa</span><span class="val" id="p-total">KES —</span>
+                        <span>You pay via M-Pesa</span><span class="val" id="p-total">KES â€”</span>
                     </div>
                     <div class="max-codes" id="max-note"></div>
-                    <div class="warn" id="limit-warn">⚠️ Total exceeds the M-Pesa limit of KES {{ number_format($maxAmount) }}. Reduce codes or amount per code.</div>
+                    <div class="warn" id="limit-warn">âš ï¸ Total exceeds the M-Pesa limit of KES {{ number_format($maxAmount) }}. Reduce codes or amount per code.</div>
                 </div>
 
                 <div class="err-msg" id="form-err"></div>
 
-                <button type="submit" class="btn" id="submit-btn" disabled>Pay &amp; Generate Codes →</button>
+                <button type="submit" class="btn" id="submit-btn" disabled>Pay &amp; Generate Codes â†’</button>
             </form>
         </div>
     </div>
@@ -181,18 +181,18 @@ input::placeholder{color:rgba(255,255,255,.25)}
     <!-- WAITING SCREEN -->
     <div class="screen" id="screen-waiting">
         <div class="waiting-box">
-            <div class="waiting-icon">📲</div>
+            <div class="waiting-icon">ðŸ“²</div>
             <div style="font-size:18px;font-weight:700;margin-bottom:8px">Check your phone</div>
             <div style="font-size:14px;color:rgba(255,255,255,.72);line-height:1.6;max-width:340px;margin:0 auto">An M-Pesa STK Push has been sent to your phone. Enter your M-Pesa PIN to complete the payment.</div>
             <div class="waiting-ref" id="waiting-ref"></div>
-            <div style="font-size:12px;color:rgba(255,255,255,.4);margin-top:24px">Generating your codes after payment…</div>
+            <div style="font-size:12px;color:rgba(255,255,255,.4);margin-top:24px">Generating your codes after paymentâ€¦</div>
         </div>
     </div>
 
     <!-- SUCCESS SCREEN -->
     <div class="screen" id="screen-success">
         <div class="success-header">
-            <div class="success-icon">🎉</div>
+            <div class="success-icon">ðŸŽ‰</div>
             <div class="success-title">Codes Ready!</div>
             <div class="success-sub" id="success-sub">Your gift codes have been generated.</div>
         </div>
@@ -200,7 +200,7 @@ input::placeholder{color:rgba(255,255,255,.25)}
         <div class="codes-wrap">
             <div class="codes-header">
                 <h3 id="codes-header-text">Gift Codes</h3>
-                <a href="#" class="download-btn" id="download-link">⬇ Download CSV</a>
+                <a href="#" class="download-btn" id="download-link">â¬‡ Download CSV</a>
             </div>
             <div class="codes-list" id="codes-list"></div>
         </div>
@@ -213,7 +213,7 @@ input::placeholder{color:rgba(255,255,255,.25)}
     <!-- FAILED SCREEN -->
     <div class="screen" id="screen-failed">
         <div class="waiting-box">
-            <div style="font-size:52px;margin-bottom:20px">❌</div>
+            <div style="font-size:52px;margin-bottom:20px">âŒ</div>
             <div style="font-size:18px;font-weight:700;margin-bottom:8px">Payment Not Received</div>
             <div style="font-size:14px;color:rgba(255,255,255,.72);line-height:1.6;max-width:340px;margin:0 auto">The M-Pesa payment was not completed. No codes were generated and nothing was charged.</div>
             <button class="btn" style="max-width:260px;margin:28px auto 0;display:block" onclick="resetToForm()">Try Again</button>
@@ -232,7 +232,7 @@ const FEE_MIN     = 50;
 let currentRef = null;
 let pollTimer   = null;
 
-// ── Fee calculation (mirrors PHP VoucherService::calculateFees) ───────────
+// â”€â”€ Fee calculation (mirrors PHP VoucherService::calculateFees) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 function calcFees(payout, count) {
     const feeOut   = Math.max(FEE_MIN / 2, payout * FEE_OUT_PCT / (100 - FEE_OUT_PCT));
     const faceVal  = payout + feeOut;
@@ -259,12 +259,12 @@ function updatePreview() {
     const limitW  = document.getElementById('limit-warn');
     const btn     = document.getElementById('submit-btn');
 
-    pCount.textContent = count || '—';
+    pCount.textContent = count || 'â€”';
 
     if (!amount || !count || amount < MIN_AMOUNT) {
-        pPer.textContent = 'KES —';
-        pFee.textContent = 'KES —';
-        pTotal.textContent = 'KES —';
+        pPer.textContent = 'KES â€”';
+        pFee.textContent = 'KES â€”';
+        pTotal.textContent = 'KES â€”';
         maxNote.textContent = '';
         limitW.style.display = 'none';
         btn.disabled = true;
@@ -291,19 +291,19 @@ function updatePreview() {
     maxNote.innerHTML = 'Max codes at KES&nbsp;' + amount.toLocaleString() + ' each: <strong>' + maxCodes.toLocaleString() + '</strong>';
 }
 
-// ── Form inputs ───────────────────────────────────────────────────────────
+// â”€â”€ Form inputs â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 ['amount_per_code', 'code_count', 'company_name', 'contact_name', 'phone'].forEach(id => {
     document.getElementById(id).addEventListener('input', updatePreview);
 });
 updatePreview();
 
-// ── Submit ────────────────────────────────────────────────────────────────
+// â”€â”€ Submit â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 document.getElementById('bulk-form').addEventListener('submit', async function(e) {
     e.preventDefault();
     const btn = document.getElementById('submit-btn');
     const err = document.getElementById('form-err');
     btn.disabled = true;
-    btn.textContent = 'Sending STK Push…';
+    btn.textContent = 'Sending STK Pushâ€¦';
     err.style.display = 'none';
 
     const body = new FormData(this);
@@ -321,17 +321,17 @@ document.getElementById('bulk-form').addEventListener('submit', async function(e
             err.textContent  = data.message || 'Something went wrong.';
             err.style.display = 'block';
             btn.disabled = false;
-            btn.textContent = 'Pay & Generate Codes →';
+            btn.textContent = 'Pay & Generate Codes â†’';
         }
     } catch (ex) {
         err.textContent  = 'Network error. Please try again.';
         err.style.display = 'block';
         btn.disabled = false;
-        btn.textContent = 'Pay & Generate Codes →';
+        btn.textContent = 'Pay & Generate Codes â†’';
     }
 });
 
-// ── Polling ───────────────────────────────────────────────────────────────
+// â”€â”€ Polling â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 function startPolling() {
     pollTimer = setInterval(poll, 3000);
 }
@@ -352,12 +352,12 @@ async function poll() {
     } catch (_) {}
 }
 
-// ── Success render ────────────────────────────────────────────────────────
+// â”€â”€ Success render â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 function showSuccess(data) {
     showScreen('screen-success');
     const codes = data.codes || [];
     document.getElementById('success-sub').textContent =
-        codes.length + ' codes ready · Reference: ' + data.reference;
+        codes.length + ' codes ready Â· Reference: ' + data.reference;
     document.getElementById('codes-header-text').textContent =
         codes.length + ' Gift Codes';
     document.getElementById('download-link').href =
@@ -368,13 +368,13 @@ function showSuccess(data) {
         `<div class="code-row">
             <span class="code-num">${i + 1}</span>
             <span class="code-val">${c.code}</span>
-            <span class="code-amount">KES ${c.value.toLocaleString()} · ${c.expires}</span>
+            <span class="code-amount">KES ${c.value.toLocaleString()} Â· ${c.expires}</span>
             <button class="code-copy" onclick="copyCode(this,'${c.code}')">Copy</button>
         </div>`
     ).join('');
 }
 
-// ── Helpers ───────────────────────────────────────────────────────────────
+// â”€â”€ Helpers â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 function showScreen(id) {
     document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
     document.getElementById(id).classList.add('active');
@@ -386,7 +386,7 @@ function resetToForm() {
     showScreen('screen-form');
     const btn = document.getElementById('submit-btn');
     btn.disabled = false;
-    btn.textContent = 'Pay & Generate Codes →';
+    btn.textContent = 'Pay & Generate Codes â†’';
 }
 
 function copyCode(btn, code) {
@@ -400,3 +400,4 @@ function copyCode(btn, code) {
 
 </body>
 </html>
+

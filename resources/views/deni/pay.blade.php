@@ -1,15 +1,15 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>{{ $deni->creditorLabel() }} — Tab Payment</title>
+<title>{{ $deni->creditorLabel() }} â€” Tab Payment</title>
 @include('partials.pwa')
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800;900&display=swap" rel="stylesheet">
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
+*{box-sizing:border-box;margin:0;padding:0}input,textarea,select,button{font-family:inherit;font-size:inherit}
 body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;color:#fff;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
 .card{max-width:420px;width:100%;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:22px;padding:36px 28px;text-align:center}
 .logo{font-size:18px;font-weight:900;background:linear-gradient(135deg,#25D366,#4ADE80);-webkit-background-clip:text;-webkit-text-fill-color:transparent;display:block;margin-bottom:24px}
@@ -41,7 +41,7 @@ body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;col
 
     @if(! $verified)
     {{-- Phone verification gate --}}
-    <div class="icon">🔒</div>
+    <div class="icon">ðŸ”’</div>
     <div class="biz">{{ $deni->creditorLabel() }}</div>
     <div class="desc" style="font-size:15px;color:rgba(255,255,255,.55);font-weight:400">This tab is private. Enter your M-Pesa number to view it.</div>
 
@@ -51,7 +51,7 @@ body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;col
             <input type="tel" id="verify-phone" placeholder="0712 345 678" autocomplete="tel">
         </div>
         <div class="err" id="verify-err" style="display:none"></div>
-        <button class="pay-btn" onclick="doVerify()">Confirm Identity →</button>
+        <button class="pay-btn" onclick="doVerify()">Confirm Identity â†’</button>
     </div>
 
     <script>
@@ -66,7 +66,7 @@ body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;col
         }
 
         const btn = document.querySelector('.pay-btn');
-        btn.disabled = true; btn.textContent = 'Checking…';
+        btn.disabled = true; btn.textContent = 'Checkingâ€¦';
 
         const res  = await fetch('{{ route('deni.verify', $deni->debtor_token) }}', {
             method: 'POST',
@@ -80,19 +80,19 @@ body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;col
         } else {
             errEl.textContent = 'This tab was not sent to that number.';
             errEl.style.display = 'block';
-            btn.disabled = false; btn.textContent = 'Confirm Identity →';
+            btn.disabled = false; btn.textContent = 'Confirm Identity â†’';
         }
     }
     </script>
 
     @else
     {{-- Verified: show full deni --}}
-    <div class="icon">🧾</div>
+    <div class="icon">ðŸ§¾</div>
     <div class="biz">{{ $deni->creditorLabel() }}</div>
     <div class="desc">{{ $deni->description }}</div>
 
     @if($deni->status === 'settled')
-        <div class="settled-box">✅ Fully paid — thank you!</div>
+        <div class="settled-box">âœ… Fully paid â€” thank you!</div>
     @else
         @php $pct = $deni->original_amount > 0 ? round(($deni->amount_paid / $deni->original_amount) * 100) : 0; @endphp
         <div class="progress-box">
@@ -138,11 +138,11 @@ body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;col
                 </div>
                 <div style="display:flex;justify-content:space-between;color:rgba(255,255,255,.4);margin-bottom:8px">
                     <span>Pregota service fee</span>
-                    <span id="fee-amount">—</span>
+                    <span id="fee-amount">â€”</span>
                 </div>
                 <div style="display:flex;justify-content:space-between;font-weight:900;border-top:1px solid rgba(255,255,255,.07);padding-top:8px">
                     <span>You pay (M-Pesa)</span>
-                    <span id="fee-total" style="color:#4ADE80">—</span>
+                    <span id="fee-total" style="color:#4ADE80">â€”</span>
                 </div>
             </div>
 
@@ -151,7 +151,7 @@ body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;col
                 <input type="tel" id="pay-phone" placeholder="0712 345 678" autocomplete="tel">
             </div>
             <div class="err" id="err-msg"></div>
-            <button class="pay-btn" id="pay-btn" onclick="doPay()">Pay via M-Pesa →</button>
+            <button class="pay-btn" id="pay-btn" onclick="doPay()">Pay via M-Pesa â†’</button>
         </div>
 
         <div class="pending-state" id="pending-state">
@@ -161,7 +161,7 @@ body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;col
         </div>
 
         <div class="confirmed-state" id="confirmed-state">
-            <div style="font-size:64px;line-height:1;margin-bottom:10px">✅</div>
+            <div style="font-size:64px;line-height:1;margin-bottom:10px">âœ…</div>
             <div id="receipt-amount" style="font-size:38px;font-weight:900;color:#fff;line-height:1;margin-bottom:6px"></div>
             <div style="font-size:13px;color:rgba(255,255,255,.45);margin-bottom:4px">paid to <strong style="color:rgba(255,255,255,.75)">{{ $deni->creditorLabel() }}</strong></div>
             <div style="font-size:13px;color:rgba(255,255,255,.45);margin-bottom:16px">{{ $deni->description }}</div>
@@ -178,7 +178,7 @@ body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;col
             </div>
             <div id="balance-msg" style="font-size:13px;color:rgba(255,255,255,.45);margin-bottom:14px"></div>
             <button onclick="shareReceipt()" style="display:inline-flex;align-items:center;gap:7px;padding:10px 20px;background:rgba(37,211,102,.12);border:1px solid rgba(37,211,102,.25);border-radius:10px;color:#4ADE80;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit">
-                📤 Share via WhatsApp
+                ðŸ“¤ Share via WhatsApp
             </button>
         </div>
     @endif
@@ -258,7 +258,7 @@ function poll() {
                 document.getElementById('confirmed-state').style.display = 'block';
                 document.getElementById('receipt-amount').textContent = 'KES ' + paidAmount.toLocaleString();
                 const msg = d.deni_status === 'settled'
-                    ? 'Tab fully closed ✅'
+                    ? 'Tab fully closed âœ…'
                     : `KES ${d.balance.toLocaleString()} remaining on this tab.`;
                 document.getElementById('balance-msg').textContent = msg;
                 if (d.receipt) {
@@ -284,9 +284,10 @@ function poll() {
 
 function shareReceipt() {
     const receipt = document.getElementById('receipt-no').textContent;
-    const msg = `Payment confirmed ✅\nKES ${paidAmount.toLocaleString()} paid to {{ $deni->creditorLabel() }}\nFor: {{ $deni->description }}\nM-Pesa: ${receipt}`;
+    const msg = `Payment confirmed âœ…\nKES ${paidAmount.toLocaleString()} paid to {{ $deni->creditorLabel() }}\nFor: {{ $deni->description }}\nM-Pesa: ${receipt}`;
     window.open('https://wa.me/?text=' + encodeURIComponent(msg), '_blank');
 }
 </script>
 </body>
 </html>
+

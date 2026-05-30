@@ -1,12 +1,12 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Report a Problem — Pregota</title>
+<title>Report a Problem â€” Pregota</title>
 @include('partials.pwa')
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
+*{box-sizing:border-box;margin:0;padding:0}input,textarea,select,button{font-family:inherit;font-size:inherit}
 body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;min-height:100vh}
 .nav{padding:14px 24px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,.07)}
 .logo{font-size:20px;font-weight:900;background:linear-gradient(135deg,#25D366,#4ADE80);-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-decoration:none}
@@ -68,7 +68,7 @@ select option{background:#1a2730}
 
     @if($already && !session('filed'))
         <div class="already">
-            <div class="already-icon">📋</div>
+            <div class="already-icon">ðŸ“‹</div>
             <div class="already-title">Dispute already filed</div>
             <div class="already-sub">We've received your complaint for this receipt and are reviewing it. You'll be contacted on the phone number you provided.</div>
         </div>
@@ -85,7 +85,7 @@ select option{background:#1a2730}
             <div class="field">
                 <label>What went wrong?</label>
                 <select name="issue_type" required>
-                    <option value="">— Select —</option>
+                    <option value="">â€” Select â€”</option>
                     <option value="non_delivery" {{ old('issue_type') == 'non_delivery' ? 'selected' : '' }}>Product / service not delivered</option>
                     <option value="wrong_amount" {{ old('issue_type') == 'wrong_amount' ? 'selected' : '' }}>I was charged the wrong amount</option>
                     <option value="wrong_product" {{ old('issue_type') == 'wrong_product' ? 'selected' : '' }}>Wrong product / service received</option>
@@ -97,7 +97,7 @@ select option{background:#1a2730}
 
             <div class="field">
                 <label>Describe what happened</label>
-                <textarea name="description" placeholder="Tell us exactly what happened — what you ordered, what you received (or didn't), and any other relevant details." required minlength="20">{{ old('description') }}</textarea>
+                <textarea name="description" placeholder="Tell us exactly what happened â€” what you ordered, what you received (or didn't), and any other relevant details." required minlength="20">{{ old('description') }}</textarea>
                 @error('description')<div style="color:#fca5a5;font-size:12px;margin-top:5px">{{ $message }}</div>@enderror
             </div>
 
@@ -105,7 +105,8 @@ select option{background:#1a2730}
         </form>
     @endif
 
-    <a href="{{ route('receipt.show', $payment->receipt_number) }}" class="back">← Back to receipt</a>
+    <a href="{{ route('receipt.show', $payment->receipt_number) }}" class="back">â† Back to receipt</a>
 </div>
 </body>
 </html>
+

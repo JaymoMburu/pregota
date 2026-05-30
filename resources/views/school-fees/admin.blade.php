@@ -1,11 +1,11 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Admin Dashboard — {{ $collection->school_name }}</title>
+<title>Admin Dashboard â€” {{ $collection->school_name }}</title>
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
+*{box-sizing:border-box;margin:0;padding:0}input,textarea,select,button{font-family:inherit;font-size:inherit}
 body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;min-height:100vh}
 .topbar{padding:14px 20px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,.07);background:#0B141A}
 .logo{font-size:18px;font-weight:900;background:linear-gradient(135deg,#25D366,#4ADE80);-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-decoration:none}
@@ -74,13 +74,13 @@ h2{font-size:22px;font-weight:900;margin-bottom:4px}
 <div class="page">
 
     @if(session('created'))
-    <div class="alert info">🎉 Collection created! Bookmark this page — it's your private admin dashboard. Share each class link with the respective teacher.</div>
+    <div class="alert info">ðŸŽ‰ Collection created! Bookmark this page â€” it's your private admin dashboard. Share each class link with the respective teacher.</div>
     @endif
     @if(session('success'))<div class="alert success">{{ session('success') }}</div>@endif
     @if(session('error'))<div class="alert error">{{ session('error') }}</div>@endif
 
     <h2>{{ $collection->school_name }}</h2>
-    <div class="subtitle">{{ $collection->term_label }} · KES {{ number_format($collection->amount_per_student) }} per student · Admin: {{ $collection->admin_name }}</div>
+    <div class="subtitle">{{ $collection->term_label }} Â· KES {{ number_format($collection->amount_per_student) }} per student Â· Admin: {{ $collection->admin_name }}</div>
 
     <!-- Totals -->
     <div class="totals-row">
@@ -105,7 +105,7 @@ h2{font-size:22px;font-weight:900;margin-bottom:4px}
     <!-- Payout actions -->
     @if($collection->isOpen())
     @if($collection->total_raised > 0)
-    <div class="warning-box">⚠️ Payout sends KES {{ number_format($collection->total_raised) }} directly to the school M-Pesa. The recipient number is deleted immediately. This cannot be reversed.</div>
+    <div class="warning-box">âš ï¸ Payout sends KES {{ number_format($collection->total_raised) }} directly to the school M-Pesa. The recipient number is deleted immediately. This cannot be reversed.</div>
     @endif
     <div class="actions-row">
         <form method="POST" action="{{ route('school-fees.payout', $collection->slug) }}"
@@ -113,14 +113,14 @@ h2{font-size:22px;font-weight:900;margin-bottom:4px}
             @csrf
             <input type="hidden" name="token" value="{{ request()->query('token') }}">
             <button type="submit" class="btn-payout" {{ $collection->total_raised === 0 ? 'disabled' : '' }}>
-                ⚡ Pay Out KES {{ number_format($collection->total_raised) }} to School
+                âš¡ Pay Out KES {{ number_format($collection->total_raised) }} to School
             </button>
         </form>
         <form method="POST" action="{{ route('school-fees.close', $collection->slug) }}"
               onsubmit="return confirm('Close this collection?')">
             @csrf
             <input type="hidden" name="token" value="{{ request()->query('token') }}">
-            <button type="submit" class="btn-close">🔒 Close Collection</button>
+            <button type="submit" class="btn-close">ðŸ”’ Close Collection</button>
         </form>
     </div>
     @endif
@@ -131,7 +131,7 @@ h2{font-size:22px;font-weight:900;margin-bottom:4px}
         @foreach($collection->classes as $class)
         @php
             $classUrl = route('school-fees.class', ['slug' => $collection->slug, 'classToken' => $class->class_token]);
-            $waMsg    = urlencode("Dear Parents,\n\nKindly pay " . $collection->school_name . " " . $collection->term_label . " fees (KES " . number_format($collection->amount_per_student) . ") via this link:\n" . $classUrl . "\n\nPay directly from your M-Pesa — no cash needed.\n— " . $class->teacher_name);
+            $waMsg    = urlencode("Dear Parents,\n\nKindly pay " . $collection->school_name . " " . $collection->term_label . " fees (KES " . number_format($collection->amount_per_student) . ") via this link:\n" . $classUrl . "\n\nPay directly from your M-Pesa â€” no cash needed.\nâ€” " . $class->teacher_name);
             $paidList = $class->payments->where('status', 'paid')->sortByDesc('paid_at');
         @endphp
         <div class="class-card">
@@ -155,7 +155,7 @@ h2{font-size:22px;font-weight:900;margin-bottom:4px}
             </div>
             @if($paidList->count())
             <button class="toggle-students" onclick="toggleStudents(this, 'students-{{ $class->id }}')">
-                Show {{ $paidList->count() }} paid students ▾
+                Show {{ $paidList->count() }} paid students â–¾
             </button>
             <div class="paid-students students-hidden" id="students-{{ $class->id }}">
                 @foreach($paidList as $p)
@@ -178,15 +178,16 @@ h2{font-size:22px;font-weight:900;margin-bottom:4px}
 <script>
 function copyClassLink(id, btn) {
     navigator.clipboard.writeText(document.getElementById('link-' + id).value).then(() => {
-        btn.textContent = '✓ Copied';
+        btn.textContent = 'âœ“ Copied';
         setTimeout(() => btn.textContent = 'Copy', 2000);
     });
 }
 function toggleStudents(btn, id) {
     const el = document.getElementById(id);
     const hidden = el.classList.toggle('students-hidden');
-    btn.textContent = (hidden ? 'Show' : 'Hide') + ' ' + btn.textContent.match(/\d+/)[0] + ' paid students ' + (hidden ? '▾' : '▴');
+    btn.textContent = (hidden ? 'Show' : 'Hide') + ' ' + btn.textContent.match(/\d+/)[0] + ' paid students ' + (hidden ? 'â–¾' : 'â–´');
 }
 </script>
 </body>
 </html>
+

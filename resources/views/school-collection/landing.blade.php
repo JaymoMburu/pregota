@@ -1,13 +1,13 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>School Collections — Pregota</title>
-<meta name="description" content="Remedial classes, trips, PTA activities — parents pay via M-Pesa directly. No cash to the teacher's number. Class teachers share a link, admin sees everything in real time.">
+<title>School Collections â€” Pregota</title>
+<meta name="description" content="Remedial classes, trips, PTA activities â€” parents pay via M-Pesa directly. No cash to the teacher's number. Class teachers share a link, admin sees everything in real time.">
 @include('partials.pwa')
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
+*{box-sizing:border-box;margin:0;padding:0}input,textarea,select,button{font-family:inherit;font-size:inherit}
 body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;min-height:100vh}
 
 .nav{padding:14px 24px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,.08);position:sticky;top:0;background:#0B141A;z-index:10}
@@ -94,16 +94,16 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 
 <nav class="nav">
     <a href="{{ route('home') }}" class="logo">Pregota</a>
-    <a href="{{ route('school-collection.new') }}" class="nav-cta">Set Up Your School →</a>
+    <a href="{{ route('school-collection.new') }}" class="nav-cta">Set Up Your School â†’</a>
 </nav>
 
 <!-- Hero -->
 <div class="hero">
-    <div class="badge">🏫 School Collections · via M-Pesa</div>
+    <div class="badge">ðŸ« School Collections Â· via M-Pesa</div>
     <h1>School collections.<br><em>No cash to the teacher.<br>No reconciliation.</em></h1>
-    <p>Remedial classes, trips, PTA activities, prize giving — parents pay directly via M-Pesa STK Push. No more sending money to a teacher's personal number. Admin sees who has paid in real time — per student, per class.</p>
+    <p>Remedial classes, trips, PTA activities, prize giving â€” parents pay directly via M-Pesa STK Push. No more sending money to a teacher's personal number. Admin sees who has paid in real time â€” per student, per class.</p>
     <div class="hero-btns">
-        <a href="{{ route('school-collection.new') }}" class="btn-primary">Set Up a Collection — Free</a>
+        <a href="{{ route('school-collection.new') }}" class="btn-primary">Set Up a Collection â€” Free</a>
         <a href="#how-it-works" class="btn-secondary">See How It Works</a>
     </div>
 </div>
@@ -114,19 +114,19 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
     <h2 style="font-size:clamp(22px,4vw,32px);font-weight:900;line-height:1.2;margin-bottom:6px">One setup. Three views.</h2>
     <div class="roles-grid">
         <div class="role-card">
-            <div class="role-icon">📋</div>
+            <div class="role-icon">ðŸ“‹</div>
             <div class="role-title">Admin / Bursar</div>
             <div class="role-desc">Set up the collection in 3 minutes. See all classes, per-student payment status, total collected, and trigger the payout in one click.</div>
         </div>
         <div class="role-card">
-            <div class="role-icon">👩‍🏫</div>
+            <div class="role-icon">ðŸ‘©â€ðŸ«</div>
             <div class="role-title">Class Teacher</div>
-            <div class="role-desc">Get your own class link. Share it with parents on WhatsApp. See exactly which of your students have paid and which haven't — no chasing admin.</div>
+            <div class="role-desc">Get your own class link. Share it with parents on WhatsApp. See exactly which of your students have paid and which haven't â€” no chasing admin.</div>
         </div>
         <div class="role-card">
-            <div class="role-icon">👨‍👩‍👧</div>
+            <div class="role-icon">ðŸ‘¨â€ðŸ‘©â€ðŸ‘§</div>
             <div class="role-title">Parent</div>
-            <div class="role-desc">Click the link, enter your child's name, get an M-Pesa STK Push. Confirm with your PIN. Done — no queues, no bank, no cash envelope.</div>
+            <div class="role-desc">Click the link, enter your child's name, get an M-Pesa STK Push. Confirm with your PIN. Done â€” no queues, no bank, no cash envelope.</div>
         </div>
     </div>
 </div>
@@ -138,31 +138,31 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 
     <div class="prob-card">
         <div class="prob-item">
-            <div class="prob-icon">💸</div>
+            <div class="prob-icon">ðŸ’¸</div>
             <div class="prob-text">
                 <strong>Cash gets lost between parent and school</strong>
                 <span>Money changes hands via students, parents deposit into teacher accounts, or cash is collected in class. Each step is a reconciliation nightmare and a theft risk.</span>
             </div>
         </div>
         <div class="prob-item">
-            <div class="prob-icon">📝</div>
+            <div class="prob-icon">ðŸ“</div>
             <div class="prob-text">
                 <strong>Teachers spend hours on payment follow-up</strong>
-                <span>Calling parents, updating spreadsheets, chasing unpaid students — all time that should be spent teaching. Pregota makes the list live and automatic.</span>
+                <span>Calling parents, updating spreadsheets, chasing unpaid students â€” all time that should be spent teaching. Pregota makes the list live and automatic.</span>
             </div>
         </div>
         <div class="prob-item">
-            <div class="prob-icon">🗂️</div>
+            <div class="prob-icon">ðŸ—‚ï¸</div>
             <div class="prob-text">
-                <strong>Reconciliation takes days — and still has errors</strong>
-                <span>M-Pesa screenshots, bank slips, handwritten lists — everything has to be matched manually. Mistakes cause disputes. Pregota records every payment automatically.</span>
+                <strong>Reconciliation takes days â€” and still has errors</strong>
+                <span>M-Pesa screenshots, bank slips, handwritten lists â€” everything has to be matched manually. Mistakes cause disputes. Pregota records every payment automatically.</span>
             </div>
         </div>
         <div class="prob-item">
-            <div class="prob-icon">🚌</div>
+            <div class="prob-icon">ðŸšŒ</div>
             <div class="prob-text">
                 <strong>Parents travel to deposit at the school or bank</strong>
-                <span>For parents far from the school, paying fees means a trip. With Pregota, they pay from their phone in 30 seconds — anywhere, any time.</span>
+                <span>For parents far from the school, paying fees means a trip. With Pregota, they pay from their phone in 30 seconds â€” anywhere, any time.</span>
             </div>
         </div>
     </div>
@@ -173,7 +173,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
     <div class="how-inner">
         <div class="section-tag">How It Works</div>
         <h2>Admin sets up once. Everyone else is automatic.</h2>
-        <p style="font-size:15px;color:rgba(255,255,255,.78);margin-top:10px">The whole school — every class, every teacher, every parent — runs from a single 3-minute setup.</p>
+        <p style="font-size:15px;color:rgba(255,255,255,.78);margin-top:10px">The whole school â€” every class, every teacher, every parent â€” runs from a single 3-minute setup.</p>
 
         <div class="steps">
             <div class="step">
@@ -187,21 +187,21 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
                 <div class="step-num">2</div>
                 <div class="step-body">
                     <h3>Each class teacher gets their own link</h3>
-                    <p>Every teacher receives a unique URL for their class only — e.g. <strong style="color:#60a5fa">pregota.com/sc/green-primary/form-2a/abc123</strong>. They share it with their class parents on WhatsApp. That's all they do.</p>
+                    <p>Every teacher receives a unique URL for their class only â€” e.g. <strong style="color:#60a5fa">pregota.com/sc/green-primary/form-2a/abc123</strong>. They share it with their class parents on WhatsApp. That's all they do.</p>
                 </div>
             </div>
             <div class="step">
                 <div class="step-num">3</div>
                 <div class="step-body">
                     <h3>Parents pay via M-Pesa STK Push</h3>
-                    <p>They click the link, enter their child's name and M-Pesa number. An STK Push arrives on their phone — they confirm with PIN. Done in under a minute. No bank visit. No cash envelope.</p>
+                    <p>They click the link, enter their child's name and M-Pesa number. An STK Push arrives on their phone â€” they confirm with PIN. Done in under a minute. No bank visit. No cash envelope.</p>
                 </div>
             </div>
             <div class="step">
                 <div class="step-num">4</div>
                 <div class="step-body">
                     <h3>Admin pays out to the school M-Pesa in one click</h3>
-                    <p>When ready, the admin dashboard shows total collected and paid/unpaid per student per class. One click triggers a direct M-Pesa payout to the school's number — no middlemen.</p>
+                    <p>When ready, the admin dashboard shows total collected and paid/unpaid per student per class. One click triggers a direct M-Pesa payout to the school's number â€” no middlemen.</p>
                 </div>
             </div>
         </div>
@@ -213,9 +213,9 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
     <div class="section-tag" style="display:block;text-align:center;margin-bottom:20px">What the Teacher Sees</div>
     <div class="preview-card">
         <div class="preview-label">TEACHER DASHBOARD</div>
-        <div class="preview-school">Greenfield Primary · Term 2 2026</div>
-        <div class="preview-title">Form 2A — Mr. Kamau</div>
-        <div class="preview-term">Fee per student: KES 1,850 · 18 students</div>
+        <div class="preview-school">Greenfield Primary Â· Term 2 2026</div>
+        <div class="preview-title">Form 2A â€” Mr. Kamau</div>
+        <div class="preview-term">Fee per student: KES 1,850 Â· 18 students</div>
         <div class="student-row"><span class="student-name">Achieng, Faith</span><span class="paid-badge">Paid</span></div>
         <div class="student-row"><span class="student-name">Kariuki, Brian</span><span class="paid-badge">Paid</span></div>
         <div class="student-row"><span class="student-name">Mutua, Jane</span><span class="pending-badge">Pending</span></div>
@@ -234,34 +234,34 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
     <h2 style="font-size:clamp(22px,4vw,32px);font-weight:900;line-height:1.2;margin-bottom:6px">Built for how Kenyan schools actually work.</h2>
     <div class="feat-grid">
         <div class="feat-card">
-            <div class="feat-icon">🔐</div>
+            <div class="feat-icon">ðŸ”</div>
             <div class="feat-title">School M-Pesa stays private</div>
-            <div class="feat-text">The school number is encrypted and used only for payout. Parents never see it — they pay through Pregota's STK Push.</div>
+            <div class="feat-text">The school number is encrypted and used only for payout. Parents never see it â€” they pay through Pregota's STK Push.</div>
         </div>
         <div class="feat-card">
-            <div class="feat-icon">📊</div>
+            <div class="feat-icon">ðŸ“Š</div>
             <div class="feat-title">Per-student, per-class tracking</div>
-            <div class="feat-text">Admin sees all classes and all students. Teachers see only their class. Both views update in real time — no spreadsheet needed.</div>
+            <div class="feat-text">Admin sees all classes and all students. Teachers see only their class. Both views update in real time â€” no spreadsheet needed.</div>
         </div>
         <div class="feat-card">
-            <div class="feat-icon">📱</div>
+            <div class="feat-icon">ðŸ“±</div>
             <div class="feat-title">Works on any phone</div>
-            <div class="feat-text">No app download. Parents pay from any browser. The teacher's dashboard is mobile-first — designed for phones, not desktops.</div>
+            <div class="feat-text">No app download. Parents pay from any browser. The teacher's dashboard is mobile-first â€” designed for phones, not desktops.</div>
         </div>
         <div class="feat-card">
-            <div class="feat-icon">🔍</div>
+            <div class="feat-icon">ðŸ”</div>
             <div class="feat-title">Teacher can search by student name</div>
-            <div class="feat-text">A parent says they paid? The teacher types the name and sees payment status instantly — no scrolling through a long list.</div>
+            <div class="feat-text">A parent says they paid? The teacher types the name and sees payment status instantly â€” no scrolling through a long list.</div>
         </div>
         <div class="feat-card">
-            <div class="feat-icon">💰</div>
+            <div class="feat-icon">ðŸ’°</div>
             <div class="feat-title">Direct payout to school M-Pesa</div>
             <div class="feat-text">When ready, admin clicks once. The total collected goes straight to the school's M-Pesa. No manual bank transfer. No holding funds overnight.</div>
         </div>
         <div class="feat-card">
-            <div class="feat-icon">🏫</div>
+            <div class="feat-icon">ðŸ«</div>
             <div class="feat-title">Works for any school type</div>
-            <div class="feat-text">Primary, secondary, day school, boarding — any institution that collects per-student fees per term. Even PTA levies and trip contributions.</div>
+            <div class="feat-text">Primary, secondary, day school, boarding â€” any institution that collects per-student fees per term. Even PTA levies and trip contributions.</div>
         </div>
     </div>
 </div>
@@ -271,7 +271,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
     <div class="how-inner">
         <div class="section-tag">Pricing</div>
         <h2 style="font-size:clamp(22px,4vw,32px);font-weight:900;line-height:1.2;margin-bottom:6px">KES 30 flat fee per payment. Paid by the parent.</h2>
-        <p style="font-size:15px;color:rgba(255,255,255,.78);margin-top:8px">The school receives exactly what you set. The KES 30 service fee is added on top of the fee amount — paid by each parent separately.</p>
+        <p style="font-size:15px;color:rgba(255,255,255,.78);margin-top:8px">The school receives exactly what you set. The KES 30 service fee is added on top of the fee amount â€” paid by each parent separately.</p>
 
         <div class="fee-box">
             <div class="fee-row">
@@ -288,7 +288,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
             </div>
             <div class="fee-row" style="margin-top:4px;padding-top:12px;border-top:1px solid rgba(255,255,255,.08)">
                 <span class="fee-label">School receives</span>
-                <span class="fee-value" style="color:#60a5fa;font-size:15px">KES 1,850 — exactly what you set</span>
+                <span class="fee-value" style="color:#60a5fa;font-size:15px">KES 1,850 â€” exactly what you set</span>
             </div>
         </div>
     </div>
@@ -298,12 +298,13 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 <div class="cta-bottom">
     <h2>Ready to end the cash collection chaos?<br><em style="font-style:normal;background:linear-gradient(135deg,#60a5fa,#93c5fd);-webkit-background-clip:text;-webkit-text-fill-color:transparent">Set up in 3 minutes.</em></h2>
     <p>One form. All classes. All teachers. Parents pay from their phones. The school gets the money directly.</p>
-    <a href="{{ route('school-collection.new') }}" class="btn-primary" style="font-size:16px;padding:16px 36px">Set Up Your School Collection →</a>
-    <p style="margin-top:16px;font-size:12px;color:rgba(255,255,255,.82)">Free to set up · KES 30 per payment · No monthly fee</p>
+    <a href="{{ route('school-collection.new') }}" class="btn-primary" style="font-size:16px;padding:16px 36px">Set Up Your School Collection â†’</a>
+    <p style="margin-top:16px;font-size:12px;color:rgba(255,255,255,.82)">Free to set up Â· KES 30 per payment Â· No monthly fee</p>
 </div>
 
 @include('partials.discover', ['current' => 'school', 'fullWidth' => true])
-<footer class="footer">© 2026 Pregota · School Fee Collections via M-Pesa · pregota.com</footer>
+<footer class="footer">Â© 2026 Pregota Â· School Fee Collections via M-Pesa Â· pregota.com</footer>
 
 </body>
 </html>
+

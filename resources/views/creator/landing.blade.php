@@ -1,13 +1,13 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Creator Gift Pages — Pregota</title>
+<title>Creator Gift Pages â€” Pregota</title>
 <meta name="description" content="Get paid by your Kenyan audience via M-Pesa. No bank account, no PayPal, no awkward payment links. Just your page and your fans.">
 @include('partials.pwa')
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
+*{box-sizing:border-box;margin:0;padding:0}input,textarea,select,button{font-family:inherit;font-size:inherit}
 body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;min-height:100vh}
 
 .nav{padding:14px 24px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,.08);position:sticky;top:0;background:#0B141A;z-index:10}
@@ -108,36 +108,36 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 
 <nav class="nav">
     <a href="{{ route('home') }}" class="logo">Pregota</a>
-    <a href="{{ route('creator.register') }}" class="nav-cta">Get My Creator Page →</a>
+    <a href="{{ route('creator.register') }}" class="nav-cta">Get My Creator Page â†’</a>
 </nav>
 
 <!-- Hero -->
 <div class="hero">
-    <div class="creator-badge">🎤 TikTok · Instagram · YouTube · Podcasts · Kenya</div>
+    <div class="creator-badge">ðŸŽ¤ TikTok Â· Instagram Â· YouTube Â· Podcasts Â· Kenya</div>
     <h1>Receive M-Pesa gifts.<br><em>Without sharing your number.</em></h1>
-    <p>Put your Pregota link in your TikTok bio or Instagram bio. Your Kenyan fans send you money in seconds — privately, via M-Pesa. No "send to my number" awkwardness. No strangers saving your contact.</p>
+    <p>Put your Pregota link in your TikTok bio or Instagram bio. Your Kenyan fans send you money in seconds â€” privately, via M-Pesa. No "send to my number" awkwardness. No strangers saving your contact.</p>
     <div class="hero-btns">
-        <a href="{{ route('creator.register') }}" class="btn-primary">Create My Gift Page — Free</a>
+        <a href="{{ route('creator.register') }}" class="btn-primary">Create My Gift Page â€” Free</a>
         <a href="#how-it-works" class="btn-secondary">See How It Works</a>
     </div>
 </div>
 
 <!-- Page preview -->
 <div class="preview">
-    <div class="preview-url">🔗 pregota.com/c/<strong>yourname</strong></div>
+    <div class="preview-url">ðŸ”— pregota.com/c/<strong>yourname</strong></div>
     <div class="preview-card">
         <div class="preview-label">YOUR PAGE</div>
-        <div class="preview-avatar">🎙️</div>
+        <div class="preview-avatar">ðŸŽ™ï¸</div>
         <div class="preview-name">Jay Podcast</div>
         <div class="preview-handle">pregota.com/c/jaypodcast</div>
-        <div class="preview-bio">Weekly conversations on Kenyan tech, business, and culture. If my content has added value to your life, buy me a coffee ☕</div>
+        <div class="preview-bio">Weekly conversations on Kenyan tech, business, and culture. If my content has added value to your life, buy me a coffee â˜•</div>
         <div class="preview-amounts">
             <div class="preview-amount">KES 50</div>
             <div class="preview-amount active">KES 100</div>
             <div class="preview-amount">KES 200</div>
             <div class="preview-amount">KES 500</div>
         </div>
-        <div class="preview-btn">Send Gift via M-Pesa ›</div>
+        <div class="preview-btn">Send Gift via M-Pesa â€º</div>
     </div>
 </div>
 
@@ -148,33 +148,33 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
     <p>You've built a following in Kenya. Your audience wants to support you. But every "support me" tool out there ignores them.</p>
 
     <div class="problem-card">
-        <div class="problem-title">⚠️ Why existing tools fail Kenyan creators</div>
+        <div class="problem-title">âš ï¸ Why existing tools fail Kenyan creators</div>
         <div class="problem-item">
-            <div class="problem-icon">📱</div>
+            <div class="problem-icon">ðŸ“±</div>
             <div class="problem-text">
                 <strong>Sharing your M-Pesa number exposes everything</strong>
-                <span>The moment you say "send to 07XX XXX XXX" — strangers have your full name, your WhatsApp, and a direct line to you forever. Creators face spam, unwanted messages, and worse. Your number was never meant to be public.</span>
+                <span>The moment you say "send to 07XX XXX XXX" â€” strangers have your full name, your WhatsApp, and a direct line to you forever. Creators face spam, unwanted messages, and worse. Your number was never meant to be public.</span>
             </div>
         </div>
         <div class="problem-item">
-            <div class="problem-icon">💳</div>
+            <div class="problem-icon">ðŸ’³</div>
             <div class="problem-text">
                 <strong>PayPal & Buy Me a Coffee require a credit card</strong>
                 <span>Most Kenyans don't have international credit cards. Your audience hits a wall before they can support you.</span>
             </div>
         </div>
         <div class="problem-item">
-            <div class="problem-icon">🏦</div>
+            <div class="problem-icon">ðŸ¦</div>
             <div class="problem-text">
                 <strong>Bank transfers are too complicated</strong>
                 <span>Sharing account numbers, branch codes, and reference numbers kills the moment. Nobody follows through.</span>
             </div>
         </div>
         <div class="problem-item">
-            <div class="problem-icon">😔</div>
+            <div class="problem-icon">ðŸ˜”</div>
             <div class="problem-text">
                 <strong>Paybill/Till numbers feel transactional and cold</strong>
-                <span>They work for businesses — not for a personal creator relationship. Fans want to gift, not invoice.</span>
+                <span>They work for businesses â€” not for a personal creator relationship. Fans want to gift, not invoice.</span>
             </div>
         </div>
     </div>
@@ -192,28 +192,28 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
                 <div class="step-num">1</div>
                 <div class="step-body">
                     <h3>Create your free creator page</h3>
-                    <p>Sign up with your name, handle, and a short bio about your content. Add your M-Pesa number privately — it's never shown to fans. You get your link instantly: <strong style="color:#25D366">pregota.com/c/yourhandle</strong></p>
+                    <p>Sign up with your name, handle, and a short bio about your content. Add your M-Pesa number privately â€” it's never shown to fans. You get your link instantly: <strong style="color:#25D366">pregota.com/c/yourhandle</strong></p>
                 </div>
             </div>
             <div class="step">
                 <div class="step-num">2</div>
                 <div class="step-body">
-                    <h3>Drop the link in your bio — everywhere</h3>
-                    <p>One link works on every platform. Paste it in your <strong style="color:#c084fc">TikTok bio link</strong>, <strong style="color:#f472b6">Instagram bio</strong>, YouTube description, podcast show notes, Twitter/X, or WhatsApp status. Fans click it directly — no switching apps, no DMs asking for your number.</p>
+                    <h3>Drop the link in your bio â€” everywhere</h3>
+                    <p>One link works on every platform. Paste it in your <strong style="color:#c084fc">TikTok bio link</strong>, <strong style="color:#f472b6">Instagram bio</strong>, YouTube description, podcast show notes, Twitter/X, or WhatsApp status. Fans click it directly â€” no switching apps, no DMs asking for your number.</p>
                 </div>
             </div>
             <div class="step">
                 <div class="step-num">3</div>
                 <div class="step-body">
                     <h3>Fan opens the link and picks an amount</h3>
-                    <p>They choose KES 50, 100, 200, 500 — or type any amount. They enter their M-Pesa number and tap Send. An STK Push arrives on their phone. They confirm in 2 taps.</p>
+                    <p>They choose KES 50, 100, 200, 500 â€” or type any amount. They enter their M-Pesa number and tap Send. An STK Push arrives on their phone. They confirm in 2 taps.</p>
                 </div>
             </div>
             <div class="step">
                 <div class="step-num">4</div>
                 <div class="step-body">
                     <h3>Gift arrives on your M-Pesa instantly</h3>
-                    <p>You get an M-Pesa notification. Your creator dashboard shows every gift with the amount and message. Your number was never revealed. Your privacy stays protected — always.</p>
+                    <p>You get an M-Pesa notification. Your creator dashboard shows every gift with the amount and message. Your number was never revealed. Your privacy stays protected â€” always.</p>
                 </div>
             </div>
         </div>
@@ -228,30 +228,30 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 
     <div class="fan-flow">
         <div class="fan-step">
-            <div class="fan-step-icon">🔗</div>
+            <div class="fan-step-icon">ðŸ”—</div>
             <div class="fan-step-body">
                 <h4>They open your link</h4>
-                <p>Your page loads instantly — your photo, your bio, your gift amounts. No sign-up, no app download, no account needed.</p>
+                <p>Your page loads instantly â€” your photo, your bio, your gift amounts. No sign-up, no app download, no account needed.</p>
             </div>
         </div>
         <div class="fan-step">
-            <div class="fan-step-icon">💰</div>
+            <div class="fan-step-icon">ðŸ’°</div>
             <div class="fan-step-body">
                 <h4>They pick an amount</h4>
                 <p>Preset amounts (KES 50, 100, 200, 500) make it easy. They can also type any amount from KES 10 up.</p>
             </div>
         </div>
         <div class="fan-step">
-            <div class="fan-step-icon">📱</div>
+            <div class="fan-step-icon">ðŸ“±</div>
             <div class="fan-step-body">
                 <h4>M-Pesa STK Push arrives</h4>
                 <p>They enter their phone number. An M-Pesa prompt appears on their phone asking to confirm. No codes to copy, no bank details to enter.</p>
             </div>
         </div>
         <div class="fan-step">
-            <div class="fan-step-icon">✅</div>
+            <div class="fan-step-icon">âœ…</div>
             <div class="fan-step-body">
-                <h4>Done — gift sent</h4>
+                <h4>Done â€” gift sent</h4>
                 <p>They see a confirmation screen. They can leave you a message. You get notified instantly. The whole thing takes under 30 seconds.</p>
             </div>
         </div>
@@ -263,7 +263,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
     <div class="earnings-inner">
         <div class="section-tag">What You Earn</div>
         <h2>You keep what your fan intends to give.</h2>
-        <p style="font-size:15px;color:rgba(255,255,255,.78);margin-top:10px">Your fan enters a gift amount — that's exactly what lands on your M-Pesa. Pregota's fees are added on top and paid by the fan. Example — fan gifts you KES 500:</p>
+        <p style="font-size:15px;color:rgba(255,255,255,.78);margin-top:10px">Your fan enters a gift amount â€” that's exactly what lands on your M-Pesa. Pregota's fees are added on top and paid by the fan. Example â€” fan gifts you KES 500:</p>
 
         <div class="fee-box">
             <div class="fee-row">
@@ -282,22 +282,22 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 
         <div class="earnings-grid">
             <div class="e-card">
-                <div class="e-icon">⚡</div>
+                <div class="e-icon">âš¡</div>
                 <div class="e-title">Instant payouts</div>
                 <div class="e-text">Gifts go to your M-Pesa the moment they're confirmed. No waiting for a payout cycle or minimum balance.</div>
             </div>
             <div class="e-card">
-                <div class="e-icon">📊</div>
+                <div class="e-icon">ðŸ“Š</div>
                 <div class="e-title">Gift dashboard</div>
                 <div class="e-text">See every gift, amount, and fan message in your private dashboard. Track your earnings over time.</div>
             </div>
             <div class="e-card">
-                <div class="e-icon">🔒</div>
+                <div class="e-icon">ðŸ”’</div>
                 <div class="e-title">Your number stays private</div>
                 <div class="e-text">Fans never see your M-Pesa number. No WhatsApp requests, no unsolicited calls. Your privacy is protected by design.</div>
             </div>
             <div class="e-card">
-                <div class="e-icon">🆓</div>
+                <div class="e-icon">ðŸ†“</div>
                 <div class="e-title">Free to create</div>
                 <div class="e-text">No subscription, no monthly fee, no setup cost. We only earn when you earn. Your page is free forever.</div>
             </div>
@@ -313,62 +313,62 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
     <!-- Social media highlight -->
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:24px;margin-bottom:12px">
         <div class="creator-card" style="background:linear-gradient(135deg,rgba(0,0,0,.4),rgba(105,65,198,.15));border-color:rgba(105,65,198,.35);padding:20px">
-            <div style="font-size:32px;margin-bottom:8px">🎵</div>
+            <div style="font-size:32px;margin-bottom:8px">ðŸŽµ</div>
             <div class="creator-title" style="font-size:15px;color:#c084fc">TikTokers</div>
-            <div class="creator-sub" style="margin-top:4px;line-height:1.5">Comedy, dance, lifestyle & viral content — Kenya's fastest growing creator economy</div>
-            <div style="margin-top:10px;font-size:11px;color:rgba(105,65,198,.9);font-weight:700">Add link to TikTok bio →</div>
+            <div class="creator-sub" style="margin-top:4px;line-height:1.5">Comedy, dance, lifestyle & viral content â€” Kenya's fastest growing creator economy</div>
+            <div style="margin-top:10px;font-size:11px;color:rgba(105,65,198,.9);font-weight:700">Add link to TikTok bio â†’</div>
         </div>
         <div class="creator-card" style="background:linear-gradient(135deg,rgba(131,58,180,.12),rgba(253,29,29,.1),rgba(252,176,69,.08));border-color:rgba(253,29,29,.25);padding:20px">
-            <div style="font-size:32px;margin-bottom:8px">📸</div>
+            <div style="font-size:32px;margin-bottom:8px">ðŸ“¸</div>
             <div class="creator-title" style="font-size:15px;color:#f472b6">Instagram Creators</div>
-            <div class="creator-sub" style="margin-top:4px;line-height:1.5">Influencers, lifestyle, fashion, food & travel — monetise your followers directly</div>
-            <div style="margin-top:10px;font-size:11px;color:rgba(244,114,182,.9);font-weight:700">Add link in bio →</div>
+            <div class="creator-sub" style="margin-top:4px;line-height:1.5">Influencers, lifestyle, fashion, food & travel â€” monetise your followers directly</div>
+            <div style="margin-top:10px;font-size:11px;color:rgba(244,114,182,.9);font-weight:700">Add link in bio â†’</div>
         </div>
     </div>
 
     <div class="creator-grid">
         <div class="creator-card">
-            <div class="creator-emoji">📺</div>
+            <div class="creator-emoji">ðŸ“º</div>
             <div class="creator-title">YouTubers</div>
             <div class="creator-sub">Video creators</div>
         </div>
         <div class="creator-card">
-            <div class="creator-emoji">🎙️</div>
+            <div class="creator-emoji">ðŸŽ™ï¸</div>
             <div class="creator-title">Podcasters</div>
             <div class="creator-sub">Audio creators</div>
         </div>
         <div class="creator-card">
-            <div class="creator-emoji">🎶</div>
+            <div class="creator-emoji">ðŸŽ¶</div>
             <div class="creator-title">Musicians</div>
             <div class="creator-sub">Artists & bands</div>
         </div>
         <div class="creator-card">
-            <div class="creator-emoji">🎭</div>
+            <div class="creator-emoji">ðŸŽ­</div>
             <div class="creator-title">Comedians</div>
             <div class="creator-sub">Skits & stand-up</div>
         </div>
         <div class="creator-card">
-            <div class="creator-emoji">🎨</div>
+            <div class="creator-emoji">ðŸŽ¨</div>
             <div class="creator-title">Visual Artists</div>
             <div class="creator-sub">Designers & painters</div>
         </div>
         <div class="creator-card">
-            <div class="creator-emoji">✍️</div>
+            <div class="creator-emoji">âœï¸</div>
             <div class="creator-title">Writers</div>
             <div class="creator-sub">Bloggers & authors</div>
         </div>
         <div class="creator-card">
-            <div class="creator-emoji">🎮</div>
+            <div class="creator-emoji">ðŸŽ®</div>
             <div class="creator-title">Gamers</div>
             <div class="creator-sub">Streamers & esports</div>
         </div>
         <div class="creator-card">
-            <div class="creator-emoji">🧑‍🏫</div>
+            <div class="creator-emoji">ðŸ§‘â€ðŸ«</div>
             <div class="creator-title">Educators</div>
             <div class="creator-sub">Tutors & mentors</div>
         </div>
         <div class="creator-card">
-            <div class="creator-emoji">🍽️</div>
+            <div class="creator-emoji">ðŸ½ï¸</div>
             <div class="creator-title">Food Creators</div>
             <div class="creator-sub">Recipe & food reviews</div>
         </div>
@@ -379,12 +379,13 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 <div class="cta-bottom">
     <h2>Your creativity deserves<br><em style="font-style:normal;background:linear-gradient(135deg,#25D366,#4ADE80);-webkit-background-clip:text;-webkit-text-fill-color:transparent">to be paid.</em></h2>
     <p>Join Kenyan creators already receiving M-Pesa gifts from their audience.<br>Free to set up. Takes 60 seconds.</p>
-    <a href="{{ route('creator.register') }}" class="btn-primary" style="font-size:16px;padding:16px 36px">Create My Gift Page — Free →</a>
-    <p style="margin-top:16px;font-size:12px;color:rgba(255,255,255,.82)">No monthly fees · No hidden charges · Cancel anytime</p>
+    <a href="{{ route('creator.register') }}" class="btn-primary" style="font-size:16px;padding:16px 36px">Create My Gift Page â€” Free â†’</a>
+    <p style="margin-top:16px;font-size:12px;color:rgba(255,255,255,.82)">No monthly fees Â· No hidden charges Â· Cancel anytime</p>
 </div>
 
 @include('partials.discover', ['current' => 'creators', 'fullWidth' => true])
-<footer class="footer">© 2026 Pregota · Creator Gift Pages · pregota.com</footer>
+<footer class="footer">Â© 2026 Pregota Â· Creator Gift Pages Â· pregota.com</footer>
 
 </body>
 </html>
+

@@ -1,12 +1,12 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pay with Pregota — Find Sellers</title>
+<title>Pay with Pregota â€” Find Sellers</title>
 @include('partials.pwa')
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
+*{box-sizing:border-box;margin:0;padding:0}input,textarea,select,button{font-family:inherit;font-size:inherit}
 body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;min-height:100vh}
 .nav{padding:14px 24px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,.07)}
 .logo{font-size:20px;font-weight:900;background:linear-gradient(135deg,#25D366,#4ADE80);-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-decoration:none}
@@ -58,7 +58,7 @@ h1{font-size:28px;font-weight:900;margin-bottom:6px}
     <a href="{{ route('home') }}" class="logo">Pregota</a>
     <div class="nav-right">
         <a href="{{ route('buyer.me') }}" class="nav-link">My Receipts</a>
-        <a href="{{ route('seller.register') }}" class="nav-link">Add My Business →</a>
+        <a href="{{ route('seller.register') }}" class="nav-link">Add My Business â†’</a>
     </div>
 </nav>
 
@@ -69,16 +69,16 @@ h1{font-size:28px;font-weight:900;margin-bottom:6px}
     <div class="me-banner">
         <div class="me-banner-text">
             <strong>Track your spending & get receipts</strong><br>
-            All your Pregota payments in one place — printable for KRA expense claims.
+            All your Pregota payments in one place â€” printable for KRA expense claims.
         </div>
-        <a href="{{ route('buyer.me') }}" class="me-btn">My Receipts →</a>
+        <a href="{{ route('buyer.me') }}" class="me-btn">My Receipts â†’</a>
     </div>
 
     <form method="GET" action="{{ route('seller.directory') }}" class="search-row">
         @if($category)
         <input type="hidden" name="category" value="{{ $category }}">
         @endif
-        <input type="text" name="q" class="search-input" placeholder="Search by name or handle…" value="{{ $search }}">
+        <input type="text" name="q" class="search-input" placeholder="Search by name or handleâ€¦" value="{{ $search }}">
         <button type="submit" class="search-btn">Search</button>
     </form>
 
@@ -102,7 +102,7 @@ h1{font-size:28px;font-weight:900;margin-bottom:6px}
     <div class="grid">
         @foreach($sellers as $seller)
         @php
-            $cat = $categories[$seller->category] ?? ['emoji' => '🏪', 'label' => ucfirst($seller->category ?? 'Other')];
+            $cat = $categories[$seller->category] ?? ['emoji' => 'ðŸª', 'label' => ucfirst($seller->category ?? 'Other')];
         @endphp
         <a href="{{ route('seller.public', $seller->handle) }}" class="card">
             <div class="card-emoji">{{ $cat['emoji'] }}</div>
@@ -120,7 +120,7 @@ h1{font-size:28px;font-weight:900;margin-bottom:6px}
                     @endif
                 </div>
                 @if($seller->stamps_required)
-                <div class="card-badge">🎟 Stamp Card</div>
+                <div class="card-badge">ðŸŽŸ Stamp Card</div>
                 @endif
             </div>
         </a>
@@ -131,3 +131,4 @@ h1{font-size:28px;font-weight:900;margin-bottom:6px}
 
 </body>
 </html>
+

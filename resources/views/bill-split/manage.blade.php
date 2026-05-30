@@ -1,11 +1,11 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>{{ $bill->label ?? 'Bill Split' }} — Pregota</title>
+<title>{{ $bill->label ?? 'Bill Split' }} â€” Pregota</title>
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
+*{box-sizing:border-box;margin:0;padding:0}input,textarea,select,button{font-family:inherit;font-size:inherit}
 body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px 20px}
 
 .card{width:100%;max-width:380px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:24px;padding:28px 24px;text-align:center}
@@ -61,11 +61,11 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 
 <div class="card">
     <div class="status-pending" id="pendingState">
-        <div class="bill-label">{{ $bill->business_name }}{{ $bill->label ? ' · ' . $bill->label : '' }}</div>
+        <div class="bill-label">{{ $bill->business_name }}{{ $bill->label ? ' Â· ' . $bill->label : '' }}</div>
         <div class="bill-amount">KES {{ number_format($bill->total_amount) }}</div>
 
         <div id="qrcode"></div>
-        <div class="scan-hint">Show this to the table — everyone scans to pay their share</div>
+        <div class="scan-hint">Show this to the table â€” everyone scans to pay their share</div>
 
         <div class="progress-wrap">
             <div class="progress-bar">
@@ -84,7 +84,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
                     <div class="payment-amount">KES {{ number_format($p->amount) }}</div>
                     <div class="payment-meta">{{ $p->updated_at->format('g:i A') }}</div>
                 </div>
-                <div class="payment-check">✅</div>
+                <div class="payment-check">âœ…</div>
             </div>
             @empty
             <div class="payments-empty" id="emptyHint">Waiting for first payment...</div>
@@ -93,7 +93,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 
         <!-- No QR scanner? Send STK Push directly -->
         <div class="send-section">
-            <div class="send-label">📱 No scanner? Send to phone</div>
+            <div class="send-label">ðŸ“± No scanner? Send to phone</div>
             <div class="send-row">
                 <input class="send-input" id="sendAmount" type="number"
                        placeholder="KES amount" min="1" max="{{ $bill->remainingAmount() }}"
@@ -101,21 +101,21 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
                 <input class="send-input" id="sendPhone" type="tel" placeholder="07XX XXX XXX">
             </div>
             <button class="send-btn" id="sendBtn" onclick="sendToPhone()" style="width:100%">
-                Send Payment Request →
+                Send Payment Request â†’
             </button>
             <div class="send-status" id="sendStatus"></div>
         </div>
     </div>
 
     <div class="status-settled" id="settledState">
-        <div class="settled-icon">✅</div>
+        <div class="settled-icon">âœ…</div>
         <div class="settled-title">Bill Settled!</div>
         <div class="settled-sub">KES {{ number_format($bill->total_amount) }} is on its way to your {{ $bill->payout_type === 'till' ? 'Till' : 'Paybill' }}.</div>
-        <a href="{{ route('bill-split.new') }}" class="new-bill-btn">New Bill Split →</a>
+        <a href="{{ route('bill-split.new') }}" class="new-bill-btn">New Bill Split â†’</a>
     </div>
 </div>
 
-<div class="footer">Powered by Pregota · Expires {{ $bill->expires_at->diffForHumans() }}</div>
+<div class="footer">Powered by Pregota Â· Expires {{ $bill->expires_at->diffForHumans() }}</div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <script>
@@ -154,7 +154,7 @@ function renderPayments(payments) {
         row.innerHTML = `<div>
             <div class="payment-amount">${FMT(p.amount)}</div>
             <div class="payment-meta">${p.time}</div>
-        </div><div class="payment-check">✅</div>`;
+        </div><div class="payment-check">âœ…</div>`;
         list.prepend(row);
     });
 }
@@ -198,7 +198,7 @@ function sendToPhone() {
 
     btn.disabled = true;
     status.style.color = 'rgba(255,255,255,.72)';
-    status.textContent = 'Sending STK Push…';
+    status.textContent = 'Sending STK Pushâ€¦';
 
     fetch(PAY_URL, {
         method: 'POST',
@@ -209,7 +209,7 @@ function sendToPhone() {
     .then(d => {
         if (d.success) {
             status.style.color = '#4ade80';
-            status.textContent = '✓ Sent! Customer should see M-Pesa prompt now.';
+            status.textContent = 'âœ“ Sent! Customer should see M-Pesa prompt now.';
             document.getElementById('sendPhone').value = '';
         } else {
             status.style.color = '#f87171';
@@ -226,3 +226,4 @@ function sendToPhone() {
 </script>
 </body>
 </html>
+

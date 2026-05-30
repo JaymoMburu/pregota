@@ -1,11 +1,11 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Pregota Admin Dashboard</title>
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
+*{box-sizing:border-box;margin:0;padding:0}input,textarea,select,button{font-family:inherit;font-size:inherit}
 body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;min-height:100vh}
 .nav{padding:14px 28px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,.08);background:rgba(0,0,0,.3)}
 .logo{font-size:18px;font-weight:900;background:linear-gradient(135deg,#00A651,#007A33);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
@@ -59,14 +59,14 @@ tr:hover td{background:rgba(255,255,255,.03)}
     <div class="nav-right">
         @if($pendingPayouts->count())
         <a href="#pending-payouts" class="bell-wrap" style="margin-right:16px;text-decoration:none">
-            <span class="bell-icon">🔔</span>
+            <span class="bell-icon">ðŸ””</span>
             <span class="bell-badge">{{ $pendingPayouts->count() }}</span>
         </a>
         @endif
         <a href="{{ route('admin.creators') }}" style="color:#25D366;font-size:13px;text-decoration:none;font-weight:600;margin-right:16px">Creators @if(\App\Models\Creator::where('is_active',false)->exists()) <span style="background:rgba(239,68,68,.8);color:#fff;border-radius:20px;padding:1px 7px;font-size:10px">{{ \App\Models\Creator::where('is_active',false)->count() }}</span> @endif</a>
         <a href="{{ route('admin.disputes') }}" style="color:#f87171;font-size:13px;text-decoration:none;font-weight:600;margin-right:16px">Disputes @if(\App\Models\Dispute::where('status','open')->exists()) <span style="background:rgba(239,68,68,.8);color:#fff;border-radius:20px;padding:1px 7px;font-size:10px">{{ \App\Models\Dispute::where('status','open')->count() }}</span> @endif</a>
         <a href="{{ route('admin.partners') }}" style="color:#a78bfa;font-size:13px;text-decoration:none;font-weight:600;margin-right:16px">Partners</a>
-        <a href="{{ route('home') }}" style="color:rgba(255,255,255,.68);font-size:13px;text-decoration:none">← Live Site</a>
+        <a href="{{ route('home') }}" style="color:rgba(255,255,255,.68);font-size:13px;text-decoration:none">â† Live Site</a>
         <form method="POST" action="{{ route('admin.logout') }}" style="display:inline">
             @csrf
             <button type="submit" style="background:none;border:none;color:rgba(255,255,255,.68);cursor:pointer;font-size:13px">Logout</button>
@@ -88,7 +88,7 @@ tr:hover td{background:rgba(255,255,255,.03)}
     @if($frozenSchoolCollections->count() || $frozenCollections->count())
     <div class="frozen-section">
         <div class="table-header">
-            <h2>🚨 Frozen Collections — Pending Review</h2>
+            <h2>ðŸš¨ Frozen Collections â€” Pending Review</h2>
             <span style="color:rgba(239,68,68,.5);font-size:12px">{{ $frozenSchoolCollections->count() + $frozenCollections->count() }} frozen</span>
         </div>
         <table>
@@ -111,7 +111,7 @@ tr:hover td{background:rgba(255,255,255,.03)}
                         <div style="font-size:11px;color:rgba(255,255,255,.6)">{{ $sc->term_label }}</div>
                     </td>
                     <td>KES {{ number_format($sc->total_raised) }}</td>
-                    <td><span class="reason-text">{{ $sc->freeze_reason ?? '—' }}</span></td>
+                    <td><span class="reason-text">{{ $sc->freeze_reason ?? 'â€”' }}</span></td>
                     <td>{{ $sc->updated_at->format('d M, H:i') }}</td>
                     <td>
                         <form method="POST" action="{{ route('admin.school-collection.unfreeze', $sc) }}">
@@ -129,7 +129,7 @@ tr:hover td{background:rgba(255,255,255,.03)}
                         <div style="font-size:11px;color:rgba(255,255,255,.6)">{{ $col->organiser_name }}</div>
                     </td>
                     <td>KES {{ number_format($col->total_raised) }}</td>
-                    <td><span class="reason-text">{{ $col->freeze_reason ?? '—' }}</span></td>
+                    <td><span class="reason-text">{{ $col->freeze_reason ?? 'â€”' }}</span></td>
                     <td>{{ $col->updated_at->format('d M, H:i') }}</td>
                     <td>
                         <form method="POST" action="{{ route('admin.collection.unfreeze', $col) }}">
@@ -147,12 +147,12 @@ tr:hover td{background:rgba(255,255,255,.03)}
     @if($pendingPayouts->count())
     <div class="payout-section" id="pending-payouts">
         <div class="table-header">
-            <h2>💸 Pending Payouts — Send These Now</h2>
+            <h2>ðŸ’¸ Pending Payouts â€” Send These Now</h2>
             <span style="color:rgba(251,191,36,.6);font-size:12px">{{ $pendingPayouts->count() }} waiting</span>
         </div>
         @if(session('success'))
         <div style="padding:10px 20px;background:rgba(34,197,94,.1);border-bottom:1px solid rgba(34,197,94,.15);font-size:13px;color:#4ade80">
-            ✓ {{ session('success') }}
+            âœ“ {{ session('success') }}
         </div>
         @endif
         <table>
@@ -177,7 +177,7 @@ tr:hover td{background:rgba(255,255,255,.03)}
                     <td>
                         <form method="POST" action="{{ route('admin.voucher.mark-paid', $p) }}">
                             @csrf
-                            <button type="submit" class="mark-paid-btn">✓ Mark as Paid</button>
+                            <button type="submit" class="mark-paid-btn">âœ“ Mark as Paid</button>
                         </form>
                     </td>
                 </tr>
@@ -190,8 +190,8 @@ tr:hover td{background:rgba(255,255,255,.03)}
     @if($sellerPayouts->count())
     <div class="payout-section" style="background:rgba(37,211,102,.04);border-color:rgba(37,211,102,.2);margin-bottom:28px">
         <div class="table-header" style="border-bottom-color:rgba(37,211,102,.12)">
-            <h2 style="color:#25D366">💚 Seller Payouts — Ready to Send</h2>
-            <span style="color:rgba(37,211,102,.5);font-size:12px">{{ $sellerPayouts->count() }} sellers · min KES {{ number_format(\App\Services\SellerService::MIN_PAYOUT_KES) }} reached</span>
+            <h2 style="color:#25D366">ðŸ’š Seller Payouts â€” Ready to Send</h2>
+            <span style="color:rgba(37,211,102,.5);font-size:12px">{{ $sellerPayouts->count() }} sellers Â· min KES {{ number_format(\App\Services\SellerService::MIN_PAYOUT_KES) }} reached</span>
         </div>
         <table>
             <thead>
@@ -208,7 +208,7 @@ tr:hover td{background:rgba(255,255,255,.03)}
                 <tr>
                     <td><span class="code">{{ $sl->handle }}</span></td>
                     <td style="font-weight:700">{{ $sl->business_name }}</td>
-                    <td style="font-size:12px;color:rgba(255,255,255,.55)">{{ ucfirst($sl->category ?? '—') }}</td>
+                    <td style="font-size:12px;color:rgba(255,255,255,.55)">{{ ucfirst($sl->category ?? 'â€”') }}</td>
                     <td style="font-size:15px;font-weight:800;color:#25D366">KES {{ number_format($sl->total_received) }}</td>
                     <td style="color:rgba(255,255,255,.6)">{{ number_format($sl->payment_count) }}</td>
                 </tr>
@@ -250,9 +250,9 @@ tr:hover td{background:rgba(255,255,255,.03)}
                     <td>{{ number_format($v->fee_in + $v->fee_out, 0) }}</td>
                     <td><span class="badge {{ $v->status }}">{{ ucfirst($v->status) }}</span></td>
                     <td>{{ $v->created_at->format('d M, H:i') }}</td>
-                    <td>{{ $v->expires_at?->format('d M') ?? '—' }}</td>
+                    <td>{{ $v->expires_at?->format('d M') ?? 'â€”' }}</td>
                     <td style="display:flex;gap:8px;align-items:center">
-                        <a href="{{ route('admin.voucher', $v) }}" class="view-link">View →</a>
+                        <a href="{{ route('admin.voucher', $v) }}" class="view-link">View â†’</a>
                         @if($v->status === 'pending')
                         <form method="POST" action="{{ route('admin.voucher.activate', $v) }}">
                             @csrf
@@ -271,3 +271,4 @@ tr:hover td{background:rgba(255,255,255,.03)}
 </div>
 </body>
 </html>
+

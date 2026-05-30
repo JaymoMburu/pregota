@@ -1,11 +1,11 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>My Dashboard — Pregota</title>
+<title>My Dashboard â€” Pregota</title>
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
+*{box-sizing:border-box;margin:0;padding:0}input,textarea,select,button{font-family:inherit;font-size:inherit}
 body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;min-height:100vh}
 
 .topbar{padding:14px 20px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,.07);background:#0B141A;position:sticky;top:0;z-index:10}
@@ -110,19 +110,19 @@ input::placeholder{color:rgba(255,255,255,.82)}
 
     <!-- Profile header -->
     <div class="profile-header">
-        <div class="avatar">{{ $staff->avatar_emoji ?? '😊' }}</div>
+        <div class="avatar">{{ $staff->avatar_emoji ?? 'ðŸ˜Š' }}</div>
         <div class="profile-info">
             <h2>{{ $staff->name }}</h2>
             <div class="role">{{ $staff->role }}</div>
             @if($stats['rating_count'] > 0)
             <div class="rating-badge">
-                ★ {{ number_format($stats['avg_rating'], 1) }} · {{ $stats['rating_count'] }} {{ Str::plural('rating', $stats['rating_count']) }}
+                â˜… {{ number_format($stats['avg_rating'], 1) }} Â· {{ $stats['rating_count'] }} {{ Str::plural('rating', $stats['rating_count']) }}
             </div>
             @endif
         </div>
     </div>
 
-    <!-- Stats — only shown when staff uses tips -->
+    <!-- Stats â€” only shown when staff uses tips -->
     @if($stats['count'] > 0 || $stats['today'] > 0)
     <div class="stats-row">
         <div class="stat-card">
@@ -147,7 +147,7 @@ input::placeholder{color:rgba(255,255,255,.82)}
             <input class="link-input" id="tipUrl" readonly value="{{ $tipUrl }}">
             <button class="copy-btn" onclick="copyLink()">Copy</button>
         </div>
-        <a href="https://wa.me/?text={{ urlencode('Hi! You can tip me securely via Pregota — no need to ask for my number 😊 ' . $tipUrl) }}"
+        <a href="https://wa.me/?text={{ urlencode('Hi! You can tip me securely via Pregota â€” no need to ask for my number ðŸ˜Š ' . $tipUrl) }}"
            target="_blank" class="wa-share">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
             Share on WhatsApp
@@ -172,7 +172,7 @@ input::placeholder{color:rgba(255,255,255,.82)}
             <a href="{{ route('staff.leads') }}" style="text-decoration:none;flex:1">
             <div class="reconcile-chip" style="background:rgba(251,191,36,.07);border-color:rgba(251,191,36,.18)">
                 <div class="reconcile-num" style="color:#fbbf24">{{ $stats['today_optins'] }}</div>
-                <div class="reconcile-label">{{ Str::plural('customer', $stats['today_optins']) }} opted in ›</div>
+                <div class="reconcile-label">{{ Str::plural('customer', $stats['today_optins']) }} opted in â€º</div>
             </div>
             </a>
             @endif
@@ -181,8 +181,8 @@ input::placeholder{color:rgba(255,255,255,.82)}
         @foreach($todaySplits as $split)
         <div class="split-item">
             <div class="split-left">
-                <div class="split-name">{{ $split->business_name }}{{ $split->label ? ' · ' . $split->label : '' }}</div>
-                <div class="split-meta">KES {{ number_format($split->total_amount) }} total · {{ $split->created_at->format('g:i A') }}</div>
+                <div class="split-name">{{ $split->business_name }}{{ $split->label ? ' Â· ' . $split->label : '' }}</div>
+                <div class="split-meta">KES {{ number_format($split->total_amount) }} total Â· {{ $split->created_at->format('g:i A') }}</div>
             </div>
             <div class="split-right">
                 <div class="split-amount">KES {{ number_format($split->paid_amount) }}</div>
@@ -196,7 +196,7 @@ input::placeholder{color:rgba(255,255,255,.82)}
 
         <div style="display:flex;gap:10px;margin-top:4px">
             <a href="{{ route('staff.charge') }}" class="new-split-btn" style="flex:1;justify-content:center;background:linear-gradient(135deg,#00A651,#007A33)">
-                ⚡ Charge Customer
+                âš¡ Charge Customer
             </a>
             <a href="{{ route('bill-split.new') }}" class="new-split-btn" style="flex:1;justify-content:center">
                 <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
@@ -205,7 +205,7 @@ input::placeholder{color:rgba(255,255,255,.82)}
         </div>
     </div>
 
-    <!-- Recent tips — only shown when tips have been used -->
+    <!-- Recent tips â€” only shown when tips have been used -->
     @if($recentTips->count() > 0)
     <div class="card">
         <div class="card-title">Recent Tips ({{ $recentTips->count() }})</div>
@@ -216,7 +216,7 @@ input::placeholder{color:rgba(255,255,255,.82)}
                 <div class="tip-time">{{ $tip->paid_at?->diffForHumans() ?? $tip->created_at->diffForHumans() }}</div>
             </div>
             @if($tip->feedback)
-            <div class="tip-rating">{{ str_repeat('★', $tip->feedback->rating) }}</div>
+            <div class="tip-rating">{{ str_repeat('â˜…', $tip->feedback->rating) }}</div>
             @endif
         </div>
         @empty
@@ -231,7 +231,7 @@ input::placeholder{color:rgba(255,255,255,.82)}
         <div class="card-title">Customer Feedback ({{ $stats['rating_count'] }})</div>
         @foreach($recentFeedback as $fb)
         <div class="fb-item">
-            <div class="fb-rating">{{ str_repeat('★', $fb->rating) }}{{ str_repeat('☆', 5 - $fb->rating) }}</div>
+            <div class="fb-rating">{{ str_repeat('â˜…', $fb->rating) }}{{ str_repeat('â˜†', 5 - $fb->rating) }}</div>
             @if($fb->comment)
             <div class="fb-comment">"{{ $fb->comment }}"</div>
             @endif
@@ -251,7 +251,7 @@ input::placeholder{color:rgba(255,255,255,.82)}
     <!-- Edit profile -->
     <div class="card">
         <details>
-            <summary>⚙️ Edit Profile & Settings</summary>
+            <summary>âš™ï¸ Edit Profile & Settings</summary>
             <form method="POST" action="{{ route('staff.profile.update') }}">
                 @csrf
                 @method('PATCH')
@@ -266,7 +266,7 @@ input::placeholder{color:rgba(255,255,255,.82)}
                 <div class="form-group">
                     <label>New M-Pesa Number (leave blank to keep current)</label>
                     <input type="tel" name="payout_phone" placeholder="07XX XXX XXX">
-                    <div class="hint">🔒 Encrypted and private.</div>
+                    <div class="hint">ðŸ”’ Encrypted and private.</div>
                 </div>
                 <div class="form-group">
                     <label>New Password (leave blank to keep current)</label>
@@ -294,9 +294,9 @@ input::placeholder{color:rgba(255,255,255,.82)}
                     <input type="text" name="till_number" placeholder="Paybill or Till number"
                            inputmode="numeric" maxlength="7"
                            style="background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);border-radius:10px;padding:11px 13px;color:#fff;font-size:14px;outline:none;width:100%">
-                    <div class="hint">Used for Charge Customer and Bill Split payouts. 🔒 Encrypted.</div>
+                    <div class="hint">Used for Charge Customer and Bill Split payouts. ðŸ”’ Encrypted.</div>
                     @if($staff->hasTill())
-                    <div class="hint" style="color:#4ade80;margin-top:4px">✓ Till/Paybill saved. Leave blank to keep current.</div>
+                    <div class="hint" style="color:#4ade80;margin-top:4px">âœ“ Till/Paybill saved. Leave blank to keep current.</div>
                     @endif
                 </div>
 
@@ -311,10 +311,11 @@ input::placeholder{color:rgba(255,255,255,.82)}
 function copyLink() {
     navigator.clipboard.writeText(document.getElementById('tipUrl').value).then(() => {
         const btn = document.querySelector('.copy-btn');
-        btn.textContent = '✓ Copied';
+        btn.textContent = 'âœ“ Copied';
         setTimeout(() => btn.textContent = 'Copy', 2000);
     });
 }
 </script>
 </body>
 </html>
+

@@ -1,12 +1,12 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pregota — Investor Dashboard</title>
+<title>Pregota â€” Investor Dashboard</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
+*{box-sizing:border-box;margin:0;padding:0}input,textarea,select,button{font-family:inherit;font-size:inherit}
 body{font-family:'Segoe UI',system-ui,sans-serif;background:#0a0a14;color:#fff;min-height:100vh}
 
 /* Nav */
@@ -115,12 +115,12 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0a0a14;color:#fff;m
 
     <div class="page-header">
         <h1>Investor Dashboard</h1>
-        <p>Live platform metrics — all figures are aggregated and update in real time</p>
+        <p>Live platform metrics â€” all figures are aggregated and update in real time</p>
         <div class="updated">Last updated: {{ now()->format('d M Y, H:i') }} EAT</div>
     </div>
 
     <div class="confidential">
-        🔒 <span>Confidential — for authorised investors only. Do not distribute or share this page.</span>
+        ðŸ”’ <span>Confidential â€” for authorised investors only. Do not distribute or share this page.</span>
     </div>
 
     {{-- KPI Row --}}
@@ -155,7 +155,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0a0a14;color:#fff;m
         <div class="kpi gold">
             <div class="kpi-label">Gross Margin</div>
             <div class="kpi-val">{{ $grossMarginPct }}%</div>
-            <div class="kpi-sub">Revenue ÷ Gross Volume · target ≥ 90%</div>
+            <div class="kpi-sub">Revenue Ã· Gross Volume Â· target â‰¥ 90%</div>
         </div>
     </div>
 
@@ -288,36 +288,36 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0a0a14;color:#fff;m
         <div class="panel-body">
             <div class="ms-list">
                 <div class="ms">
-                    <div class="ms-dot done">✓</div>
-                    <div class="ms-text"><h4>Core platform built</h4><p>All modules functional — Gift Vouchers, Direct Gift, Staff Tips, Creator Tips, Welfare Collections, School Collections, Bill Split</p></div>
+                    <div class="ms-dot done">âœ“</div>
+                    <div class="ms-text"><h4>Core platform built</h4><p>All modules functional â€” Gift Vouchers, Direct Gift, Staff Tips, Creator Tips, Welfare Collections, School Collections, Bill Split</p></div>
                 </div>
                 <div class="ms">
-                    <div class="ms-dot done">✓</div>
+                    <div class="ms-dot done">âœ“</div>
                     <div class="ms-text"><h4>M-Pesa Daraja integrated (sandbox)</h4><p>STK Push + B2C payout pipeline fully functional. End-to-end flow tested with real M-Pesa numbers in sandbox environment.</p></div>
                 </div>
                 <div class="ms">
-                    <div class="ms-dot done">✓</div>
+                    <div class="ms-dot done">âœ“</div>
                     <div class="ms-text"><h4>Blockchain transaction sealing</h4><p>Every transaction sealed with SHA-256 chained hash. Tamper-evident audit trail on every payment.</p></div>
                 </div>
                 <div class="ms">
-                    <div class="ms-dot done">✓</div>
+                    <div class="ms-dot done">âœ“</div>
                     <div class="ms-text"><h4>Fraud detection layer</h4><p>Automated freeze on suspicious collection patterns, duplicate submission detection, manual admin review queue.</p></div>
                 </div>
                 <div class="ms">
-                    <div class="ms-dot pending">○</div>
-                    <div class="ms-text"><h4>Business registration (eCitizen)</h4><p>Sole proprietor → Limited company. Required before Daraja production application. KES 10,650 · 3–5 days.</p></div>
+                    <div class="ms-dot pending">â—‹</div>
+                    <div class="ms-text"><h4>Business registration (eCitizen)</h4><p>Sole proprietor â†’ Limited company. Required before Daraja production application. KES 10,650 Â· 3â€“5 days.</p></div>
                 </div>
                 <div class="ms">
-                    <div class="ms-dot pending">○</div>
-                    <div class="ms-text"><h4>Daraja production credentials</h4><p>STK Push + B2C production approval from Safaricom. Requires company registration + Paybill number. 2–4 week timeline.</p></div>
+                    <div class="ms-dot pending">â—‹</div>
+                    <div class="ms-text"><h4>Daraja production credentials</h4><p>STK Push + B2C production approval from Safaricom. Requires company registration + Paybill number. 2â€“4 week timeline.</p></div>
                 </div>
                 <div class="ms">
-                    <div class="ms-dot pending">○</div>
-                    <div class="ms-text"><h4>First 10 corporate welfare group pilots</h4><p>Target: Nairobi offices with 50–300 employees. Activation campaign funded from seed round community allocation.</p></div>
+                    <div class="ms-dot pending">â—‹</div>
+                    <div class="ms-text"><h4>First 10 corporate welfare group pilots</h4><p>Target: Nairobi offices with 50â€“300 employees. Activation campaign funded from seed round community allocation.</p></div>
                 </div>
                 <div class="ms">
-                    <div class="ms-dot pending">○</div>
-                    <div class="ms-text"><h4>5,000 active welfare groups</h4><p>18-month target post-seed. Organic growth via WhatsApp link distribution — every completed collection markets to 30 new users.</p></div>
+                    <div class="ms-dot pending">â—‹</div>
+                    <div class="ms-text"><h4>5,000 active welfare groups</h4><p>18-month target post-seed. Organic growth via WhatsApp link distribution â€” every completed collection markets to 30 new users.</p></div>
                 </div>
             </div>
         </div>
@@ -372,3 +372,4 @@ new Chart(ctx, {
 </script>
 </body>
 </html>
+

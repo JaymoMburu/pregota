@@ -1,13 +1,13 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Gift {{ $creator->display_name }} — Pregota</title>
+<title>Gift {{ $creator->display_name }} â€” Pregota</title>
 <meta name="csrf-token" content="{{ csrf_token() }}">
 @include('partials.pwa')
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
+*{box-sizing:border-box;margin:0;padding:0}input,textarea,select,button{font-family:inherit;font-size:inherit}
 body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:24px 20px}
 .card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:24px;padding:32px 28px;max-width:420px;width:100%;margin-top:16px}
 
@@ -112,10 +112,10 @@ textarea{resize:none;height:64px}
         </div>
 
         <div class="fee-preview" id="feePreview">
-            <div class="fee-row"><span>{{ $creator->display_name }} receives</span><span id="fRecipient">—</span></div>
-            <div class="fee-row"><span id="fFeeOutLabel">Payout fee</span><span id="fFeeOut">—</span></div>
-            <div class="fee-row"><span id="fFeeInLabel">Deposit fee</span><span id="fFeeIn">—</span></div>
-            <div class="fee-row total"><span>You pay (M-Pesa)</span><span id="fGross">—</span></div>
+            <div class="fee-row"><span>{{ $creator->display_name }} receives</span><span id="fRecipient">â€”</span></div>
+            <div class="fee-row"><span id="fFeeOutLabel">Payout fee</span><span id="fFeeOut">â€”</span></div>
+            <div class="fee-row"><span id="fFeeInLabel">Deposit fee</span><span id="fFeeIn">â€”</span></div>
+            <div class="fee-row total"><span>You pay (M-Pesa)</span><span id="fGross">â€”</span></div>
         </div>
 
         <div class="form-group">
@@ -130,18 +130,18 @@ textarea{resize:none;height:64px}
             <label>Message (optional)</label>
             <textarea id="message" placeholder="Keep it up! Love your content..."></textarea>
         </div>
-        <button type="submit" class="btn" id="sendBtn">Send Gift →</button>
+        <button type="submit" class="btn" id="sendBtn">Send Gift â†’</button>
     </form>
 
     <div class="success-box" id="successBox">
-        <div style="font-size:40px;margin-bottom:12px">🎉</div>
+        <div style="font-size:40px;margin-bottom:12px">ðŸŽ‰</div>
         <div style="font-size:17px;font-weight:800;margin-bottom:6px">Gift Sent!</div>
         <div style="font-size:13px;color:rgba(255,255,255,.82)" id="successMsg"></div>
     </div>
 </div>
 
 <div class="footer">
-    Powered by <a href="{{ route('home') }}" class="pregota-link">Pregota</a> · Anonymous gift transfers via M-Pesa
+    Powered by <a href="{{ route('home') }}" class="pregota-link">Pregota</a> Â· Anonymous gift transfers via M-Pesa
 </div>
 
 <script>
@@ -205,9 +205,10 @@ document.getElementById('giftForm').addEventListener('submit', async function(e)
         err.textContent = 'Network error. Please try again.';
         err.style.display = 'block';
     } finally {
-        btn.disabled = false; btn.textContent = 'Send Gift →';
+        btn.disabled = false; btn.textContent = 'Send Gift â†’';
     }
 });
 </script>
 </body>
 </html>
+

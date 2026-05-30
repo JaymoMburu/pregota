@@ -1,12 +1,12 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>{{ $business->name }} Dashboard — Pregota</title>
+<title>{{ $business->name }} Dashboard â€” Pregota</title>
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
+*{box-sizing:border-box;margin:0;padding:0}input,textarea,select,button{font-family:inherit;font-size:inherit}
 body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;min-height:100vh}
 .nav{padding:14px 24px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,.08)}
 .logo{font-size:20px;font-weight:900;background:linear-gradient(135deg,#00A651,#007A33);-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-decoration:none}
@@ -75,7 +75,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 .plan-price span{font-size:12px;font-weight:400;color:rgba(255,255,255,.6)}
 .plan-feature{font-size:11px;color:rgba(255,255,255,.68);margin-top:8px;line-height:1.6}
 .plan-feature li{list-style:none;padding:1px 0}
-.plan-feature li::before{content:'✓ ';color:#4ade80}
+.plan-feature li::before{content:'âœ“ ';color:#4ade80}
 
 /* Staff table */
 .staff-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:14px;overflow:hidden;margin-bottom:28px}
@@ -149,9 +149,9 @@ select option{background:#0B1810}
     <div class="plan-banner paid">
         <div style="display:flex;align-items:center;gap:10px;flex:1;min-width:0">
             <span class="plan-tag paid">{{ $business->planLabel() }}</span>
-            <span class="plan-text"><strong>Full Analytics Active</strong> · Subscription expires {{ $business->plan_expires_at?->format('M j, Y') ?? 'never' }}</span>
+            <span class="plan-text"><strong>Full Analytics Active</strong> Â· Subscription expires {{ $business->plan_expires_at?->format('M j, Y') ?? 'never' }}</span>
         </div>
-        <span style="font-size:12px;color:rgba(255,255,255,.82)">Tips are fee-free ✓</span>
+        <span style="font-size:12px;color:rgba(255,255,255,.82)">Tips are fee-free âœ“</span>
     </div>
     @else
     <div class="plan-banner free">
@@ -159,14 +159,14 @@ select option{background:#0B1810}
             <span class="plan-tag free">Free Plan</span>
             <span class="plan-text">Upgrade to unlock trends, leaderboards &amp; full analytics</span>
         </div>
-        <a href="#upgrade" class="upgrade-link">See Plans →</a>
+        <a href="#upgrade" class="upgrade-link">See Plans â†’</a>
     </div>
     @endif
 
-    <!-- Stats — service quality only, no financial data -->
+    <!-- Stats â€” service quality only, no financial data -->
     <div class="stats">
         <div class="stat">
-            <div class="stat-val">{{ $stats['avg_rating'] > 0 ? $stats['avg_rating'] : '—' }}</div>
+            <div class="stat-val">{{ $stats['avg_rating'] > 0 ? $stats['avg_rating'] : 'â€”' }}</div>
             <div class="stat-lbl">Avg Rating</div>
         </div>
         <div class="stat">
@@ -187,19 +187,19 @@ select option{background:#0B1810}
     <a href="{{ route('business.leads') }}" style="display:flex;align-items:center;justify-content:space-between;background:rgba(251,191,36,.07);border:1px solid rgba(251,191,36,.2);border-radius:14px;padding:16px 20px;margin-bottom:24px;text-decoration:none">
         <div>
             <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(251,191,36,.6);margin-bottom:4px">Customer Leads</div>
-            <div style="font-size:20px;font-weight:900;color:#fbbf24">{{ $stats['leads_count'] }} <span style="font-size:13px;font-weight:500;color:rgba(255,255,255,.68)">customers opted in · View & export →</span></div>
+            <div style="font-size:20px;font-weight:900;color:#fbbf24">{{ $stats['leads_count'] }} <span style="font-size:13px;font-weight:500;color:rgba(255,255,255,.68)">customers opted in Â· View & export â†’</span></div>
         </div>
     </a>
     @endif
 
     @if($analytics)
-    <!-- Full analytics — subscribed businesses only -->
+    <!-- Full analytics â€” subscribed businesses only -->
     <div class="section-title">Analytics</div>
     <div class="analytics-grid">
 
         <!-- Rating trend 7 days -->
         <div class="analytics-card">
-            <h3>Rating Trend — Last 7 Days</h3>
+            <h3>Rating Trend â€” Last 7 Days</h3>
             @php $maxCount = collect($analytics['trend'])->max('count') ?: 1; @endphp
             <div class="trend-bars">
                 @foreach($analytics['trend'] as $day)
@@ -242,7 +242,7 @@ select option{background:#0B1810}
 
         <!-- Staff leaderboard -->
         <div class="analytics-card full-width">
-            <h3>Staff Leaderboard — By Customer Rating</h3>
+            <h3>Staff Leaderboard â€” By Customer Rating</h3>
             @if($analytics['leaderboard']->isEmpty())
             <div style="font-size:13px;color:rgba(255,255,255,.25);text-align:center;padding:20px 0">Add staff to see leaderboard</div>
             @else
@@ -256,8 +256,8 @@ select option{background:#0B1810}
                 </div>
                 <div style="text-align:right">
                     @if($member['avg_rating'] > 0)
-                    <div class="leader-stars">{{ str_repeat('★', (int) round($member['avg_rating'])) }}{{ str_repeat('☆', 5 - (int) round($member['avg_rating'])) }}</div>
-                    <div style="font-size:11px;color:rgba(255,255,255,.6)">{{ $member['avg_rating'] }} · {{ $member['review_count'] }} {{ Str::plural('review', $member['review_count']) }}</div>
+                    <div class="leader-stars">{{ str_repeat('â˜…', (int) round($member['avg_rating'])) }}{{ str_repeat('â˜†', 5 - (int) round($member['avg_rating'])) }}</div>
+                    <div style="font-size:11px;color:rgba(255,255,255,.6)">{{ $member['avg_rating'] }} Â· {{ $member['review_count'] }} {{ Str::plural('review', $member['review_count']) }}</div>
                     @else
                     <div style="font-size:12px;color:rgba(255,255,255,.2)">No reviews yet</div>
                     @endif
@@ -269,11 +269,11 @@ select option{background:#0B1810}
 
     </div>
     @else
-    <!-- Upgrade card — free tier -->
+    <!-- Upgrade card â€” free tier -->
     <div class="upgrade-card" id="upgrade">
-        <div style="font-size:32px;margin-bottom:12px">📊</div>
+        <div style="font-size:32px;margin-bottom:12px">ðŸ“Š</div>
         <h3>Unlock Full Service Analytics</h3>
-        <p>See rating trends over time, which staff your customers love most,<br>what they're saying — and what keeps them coming back.</p>
+        <p>See rating trends over time, which staff your customers love most,<br>what they're saying â€” and what keeps them coming back.</p>
 
         <div class="plans-grid">
             <div class="plan-card">
@@ -312,11 +312,11 @@ select option{background:#0B1810}
             </div>
         </div>
 
-        <a href="mailto:hello@pregota.com?subject=Pregota Business Subscription — {{ $business->name }}"
+        <a href="mailto:hello@pregota.com?subject=Pregota Business Subscription â€” {{ $business->name }}"
            style="display:inline-block;background:linear-gradient(135deg,#00A651,#007A33);color:#fff;border:none;border-radius:12px;padding:13px 28px;font-size:15px;font-weight:700;text-decoration:none;cursor:pointer">
-            Subscribe Now — Contact Us →
+            Subscribe Now â€” Contact Us â†’
         </a>
-        <div style="margin-top:10px;font-size:11px;color:rgba(255,255,255,.25)">M-Pesa payment · Activate within 24 hours</div>
+        <div style="margin-top:10px;font-size:11px;color:rgba(255,255,255,.25)">M-Pesa payment Â· Activate within 24 hours</div>
     </div>
     @endif
 
@@ -334,11 +334,11 @@ select option{background:#0B1810}
         <div class="staff-row">
             <div>
                 <div class="staff-name">{{ $member->avatar_emoji }} {{ $member->name }}</div>
-                <div class="staff-handle">pregota.com/t/{{ $member->handle }}@if($member->role) · {{ $member->role }}@endif</div>
+                <div class="staff-handle">pregota.com/t/{{ $member->handle }}@if($member->role) Â· {{ $member->role }}@endif</div>
             </div>
             <div class="hide-mobile">
                 @if($member->feedback_count > 0)
-                <span class="rating-stars">{{ str_repeat('★', (int) round($member->averageRating())) }}</span>
+                <span class="rating-stars">{{ str_repeat('â˜…', (int) round($member->averageRating())) }}</span>
                 <span style="font-size:12px;color:rgba(255,255,255,.78);margin-left:4px">{{ $member->averageRating() }}</span>
                 @else
                 <span style="color:rgba(255,255,255,.25);font-size:12px">No reviews</span>
@@ -355,12 +355,12 @@ select option{background:#0B1810}
                 <form method="POST" action="{{ route('business.staff.remove', $member) }}" style="display:inline"
                     onsubmit="return confirm('Remove {{ $member->name }}?')">
                     @csrf @method('DELETE')
-                    <button type="submit" class="action-btn" style="color:#f87171;border-color:rgba(239,68,68,.2)">✕</button>
+                    <button type="submit" class="action-btn" style="color:#f87171;border-color:rgba(239,68,68,.2)">âœ•</button>
                 </form>
             </div>
         </div>
         @empty
-        <div class="no-data">No staff yet — add your first team member below</div>
+        <div class="no-data">No staff yet â€” add your first team member below</div>
         @endforelse
     </div>
 
@@ -393,7 +393,7 @@ select option{background:#0B1810}
             <div class="form-row">
                 <div class="form-group">
                     <label>Avatar Emoji</label>
-                    <input type="text" name="avatar_emoji" placeholder="😊" maxlength="4" value="😊">
+                    <input type="text" name="avatar_emoji" placeholder="ðŸ˜Š" maxlength="4" value="ðŸ˜Š">
                 </div>
                 <div class="form-group">
                     <label>M-Pesa Number (private)</label>
@@ -401,22 +401,22 @@ select option{background:#0B1810}
                     <div class="hint">Encrypted. Never shown anywhere.</div>
                 </div>
             </div>
-            <button type="submit" class="save-btn">Add Staff Member →</button>
+            <button type="submit" class="save-btn">Add Staff Member â†’</button>
         </form>
     </div>
 
     <!-- Recent feedback -->
     <div class="section-title">Recent Customer Feedback</div>
     @if($recentFeedback->isEmpty())
-    <div class="no-data" style="background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.06);border-radius:14px">No feedback yet — share your team's tip pages to start collecting</div>
+    <div class="no-data" style="background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.06);border-radius:14px">No feedback yet â€” share your team's tip pages to start collecting</div>
     @else
     <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:14px;padding:16px 20px">
         @foreach($recentFeedback as $fb)
         <div class="feedback-item">
             <div style="display:flex;justify-content:space-between;align-items:flex-start">
                 <div>
-                    <div class="fb-stars">{{ str_repeat('★', $fb->rating) }}{{ str_repeat('☆', 5 - $fb->rating) }}</div>
-                    <div style="font-size:12px;color:rgba(255,255,255,.78);margin-top:2px">{{ $fb->staff->name }}@if($fb->staff->role) · {{ $fb->staff->role }}@endif</div>
+                    <div class="fb-stars">{{ str_repeat('â˜…', $fb->rating) }}{{ str_repeat('â˜†', 5 - $fb->rating) }}</div>
+                    <div style="font-size:12px;color:rgba(255,255,255,.78);margin-top:2px">{{ $fb->staff->name }}@if($fb->staff->role) Â· {{ $fb->staff->role }}@endif</div>
                     @if(!empty($fb->tags))
                     <div class="fb-tags">@foreach($fb->tags as $tag)<span class="fb-tag">{{ $tag }}</span>@endforeach</div>
                     @endif
@@ -436,9 +436,9 @@ select option{background:#0B1810}
 <div class="modal" id="staffModal">
     <div class="modal-box">
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px">
-            <div style="font-size:16px;font-weight:800" id="modalName">—</div>
+            <div style="font-size:16px;font-weight:800" id="modalName">â€”</div>
             <button onclick="document.getElementById('staffModal').classList.remove('show')"
-                style="background:none;border:none;color:rgba(255,255,255,.68);cursor:pointer;font-size:20px">✕</button>
+                style="background:none;border:none;color:rgba(255,255,255,.68);cursor:pointer;font-size:20px">âœ•</button>
         </div>
         <div id="modalContent" style="color:rgba(255,255,255,.6);font-size:13px">Loading...</div>
     </div>
@@ -454,11 +454,11 @@ async function viewStaff(id) {
     });
     const d = await res.json();
 
-    document.getElementById('modalName').textContent = d.name + (d.role ? ' · ' + d.role : '');
+    document.getElementById('modalName').textContent = d.name + (d.role ? ' Â· ' + d.role : '');
 
     const ratingBar = (r, count) =>
         `<div style="display:flex;align-items:center;gap:8px;margin-bottom:4px">
-            <span style="color:#fbbf24;font-size:12px;width:70px">${'★'.repeat(r)}${'☆'.repeat(5-r)}</span>
+            <span style="color:#fbbf24;font-size:12px;width:70px">${'â˜…'.repeat(r)}${'â˜†'.repeat(5-r)}</span>
             <div style="flex:1;height:6px;background:rgba(255,255,255,.08);border-radius:3px;overflow:hidden">
                 <div style="height:100%;background:linear-gradient(90deg,#00A651,#007A33);width:${d.total_tips > 0 ? Math.round((count||0)/d.total_tips*100) : 0}%"></div>
             </div>
@@ -466,7 +466,7 @@ async function viewStaff(id) {
         </div>`;
 
     const tagRows = Object.entries(d.tag_counts||{}).map(([tag,cnt]) =>
-        `<span style="background:rgba(0,166,81,.12);border:1px solid rgba(0,166,81,.2);border-radius:12px;padding:3px 10px;font-size:11px;color:#a78bfa;margin:3px">${tag} ×${cnt}</span>`
+        `<span style="background:rgba(0,166,81,.12);border:1px solid rgba(0,166,81,.2);border-radius:12px;padding:3px 10px;font-size:11px;color:#a78bfa;margin:3px">${tag} Ã—${cnt}</span>`
     ).join('');
 
     document.getElementById('modalContent').innerHTML = `
@@ -491,3 +491,4 @@ async function viewStaff(id) {
 </script>
 </body>
 </html>
+

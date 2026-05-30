@@ -1,12 +1,12 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>{{ $collection->school_name }} — {{ $class->class_name }} Collection</title>
+<title>{{ $collection->school_name }} â€” {{ $class->class_name }} Collection</title>
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
+*{box-sizing:border-box;margin:0;padding:0}input,textarea,select,button{font-family:inherit;font-size:inherit}
 body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;min-height:100vh}
 .topbar{padding:14px 20px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,.07);background:#0B141A;position:sticky;top:0;z-index:10}
 .logo{font-size:18px;font-weight:900;background:linear-gradient(135deg,#25D366,#4ADE80);-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-decoration:none}
@@ -111,18 +111,18 @@ input::placeholder{color:rgba(255,255,255,.82)}
 
 @if($collection->is_frozen)
 <div class="frozen-banner">
-    🚫 This collection has been suspended pending review. Payments are not currently accepted.
+    ðŸš« This collection has been suspended pending review. Payments are not currently accepted.
 </div>
 @elseif(! $collection->isOpen())
-<div class="status-banner">🔒 This collection is now closed. No new payments are accepted.</div>
+<div class="status-banner">ðŸ”’ This collection is now closed. No new payments are accepted.</div>
 @endif
 
 <div class="hero">
-    <div class="school-badge">🏫 {{ $collection->school_name }}</div>
-    <h1>{{ $class->class_name }} · {{ $collection->term_label }}</h1>
+    <div class="school-badge">ðŸ« {{ $collection->school_name }}</div>
+    <h1>{{ $class->class_name }} Â· {{ $collection->term_label }}</h1>
     <div class="meta">
         <span>Class Teacher: <strong style="color:rgba(255,255,255,.75)">{{ $class->teacher_name }}</strong></span>
-        <span>·</span>
+        <span>Â·</span>
         <span>Collection amount: <strong style="color:rgba(255,255,255,.75)">KES {{ number_format($collection->amount_per_student) }}</strong></span>
     </div>
 </div>
@@ -139,7 +139,7 @@ input::placeholder{color:rgba(255,255,255,.82)}
 </div>
 
 <div class="trust-notice">
-    <span>🔒</span>
+    <span>ðŸ”’</span>
     <span>Verify this collection is genuine before paying. If you have concerns,
         <button class="report-link" onclick="openReport()">report it</button>.
     </span>
@@ -167,7 +167,7 @@ input::placeholder{color:rgba(255,255,255,.82)}
             <!-- Balance panel: shown when student has prior payments -->
             <div class="balance-info" id="balanceInfo">
                 <div id="completeMsg" style="display:none">
-                    <span class="complete-badge">✅ Fully Paid</span>
+                    <span class="complete-badge">âœ… Fully Paid</span>
                     <div style="font-size:13px;color:rgba(255,255,255,.78)">This student has completed their collection payment.</div>
                 </div>
                 <div id="partialMsg">
@@ -199,14 +199,14 @@ input::placeholder{color:rgba(255,255,255,.82)}
                     <label>Amount You Are Paying Now</label>
                     <input type="number" id="payAmount" placeholder="Enter amount e.g. 500" min="50" oninput="onAmountInput()" required>
                     <button type="button" class="full-btn" id="fullBtn" onclick="payFull()">
-                        Pay full remaining — KES <span id="fullBtnAmt">{{ number_format($collection->amount_per_student) }}</span>
+                        Pay full remaining â€” KES <span id="fullBtnAmt">{{ number_format($collection->amount_per_student) }}</span>
                     </button>
-                    <div class="hint">Pay the full amount or any partial amount — minimum KES 50.</div>
+                    <div class="hint">Pay the full amount or any partial amount â€” minimum KES 50.</div>
                 </div>
 
                 <div class="fee-line" id="feeLine">
-                    <span>Paying: <strong id="feeLineAmount">—</strong></span>
-                    <span>Service fee: KES 30 → Total charged: <strong id="feeLineTotal">—</strong></span>
+                    <span>Paying: <strong id="feeLineAmount">â€”</strong></span>
+                    <span>Service fee: KES 30 â†’ Total charged: <strong id="feeLineTotal">â€”</strong></span>
                 </div>
 
                 <div class="form-group">
@@ -222,7 +222,7 @@ input::placeholder{color:rgba(255,255,255,.82)}
         <div class="status-overlay" id="statusOverlay">
             <div class="spin" id="spinIcon"></div>
             <div class="status-icon" id="statusIcon" style="display:none"></div>
-            <div class="status-msg" id="statusMsg">Sending STK Push…</div>
+            <div class="status-msg" id="statusMsg">Sending STK Pushâ€¦</div>
             <div class="status-sub" id="statusSub">Check your phone and enter your M-Pesa PIN.</div>
             <button class="btn-sm" id="retryBtn" style="display:none" onclick="resetForm()">Try Again</button>
         </div>
@@ -231,7 +231,7 @@ input::placeholder{color:rgba(255,255,255,.82)}
 
     <div style="text-align:center;padding:4px 0 4px">
         <button class="report-link" onclick="openReport()" style="font-size:12px;color:rgba(239,68,68,.45)">
-            ⚠️ Report a concern about this collection
+            âš ï¸ Report a concern about this collection
         </button>
     </div>
 
@@ -251,7 +251,7 @@ input::placeholder{color:rgba(255,255,255,.82)}
             @endforeach
         </div>
         @else
-        <div class="empty">No payments yet — share this link with parents.</div>
+        <div class="empty">No payments yet â€” share this link with parents.</div>
         @endif
     </div>
 
@@ -260,9 +260,9 @@ input::placeholder{color:rgba(255,255,255,.82)}
 <!-- Report Fraud Modal -->
 <div class="modal-backdrop" id="reportModal">
     <div class="modal">
-        <h3>⚠️ Report a Concern</h3>
+        <h3>âš ï¸ Report a Concern</h3>
         <p>If you believe this collection is fraudulent or being used for something suspicious, let us know. We will review and may suspend the collection while we investigate.</p>
-        <textarea id="reportReason" placeholder="Describe your concern (e.g. not from this school, unknown organiser, suspicious activity)…" maxlength="300"></textarea>
+        <textarea id="reportReason" placeholder="Describe your concern (e.g. not from this school, unknown organiser, suspicious activity)â€¦" maxlength="300"></textarea>
         <div id="reportMsg" style="display:none;margin-top:10px;font-size:13px;font-weight:600;color:#4ade80"></div>
         <div class="modal-actions">
             <button class="modal-cancel-btn" onclick="closeReport()">Cancel</button>
@@ -282,7 +282,7 @@ let idTimeout;
 let pollTimer;
 let paymentId;
 
-// ── Student ID input: debounce lookup ────────────────────────────────────────
+// â”€â”€ Student ID input: debounce lookup â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 function onStudentIdInput() {
     document.getElementById('studentId').value = document.getElementById('studentId').value.toUpperCase();
     clearTimeout(idTimeout);
@@ -314,7 +314,7 @@ function resetStudentData() {
     setAmountDefault(REQUIRED, false);
 }
 
-// ── Balance UI ────────────────────────────────────────────────────────────────
+// â”€â”€ Balance UI â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 function updateBalanceUI(data) {
     const panel = document.getElementById('balanceInfo');
     if (data.total_paid > 0) {
@@ -350,7 +350,7 @@ function hideBalanceInfo() {
     document.getElementById('paymentFields').style.display = 'block';
 }
 
-// ── Amount helpers ────────────────────────────────────────────────────────────
+// â”€â”€ Amount helpers â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 function setAmountDefault(balance, prefill = false) {
     const input = document.getElementById('payAmount');
     input.value = prefill ? balance : '';
@@ -378,7 +378,7 @@ function updateFeeDisplay(amount) {
     document.getElementById('payBtn').textContent        = 'Pay KES ' + gross.toLocaleString() + ' via M-Pesa';
 }
 
-// ── Validation ────────────────────────────────────────────────────────────────
+// â”€â”€ Validation â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 function validateForm() {
     const id       = document.getElementById('studentId').value.trim();
     const name     = document.getElementById('studentName').value.trim();
@@ -389,14 +389,14 @@ function validateForm() {
     document.getElementById('payBtn').disabled = !(id && name && phoneOk && amountOk && !studentData.is_complete);
 }
 
-// ── Payment ───────────────────────────────────────────────────────────────────
+// â”€â”€ Payment â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 async function sendPayment() {
     const student_id   = document.getElementById('studentId').value.trim();
     const student_name = document.getElementById('studentName').value.trim();
     const phone        = document.getElementById('payerPhone').value.trim();
     const amount       = parseInt(document.getElementById('payAmount').value);
 
-    showOverlay('pending', 'Sending STK Push…', 'Check your phone and enter your M-Pesa PIN.');
+    showOverlay('pending', 'Sending STK Pushâ€¦', 'Check your phone and enter your M-Pesa PIN.');
 
     try {
         const res  = await fetch(`/school-collection/${SLUG}/class/${CLASS_TOKEN}/pay`, {
@@ -423,12 +423,12 @@ function pollStatus() {
                 const msg = data.class_total
                     ? 'KES ' + data.class_total.toLocaleString() + ' collected for your class so far.'
                     : 'Payment recorded. Thank you!';
-                showOverlay('success', '✅ Payment received!', msg);
+                showOverlay('success', 'âœ… Payment received!', msg);
                 setTimeout(() => location.reload(), 3000);
                 return;
             }
             if (data.status === 'failed') {
-                showOverlay('error', '❌ Payment not completed', 'The STK Push was not confirmed. Please try again.');
+                showOverlay('error', 'âŒ Payment not completed', 'The STK Push was not confirmed. Please try again.');
                 return;
             }
             pollStatus();
@@ -441,7 +441,7 @@ function showOverlay(state, msg, sub) {
     document.getElementById('statusOverlay').style.display = 'block';
     document.getElementById('spinIcon').style.display      = state === 'pending' ? 'block' : 'none';
     document.getElementById('statusIcon').style.display    = state !== 'pending' ? 'block' : 'none';
-    document.getElementById('statusIcon').textContent      = state === 'success' ? '✅' : '❌';
+    document.getElementById('statusIcon').textContent      = state === 'success' ? 'âœ…' : 'âŒ';
     document.getElementById('statusMsg').textContent       = msg;
     document.getElementById('statusSub').textContent       = sub;
     document.getElementById('retryBtn').style.display      = state === 'error' ? 'inline-block' : 'none';
@@ -456,7 +456,7 @@ function resetForm() {
 // Initialise presets on page load
 setAmountDefault(REQUIRED, false);
 
-// ── Report fraud ──────────────────────────────────────────────────────────────
+// â”€â”€ Report fraud â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 function openReport()  { document.getElementById('reportModal').classList.add('open'); }
 function closeReport() { document.getElementById('reportModal').classList.remove('open'); }
 
@@ -466,7 +466,7 @@ async function submitReport() {
 
     const btn = document.getElementById('reportSubmitBtn');
     btn.disabled = true;
-    btn.textContent = 'Submitting…';
+    btn.textContent = 'Submittingâ€¦';
 
     try {
         const res  = await fetch(`/school-collection/${SLUG}/report`, {
@@ -477,7 +477,7 @@ async function submitReport() {
         const data = await res.json();
         if (data.frozen) {
             const msg = document.getElementById('reportMsg');
-            msg.textContent = '✅ Report received. This collection has been suspended pending review.';
+            msg.textContent = 'âœ… Report received. This collection has been suspended pending review.';
             msg.style.display = 'block';
             document.querySelector('.modal-actions').style.display = 'none';
             setTimeout(() => location.reload(), 2500);
@@ -490,3 +490,4 @@ async function submitReport() {
 </script>
 </body>
 </html>
+

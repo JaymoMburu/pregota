@@ -1,12 +1,12 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Receipt {{ $payment->receipt_number }} — Pregota</title>
+<title>Receipt {{ $payment->receipt_number }} â€” Pregota</title>
 @include('partials.pwa')
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
+*{box-sizing:border-box;margin:0;padding:0}input,textarea,select,button{font-family:inherit;font-size:inherit}
 body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:32px 16px 80px}
 
 .card{width:100%;max-width:420px;background:#111c24;border:1px solid rgba(255,255,255,.1);border-radius:20px;overflow:hidden}
@@ -46,7 +46,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 .btn-back{background:rgba(255,255,255,.07);color:rgba(255,255,255,.8);border:1px solid rgba(255,255,255,.12)}
 .btn:hover{opacity:.9}
 
-/* ── Print styles ──────────────────────────────────────────────────────── */
+/* â”€â”€ Print styles â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 @media print{
     body{background:#fff!important;color:#000!important;padding:0;display:block}
     .card{border:1px solid #ddd;border-radius:8px;max-width:100%;box-shadow:none;background:#fff!important}
@@ -75,7 +75,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 <div class="card">
     <div class="card-header">
         <div class="logo-text"><span>Pregota</span> Payment Receipt</div>
-        <div class="tick">✅</div>
+        <div class="tick">âœ…</div>
         <div class="paid-label">Payment Confirmed</div>
         <div class="amount-big">
             <span class="currency">KES</span> {{ number_format($payment->amount, 0) }}
@@ -126,7 +126,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
             <div style="text-align:right">
                 <div class="tip-row">
                     <div class="tip-row-top">
-                        <span>🙏 {{ ucfirst($payment->tip_recipient ?? 'Staff') }}</span>
+                        <span>ðŸ™ {{ ucfirst($payment->tip_recipient ?? 'Staff') }}</span>
                         <span style="font-weight:800;color:#4ADE80">+ KES {{ number_format($payment->tip_amount, 0) }}</span>
                     </div>
                     @if($payment->tip_comment)
@@ -139,7 +139,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 
         <div class="row">
             <span class="row-label">Date & Time</span>
-            <span class="row-val">{{ $payment->updated_at->format('D, d M Y · H:i:s') }}</span>
+            <span class="row-val">{{ $payment->updated_at->format('D, d M Y Â· H:i:s') }}</span>
         </div>
 
         <div class="row">
@@ -158,23 +158,24 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
         <p>
             <strong>Valid for KRA expense records</strong><br>
             This receipt is generated from a confirmed M-Pesa transaction via Pregota.<br>
-            Reference: <strong>{{ $payment->receipt_number }}</strong> · M-Pesa: <strong>{{ $payment->mpesa_ref }}</strong>
+            Reference: <strong>{{ $payment->receipt_number }}</strong> Â· M-Pesa: <strong>{{ $payment->mpesa_ref }}</strong>
         </p>
     </div>
 
     <div class="print-footer">
         Verified at pregota.com/receipt/{{ $payment->receipt_number }}<br>
-        Generated {{ $payment->updated_at->format('d M Y H:i') }} · Pregota Limited
+        Generated {{ $payment->updated_at->format('d M Y H:i') }} Â· Pregota Limited
     </div>
 </div>
 
 <div class="actions">
-    <button class="btn btn-print" onclick="window.print()">🖨 Print / Save PDF</button>
-    <a href="{{ route('seller.public', $payment->payLink->handle) }}" class="btn btn-back">← Back</a>
+    <button class="btn btn-print" onclick="window.print()">ðŸ–¨ Print / Save PDF</button>
+    <a href="{{ route('seller.public', $payment->payLink->handle) }}" class="btn btn-back">â† Back</a>
 </div>
 <div style="text-align:center;margin-top:16px;padding-bottom:32px" class="no-print">
-    <a href="{{ route('dispute.show', $payment->receipt_number) }}" style="font-size:13px;color:rgba(255,255,255,.3);text-decoration:none">Problem with this payment? Report it →</a>
+    <a href="{{ route('dispute.show', $payment->receipt_number) }}" style="font-size:13px;color:rgba(255,255,255,.3);text-decoration:none">Problem with this payment? Report it â†’</a>
 </div>
 
 </body>
 </html>
+

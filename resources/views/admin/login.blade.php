@@ -1,11 +1,11 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Pregota Admin</title>
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
+*{box-sizing:border-box;margin:0;padding:0}input,textarea,select,button{font-family:inherit;font-size:inherit}
 body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;min-height:100vh;display:flex;align-items:center;justify-content:center}
 .card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:40px 32px;max-width:360px;width:100%;text-align:center}
 h1{font-size:22px;font-weight:900;margin-bottom:6px}
@@ -18,7 +18,7 @@ input:focus{border-color:#00A651}
 </head>
 <body>
 <div class="card">
-    <h1>🔐 Pregota Admin</h1>
+    <h1>ðŸ” Pregota Admin</h1>
     <p class="sub">Restricted access</p>
     @if($errors->any())
     <div class="error">{{ $errors->first() }}</div>
@@ -31,3 +31,4 @@ input:focus{border-color:#00A651}
 </div>
 </body>
 </html>
+

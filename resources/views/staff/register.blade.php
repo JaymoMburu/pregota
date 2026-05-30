@@ -1,11 +1,11 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Create Your Tip Page — Pregota</title>
+<title>Create Your Tip Page â€” Pregota</title>
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
+*{box-sizing:border-box;margin:0;padding:0}input,textarea,select,button{font-family:inherit;font-size:inherit}
 body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;min-height:100vh;display:flex}
 
 .panel-left{width:42%;height:100vh;position:sticky;top:0;background:radial-gradient(circle 260px at -40px -80px,rgba(0,166,81,.35),transparent 70%),radial-gradient(circle 200px at calc(100% + 20px) 100%,rgba(0,122,51,.28),transparent 70%),linear-gradient(150deg,#030D07,#0A1A0F 55%,#0F2418);display:flex;flex-direction:column;padding:40px 44px;overflow:hidden}
@@ -16,7 +16,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 .headline p{margin-top:10px;font-size:14px;color:rgba(255,255,255,.72);line-height:1.65;max-width:280px}
 .check-list{display:flex;flex-direction:column;gap:12px}
 .check-item{display:flex;align-items:center;gap:10px;font-size:13px;color:rgba(255,255,255,.65)}
-.check-item::before{content:"✓";width:20px;height:20px;background:rgba(34,197,94,.2);border:1px solid rgba(34,197,94,.35);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;color:#4ade80;flex-shrink:0}
+.check-item::before{content:"âœ“";width:20px;height:20px;background:rgba(34,197,94,.2);border:1px solid rgba(34,197,94,.35);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;color:#4ade80;flex-shrink:0}
 .left-foot{margin-top:auto;position:relative;z-index:1;font-size:11px;color:rgba(255,255,255,.82)}
 
 .panel-right{width:58%;min-height:100vh;background:#0B141A;display:flex;flex-direction:column;border-left:1px solid rgba(255,255,255,.06)}
@@ -76,11 +76,11 @@ input[type=hidden]{}
             <div class="check-item">Your M-Pesa number stays completely private</div>
             <div class="check-item">Get a personal link: pregota.com/t/yourname</div>
             <div class="check-item">Money arrives straight to your phone</div>
-            <div class="check-item">Free to use — KES 15 fee per tip paid by customer</div>
+            <div class="check-item">Free to use â€” KES 15 fee per tip paid by customer</div>
             <div class="check-item">See your earnings and customer feedback</div>
         </div>
     </div>
-    <div class="left-foot">© 2026 Pregota · For Service Workers in Kenya</div>
+    <div class="left-foot">Â© 2026 Pregota Â· For Service Workers in Kenya</div>
 </div>
 
 <div class="panel-right">
@@ -112,9 +112,9 @@ input[type=hidden]{}
 
                 <div class="form-group">
                     <label>Your Job / Role</label>
-                    <input type="text" name="role" placeholder="Waitress · Villa Rosa Kempinski"
+                    <input type="text" name="role" placeholder="Waitress Â· Villa Rosa Kempinski"
                            value="{{ old('role') }}" maxlength="60" required>
-                    <div class="hint">Shown on your tip page. Be specific — it builds trust.</div>
+                    <div class="hint">Shown on your tip page. Be specific â€” it builds trust.</div>
                 </div>
 
                 <div class="form-group">
@@ -132,12 +132,12 @@ input[type=hidden]{}
                 <div class="form-group">
                     <label>Pick an Emoji (optional)</label>
                     <div class="emoji-grid">
-                        @foreach(['😊','🌟','💪','🙌','✨','🔥','💅','🍽️','☕','🚗','🛵','🎵'] as $emoji)
-                        <div class="emoji-opt {{ old('avatar_emoji', '😊') === $emoji ? 'selected' : '' }}"
+                        @foreach(['ðŸ˜Š','ðŸŒŸ','ðŸ’ª','ðŸ™Œ','âœ¨','ðŸ”¥','ðŸ’…','ðŸ½ï¸','â˜•','ðŸš—','ðŸ›µ','ðŸŽµ'] as $emoji)
+                        <div class="emoji-opt {{ old('avatar_emoji', 'ðŸ˜Š') === $emoji ? 'selected' : '' }}"
                              onclick="selectEmoji('{{ $emoji }}', this)">{{ $emoji }}</div>
                         @endforeach
                     </div>
-                    <input type="hidden" name="avatar_emoji" id="avatarEmoji" value="{{ old('avatar_emoji', '😊') }}">
+                    <input type="hidden" name="avatar_emoji" id="avatarEmoji" value="{{ old('avatar_emoji', 'ðŸ˜Š') }}">
                 </div>
 
                 <div class="section-label">Your M-Pesa Details</div>
@@ -145,7 +145,7 @@ input[type=hidden]{}
                 <div class="form-group">
                     <label>M-Pesa Number for Tips</label>
                     <input type="tel" name="payout_phone" placeholder="07XX XXX XXX" required>
-                    <div class="hint green">🔒 Encrypted. Never shown to anyone — not even us.</div>
+                    <div class="hint green">ðŸ”’ Encrypted. Never shown to anyone â€” not even us.</div>
                 </div>
 
                 <div class="section-label">Login Details</div>
@@ -167,10 +167,10 @@ input[type=hidden]{}
                     <input type="password" name="password_confirmation" placeholder="Repeat your password" required>
                 </div>
 
-                <button type="submit" class="submit-btn">Create My Tip Page →</button>
+                <button type="submit" class="submit-btn">Create My Tip Page â†’</button>
             </form>
 
-            <div class="login-link">Already have an account? <a href="{{ route('staff.login') }}">Sign in →</a></div>
+            <div class="login-link">Already have an account? <a href="{{ route('staff.login') }}">Sign in â†’</a></div>
         </div>
     </div>
 </div>
@@ -196,3 +196,4 @@ handleInput.addEventListener('input', () => {
 </script>
 </body>
 </html>
+

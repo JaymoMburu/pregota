@@ -1,13 +1,13 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Send a Gift via M-Pesa — Pregota</title>
+<title>Send a Gift via M-Pesa â€” Pregota</title>
 <meta name="description" content="Send money anonymously via M-Pesa. They receive a gift code. You stay invisible. No M-Pesa number sharing required.">
 @include('partials.pwa')
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
+*{box-sizing:border-box;margin:0;padding:0}input,textarea,select,button{font-family:inherit;font-size:inherit}
 body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;min-height:100vh}
 
 .nav{padding:14px 24px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,.08);position:sticky;top:0;background:#0B141A;z-index:10}
@@ -23,7 +23,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 .btn-primary{background:linear-gradient(135deg,#00A651,#007A33);color:#fff;border:none;border-radius:12px;padding:14px 28px;font-size:15px;font-weight:700;cursor:pointer;text-decoration:none;display:inline-block}
 .btn-secondary{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.7);border-radius:12px;padding:14px 28px;font-size:15px;font-weight:700;text-decoration:none;display:inline-block}
 
-/* Who is this for — two paths */
+/* Who is this for â€” two paths */
 .paths{padding:48px 24px 8px;max-width:700px;margin:0 auto}
 .paths-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:rgba(255,255,255,.4);text-align:center;margin-bottom:20px}
 .paths-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
@@ -121,15 +121,15 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
     <a href="{{ route('home') }}" class="logo">Pregota</a>
     <div style="display:flex;gap:10px;align-items:center">
         <a href="{{ route('redeem') }}" style="color:rgba(255,255,255,.7);font-size:13px;font-weight:600;text-decoration:none">Redeem a Gift</a>
-        <a href="{{ route('gift.home') }}" class="nav-cta">Send a Gift →</a>
+        <a href="{{ route('gift.home') }}" class="nav-cta">Send a Gift â†’</a>
     </div>
 </nav>
 
 <!-- Hero -->
 <div class="hero">
-    <div class="badge">🎁 Gift Vouchers · Powered by M-Pesa</div>
+    <div class="badge">ðŸŽ Gift Vouchers Â· Powered by M-Pesa</div>
     <h1>Send money as a gift.<br><em>Anonymously.</em></h1>
-    <p>They receive the money. You stay invisible. No need to share anyone's M-Pesa number — just send a gift code via WhatsApp or SMS.</p>
+    <p>They receive the money. You stay invisible. No need to share anyone's M-Pesa number â€” just send a gift code via WhatsApp or SMS.</p>
     <div class="hero-btns">
         <a href="{{ route('gift.home') }}" class="btn-primary">Send a Gift Now</a>
         <a href="#how-it-works" class="btn-secondary">How It Works</a>
@@ -142,10 +142,10 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
     <div class="paths-grid">
 
         <a href="{{ route('gift.home') }}" class="path-card path-card-individual">
-            <div class="path-badge path-badge-individual">👤 Individual</div>
-            <div class="path-icon">🎁</div>
+            <div class="path-badge path-badge-individual">ðŸ‘¤ Individual</div>
+            <div class="path-icon">ðŸŽ</div>
             <div class="path-title">Personal Gift</div>
-            <div class="path-desc">Send a one-off gift to someone you care about — anonymously. They never see your name or number. You never need theirs.</div>
+            <div class="path-desc">Send a one-off gift to someone you care about â€” anonymously. They never see your name or number. You never need theirs.</div>
             <div class="path-tags">
                 <span class="path-tag">Birthday</span>
                 <span class="path-tag">Thank you</span>
@@ -153,21 +153,21 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
                 <span class="path-tag">Support</span>
                 <span class="path-tag">Surprise</span>
             </div>
-            <div class="path-cta path-cta-individual">Send a Gift Now <span>›</span></div>
+            <div class="path-cta path-cta-individual">Send a Gift Now <span>â€º</span></div>
         </a>
 
         <a href="{{ route('gift.bulk') }}" class="path-card path-card-corporate">
-            <div class="path-badge path-badge-corporate">🏢 Corporate</div>
-            <div class="path-icon">📦</div>
+            <div class="path-badge path-badge-corporate">ðŸ¢ Corporate</div>
+            <div class="path-icon">ðŸ“¦</div>
             <div class="path-title">Bulk Gift Codes</div>
-            <div class="path-desc">Buy multiple gift codes in one M-Pesa payment. Distribute to staff, clients, or event attendees — each code redeemed independently.</div>
+            <div class="path-desc">Buy multiple gift codes in one M-Pesa payment. Distribute to staff, clients, or event attendees â€” each code redeemed independently.</div>
             <div class="path-tags">
                 <span class="path-tag">Staff rewards</span>
                 <span class="path-tag">Client gifts</span>
                 <span class="path-tag">Events</span>
                 <span class="path-tag">Promotions</span>
             </div>
-            <div class="path-cta path-cta-corporate">Get Bulk Codes <span>›</span></div>
+            <div class="path-cta path-cta-corporate">Get Bulk Codes <span>â€º</span></div>
         </a>
 
     </div>
@@ -175,22 +175,22 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 
 <!-- Gift types -->
 <div class="types">
-    <div class="section-tag">Two Ways to Send · Individual</div>
+    <div class="section-tag">Two Ways to Send Â· Individual</div>
     <h2 style="font-size:clamp(22px,4vw,32px);font-weight:900;line-height:1.2;margin-bottom:6px">Pick the type that fits.</h2>
     <p style="font-size:15px;color:rgba(255,255,255,.78);margin-top:8px">Whether you want a surprise or instant delivery, we have you covered.</p>
 
     <div class="types-grid">
         <a href="{{ route('gift.home') }}" class="type-card">
-            <div class="type-icon">🎁</div>
+            <div class="type-icon">ðŸŽ</div>
             <div class="type-title">Gift Voucher</div>
-            <div class="type-desc">They receive a unique code like PRG-7492-X8Q1. You share it by WhatsApp or SMS. They redeem it at any time using their own M-Pesa — you never need their number.</div>
-            <div class="type-tag">Best for surprise gifts →</div>
+            <div class="type-desc">They receive a unique code like PRG-7492-X8Q1. You share it by WhatsApp or SMS. They redeem it at any time using their own M-Pesa â€” you never need their number.</div>
+            <div class="type-tag">Best for surprise gifts â†’</div>
         </a>
         <a href="{{ route('gift.home') }}" class="type-card">
-            <div class="type-icon">⚡</div>
+            <div class="type-icon">âš¡</div>
             <div class="type-title">Direct Gift</div>
             <div class="type-desc">Money lands straight on the recipient's M-Pesa the moment you confirm. Fast, no code, no steps for them. You do need their number for this one.</div>
-            <div class="type-tag">Best for instant transfers →</div>
+            <div class="type-tag">Best for instant transfers â†’</div>
         </a>
     </div>
 </div>
@@ -202,24 +202,24 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 
     <div class="prob-card">
         <div class="prob-item">
-            <div class="prob-icon">🔓</div>
+            <div class="prob-icon">ðŸ”“</div>
             <div class="prob-text">
                 <strong>You expose their phone number</strong>
-                <span>Once you send via standard M-Pesa, your number appears on their statement. If they forward the money or you screenshot — that number spreads. Pregota keeps both sides private.</span>
+                <span>Once you send via standard M-Pesa, your number appears on their statement. If they forward the money or you screenshot â€” that number spreads. Pregota keeps both sides private.</span>
             </div>
         </div>
         <div class="prob-item">
-            <div class="prob-icon">😬</div>
+            <div class="prob-icon">ðŸ˜¬</div>
             <div class="prob-text">
                 <strong>Awkward to ask for their number</strong>
-                <span>You want to gift someone in a group — a colleague, a teacher, a stranger online. Asking for their personal M-Pesa number feels intrusive. A gift link solves that.</span>
+                <span>You want to gift someone in a group â€” a colleague, a teacher, a stranger online. Asking for their personal M-Pesa number feels intrusive. A gift link solves that.</span>
             </div>
         </div>
         <div class="prob-item">
-            <div class="prob-icon">🙈</div>
+            <div class="prob-icon">ðŸ™ˆ</div>
             <div class="prob-text">
-                <strong>No anonymity — your name appears</strong>
-                <span>Standard M-Pesa shows your registered name on every transaction. If you want to give quietly, there's no way to hide. Pregota shows nothing — not even your phone number.</span>
+                <strong>No anonymity â€” your name appears</strong>
+                <span>Standard M-Pesa shows your registered name on every transaction. If you want to give quietly, there's no way to hide. Pregota shows nothing â€” not even your phone number.</span>
             </div>
         </div>
     </div>
@@ -230,34 +230,34 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
     <div class="how-inner">
         <div class="section-tag">How It Works</div>
         <h2>Four steps. The whole thing takes under two minutes.</h2>
-        <p style="font-size:15px;color:rgba(255,255,255,.78);margin-top:10px">Gift Voucher flow — they redeem at their own time, using their own M-Pesa.</p>
+        <p style="font-size:15px;color:rgba(255,255,255,.78);margin-top:10px">Gift Voucher flow â€” they redeem at their own time, using their own M-Pesa.</p>
 
         <div class="steps">
             <div class="step">
                 <div class="step-num">1</div>
                 <div class="step-body">
                     <h3>Enter the gift amount</h3>
-                    <p>Type what you want them to receive. The fee is added on top — they get the full amount you enter. Minimum KES {{ number_format(config('pregota.min_amount'), 0) }}, maximum KES {{ number_format(config('pregota.max_amount'), 0) }}.</p>
+                    <p>Type what you want them to receive. The fee is added on top â€” they get the full amount you enter. Minimum KES {{ number_format(config('pregota.min_amount'), 0) }}, maximum KES {{ number_format(config('pregota.max_amount'), 0) }}.</p>
                 </div>
             </div>
             <div class="step">
                 <div class="step-num">2</div>
                 <div class="step-body">
                     <h3>Pay via M-Pesa STK Push</h3>
-                    <p>Enter your own phone number. An M-Pesa prompt pops up on your screen — confirm with your PIN. Your statement shows "Pregota Ltd", not the recipient's name or number.</p>
+                    <p>Enter your own phone number. An M-Pesa prompt pops up on your screen â€” confirm with your PIN. Your statement shows "Pregota Ltd", not the recipient's name or number.</p>
                 </div>
             </div>
             <div class="step">
                 <div class="step-num">3</div>
                 <div class="step-body">
                     <h3>Get a unique gift code</h3>
-                    <p>Once your payment is confirmed, you receive a code like <strong style="color:#25D366">PRG-7492-X8Q1</strong>. Send it by WhatsApp, SMS, DM — any way you like. Add a message if you want.</p>
+                    <p>Once your payment is confirmed, you receive a code like <strong style="color:#25D366">PRG-7492-X8Q1</strong>. Send it by WhatsApp, SMS, DM â€” any way you like. Add a message if you want.</p>
                 </div>
             </div>
             <div class="step">
                 <div class="step-num">4</div>
                 <div class="step-body">
-                    <h3>They redeem it — money arrives instantly</h3>
+                    <h3>They redeem it â€” money arrives instantly</h3>
                     <p>They visit pregota.com, enter the code and their own M-Pesa number. Cash lands immediately. No account needed. Valid for 72 hours.</p>
                 </div>
             </div>
@@ -270,15 +270,15 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
     <div class="section-tag">When to Use It</div>
     <h2>Any occasion where cash is the right gift.</h2>
     <div class="uses-grid">
-        <div class="use-card"><div class="use-emoji">🎂</div><div class="use-name">Birthday</div><div class="use-sub">Anonymous surprise</div></div>
-        <div class="use-card"><div class="use-emoji">🎓</div><div class="use-name">Graduation</div><div class="use-sub">Congratulations gift</div></div>
-        <div class="use-card"><div class="use-emoji">🙏</div><div class="use-name">Thank You</div><div class="use-sub">Show appreciation</div></div>
-        <div class="use-card"><div class="use-emoji">🍼</div><div class="use-name">Baby Shower</div><div class="use-sub">New arrival gift</div></div>
-        <div class="use-card"><div class="use-emoji">💼</div><div class="use-name">Farewell</div><div class="use-sub">Office whip-round</div></div>
-        <div class="use-card"><div class="use-emoji">❤️</div><div class="use-name">Support</div><div class="use-sub">Anonymous help</div></div>
-        <div class="use-card"><div class="use-emoji">🎤</div><div class="use-name">Creator Gift</div><div class="use-sub">Support your fave</div></div>
-        <div class="use-card"><div class="use-emoji">🏫</div><div class="use-name">Teacher Gift</div><div class="use-sub">End of term</div></div>
-        <div class="use-card"><div class="use-emoji">🎉</div><div class="use-name">Any Occasion</div><div class="use-sub">Cash is always right</div></div>
+        <div class="use-card"><div class="use-emoji">ðŸŽ‚</div><div class="use-name">Birthday</div><div class="use-sub">Anonymous surprise</div></div>
+        <div class="use-card"><div class="use-emoji">ðŸŽ“</div><div class="use-name">Graduation</div><div class="use-sub">Congratulations gift</div></div>
+        <div class="use-card"><div class="use-emoji">ðŸ™</div><div class="use-name">Thank You</div><div class="use-sub">Show appreciation</div></div>
+        <div class="use-card"><div class="use-emoji">ðŸ¼</div><div class="use-name">Baby Shower</div><div class="use-sub">New arrival gift</div></div>
+        <div class="use-card"><div class="use-emoji">ðŸ’¼</div><div class="use-name">Farewell</div><div class="use-sub">Office whip-round</div></div>
+        <div class="use-card"><div class="use-emoji">â¤ï¸</div><div class="use-name">Support</div><div class="use-sub">Anonymous help</div></div>
+        <div class="use-card"><div class="use-emoji">ðŸŽ¤</div><div class="use-name">Creator Gift</div><div class="use-sub">Support your fave</div></div>
+        <div class="use-card"><div class="use-emoji">ðŸ«</div><div class="use-name">Teacher Gift</div><div class="use-sub">End of term</div></div>
+        <div class="use-card"><div class="use-emoji">ðŸŽ‰</div><div class="use-name">Any Occasion</div><div class="use-sub">Cash is always right</div></div>
     </div>
 </div>
 
@@ -296,7 +296,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
             </div>
             @foreach(config('pregota.gift_tiers') as $tier)
             <div class="fee-row">
-                <span class="fee-label">KES {{ number_format($tier['min']) }} – KES {{ number_format($tier['max']) }}</span>
+                <span class="fee-label">KES {{ number_format($tier['min']) }} â€“ KES {{ number_format($tier['max']) }}</span>
                 <span class="fee-value" style="color:#25D366">
                     @if($tier['type'] === 'flat')
                         KES {{ $tier['value'] }} flat
@@ -314,24 +314,24 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 
         <div class="adv-grid" style="margin-top:32px">
             <div class="adv-card">
-                <div class="adv-icon">🔒</div>
+                <div class="adv-icon">ðŸ”’</div>
                 <div class="adv-title">Complete anonymity</div>
-                <div class="adv-text">Your name, your number — nothing is passed to the recipient. Their number is never stored or shown to you.</div>
+                <div class="adv-text">Your name, your number â€” nothing is passed to the recipient. Their number is never stored or shown to you.</div>
             </div>
             <div class="adv-card">
-                <div class="adv-icon">⏱️</div>
+                <div class="adv-icon">â±ï¸</div>
                 <div class="adv-title">5-minute recall window</div>
-                <div class="adv-text">Sent to the wrong person? Use your recall token within 5 minutes to cancel — you get back the face value.</div>
+                <div class="adv-text">Sent to the wrong person? Use your recall token within 5 minutes to cancel â€” you get back the face value.</div>
             </div>
             <div class="adv-card">
-                <div class="adv-icon">📱</div>
+                <div class="adv-icon">ðŸ“±</div>
                 <div class="adv-title">No app needed</div>
                 <div class="adv-text">Works on any phone with M-Pesa. No download, no sign-up, no account for the sender or recipient.</div>
             </div>
             <div class="adv-card">
-                <div class="adv-icon">🎤</div>
+                <div class="adv-icon">ðŸŽ¤</div>
                 <div class="adv-title">Gift your favourite creator</div>
-                <div class="adv-text">Find any registered creator on Pregota and send directly to their profile — they receive the money automatically.</div>
+                <div class="adv-text">Find any registered creator on Pregota and send directly to their profile â€” they receive the money automatically.</div>
             </div>
         </div>
     </div>
@@ -342,14 +342,15 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
     <h2>Ready to send?<br><em style="font-style:normal;background:linear-gradient(135deg,#25D366,#4ADE80);-webkit-background-clip:text;-webkit-text-fill-color:transparent">Takes under two minutes.</em></h2>
     <p>No account. No app. Just M-Pesa and a gift code. The most private way to give cash in Kenya.</p>
     <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
-        <a href="{{ route('gift.home') }}" class="btn-primary" style="font-size:16px;padding:16px 36px">Send a Personal Gift →</a>
-        <a href="{{ route('gift.bulk') }}" class="btn-secondary" style="font-size:15px;padding:15px 28px">🏢 Corporate Bulk Codes</a>
+        <a href="{{ route('gift.home') }}" class="btn-primary" style="font-size:16px;padding:16px 36px">Send a Personal Gift â†’</a>
+        <a href="{{ route('gift.bulk') }}" class="btn-secondary" style="font-size:15px;padding:15px 28px">ðŸ¢ Corporate Bulk Codes</a>
     </div>
-    <p style="margin-top:16px;font-size:12px;color:rgba(255,255,255,.82)">No account needed · Minimum KES {{ number_format(config('pregota.min_amount'), 0) }} · Valid 72 hours</p>
+    <p style="margin-top:16px;font-size:12px;color:rgba(255,255,255,.82)">No account needed Â· Minimum KES {{ number_format(config('pregota.min_amount'), 0) }} Â· Valid 72 hours</p>
 </div>
 
 @include('partials.discover', ['current' => 'gift', 'fullWidth' => true])
-<footer class="footer">© 2026 Pregota · Anonymous Gift Transfers via M-Pesa · pregota.com</footer>
+<footer class="footer">Â© 2026 Pregota Â· Anonymous Gift Transfers via M-Pesa Â· pregota.com</footer>
 
 </body>
 </html>
+

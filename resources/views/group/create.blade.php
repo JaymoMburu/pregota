@@ -1,12 +1,12 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Create Contribution Group — Pregota</title>
+<title>Create Contribution Group â€” Pregota</title>
 @include('partials.pwa')
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
+*{box-sizing:border-box;margin:0;padding:0}input,textarea,select,button{font-family:inherit;font-size:inherit}
 body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;min-height:100vh}
 .nav{padding:14px 24px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,.07)}
 .logo{font-size:20px;font-weight:900;background:linear-gradient(135deg,#25D366,#4ADE80);-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-decoration:none}
@@ -37,7 +37,7 @@ select option{background:#1a2730}
 </nav>
 <div class="wrap">
     <h1>Create a Group</h1>
-    <div class="sub">Chama, welfare, church, or any group that collects contributions. Members pay via M-Pesa — you see who's paid instantly.</div>
+    <div class="sub">Chama, welfare, church, or any group that collects contributions. Members pay via M-Pesa â€” you see who's paid instantly.</div>
 
     <form method="POST" action="{{ route('group.create') }}">
         @csrf
@@ -97,7 +97,7 @@ select option{background:#1a2730}
             <div class="pin-row" id="confirm-boxes"></div>
         </div>
 
-        <button type="submit" class="submit-btn" id="submit-btn" disabled>Create Group →</button>
+        <button type="submit" class="submit-btn" id="submit-btn" disabled>Create Group â†’</button>
     </form>
 </div>
 
@@ -147,3 +147,4 @@ function check() {
 </script>
 </body>
 </html>
+

@@ -1,12 +1,12 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>{{ $subscription->plan->name }} — Reminder</title>
+<title>{{ $subscription->plan->name }} â€” Reminder</title>
 @include('partials.pwa')
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
+*{box-sizing:border-box;margin:0;padding:0}input,textarea,select,button{font-family:inherit;font-size:inherit}
 body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px}
 .card{max-width:420px;width:100%;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:22px;padding:36px 28px;text-align:center}
 .icon{font-size:48px;margin-bottom:14px}
@@ -22,23 +22,24 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 </head>
 <body>
 <div class="card">
-    <div class="icon">🔔</div>
+    <div class="icon">ðŸ””</div>
     <div class="biz">{{ $subscription->plan->payLink->business_name }}</div>
     <div class="plan-name">{{ $subscription->plan->name }}</div>
 
     @if($subscription->status === 'active' && !$subscription->isDue())
-        <div class="status-active">✅ Subscription active</div>
+        <div class="status-active">âœ… Subscription active</div>
         <div style="font-size:13px;color:rgba(255,255,255,.45)">
             Next payment due: {{ $subscription->next_due_at?->format('d M Y') }}
         </div>
     @else
-        <div class="status-overdue">⚠️ Payment due</div>
+        <div class="status-overdue">âš ï¸ Payment due</div>
         <div class="amount-box">
             <div class="amount-val">KES {{ number_format($subscription->plan->amount) }}</div>
             <div class="amount-label">per {{ $subscription->plan->frequencyLabel() }}</div>
         </div>
-        <a href="{{ route('subscription.show', $subscription->plan_id) }}" class="pay-link">Renew Now →</a>
+        <a href="{{ route('subscription.show', $subscription->plan_id) }}" class="pay-link">Renew Now â†’</a>
     @endif
 </div>
 </body>
 </html>
+

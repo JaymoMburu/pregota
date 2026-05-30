@@ -1,13 +1,13 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>For Staff — Pregota</title>
-<meta name="description" content="Receive tips without sharing your M-Pesa number. Your contact stays private — always.">
+<title>For Staff â€” Pregota</title>
+<meta name="description" content="Receive tips without sharing your M-Pesa number. Your contact stays private â€” always.">
 @include('partials.pwa')
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
+*{box-sizing:border-box;margin:0;padding:0}input,textarea,select,button{font-family:inherit;font-size:inherit}
 body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;min-height:100vh}
 
 /* Nav */
@@ -113,17 +113,17 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 
 <nav class="nav">
     <a href="{{ route('home') }}" class="logo">Pregota</a>
-    <a href="{{ route('staff.register') }}" class="nav-cta">Get My Tip Page →</a>
+    <a href="{{ route('staff.register') }}" class="nav-cta">Get My Tip Page â†’</a>
 </nav>
 @include('partials.module-nav', ['activeModule' => 'tips'])
 
 <!-- Hero -->
 <div class="hero">
-    <div class="shield-badge">🛡️ Employee Privacy Protection</div>
+    <div class="shield-badge">ðŸ›¡ï¸ Employee Privacy Protection</div>
     <h1>Get tipped without<br>giving out your <em>number.</em></h1>
-    <p>Your personal M-Pesa number exposes more than you think. Pregota lets customers tip you directly — your contact details stay invisible. Always.</p>
+    <p>Your personal M-Pesa number exposes more than you think. Pregota lets customers tip you directly â€” your contact details stay invisible. Always.</p>
     <div class="hero-btns">
-        <a href="{{ route('staff.register') }}" class="btn-primary">Create My Tip Page — Free</a>
+        <a href="{{ route('staff.register') }}" class="btn-primary">Create My Tip Page â€” Free</a>
         <a href="#how-it-works" class="btn-secondary">See How It Works</a>
     </div>
 </div>
@@ -135,30 +135,30 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
     <p>Most people don't realise what their M-Pesa number reveals to a stranger. Here's what a customer gets the moment you share it for a tip:</p>
 
     <div class="risk-card">
-        <div class="risk-title">⚠️ What a stranger can access from your M-Pesa number</div>
+        <div class="risk-title">âš ï¸ What a stranger can access from your M-Pesa number</div>
         <div class="risk-item">
-            <div class="risk-icon">💬</div>
+            <div class="risk-icon">ðŸ’¬</div>
             <div class="risk-text">
                 <strong>Your WhatsApp profile</strong>
-                <span>Profile photo, status message, and "last seen" — visible to anyone who saves your number.</span>
+                <span>Profile photo, status message, and "last seen" â€” visible to anyone who saves your number.</span>
             </div>
         </div>
         <div class="risk-item">
-            <div class="risk-icon">👤</div>
+            <div class="risk-icon">ðŸ‘¤</div>
             <div class="risk-text">
                 <strong>Your full name</strong>
                 <span>M-Pesa shows your registered name on the payment confirmation screen.</span>
             </div>
         </div>
         <div class="risk-item">
-            <div class="risk-icon">📞</div>
+            <div class="risk-icon">ðŸ“ž</div>
             <div class="risk-text">
-                <strong>A direct line to you — forever</strong>
+                <strong>A direct line to you â€” forever</strong>
                 <span>A customer you served once can call or message you any time, day or night.</span>
             </div>
         </div>
         <div class="risk-item">
-            <div class="risk-icon">📍</div>
+            <div class="risk-icon">ðŸ“</div>
             <div class="risk-text">
                 <strong>The ability to track you</strong>
                 <span>WhatsApp activity shows when you're online. That's enough for someone with bad intentions.</span>
@@ -193,7 +193,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
                 <div class="step-num">3</div>
                 <div class="step-body">
                     <h3>Customer scans and tips</h3>
-                    <p>They choose an amount — KES 50, 100, 200, 500 — and pay via their M-Pesa. They never see your number or name in their contacts.</p>
+                    <p>They choose an amount â€” KES 50, 100, 200, 500 â€” and pay via their M-Pesa. They never see your number or name in their contacts.</p>
                 </div>
             </div>
             <div class="step">
@@ -212,28 +212,28 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
     <div class="split-feature-inner">
         <div class="split-tag">Also for Waitstaff</div>
         <h2>Split the bill at your table.<br><span style="background:linear-gradient(135deg,#4ade80,#10b981);-webkit-background-clip:text;-webkit-text-fill-color:transparent">No awkward M-Pesa codes.</span></h2>
-        <p style="font-size:15px;color:rgba(255,255,255,.78);margin-top:10px;line-height:1.7">Enter the total once. Show a QR. Each person at the table scans and pays their share directly — the full amount lands on your M-Pesa the moment the last person pays.</p>
+        <p style="font-size:15px;color:rgba(255,255,255,.78);margin-top:10px;line-height:1.7">Enter the total once. Show a QR. Each person at the table scans and pays their share directly â€” the full amount lands on your M-Pesa the moment the last person pays.</p>
 
         <div class="split-steps">
             <div class="split-step">
                 <div class="split-num">1</div>
                 <div class="split-body">
                     <h3>You enter the total bill</h3>
-                    <p>Takes 10 seconds. No itemisation, no splitting by items — just the total. Add a table label so customers know what they're paying for.</p>
+                    <p>Takes 10 seconds. No itemisation, no splitting by items â€” just the total. Add a table label so customers know what they're paying for.</p>
                 </div>
             </div>
             <div class="split-step">
                 <div class="split-num">2</div>
                 <div class="split-body">
                     <h3>Show the QR to the table</h3>
-                    <p>A large QR code appears on your screen. Set it on the table or hold it up. Everyone scans from their own phone — no app needed.</p>
+                    <p>A large QR code appears on your screen. Set it on the table or hold it up. Everyone scans from their own phone â€” no app needed.</p>
                 </div>
             </div>
             <div class="split-step">
                 <div class="split-num">3</div>
                 <div class="split-body">
                     <h3>Each person pays what they owe</h3>
-                    <p>They type their share and confirm with M-Pesa STK Push — no app to open, no balance visible. Your screen shows each payment arriving in real time.</p>
+                    <p>They type their share and confirm with M-Pesa STK Push â€” no app to open, no balance visible. Your screen shows each payment arriving in real time.</p>
                 </div>
             </div>
             <div class="split-step">
@@ -246,26 +246,26 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
         </div>
 
         <div class="split-bonus">
-            <div class="split-bonus-icon">💜</div>
+            <div class="split-bonus-icon">ðŸ’œ</div>
             <div>
-                <h4>Tip prompt included — automatically</h4>
-                <p>After paying their share, each customer is quietly offered the option to tip you. No pressure, no preset amounts — they choose. The tip goes directly to your M-Pesa.</p>
+                <h4>Tip prompt included â€” automatically</h4>
+                <p>After paying their share, each customer is quietly offered the option to tip you. No pressure, no preset amounts â€” they choose. The tip goes directly to your M-Pesa.</p>
             </div>
         </div>
 
         <div class="split-bonus" style="margin-top:12px;background:rgba(251,191,36,.06);border-color:rgba(251,191,36,.2)">
-            <div class="split-bonus-icon">📱</div>
+            <div class="split-bonus-icon">ðŸ“±</div>
             <div>
-                <h4 style="color:#fbbf24">Your restaurant gets their contact — if they agree</h4>
-                <p>After paying, Pregota asks each customer: <em style="color:rgba(255,255,255,.6)">"Would you like to receive offers from this restaurant?"</em> If they say yes, their number goes to your manager — voluntarily, transparently, no hidden collection. Safaricom now masks customer numbers on M-Pesa payments. This is the honest way to build your list.</p>
+                <h4 style="color:#fbbf24">Your restaurant gets their contact â€” if they agree</h4>
+                <p>After paying, Pregota asks each customer: <em style="color:rgba(255,255,255,.6)">"Would you like to receive offers from this restaurant?"</em> If they say yes, their number goes to your manager â€” voluntarily, transparently, no hidden collection. Safaricom now masks customer numbers on M-Pesa payments. This is the honest way to build your list.</p>
             </div>
         </div>
 
         <a href="{{ route('bill-split.new') }}" class="split-cta">
             <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
-            Try Bill Split Now — Free
+            Try Bill Split Now â€” Free
         </a>
-        <p style="margin-top:10px;font-size:11px;color:rgba(255,255,255,.82)">KES 30 fee added per person · Paid by each customer · No monthly charge</p>
+        <p style="margin-top:10px;font-size:11px;color:rgba(255,255,255,.82)">KES 30 fee added per person Â· Paid by each customer Â· No monthly charge</p>
     </div>
 </div>
 
@@ -273,15 +273,15 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 <div class="feedback">
     <div class="section-tag">Customer Feedback</div>
     <h2>Tips come with feedback. So you can grow.</h2>
-    <p style="font-size:15px;color:rgba(255,255,255,.78);margin-top:10px;line-height:1.7">After tipping, customers can leave a star rating, emoji reaction, and a short note. You see it all on your private dashboard — your employer only sees service quality data, never your earnings.</p>
+    <p style="font-size:15px;color:rgba(255,255,255,.78);margin-top:10px;line-height:1.7">After tipping, customers can leave a star rating, emoji reaction, and a short note. You see it all on your private dashboard â€” your employer only sees service quality data, never your earnings.</p>
 
     <div class="feedback-grid">
         <div class="fb-card">
-            <div class="fb-stars">★★★★★</div>
+            <div class="fb-stars">â˜…â˜…â˜…â˜…â˜…</div>
             <div class="fb-text">"Fantastic service, very attentive and professional throughout. Will definitely be back!"</div>
             <div class="fb-tags">
-                <span class="fb-tag">😊 Friendly</span>
-                <span class="fb-tag">⚡ Fast</span>
+                <span class="fb-tag">ðŸ˜Š Friendly</span>
+                <span class="fb-tag">âš¡ Fast</span>
             </div>
             <div class="fb-footer">
                 <span>Anonymous customer</span>
@@ -289,10 +289,10 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
             </div>
         </div>
         <div class="fb-card">
-            <div class="fb-stars">★★★★★</div>
+            <div class="fb-stars">â˜…â˜…â˜…â˜…â˜…</div>
             <div class="fb-text">"Made my whole evening. The kind of service you remember."</div>
             <div class="fb-tags">
-                <span class="fb-tag">🌟 Above & Beyond</span>
+                <span class="fb-tag">ðŸŒŸ Above & Beyond</span>
             </div>
             <div class="fb-footer">
                 <span>Anonymous customer</span>
@@ -300,11 +300,11 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
             </div>
         </div>
         <div class="fb-card">
-            <div class="fb-stars">★★★★☆</div>
+            <div class="fb-stars">â˜…â˜…â˜…â˜…â˜†</div>
             <div class="fb-text">"Great attitude, always smiling. Place was busy but you handled it well."</div>
             <div class="fb-tags">
-                <span class="fb-tag">💪 Hardworking</span>
-                <span class="fb-tag">😊 Friendly</span>
+                <span class="fb-tag">ðŸ’ª Hardworking</span>
+                <span class="fb-tag">ðŸ˜Š Friendly</span>
             </div>
             <div class="fb-footer">
                 <span>Anonymous customer</span>
@@ -312,11 +312,11 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
             </div>
         </div>
         <div class="fb-card">
-            <div class="fb-stars">★★★★★</div>
+            <div class="fb-stars">â˜…â˜…â˜…â˜…â˜…</div>
             <div class="fb-text">"Knew exactly what I needed before I asked. Impressive."</div>
             <div class="fb-tags">
-                <span class="fb-tag">🧠 Knowledgeable</span>
-                <span class="fb-tag">⚡ Fast</span>
+                <span class="fb-tag">ðŸ§  Knowledgeable</span>
+                <span class="fb-tag">âš¡ Fast</span>
             </div>
             <div class="fb-footer">
                 <span>Anonymous customer</span>
@@ -324,33 +324,33 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
             </div>
         </div>
     </div>
-    <p style="margin-top:20px;font-size:12px;color:rgba(255,255,255,.82);text-align:center">Sample feedback — shown on your personal dashboard. Customer identities are always anonymous.</p>
+    <p style="margin-top:20px;font-size:12px;color:rgba(255,255,255,.82);text-align:center">Sample feedback â€” shown on your personal dashboard. Customer identities are always anonymous.</p>
 </div>
 
 <!-- Privacy guarantee -->
 <div class="guarantee">
     <div class="section-tag">Your Privacy Guarantee</div>
-    <h2>What Pregota protects — by design.</h2>
+    <h2>What Pregota protects â€” by design.</h2>
     <div class="guarantee-grid">
         <div class="g-card">
-            <div class="g-icon">🔒</div>
+            <div class="g-icon">ðŸ”’</div>
             <div class="g-title">Number never shown</div>
             <div class="g-text">Your M-Pesa number is encrypted and never displayed on your tip page, receipts, or anywhere visible.</div>
         </div>
         <div class="g-card">
-            <div class="g-icon">👁️</div>
+            <div class="g-icon">ðŸ‘ï¸</div>
             <div class="g-title">Employer can't see it</div>
             <div class="g-text">Even if your employer registers on Pregota, they cannot see your M-Pesa number. Your earnings are yours alone.</div>
         </div>
         <div class="g-card">
-            <div class="g-icon">📵</div>
+            <div class="g-icon">ðŸ“µ</div>
             <div class="g-title">No contact exposure</div>
             <div class="g-text">Customers cannot find your WhatsApp, call you, or contact you through Pregota. The transaction ends at the tip.</div>
         </div>
         <div class="g-card">
-            <div class="g-icon">🗑️</div>
+            <div class="g-icon">ðŸ—‘ï¸</div>
             <div class="g-title">No data stored</div>
-            <div class="g-text">The sender's phone number is never saved in our system. We don't know who tipped you — only that they did.</div>
+            <div class="g-text">The sender's phone number is never saved in our system. We don't know who tipped you â€” only that they did.</div>
         </div>
     </div>
 </div>
@@ -361,32 +361,32 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
     <h2>Any service job where tips matter.</h2>
     <div class="job-grid">
         <div class="job-card">
-            <div class="job-emoji">🍽️</div>
+            <div class="job-emoji">ðŸ½ï¸</div>
             <div class="job-title">Waitstaff</div>
-            <div class="job-sub">Restaurants & cafés</div>
+            <div class="job-sub">Restaurants & cafÃ©s</div>
         </div>
         <div class="job-card">
-            <div class="job-emoji">💅</div>
+            <div class="job-emoji">ðŸ’…</div>
             <div class="job-title">Salon Staff</div>
             <div class="job-sub">Stylists & therapists</div>
         </div>
         <div class="job-card">
-            <div class="job-emoji">🏨</div>
+            <div class="job-emoji">ðŸ¨</div>
             <div class="job-title">Hotel Staff</div>
             <div class="job-sub">Porters & housekeeping</div>
         </div>
         <div class="job-card">
-            <div class="job-emoji">🚗</div>
+            <div class="job-emoji">ðŸš—</div>
             <div class="job-title">Drivers</div>
             <div class="job-sub">Taxi & ride-hail</div>
         </div>
         <div class="job-card">
-            <div class="job-emoji">🛵</div>
+            <div class="job-emoji">ðŸ›µ</div>
             <div class="job-title">Delivery Riders</div>
             <div class="job-sub">Food & courier</div>
         </div>
         <div class="job-card">
-            <div class="job-emoji">🎵</div>
+            <div class="job-emoji">ðŸŽµ</div>
             <div class="job-title">Performers</div>
             <div class="job-sub">Musicians & artists</div>
         </div>
@@ -397,17 +397,18 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 <div class="cta-bottom">
     <h2>Your tips. Your privacy.<br>Your safety.</h2>
     <p>Join thousands of service workers in Kenya who tip privately.<br>Free to sign up. Takes 2 minutes.</p>
-    <a href="{{ route('staff.register') }}" class="btn-primary" style="font-size:16px;padding:16px 36px">Create My Free Tip Page →</a>
-    <p style="margin-top:16px;font-size:12px;color:rgba(255,255,255,.82)">No monthly fees · No hidden charges · Cancel anytime</p>
+    <a href="{{ route('staff.register') }}" class="btn-primary" style="font-size:16px;padding:16px 36px">Create My Free Tip Page â†’</a>
+    <p style="margin-top:16px;font-size:12px;color:rgba(255,255,255,.82)">No monthly fees Â· No hidden charges Â· Cancel anytime</p>
 </div>
 
 <!-- Employer strip -->
 <div class="employer-strip">
-    <p>Are you a business owner or manager? <a href="{{ route('business.register') }}">Register your business →</a> to enable tipping for your whole team and access service quality analytics.</p>
+    <p>Are you a business owner or manager? <a href="{{ route('business.register') }}">Register your business â†’</a> to enable tipping for your whole team and access service quality analytics.</p>
 </div>
 
 @include('partials.discover', ['current' => 'tips', 'fullWidth' => true])
-<footer class="footer">© 2026 Pregota · Staff Privacy Protection · pregota.com</footer>
+<footer class="footer">Â© 2026 Pregota Â· Staff Privacy Protection Â· pregota.com</footer>
 
 </body>
 </html>
+

@@ -1,12 +1,12 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>{{ $payment->group->name }} — Payment Reminder</title>
+<title>{{ $payment->group->name }} â€” Payment Reminder</title>
 @include('partials.pwa')
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
+*{box-sizing:border-box;margin:0;padding:0}input,textarea,select,button{font-family:inherit;font-size:inherit}
 body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px}
 .card{max-width:420px;width:100%;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:22px;padding:36px 28px;text-align:center}
 .icon{font-size:48px;margin-bottom:16px}
@@ -23,12 +23,12 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 </head>
 <body>
 <div class="card">
-    <div class="icon">🤝</div>
+    <div class="icon">ðŸ¤</div>
     <div class="group-name">{{ $payment->group->name }}</div>
     <div class="period">Period: {{ $payment->period }}</div>
 
     @if($payment->status === 'confirmed')
-        <div class="status-paid">✅ Payment confirmed — KES {{ number_format($payment->amount) }}</div>
+        <div class="status-paid">âœ… Payment confirmed â€” KES {{ number_format($payment->amount) }}</div>
         @if($payment->receipt_number)
             <a href="{{ route('receipt.show', $payment->receipt_number) }}" style="font-size:13px;color:#a78bfa;font-family:monospace">{{ $payment->receipt_number }}</a>
         @endif
@@ -40,8 +40,9 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
                 <div class="due-date">Due by {{ $payment->group->next_due->format('d M Y') }}</div>
             @endif
         </div>
-        <a href="{{ route('group.show', $payment->group->slug) }}" class="pay-link">Pay Now →</a>
+        <a href="{{ route('group.show', $payment->group->slug) }}" class="pay-link">Pay Now â†’</a>
     @endif
 </div>
 </body>
 </html>
+

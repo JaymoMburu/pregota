@@ -1,11 +1,11 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Customer Leads — Pregota</title>
+<title>Customer Leads â€” Pregota</title>
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
+*{box-sizing:border-box;margin:0;padding:0}input,textarea,select,button{font-family:inherit;font-size:inherit}
 body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;min-height:100vh}
 .topbar{padding:14px 20px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,.07);background:#0B141A;position:sticky;top:0;z-index:10}
 .logo{font-size:18px;font-weight:900;background:linear-gradient(135deg,#25D366,#4ADE80);-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-decoration:none}
@@ -35,7 +35,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 <body>
 
 <div class="topbar">
-    <a href="{{ route('staff.dashboard') }}" class="back">← Dashboard</a>
+    <a href="{{ route('staff.dashboard') }}" class="back">â† Dashboard</a>
     <a href="{{ route('home') }}" class="logo">Pregota</a>
 </div>
 
@@ -44,7 +44,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
     <div class="page-sub">Customers who agreed to hear from your restaurant after paying.</div>
 
     <div class="notice">
-        <p>These customers <strong>voluntarily chose</strong> to share their contact with the restaurant — Pregota asked them on the restaurant's behalf after they paid. Full numbers are accessible only to the <strong>restaurant manager</strong> via the Business Dashboard, not to individual staff.</p>
+        <p>These customers <strong>voluntarily chose</strong> to share their contact with the restaurant â€” Pregota asked them on the restaurant's behalf after they paid. Full numbers are accessible only to the <strong>restaurant manager</strong> via the Business Dashboard, not to individual staff.</p>
     </div>
 
     <div class="summary-row">
@@ -61,14 +61,14 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
     @if($optIns->count())
     @foreach($optIns as $optIn)
     <div class="lead-item">
-        <div class="lead-phone">{{ substr($optIn->getPhone(), 0, 4) }}••• ••••</div>
-        <div class="lead-venue">{{ $optIn->billSplit->business_name }}{{ $optIn->billSplit->label ? ' · ' . $optIn->billSplit->label : '' }}</div>
-        <div class="lead-meta">{{ $optIn->created_at->format('d M Y · g:i A') }}</div>
+        <div class="lead-phone">{{ substr($optIn->getPhone(), 0, 4) }}â€¢â€¢â€¢ â€¢â€¢â€¢â€¢</div>
+        <div class="lead-venue">{{ $optIn->billSplit->business_name }}{{ $optIn->billSplit->label ? ' Â· ' . $optIn->billSplit->label : '' }}</div>
+        <div class="lead-meta">{{ $optIn->created_at->format('d M Y Â· g:i A') }}</div>
     </div>
     @endforeach
     @else
     <div class="empty">
-        <div class="empty-icon">📱</div>
+        <div class="empty-icon">ðŸ“±</div>
         <div>No opt-ins yet.</div>
         <div style="font-size:12px;margin-top:8px;color:rgba(255,255,255,.25)">Customers are offered to sign up after paying.</div>
     </div>
@@ -76,3 +76,4 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 </div>
 </body>
 </html>
+

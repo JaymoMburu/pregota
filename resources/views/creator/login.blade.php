@@ -1,11 +1,11 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Creator Login — Pregota</title>
+<title>Creator Login â€” Pregota</title>
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
+*{box-sizing:border-box;margin:0;padding:0}input,textarea,select,button{font-family:inherit;font-size:inherit}
 body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px}
 .card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:20px;padding:36px 28px;max-width:380px;width:100%;text-align:center}
 .logo{font-size:22px;font-weight:900;background:linear-gradient(135deg,#00A651,#007A33);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:20px}
@@ -38,12 +38,13 @@ input::placeholder{color:rgba(255,255,255,.25)}
         </div>
         <div class="form-group">
             <label>Password</label>
-            <input type="password" name="password" placeholder="••••••" required>
+            <input type="password" name="password" placeholder="â€¢â€¢â€¢â€¢â€¢â€¢" required>
         </div>
-        <button type="submit" class="btn">Sign In →</button>
+        <button type="submit" class="btn">Sign In â†’</button>
     </form>
 
     <div class="register-link">New creator? <a href="{{ route('creator.register') }}">Create an account</a></div>
 </div>
 </body>
 </html>
+

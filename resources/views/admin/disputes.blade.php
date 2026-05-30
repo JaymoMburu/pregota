@@ -1,11 +1,11 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Disputes — Pregota Admin</title>
+<title>Disputes â€” Pregota Admin</title>
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
+*{box-sizing:border-box;margin:0;padding:0}input,textarea,select,button{font-family:inherit;font-size:inherit}
 body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;min-height:100vh}
 .nav{padding:14px 28px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,.08);background:rgba(0,0,0,.3)}
 .logo{font-size:18px;font-weight:900;background:linear-gradient(135deg,#00A651,#007A33);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
@@ -79,7 +79,7 @@ input.note-input::placeholder{color:rgba(255,255,255,.3)}
 
     @if($disputes->isEmpty())
         <div class="empty">
-            <div class="empty-icon">✅</div>
+            <div class="empty-icon">âœ…</div>
             <div>No disputes filed yet.</div>
         </div>
     @else
@@ -99,7 +99,7 @@ input.note-input::placeholder{color:rgba(255,255,255,.3)}
             <div class="dc-head">
                 <div>
                     <div class="dc-biz">
-                        {{ $payLink?->business_name ?? '—' }}
+                        {{ $payLink?->business_name ?? 'â€”' }}
                         @if($payLink?->is_suspended)
                             <span class="seller-tag suspended">Suspended</span>
                         @endif
@@ -108,7 +108,7 @@ input.note-input::placeholder{color:rgba(255,255,255,.3)}
                 </div>
                 <div style="text-align:right">
                     <div class="dc-amount">KES {{ number_format($payment?->amount ?? 0) }}</div>
-                    <div style="font-size:11px;color:rgba(255,255,255,.35);margin-top:3px">{{ $d->created_at->format('d M Y · H:i') }}</div>
+                    <div style="font-size:11px;color:rgba(255,255,255,.35);margin-top:3px">{{ $d->created_at->format('d M Y Â· H:i') }}</div>
                 </div>
             </div>
             <div class="dc-body">
@@ -161,3 +161,4 @@ input.note-input::placeholder{color:rgba(255,255,255,.3)}
 </div>
 </body>
 </html>
+

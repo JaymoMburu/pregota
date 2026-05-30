@@ -1,12 +1,12 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tab — {{ $deni->creditorLabel() }} · Pregota</title>
+<title>Tab â€” {{ $deni->creditorLabel() }} Â· Pregota</title>
 @include('partials.pwa')
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
+*{box-sizing:border-box;margin:0;padding:0}input,textarea,select,button{font-family:inherit;font-size:inherit}
 body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;min-height:100vh}
 .nav{padding:14px 24px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,.07);position:sticky;top:0;background:#0B141A;z-index:10}
 .logo{font-size:20px;font-weight:900;background:linear-gradient(135deg,#25D366,#4ADE80);-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-decoration:none}
@@ -82,7 +82,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 <nav class="nav">
     <a href="{{ route('home') }}" class="logo">Pregota</a>
     @if(session()->has('seller_id'))
-        <a href="{{ route('seller.dashboard') }}" style="font-size:13px;color:rgba(255,255,255,.4);text-decoration:none">← Dashboard</a>
+        <a href="{{ route('seller.dashboard') }}" style="font-size:13px;color:rgba(255,255,255,.4);text-decoration:none">â† Dashboard</a>
     @else
         <a href="{{ route('deni.create') }}" style="font-size:13px;color:rgba(255,255,255,.4);text-decoration:none">+ New Deni</a>
     @endif
@@ -93,21 +93,21 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
     {{-- Bookmark reminder for non-seller first visit --}}
     @if(session('deni_admin_link'))
     <div class="banner banner-yellow" style="margin-bottom:20px">
-        <div style="font-weight:700;margin-bottom:5px">📌 Bookmark this page</div>
-        <div style="font-size:12px;color:rgba(255,255,255,.55);margin-bottom:8px">This is your admin view. Save or bookmark this URL — it's the only way to get back.</div>
+        <div style="font-weight:700;margin-bottom:5px">ðŸ“Œ Bookmark this page</div>
+        <div style="font-size:12px;color:rgba(255,255,255,.55);margin-bottom:8px">This is your admin view. Save or bookmark this URL â€” it's the only way to get back.</div>
         <div style="font-family:monospace;font-size:11px;color:#fcd34d;word-break:break-all;background:rgba(0,0,0,.3);padding:7px 10px;border-radius:7px">{{ session('deni_admin_link') }}</div>
     </div>
     @endif
 
     @if(session('charge_added'))
-    <div class="banner banner-green" style="margin-bottom:16px">✓ Charge added — tab total updated.</div>
+    <div class="banner banner-green" style="margin-bottom:16px">âœ“ Charge added â€” tab total updated.</div>
     @endif
 
     {{-- Tab header --}}
     <div class="tab-header">
-        <div class="tab-label">🧾 Customer Tab</div>
+        <div class="tab-label">ðŸ§¾ Customer Tab</div>
         <div class="tab-title">{{ $deni->description }}</div>
-        <div class="tab-meta">{{ $deni->creditorLabel() }}{{ $deni->due_date ? ' · Due ' . $deni->due_date->format('d M Y') : '' }}</div>
+        <div class="tab-meta">{{ $deni->creditorLabel() }}{{ $deni->due_date ? ' Â· Due ' . $deni->due_date->format('d M Y') : '' }}</div>
     </div>
 
     {{-- Stats --}}
@@ -133,7 +133,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
     </div>
 
     @if($deni->status === 'settled')
-        <div class="banner-settled">✅ Fully settled</div>
+        <div class="banner-settled">âœ… Fully settled</div>
     @endif
 
     {{-- Customer payment link --}}
@@ -142,11 +142,11 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
         @php $payUrl = url('/deni/' . $deni->debtor_token); @endphp
         <div class="share-url">{{ $payUrl }}</div>
         <div class="share-btns">
-            <button class="share-btn share-btn-copy" onclick="navigator.clipboard.writeText('{{ $payUrl }}');this.textContent='✓ Copied!'">📋 Copy Link</button>
+            <button class="share-btn share-btn-copy" onclick="navigator.clipboard.writeText('{{ $payUrl }}');this.textContent='âœ“ Copied!'">ðŸ“‹ Copy Link</button>
             @php
                 $waMsg = $deni->creditorLabel() . ' has recorded a deni of KES ' . number_format($deni->original_amount) . ' for: ' . $deni->description . '. Pay via M-Pesa: ' . $payUrl;
             @endphp
-            <a href="https://wa.me/?text={{ rawurlencode($waMsg) }}" target="_blank" class="share-btn share-btn-wa">💬 Send via WhatsApp</a>
+            <a href="https://wa.me/?text={{ rawurlencode($waMsg) }}" target="_blank" class="share-btn share-btn-wa">ðŸ’¬ Send via WhatsApp</a>
         </div>
     </div>
 
@@ -171,13 +171,13 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 
     {{-- Items list --}}
     @if($deni->items->isEmpty())
-        <div style="text-align:center;padding:20px 0;color:rgba(255,255,255,.3);font-size:13px">No itemised charges — tab was created as a single amount.</div>
+        <div style="text-align:center;padding:20px 0;color:rgba(255,255,255,.3);font-size:13px">No itemised charges â€” tab was created as a single amount.</div>
     @else
         @foreach($deni->items->sortByDesc('created_at') as $item)
         <div class="item-row">
             <div>
                 <div class="item-desc">{{ $item->description }}</div>
-                <div class="item-date">{{ $item->created_at->format('d M Y · H:i') }}</div>
+                <div class="item-date">{{ $item->created_at->format('d M Y Â· H:i') }}</div>
             </div>
             <div class="item-amount">KES {{ number_format($item->amount) }}</div>
         </div>
@@ -194,7 +194,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
         <div class="payment-row {{ $p->status }}">
             <div>
                 <div style="font-size:15px;font-weight:800">KES {{ number_format($p->amount) }}</div>
-                <div style="font-size:11px;color:rgba(255,255,255,.35);margin-top:2px">{{ $p->created_at->format('d M Y · H:i') }}</div>
+                <div style="font-size:11px;color:rgba(255,255,255,.35);margin-top:2px">{{ $p->created_at->format('d M Y Â· H:i') }}</div>
             </div>
             <div style="display:flex;align-items:center;gap:10px">
                 @if($p->receipt_number)
@@ -209,3 +209,4 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 </div>
 </body>
 </html>
+

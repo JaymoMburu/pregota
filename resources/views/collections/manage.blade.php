@@ -1,11 +1,11 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Manage Collection — {{ $collection->title }}</title>
+<title>Manage Collection â€” {{ $collection->title }}</title>
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
+*{box-sizing:border-box;margin:0;padding:0}input,textarea,select,button{font-family:inherit;font-size:inherit}
 body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;min-height:100vh}
 
 .topbar{padding:14px 20px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,.07);background:#0B141A}
@@ -78,7 +78,7 @@ tr:last-child td{border-bottom:none}
 <div class="page">
 
     @if(session('created'))
-    <div class="alert success">🎉 Collection created! Bookmark this page — it's your private organiser dashboard.</div>
+    <div class="alert success">ðŸŽ‰ Collection created! Bookmark this page â€” it's your private organiser dashboard.</div>
     @endif
 
     @if(session('success'))
@@ -91,10 +91,10 @@ tr:last-child td{border-bottom:none}
 
     <h2>{{ $collection->title }}</h2>
     <div class="subtitle">
-        {{ $collection->occasionEmoji() }} {{ $collection->occasionLabel() }} ·
+        {{ $collection->occasionEmoji() }} {{ $collection->occasionLabel() }} Â·
         Recipient: {{ $collection->recipient_name }}
         @if($collection->deadline)
-        · Deadline: {{ $collection->deadline->format('j M Y') }}
+        Â· Deadline: {{ $collection->deadline->format('j M Y') }}
         @endif
     </div>
 
@@ -144,7 +144,7 @@ tr:last-child td{border-bottom:none}
     <!-- Actions -->
     @if($collection->total_raised > 0)
     <div class="warning-box">
-        ⚠️ Once you initiate payout, funds are sent directly to {{ $collection->recipient_name }}'s M-Pesa. This cannot be reversed. The recipient phone is immediately deleted from our system.
+        âš ï¸ Once you initiate payout, funds are sent directly to {{ $collection->recipient_name }}'s M-Pesa. This cannot be reversed. The recipient phone is immediately deleted from our system.
     </div>
     @endif
 
@@ -155,14 +155,14 @@ tr:last-child td{border-bottom:none}
             <input type="hidden" name="token" value="{{ request()->query('token') }}">
             <button type="submit" class="btn-payout"
                     {{ $collection->total_raised === 0 ? 'disabled style=opacity:.4;cursor:not-allowed' : '' }}>
-                ⚡ Pay Out to {{ $collection->recipient_name }}
+                âš¡ Pay Out to {{ $collection->recipient_name }}
             </button>
         </form>
         <form method="POST" action="{{ route('collection.close', $collection->slug) }}"
               onsubmit="return confirm('Close this collection? No new contributions will be accepted.')">
             @csrf
             <input type="hidden" name="token" value="{{ request()->query('token') }}">
-            <button type="submit" class="btn-close">🔒 Close Collection</button>
+            <button type="submit" class="btn-close">ðŸ”’ Close Collection</button>
         </form>
     </div>
     @endif
@@ -188,7 +188,7 @@ tr:last-child td{border-bottom:none}
                     <td style="color:rgba(255,255,255,.68)">{{ $c->created_at->format('j M, H:i') }}</td>
                 </tr>
                 @empty
-                <tr class="empty-row"><td colspan="4">No contributions yet — share your link!</td></tr>
+                <tr class="empty-row"><td colspan="4">No contributions yet â€” share your link!</td></tr>
                 @endforelse
             </tbody>
         </table>
@@ -201,10 +201,11 @@ function copyUrl() {
     const el = document.getElementById('shareUrl');
     navigator.clipboard.writeText(el.value).then(() => {
         const btn = document.querySelector('.copy-btn');
-        btn.textContent = '✓ Copied';
+        btn.textContent = 'âœ“ Copied';
         setTimeout(() => btn.textContent = 'Copy', 2000);
     });
 }
 </script>
 </body>
 </html>
+

@@ -1,11 +1,11 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Admin Dashboard — {{ $collection->school_name }}</title>
+<title>Admin Dashboard â€” {{ $collection->school_name }}</title>
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
+*{box-sizing:border-box;margin:0;padding:0}input,textarea,select,button{font-family:inherit;font-size:inherit}
 body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;min-height:100vh}
 .topbar{padding:14px 20px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,.07);background:#0B141A}
 .logo{font-size:18px;font-weight:900;background:linear-gradient(135deg,#25D366,#4ADE80);-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-decoration:none}
@@ -98,13 +98,13 @@ h2{font-size:22px;font-weight:900;margin-bottom:4px}
 <div class="page">
 
     @if(session('created'))
-    <div class="alert info">🎉 Collection created! Bookmark this page — it's your private admin dashboard. Share each class link with the respective teacher.</div>
+    <div class="alert info">ðŸŽ‰ Collection created! Bookmark this page â€” it's your private admin dashboard. Share each class link with the respective teacher.</div>
     @endif
     @if(session('success'))<div class="alert success">{{ session('success') }}</div>@endif
     @if(session('error'))<div class="alert error">{{ session('error') }}</div>@endif
 
     <h2>{{ $collection->school_name }}</h2>
-    <div class="subtitle">{{ $collection->term_label }} · KES {{ number_format($collection->amount_per_student) }} per student · Admin: {{ $collection->admin_name }}</div>
+    <div class="subtitle">{{ $collection->term_label }} Â· KES {{ number_format($collection->amount_per_student) }} per student Â· Admin: {{ $collection->admin_name }}</div>
 
     <!-- Totals -->
     <div class="totals-row">
@@ -129,7 +129,7 @@ h2{font-size:22px;font-weight:900;margin-bottom:4px}
     <!-- Payout actions -->
     @if($collection->isOpen())
     @if($collection->total_raised > 0)
-    <div class="warning-box">⚠️ Payout sends KES {{ number_format($collection->total_raised) }} directly to the school M-Pesa. The recipient number is deleted immediately. This cannot be reversed.</div>
+    <div class="warning-box">âš ï¸ Payout sends KES {{ number_format($collection->total_raised) }} directly to the school M-Pesa. The recipient number is deleted immediately. This cannot be reversed.</div>
     @endif
     <div class="actions-row">
         <form method="POST" action="{{ route('school-collection.payout', $collection->slug) }}"
@@ -137,14 +137,14 @@ h2{font-size:22px;font-weight:900;margin-bottom:4px}
             @csrf
             <input type="hidden" name="token" value="{{ request()->query('token') }}">
             <button type="submit" class="btn-payout" {{ $collection->total_raised === 0 ? 'disabled' : '' }}>
-                ⚡ Pay Out KES {{ number_format($collection->total_raised) }} to School
+                âš¡ Pay Out KES {{ number_format($collection->total_raised) }} to School
             </button>
         </form>
         <form method="POST" action="{{ route('school-collection.close', $collection->slug) }}"
               onsubmit="return confirm('Close this collection?')">
             @csrf
             <input type="hidden" name="token" value="{{ request()->query('token') }}">
-            <button type="submit" class="btn-close">🔒 Close Collection</button>
+            <button type="submit" class="btn-close">ðŸ”’ Close Collection</button>
         </form>
     </div>
     @endif
@@ -157,7 +157,7 @@ h2{font-size:22px;font-weight:900;margin-bottom:4px}
             $required   = $collection->amount_per_student;
             $classUrl   = route('school-collection.class',   ['slug' => $collection->slug, 'classToken'   => $class->class_token]);
             $teacherUrl = route('school-collection.teacher', ['slug' => $collection->slug, 'teacherToken' => $class->teacher_token]);
-            $waMsg      = urlencode("Dear Parents,\n\nKindly pay " . $collection->school_name . " " . $collection->term_label . " (KES " . number_format($collection->amount_per_student) . ") via this link:\n" . $classUrl . "\n\nYou can pay in instalments — any amount from KES 50.\n— " . $class->teacher_name);
+            $waMsg      = urlencode("Dear Parents,\n\nKindly pay " . $collection->school_name . " " . $collection->term_label . " (KES " . number_format($collection->amount_per_student) . ") via this link:\n" . $classUrl . "\n\nYou can pay in instalments â€” any amount from KES 50.\nâ€” " . $class->teacher_name);
 
             $students = $class->payments->where('status', 'paid')
                 ->groupBy(fn($p) => $p->student_id ?: 'name:'.strtolower(trim($p->student_name)))
@@ -188,7 +188,7 @@ h2{font-size:22px;font-weight:900;margin-bottom:4px}
                     @if($pendingList->count()) <span class="acc-stat red">{{ $pendingList->count() }} pending</span>@endif
                     @if(!$students->count()) <span style="font-size:11px;color:rgba(255,255,255,.2)">No payments</span>@endif
                     <span class="acc-amount">KES {{ number_format($class->total_raised) }}</span>
-                    <span class="acc-chevron" id="chev-{{ $class->id }}">▾</span>
+                    <span class="acc-chevron" id="chev-{{ $class->id }}">â–¾</span>
                 </div>
             </div>
 
@@ -220,7 +220,7 @@ h2{font-size:22px;font-weight:900;margin-bottom:4px}
 
                 @if($students->count())
                 <button class="stu-toggle" onclick="toggleStu(this, 'stu-{{ $class->id }}')">
-                    ▾ Show {{ $students->count() }} student{{ $students->count() === 1 ? '' : 's' }}
+                    â–¾ Show {{ $students->count() }} student{{ $students->count() === 1 ? '' : 's' }}
                 </button>
                 <div style="display:none" id="stu-{{ $class->id }}">
                     <table class="stu-table">
@@ -236,12 +236,12 @@ h2{font-size:22px;font-weight:900;margin-bottom:4px}
                         <tbody>
                         @foreach($students as $s)
                         <tr>
-                            <td class="mono">{{ $s['student_id'] ?: '—' }}</td>
+                            <td class="mono">{{ $s['student_id'] ?: 'â€”' }}</td>
                             <td>{{ $s['name'] }}</td>
-                            <td>@if($s['is_full'])<span class="badge-full">✓ Full</span>@else<span class="badge-part">Partial</span>@endif</td>
+                            <td>@if($s['is_full'])<span class="badge-full">âœ“ Full</span>@else<span class="badge-part">Partial</span>@endif</td>
                             <td class="amt">KES {{ number_format($s['total_paid']) }}</td>
                             <td style="text-align:right;color:{{ $s['is_full'] ? 'rgba(255,255,255,.2)' : '#fbbf24' }};font-size:12px">
-                                {{ $s['is_full'] ? '—' : 'KES '.number_format($s['balance']) }}
+                                {{ $s['is_full'] ? 'â€”' : 'KES '.number_format($s['balance']) }}
                             </td>
                         </tr>
                         @endforeach
@@ -254,7 +254,7 @@ h2{font-size:22px;font-weight:900;margin-bottom:4px}
 
                 @if($pendingList->count())
                 <div class="pending-section">
-                    <div class="pending-lbl">⏳ Pending M-Pesa ({{ $pendingList->count() }})</div>
+                    <div class="pending-lbl">â³ Pending M-Pesa ({{ $pendingList->count() }})</div>
                     @foreach($pendingList as $p)
                     <div class="pending-row">
                         <div>
@@ -318,15 +318,16 @@ function toggleStu(btn, id) {
     const el   = document.getElementById(id);
     const open = el.style.display === 'block';
     el.style.display = open ? 'none' : 'block';
-    btn.textContent  = (open ? '▾ Show' : '▴ Hide') + btn.textContent.replace(/^[▾▴] (Show|Hide)/, '');
+    btn.textContent  = (open ? 'â–¾ Show' : 'â–´ Hide') + btn.textContent.replace(/^[â–¾â–´] (Show|Hide)/, '');
 }
 function doCopy(id, btn) {
     navigator.clipboard.writeText(document.getElementById(id).value).then(() => {
         const orig = btn.textContent;
-        btn.textContent = '✓ Copied';
+        btn.textContent = 'âœ“ Copied';
         setTimeout(() => btn.textContent = orig, 2000);
     });
 }
 </script>
 </body>
 </html>
+

@@ -1,11 +1,11 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Creator Registration — Pregota</title>
+<title>Creator Registration â€” Pregota</title>
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
+*{box-sizing:border-box;margin:0;padding:0}input,textarea,select,button{font-family:inherit;font-size:inherit}
 body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:32px 20px}
 .card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:20px;padding:32px 28px;max-width:480px;width:100%}
 .logo{font-size:22px;font-weight:900;background:linear-gradient(135deg,#00A651,#007A33);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:4px;text-align:center}
@@ -33,11 +33,11 @@ input::placeholder{color:rgba(255,255,255,.25)}
 <div class="card">
     <div class="logo">Pregota</div>
     <h1>Creator Account</h1>
-    <p class="sub">Receive gifts privately. Share a link — never your number.</p>
+    <p class="sub">Receive gifts privately. Share a link â€” never your number.</p>
 
     @if(session('pending'))
     <div class="pending-box">
-        <div class="icon">⏳</div>
+        <div class="icon">â³</div>
         <strong>Application Received!</strong>
         <p>{{ session('pending') }}</p>
     </div>
@@ -55,7 +55,7 @@ input::placeholder{color:rgba(255,255,255,.25)}
             <label>Your Handle</label>
             <input type="text" name="handle" placeholder="e.g. djkibz" value="{{ old('handle') }}"
                 pattern="[a-z0-9._-]+" required>
-            <div class="hint">pregota.com/c/<strong>yourhandle</strong> · lowercase, no spaces</div>
+            <div class="hint">pregota.com/c/<strong>yourhandle</strong> Â· lowercase, no spaces</div>
         </div>
 
         <div class="form-group">
@@ -65,7 +65,7 @@ input::placeholder{color:rgba(255,255,255,.25)}
 
         <div class="form-group">
             <label>Bio (optional)</label>
-            <input type="text" name="bio" placeholder="TikTok creator · Comedy & Music" value="{{ old('bio') }}" maxlength="200">
+            <input type="text" name="bio" placeholder="TikTok creator Â· Comedy & Music" value="{{ old('bio') }}" maxlength="200">
         </div>
 
         <div class="section">Payout Details (private)</div>
@@ -102,7 +102,7 @@ input::placeholder{color:rgba(255,255,255,.25)}
             <input type="password" name="password_confirmation" placeholder="Repeat password" required>
         </div>
 
-        <button type="submit" class="btn">Create Creator Account →</button>
+        <button type="submit" class="btn">Create Creator Account â†’</button>
     </form>
     @endif
 
@@ -110,3 +110,4 @@ input::placeholder{color:rgba(255,255,255,.25)}
 </div>
 </body>
 </html>
+

@@ -1,12 +1,12 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>{{ $group->name }} — Pregota</title>
+<title>{{ $group->name }} â€” Pregota</title>
 @include('partials.pwa')
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
+*{box-sizing:border-box;margin:0;padding:0}input,textarea,select,button{font-family:inherit;font-size:inherit}
 body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;min-height:100vh}
 .nav{padding:14px 24px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,.07)}
 .logo{font-size:20px;font-weight:900;background:linear-gradient(135deg,#25D366,#4ADE80);-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-decoration:none}
@@ -42,7 +42,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 </nav>
 <div class="wrap">
     <div class="group-card">
-        <div class="group-icon">🤝</div>
+        <div class="group-icon">ðŸ¤</div>
         <div class="group-name">{{ $group->name }}</div>
         @if($group->description)<div class="group-desc">{{ $group->description }}</div>@endif
         <div class="group-meta">
@@ -77,8 +77,8 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
     </div>
 
     <div class="confirmed-state" id="confirmed-state">
-        <div class="conf-icon">✅</div>
-        <div class="conf-amount">KES {{ $group->amount_per_member ? number_format($group->amount_per_member) : '—' }}</div>
+        <div class="conf-icon">âœ…</div>
+        <div class="conf-amount">KES {{ $group->amount_per_member ? number_format($group->amount_per_member) : 'â€”' }}</div>
         <div style="font-size:16px;font-weight:700;margin-bottom:6px">Contribution Received!</div>
         <div style="font-size:13px;color:rgba(255,255,255,.45);margin-bottom:14px">{{ $group->name }}</div>
         <a id="receipt-link" class="receipt-link" href="#" target="_blank"></a>
@@ -120,7 +120,7 @@ async function pay() {
 
     if (!res.ok) {
         if (data.error === 'already_paid') {
-            document.getElementById('pay-form').innerHTML = `<div class="already-paid">✅ You have already paid for this period. Thank you!</div>`;
+            document.getElementById('pay-form').innerHTML = `<div class="already-paid">âœ… You have already paid for this period. Thank you!</div>`;
         } else {
             errEl.textContent = data.message || 'Something went wrong.'; errEl.style.display = 'block';
             document.getElementById('pay-btn').disabled = false;
@@ -161,3 +161,4 @@ function poll() {
 </script>
 </body>
 </html>
+

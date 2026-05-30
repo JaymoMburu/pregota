@@ -1,11 +1,11 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Creator Dashboard — Pregota</title>
+<title>Creator Dashboard â€” Pregota</title>
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
+*{box-sizing:border-box;margin:0;padding:0}input,textarea,select,button{font-family:inherit;font-size:inherit}
 body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;min-height:100vh}
 .nav{padding:14px 24px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,.08)}
 .logo{font-size:20px;font-weight:900;background:linear-gradient(135deg,#00A651,#007A33);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
@@ -122,7 +122,7 @@ input:focus{border-color:#00A651}
     <div class="feed-title">Recent Gifts</div>
 
     @if($gifts->isEmpty())
-    <div class="no-gifts">No gifts yet — share your link to get started</div>
+    <div class="no-gifts">No gifts yet â€” share your link to get started</div>
     @else
     @foreach($gifts as $gift)
     <div class="gift-item">
@@ -191,3 +191,4 @@ function copyObs() {
 </script>
 </body>
 </html>
+

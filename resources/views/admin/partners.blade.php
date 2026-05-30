@@ -1,11 +1,11 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Partners — Pregota Admin</title>
+<title>Partners â€” Pregota Admin</title>
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
+*{box-sizing:border-box;margin:0;padding:0}input,textarea,select,button{font-family:inherit;font-size:inherit}
 body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;min-height:100vh}
 .nav{padding:14px 28px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,.08)}
 .logo{font-size:18px;font-weight:900;background:linear-gradient(135deg,#00A651,#007A33);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
@@ -65,7 +65,7 @@ select option{background:#0B1810}
 
     @php
     $byCategory = $partners->groupBy('category');
-    $catLabels  = ['shop' => '🛍️ Shop', 'save' => '🏦 Save', 'invest' => '📈 Invest'];
+    $catLabels  = ['shop' => 'ðŸ›ï¸ Shop', 'save' => 'ðŸ¦ Save', 'invest' => 'ðŸ“ˆ Invest'];
     @endphp
 
     @foreach(['shop','save','invest'] as $cat)
@@ -134,7 +134,7 @@ select option{background:#0B1810}
             <div class="form-row">
                 <div class="form-group">
                     <label>Emoji / Logo</label>
-                    <input type="text" name="logo_emoji" placeholder="🛍️" maxlength="10" value="🏢">
+                    <input type="text" name="logo_emoji" placeholder="ðŸ›ï¸" maxlength="10" value="ðŸ¢">
                 </div>
                 <div class="form-group">
                     <label>Brand Color</label>
@@ -151,3 +151,4 @@ select option{background:#0B1810}
 </div>
 </body>
 </html>
+

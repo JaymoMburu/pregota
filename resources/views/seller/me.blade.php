@@ -1,15 +1,15 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>My Pregota — Spending, Groups, Madeni</title>
+<title>My Pregota â€” Spending, Groups, Madeni</title>
 @include('partials.pwa')
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800;900&display=swap" rel="stylesheet">
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
+*{box-sizing:border-box;margin:0;padding:0}input,textarea,select,button{font-family:inherit;font-size:inherit}
 body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;color:#fff;min-height:100vh;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
 .nav{padding:14px 24px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,.07)}
 .logo{font-size:20px;font-weight:900;background:linear-gradient(135deg,#25D366,#4ADE80);-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-decoration:none}
@@ -186,43 +186,43 @@ select option{background:#1a2730}
 
 <div class="wrap">
     <h1>My Pregota</h1>
-    <div class="sub">Payments, subscriptions, groups, madeni — all in one place.</div>
+    <div class="sub">Payments, subscriptions, groups, madeni â€” all in one place.</div>
 
-    {{-- Auth card (3 steps: phone → pin-entry/set → done) --}}
+    {{-- Auth card (3 steps: phone â†’ pin-entry/set â†’ done) --}}
     <div class="auth-card" id="auth-card">
 
         {{-- Step 1: Phone --}}
         <div class="auth-step active" id="step-phone">
             <div class="step-title">Enter your number</div>
-            <div class="step-sub">Your M-Pesa number gives access to your spending history. It's hashed — never stored in plain text.</div>
+            <div class="step-sub">Your M-Pesa number gives access to your spending history. It's hashed â€” never stored in plain text.</div>
             <label class="field-label">M-Pesa Phone Number</label>
             <input type="tel" id="phone-input" class="field-input" placeholder="0712 345 678" autocomplete="tel">
-            <button class="action-btn" onclick="checkPhone()">Continue →</button>
+            <button class="action-btn" onclick="checkPhone()">Continue â†’</button>
             <div class="err-msg" id="err-phone"></div>
         </div>
 
         {{-- Step 2a: Set PIN (new user) --}}
         <div class="auth-step" id="step-set-pin">
-            <div class="step-title">🔐 Create your PIN</div>
+            <div class="step-title">ðŸ” Create your PIN</div>
             <div class="step-sub">First time here. Set a 4-digit PIN to secure your spending history. You'll need it every time you log in.</div>
             <div class="pin-hint">Choose a 4-digit PIN</div>
             <div class="pin-row" id="set-pin-boxes"></div>
             <div class="pin-hint" style="margin-top:18px">Confirm PIN</div>
             <div class="pin-row" id="confirm-pin-boxes"></div>
-            <button class="action-btn" id="set-pin-btn" onclick="submitPin('set')" disabled>Create PIN →</button>
+            <button class="action-btn" id="set-pin-btn" onclick="submitPin('set')" disabled>Create PIN â†’</button>
             <div class="err-msg" id="err-set-pin"></div>
-            <span class="back-link" onclick="goBack()">← Use a different number</span>
+            <span class="back-link" onclick="goBack()">â† Use a different number</span>
         </div>
 
         {{-- Step 2b: Enter PIN (returning user) --}}
         <div class="auth-step" id="step-enter-pin">
-            <div class="step-title">🔐 Enter your PIN</div>
-            <div id="expired-notice" style="display:none;background:rgba(251,191,36,.08);border:1px solid rgba(251,191,36,.25);border-radius:9px;padding:10px 14px;font-size:13px;color:#fcd34d;margin-bottom:14px">⏱ Your 24-hour session expired. Re-enter your PIN to continue.</div>
+            <div class="step-title">ðŸ” Enter your PIN</div>
+            <div id="expired-notice" style="display:none;background:rgba(251,191,36,.08);border:1px solid rgba(251,191,36,.25);border-radius:9px;padding:10px 14px;font-size:13px;color:#fcd34d;margin-bottom:14px">â± Your 24-hour session expired. Re-enter your PIN to continue.</div>
             <div class="step-sub" id="pin-sub">Enter your 4-digit Pregota PIN to access your spending history.</div>
             <div class="pin-row" id="enter-pin-boxes"></div>
-            <button class="action-btn" id="enter-pin-btn" onclick="submitPin('verify')" disabled>Unlock →</button>
+            <button class="action-btn" id="enter-pin-btn" onclick="submitPin('verify')" disabled>Unlock â†’</button>
             <div class="err-msg" id="err-enter-pin"></div>
-            <span class="back-link" onclick="goBack()">← Use a different number</span>
+            <span class="back-link" onclick="goBack()">â† Use a different number</span>
         </div>
 
     </div>
@@ -231,15 +231,15 @@ select option{background:#1a2730}
     <div class="log-section" id="log-section" style="display:none">
         <div class="log-toggle" onclick="toggleLog()">
             <div>
-                <div style="font-size:14px;font-weight:700">➕ Log a Transaction</div>
+                <div style="font-size:14px;font-weight:700">âž• Log a Transaction</div>
                 <div style="font-size:12px;color:rgba(255,255,255,.4);margin-top:2px">Record spending or income not yet on Pregota</div>
             </div>
-            <div id="log-chevron" style="font-size:16px;color:rgba(255,255,255,.35)">▶</div>
+            <div id="log-chevron" style="font-size:16px;color:rgba(255,255,255,.35)">â–¶</div>
         </div>
         <div class="log-body" id="log-body">
             <div class="type-toggle">
-                <div class="type-btn active-exp" id="type-exp" onclick="setType('expense')">📤 Expense</div>
-                <div class="type-btn" id="type-inc" onclick="setType('income')">📥 Income / Received</div>
+                <div class="type-btn active-exp" id="type-exp" onclick="setType('expense')">ðŸ“¤ Expense</div>
+                <div class="type-btn" id="type-inc" onclick="setType('income')">ðŸ“¥ Income / Received</div>
             </div>
             <div class="form-grid">
                 <div class="form-field">
@@ -249,33 +249,33 @@ select option{background:#1a2730}
                 <div class="form-field">
                     <label>Category</label>
                     <select id="entry-cat-expense">
-                        <option value="">— Select —</option>
-                        <option value="transport">🚐 Transport</option>
-                        <option value="supermarket">🛒 Supermarket</option>
-                        <option value="food">🍽️ Restaurant / Food</option>
-                        <option value="groceries">🥬 Groceries</option>
-                        <option value="salon">💇 Salon &amp; Beauty</option>
-                        <option value="fashion">👗 Fashion</option>
-                        <option value="electronics">📱 Electronics</option>
-                        <option value="services">🛠 Services</option>
-                        <option value="airtime">📶 Airtime &amp; Data</option>
-                        <option value="rent">🏠 Rent</option>
-                        <option value="health">💊 Health</option>
-                        <option value="education">📚 Education</option>
-                        <option value="entertainment">🎬 Entertainment</option>
-                        <option value="savings">🏦 Savings</option>
-                        <option value="other">📦 Other</option>
+                        <option value="">â€” Select â€”</option>
+                        <option value="transport">ðŸš Transport</option>
+                        <option value="supermarket">ðŸ›’ Supermarket</option>
+                        <option value="food">ðŸ½ï¸ Restaurant / Food</option>
+                        <option value="groceries">ðŸ¥¬ Groceries</option>
+                        <option value="salon">ðŸ’‡ Salon &amp; Beauty</option>
+                        <option value="fashion">ðŸ‘— Fashion</option>
+                        <option value="electronics">ðŸ“± Electronics</option>
+                        <option value="services">ðŸ›  Services</option>
+                        <option value="airtime">ðŸ“¶ Airtime &amp; Data</option>
+                        <option value="rent">ðŸ  Rent</option>
+                        <option value="health">ðŸ’Š Health</option>
+                        <option value="education">ðŸ“š Education</option>
+                        <option value="entertainment">ðŸŽ¬ Entertainment</option>
+                        <option value="savings">ðŸ¦ Savings</option>
+                        <option value="other">ðŸ“¦ Other</option>
                     </select>
                     <select id="entry-cat-income" style="display:none">
-                        <option value="">— Select —</option>
-                        <option value="salary">💼 Salary</option>
-                        <option value="business">🏪 Business</option>
-                        <option value="freelance">💻 Freelance</option>
-                        <option value="rental">🏠 Rental Income</option>
-                        <option value="friends_family">🤝 Friends &amp; Family</option>
-                        <option value="side_hustle">⚡ Side Hustle</option>
-                        <option value="gift">🎁 Gift</option>
-                        <option value="other">✨ Other</option>
+                        <option value="">â€” Select â€”</option>
+                        <option value="salary">ðŸ’¼ Salary</option>
+                        <option value="business">ðŸª Business</option>
+                        <option value="freelance">ðŸ’» Freelance</option>
+                        <option value="rental">ðŸ  Rental Income</option>
+                        <option value="friends_family">ðŸ¤ Friends &amp; Family</option>
+                        <option value="side_hustle">âš¡ Side Hustle</option>
+                        <option value="gift">ðŸŽ Gift</option>
+                        <option value="other">âœ¨ Other</option>
                     </select>
                 </div>
                 <div class="form-field">
@@ -284,11 +284,11 @@ select option{background:#1a2730}
                 </div>
             </div>
             <div id="from-field" style="display:none;margin-bottom:10px">
-                <input type="text" class="desc-input" id="entry-source" placeholder="From — e.g. John Kamau, Mum, Equity Bank salary" maxlength="100">
+                <input type="text" class="desc-input" id="entry-source" placeholder="From â€” e.g. John Kamau, Mum, Equity Bank salary" maxlength="100">
             </div>
-            <input type="text" class="desc-input" id="entry-desc" placeholder="Description — e.g. Lunch at Java, CBD → Westlands" maxlength="200">
+            <input type="text" class="desc-input" id="entry-desc" placeholder="Description â€” e.g. Lunch at Java, CBD â†’ Westlands" maxlength="200">
             <button class="save-btn" onclick="saveEntry()">Save</button>
-            <div class="entry-ok" id="entry-ok">✓ Saved!</div>
+            <div class="entry-ok" id="entry-ok">âœ“ Saved!</div>
         </div>
     </div>
 
@@ -296,65 +296,65 @@ select option{background:#1a2730}
     <div class="pay-modal" id="pay-modal" onclick="if(event.target===this)closePayModal()">
         <div class="pay-sheet">
             <h3>Pay a Seller</h3>
-            <input type="text" id="pay-handle" placeholder="Seller handle — e.g. mama-pima" autocomplete="off">
-            <button class="pay-sheet-btn" onclick="goToSeller()">Go to Pay Page →</button>
+            <input type="text" id="pay-handle" placeholder="Seller handle â€” e.g. mama-pima" autocomplete="off">
+            <button class="pay-sheet-btn" onclick="goToSeller()">Go to Pay Page â†’</button>
         </div>
     </div>
 
     <div id="results">
         {{-- Quick Actions --}}
         <div class="quick-actions">
-            <button class="qa-btn" onclick="openPayModal()"><span class="qa-icon">💳</span>Pay</button>
-            <a href="{{ route('gift.home') }}" class="qa-btn"><span class="qa-icon">🎁</span>Gift</a>
-            <a href="{{ route('redeem') }}" class="qa-btn"><span class="qa-icon">🎟</span>Redeem</a>
-            <a href="{{ route('seller.directory') }}" class="qa-btn"><span class="qa-icon">🔍</span>Find Sellers</a>
+            <button class="qa-btn" onclick="openPayModal()"><span class="qa-icon">ðŸ’³</span>Pay</button>
+            <a href="{{ route('gift.home') }}" class="qa-btn"><span class="qa-icon">ðŸŽ</span>Gift</a>
+            <a href="{{ route('redeem') }}" class="qa-btn"><span class="qa-icon">ðŸŽŸ</span>Redeem</a>
+            <a href="{{ route('seller.directory') }}" class="qa-btn"><span class="qa-icon">ðŸ”</span>Find Sellers</a>
         </div>
 
         {{-- Madeni alert --}}
         <div class="deni-alert" id="deni-alert" style="display:none">
             <div>
-                <div style="font-size:13px;font-weight:700;color:#f87171">⚠️ Outstanding Madeni</div>
-                <div style="font-size:12px;color:rgba(255,255,255,.5);margin-top:2px">You owe <strong id="deni-total-label"></strong> — tap below to pay</div>
+                <div style="font-size:13px;font-weight:700;color:#f87171">âš ï¸ Outstanding Madeni</div>
+                <div style="font-size:12px;color:rgba(255,255,255,.5);margin-top:2px">You owe <strong id="deni-total-label"></strong> â€” tap below to pay</div>
             </div>
         </div>
 
         {{-- Madeni section --}}
         <div id="deni-section" style="display:none">
-            <div class="section-head">🧾 Madeni (What I Owe)</div>
+            <div class="section-head">ðŸ§¾ Madeni (What I Owe)</div>
             <div id="deni-list"></div>
         </div>
 
         {{-- Subscriptions section --}}
         <div id="subs-section" style="display:none">
-            <div class="section-head">♻️ My Subscriptions</div>
+            <div class="section-head">â™»ï¸ My Subscriptions</div>
             <div id="subs-list"></div>
         </div>
 
         {{-- Groups section --}}
         <div id="groups-section" style="display:none">
-            <div class="section-head">🤝 Group Contributions</div>
+            <div class="section-head">ðŸ¤ Group Contributions</div>
             <div id="groups-list"></div>
         </div>
 
         {{-- Saka Keja section --}}
         <div id="saka-keja-section" style="display:none">
-            <div class="section-head">🏠 My Tenancy — Saka Keja</div>
+            <div class="section-head">ðŸ  My Tenancy â€” Saka Keja</div>
             <div id="saka-keja-card"></div>
         </div>
 
         <div class="income-bar" id="income-bar" style="display:none">
             <div>
-                <div style="font-size:13px;font-weight:700">💰 Income / Received</div>
+                <div style="font-size:13px;font-weight:700">ðŸ’° Income / Received</div>
                 <div style="font-size:11px;color:rgba(255,255,255,.35);margin-top:2px">Manually recorded</div>
             </div>
-            <div style="font-size:18px;font-weight:900;color:#4ADE80" id="income-total">—</div>
+            <div style="font-size:18px;font-weight:900;color:#4ADE80" id="income-total">â€”</div>
         </div>
 
         <div class="kpis">
-            <div class="kpi"><div class="kpi-label">All Time Spent</div><div class="kpi-val" id="kpi-total">—</div><div class="kpi-sub" id="kpi-count"></div></div>
-            <div class="kpi"><div class="kpi-label">This Month</div><div class="kpi-val" id="kpi-month">—</div><div id="kpi-diff" class="kpi-sub"></div></div>
-            <div class="kpi"><div class="kpi-label">This Week</div><div class="kpi-val" id="kpi-week">—</div></div>
-            <div class="kpi"><div class="kpi-label">Avg / Tx</div><div class="kpi-val" id="kpi-avg">—</div></div>
+            <div class="kpi"><div class="kpi-label">All Time Spent</div><div class="kpi-val" id="kpi-total">â€”</div><div class="kpi-sub" id="kpi-count"></div></div>
+            <div class="kpi"><div class="kpi-label">This Month</div><div class="kpi-val" id="kpi-month">â€”</div><div id="kpi-diff" class="kpi-sub"></div></div>
+            <div class="kpi"><div class="kpi-label">This Week</div><div class="kpi-val" id="kpi-week">â€”</div></div>
+            <div class="kpi"><div class="kpi-label">Avg / Tx</div><div class="kpi-val" id="kpi-avg">â€”</div></div>
         </div>
 
         <div class="section-head">Monthly Spending</div>
@@ -367,22 +367,22 @@ select option{background:#1a2730}
         <div class="cat-list" id="cat-list"></div>
 
         <div id="manual-section" style="display:none">
-            <div class="section-head">✏️ Manual Entries</div>
+            <div class="section-head">âœï¸ Manual Entries</div>
             <div class="manual-list" id="manual-list"></div>
         </div>
 
         <div id="stamps-section" style="display:none">
-            <div class="section-head">🎟 Stamp Cards</div>
+            <div class="section-head">ðŸŽŸ Stamp Cards</div>
             <div id="stamps-list"></div>
         </div>
 
         <div id="sellers-section" style="display:none">
-            <div class="section-head">Pregota Payments — By Seller</div>
+            <div class="section-head">Pregota Payments â€” By Seller</div>
             <div id="sellers-list"></div>
         </div>
 
         <div id="not-found" class="not-found">
-            <div style="font-size:34px;margin-bottom:10px">📒</div>
+            <div style="font-size:34px;margin-bottom:10px">ðŸ“’</div>
             <div style="font-size:16px;font-weight:700;margin-bottom:5px">Nothing here yet</div>
             <div style="font-size:13px;line-height:1.6;color:rgba(255,255,255,.5)">No Pregota payments found.<br>Use the form above to start logging your spending.</div>
         </div>
@@ -399,7 +399,7 @@ let enterPinVal  = '';
 
 document.getElementById('entry-date').value = new Date().toISOString().slice(0,10);
 
-// ── PIN box builder ────────────────────────────────────────────────────────
+// â”€â”€ PIN box builder â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 function makePinBoxes(containerId, onComplete) {
     const wrap = document.getElementById(containerId);
     wrap.innerHTML = '';
@@ -434,7 +434,7 @@ function clearPin(containerId) {
     document.getElementById(containerId).querySelector('input')?.focus();
 }
 
-// ── Step 1: phone ──────────────────────────────────────────────────────────
+// â”€â”€ Step 1: phone â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 async function checkPhone() {
     const phone = document.getElementById('phone-input').value.trim();
     if (!phone) return;
@@ -451,7 +451,7 @@ async function checkPhone() {
         if (!res.ok) { errEl.textContent = 'Invalid phone number.'; errEl.style.display = 'block'; return; }
 
         if (data.has_pin) {
-            // Returning user — show PIN entry
+            // Returning user â€” show PIN entry
             document.getElementById('pin-sub').textContent = 'Enter your 4-digit Pregota PIN for ' + phone + '.';
             makePinBoxes('enter-pin-boxes', () => {
                 const v = getPinValue('enter-pin-boxes');
@@ -460,7 +460,7 @@ async function checkPhone() {
             });
             showStep('step-enter-pin');
         } else {
-            // New user — show PIN creation
+            // New user â€” show PIN creation
             makePinBoxes('set-pin-boxes', () => {
                 const a = getPinValue('set-pin-boxes');
                 const b = getPinValue('confirm-pin-boxes');
@@ -479,7 +479,7 @@ async function checkPhone() {
     }
 }
 
-// ── Step 2: PIN submit ─────────────────────────────────────────────────────
+// â”€â”€ Step 2: PIN submit â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 async function submitPin(mode) {
     const isSet   = mode === 'set';
     const pin     = getPinValue(isSet ? 'set-pin-boxes' : 'enter-pin-boxes');
@@ -514,7 +514,7 @@ async function submitPin(mode) {
             return;
         }
 
-        // Verified — hide auth card, load data
+        // Verified â€” hide auth card, load data
         document.getElementById('auth-card').style.display = 'none';
         document.getElementById('log-section').style.display = 'block';
         loadData();
@@ -552,7 +552,7 @@ document.getElementById('phone-input').addEventListener('keydown', e => {
     if (e.key === 'Enter') checkPhone();
 });
 
-// ── Log entry ──────────────────────────────────────────────────────────────
+// â”€â”€ Log entry â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 function toggleLog() {
     const open = document.getElementById('log-body').classList.toggle('open');
     document.getElementById('log-chevron').style.transform = open ? 'rotate(90deg)' : '';
@@ -569,8 +569,8 @@ function setType(t) {
     document.getElementById('from-field').style.display = t === 'income' ? 'block' : 'none';
 
     document.getElementById('entry-desc').placeholder = t === 'income'
-        ? 'Note — e.g. End of month, bonus payment'
-        : 'Description — e.g. Lunch at Java, CBD → Westlands';
+        ? 'Note â€” e.g. End of month, bonus payment'
+        : 'Description â€” e.g. Lunch at Java, CBD â†’ Westlands';
 }
 
 // Initialise category list on load
@@ -614,7 +614,7 @@ async function deleteEntry(id) {
     loadData();
 }
 
-// ── Load data ──────────────────────────────────────────────────────────────
+// â”€â”€ Load data â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 async function loadData() {
     const res = await fetch('{{ route('buyer.me.lookup') }}', {
         method: 'POST',
@@ -643,7 +643,7 @@ async function loadData() {
     if (d.last_month > 0) {
         const pct = Math.round(((d.this_month - d.last_month) / d.last_month) * 100);
         diffEl.className   = pct >= 0 ? 'kpi-up' : 'kpi-down';
-        diffEl.textContent = (pct >= 0 ? '▲ ' : '▼ ') + Math.abs(pct) + '% vs last month';
+        diffEl.textContent = (pct >= 0 ? 'â–² ' : 'â–¼ ') + Math.abs(pct) + '% vs last month';
     }
     if (d.total_income > 0) {
         document.getElementById('income-bar').style.display = 'flex';
@@ -673,8 +673,8 @@ async function loadData() {
         return `<div>
             <div class="cat-row-top"><div class="cat-name">${c.emoji} ${c.category.charAt(0).toUpperCase()+c.category.slice(1)}</div><div><span class="cat-amount">KES ${c.total.toLocaleString()}</span> <span style="font-size:10px;color:rgba(255,255,255,.3)">${c.count} entries</span></div></div>
             <div class="cat-track"><div class="${manual?'cat-fill-manual':'cat-fill-auto'}" style="width:${pct}%"></div></div>
-            <div class="cat-meta">${c.auto>0?`<span>✅ KES ${c.auto.toLocaleString()} Pregota</span>`:''} ${c.manual>0?`<span>✏️ KES ${c.manual.toLocaleString()} manual</span>`:''}</div>
-            ${manual ? `<div class="nudge">Paying <strong>${c.category}</strong> manually? Ask the seller to join Pregota — it'll track automatically. <a href="{{ route('seller.landing') }}" target="_blank">Share pregota.com/for-sellers →</a></div>` : ''}
+            <div class="cat-meta">${c.auto>0?`<span>âœ… KES ${c.auto.toLocaleString()} Pregota</span>`:''} ${c.manual>0?`<span>âœï¸ KES ${c.manual.toLocaleString()} manual</span>`:''}</div>
+            ${manual ? `<div class="nudge">Paying <strong>${c.category}</strong> manually? Ask the seller to join Pregota â€” it'll track automatically. <a href="{{ route('seller.landing') }}" target="_blank">Share pregota.com/for-sellers â†’</a></div>` : ''}
         </div>`;
     }).join('');
 
@@ -690,8 +690,8 @@ async function loadData() {
                     <div class="me-date">${e.date}</div>
                 </div>
                 <div style="display:flex;align-items:center">
-                    <div class="${e.type==='expense'?'me-amt-exp':'me-amt-inc'}">${e.type==='expense'?'−':'+'}KES ${e.amount.toLocaleString()}</div>
-                    <button class="del-btn" onclick="deleteEntry(${e.id})">×</button>
+                    <div class="${e.type==='expense'?'me-amt-exp':'me-amt-inc'}">${e.type==='expense'?'âˆ’':'+'}KES ${e.amount.toLocaleString()}</div>
+                    <button class="del-btn" onclick="deleteEntry(${e.id})">Ã—</button>
                 </div>
             </div>`
         ).join('');
@@ -701,8 +701,8 @@ async function loadData() {
     if (d.stamps?.length > 0) {
         document.getElementById('stamps-section').style.display = 'block';
         document.getElementById('stamps-list').innerHTML = d.stamps.map(s => {
-            const dots = Array.from({length:s.stamps_required},(_,i)=>`<span class="sd ${i<s.stamp_count?'on':''}">✓</span>`).join('');
-            return `<div class="stamp-card"><div style="display:flex;justify-content:space-between;margin-bottom:7px"><div style="font-size:14px;font-weight:800">${s.business_name}</div><div style="font-size:10px;color:rgba(255,255,255,.35)">${s.stamps_required} stamps = reward</div></div><div style="margin-bottom:5px">${dots}</div><div style="font-size:12px;color:rgba(255,255,255,.45)">${s.stamp_count}/${s.stamps_required} · ${s.stamps_required-s.stamp_count} more for: <strong>${s.reward||'reward'}</strong></div>${s.reward_pending?'<div style="color:#fbbf24;font-size:12px;font-weight:700;margin-top:5px">🎉 Reward ready!</div>':''}</div>`;
+            const dots = Array.from({length:s.stamps_required},(_,i)=>`<span class="sd ${i<s.stamp_count?'on':''}">âœ“</span>`).join('');
+            return `<div class="stamp-card"><div style="display:flex;justify-content:space-between;margin-bottom:7px"><div style="font-size:14px;font-weight:800">${s.business_name}</div><div style="font-size:10px;color:rgba(255,255,255,.35)">${s.stamps_required} stamps = reward</div></div><div style="margin-bottom:5px">${dots}</div><div style="font-size:12px;color:rgba(255,255,255,.45)">${s.stamp_count}/${s.stamps_required} Â· ${s.stamps_required-s.stamp_count} more for: <strong>${s.reward||'reward'}</strong></div>${s.reward_pending?'<div style="color:#fbbf24;font-size:12px;font-weight:700;margin-top:5px">ðŸŽ‰ Reward ready!</div>':''}</div>`;
         }).join('');
     }
 
@@ -723,8 +723,8 @@ async function loadData() {
                 </div>
                 <div class="deni-prog-track"><div class="deni-prog-fill" style="width:${pct}%"></div></div>
                 <div style="display:flex;justify-content:space-between;align-items:center">
-                    <div style="font-size:11px;color:rgba(255,255,255,.35)">KES ${dn.amount_paid.toLocaleString()} paid of KES ${dn.original_amount.toLocaleString()}${dn.due_date ? ' · Due '+dn.due_date : ''}</div>
-                    <a href="${dn.pay_link}" class="pay-deni-btn">Pay Now →</a>
+                    <div style="font-size:11px;color:rgba(255,255,255,.35)">KES ${dn.amount_paid.toLocaleString()} paid of KES ${dn.original_amount.toLocaleString()}${dn.due_date ? ' Â· Due '+dn.due_date : ''}</div>
+                    <a href="${dn.pay_link}" class="pay-deni-btn">Pay Now â†’</a>
                 </div>
             </div>`;
         }).join('');
@@ -737,12 +737,12 @@ async function loadData() {
             `<div class="sub-card">
                 <div>
                     <div style="font-size:14px;font-weight:800">${s.plan_name}</div>
-                    <div style="font-size:12px;color:rgba(255,255,255,.45)">${s.business_name} · KES ${s.amount.toLocaleString()}/${s.frequency}</div>
+                    <div style="font-size:12px;color:rgba(255,255,255,.45)">${s.business_name} Â· KES ${s.amount.toLocaleString()}/${s.frequency}</div>
                     ${s.next_due ? `<div style="font-size:11px;color:rgba(255,255,255,.35);margin-top:3px">Next due: ${s.next_due}</div>` : ''}
                 </div>
                 <div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px">
-                    <span class="${s.status === 'overdue' ? 'sub-badge-overdue' : 'sub-badge-active'}">${s.status === 'overdue' ? '⚠️ Overdue' : '✅ Active'}</span>
-                    ${s.is_due ? `<a href="/subscription/reminder/${s.reminder_token}" class="renew-btn">Renew →</a>` : ''}
+                    <span class="${s.status === 'overdue' ? 'sub-badge-overdue' : 'sub-badge-active'}">${s.status === 'overdue' ? 'âš ï¸ Overdue' : 'âœ… Active'}</span>
+                    ${s.is_due ? `<a href="/subscription/reminder/${s.reminder_token}" class="renew-btn">Renew â†’</a>` : ''}
                 </div>
             </div>`
         ).join('');
@@ -754,8 +754,8 @@ async function loadData() {
         document.getElementById('groups-list').innerHTML = d.group_payments.map(g =>
             `<div class="grp-card">
                 <div>
-                    <div style="font-size:14px;font-weight:700">🤝 ${g.group_name}</div>
-                    <div style="font-size:11px;color:rgba(255,255,255,.4);margin-top:2px">${g.period} · ${g.date}</div>
+                    <div style="font-size:14px;font-weight:700">ðŸ¤ ${g.group_name}</div>
+                    <div style="font-size:11px;color:rgba(255,255,255,.4);margin-top:2px">${g.period} Â· ${g.date}</div>
                 </div>
                 <div style="font-size:15px;font-weight:900;color:#4ADE80">KES ${g.amount.toLocaleString()}</div>
             </div>`
@@ -769,7 +769,7 @@ async function loadData() {
         const histRows = sk.rent_history.length > 0
             ? sk.rent_history.map(r =>
                 `<div class="sk-hist-row">
-                    <div><div class="sk-hist-month">${r.month}</div><div class="sk-hist-receipt">${r.receipt_number} · ${r.paid_on}</div></div>
+                    <div><div class="sk-hist-month">${r.month}</div><div class="sk-hist-receipt">${r.receipt_number} Â· ${r.paid_on}</div></div>
                     <div class="sk-hist-amt">KES ${r.gross_amount.toLocaleString()}</div>
                 </div>`).join('')
             : `<div style="font-size:12px;color:rgba(255,255,255,.3);padding:6px 0">No rent payments yet.</div>`;
@@ -784,7 +784,7 @@ async function loadData() {
                     <div style="font-size:11px;color:rgba(255,255,255,.3);text-align:right">Since<br>${sk.confirmed_at}</div>
                 </div>
                 <div class="sk-due">Next rent due: <strong>${sk.next_due}</strong></div>
-                <a href="${sk.tenant_url}" class="sk-pay-btn">Pay Rent →</a>
+                <a href="${sk.tenant_url}" class="sk-pay-btn">Pay Rent â†’</a>
                 <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.35);margin-bottom:6px">Payment History</div>
                 ${histRows}
             </div>`;
@@ -794,12 +794,12 @@ async function loadData() {
     if (d.grouped?.length > 0) {
         document.getElementById('sellers-section').style.display = 'block';
         document.getElementById('sellers-list').innerHTML = d.grouped.map((g,i)=>
-            `<div class="sg"><div class="sg-hdr" onclick="document.getElementById('sg-${i}').classList.toggle('open')"><div><div style="font-size:14px;font-weight:800">${g.business_name}</div><div style="font-size:11px;font-family:monospace;color:rgba(255,255,255,.35);margin-top:2px">pregota.com/pay/${g.handle}</div></div><div style="text-align:right"><div style="font-size:16px;font-weight:900;color:#4ADE80">KES ${g.total_spent.toLocaleString()}</div><div style="font-size:11px;color:rgba(255,255,255,.35)">${g.count} payment${g.count!==1?'s':''} ▶</div></div></div><div class="sg-body" id="sg-${i}">${g.payments.map(p=>`<div class="pr"><div><div style="font-size:13px;font-weight:700">KES ${p.amount.toLocaleString()}${p.tip_amount>0?` <span style="font-size:10px;color:rgba(255,255,255,.35)">+${p.tip_amount} tip</span>`:''}</div><div style="font-size:11px;color:rgba(255,255,255,.35);margin-top:1px">${p.date}</div>${p.note?`<div style="font-size:10px;color:rgba(255,255,255,.35);font-style:italic">"${p.note}"</div>`:''}</div>${p.receipt_url?`<a href="${p.receipt_url}" target="_blank" style="font-size:11px;color:#a78bfa;font-family:monospace;text-decoration:none">${p.receipt_number}</a>`:''}</div>`).join('')}</div></div>`
+            `<div class="sg"><div class="sg-hdr" onclick="document.getElementById('sg-${i}').classList.toggle('open')"><div><div style="font-size:14px;font-weight:800">${g.business_name}</div><div style="font-size:11px;font-family:monospace;color:rgba(255,255,255,.35);margin-top:2px">pregota.com/pay/${g.handle}</div></div><div style="text-align:right"><div style="font-size:16px;font-weight:900;color:#4ADE80">KES ${g.total_spent.toLocaleString()}</div><div style="font-size:11px;color:rgba(255,255,255,.35)">${g.count} payment${g.count!==1?'s':''} â–¶</div></div></div><div class="sg-body" id="sg-${i}">${g.payments.map(p=>`<div class="pr"><div><div style="font-size:13px;font-weight:700">KES ${p.amount.toLocaleString()}${p.tip_amount>0?` <span style="font-size:10px;color:rgba(255,255,255,.35)">+${p.tip_amount} tip</span>`:''}</div><div style="font-size:11px;color:rgba(255,255,255,.35);margin-top:1px">${p.date}</div>${p.note?`<div style="font-size:10px;color:rgba(255,255,255,.35);font-style:italic">"${p.note}"</div>`:''}</div>${p.receipt_url?`<a href="${p.receipt_url}" target="_blank" style="font-size:11px;color:#a78bfa;font-family:monospace;text-decoration:none">${p.receipt_number}</a>`:''}</div>`).join('')}</div></div>`
         ).join('');
     }
 }
 
-// ── Quick actions ─────────────────────────────────────────────────────────
+// â”€â”€ Quick actions â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 function openPayModal() {
     document.getElementById('pay-modal').classList.add('open');
     setTimeout(() => document.getElementById('pay-handle').focus(), 100);
@@ -817,7 +817,7 @@ document.getElementById('pay-handle').addEventListener('keydown', e => {
     if (e.key === 'Escape') closePayModal();
 });
 
-// ── Inactivity auto-lock (5 minutes) ──────────────────────────────────────
+// â”€â”€ Inactivity auto-lock (5 minutes) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 const IDLE_MS = 5 * 60 * 1000;
 let idleTimer  = null;
 let dataLoaded = false;
@@ -834,7 +834,7 @@ function lockScreen() {
     document.getElementById('results').style.display      = 'none';
     document.getElementById('auth-card').style.display    = 'block';
     document.getElementById('expired-notice').style.display = 'block';
-    document.getElementById('expired-notice').textContent = '🔒 Locked after 5 minutes of inactivity. Re-enter your PIN.';
+    document.getElementById('expired-notice').textContent = 'ðŸ”’ Locked after 5 minutes of inactivity. Re-enter your PIN.';
     document.getElementById('pin-sub').textContent        = 'Re-enter your PIN for ' + activePhone + '.';
     makePinBoxes('enter-pin-boxes', () => {
         const v = getPinValue('enter-pin-boxes');
@@ -858,3 +858,4 @@ loadData = async function() {
 </script>
 </body>
 </html>
+

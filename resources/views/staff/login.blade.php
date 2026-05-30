@@ -1,11 +1,11 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Staff Login — Pregota</title>
+<title>Staff Login â€” Pregota</title>
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
+*{box-sizing:border-box;margin:0;padding:0}input,textarea,select,button{font-family:inherit;font-size:inherit}
 body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px}
 .card{width:100%;max-width:380px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:32px}
 .logo{font-size:22px;font-weight:900;background:linear-gradient(135deg,#25D366,#4ADE80);-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-decoration:none;display:block;margin-bottom:24px}
@@ -44,13 +44,14 @@ input::placeholder{color:rgba(255,255,255,.82)}
             <label>Password</label>
             <input type="password" name="password" placeholder="Your password" required>
         </div>
-        <button type="submit" class="submit-btn">Sign In →</button>
+        <button type="submit" class="submit-btn">Sign In â†’</button>
     </form>
 
     <div class="links">
-        <span>New here? <a href="{{ route('staff.register') }}">Create your free tip page →</a></span>
-        <span>Are you a business? <a href="{{ route('business.login') }}">Business login →</a></span>
+        <span>New here? <a href="{{ route('staff.register') }}">Create your free tip page â†’</a></span>
+        <span>Are you a business? <a href="{{ route('business.login') }}">Business login â†’</a></span>
     </div>
 </div>
 </body>
 </html>
+

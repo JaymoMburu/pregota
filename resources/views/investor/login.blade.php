@@ -1,11 +1,11 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pregota — Investor Access</title>
+<title>Pregota â€” Investor Access</title>
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
+*{box-sizing:border-box;margin:0;padding:0}input,textarea,select,button{font-family:inherit;font-size:inherit}
 body{font-family:'Segoe UI',system-ui,sans-serif;background:#0a0a14;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px}
 .card{background:#13131f;border:1px solid rgba(255,255,255,.08);border-radius:20px;padding:40px 36px;width:100%;max-width:400px}
 .logo{font-size:22px;font-weight:900;background:linear-gradient(135deg,#00A651,#007A33);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:6px}
@@ -27,7 +27,7 @@ input:focus{border-color:rgba(0,166,81,.6);background:rgba(0,166,81,.05)}
     <div class="logo">Pregota</div>
     <div class="badge">Investor Portal</div>
     <h1>Welcome back</h1>
-    <p class="sub">Access your investor dashboard — live platform metrics and growth data.</p>
+    <p class="sub">Access your investor dashboard â€” live platform metrics and growth data.</p>
 
     @if(session('error'))
     <div class="error">{{ session('error') }}</div>
@@ -42,12 +42,13 @@ input:focus{border-color:rgba(0,166,81,.6);background:rgba(0,166,81,.05)}
         </div>
         <div class="field">
             <label>Password</label>
-            <input type="password" name="password" placeholder="••••••••" required>
+            <input type="password" name="password" placeholder="â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢" required>
         </div>
-        <button type="submit" class="btn">Sign In →</button>
+        <button type="submit" class="btn">Sign In â†’</button>
     </form>
 
-    <div class="footer">Pregota · Confidential investor access only</div>
+    <div class="footer">Pregota Â· Confidential investor access only</div>
 </div>
 </body>
 </html>
+

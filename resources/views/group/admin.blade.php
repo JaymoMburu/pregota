@@ -1,12 +1,12 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>{{ $group->name }} Admin — Pregota</title>
+<title>{{ $group->name }} Admin â€” Pregota</title>
 @include('partials.pwa')
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
+*{box-sizing:border-box;margin:0;padding:0}input,textarea,select,button{font-family:inherit;font-size:inherit}
 body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;min-height:100vh}
 .nav{padding:14px 24px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,.07)}
 .logo{font-size:20px;font-weight:900;background:linear-gradient(135deg,#25D366,#4ADE80);-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-decoration:none}
@@ -53,16 +53,16 @@ h1{font-size:22px;font-weight:900;margin-bottom:4px}
 <body>
 <nav class="nav">
     <a href="{{ route('home') }}" class="logo">Pregota</a>
-    <a href="{{ route('group.show', $group->slug) }}" style="font-size:13px;color:rgba(255,255,255,.4);text-decoration:none">Member Link →</a>
+    <a href="{{ route('group.show', $group->slug) }}" style="font-size:13px;color:rgba(255,255,255,.4);text-decoration:none">Member Link â†’</a>
 </nav>
 
 <div class="wrap">
     <h1>{{ $group->name }}</h1>
-    <div class="period-label">Period: {{ $period }} · {{ ucfirst($group->frequency) }}</div>
+    <div class="period-label">Period: {{ $period }} Â· {{ ucfirst($group->frequency) }}</div>
 
     @if(!$isAdmin)
     <div class="auth-card" id="auth-card">
-        <div style="font-size:17px;font-weight:900;margin-bottom:6px">🔐 Admin Access</div>
+        <div style="font-size:17px;font-weight:900;margin-bottom:6px">ðŸ” Admin Access</div>
         <div style="font-size:13px;color:rgba(255,255,255,.5);margin-bottom:20px">Enter your admin phone and PIN to view member payments.</div>
         <div class="field">
             <label>Admin Phone</label>
@@ -70,7 +70,7 @@ h1{font-size:22px;font-weight:900;margin-bottom:4px}
         </div>
         <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.45);margin-bottom:8px">Admin PIN</div>
         <div class="pin-row" id="pin-boxes"></div>
-        <button class="action-btn" id="login-btn" onclick="adminLogin()" disabled>Unlock →</button>
+        <button class="action-btn" id="login-btn" onclick="adminLogin()" disabled>Unlock â†’</button>
         <div class="err" id="auth-err"></div>
     </div>
     @endif
@@ -79,7 +79,7 @@ h1{font-size:22px;font-weight:900;margin-bottom:4px}
         <div class="share-link-box">
             <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(37,211,102,.6);margin-bottom:6px">Member Payment Link</div>
             <div class="share-url" id="member-url">{{ url('/group/' . $group->slug) }}</div>
-            <button class="copy-link-btn" onclick="copyMemberLink()">📋 Copy Link</button>
+            <button class="copy-link-btn" onclick="copyMemberLink()">ðŸ“‹ Copy Link</button>
         </div>
 
         @php
@@ -104,7 +104,7 @@ h1{font-size:22px;font-weight:900;margin-bottom:4px}
                     <div class="status-dot dot-{{ $p->status === 'confirmed' ? 'paid' : ($p->status === 'failed' ? 'failed' : 'pending') }}"></div>
                     <div>
                         <div class="member-amount">KES {{ number_format($p->amount) }}</div>
-                        <div class="member-date">{{ $p->updated_at->format('d M Y · H:i') }}</div>
+                        <div class="member-date">{{ $p->updated_at->format('d M Y Â· H:i') }}</div>
                     </div>
                 </div>
                 <div style="display:flex;align-items:center;gap:8px">
@@ -184,3 +184,4 @@ function copyReminder(url) {
 </script>
 </body>
 </html>
+

@@ -1,11 +1,11 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Creator Approvals — Pregota Admin</title>
+<title>Creator Approvals â€” Pregota Admin</title>
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
+*{box-sizing:border-box;margin:0;padding:0}input,textarea,select,button{font-family:inherit;font-size:inherit}
 body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;min-height:100vh;padding:24px}
 .top{display:flex;align-items:center;justify-content:space-between;margin-bottom:28px;flex-wrap:wrap;gap:12px}
 .logo{font-size:20px;font-weight:900;background:linear-gradient(135deg,#25D366,#4ADE80);-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-decoration:none}
@@ -42,7 +42,7 @@ h1{font-size:20px;font-weight:900;margin-bottom:4px}
 
 <div class="top">
     <a href="{{ route('home') }}" class="logo">Pregota</a>
-    <a href="{{ route('admin.dashboard') }}" class="back">← Admin Dashboard</a>
+    <a href="{{ route('admin.dashboard') }}" class="back">â† Admin Dashboard</a>
 </div>
 
 @if(session('success'))
@@ -79,8 +79,8 @@ h1{font-size:20px;font-weight:900;margin-bottom:4px}
     </div>
     <div class="info">
         <div class="name">{{ $creator->display_name }}</div>
-        <div class="handle">@{{ $creator->handle }} · pregota.com/c/{{ $creator->handle }}</div>
-        <div class="meta">Registered {{ $creator->created_at->diffForHumans() }} · Min gift KES {{ number_format($creator->min_gift_amount, 0) }}</div>
+        <div class="handle">@{{ $creator->handle }} Â· pregota.com/c/{{ $creator->handle }}</div>
+        <div class="meta">Registered {{ $creator->created_at->diffForHumans() }} Â· Min gift KES {{ number_format($creator->min_gift_amount, 0) }}</div>
         @if($creator->bio)
         <div class="bio">{{ $creator->bio }}</div>
         @endif
@@ -98,7 +98,7 @@ h1{font-size:20px;font-weight:900;margin-bottom:4px}
     </div>
 </div>
 @empty
-<div class="empty">No pending creators — all caught up.</div>
+<div class="empty">No pending creators â€” all caught up.</div>
 @endforelse
 
 <div class="section-head">
@@ -118,13 +118,13 @@ h1{font-size:20px;font-weight:900;margin-bottom:4px}
         <div class="name">{{ $creator->display_name }}</div>
         <div class="handle">@{{ $creator->handle }}</div>
         <div class="meta">
-            {{ $creator->gifts()->where('status','paid')->count() }} gifts ·
-            KES {{ number_format($creator->total_received, 0) }} received ·
+            {{ $creator->gifts()->where('status','paid')->count() }} gifts Â·
+            KES {{ number_format($creator->total_received, 0) }} received Â·
             Active since {{ $creator->updated_at->format('d M Y') }}
         </div>
     </div>
     <div class="actions">
-        <a href="{{ route('creator.page', $creator->handle) }}" target="_blank" style="color:rgba(255,255,255,.6);font-size:12px;text-decoration:none;border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:7px 14px">View Page ↗</a>
+        <a href="{{ route('creator.page', $creator->handle) }}" target="_blank" style="color:rgba(255,255,255,.6);font-size:12px;text-decoration:none;border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:7px 14px">View Page â†—</a>
         <form method="POST" action="{{ route('admin.creators.reject', $creator) }}" style="display:inline"
               onsubmit="return confirm('Deactivate and delete @{{ $creator->handle }}? This cannot be undone.')">
             @csrf @method('DELETE')
@@ -138,3 +138,4 @@ h1{font-size:20px;font-weight:900;margin-bottom:4px}
 
 </body>
 </html>
+
