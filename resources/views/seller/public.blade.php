@@ -213,7 +213,8 @@ input:focus{border-color:rgba(37,211,102,.5);background:rgba(255,255,255,.08)}
                 <div class="hint">You'll get an M-Pesa prompt — enter your PIN to pay</div>
             </div>
 
-            {{-- Optional tip --}}
+            {{-- Optional tip — transport only --}}
+            @if($payLink->category === 'transport')
             <div class="tip-section">
                 <div class="tip-toggle" onclick="toggleTip()">
                     <div>
@@ -242,6 +243,7 @@ input:focus{border-color:rgba(37,211,102,.5);background:rgba(255,255,255,.08)}
                     <div class="tip-total" id="tip-total"></div>
                 </div>
             </div>
+            @endif
 
             <div class="security-note">
                 🔒 <span>Your number is never shared with the seller. Secured by Pregota.</span>
