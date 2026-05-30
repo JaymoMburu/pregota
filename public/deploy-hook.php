@@ -45,6 +45,14 @@ if (function_exists('opcache_reset')) {
     $log[] = '– opcache_reset not available';
 }
 
+// Test if logging works
+try {
+    \Illuminate\Support\Facades\Log::info('Deploy hook test at ' . now()->toDateTimeString());
+    $log[] = '✓ Log::info test written';
+} catch (\Exception $e) {
+    $log[] = '✗ Log::info failed: ' . $e->getMessage();
+}
+
 foreach (['cache:clear', 'config:clear', 'route:clear', 'view:clear', 'config:cache', 'route:cache', 'view:cache'] as $cmd) {
     ob_start();
     $status = $kernel->call($cmd);
