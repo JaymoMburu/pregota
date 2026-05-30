@@ -126,18 +126,17 @@ class DarajaService
         $phone = $this->formatPhone($phone);
 
         $response = Http::withToken($token)
-            ->post("{$this->baseUrl}/mpesa/b2c/v3/paymentrequest", [
-                'OriginatorConversationID' => 'PRG-' . uniqid(),
-                'InitiatorName'            => $this->initiatorName,
-                'SecurityCredential'       => $this->encryptInitiatorPassword(),
-                'CommandID'                => 'BusinessPayment',
-                'Amount'                   => $amount,
-                'PartyA'                   => $this->b2cShortcode,
-                'PartyB'                   => $phone,
-                'Remarks'                  => $remarks,
-                'QueueTimeOutURL'          => config('daraja.b2c_timeout_url'),
-                'ResultURL'                => config('daraja.b2c_result_url'),
-                'Occasion'                 => 'Pregota Gift',
+            ->post("{$this->baseUrl}/mpesa/b2c/v1/paymentrequest", [
+                'InitiatorName'      => $this->initiatorName,
+                'SecurityCredential' => $this->encryptInitiatorPassword(),
+                'CommandID'          => 'BusinessPayment',
+                'Amount'             => $amount,
+                'PartyA'             => $this->b2cShortcode,
+                'PartyB'             => $phone,
+                'Remarks'            => $remarks,
+                'QueueTimeOutURL'    => config('daraja.b2c_timeout_url'),
+                'ResultURL'          => config('daraja.b2c_result_url'),
+                'Occasion'           => 'Pregota Gift',
             ]);
 
         Log::info('B2C Payout', ['phone_masked' => substr($phone, 0, 6) . '****', 'amount' => $amount, 'response' => $response->json()]);
