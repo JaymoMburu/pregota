@@ -81,9 +81,16 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
     <div class="desc" style="margin-top:12px">{{ $listing->description }}</div>
     @endif
 
+    @php $secureTotal = $listing->totalSecureAmount() + 200; @endphp
+    <div style="background:rgba(74,222,128,.05);border:1px solid rgba(74,222,128,.15);border-radius:16px;padding:18px;margin-bottom:14px">
+        <div style="font-size:16px;font-weight:900;margin-bottom:6px">🔒 Secure this house</div>
+        <div style="font-size:13px;color:rgba(255,255,255,.45);margin-bottom:14px;line-height:1.6">Pay KES {{ number_format($secureTotal) }} to Pregota escrow. Your money is held safely — released to landlord only when you confirm you're moving in.</div>
+        <a href="{{ route('saka-keja.deposit', $listing->id) }}" style="display:block;text-align:center;padding:13px;background:linear-gradient(135deg,#16a34a,#22c55e);border-radius:11px;color:#fff;font-weight:800;text-decoration:none;font-size:14px">Secure — KES {{ number_format($secureTotal) }} →</a>
+    </div>
+
     <div class="connect-box">
-        <div class="connect-title">Connect with landlord</div>
-        <div class="connect-sub">Pay KES 200 via M-Pesa. Your number will be shared with the landlord — they will call you directly. No agents involved.</div>
+        <div class="connect-title">Just want to view first?</div>
+        <div class="connect-sub">Pay KES 200 to get the landlord's contact. They will call you to arrange a viewing. No deposit required yet.</div>
 
         <div id="connect-form">
             <div class="field">

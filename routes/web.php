@@ -213,8 +213,14 @@ Route::get('/saka-keja/landlord/poll', [SakaKejaController::class, 'pollLogin'])
 Route::get('/saka-keja/landlord/dashboard', [SakaKejaController::class, 'dashboard'])->name('saka-keja.dashboard');
 Route::post('/saka-keja/landlord/logout', [SakaKejaController::class, 'landlordLogout'])->name('saka-keja.landlord.logout');
 Route::get('/saka-keja/connect/poll', [SakaKejaController::class, 'pollConnect'])->name('saka-keja.connect.poll');
+Route::get('/saka-keja/deposit/poll', [SakaKejaController::class, 'pollDeposit'])->name('saka-keja.deposit.poll');
+Route::get('/saka-keja/deposit/{token}', [SakaKejaController::class, 'manageDeposit'])->name('saka-keja.deposit.manage');
+Route::post('/saka-keja/deposit/{token}/confirm', [SakaKejaController::class, 'confirmDeposit'])->name('saka-keja.deposit.confirm');
+Route::post('/saka-keja/deposit/{token}/cancel', [SakaKejaController::class, 'cancelDeposit'])->name('saka-keja.deposit.cancel');
 Route::get('/saka-keja/{id}', [SakaKejaController::class, 'show'])->name('saka-keja.show')->where('id', '[0-9]+');
 Route::post('/saka-keja/{id}/connect', [SakaKejaController::class, 'initiateConnect'])->name('saka-keja.connect')->where('id', '[0-9]+');
+Route::get('/saka-keja/{id}/deposit', [SakaKejaController::class, 'depositForm'])->name('saka-keja.deposit')->where('id', '[0-9]+');
+Route::post('/saka-keja/{id}/deposit', [SakaKejaController::class, 'initiateDeposit'])->name('saka-keja.deposit.post')->where('id', '[0-9]+');
 Route::post('/saka-keja/{id}/rented', [SakaKejaController::class, 'markRented'])->name('saka-keja.rented')->where('id', '[0-9]+');
 Route::delete('/saka-keja/{id}', [SakaKejaController::class, 'deleteListing'])->name('saka-keja.delete')->where('id', '[0-9]+');
 

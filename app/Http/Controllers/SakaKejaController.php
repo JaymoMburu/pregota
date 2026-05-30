@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\SakaKejaAuthSession;
 use App\Models\SakaKejaConnection;
+use App\Models\SakaKejaDeposit;
 use App\Models\SakaKejaListing;
 use App\Services\DarajaService;
 use App\Services\SellerService;
@@ -297,5 +298,112 @@ class SakaKejaController extends Controller
     {
         $request->session()->forget('saka_keja_phone_hash');
         return redirect()->route('saka-keja.landlord');
+    }
+
+    // ── Deposit (escrow) ──────────────────────────────────────────────────
+
+    public function depositForm($id)
+    {
+        $listing = SakaKejaListing::where('id', $id)->where('status', 'active')->firstOrFail();
+        return view('saka-keja.deposit', compact('listing'));
+    }
+
+    public function initiateDeposit(Request $request, $id)
+    {
+        $listing = SakaKejaListing::where('id', $id)->where('status', 'active')->firstOrFail();
+
+        $data = $request->validate([
+            'seeker_name' => ['required', 'string', 'max:100'],
+            'phone'       => ['required', 'regex:/^(\+?254|0)[17]\d{8}$/'],
+        ]);
+
+        $hash          = $this->seller->hashPhone($data['phone']);
+        $depositAmount = $listing->totalSecureAmount();
+        $totalPaid     = $depositAmount + self::CONNECTION_FEE; // KES 200 escrow fee
+
+        $stk = $this->daraja->stkPush(
+            phone: $data['phone'],
+            amount: $totalPaid,
+            accountRef: 'SAKAKEJA',
+            description: 'Saka Keja Deposit — ' . $listing->location,
+        );
+
+        if (! isset($stk['CheckoutRequestID'])) {
+            return response()->json(['success' => false, 'message' => $stk['errorMessage'] ?? 'STK Push failed.'], 422);
+        }
+
+        $deposit = SakaKejaDeposit::create([
+            'listing_id'             => $listing->id,
+            'token'                  => SakaKejaDeposit::generateToken(),
+            'seeker_name'            => $data['seeker_name'],
+            'seeker_phone_hash'      => $hash,
+            'seeker_phone_encrypted' => Crypt::encryptString($data['phone']),
+            'deposit_amount'         => $depositAmount,
+            'escrow_fee'             => self::CONNECTION_FEE,
+            'total_paid'             => $totalPaid,
+            'checkout_request_id'    => $stk['CheckoutRequestID'],
+        ]);
+
+        return response()->json([
+            'success'             => true,
+            'checkout_request_id' => $stk['CheckoutRequestID'],
+            'token'               => $deposit->token,
+            'safaricom_msg'       => $stk['CustomerMessage'] ?? '',
+        ]);
+    }
+
+    public function pollDeposit(Request $request)
+    {
+        $deposit = SakaKejaDeposit::where('checkout_request_id', $request->query('checkout_request_id'))->first();
+
+        if (! $deposit) return response()->json(['status' => 'not_found']);
+
+        if ($deposit->status === 'held') {
+            return response()->json(['status' => 'confirmed', 'redirect' => route('saka-keja.deposit.manage', $deposit->token)]);
+        }
+
+        if ($deposit->status === 'failed') {
+            return response()->json(['status' => 'failed']);
+        }
+
+        return response()->json(['status' => 'pending']);
+    }
+
+    public function manageDeposit($token)
+    {
+        $deposit = SakaKejaDeposit::where('token', $token)->with('listing')->firstOrFail();
+        return view('saka-keja.deposit-manage', compact('deposit'));
+    }
+
+    public function confirmDeposit(Request $request, $token)
+    {
+        $deposit = SakaKejaDeposit::where('token', $token)->where('status', 'held')->firstOrFail();
+        $listing = $deposit->listing;
+
+        if ($listing->status !== 'active') {
+            return response()->json(['success' => false, 'message' => 'This house has already been taken.'], 422);
+        }
+
+        // Mark listing as taken
+        $listing->update(['status' => 'taken']);
+
+        // Confirm this deposit
+        $receipt = 'PRG-' . now()->format('Ymd') . '-' . strtoupper(Str::random(6));
+        $deposit->update(['status' => 'confirmed', 'confirmed_at' => now(), 'receipt_number' => $receipt]);
+
+        // Refund all other held deposits on same listing
+        SakaKejaDeposit::where('listing_id', $listing->id)
+            ->where('id', '!=', $deposit->id)
+            ->where('status', 'held')
+            ->update(['status' => 'refunded', 'refunded_at' => now()]);
+
+        return response()->json(['success' => true]);
+    }
+
+    public function cancelDeposit($token)
+    {
+        $deposit = SakaKejaDeposit::where('token', $token)->where('status', 'held')->firstOrFail();
+        $deposit->update(['status' => 'refunded', 'refunded_at' => now()]);
+        return response()->json(['success' => true]);
     }
 }

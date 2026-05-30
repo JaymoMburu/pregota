@@ -8,15 +8,31 @@ class SakaKejaListing extends Model
 {
     protected $fillable = [
         'landlord_phone_hash', 'landlord_phone_encrypted', 'landlord_name',
-        'location', 'unit_type', 'rent', 'description', 'photos',
-        'verification_checkout_id', 'listing_fee', 'status',
+        'location', 'unit_type', 'rent', 'deposit_amount', 'advance_months', 'utility_fees',
+        'description', 'photos', 'verification_checkout_id', 'listing_fee', 'status',
     ];
 
-    protected $casts = ['photos' => 'array'];
+    protected $casts = [
+        'photos'        => 'array',
+        'utility_fees'  => 'array',
+    ];
 
     public function connections()
     {
         return $this->hasMany(SakaKejaConnection::class, 'listing_id');
+    }
+
+    public function deposits()
+    {
+        return $this->hasMany(SakaKejaDeposit::class, 'listing_id');
+    }
+
+    public function totalSecureAmount(): int
+    {
+        $deposit   = $this->deposit_amount ?? $this->rent;
+        $advance   = $this->rent * ($this->advance_months ?? 1);
+        $utilities = collect($this->utility_fees ?? [])->sum('amount');
+        return $deposit + $advance + (int) $utilities;
     }
 
     public function unitLabel(): string
