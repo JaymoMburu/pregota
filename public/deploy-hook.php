@@ -37,6 +37,14 @@ foreach (['debug.php', 'extract.php', 'migrate.php'] as $danger) {
     }
 }
 
+// Reset OPcache so new PHP files take effect immediately
+if (function_exists('opcache_reset')) {
+    opcache_reset();
+    $log[] = '✓ opcache_reset';
+} else {
+    $log[] = '– opcache_reset not available';
+}
+
 foreach (['cache:clear', 'config:clear', 'route:clear', 'view:clear', 'config:cache', 'route:cache', 'view:cache'] as $cmd) {
     ob_start();
     $status = $kernel->call($cmd);
@@ -79,6 +87,10 @@ if (isset($_GET['log'])) {
             }
         }
         $log[] = "\n=== Daraja/STK/B2C entries in " . basename($logFile) . " (" . count($relevant) . " lines) ===\n" . implode('', array_slice($relevant, -40));
+
+        // Show last 20 raw lines regardless of content
+        $allLines = file($logFile);
+        $log[] = "\n=== Last 20 raw log lines ===\n" . implode('', array_slice($allLines, -20));
     }
 }
 
