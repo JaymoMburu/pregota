@@ -154,9 +154,21 @@ body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;col
             </div>
 
             <div class="success" id="success-view">
-                <div style="font-size:40px;margin-bottom:10px">✅</div>
-                <div style="font-size:17px;font-weight:900;color:#4ADE80;margin-bottom:6px">Rent Paid!</div>
-                <div style="font-size:13px;color:rgba(255,255,255,.4)">Payment confirmed. Refreshing...</div>
+                <div style="font-size:52px;line-height:1;margin-bottom:10px">✅</div>
+                <div id="rent-amount" style="font-size:28px;font-weight:900;color:#fff;margin-bottom:4px"></div>
+                <div id="rent-month-label" style="font-size:14px;font-weight:700;color:#4ADE80;margin-bottom:14px"></div>
+                <div id="rent-receipt-box" style="display:none;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:14px 16px;text-align:left;margin-bottom:14px">
+                    <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.35);margin-bottom:10px">M-Pesa Receipt</div>
+                    <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:6px">
+                        <span style="color:rgba(255,255,255,.45)">Receipt No.</span>
+                        <span id="rent-receipt-no" style="font-weight:700;font-family:monospace;color:#4ADE80"></span>
+                    </div>
+                    <div style="display:flex;justify-content:space-between;font-size:13px">
+                        <span style="color:rgba(255,255,255,.45)">Property</span>
+                        <span style="font-weight:600;color:rgba(255,255,255,.7)">{{ $deposit->listing->location }}</span>
+                    </div>
+                </div>
+                <div style="font-size:12px;color:rgba(255,255,255,.3)">Refreshing in a moment…</div>
             </div>
         @endif
     </div>
@@ -245,7 +257,13 @@ function poll() {
             if (d.status === 'confirmed') {
                 document.getElementById('pending-view').style.display = 'none';
                 document.getElementById('success-view').style.display = 'block';
-                setTimeout(() => location.reload(), 2500);
+                if (d.amount) document.getElementById('rent-amount').textContent = 'KES ' + Number(d.amount).toLocaleString();
+                if (d.rent_month) document.getElementById('rent-month-label').textContent = d.rent_month + ' Rent ✓';
+                if (d.receipt) {
+                    document.getElementById('rent-receipt-no').textContent = d.receipt;
+                    document.getElementById('rent-receipt-box').style.display = 'block';
+                }
+                setTimeout(() => location.reload(), 4000);
             } else if (d.status === 'failed') {
                 document.getElementById('pending-view').style.display = 'none';
                 document.getElementById('pay-form').style.display = 'block';

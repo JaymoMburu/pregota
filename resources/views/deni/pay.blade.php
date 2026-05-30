@@ -158,9 +158,25 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
         </div>
 
         <div class="confirmed-state" id="confirmed-state">
-            <div style="font-size:48px;margin-bottom:12px">✅</div>
-            <div style="font-size:22px;font-weight:900;color:#4ADE80;margin-bottom:6px">Payment received!</div>
-            <div id="balance-msg" style="font-size:14px;color:rgba(255,255,255,.55)"></div>
+            <div style="font-size:64px;line-height:1;margin-bottom:10px">✅</div>
+            <div id="receipt-amount" style="font-size:38px;font-weight:900;color:#fff;line-height:1;margin-bottom:6px"></div>
+            <div style="font-size:13px;color:rgba(255,255,255,.45);margin-bottom:4px">paid to <strong style="color:rgba(255,255,255,.75)">{{ $deni->creditorLabel() }}</strong></div>
+            <div style="font-size:13px;color:rgba(255,255,255,.45);margin-bottom:16px">{{ $deni->description }}</div>
+            <div id="receipt-box" style="display:none;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:14px 16px;margin-bottom:12px;text-align:left">
+                <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.35);margin-bottom:10px">M-Pesa Receipt</div>
+                <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:6px">
+                    <span style="color:rgba(255,255,255,.45)">Receipt No.</span>
+                    <span id="receipt-no" style="font-weight:700;font-family:monospace;color:#4ADE80"></span>
+                </div>
+                <div style="display:flex;justify-content:space-between;font-size:13px">
+                    <span style="color:rgba(255,255,255,.45)">Time</span>
+                    <span id="receipt-time" style="font-weight:600;color:rgba(255,255,255,.7)"></span>
+                </div>
+            </div>
+            <div id="balance-msg" style="font-size:13px;color:rgba(255,255,255,.45);margin-bottom:14px"></div>
+            <button onclick="shareReceipt()" style="display:inline-flex;align-items:center;gap:7px;padding:10px 20px;background:rgba(37,211,102,.12);border:1px solid rgba(37,211,102,.25);border-radius:10px;color:#4ADE80;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit">
+                📤 Share via WhatsApp
+            </button>
         </div>
     @endif
     @endif {{-- end verified --}}
@@ -171,6 +187,7 @@ const CSRF      = '{{ csrf_token() }}';
 const TOKEN     = '{{ $deni->debtor_token }}';
 const DENI_TIERS = @json(config('pregota.deni_tiers'));
 let checkoutId  = null;
+let paidAmount  = 0;
 
 function calcFee(amount) {
     for (const tier of DENI_TIERS) {
@@ -222,6 +239,7 @@ async function doPay() {
         document.getElementById('pay-btn').disabled = false; return;
     }
 
+    paidAmount = amount;
     checkoutId = data.checkout_request_id;
     document.getElementById('pay-form').style.display = 'none';
     document.getElementById('pending-state').style.display = 'block';
@@ -235,10 +253,19 @@ function poll() {
             if (d.status === 'confirmed') {
                 document.getElementById('pending-state').style.display = 'none';
                 document.getElementById('confirmed-state').style.display = 'block';
+                document.getElementById('receipt-amount').textContent = 'KES ' + paidAmount.toLocaleString();
                 const msg = d.deni_status === 'settled'
-                    ? 'Fully paid! Tab is now closed. ✅'
+                    ? 'Tab fully closed ✅'
                     : `KES ${d.balance.toLocaleString()} remaining on this tab.`;
                 document.getElementById('balance-msg').textContent = msg;
+                if (d.receipt) {
+                    document.getElementById('receipt-no').textContent = d.receipt;
+                    const now = new Date();
+                    document.getElementById('receipt-time').textContent =
+                        now.toLocaleDateString('en-KE', {day:'numeric', month:'short', year:'numeric'})
+                        + ' ' + now.toLocaleTimeString('en-KE', {hour:'2-digit', minute:'2-digit'});
+                    document.getElementById('receipt-box').style.display = 'block';
+                }
             } else if (d.status === 'failed') {
                 document.getElementById('pending-state').style.display = 'none';
                 document.getElementById('pay-form').style.display = 'block';
@@ -250,6 +277,12 @@ function poll() {
             }
         })
         .catch(() => setTimeout(poll, 3000));
+}
+
+function shareReceipt() {
+    const receipt = document.getElementById('receipt-no').textContent;
+    const msg = `Payment confirmed ✅\nKES ${paidAmount.toLocaleString()} paid to {{ $deni->creditorLabel() }}\nFor: {{ $deni->description }}\nM-Pesa: ${receipt}`;
+    window.open('https://wa.me/?text=' + encodeURIComponent(msg), '_blank');
 }
 </script>
 </body>

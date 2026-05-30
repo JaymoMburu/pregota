@@ -189,7 +189,11 @@ class SakaKejaController extends Controller
 
         if (! $conn) return response()->json(['status' => 'not_found']);
 
-        return response()->json(['status' => $conn->status]);
+        return response()->json([
+            'status'  => $conn->status,
+            'receipt' => $conn->receipt_number,
+            'amount'  => $conn->amount ?? 200,
+        ]);
     }
 
     // ── Landlord dashboard auth ───────────────────────────────────────────
@@ -374,7 +378,14 @@ class SakaKejaController extends Controller
     {
         $payment = SakaKejaRentPayment::where('checkout_request_id', $request->query('checkout_request_id'))->first();
         if (! $payment) return response()->json(['status' => 'not_found']);
-        return response()->json(['status' => $payment->status]);
+        return response()->json([
+            'status'     => $payment->status,
+            'receipt'    => $payment->receipt_number,
+            'amount'     => $payment->gross_amount,
+            'rent_month' => $payment->rent_month
+                ? \Carbon\Carbon::createFromFormat('Y-m', $payment->rent_month)->format('F Y')
+                : null,
+        ]);
     }
 
     public function landlordLogout(Request $request)
