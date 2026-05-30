@@ -90,6 +90,28 @@ $status = $kernel->call('migrate', ['--force' => true]);
 $output = trim(ob_get_clean());
 $log[]  = ($status === 0 ? '✓' : '✗') . " migrate" . ($output ? ":\n{$output}" : '');
 
+// Show deployed DarajaService b2cPayout method (verify correct version)
+$darajaFile = __DIR__ . '/../app/Services/DarajaService.php';
+$lines = file($darajaFile);
+foreach ($lines as $i => $line) {
+    if (strpos($line, 'function b2cPayout') !== false) {
+        $log[] = "\n=== DarajaService::b2cPayout (lines " . ($i+1) . "-" . ($i+3) . ") ===";
+        $log[] = trim($lines[$i]) . "\n" . trim($lines[$i+1]) . "\n" . trim($lines[$i+2]);
+        break;
+    }
+}
+
+// Show 5 most recent CreditorPayouts from DB
+try {
+    $payouts = \App\Models\CreditorPayout::latest()->limit(5)->get(['id','status','amount','recipient_name','receipt_number','created_at','updated_at']);
+    $log[] = "\n=== Recent CreditorPayouts ===";
+    foreach ($payouts as $p) {
+        $log[] = "#{$p->id} {$p->status} KES{$p->amount} → {$p->recipient_name} | receipt={$p->receipt_number} | created={$p->created_at}";
+    }
+} catch (\Exception $e) {
+    $log[] = "DB query failed: " . $e->getMessage();
+}
+
 if (isset($_GET['log'])) {
     $logDir  = __DIR__ . '/../storage/logs/';
     $allLogs = glob($logDir . '*.log') ?: [];
