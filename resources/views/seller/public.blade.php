@@ -283,11 +283,21 @@ input:focus{border-color:rgba(37,211,102,.5);background:rgba(255,255,255,.08)}
             {{-- Timestamp — prominent --}}
             <div id="receipt-time" style="font-size:15px;font-weight:700;color:rgba(255,255,255,.75);margin-bottom:20px"></div>
 
-            {{-- Show-to-conductor prompt --}}
-            <div style="background:rgba(37,211,102,.12);border:2px solid rgba(37,211,102,.4);border-radius:12px;padding:14px 16px;margin-bottom:14px">
-                <div style="font-size:17px;font-weight:900;color:#4ade80;margin-bottom:3px">✓ Show this to the conductor</div>
+            {{-- Show-to-seller prompt (always) --}}
+            <div style="background:rgba(37,211,102,.12);border:2px solid rgba(37,211,102,.4);border-radius:12px;padding:14px 16px;margin-bottom:10px">
+                <div style="font-size:17px;font-weight:900;color:#4ade80;margin-bottom:3px">✓ Show this to the seller</div>
                 <div style="font-size:11px;color:rgba(255,255,255,.78)">Your number was never shared</div>
             </div>
+
+            {{-- Show-to-conductor prompt (transport only) --}}
+            @if($payLink->category === 'transport')
+            <div style="background:rgba(37,211,102,.08);border:1px solid rgba(37,211,102,.25);border-radius:12px;padding:14px 16px;margin-bottom:14px">
+                <div style="font-size:15px;font-weight:900;color:#4ade80;margin-bottom:3px">🎫 Show this to the conductor</div>
+                <div style="font-size:11px;color:rgba(255,255,255,.78)">Proof of fare payment for this trip</div>
+            </div>
+            @else
+            <div style="margin-bottom:14px"></div>
+            @endif
 
             {{-- Stamp card progress update --}}
             <div id="receipt-stamp-info"></div>
