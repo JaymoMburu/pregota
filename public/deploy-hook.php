@@ -74,11 +74,11 @@ if (isset($_GET['log'])) {
         $logFile  = $allLogs[0];
         $relevant = [];
         foreach (file($logFile) as $line) {
-            if (stripos($line, 'STK') !== false || stripos($line, 'Daraja') !== false || stripos($line, 'daraja') !== false) {
+            if (stripos($line, 'STK') !== false || stripos($line, 'Daraja') !== false || stripos($line, 'B2C') !== false || stripos($line, 'Payout') !== false || stripos($line, 'payout') !== false) {
                 $relevant[] = $line;
             }
         }
-        $log[] = "\n=== Daraja/STK entries in " . basename($logFile) . " (" . count($relevant) . " lines) ===\n" . implode('', array_slice($relevant, -30));
+        $log[] = "\n=== Daraja/STK/B2C entries in " . basename($logFile) . " (" . count($relevant) . " lines) ===\n" . implode('', array_slice($relevant, -40));
     }
 }
 
