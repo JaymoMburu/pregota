@@ -97,21 +97,26 @@ class MpesaController extends Controller
                     'entry_date'          => now()->toDateString(),
                 ]);
 
-                if ($creditorPayout->recipient_till) {
-                    $this->daraja->b2bPayout(
-                        amount: $creditorPayout->amount,
-                        destination: $creditorPayout->recipient_till,
-                        type: 'till',
-                        accountRef: 'PAY-' . $creditorPayout->id,
-                        remarks: mb_substr($creditorPayout->description ?: ('Pay ' . $creditorPayout->recipient_name), 0, 40),
-                    );
-                } elseif ($creditorPayout->recipient_phone_encrypted) {
-                    $recipientPhone = Crypt::decryptString($creditorPayout->recipient_phone_encrypted);
-                    $this->daraja->b2cPayout(
-                        amount: $creditorPayout->amount,
-                        phone: $recipientPhone,
-                        remarks: mb_substr($creditorPayout->description ?: ('Pay ' . $creditorPayout->recipient_name), 0, 40),
-                    );
+                try {
+                    if ($creditorPayout->recipient_till) {
+                        $b2cResult = $this->daraja->b2bPayout(
+                            amount: $creditorPayout->amount,
+                            destination: $creditorPayout->recipient_till,
+                            type: 'till',
+                            accountRef: 'PAY-' . $creditorPayout->id,
+                            remarks: mb_substr($creditorPayout->description ?: ('Pay ' . $creditorPayout->recipient_name), 0, 40),
+                        );
+                    } elseif ($creditorPayout->recipient_phone_encrypted) {
+                        $recipientPhone = Crypt::decryptString($creditorPayout->recipient_phone_encrypted);
+                        $b2cResult = $this->daraja->b2cPayout(
+                            amount: $creditorPayout->amount,
+                            phone: $recipientPhone,
+                            remarks: mb_substr($creditorPayout->description ?: ('Pay ' . $creditorPayout->recipient_name), 0, 40),
+                        );
+                    }
+                    $creditorPayout->update(['b2c_response' => json_encode($b2cResult ?? null)]);
+                } catch (\Exception $e) {
+                    $creditorPayout->update(['b2c_response' => $e->getMessage()]);
                 }
 
                 return response()->json(['ResultCode' => 0, 'ResultDesc' => 'Accepted']);
