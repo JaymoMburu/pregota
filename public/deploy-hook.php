@@ -88,9 +88,15 @@ if (isset($_GET['log'])) {
         }
         $log[] = "\n=== Daraja/STK/B2C entries in " . basename($logFile) . " (" . count($relevant) . " lines) ===\n" . implode('', array_slice($relevant, -40));
 
-        // Show last 20 raw lines regardless of content
-        $allLines = file($logFile);
-        $log[] = "\n=== Last 20 raw log lines ===\n" . implode('', array_slice($allLines, -20));
+        // Show all production entries from today
+        $today = date('Y-m-d');
+        $todayLines = [];
+        foreach (file($logFile) as $line) {
+            if (strpos($line, "production.") !== false && strpos($line, $today) !== false) {
+                $todayLines[] = $line;
+            }
+        }
+        $log[] = "\n=== All production entries today ({$today}) ===\n" . implode('', $todayLines ?: ['None found.']);
     }
 }
 
