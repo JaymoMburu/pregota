@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pay Rent · Saka Keja</title>
+<title>Tenant Portal · Saka Keja</title>
 @include('partials.pwa')
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
@@ -18,10 +18,23 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 .listing-meta{font-size:13px;color:rgba(255,255,255,.4);margin-top:4px}
 .tenant-name{font-size:13px;font-weight:700;color:rgba(255,255,255,.6);margin-top:6px}
 
+/* Deposit section */
+.deposit-box{background:rgba(74,222,128,.04);border:1px solid rgba(74,222,128,.13);border-radius:16px;padding:18px;margin-bottom:16px}
+.section-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.35);margin-bottom:12px}
+.deposit-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.deposit-key{font-size:13px;color:rgba(255,255,255,.5)}
+.deposit-val{font-size:13px;font-weight:800;color:#4ADE80}
+.move-out-notice{background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.2);border-radius:11px;padding:12px 14px;margin-top:12px;font-size:13px;color:rgba(255,255,255,.65);line-height:1.6}
+.move-out-notice strong{color:#f59e0b}
+.btn-move-out{width:100%;margin-top:14px;padding:12px;background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.2);border-radius:11px;color:#fca5a5;font-size:13px;font-weight:700;cursor:pointer}
+.btn-move-out:hover{background:rgba(239,68,68,.15)}
+
+/* Rent section */
 .pay-box{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:16px;padding:20px;margin-bottom:16px}
 .pay-title{font-size:16px;font-weight:900;margin-bottom:6px}
 .pay-sub{font-size:13px;color:rgba(255,255,255,.4);margin-bottom:18px;line-height:1.6}
 .paid-badge{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;background:rgba(74,222,128,.1);border:1px solid rgba(74,222,128,.2);border-radius:999px;font-size:13px;font-weight:700;color:#4ADE80;margin-bottom:12px}
+.paused-notice{background:rgba(245,158,11,.07);border:1px solid rgba(245,158,11,.18);border-radius:11px;padding:12px 14px;font-size:13px;color:#f59e0b;line-height:1.5}
 
 .field{margin-bottom:14px}
 .field label{display:block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.4);margin-bottom:7px}
@@ -64,51 +77,89 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
         <div class="tenant-name">Tenant: {{ $deposit->seeker_name }}</div>
     </div>
 
+    {{-- ── Deposit section ── --}}
+    <div class="deposit-box">
+        <div class="section-label">🔐 Security Deposit</div>
+        <div class="deposit-row">
+            <span class="deposit-key">Amount held</span>
+            <span class="deposit-val">KES {{ number_format($deposit->deposit_amount) }}</span>
+        </div>
+        <div class="deposit-row">
+            <span class="deposit-key">Moved in</span>
+            <span class="deposit-val" style="color:rgba(255,255,255,.65)">{{ $deposit->confirmed_at->format('d M Y') }}</span>
+        </div>
+        <div class="deposit-row">
+            <span class="deposit-key">Status</span>
+            <span class="deposit-val" style="color:{{ $deposit->status === 'moving_out' ? '#f59e0b' : '#4ADE80' }}">
+                {{ $deposit->status === 'moving_out' ? 'Move-out Requested' : 'Active Tenancy' }}
+            </span>
+        </div>
+
+        @if($deposit->status === 'moving_out')
+            <div class="move-out-notice">
+                ⏳ Your move-out request is pending landlord inspection.<br>
+                Requested on <strong>{{ $deposit->move_out_requested_at->format('d M Y, H:i') }}</strong>.<br>
+                The landlord will inspect the property. If no damage or repainting is required, your KES {{ number_format($deposit->deposit_amount) }} deposit will be fully refunded.
+            </div>
+        @else
+            <div style="font-size:12px;color:rgba(255,255,255,.35);margin-top:10px;line-height:1.6">
+                ℹ️ The deposit covers any damages or repainting costs when you vacate. If the house is in good condition, the full deposit is refunded.
+            </div>
+            <button class="btn-move-out" onclick="doMoveOut()">🚪 Request Move Out</button>
+        @endif
+    </div>
+
+    {{-- ── Rent section ── --}}
     <div class="pay-box">
         <div class="pay-title">Pay Monthly Rent</div>
-        <div class="pay-sub">Pay via M-Pesa. Pregota deducts 2% management fee and sends the balance to your landlord.</div>
 
-        @if($paidThisMonth)
-        <div class="paid-badge">✓ Rent paid for {{ now()->format('F Y') }}</div>
-        <div style="font-size:12px;color:rgba(255,255,255,.3);margin-bottom:14px">Receipt: {{ $paidThisMonth->receipt_number }}</div>
+        @if($deposit->status === 'moving_out')
+            <div class="paused-notice">⚠️ Rent payments are paused while your move-out is being processed.</div>
+        @else
+            <div class="pay-sub">Pay via M-Pesa. Pregota deducts 2% management fee and sends the balance to your landlord.</div>
+
+            @if($paidThisMonth)
+            <div class="paid-badge">✓ Rent paid for {{ now()->format('F Y') }}</div>
+            <div style="font-size:12px;color:rgba(255,255,255,.3);margin-bottom:14px">Receipt: {{ $paidThisMonth->receipt_number }}</div>
+            @endif
+
+            <div id="pay-form">
+                <div class="field">
+                    <label>Rent Month</label>
+                    <select id="rent_month">
+                        @for($i = 0; $i >= -2; $i--)
+                        @php $m = now()->addMonths($i)->format('Y-m'); @endphp
+                        <option value="{{ $m }}" {{ $i === 0 ? 'selected' : '' }}>{{ now()->addMonths($i)->format('F Y') }}</option>
+                        @endfor
+                    </select>
+                </div>
+                <div class="field">
+                    <label>Your M-Pesa Number</label>
+                    <input type="tel" id="phone" placeholder="07XX XXX XXX" autocomplete="tel">
+                </div>
+                <div class="fee-note">
+                    KES {{ number_format($deposit->listing->rent) }} rent → Pregota keeps <strong>KES {{ number_format((int)ceil($deposit->listing->rent * 2 / 100)) }}</strong> (2%) → Landlord receives <strong>KES {{ number_format($deposit->listing->rent - (int)ceil($deposit->listing->rent * 2 / 100)) }}</strong>
+                </div>
+                <div class="err" id="err-msg"></div>
+                <button class="btn" id="pay-btn" onclick="doPay()">Pay KES {{ number_format($deposit->listing->rent) }} →</button>
+            </div>
+
+            <div class="pending" id="pending-view">
+                <div class="spinner"></div>
+                <div style="font-size:15px;font-weight:700;margin-bottom:6px">Check your phone</div>
+                <div style="font-size:13px;color:rgba(255,255,255,.45)">Enter your M-Pesa PIN to pay rent.</div>
+            </div>
+
+            <div class="success" id="success-view">
+                <div style="font-size:40px;margin-bottom:10px">✅</div>
+                <div style="font-size:17px;font-weight:900;color:#4ADE80;margin-bottom:6px">Rent Paid!</div>
+                <div style="font-size:13px;color:rgba(255,255,255,.4)">Payment confirmed. Refreshing...</div>
+            </div>
         @endif
-
-        <div id="pay-form">
-            <div class="field">
-                <label>Rent Month</label>
-                <select id="rent_month">
-                    @for($i = 0; $i >= -2; $i--)
-                    @php $m = now()->addMonths($i)->format('Y-m'); @endphp
-                    <option value="{{ $m }}" {{ $i === 0 ? 'selected' : '' }}>{{ now()->addMonths($i)->format('F Y') }}</option>
-                    @endfor
-                </select>
-            </div>
-            <div class="field">
-                <label>Your M-Pesa Number</label>
-                <input type="tel" id="phone" placeholder="07XX XXX XXX" autocomplete="tel">
-            </div>
-            <div class="fee-note">
-                KES {{ number_format($deposit->listing->rent) }} rent → Pregota keeps <strong>KES {{ number_format((int)ceil($deposit->listing->rent * 2 / 100)) }}</strong> (2%) → Landlord receives <strong>KES {{ number_format($deposit->listing->rent - (int)ceil($deposit->listing->rent * 2 / 100)) }}</strong>
-            </div>
-            <div class="err" id="err-msg"></div>
-            <button class="btn" id="pay-btn" onclick="doPay()">Pay KES {{ number_format($deposit->listing->rent) }} →</button>
-        </div>
-
-        <div class="pending" id="pending-view">
-            <div class="spinner"></div>
-            <div style="font-size:15px;font-weight:700;margin-bottom:6px">Check your phone</div>
-            <div style="font-size:13px;color:rgba(255,255,255,.45)">Enter your M-Pesa PIN to pay rent.</div>
-        </div>
-
-        <div class="success" id="success-view">
-            <div style="font-size:40px;margin-bottom:10px">✅</div>
-            <div style="font-size:17px;font-weight:900;color:#4ADE80;margin-bottom:6px">Rent Paid!</div>
-            <div style="font-size:13px;color:rgba(255,255,255,.4)">Payment confirmed. Refreshing...</div>
-        </div>
     </div>
 
     <div class="history-box">
-        <div class="history-title">Payment History</div>
+        <div class="history-title">Rent Payment History</div>
         @forelse($payments->where('status','confirmed') as $p)
         <div class="payment-row">
             <div>
@@ -129,6 +180,18 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 <script>
 const CSRF = '{{ csrf_token() }}';
 let checkoutId = null;
+
+async function doMoveOut() {
+    if (!confirm('Request to move out? Your landlord will be notified. The deposit will be refunded after inspection — full refund if the house is in good condition.')) return;
+
+    const res  = await fetch('{{ route("saka-keja.deposit.move-out", $deposit->token) }}', {
+        method: 'POST', headers: {'X-CSRF-TOKEN': CSRF}
+    });
+    const data = await res.json();
+
+    if (data.success) location.reload();
+    else alert(data.message || 'Could not process request. Try again.');
+}
 
 async function doPay() {
     const phone = document.getElementById('phone').value.trim();

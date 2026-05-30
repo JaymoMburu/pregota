@@ -9,6 +9,8 @@ use App\Models\GroupPayment;
 use App\Models\ManualEntry;
 use App\Models\PayLink;
 use App\Models\PayLinkFare;
+use App\Models\SakaKejaDeposit;
+use App\Models\SakaKejaRentPayment;
 use App\Models\SellerPayment;
 use App\Models\Subscription;
 use App\Services\SellerService;
@@ -648,6 +650,42 @@ class SellerController extends Controller
                 'pay_link'        => url('/deni/' . $d->debtor_token),
             ]);
 
+        // Saka Keja — active tenancy and rent history
+        $sakaKeja = null;
+        $sakaDeposit = SakaKejaDeposit::where('seeker_phone_hash', $hash)
+            ->where('status', 'confirmed')
+            ->with('listing')
+            ->latest('confirmed_at')
+            ->first();
+        if ($sakaDeposit) {
+            $rentHistory = SakaKejaRentPayment::where('deposit_id', $sakaDeposit->id)
+                ->where('status', 'confirmed')
+                ->orderByDesc('rent_month')
+                ->get()
+                ->map(fn($rp) => [
+                    'month'          => \Carbon\Carbon::createFromFormat('Y-m', $rp->rent_month)->format('F Y'),
+                    'gross_amount'   => $rp->gross_amount,
+                    'receipt_number' => $rp->receipt_number,
+                    'paid_on'        => $rp->updated_at->format('d M Y'),
+                ]);
+            $lastPaid = SakaKejaRentPayment::where('deposit_id', $sakaDeposit->id)
+                ->where('status', 'confirmed')
+                ->orderByDesc('rent_month')
+                ->value('rent_month');
+            $nextDue = $lastPaid
+                ? \Carbon\Carbon::createFromFormat('Y-m', $lastPaid)->addMonth()->format('F Y')
+                : now()->format('F Y');
+            $sakaKeja = [
+                'location'       => $sakaDeposit->listing->location,
+                'unit_type'      => $sakaDeposit->listing->unitLabel(),
+                'rent'           => $sakaDeposit->listing->rent,
+                'confirmed_at'   => $sakaDeposit->confirmed_at->format('d M Y'),
+                'tenant_url'     => route('saka-keja.tenant', $sakaDeposit->token),
+                'next_due'       => $nextDue,
+                'rent_history'   => $rentHistory,
+            ];
+        }
+
         return response()->json([
             'found'          => true,
             'total_kes'      => $expenseStream->sum('amount'),
@@ -668,6 +706,7 @@ class SellerController extends Controller
             'subscriptions'  => $subscriptions,
             'deni'           => $deni,
             'total_deni'     => $deni->sum('balance'),
+            'saka_keja'      => $sakaKeja,
         ]);
     }
 

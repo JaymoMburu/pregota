@@ -127,8 +127,19 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 
         @if($listing->status === 'taken')
         <div class="leads-section">
+            @php
+                $tenant = $listing->deposits->whereIn('status', ['confirmed','moving_out'])->first();
+                $isMovingOut = $tenant && $tenant->status === 'moving_out';
+            @endphp
+            @if($isMovingOut)
+            <div style="background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.2);border-radius:10px;padding:12px 14px;margin-bottom:12px">
+                <div style="font-size:12px;font-weight:800;color:#f59e0b;margin-bottom:4px">⚠️ Move-Out Requested</div>
+                <div style="font-size:12px;color:rgba(255,255,255,.55);margin-bottom:10px">{{ $tenant->seeker_name }} requested to move out on {{ $tenant->move_out_requested_at?->format('d M Y') }}. Inspect the property first, then approve. Deposit held: KES {{ number_format($tenant->deposit_amount) }} — refund full amount if house is in good condition.</div>
+                <button onclick="approveMoveOut('{{ $tenant->token }}')" style="width:100%;padding:9px;background:linear-gradient(135deg,#16a34a,#22c55e);color:#fff;font-size:13px;font-weight:800;border:none;border-radius:9px;cursor:pointer" id="approve-btn-{{ $tenant->id }}">✓ Approve Move Out &amp; Release Deposit</button>
+            </div>
+            @endif
+
             <div class="leads-title">Current Tenant</div>
-            @php $tenant = $listing->deposits->where('status','confirmed')->first(); @endphp
             @if($tenant)
             <div class="lead-row">
                 <div>
@@ -181,6 +192,16 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 
 <script>
 const CSRF = '{{ csrf_token() }}';
+
+async function approveMoveOut(token) {
+    if (!confirm('Approve move-out and refund the deposit? The listing will go back to active.')) return;
+    const btn = document.querySelector(`[onclick="approveMoveOut('${token}')"]`);
+    if (btn) { btn.disabled = true; btn.textContent = 'Processing…'; }
+    const res  = await fetch(`/saka-keja/deposit/${token}/approve-move-out`, {method:'POST',headers:{'X-CSRF-TOKEN':CSRF}});
+    const data = await res.json();
+    if (data.success) location.reload();
+    else { alert(data.message || 'Could not process.'); if (btn) btn.disabled = false; }
+}
 
 async function markRented(id) {
     if (!confirm('Mark this listing as rented? It will be removed from the public browse.')) return;

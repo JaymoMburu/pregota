@@ -14,8 +14,9 @@ class SakaKejaDeposit extends Model
     ];
 
     protected $casts = [
-        'confirmed_at' => 'datetime',
-        'refunded_at'  => 'datetime',
+        'confirmed_at'          => 'datetime',
+        'refunded_at'           => 'datetime',
+        'move_out_requested_at' => 'datetime',
     ];
 
     public function listing()

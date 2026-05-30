@@ -103,6 +103,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 <nav class="nav">
     <a href="{{ route('home') }}" class="logo">Pregota</a>
     <div class="nav-links">
+        <a href="{{ route('saka-keja.browse') }}" class="nav-link" style="color:#f59e0b;border-color:rgba(245,158,11,.25)">🏠 Saka Keja</a>
         <a href="{{ route('deni.landing') }}" class="nav-link">Deni</a>
         <a href="{{ route('redeem') }}" class="nav-link">Redeem a Gift</a>
         <a href="{{ route('buyer.me') }}" class="nav-link nav-cta">My Pregota</a>
@@ -230,6 +231,25 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
                 <span class="mod-tag">Salons</span>
             </div>
             <div class="mod-cta" style="color:#34d399">Browse & Pay <span>›</span></div>
+        </a>
+
+        <!-- Saka Keja — full width featured -->
+        <a href="{{ route('saka-keja.browse') }}" class="mod-card" style="grid-column:1/-1;background:linear-gradient(135deg,rgba(245,158,11,.08),rgba(245,158,11,.04));border-color:rgba(245,158,11,.2)">
+            <div style="display:inline-flex;align-items:center;gap:6px;background:rgba(245,158,11,.12);border:1px solid rgba(245,158,11,.25);border-radius:20px;padding:3px 11px;font-size:11px;font-weight:700;color:#f59e0b;margin-bottom:12px;letter-spacing:.04em">🏠 NEW — Saka Keja</div>
+            <div style="display:flex;align-items:center;gap:20px;flex-wrap:wrap">
+                <div style="font-size:44px;flex-shrink:0">🏡</div>
+                <div style="flex:1;min-width:200px">
+                    <div class="mod-name" style="font-size:19px">Saka Keja — Find a House, No Agents</div>
+                    <div class="mod-desc" style="margin-bottom:12px">Browse verified landlord listings. Pay deposit safely through Pregota escrow — released only when you confirm move-in. No agents. No lost money.</div>
+                    <div class="mod-tags">
+                        <span class="mod-tag">Deposit Protected</span>
+                        <span class="mod-tag">Verified Landlords</span>
+                        <span class="mod-tag">No Middlemen</span>
+                        <span class="mod-tag">Full Refund Guarantee</span>
+                    </div>
+                </div>
+                <div class="mod-cta" style="flex-shrink:0;font-size:14px;align-self:flex-end;color:#f59e0b">Browse Houses <span>›</span></div>
+            </div>
         </a>
 
         <!-- Creator Gift — full width -->

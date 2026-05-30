@@ -220,6 +220,8 @@ Route::post('/saka-keja/tenant/{token}/pay-rent', [SakaKejaController::class, 'i
 Route::get('/saka-keja/deposit/{token}', [SakaKejaController::class, 'manageDeposit'])->name('saka-keja.deposit.manage');
 Route::post('/saka-keja/deposit/{token}/confirm', [SakaKejaController::class, 'confirmDeposit'])->name('saka-keja.deposit.confirm');
 Route::post('/saka-keja/deposit/{token}/cancel', [SakaKejaController::class, 'cancelDeposit'])->name('saka-keja.deposit.cancel');
+Route::post('/saka-keja/deposit/{token}/move-out', [SakaKejaController::class, 'requestMoveOut'])->name('saka-keja.deposit.move-out');
+Route::post('/saka-keja/deposit/{token}/approve-move-out', [SakaKejaController::class, 'approveMoveOut'])->name('saka-keja.deposit.approve-move-out');
 Route::get('/saka-keja/{id}', [SakaKejaController::class, 'show'])->name('saka-keja.show')->where('id', '[0-9]+');
 Route::post('/saka-keja/{id}/connect', [SakaKejaController::class, 'initiateConnect'])->name('saka-keja.connect')->where('id', '[0-9]+');
 Route::get('/saka-keja/{id}/deposit', [SakaKejaController::class, 'depositForm'])->name('saka-keja.deposit')->where('id', '[0-9]+');

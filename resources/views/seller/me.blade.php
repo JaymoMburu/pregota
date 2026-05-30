@@ -147,6 +147,21 @@ select option{background:#1a2730}
 .sd{width:17px;height:17px;border-radius:50%;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);display:inline-flex;align-items:center;justify-content:center;font-size:8px;margin:0 2px 2px 0}
 .sd.on{background:rgba(37,211,102,.22);border-color:#25D366;color:#4ADE80}
 
+/* Saka Keja */
+.sk-card{background:rgba(37,211,102,.04);border:1px solid rgba(37,211,102,.14);border-radius:14px;padding:16px;margin-bottom:9px}
+.sk-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px}
+.sk-loc{font-size:15px;font-weight:800}
+.sk-type{font-size:11px;font-weight:700;color:#f59e0b;margin-bottom:3px}
+.sk-rent{font-size:13px;color:#4ADE80;font-weight:700;margin-top:2px}
+.sk-due{background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.18);border-radius:9px;padding:8px 12px;font-size:12px;color:rgba(255,255,255,.65);margin-bottom:10px}
+.sk-due strong{color:#f59e0b}
+.sk-pay-btn{display:block;text-align:center;padding:10px 14px;background:linear-gradient(135deg,#d97706,#f59e0b);border-radius:10px;color:#0B141A;font-weight:800;text-decoration:none;font-size:13px;margin-bottom:10px}
+.sk-hist-row{display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid rgba(255,255,255,.05)}
+.sk-hist-row:last-child{border-bottom:none}
+.sk-hist-month{font-size:12px;font-weight:700}
+.sk-hist-receipt{font-size:10px;color:rgba(255,255,255,.35);margin-top:1px}
+.sk-hist-amt{font-size:13px;font-weight:900;color:#4ADE80}
+
 /* Sellers */
 .sg{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:13px;overflow:hidden;margin-bottom:9px}
 .sg-hdr{padding:12px 15px;display:flex;justify-content:space-between;align-items:center;cursor:pointer}
@@ -316,6 +331,12 @@ select option{background:#1a2730}
         <div id="groups-section" style="display:none">
             <div class="section-head">🤝 Group Contributions</div>
             <div id="groups-list"></div>
+        </div>
+
+        {{-- Saka Keja section --}}
+        <div id="saka-keja-section" style="display:none">
+            <div class="section-head">🏠 My Tenancy — Saka Keja</div>
+            <div id="saka-keja-card"></div>
         </div>
 
         <div class="income-bar" id="income-bar" style="display:none">
@@ -736,6 +757,34 @@ async function loadData() {
                 <div style="font-size:15px;font-weight:900;color:#4ADE80">KES ${g.amount.toLocaleString()}</div>
             </div>`
         ).join('');
+    }
+
+    // Saka Keja tenancy
+    if (d.saka_keja) {
+        const sk = d.saka_keja;
+        document.getElementById('saka-keja-section').style.display = 'block';
+        const histRows = sk.rent_history.length > 0
+            ? sk.rent_history.map(r =>
+                `<div class="sk-hist-row">
+                    <div><div class="sk-hist-month">${r.month}</div><div class="sk-hist-receipt">${r.receipt_number} · ${r.paid_on}</div></div>
+                    <div class="sk-hist-amt">KES ${r.gross_amount.toLocaleString()}</div>
+                </div>`).join('')
+            : `<div style="font-size:12px;color:rgba(255,255,255,.3);padding:6px 0">No rent payments yet.</div>`;
+        document.getElementById('saka-keja-card').innerHTML =
+            `<div class="sk-card">
+                <div class="sk-header">
+                    <div>
+                        <div class="sk-type">${sk.unit_type}</div>
+                        <div class="sk-loc">${sk.location}</div>
+                        <div class="sk-rent">KES ${sk.rent.toLocaleString()}/month</div>
+                    </div>
+                    <div style="font-size:11px;color:rgba(255,255,255,.3);text-align:right">Since<br>${sk.confirmed_at}</div>
+                </div>
+                <div class="sk-due">Next rent due: <strong>${sk.next_due}</strong></div>
+                <a href="${sk.tenant_url}" class="sk-pay-btn">Pay Rent →</a>
+                <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.35);margin-bottom:6px">Payment History</div>
+                ${histRows}
+            </div>`;
     }
 
     // Sellers

@@ -262,7 +262,7 @@ class SakaKejaController extends Controller
         $listings = SakaKejaListing::where('landlord_phone_hash', $hash)
             ->with([
                 'connections'  => fn($q) => $q->where('status', 'confirmed')->latest(),
-                'deposits'     => fn($q) => $q->where('status', 'confirmed'),
+                'deposits'     => fn($q) => $q->whereIn('status', ['confirmed', 'moving_out']),
                 'rentPayments' => fn($q) => $q->where('status', 'confirmed'),
             ])
             ->latest()
@@ -306,7 +306,7 @@ class SakaKejaController extends Controller
 
     public function tenantPage($token)
     {
-        $deposit  = SakaKejaDeposit::where('token', $token)->where('status', 'confirmed')->with('listing')->firstOrFail();
+        $deposit  = SakaKejaDeposit::where('token', $token)->whereIn('status', ['confirmed', 'moving_out'])->with('listing')->firstOrFail();
         $payments = SakaKejaRentPayment::where('deposit_id', $deposit->id)->latest()->get();
         $thisMonth = now()->format('Y-m');
         $paidThisMonth = $payments->where('rent_month', $thisMonth)->where('status', 'confirmed')->first();
@@ -315,7 +315,12 @@ class SakaKejaController extends Controller
 
     public function initiateRent(Request $request, $token)
     {
-        $deposit = SakaKejaDeposit::where('token', $token)->where('status', 'confirmed')->with('listing')->firstOrFail();
+        $deposit = SakaKejaDeposit::where('token', $token)->whereIn('status', ['confirmed', 'moving_out'])->with('listing')->firstOrFail();
+
+        if ($deposit->status === 'moving_out') {
+            return response()->json(['success' => false, 'message' => 'Move-out is in progress. Rent payments are paused.'], 422);
+        }
+
         $listing = $deposit->listing;
 
         $data = $request->validate([
@@ -482,6 +487,38 @@ class SakaKejaController extends Controller
     {
         $deposit = SakaKejaDeposit::where('token', $token)->where('status', 'held')->firstOrFail();
         $deposit->update(['status' => 'refunded', 'refunded_at' => now()]);
+        return response()->json(['success' => true]);
+    }
+
+    // ── Move out ──────────────────────────────────────────────────────────
+
+    public function requestMoveOut($token)
+    {
+        $deposit = SakaKejaDeposit::where('token', $token)->where('status', 'confirmed')->firstOrFail();
+        $deposit->update(['status' => 'moving_out', 'move_out_requested_at' => now()]);
+        return response()->json(['success' => true]);
+    }
+
+    public function approveMoveOut($token)
+    {
+        if (! session()->has('saka_keja_phone_hash')) {
+            return response()->json(['success' => false, 'message' => 'Unauthorized.'], 401);
+        }
+
+        $hash    = session('saka_keja_phone_hash');
+        $deposit = SakaKejaDeposit::where('token', $token)
+            ->where('status', 'moving_out')
+            ->with('listing')
+            ->firstOrFail();
+
+        // Ensure the logged-in landlord owns the listing
+        if ($deposit->listing->landlord_phone_hash !== $hash) {
+            return response()->json(['success' => false, 'message' => 'Unauthorized.'], 403);
+        }
+
+        $deposit->update(['status' => 'refunded', 'refunded_at' => now()]);
+        $deposit->listing->update(['status' => 'active']);
+
         return response()->json(['success' => true]);
     }
 }
