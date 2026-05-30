@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pay Rent · Saka Keja</title>
+@include('partials.pwa')
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;min-height:100vh;padding:20px}
+.card{max-width:460px;width:100%;margin:0 auto}
+.logo{font-size:18px;font-weight:900;background:linear-gradient(135deg,#25D366,#4ADE80);-webkit-background-clip:text;-webkit-text-fill-color:transparent;display:block;margin-bottom:6px;text-decoration:none}
+.brand{font-size:13px;font-weight:800;color:#f59e0b;display:block;margin-bottom:20px}
+
+.listing-box{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:16px;padding:18px;margin-bottom:16px}
+.listing-type{font-size:11px;font-weight:700;color:#f59e0b;margin-bottom:3px}
+.listing-loc{font-size:17px;font-weight:900}
+.listing-meta{font-size:13px;color:rgba(255,255,255,.4);margin-top:4px}
+.tenant-name{font-size:13px;font-weight:700;color:rgba(255,255,255,.6);margin-top:6px}
+
+.pay-box{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:16px;padding:20px;margin-bottom:16px}
+.pay-title{font-size:16px;font-weight:900;margin-bottom:6px}
+.pay-sub{font-size:13px;color:rgba(255,255,255,.4);margin-bottom:18px;line-height:1.6}
+.paid-badge{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;background:rgba(74,222,128,.1);border:1px solid rgba(74,222,128,.2);border-radius:999px;font-size:13px;font-weight:700;color:#4ADE80;margin-bottom:12px}
+
+.field{margin-bottom:14px}
+.field label{display:block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.4);margin-bottom:7px}
+.field input,.field select{width:100%;padding:13px 14px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:11px;color:#fff;font-size:15px;outline:none;font-family:inherit;transition:.2s}
+.field input:focus,.field select:focus{border-color:rgba(245,158,11,.4);background:rgba(245,158,11,.04)}
+.field select option{background:#1a2633}
+
+.fee-note{font-size:12px;color:rgba(255,255,255,.3);margin-bottom:14px;line-height:1.5}
+.fee-note strong{color:rgba(255,255,255,.5)}
+
+.btn{width:100%;padding:15px;background:linear-gradient(135deg,#d97706,#f59e0b);color:#0B141A;font-size:15px;font-weight:900;border:none;border-radius:13px;cursor:pointer}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.err{background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.25);border-radius:9px;padding:10px 14px;font-size:13px;color:#fca5a5;margin-top:12px;display:none}
+.pending{display:none;text-align:center;padding:20px 0}
+.spinner{width:44px;height:44px;border:3px solid rgba(255,255,255,.1);border-top-color:#f59e0b;border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 16px}
+@keyframes spin{to{transform:rotate(360deg)}}
+.success{display:none;text-align:center;padding:16px 0}
+
+.history-box{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:16px;padding:18px}
+.history-title{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.35);margin-bottom:14px}
+.payment-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.05)}
+.payment-row:last-child{border-bottom:none}
+.payment-month{font-size:14px;font-weight:700}
+.payment-date{font-size:11px;color:rgba(255,255,255,.3);margin-top:2px}
+.payment-right{text-align:right}
+.payment-amount{font-size:14px;font-weight:800;color:#4ADE80}
+.payment-receipt{font-size:11px;color:rgba(255,255,255,.3);margin-top:2px}
+.no-history{font-size:13px;color:rgba(255,255,255,.25);padding:8px 0}
+</style>
+</head>
+<body>
+<div class="card">
+    <a href="{{ route('home') }}" class="logo">Pregota</a>
+    <span class="brand">🏠 Saka Keja — Tenant Portal</span>
+
+    <div class="listing-box">
+        <div class="listing-type">{{ $deposit->listing->unitLabel() }}</div>
+        <div class="listing-loc">{{ $deposit->listing->location }}</div>
+        <div class="listing-meta">KES {{ number_format($deposit->listing->rent) }}/month</div>
+        <div class="tenant-name">Tenant: {{ $deposit->seeker_name }}</div>
+    </div>
+
+    <div class="pay-box">
+        <div class="pay-title">Pay Monthly Rent</div>
+        <div class="pay-sub">Pay via M-Pesa. Pregota deducts 2% management fee and sends the balance to your landlord.</div>
+
+        @if($paidThisMonth)
+        <div class="paid-badge">✓ Rent paid for {{ now()->format('F Y') }}</div>
+        <div style="font-size:12px;color:rgba(255,255,255,.3);margin-bottom:14px">Receipt: {{ $paidThisMonth->receipt_number }}</div>
+        @endif
+
+        <div id="pay-form">
+            <div class="field">
+                <label>Rent Month</label>
+                <select id="rent_month">
+                    @for($i = 0; $i >= -2; $i--)
+                    @php $m = now()->addMonths($i)->format('Y-m'); @endphp
+                    <option value="{{ $m }}" {{ $i === 0 ? 'selected' : '' }}>{{ now()->addMonths($i)->format('F Y') }}</option>
+                    @endfor
+                </select>
+            </div>
+            <div class="field">
+                <label>Your M-Pesa Number</label>
+                <input type="tel" id="phone" placeholder="07XX XXX XXX" autocomplete="tel">
+            </div>
+            <div class="fee-note">
+                KES {{ number_format($deposit->listing->rent) }} rent → Pregota keeps <strong>KES {{ number_format((int)ceil($deposit->listing->rent * 2 / 100)) }}</strong> (2%) → Landlord receives <strong>KES {{ number_format($deposit->listing->rent - (int)ceil($deposit->listing->rent * 2 / 100)) }}</strong>
+            </div>
+            <div class="err" id="err-msg"></div>
+            <button class="btn" id="pay-btn" onclick="doPay()">Pay KES {{ number_format($deposit->listing->rent) }} →</button>
+        </div>
+
+        <div class="pending" id="pending-view">
+            <div class="spinner"></div>
+            <div style="font-size:15px;font-weight:700;margin-bottom:6px">Check your phone</div>
+            <div style="font-size:13px;color:rgba(255,255,255,.45)">Enter your M-Pesa PIN to pay rent.</div>
+        </div>
+
+        <div class="success" id="success-view">
+            <div style="font-size:40px;margin-bottom:10px">✅</div>
+            <div style="font-size:17px;font-weight:900;color:#4ADE80;margin-bottom:6px">Rent Paid!</div>
+            <div style="font-size:13px;color:rgba(255,255,255,.4)">Payment confirmed. Refreshing...</div>
+        </div>
+    </div>
+
+    <div class="history-box">
+        <div class="history-title">Payment History</div>
+        @forelse($payments->where('status','confirmed') as $p)
+        <div class="payment-row">
+            <div>
+                <div class="payment-month">{{ \Carbon\Carbon::createFromFormat('Y-m', $p->rent_month)->format('F Y') }}</div>
+                <div class="payment-date">{{ $p->created_at->format('d M Y') }}</div>
+            </div>
+            <div class="payment-right">
+                <div class="payment-amount">KES {{ number_format($p->gross_amount) }}</div>
+                <div class="payment-receipt">{{ $p->receipt_number }}</div>
+            </div>
+        </div>
+        @empty
+        <div class="no-history">No payments yet.</div>
+        @endforelse
+    </div>
+</div>
+
+<script>
+const CSRF = '{{ csrf_token() }}';
+let checkoutId = null;
+
+async function doPay() {
+    const phone = document.getElementById('phone').value.trim();
+    const month = document.getElementById('rent_month').value;
+    const err   = document.getElementById('err-msg');
+    err.style.display = 'none';
+
+    if (!phone || !/^(\+?254|0)[17]\d{8}$/.test(phone)) {
+        err.textContent = 'Enter a valid Safaricom number.';
+        err.style.display = 'block';
+        return;
+    }
+
+    document.getElementById('pay-btn').disabled = true;
+
+    let data;
+    try {
+        const res = await fetch('{{ route("saka-keja.rent.post", $deposit->token) }}', {
+            method: 'POST',
+            headers: {'Content-Type':'application/json','X-CSRF-TOKEN':CSRF},
+            body: JSON.stringify({phone, rent_month: month}),
+        });
+        data = await res.json();
+    } catch(e) {
+        err.textContent = 'Network error. Try again.';
+        err.style.display = 'block';
+        document.getElementById('pay-btn').disabled = false;
+        return;
+    }
+
+    if (!data.success) {
+        err.textContent = data.message || 'Something went wrong.';
+        err.style.display = 'block';
+        document.getElementById('pay-btn').disabled = false;
+        return;
+    }
+
+    checkoutId = data.checkout_request_id;
+    document.getElementById('pay-form').style.display = 'none';
+    document.getElementById('pending-view').style.display = 'block';
+    poll();
+}
+
+function poll() {
+    fetch('{{ route("saka-keja.rent.poll") }}?checkout_request_id=' + checkoutId)
+        .then(r => r.json())
+        .then(d => {
+            if (d.status === 'confirmed') {
+                document.getElementById('pending-view').style.display = 'none';
+                document.getElementById('success-view').style.display = 'block';
+                setTimeout(() => location.reload(), 2500);
+            } else if (d.status === 'failed') {
+                document.getElementById('pending-view').style.display = 'none';
+                document.getElementById('pay-form').style.display = 'block';
+                const err = document.getElementById('err-msg');
+                err.textContent = 'Payment failed. Try again.';
+                err.style.display = 'block';
+                document.getElementById('pay-btn').disabled = false;
+            } else {
+                setTimeout(poll, 2500);
+            }
+        })
+        .catch(() => setTimeout(poll, 3000));
+}
+</script>
+</body>
+</html>

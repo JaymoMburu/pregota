@@ -11,6 +11,7 @@ use App\Models\SakaKejaAuthSession;
 use App\Models\SakaKejaConnection;
 use App\Models\SakaKejaDeposit;
 use App\Models\SakaKejaListing;
+use App\Models\SakaKejaRentPayment;
 use App\Models\Deni;
 use App\Models\DeniPayment;
 use App\Models\GroupPayment;
@@ -105,6 +106,14 @@ class MpesaController extends Controller
             if ($sakaDeposit) {
                 $receipt = 'PRG-' . now()->format('Ymd') . '-' . strtoupper(\Illuminate\Support\Str::random(6));
                 $sakaDeposit->update(['status' => 'held', 'receipt_number' => $receipt]);
+                return response()->json(['ResultCode' => 0, 'ResultDesc' => 'Accepted']);
+            }
+
+            // Saka Keja rent payment
+            $sakaRent = SakaKejaRentPayment::where('checkout_request_id', $checkoutId)->where('status', 'pending')->first();
+            if ($sakaRent) {
+                $receipt = 'PRG-' . now()->format('Ymd') . '-' . strtoupper(\Illuminate\Support\Str::random(6));
+                $sakaRent->update(['status' => 'confirmed', 'receipt_number' => $receipt]);
                 return response()->json(['ResultCode' => 0, 'ResultDesc' => 'Accepted']);
             }
 
@@ -281,6 +290,7 @@ class MpesaController extends Controller
             SakaKejaListing::where('verification_checkout_id', $checkoutId)->where('status', 'pending_verification')->update(['status' => 'failed']);
             SakaKejaConnection::where('checkout_request_id', $checkoutId)->where('status', 'pending')->update(['status' => 'failed']);
             SakaKejaDeposit::where('checkout_request_id', $checkoutId)->where('status', 'pending')->update(['status' => 'failed']);
+            SakaKejaRentPayment::where('checkout_request_id', $checkoutId)->where('status', 'pending')->update(['status' => 'failed']);
             CreditorAuthSession::where('checkout_request_id', $checkoutId)->where('status', 'pending')->update(['status' => 'failed']);
             CreditorPayout::where('checkout_request_id', $checkoutId)->where('status', 'pending')->update(['status' => 'failed']);
             PregotaPass::where('checkout_request_id', $checkoutId)->where('status', 'pending')->update(['status' => 'failed']);

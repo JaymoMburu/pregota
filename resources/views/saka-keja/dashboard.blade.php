@@ -125,6 +125,35 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
         </div>
         @endif
 
+        @if($listing->status === 'taken')
+        <div class="leads-section">
+            <div class="leads-title">Current Tenant</div>
+            @php $tenant = $listing->deposits->where('status','confirmed')->first(); @endphp
+            @if($tenant)
+            <div class="lead-row">
+                <div>
+                    <div class="lead-name">{{ $tenant->seeker_name }}</div>
+                    <div class="lead-time">Moved in {{ $tenant->confirmed_at?->format('d M Y') }}</div>
+                </div>
+                <div class="lead-phone">{{ $tenant->seeker_phone }}</div>
+            </div>
+            <div style="margin-top:10px">
+                <div class="leads-title">Rent History</div>
+                @forelse($listing->rentPayments->where('status','confirmed')->sortByDesc('rent_month') as $rp)
+                <div class="lead-row">
+                    <div>
+                        <div class="lead-name">{{ \Carbon\Carbon::createFromFormat('Y-m',$rp->rent_month)->format('F Y') }}</div>
+                        <div class="lead-time">{{ $rp->receipt_number }} — you received KES {{ number_format($rp->net_amount) }}</div>
+                    </div>
+                    <div class="lead-phone">KES {{ number_format($rp->gross_amount) }}</div>
+                </div>
+                @empty
+                <div class="no-leads">No rent payments yet.</div>
+                @endforelse
+            </div>
+            @endif
+        </div>
+        @else
         <div class="leads-section">
             <div class="leads-title">Seekers ({{ $listing->connections->count() }} lead{{ $listing->connections->count() !== 1 ? 's' : '' }})</div>
             @forelse($listing->connections as $conn)
@@ -139,6 +168,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
             <div class="no-leads">No connections yet — seekers who pay KES 200 will appear here.</div>
             @endforelse
         </div>
+        @endif
     </div>
     @empty
     <div class="empty">

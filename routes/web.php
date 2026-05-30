@@ -214,6 +214,9 @@ Route::get('/saka-keja/landlord/dashboard', [SakaKejaController::class, 'dashboa
 Route::post('/saka-keja/landlord/logout', [SakaKejaController::class, 'landlordLogout'])->name('saka-keja.landlord.logout');
 Route::get('/saka-keja/connect/poll', [SakaKejaController::class, 'pollConnect'])->name('saka-keja.connect.poll');
 Route::get('/saka-keja/deposit/poll', [SakaKejaController::class, 'pollDeposit'])->name('saka-keja.deposit.poll');
+Route::get('/saka-keja/rent/poll', [SakaKejaController::class, 'pollRent'])->name('saka-keja.rent.poll');
+Route::get('/saka-keja/tenant/{token}', [SakaKejaController::class, 'tenantPage'])->name('saka-keja.tenant');
+Route::post('/saka-keja/tenant/{token}/pay-rent', [SakaKejaController::class, 'initiateRent'])->name('saka-keja.rent.post');
 Route::get('/saka-keja/deposit/{token}', [SakaKejaController::class, 'manageDeposit'])->name('saka-keja.deposit.manage');
 Route::post('/saka-keja/deposit/{token}/confirm', [SakaKejaController::class, 'confirmDeposit'])->name('saka-keja.deposit.confirm');
 Route::post('/saka-keja/deposit/{token}/cancel', [SakaKejaController::class, 'cancelDeposit'])->name('saka-keja.deposit.cancel');

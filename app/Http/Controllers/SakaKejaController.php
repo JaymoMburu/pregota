@@ -6,6 +6,7 @@ use App\Models\SakaKejaAuthSession;
 use App\Models\SakaKejaConnection;
 use App\Models\SakaKejaDeposit;
 use App\Models\SakaKejaListing;
+use App\Models\SakaKejaRentPayment;
 use App\Services\DarajaService;
 use App\Services\SellerService;
 use Illuminate\Http\Request;
@@ -259,17 +260,22 @@ class SakaKejaController extends Controller
 
         $hash     = session('saka_keja_phone_hash');
         $listings = SakaKejaListing::where('landlord_phone_hash', $hash)
-            ->with(['connections' => fn($q) => $q->where('status', 'confirmed')->latest()])
+            ->with([
+                'connections'  => fn($q) => $q->where('status', 'confirmed')->latest(),
+                'deposits'     => fn($q) => $q->where('status', 'confirmed'),
+                'rentPayments' => fn($q) => $q->where('status', 'confirmed'),
+            ])
             ->latest()
             ->get();
 
         $listings->each(function ($listing) {
             $listing->connections->each(function ($conn) {
-                try {
-                    $conn->seeker_phone = Crypt::decryptString($conn->seeker_phone_encrypted);
-                } catch (\Exception $e) {
-                    $conn->seeker_phone = '—';
-                }
+                try { $conn->seeker_phone = Crypt::decryptString($conn->seeker_phone_encrypted); }
+                catch (\Exception $e) { $conn->seeker_phone = '—'; }
+            });
+            $listing->deposits->each(function ($dep) {
+                try { $dep->seeker_phone = Crypt::decryptString($dep->seeker_phone_encrypted); }
+                catch (\Exception $e) { $dep->seeker_phone = '—'; }
             });
         });
 
@@ -292,6 +298,78 @@ class SakaKejaController extends Controller
         $listing = SakaKejaListing::where('id', $id)->where('landlord_phone_hash', $hash)->firstOrFail();
         $listing->update(['status' => 'inactive']);
         return response()->json(['success' => true]);
+    }
+
+    // ── Rent payments ─────────────────────────────────────────────────────
+
+    const RENT_FEE_PERCENT = 2;
+
+    public function tenantPage($token)
+    {
+        $deposit  = SakaKejaDeposit::where('token', $token)->where('status', 'confirmed')->with('listing')->firstOrFail();
+        $payments = SakaKejaRentPayment::where('deposit_id', $deposit->id)->latest()->get();
+        $thisMonth = now()->format('Y-m');
+        $paidThisMonth = $payments->where('rent_month', $thisMonth)->where('status', 'confirmed')->first();
+        return view('saka-keja.tenant', compact('deposit', 'payments', 'paidThisMonth', 'thisMonth'));
+    }
+
+    public function initiateRent(Request $request, $token)
+    {
+        $deposit = SakaKejaDeposit::where('token', $token)->where('status', 'confirmed')->with('listing')->firstOrFail();
+        $listing = $deposit->listing;
+
+        $data = $request->validate([
+            'phone'      => ['required', 'regex:/^(\+?254|0)[17]\d{8}$/'],
+            'rent_month' => ['required', 'date_format:Y-m'],
+        ]);
+
+        // Prevent double payment for same month
+        $alreadyPaid = SakaKejaRentPayment::where('deposit_id', $deposit->id)
+            ->where('rent_month', $data['rent_month'])
+            ->where('status', 'confirmed')
+            ->exists();
+
+        if ($alreadyPaid) {
+            return response()->json(['success' => false, 'message' => 'Rent for this month is already paid.'], 422);
+        }
+
+        $gross = $listing->rent;
+        $fee   = (int) ceil($gross * self::RENT_FEE_PERCENT / 100);
+        $net   = $gross - $fee;
+
+        $stk = $this->daraja->stkPush(
+            phone: $data['phone'],
+            amount: $gross,
+            accountRef: 'RENT',
+            description: 'Saka Keja Rent — ' . $listing->location . ' ' . $data['rent_month'],
+        );
+
+        if (! isset($stk['CheckoutRequestID'])) {
+            return response()->json(['success' => false, 'message' => $stk['errorMessage'] ?? 'STK Push failed.'], 422);
+        }
+
+        SakaKejaRentPayment::create([
+            'deposit_id'          => $deposit->id,
+            'listing_id'          => $listing->id,
+            'rent_month'          => $data['rent_month'],
+            'gross_amount'        => $gross,
+            'fee_amount'          => $fee,
+            'net_amount'          => $net,
+            'checkout_request_id' => $stk['CheckoutRequestID'],
+        ]);
+
+        return response()->json([
+            'success'             => true,
+            'checkout_request_id' => $stk['CheckoutRequestID'],
+            'safaricom_msg'       => $stk['CustomerMessage'] ?? '',
+        ]);
+    }
+
+    public function pollRent(Request $request)
+    {
+        $payment = SakaKejaRentPayment::where('checkout_request_id', $request->query('checkout_request_id'))->first();
+        if (! $payment) return response()->json(['status' => 'not_found']);
+        return response()->json(['status' => $payment->status]);
     }
 
     public function landlordLogout(Request $request)

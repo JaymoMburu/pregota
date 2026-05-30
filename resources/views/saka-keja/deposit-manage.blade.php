@@ -64,6 +64,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
             <div class="status-title">You're moving in!</div>
             <div class="status-sub">Deposit released to landlord. Receipt: {{ $deposit->receipt_number }}<br>Confirmed on {{ $deposit->confirmed_at->format('d M Y, H:i') }}</div>
         </div>
+        <a href="{{ route('saka-keja.tenant', $deposit->token) }}" style="display:block;text-align:center;padding:14px;background:linear-gradient(135deg,#d97706,#f59e0b);border-radius:13px;color:#0B141A;font-weight:800;text-decoration:none;font-size:14px;margin-bottom:14px">Pay Rent / View History →</a>
 
     @elseif($deposit->status === 'refunded')
         <div class="status-refunded">

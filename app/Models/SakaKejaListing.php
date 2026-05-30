@@ -27,6 +27,11 @@ class SakaKejaListing extends Model
         return $this->hasMany(SakaKejaDeposit::class, 'listing_id');
     }
 
+    public function rentPayments()
+    {
+        return $this->hasMany(SakaKejaRentPayment::class, 'listing_id');
+    }
+
     public function totalSecureAmount(): int
     {
         $deposit   = $this->deposit_amount ?? $this->rent;
