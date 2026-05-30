@@ -1,16 +1,16 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Landlord Dashboard · Saka Keja</title>
+<title>Landlord Dashboard Â· Saka Keja</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800;900&display=swap" rel="stylesheet">
 @include('partials.pwa')
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;color:#fff;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px}
+body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;color:#fff;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
 .card{max-width:400px;width:100%;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:22px;padding:36px 28px}
 .logo{font-size:18px;font-weight:900;background:linear-gradient(135deg,#25D366,#4ADE80);-webkit-background-clip:text;-webkit-text-fill-color:transparent;display:block;margin-bottom:6px;text-decoration:none}
 .brand{font-size:13px;font-weight:800;color:#f59e0b;display:block;margin-bottom:24px}
@@ -35,10 +35,10 @@ body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;col
 <body>
 <div class="card">
     <a href="{{ route('home') }}" class="logo">Pregota</a>
-    <span class="brand">🏠 Saka Keja</span>
+    <span class="brand">ðŸ  Saka Keja</span>
 
     <div id="login-view">
-        <div class="icon">🔑</div>
+        <div class="icon">ðŸ”‘</div>
         <div class="title">Landlord Dashboard</div>
         <div class="sub">Enter your M-Pesa number to access your listings and see who wants to connect with you. KES 1 verification charge.</div>
 
@@ -47,7 +47,7 @@ body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;col
             <input type="tel" id="phone" placeholder="07XX XXX XXX" autocomplete="tel">
         </div>
         <div class="err" id="err-msg"></div>
-        <button class="btn" id="login-btn" onclick="doLogin()">Access Dashboard →</button>
+        <button class="btn" id="login-btn" onclick="doLogin()">Access Dashboard â†’</button>
         <div class="note">KES 1 is charged to verify your number. Access is valid for this session.</div>
     </div>
 
@@ -57,7 +57,7 @@ body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;col
         <div style="font-size:13px;color:rgba(255,255,255,.45)">Enter your M-Pesa PIN to verify and access your dashboard.</div>
     </div>
 
-    <a href="{{ route('saka-keja.browse') }}" class="browse-link">← Browse listings</a>
+    <a href="{{ route('saka-keja.browse') }}" class="browse-link">â† Browse listings</a>
 </div>
 
 <script>
@@ -127,3 +127,4 @@ function poll() {
 </script>
 </body>
 </html>
+

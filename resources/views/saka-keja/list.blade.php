@@ -1,16 +1,16 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>List Your Property · Saka Keja</title>
+<title>List Your Property Â· Saka Keja</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800;900&display=swap" rel="stylesheet">
 @include('partials.pwa')
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;color:#fff;min-height:100vh;padding:20px}
+body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;color:#fff;min-height:100vh;padding:20px-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
 .card{max-width:480px;width:100%;margin:0 auto;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:22px;padding:32px 26px}
 .logo{font-size:18px;font-weight:900;background:linear-gradient(135deg,#25D366,#4ADE80);-webkit-background-clip:text;-webkit-text-fill-color:transparent;display:block;margin-bottom:6px;text-decoration:none}
 .brand{font-size:13px;font-weight:800;color:#f59e0b;margin-bottom:24px;display:block}
@@ -51,7 +51,7 @@ body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;col
 <body>
 <div class="card">
     <a href="{{ route('home') }}" class="logo">Pregota</a>
-    <span class="brand">🏠 Saka Keja</span>
+    <span class="brand">ðŸ  Saka Keja</span>
 
     <div id="form-view">
         <div class="title">List Your Property</div>
@@ -68,12 +68,12 @@ body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;col
         <div class="field">
             <label>Unit Type</label>
             <div class="type-grid" id="type-grid">
-                <div class="type-btn" data-value="bedsitter"><span class="type-icon">🛏️</span>Bedsitter</div>
-                <div class="type-btn" data-value="studio"><span class="type-icon">🚪</span>Studio</div>
-                <div class="type-btn" data-value="1br"><span class="type-icon">🏠</span>1 Bedroom</div>
-                <div class="type-btn" data-value="2br"><span class="type-icon">🏡</span>2 Bedrooms</div>
-                <div class="type-btn" data-value="3br"><span class="type-icon">🏘️</span>3 Bedrooms</div>
-                <div class="type-btn" data-value="shop"><span class="type-icon">🏪</span>Shop</div>
+                <div class="type-btn" data-value="bedsitter"><span class="type-icon">ðŸ›ï¸</span>Bedsitter</div>
+                <div class="type-btn" data-value="studio"><span class="type-icon">ðŸšª</span>Studio</div>
+                <div class="type-btn" data-value="1br"><span class="type-icon">ðŸ </span>1 Bedroom</div>
+                <div class="type-btn" data-value="2br"><span class="type-icon">ðŸ¡</span>2 Bedrooms</div>
+                <div class="type-btn" data-value="3br"><span class="type-icon">ðŸ˜ï¸</span>3 Bedrooms</div>
+                <div class="type-btn" data-value="shop"><span class="type-icon">ðŸª</span>Shop</div>
             </div>
             <input type="hidden" id="unit_type">
         </div>
@@ -92,16 +92,16 @@ body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;col
         <div class="field">
             <label>Photos (at least 1, up to 8)</label>
             <div class="photo-drop" id="photo-drop" onclick="document.getElementById('photo-input').click()">
-                <div class="photo-drop-icon">📸</div>
-                <div class="photo-drop-text"><strong>Tap to add photos</strong><br>JPG, PNG, WebP — max 5MB each</div>
+                <div class="photo-drop-icon">ðŸ“¸</div>
+                <div class="photo-drop-text"><strong>Tap to add photos</strong><br>JPG, PNG, WebP â€” max 5MB each</div>
             </div>
             <input type="file" id="photo-input" accept="image/jpg,image/jpeg,image/png,image/webp" multiple style="display:none">
             <div class="photo-previews" id="photo-previews"></div>
         </div>
 
         <div class="err" id="err-msg"></div>
-        <button class="btn" id="submit-btn" onclick="doSubmit()">List Property — Pay KES 200 →</button>
-        <div class="note">Your number is verified via M-Pesa. Seekers never see your number — they pay to connect and you call them.</div>
+        <button class="btn" id="submit-btn" onclick="doSubmit()">List Property â€” Pay KES 200 â†’</button>
+        <div class="note">Your number is verified via M-Pesa. Seekers never see your number â€” they pay to connect and you call them.</div>
     </div>
 
     <div class="pending" id="pending-view">
@@ -150,7 +150,7 @@ function addFiles(files) {
         const wrap = document.createElement('div');
         wrap.className = 'photo-preview-wrap';
         const idx = selectedFiles.length - 1;
-        wrap.innerHTML = `<img class="photo-preview" src="${URL.createObjectURL(file)}"><button class="photo-remove" onclick="removePhoto(${idx}, this.parentNode)">×</button>`;
+        wrap.innerHTML = `<img class="photo-preview" src="${URL.createObjectURL(file)}"><button class="photo-remove" onclick="removePhoto(${idx}, this.parentNode)">Ã—</button>`;
         previews.appendChild(wrap);
     });
 }
@@ -235,3 +235,4 @@ function pollListing() {
 </script>
 </body>
 </html>
+

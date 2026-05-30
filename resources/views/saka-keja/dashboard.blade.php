@@ -1,16 +1,16 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>My Listings · Saka Keja</title>
+<title>My Listings Â· Saka Keja</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800;900&display=swap" rel="stylesheet">
 @include('partials.pwa')
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;color:#fff;min-height:100vh}
+body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;color:#fff;min-height:100vh-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
 .nav{padding:14px 20px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,.07);position:sticky;top:0;background:#0B141A;z-index:10}
 .logo{font-size:20px;font-weight:900;background:linear-gradient(135deg,#25D366,#4ADE80);-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-decoration:none}
 .logout-btn{font-size:12px;color:rgba(255,255,255,.35);background:none;border:none;cursor:pointer;padding:6px 10px}
@@ -78,7 +78,7 @@ body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;col
 
 <div class="wrap">
     <div class="greeting">
-        <div class="greeting-name">🏠 My Listings</div>
+        <div class="greeting-name">ðŸ  My Listings</div>
         <div class="greeting-sub">Saka Keja Landlord Dashboard</div>
     </div>
 
@@ -93,7 +93,7 @@ body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;col
         </div>
     </div>
 
-    <a href="{{ route('saka-keja.list') }}" class="add-btn">+ Add New Listing — KES 200</a>
+    <a href="{{ route('saka-keja.list') }}" class="add-btn">+ Add New Listing â€” KES 200</a>
 
     <div class="section-head">Your Properties</div>
 
@@ -103,7 +103,7 @@ body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;col
             @if($listing->firstPhoto())
                 <img class="listing-img" src="{{ asset('uploads/saka-keja/' . $listing->id . '/' . $listing->firstPhoto()) }}" alt="">
             @else
-                <div class="listing-img-placeholder">🏠</div>
+                <div class="listing-img-placeholder">ðŸ </div>
             @endif
             <div class="listing-info">
                 <div class="listing-type">{{ $listing->unitLabel() }}</div>
@@ -136,9 +136,9 @@ body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;col
             @endphp
             @if($isMovingOut)
             <div style="background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.2);border-radius:10px;padding:12px 14px;margin-bottom:12px">
-                <div style="font-size:12px;font-weight:800;color:#f59e0b;margin-bottom:4px">⚠️ Move-Out Requested</div>
-                <div style="font-size:12px;color:rgba(255,255,255,.55);margin-bottom:10px">{{ $tenant->seeker_name }} requested to move out on {{ $tenant->move_out_requested_at?->format('d M Y') }}. Inspect the property first, then approve. Deposit held: KES {{ number_format($tenant->deposit_amount) }} — refund full amount if house is in good condition.</div>
-                <button onclick="approveMoveOut('{{ $tenant->token }}')" style="width:100%;padding:9px;background:linear-gradient(135deg,#16a34a,#22c55e);color:#fff;font-size:13px;font-weight:800;border:none;border-radius:9px;cursor:pointer" id="approve-btn-{{ $tenant->id }}">✓ Approve Move Out &amp; Release Deposit</button>
+                <div style="font-size:12px;font-weight:800;color:#f59e0b;margin-bottom:4px">âš ï¸ Move-Out Requested</div>
+                <div style="font-size:12px;color:rgba(255,255,255,.55);margin-bottom:10px">{{ $tenant->seeker_name }} requested to move out on {{ $tenant->move_out_requested_at?->format('d M Y') }}. Inspect the property first, then approve. Deposit held: KES {{ number_format($tenant->deposit_amount) }} â€” refund full amount if house is in good condition.</div>
+                <button onclick="approveMoveOut('{{ $tenant->token }}')" style="width:100%;padding:9px;background:linear-gradient(135deg,#16a34a,#22c55e);color:#fff;font-size:13px;font-weight:800;border:none;border-radius:9px;cursor:pointer" id="approve-btn-{{ $tenant->id }}">âœ“ Approve Move Out &amp; Release Deposit</button>
             </div>
             @endif
 
@@ -157,7 +157,7 @@ body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;col
                 <div class="lead-row">
                     <div>
                         <div class="lead-name">{{ \Carbon\Carbon::createFromFormat('Y-m',$rp->rent_month)->format('F Y') }}</div>
-                        <div class="lead-time">{{ $rp->receipt_number }} — you received KES {{ number_format($rp->net_amount) }}</div>
+                        <div class="lead-time">{{ $rp->receipt_number }} â€” you received KES {{ number_format($rp->net_amount) }}</div>
                     </div>
                     <div class="lead-phone">KES {{ number_format($rp->gross_amount) }}</div>
                 </div>
@@ -179,14 +179,14 @@ body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;col
                 <div class="lead-phone">{{ $conn->seeker_phone }}</div>
             </div>
             @empty
-            <div class="no-leads">No connections yet — seekers who pay KES 200 will appear here.</div>
+            <div class="no-leads">No connections yet â€” seekers who pay KES 200 will appear here.</div>
             @endforelse
         </div>
         @endif
     </div>
     @empty
     <div class="empty">
-        <div class="empty-icon">🏠</div>
+        <div class="empty-icon">ðŸ </div>
         <div style="font-size:15px;font-weight:700;color:rgba(255,255,255,.5);margin-bottom:6px">No listings yet</div>
         <div style="font-size:13px">Click "Add New Listing" to publish your first property.</div>
     </div>
@@ -199,7 +199,7 @@ const CSRF = '{{ csrf_token() }}';
 async function approveMoveOut(token) {
     if (!confirm('Approve move-out and refund the deposit? The listing will go back to active.')) return;
     const btn = document.querySelector(`[onclick="approveMoveOut('${token}')"]`);
-    if (btn) { btn.disabled = true; btn.textContent = 'Processing…'; }
+    if (btn) { btn.disabled = true; btn.textContent = 'Processingâ€¦'; }
     const res  = await fetch(`/saka-keja/deposit/${token}/approve-move-out`, {method:'POST',headers:{'X-CSRF-TOKEN':CSRF}});
     const data = await res.json();
     if (data.success) location.reload();
@@ -222,3 +222,4 @@ async function deleteListing(id) {
 </script>
 </body>
 </html>
+

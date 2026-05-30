@@ -1,16 +1,16 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Smart Biashara · Pregota</title>
+<title>Smart Biashara Â· Pregota</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800;900&display=swap" rel="stylesheet">
 @include('partials.pwa')
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;color:#fff;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px}
+body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;color:#fff;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
 .card{max-width:400px;width:100%;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:22px;padding:36px 28px}
 .logo{font-size:18px;font-weight:900;background:linear-gradient(135deg,#25D366,#4ADE80);-webkit-background-clip:text;-webkit-text-fill-color:transparent;display:block;margin-bottom:28px;text-decoration:none}
 .icon{font-size:40px;margin-bottom:12px}
@@ -38,14 +38,14 @@ body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;col
     <a href="{{ route('home') }}" class="logo">Pregota</a>
 
     <div id="login-view">
-        <div class="icon">🏢</div>
+        <div class="icon">ðŸ¢</div>
         <div class="title">Smart Biashara</div>
-        <div class="sub">Track all your madeni in one place — personal loans, customer credit, or business tabs. KES 20 per day, charged via M-Pesa.</div>
+        <div class="sub">Track all your madeni in one place â€” personal loans, customer credit, or business tabs. KES 20 per day, charged via M-Pesa.</div>
 
         <div class="use-cases">
-            <div class="uc"><div class="uc-icon">🏍️</div><div class="uc-label">Boda Boda</div></div>
-            <div class="uc"><div class="uc-icon">🏪</div><div class="uc-label">Vibanda</div></div>
-            <div class="uc"><div class="uc-icon">🤝</div><div class="uc-label">Friends & Family</div></div>
+            <div class="uc"><div class="uc-icon">ðŸï¸</div><div class="uc-label">Boda Boda</div></div>
+            <div class="uc"><div class="uc-icon">ðŸª</div><div class="uc-label">Vibanda</div></div>
+            <div class="uc"><div class="uc-icon">ðŸ¤</div><div class="uc-label">Friends & Family</div></div>
         </div>
 
         <div class="field">
@@ -57,8 +57,8 @@ body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;col
             <input type="tel" id="phone" placeholder="07XX XXX XXX" autocomplete="tel">
         </div>
         <div class="err" id="err-msg"></div>
-        <button class="btn" id="auth-btn" onclick="doAuth()">Get Access — KES 20 / day →</button>
-        <div class="note">KES 20 is charged once per day via M-Pesa. Access your dashboard all day until midnight — no password needed.</div>
+        <button class="btn" id="auth-btn" onclick="doAuth()">Get Access â€” KES 20 / day â†’</button>
+        <div class="note">KES 20 is charged once per day via M-Pesa. Access your dashboard all day until midnight â€” no password needed.</div>
     </div>
 
     <div class="pending" id="pending-view">
@@ -125,3 +125,4 @@ function poll() {
 </script>
 </body>
 </html>
+

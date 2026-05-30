@@ -1,16 +1,16 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>My Deposit · Saka Keja</title>
+<title>My Deposit Â· Saka Keja</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800;900&display=swap" rel="stylesheet">
 @include('partials.pwa')
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;color:#fff;min-height:100vh;padding:20px}
+body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;color:#fff;min-height:100vh;padding:20px-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
 .card{max-width:460px;width:100%;margin:0 auto;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:22px;padding:32px 26px}
 .logo{font-size:18px;font-weight:900;background:linear-gradient(135deg,#25D366,#4ADE80);-webkit-background-clip:text;-webkit-text-fill-color:transparent;display:block;margin-bottom:6px;text-decoration:none}
 .brand{font-size:13px;font-weight:800;color:#f59e0b;display:block;margin-bottom:20px}
@@ -53,7 +53,7 @@ body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;col
 <body>
 <div class="card">
     <a href="{{ route('home') }}" class="logo">Pregota</a>
-    <span class="brand">🏠 Saka Keja — My Deposit</span>
+    <span class="brand">ðŸ  Saka Keja â€” My Deposit</span>
 
     <div class="listing-info">
         <div class="listing-type">{{ $deposit->listing->unitLabel() }}</div>
@@ -63,31 +63,31 @@ body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;col
 
     @if($deposit->status === 'confirmed')
         <div class="status-confirmed">
-            <div class="status-icon">✅</div>
+            <div class="status-icon">âœ…</div>
             <div class="status-title">You're moving in!</div>
             <div class="status-sub">Deposit released to landlord. Receipt: {{ $deposit->receipt_number }}<br>Confirmed on {{ $deposit->confirmed_at->format('d M Y, H:i') }}</div>
         </div>
-        <a href="{{ route('saka-keja.tenant', $deposit->token) }}" style="display:block;text-align:center;padding:14px;background:linear-gradient(135deg,#d97706,#f59e0b);border-radius:13px;color:#0B141A;font-weight:800;text-decoration:none;font-size:14px;margin-bottom:14px">Pay Rent / View History →</a>
+        <a href="{{ route('saka-keja.tenant', $deposit->token) }}" style="display:block;text-align:center;padding:14px;background:linear-gradient(135deg,#d97706,#f59e0b);border-radius:13px;color:#0B141A;font-weight:800;text-decoration:none;font-size:14px;margin-bottom:14px">Pay Rent / View History â†’</a>
 
     @elseif($deposit->status === 'refunded')
         <div class="status-refunded">
-            <div class="status-icon">↩️</div>
+            <div class="status-icon">â†©ï¸</div>
             <div class="status-title">Deposit Refunded</div>
             <div class="status-sub">Your KES {{ number_format($deposit->deposit_amount) }} deposit has been refunded. The KES 200 escrow fee is retained by Pregota.</div>
         </div>
-        <a href="{{ route('saka-keja.browse') }}" style="display:block;text-align:center;padding:14px;background:linear-gradient(135deg,#d97706,#f59e0b);border-radius:13px;color:#0B141A;font-weight:800;text-decoration:none;font-size:14px">Browse Other Houses →</a>
+        <a href="{{ route('saka-keja.browse') }}" style="display:block;text-align:center;padding:14px;background:linear-gradient(135deg,#d97706,#f59e0b);border-radius:13px;color:#0B141A;font-weight:800;text-decoration:none;font-size:14px">Browse Other Houses â†’</a>
 
     @elseif($deposit->listing->status === 'taken' && $deposit->status === 'held')
         <div class="status-taken">
-            <div class="status-icon">🏠</div>
+            <div class="status-icon">ðŸ </div>
             <div class="status-title">House Already Taken</div>
             <div class="status-sub">Another seeker confirmed first. Your KES {{ number_format($deposit->deposit_amount) }} deposit will be refunded to your M-Pesa shortly.</div>
         </div>
-        <a href="{{ route('saka-keja.browse') }}" style="display:block;text-align:center;padding:14px;background:linear-gradient(135deg,#d97706,#f59e0b);border-radius:13px;color:#0B141A;font-weight:800;text-decoration:none;font-size:14px">Browse Other Houses →</a>
+        <a href="{{ route('saka-keja.browse') }}" style="display:block;text-align:center;padding:14px;background:linear-gradient(135deg,#d97706,#f59e0b);border-radius:13px;color:#0B141A;font-weight:800;text-decoration:none;font-size:14px">Browse Other Houses â†’</a>
 
     @else
         <div class="status-held">
-            <div class="status-icon">🔒</div>
+            <div class="status-icon">ðŸ”’</div>
             <div class="status-title">KES {{ number_format($deposit->deposit_amount) }} Secured with Pregota</div>
             <div class="status-sub">Your deposit is held safely. Visit the house, then confirm below to release to landlord.</div>
         </div>
@@ -108,20 +108,20 @@ body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;col
                 <span class="checkbox-label">I confirm I have physically visited this property and it matches what was listed.</span>
             </label>
 
-            <button class="btn" id="confirm-btn" disabled onclick="doConfirm()">✓ I'm Moving In — Release Deposit to Landlord</button>
-            <button class="btn-cancel" onclick="doCancel()">I changed my mind — Refund my deposit</button>
+            <button class="btn" id="confirm-btn" disabled onclick="doConfirm()">âœ“ I'm Moving In â€” Release Deposit to Landlord</button>
+            <button class="btn-cancel" onclick="doCancel()">I changed my mind â€” Refund my deposit</button>
             <div class="dispute-note">After confirming, you have 24 hours to raise a dispute if the house does not match what was advertised.</div>
         </div>
 
         <div class="success-view" id="success-view">
-            <div class="success-icon">✅</div>
+            <div class="success-icon">âœ…</div>
             <div style="font-size:18px;font-weight:900;margin-bottom:6px;color:#4ADE80">Confirmed!</div>
             <div style="font-size:13px;color:rgba(255,255,255,.45);line-height:1.6">Deposit released to landlord. Welcome to your new home!</div>
         </div>
     @endif
 
     <div style="text-align:center;margin-top:20px">
-        <a href="{{ route('saka-keja.browse') }}" style="font-size:12px;color:rgba(255,255,255,.3);text-decoration:none">← Browse other listings</a>
+        <a href="{{ route('saka-keja.browse') }}" style="font-size:12px;color:rgba(255,255,255,.3);text-decoration:none">â† Browse other listings</a>
     </div>
 </div>
 
@@ -165,3 +165,4 @@ async function doCancel() {
 </script>
 </body>
 </html>
+

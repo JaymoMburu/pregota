@@ -1,16 +1,16 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pay Link Login — Pregota</title>
+<title>Pay Link Login â€” Pregota</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800;900&display=swap" rel="stylesheet">
 @include('partials.pwa')
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;color:#fff;min-height:100vh;display:flex;flex-direction:column}
+body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;color:#fff;min-height:100vh;display:flex;flex-direction:column-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
 .nav{padding:16px 24px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,.07)}
 .logo{font-size:20px;font-weight:900;background:linear-gradient(135deg,#25D366,#4ADE80);-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-decoration:none}
 .wrap{flex:1;display:flex;align-items:center;justify-content:center;padding:40px 24px}
@@ -41,7 +41,7 @@ h1{font-size:22px;font-weight:900;margin-bottom:6px}
     <div class="card">
         <div id="login-view">
             <h1>Welcome back</h1>
-            <div class="sub">Enter your handle and the M-Pesa number you registered with. We'll send an STK Push to verify — no password needed.</div>
+            <div class="sub">Enter your handle and the M-Pesa number you registered with. We'll send an STK Push to verify â€” no password needed.</div>
 
             <div class="field">
                 <label>Your Handle</label>
@@ -52,7 +52,7 @@ h1{font-size:22px;font-weight:900;margin-bottom:6px}
                 <input type="tel" id="phone" placeholder="07XX XXX XXX" autocomplete="tel">
             </div>
             <div class="err" id="err-msg"></div>
-            <button class="btn" id="login-btn" onclick="doLogin()">Login — Verify via M-Pesa →</button>
+            <button class="btn" id="login-btn" onclick="doLogin()">Login â€” Verify via M-Pesa â†’</button>
             <div class="note">KES 1 verification charge. Access is valid for 1 hour.</div>
         </div>
 
@@ -135,3 +135,4 @@ function pollLogin() {
 </script>
 </body>
 </html>
+

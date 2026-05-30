@@ -1,16 +1,16 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Secure This House · Saka Keja</title>
+<title>Secure This House Â· Saka Keja</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800;900&display=swap" rel="stylesheet">
 @include('partials.pwa')
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;color:#fff;min-height:100vh;padding:20px}
+body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;color:#fff;min-height:100vh;padding:20px-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
 .card{max-width:460px;width:100%;margin:0 auto;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:22px;padding:32px 26px}
 .logo{font-size:18px;font-weight:900;background:linear-gradient(135deg,#25D366,#4ADE80);-webkit-background-clip:text;-webkit-text-fill-color:transparent;display:block;margin-bottom:6px;text-decoration:none}
 .brand{font-size:13px;font-weight:800;color:#f59e0b;display:block;margin-bottom:20px}
@@ -46,7 +46,7 @@ body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;col
 <body>
 <div class="card">
     <a href="{{ route('home') }}" class="logo">Pregota</a>
-    <span class="brand">🏠 Saka Keja — Secure This House</span>
+    <span class="brand">ðŸ  Saka Keja â€” Secure This House</span>
 
     <div class="listing-info">
         <div class="listing-type">{{ $listing->unitLabel() }}</div>
@@ -85,7 +85,7 @@ body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;col
                 <span class="breakdown-total-label">Total via M-Pesa</span>
                 <span class="breakdown-total-amount">KES {{ number_format($total + 200) }}</span>
             </div>
-            <div class="escrow-note">🔒 All funds held securely by Pregota. Released to landlord only when you confirm you're moving in.</div>
+            <div class="escrow-note">ðŸ”’ All funds held securely by Pregota. Released to landlord only when you confirm you're moving in.</div>
         </div>
 
         <div class="field">
@@ -97,7 +97,7 @@ body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;col
             <input type="tel" id="phone" placeholder="07XX XXX XXX" autocomplete="tel">
         </div>
         <div class="err" id="err-msg"></div>
-        <button class="btn" id="deposit-btn" onclick="doDeposit()">Pay KES {{ number_format($total + 200) }} to Secure →</button>
+        <button class="btn" id="deposit-btn" onclick="doDeposit()">Pay KES {{ number_format($total + 200) }} to Secure â†’</button>
         <div class="note">STK Push will appear on your phone. Your money stays with Pregota until you confirm you're moving in.</div>
     </div>
 
@@ -173,3 +173,4 @@ function poll() {
 </script>
 </body>
 </html>
+

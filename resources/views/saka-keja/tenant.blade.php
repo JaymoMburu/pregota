@@ -1,16 +1,16 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tenant Portal · Saka Keja</title>
+<title>Tenant Portal Â· Saka Keja</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800;900&display=swap" rel="stylesheet">
 @include('partials.pwa')
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;color:#fff;min-height:100vh;padding:20px}
+body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;color:#fff;min-height:100vh;padding:20px-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
 .card{max-width:460px;width:100%;margin:0 auto}
 .logo{font-size:18px;font-weight:900;background:linear-gradient(135deg,#25D366,#4ADE80);-webkit-background-clip:text;-webkit-text-fill-color:transparent;display:block;margin-bottom:6px;text-decoration:none}
 .brand{font-size:13px;font-weight:800;color:#f59e0b;display:block;margin-bottom:20px}
@@ -71,7 +71,7 @@ body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;col
 <body>
 <div class="card">
     <a href="{{ route('home') }}" class="logo">Pregota</a>
-    <span class="brand">🏠 Saka Keja — Tenant Portal</span>
+    <span class="brand">ðŸ  Saka Keja â€” Tenant Portal</span>
 
     <div class="listing-box">
         <div class="listing-type">{{ $deposit->listing->unitLabel() }}</div>
@@ -80,9 +80,9 @@ body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;col
         <div class="tenant-name">Tenant: {{ $deposit->seeker_name }}</div>
     </div>
 
-    {{-- ── Deposit section ── --}}
+    {{-- â”€â”€ Deposit section â”€â”€ --}}
     <div class="deposit-box">
-        <div class="section-label">🔐 Security Deposit</div>
+        <div class="section-label">ðŸ” Security Deposit</div>
         <div class="deposit-row">
             <span class="deposit-key">Amount held</span>
             <span class="deposit-val">KES {{ number_format($deposit->deposit_amount) }}</span>
@@ -100,29 +100,29 @@ body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;col
 
         @if($deposit->status === 'moving_out')
             <div class="move-out-notice">
-                ⏳ Your move-out request is pending landlord inspection.<br>
+                â³ Your move-out request is pending landlord inspection.<br>
                 Requested on <strong>{{ $deposit->move_out_requested_at->format('d M Y, H:i') }}</strong>.<br>
                 The landlord will inspect the property. If no damage or repainting is required, your KES {{ number_format($deposit->deposit_amount) }} deposit will be fully refunded.
             </div>
         @else
             <div style="font-size:12px;color:rgba(255,255,255,.35);margin-top:10px;line-height:1.6">
-                ℹ️ The deposit covers any damages or repainting costs when you vacate. If the house is in good condition, the full deposit is refunded.
+                â„¹ï¸ The deposit covers any damages or repainting costs when you vacate. If the house is in good condition, the full deposit is refunded.
             </div>
-            <button class="btn-move-out" onclick="doMoveOut()">🚪 Request Move Out</button>
+            <button class="btn-move-out" onclick="doMoveOut()">ðŸšª Request Move Out</button>
         @endif
     </div>
 
-    {{-- ── Rent section ── --}}
+    {{-- â”€â”€ Rent section â”€â”€ --}}
     <div class="pay-box">
         <div class="pay-title">Pay Monthly Rent</div>
 
         @if($deposit->status === 'moving_out')
-            <div class="paused-notice">⚠️ Rent payments are paused while your move-out is being processed.</div>
+            <div class="paused-notice">âš ï¸ Rent payments are paused while your move-out is being processed.</div>
         @else
             <div class="pay-sub">Pay via M-Pesa. Pregota deducts 2% management fee and sends the balance to your landlord.</div>
 
             @if($paidThisMonth)
-            <div class="paid-badge">✓ Rent paid for {{ now()->format('F Y') }}</div>
+            <div class="paid-badge">âœ“ Rent paid for {{ now()->format('F Y') }}</div>
             <div style="font-size:12px;color:rgba(255,255,255,.3);margin-bottom:14px">Receipt: {{ $paidThisMonth->receipt_number }}</div>
             @endif
 
@@ -141,10 +141,10 @@ body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;col
                     <input type="tel" id="phone" placeholder="07XX XXX XXX" autocomplete="tel">
                 </div>
                 <div class="fee-note">
-                    KES {{ number_format($deposit->listing->rent) }} rent → Pregota keeps <strong>KES {{ number_format((int)ceil($deposit->listing->rent * 2 / 100)) }}</strong> (2%) → Landlord receives <strong>KES {{ number_format($deposit->listing->rent - (int)ceil($deposit->listing->rent * 2 / 100)) }}</strong>
+                    KES {{ number_format($deposit->listing->rent) }} rent â†’ Pregota keeps <strong>KES {{ number_format((int)ceil($deposit->listing->rent * 2 / 100)) }}</strong> (2%) â†’ Landlord receives <strong>KES {{ number_format($deposit->listing->rent - (int)ceil($deposit->listing->rent * 2 / 100)) }}</strong>
                 </div>
                 <div class="err" id="err-msg"></div>
-                <button class="btn" id="pay-btn" onclick="doPay()">Pay KES {{ number_format($deposit->listing->rent) }} →</button>
+                <button class="btn" id="pay-btn" onclick="doPay()">Pay KES {{ number_format($deposit->listing->rent) }} â†’</button>
             </div>
 
             <div class="pending" id="pending-view">
@@ -154,7 +154,7 @@ body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;col
             </div>
 
             <div class="success" id="success-view">
-                <div style="font-size:52px;line-height:1;margin-bottom:10px">✅</div>
+                <div style="font-size:52px;line-height:1;margin-bottom:10px">âœ…</div>
                 <div id="rent-amount" style="font-size:28px;font-weight:900;color:#fff;margin-bottom:4px"></div>
                 <div id="rent-month-label" style="font-size:14px;font-weight:700;color:#4ADE80;margin-bottom:14px"></div>
                 <div id="rent-receipt-box" style="display:none;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:14px 16px;text-align:left;margin-bottom:14px">
@@ -168,7 +168,7 @@ body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;col
                         <span style="font-weight:600;color:rgba(255,255,255,.7)">{{ $deposit->listing->location }}</span>
                     </div>
                 </div>
-                <div style="font-size:12px;color:rgba(255,255,255,.3)">Refreshing in a moment…</div>
+                <div style="font-size:12px;color:rgba(255,255,255,.3)">Refreshing in a momentâ€¦</div>
             </div>
         @endif
     </div>
@@ -197,7 +197,7 @@ const CSRF = '{{ csrf_token() }}';
 let checkoutId = null;
 
 async function doMoveOut() {
-    if (!confirm('Request to move out? Your landlord will be notified. The deposit will be refunded after inspection — full refund if the house is in good condition.')) return;
+    if (!confirm('Request to move out? Your landlord will be notified. The deposit will be refunded after inspection â€” full refund if the house is in good condition.')) return;
 
     const res  = await fetch('{{ route("saka-keja.deposit.move-out", $deposit->token) }}', {
         method: 'POST', headers: {'X-CSRF-TOKEN': CSRF}
@@ -258,7 +258,7 @@ function poll() {
                 document.getElementById('pending-view').style.display = 'none';
                 document.getElementById('success-view').style.display = 'block';
                 if (d.amount) document.getElementById('rent-amount').textContent = 'KES ' + Number(d.amount).toLocaleString();
-                if (d.rent_month) document.getElementById('rent-month-label').textContent = d.rent_month + ' Rent ✓';
+                if (d.rent_month) document.getElementById('rent-month-label').textContent = d.rent_month + ' Rent âœ“';
                 if (d.receipt) {
                     document.getElementById('rent-receipt-no').textContent = d.receipt;
                     document.getElementById('rent-receipt-box').style.display = 'block';
@@ -280,3 +280,4 @@ function poll() {
 </script>
 </body>
 </html>
+

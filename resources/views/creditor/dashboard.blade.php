@@ -1,16 +1,16 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>{{ session('creditor_name') }} — Smart Biashara · Pregota</title>
+<title>{{ session('creditor_name') }} â€” Smart Biashara Â· Pregota</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800;900&display=swap" rel="stylesheet">
 @include('partials.pwa')
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;color:#fff;min-height:100vh}
+body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;color:#fff;min-height:100vh-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
 .nav{padding:14px 20px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,.07);position:sticky;top:0;background:#0B141A;z-index:10}
 .logo{font-size:20px;font-weight:900;background:linear-gradient(135deg,#25D366,#4ADE80);-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-decoration:none}
 .nav-right{display:flex;align-items:center;gap:12px}
@@ -139,12 +139,12 @@ select option{color:#111;background:#fff}
     <a href="{{ route('home') }}" class="logo">Pregota</a>
     <div class="nav-right" style="position:relative">
         <div style="position:relative">
-            <button class="bell-btn" onclick="toggleNotif()" id="bell-btn">🔔
+            <button class="bell-btn" onclick="toggleNotif()" id="bell-btn">ðŸ””
                 @if($todayPayments > 0)<span class="bell-badge">{{ $todayPayments }}</span>@endif
             </button>
             <div class="notif-panel" id="notif-panel">
                 <div style="padding:12px 16px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.35);border-bottom:1px solid rgba(255,255,255,.06)">Recent Payments</div>
-                <div id="notif-list"><div class="notif-empty">Loading…</div></div>
+                <div id="notif-list"><div class="notif-empty">Loadingâ€¦</div></div>
             </div>
         </div>
         <span style="font-size:12px;color:rgba(255,255,255,.4)">{{ session('creditor_name') }}</span>
@@ -158,21 +158,21 @@ select option{color:#111;background:#fff}
 <div class="wrap">
 
     @if(session('charge_added'))
-    <div style="background:rgba(37,211,102,.07);border:1px solid rgba(37,211,102,.18);border-radius:10px;padding:12px 16px;font-size:13px;color:#4ADE80;margin-bottom:16px">✓ Charge added — tab updated.</div>
+    <div style="background:rgba(37,211,102,.07);border:1px solid rgba(37,211,102,.18);border-radius:10px;padding:12px 16px;font-size:13px;color:#4ADE80;margin-bottom:16px">âœ“ Charge added â€” tab updated.</div>
     @endif
 
     {{-- Payout settings --}}
     <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:13px;padding:14px 16px;margin-bottom:20px">
-        <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.35);margin-bottom:10px">💰 Receive Payments To</div>
+        <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.35);margin-bottom:10px">ðŸ’° Receive Payments To</div>
         <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
             <div id="payout-display" style="flex:1;font-size:14px;font-weight:700;color:{{ session('creditor_payout_till') ? '#4ADE80' : 'rgba(255,255,255,.7)' }}">
-                {{ session('creditor_payout_till') ? '🏪 Till ' . session('creditor_payout_till') : '📱 M-Pesa / Pochi (your login number)' }}
+                {{ session('creditor_payout_till') ? 'ðŸª Till ' . session('creditor_payout_till') : 'ðŸ“± M-Pesa / Pochi (your login number)' }}
             </div>
             <button onclick="toggleTillEdit()" style="font-size:12px;padding:5px 12px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:7px;color:rgba(255,255,255,.55);cursor:pointer;font-family:inherit" id="payout-edit-btn">Change</button>
         </div>
         <div id="till-edit-form" style="display:none;margin-top:12px">
             <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
-                <input type="text" id="till-input" placeholder="Till number (e.g. 123456) — blank = use M-Pesa" maxlength="7" inputmode="numeric"
+                <input type="text" id="till-input" placeholder="Till number (e.g. 123456) â€” blank = use M-Pesa" maxlength="7" inputmode="numeric"
                     value="{{ session('creditor_payout_till','') }}"
                     style="flex:1;padding:10px 12px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:9px;color:#fff;font-size:14px;outline:none;font-family:inherit;min-width:180px">
                 <button onclick="saveTill()" style="padding:10px 18px;background:linear-gradient(135deg,#dc2626,#ef4444);border:none;border-radius:9px;color:#fff;font-size:13px;font-weight:700;cursor:pointer">Save</button>
@@ -184,7 +184,7 @@ select option{color:#111;background:#fff}
 
     <div class="greeting">
         <div class="greeting-name">{{ session('creditor_name') }}</div>
-        <div class="greeting-sub">{{ $openCount }} open {{ Str::plural('tab', $openCount) }} · Smart Biashara</div>
+        <div class="greeting-sub">{{ $openCount }} open {{ Str::plural('tab', $openCount) }} Â· Smart Biashara</div>
     </div>
 
 
@@ -205,20 +205,20 @@ select option{color:#111;background:#fff}
 
     {{-- Tab bar --}}
     <div class="tab-bar">
-        <button class="tab-btn active" id="tab-deni-btn"     onclick="showTab('deni')">🧾 Madeni</button>
-        <button class="tab-btn"        id="tab-paylinks-btn" onclick="showTab('paylinks')">🔗 Pay Links</button>
-        <button class="tab-btn"        id="tab-ledger-btn"   onclick="showTab('ledger')">📒 Ledger</button>
-        <button class="tab-btn"        id="tab-payout-btn"   onclick="showTab('payout')">💸 Pay Out</button>
+        <button class="tab-btn active" id="tab-deni-btn"     onclick="showTab('deni')">ðŸ§¾ Madeni</button>
+        <button class="tab-btn"        id="tab-paylinks-btn" onclick="showTab('paylinks')">ðŸ”— Pay Links</button>
+        <button class="tab-btn"        id="tab-ledger-btn"   onclick="showTab('ledger')">ðŸ“’ Ledger</button>
+        <button class="tab-btn"        id="tab-payout-btn"   onclick="showTab('payout')">ðŸ’¸ Pay Out</button>
     </div>
 
     {{-- PAY LINKS TAB --}}
     <div id="tab-paylinks" style="display:none">
         @if($payLinks->isEmpty())
         <div class="empty">
-            <div style="font-size:36px;margin-bottom:12px">🔗</div>
+            <div style="font-size:36px;margin-bottom:12px">ðŸ”—</div>
             <div style="font-size:15px;font-weight:700;margin-bottom:6px">No Pay Links yet</div>
-            <div style="font-size:13px;color:rgba(255,255,255,.35);margin-bottom:20px">Create a pay link so customers can pay you via M-Pesa — without you sharing your number.</div>
-            <a href="{{ route('seller.register') }}" style="display:inline-block;padding:12px 24px;background:linear-gradient(135deg,#25D366,#1aaa52);border-radius:11px;color:#fff;font-weight:800;text-decoration:none;font-size:14px">Create a Pay Link →</a>
+            <div style="font-size:13px;color:rgba(255,255,255,.35);margin-bottom:20px">Create a pay link so customers can pay you via M-Pesa â€” without you sharing your number.</div>
+            <a href="{{ route('seller.register') }}" style="display:inline-block;padding:12px 24px;background:linear-gradient(135deg,#25D366,#1aaa52);border-radius:11px;color:#fff;font-weight:800;text-decoration:none;font-size:14px">Create a Pay Link â†’</a>
         </div>
         @else
         @foreach($payLinks as $pl)
@@ -229,8 +229,8 @@ select option{color:#111;background:#fff}
                     <div style="font-size:12px;color:rgba(255,255,255,.4);margin-top:2px">pregota.com/pay/{{ $pl['handle'] }}</div>
                 </div>
                 <div style="display:flex;gap:8px">
-                    <a href="{{ $pl['public_url'] }}" target="_blank" style="font-size:12px;padding:6px 12px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:8px;color:rgba(255,255,255,.6);text-decoration:none">View →</a>
-                    <a href="{{ $pl['dashboard_url'] }}" style="font-size:12px;padding:6px 12px;background:linear-gradient(135deg,#25D366,#1aaa52);border-radius:8px;color:#fff;text-decoration:none;font-weight:700">Manage →</a>
+                    <a href="{{ $pl['public_url'] }}" target="_blank" style="font-size:12px;padding:6px 12px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:8px;color:rgba(255,255,255,.6);text-decoration:none">View â†’</a>
+                    <a href="{{ $pl['dashboard_url'] }}" style="font-size:12px;padding:6px 12px;background:linear-gradient(135deg,#25D366,#1aaa52);border-radius:8px;color:#fff;text-decoration:none;font-weight:700">Manage â†’</a>
                 </div>
             </div>
 
@@ -308,10 +308,10 @@ select option{color:#111;background:#fff}
             <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.35);margin-bottom:10px">Record Entry</div>
             <div class="ae-type">
                 <label style="border-color:rgba(37,211,102,.25);background:rgba(37,211,102,.06)">
-                    <input type="radio" name="ae-type" value="income" id="ae-income" checked style="accent-color:#4ADE80"> 💰 Income
+                    <input type="radio" name="ae-type" value="income" id="ae-income" checked style="accent-color:#4ADE80"> ðŸ’° Income
                 </label>
                 <label style="border-color:rgba(239,68,68,.25);background:rgba(239,68,68,.06)">
-                    <input type="radio" name="ae-type" value="expense" id="ae-expense" style="accent-color:#f87171"> 💸 Expense
+                    <input type="radio" name="ae-type" value="expense" id="ae-expense" style="accent-color:#f87171"> ðŸ’¸ Expense
                 </label>
             </div>
             <div class="ae-row">
@@ -324,19 +324,19 @@ select option{color:#111;background:#fff}
                     <input type="number" id="ae-amount" class="ae-input" placeholder="Amount (KES)" min="1">
                 </div>
             </div>
-            <input type="text" id="ae-desc" class="ae-input" placeholder="Description — e.g. Unga 5kg, maziwa, chapati sales" maxlength="300" style="margin-bottom:8px">
+            <input type="text" id="ae-desc" class="ae-input" placeholder="Description â€” e.g. Unga 5kg, maziwa, chapati sales" maxlength="300" style="margin-bottom:8px">
             <div style="display:flex;gap:8px;align-items:center">
                 <input type="date" id="ae-date" class="ae-input" style="flex:1">
-                <button onclick="saveLedgerEntry()" style="padding:10px 20px;background:linear-gradient(135deg,#dc2626,#ef4444);border:none;border-radius:9px;color:#fff;font-size:14px;font-weight:700;cursor:pointer;white-space:nowrap">Add →</button>
+                <button onclick="saveLedgerEntry()" style="padding:10px 20px;background:linear-gradient(135deg,#dc2626,#ef4444);border:none;border-radius:9px;color:#fff;font-size:14px;font-weight:700;cursor:pointer;white-space:nowrap">Add â†’</button>
             </div>
-            <div id="ae-ok" style="display:none;margin-top:8px;font-size:13px;color:#4ADE80">✓ Saved!</div>
+            <div id="ae-ok" style="display:none;margin-top:8px;font-size:13px;color:#4ADE80">âœ“ Saved!</div>
         </div>
 
         {{-- Entry list filter --}}
         <div style="display:flex;gap:6px;margin-bottom:12px">
             <button onclick="filterLedger('all')"     id="lf-all"     style="flex:1;padding:8px;border-radius:9px;font-size:12px;font-weight:700;cursor:pointer;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.08);color:#fff;font-family:inherit">All</button>
-            <button onclick="filterLedger('income')"  id="lf-income"  style="flex:1;padding:8px;border-radius:9px;font-size:12px;font-weight:700;cursor:pointer;border:1px solid rgba(37,211,102,.2);background:rgba(37,211,102,.05);color:#4ADE80;font-family:inherit">💰 Income</button>
-            <button onclick="filterLedger('expense')" id="lf-expense" style="flex:1;padding:8px;border-radius:9px;font-size:12px;font-weight:700;cursor:pointer;border:1px solid rgba(239,68,68,.2);background:rgba(239,68,68,.05);color:#f87171;font-family:inherit">💸 Expenses</button>
+            <button onclick="filterLedger('income')"  id="lf-income"  style="flex:1;padding:8px;border-radius:9px;font-size:12px;font-weight:700;cursor:pointer;border:1px solid rgba(37,211,102,.2);background:rgba(37,211,102,.05);color:#4ADE80;font-family:inherit">ðŸ’° Income</button>
+            <button onclick="filterLedger('expense')" id="lf-expense" style="flex:1;padding:8px;border-radius:9px;font-size:12px;font-weight:700;cursor:pointer;border:1px solid rgba(239,68,68,.2);background:rgba(239,68,68,.05);color:#f87171;font-family:inherit">ðŸ’¸ Expenses</button>
         </div>
 
         {{-- Entry list --}}
@@ -345,13 +345,13 @@ select option{color:#111;background:#fff}
         <div class="led-entry" id="led-{{ $entry->id }}" data-type="{{ $entry->type }}">
             <div style="flex:1">
                 <div style="font-size:14px;font-weight:700">
-                    {{ $entry->source === 'deni_payment' ? '🧾 ' : ($entry->type === 'income' ? '💰 ' : '💸 ') }}
+                    {{ $entry->source === 'deni_payment' ? 'ðŸ§¾ ' : ($entry->type === 'income' ? 'ðŸ’° ' : 'ðŸ’¸ ') }}
                     {{ $entry->description ?: ucfirst(str_replace('_',' ',$entry->category)) }}
                 </div>
                 <div class="led-cat">
                     {{ ucfirst(str_replace('_',' ',$entry->category)) }}
-                    @if($entry->source === 'deni_payment') · Auto from deni payment @endif
-                    · {{ $entry->entry_date->format('d M') }}
+                    @if($entry->source === 'deni_payment') Â· Auto from deni payment @endif
+                    Â· {{ $entry->entry_date->format('d M') }}
                 </div>
             </div>
             <div style="text-align:right;display:flex;align-items:center;gap:8px">
@@ -359,7 +359,7 @@ select option{color:#111;background:#fff}
                     {{ $entry->type === 'income' ? '+' : '-' }}KES {{ number_format($entry->amount) }}
                 </div>
                 @if($entry->source === 'manual')
-                <button class="led-del" onclick="deleteLedgerEntry({{ $entry->id }})">×</button>
+                <button class="led-del" onclick="deleteLedgerEntry({{ $entry->id }})">Ã—</button>
                 @endif
             </div>
         </div>
@@ -377,19 +377,19 @@ select option{color:#111;background:#fff}
         <div class="customer-chips" id="payee-chips">
             @foreach($contacts as $c)
             <div class="customer-chip" id="payee-chip-{{ $c->id }}"
-                onclick="selectPayee({{ $c->id }}, '{{ addslashes($c->name) }}', '{{ $c->till ? '🏪 Till '.$c->till : ($c->phone_masked ?? '📱 Phone') }}')">
+                onclick="selectPayee({{ $c->id }}, '{{ addslashes($c->name) }}', '{{ $c->till ? 'ðŸª Till '.$c->till : ($c->phone_masked ?? 'ðŸ“± Phone') }}')">
                 <div class="chip-phone" style="font-size:13px;color:#fff">{{ $c->name }}</div>
                 <div style="font-size:10px;color:rgba(255,255,255,.35);margin-top:2px">
-                    {{ $c->till ? '🏪 Till '.$c->till : ($c->phone_masked ?? '📱 Phone') }}
+                    {{ $c->till ? 'ðŸª Till '.$c->till : ($c->phone_masked ?? 'ðŸ“± Phone') }}
                 </div>
                 <div style="margin-top:6px;display:flex;gap:6px;justify-content:center">
                     <span onclick="event.stopPropagation();editPayee({{ $c->id }})"
-                          style="font-size:11px;color:rgba(255,255,255,.4);cursor:pointer;padding:2px 6px;border:1px solid rgba(255,255,255,.12);border-radius:5px">✏️ Edit</span>
+                          style="font-size:11px;color:rgba(255,255,255,.4);cursor:pointer;padding:2px 6px;border:1px solid rgba(255,255,255,.12);border-radius:5px">âœï¸ Edit</span>
                 </div>
             </div>
             @endforeach
             <div class="customer-chip" onclick="toggleAddPayee()" id="add-payee-chip" style="border-style:dashed;color:rgba(255,255,255,.4)">
-                <div style="font-size:20px">＋</div>
+                <div style="font-size:20px">ï¼‹</div>
                 <div style="font-size:11px;margin-top:2px">Add Payee</div>
             </div>
         </div>
@@ -399,10 +399,10 @@ select option{color:#111;background:#fff}
             <div id="np-form-title" style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.35);margin-bottom:10px">New Payee</div>
             <input type="hidden" id="np-edit-id" value="">
             <div class="ae-row" style="margin-bottom:8px">
-                <input type="text" id="np-name" class="ae-input" placeholder="Name — e.g. Amina, Kariuki Supplier" maxlength="100">
+                <input type="text" id="np-name" class="ae-input" placeholder="Name â€” e.g. Amina, Kariuki Supplier" maxlength="100">
                 <input type="text" id="np-till" class="ae-input" placeholder="Till number (or leave blank)" inputmode="numeric" maxlength="7">
             </div>
-            <input type="tel" id="np-phone" class="ae-input" placeholder="Phone (if no Till) — e.g. 0712345678" style="margin-bottom:8px">
+            <input type="tel" id="np-phone" class="ae-input" placeholder="Phone (if no Till) â€” e.g. 0712345678" style="margin-bottom:8px">
             <div style="display:flex;gap:8px">
                 <button id="np-save-btn" onclick="savePayee()" style="padding:10px 20px;background:linear-gradient(135deg,#dc2626,#ef4444);border:none;border-radius:9px;color:#fff;font-size:14px;font-weight:700;cursor:pointer">Save Payee</button>
                 <button onclick="cancelPayeeForm()" style="background:none;border:none;color:rgba(255,255,255,.3);cursor:pointer;font-size:13px;padding:6px">Cancel</button>
@@ -417,16 +417,16 @@ select option{color:#111;background:#fff}
             <div class="ae-row" style="margin-bottom:8px">
                 <input type="number" id="pay-amount" class="ae-input" placeholder="Amount (KES)" min="10">
                 <select id="pay-category" class="ae-input">
-                    <option value="salary">💼 Salary / Wages</option>
-                    <option value="stock">📦 Stock / Supplier</option>
-                    <option value="utilities">💡 Utilities</option>
-                    <option value="rent">🏠 Rent</option>
-                    <option value="other">📦 Other</option>
+                    <option value="salary">ðŸ’¼ Salary / Wages</option>
+                    <option value="stock">ðŸ“¦ Stock / Supplier</option>
+                    <option value="utilities">ðŸ’¡ Utilities</option>
+                    <option value="rent">ðŸ  Rent</option>
+                    <option value="other">ðŸ“¦ Other</option>
                 </select>
             </div>
-            <input type="text" id="pay-desc" class="ae-input" placeholder="Note — e.g. May salary, Unga 10 bags" maxlength="200" style="margin-bottom:8px">
+            <input type="text" id="pay-desc" class="ae-input" placeholder="Note â€” e.g. May salary, Unga 10 bags" maxlength="200" style="margin-bottom:8px">
             <div style="display:flex;gap:8px;align-items:center">
-                <button onclick="initiatePayout()" id="pay-btn" style="flex:1;padding:12px;background:linear-gradient(135deg,#dc2626,#ef4444);border:none;border-radius:9px;color:#fff;font-size:15px;font-weight:700;cursor:pointer">Pay Now via M-Pesa →</button>
+                <button onclick="initiatePayout()" id="pay-btn" style="flex:1;padding:12px;background:linear-gradient(135deg,#dc2626,#ef4444);border:none;border-radius:9px;color:#fff;font-size:15px;font-weight:700;cursor:pointer">Pay Now via M-Pesa â†’</button>
                 <button onclick="clearPayee()" style="background:none;border:none;color:rgba(255,255,255,.3);cursor:pointer;font-size:13px;padding:6px">Cancel</button>
             </div>
             <div id="pay-status" style="display:none;margin-top:10px;padding:10px 14px;border-radius:9px;font-size:13px"></div>
@@ -439,13 +439,13 @@ select option{color:#111;background:#fff}
         <div class="led-entry">
             <div style="flex:1">
                 <div style="font-size:14px;font-weight:700">
-                    {{ $p->status === 'confirmed' ? '✅' : ($p->status === 'failed' ? '❌' : '⏳') }}
+                    {{ $p->status === 'confirmed' ? 'âœ…' : ($p->status === 'failed' ? 'âŒ' : 'â³') }}
                     {{ $p->recipient_name }}
                 </div>
                 <div class="led-cat">
-                    {{ ucfirst($p->category) }} · {{ $p->created_at->format('d M') }}
-                    @if($p->description) · {{ $p->description }} @endif
-                    @if($p->receipt_number) · {{ $p->receipt_number }} @endif
+                    {{ ucfirst($p->category) }} Â· {{ $p->created_at->format('d M') }}
+                    @if($p->description) Â· {{ $p->description }} @endif
+                    @if($p->receipt_number) Â· {{ $p->receipt_number }} @endif
                 </div>
             </div>
             <div class="led-amount" style="color:{{ $p->status==='confirmed'?'#f87171':($p->status==='failed'?'rgba(255,255,255,.3)':'#fbbf24') }}">
@@ -455,7 +455,7 @@ select option{color:#111;background:#fff}
         @endforeach
         @else
         <div class="empty" style="padding:30px 20px">
-            <div style="font-size:28px;margin-bottom:10px">💸</div>
+            <div style="font-size:28px;margin-bottom:10px">ðŸ’¸</div>
             <div>No payouts yet.</div>
             <div style="font-size:12px;margin-top:4px">Add a payee above to get started.</div>
         </div>
@@ -491,7 +491,7 @@ select option{color:#111;background:#fff}
             <div class="quick-row">
                 <input class="quick-input" type="text" id="quick-desc" placeholder="What for? e.g. Uji na mandazi" maxlength="300" style="flex:2">
                 <input class="quick-input" type="number" id="quick-amount" placeholder="KES" min="1" max="500000" style="max-width:100px">
-                <button class="quick-submit" onclick="submitQuickDeni()">Add →</button>
+                <button class="quick-submit" onclick="submitQuickDeni()">Add â†’</button>
             </div>
             <div class="quick-result" id="quick-result"></div>
         </div>
@@ -513,8 +513,8 @@ select option{color:#111;background:#fff}
             <div>
                 <div class="deni-desc">{{ $d->description }}</div>
                 <div class="deni-date">
-                    @if($d->debtor_name)<span style="color:rgba(255,255,255,.55);font-weight:600">{{ $d->debtor_name }}</span> · @endif
-                    {{ $d->created_at->format('d M Y') }}{{ $d->due_date ? ' · Due ' . $d->due_date->format('d M') : '' }}
+                    @if($d->debtor_name)<span style="color:rgba(255,255,255,.55);font-weight:600">{{ $d->debtor_name }}</span> Â· @endif
+                    {{ $d->created_at->format('d M Y') }}{{ $d->due_date ? ' Â· Due ' . $d->due_date->format('d M') : '' }}
                 </div>
             </div>
             <span class="badge {{ $d->status }}">{{ ucfirst($d->status) }}</span>
@@ -539,8 +539,8 @@ select option{color:#111;background:#fff}
 
         @php $payUrl = url('/deni/' . $d->debtor_token); $waMsg = session('creditor_name') . ' amekuandikia deni ya KES ' . number_format($d->original_amount) . ' kwa: ' . $d->description . '. Lipa hapa: ' . $payUrl; @endphp
         <div class="deni-actions">
-            <button class="action-btn btn-link" onclick="navigator.clipboard.writeText('{{ $payUrl }}');this.textContent='✓ Copied!'">📋 Copy Link</button>
-            <a href="https://wa.me/?text={{ rawurlencode($waMsg) }}" target="_blank" class="action-btn btn-wa">💬 WhatsApp</a>
+            <button class="action-btn btn-link" onclick="navigator.clipboard.writeText('{{ $payUrl }}');this.textContent='âœ“ Copied!'">ðŸ“‹ Copy Link</button>
+            <a href="https://wa.me/?text={{ rawurlencode($waMsg) }}" target="_blank" class="action-btn btn-wa">ðŸ’¬ WhatsApp</a>
             <button class="action-btn btn-charge" onclick="toggleCharge('{{ $d->admin_token }}')">+ Add Charge</button>
         </div>
 
@@ -570,7 +570,7 @@ select option{color:#111;background:#fff}
                 <div class="deni-desc">{{ $d->description }}</div>
                 <div class="deni-date">{{ $d->created_at->format('d M Y') }}</div>
             </div>
-            <span class="badge settled">✅ Settled</span>
+            <span class="badge settled">âœ… Settled</span>
         </div>
         <div style="font-size:13px;color:rgba(255,255,255,.4)">KES {{ number_format($d->amount_paid) }} collected in full.</div>
     </div>
@@ -579,7 +579,7 @@ select option{color:#111;background:#fff}
 
     @if($openDeni->isEmpty() && $settledDeni->isEmpty())
     <div class="empty">
-        <div style="font-size:32px;margin-bottom:12px">🧾</div>
+        <div style="font-size:32px;margin-bottom:12px">ðŸ§¾</div>
         <div>No madeni recorded yet.</div>
         <div style="font-size:12px;margin-top:6px">Tap "Record a New Deni" to get started.</div>
     </div>
@@ -610,7 +610,7 @@ function selectCustomer(hash, display, maskedPhone, encrypted, name) {
     activeEncrypted = encrypted;
     activeName = name || null;
     chip.classList.add('active');
-    document.getElementById('quick-phone-label').textContent = display + (name ? ' · ' + maskedPhone : '');
+    document.getElementById('quick-phone-label').textContent = display + (name ? ' Â· ' + maskedPhone : '');
     document.getElementById('quick-desc').value = '';
     document.getElementById('quick-amount').value = '';
     document.getElementById('quick-result').style.display = 'none';
@@ -644,14 +644,14 @@ function submitQuickDeni() {
     .then(data => {
         if (data.success) {
             result.style.display = 'block';
-            result.textContent   = '✓ Deni of KES ' + parseInt(amount).toLocaleString() + ' recorded. Reloading…';
+            result.textContent   = 'âœ“ Deni of KES ' + parseInt(amount).toLocaleString() + ' recorded. Reloadingâ€¦';
             setTimeout(() => location.reload(), 1200);
         } else {
             result.style.display = 'block';
             result.style.color   = '#f87171';
             result.textContent   = data.message || 'Error. Try again.';
             btn.disabled = false;
-            btn.textContent = 'Add →';
+            btn.textContent = 'Add â†’';
         }
     })
     .catch(() => {
@@ -659,7 +659,7 @@ function submitQuickDeni() {
         result.style.color   = '#f87171';
         result.textContent   = 'Network error. Try again.';
         btn.disabled = false;
-        btn.textContent = 'Add →';
+        btn.textContent = 'Add â†’';
     });
 }
 
@@ -682,14 +682,14 @@ async function saveTill() {
     });
     if (res.ok) {
         document.getElementById('payout-display').innerHTML = till
-            ? '🏪 Till ' + till
-            : '📱 M-Pesa / Pochi (your login number)';
+            ? 'ðŸª Till ' + till
+            : 'ðŸ“± M-Pesa / Pochi (your login number)';
         document.getElementById('payout-display').style.color = till ? '#4ADE80' : 'rgba(255,255,255,.7)';
         document.getElementById('till-edit-form').style.display = 'none';
     }
 }
 
-// ── Tabs ──────────────────────────────────────────────────────────
+// â”€â”€ Tabs â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 function showTab(tab) {
     ['deni','paylinks','ledger','payout'].forEach(t => {
         document.getElementById('tab-' + t).style.display      = t === tab ? '' : 'none';
@@ -697,7 +697,7 @@ function showTab(tab) {
     });
 }
 
-// ── Pay Out ───────────────────────────────────────────────────────
+// â”€â”€ Pay Out â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 let activePayeeId = null;
 let payPollTimer  = null;
 
@@ -706,7 +706,7 @@ function selectPayee(id, name, detail) {
     if (activePayeeId === id) { activePayeeId = null; clearPayee(); return; }
     activePayeeId = id;
     document.getElementById('payee-chip-' + id).classList.add('active');
-    document.getElementById('pay-to-label').textContent = name + (detail ? '  ·  ' + detail : '');
+    document.getElementById('pay-to-label').textContent = name + (detail ? '  Â·  ' + detail : '');
     document.getElementById('pay-form').style.display = 'block';
     document.getElementById('pay-status').style.display = 'none';
     document.getElementById('pay-amount').focus();
@@ -773,7 +773,7 @@ async function savePayee() {
         showPayeeErr('Phone must be 10 digits e.g. 0712 345 678'); return;
     }
     if (till && !/^\d{5,7}$/.test(till)) {
-        showPayeeErr('Till number must be 5–7 digits.'); return;
+        showPayeeErr('Till number must be 5â€“7 digits.'); return;
     }
 
     const url    = editId ? `/creditor/contacts/${editId}` : '{{ route("creditor.contact.save") }}';
@@ -786,7 +786,7 @@ async function savePayee() {
     });
     const data = await res.json();
     if (data.id) {
-        const detail = data.till ? '🏪 Till ' + data.till : (data.phone_masked || '📱 Phone');
+        const detail = data.till ? 'ðŸª Till ' + data.till : (data.phone_masked || 'ðŸ“± Phone');
         const safeName = name.replace(/'/g,"\\'");
         if (editId) {
             // Update existing chip in place
@@ -796,7 +796,7 @@ async function savePayee() {
                 chip.innerHTML = `<div class="chip-phone" style="font-size:13px;color:#fff">${name}</div>
                     <div style="font-size:10px;color:rgba(255,255,255,.35);margin-top:2px">${detail}</div>
                     <div style="margin-top:6px;display:flex;gap:6px;justify-content:center">
-                        <span onclick="event.stopPropagation();editPayee(${editId})" style="font-size:11px;color:rgba(255,255,255,.4);cursor:pointer;padding:2px 6px;border:1px solid rgba(255,255,255,.12);border-radius:5px">✏️ Edit</span>
+                        <span onclick="event.stopPropagation();editPayee(${editId})" style="font-size:11px;color:rgba(255,255,255,.4);cursor:pointer;padding:2px 6px;border:1px solid rgba(255,255,255,.12);border-radius:5px">âœï¸ Edit</span>
                     </div>`;
             }
         } else {
@@ -809,7 +809,7 @@ async function savePayee() {
             chip.innerHTML = `<div class="chip-phone" style="font-size:13px;color:#fff">${name}</div>
                 <div style="font-size:10px;color:rgba(255,255,255,.35);margin-top:2px">${detail}</div>
                 <div style="margin-top:6px;display:flex;gap:6px;justify-content:center">
-                    <span onclick="event.stopPropagation();editPayee(${data.id})" style="font-size:11px;color:rgba(255,255,255,.4);cursor:pointer;padding:2px 6px;border:1px solid rgba(255,255,255,.12);border-radius:5px">✏️ Edit</span>
+                    <span onclick="event.stopPropagation();editPayee(${data.id})" style="font-size:11px;color:rgba(255,255,255,.4);cursor:pointer;padding:2px 6px;border:1px solid rgba(255,255,255,.12);border-radius:5px">âœï¸ Edit</span>
                 </div>`;
             chips.insertBefore(chip, addBtn);
         }
@@ -838,7 +838,7 @@ async function initiatePayout() {
         return;
     }
 
-    btn.disabled = true; btn.textContent = 'Sending STK Push…';
+    btn.disabled = true; btn.textContent = 'Sending STK Pushâ€¦';
     status.style.display = 'none';
 
     const res  = await fetch('{{ route("creditor.payout.initiate") }}', {
@@ -852,10 +852,10 @@ async function initiatePayout() {
         status.style.display = 'block';
         status.style.background = 'rgba(251,191,36,.07)';
         status.style.color = '#fbbf24';
-        status.textContent = '📲 Check your phone — approve the M-Pesa prompt…';
+        status.textContent = 'ðŸ“² Check your phone â€” approve the M-Pesa promptâ€¦';
         pollPayout(data.checkout_request_id, 0);
     } else {
-        btn.disabled = false; btn.textContent = 'Pay Now via M-Pesa →';
+        btn.disabled = false; btn.textContent = 'Pay Now via M-Pesa â†’';
         status.style.display = 'block';
         status.style.background = 'rgba(239,68,68,.1)';
         status.style.color = '#f87171';
@@ -867,7 +867,7 @@ function pollPayout(checkoutId, attempts) {
     if (attempts > 30) {
         document.getElementById('pay-status').textContent = 'Timed out. Check your M-Pesa messages.';
         document.getElementById('pay-btn').disabled = false;
-        document.getElementById('pay-btn').textContent = 'Pay Now via M-Pesa →';
+        document.getElementById('pay-btn').textContent = 'Pay Now via M-Pesa â†’';
         return;
     }
     payPollTimer = setTimeout(async () => {
@@ -883,18 +883,18 @@ function pollPayout(checkoutId, attempts) {
         if (data.status === 'confirmed') {
             status.style.background = 'rgba(37,211,102,.07)';
             status.style.color = '#4ADE80';
-            status.textContent = `✅ KES ${Number(data.amount).toLocaleString()} sent to ${data.name}! Logged as expense.`;
+            status.textContent = `âœ… KES ${Number(data.amount).toLocaleString()} sent to ${data.name}! Logged as expense.`;
             document.getElementById('pay-btn').disabled = false;
-            document.getElementById('pay-btn').textContent = 'Pay Now via M-Pesa →';
+            document.getElementById('pay-btn').textContent = 'Pay Now via M-Pesa â†’';
             document.getElementById('pay-amount').value = '';
             document.getElementById('pay-desc').value = '';
             setTimeout(() => location.reload(), 2000);
         } else if (data.status === 'failed') {
             status.style.background = 'rgba(239,68,68,.1)';
             status.style.color = '#f87171';
-            status.textContent = '❌ Payment failed or cancelled.';
+            status.textContent = 'âŒ Payment failed or cancelled.';
             document.getElementById('pay-btn').disabled = false;
-            document.getElementById('pay-btn').textContent = 'Pay Now via M-Pesa →';
+            document.getElementById('pay-btn').textContent = 'Pay Now via M-Pesa â†’';
         } else {
             if (data._query_debug) {
                 status.style.display = 'block';
@@ -907,7 +907,7 @@ function pollPayout(checkoutId, attempts) {
     }, 3000);
 }
 
-// ── Notifications ─────────────────────────────────────────────────
+// â”€â”€ Notifications â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 let notifLoaded = false;
 function toggleNotif() {
     const panel = document.getElementById('notif-panel');
@@ -927,7 +927,7 @@ function toggleNotif() {
                     `<div class="notif-item">
                         <div><span class="notif-amount">+KES ${Number(p.amount).toLocaleString()}</span>${p.debtor_name ? ' from ' + p.debtor_name : ''}</div>
                         <div class="notif-desc">${p.description || ''}</div>
-                        <div class="notif-time">${p.paid_at}${p.receipt ? ' · ' + p.receipt : ''}</div>
+                        <div class="notif-time">${p.paid_at}${p.receipt ? ' Â· ' + p.receipt : ''}</div>
                     </div>`
                 ).join('');
             })
@@ -944,24 +944,24 @@ document.addEventListener('click', e => {
     }
 });
 
-// ── Ledger categories ─────────────────────────────────────────────
+// â”€â”€ Ledger categories â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 const INCOME_CATS = [
-    ['deni_payment','🧾 Deni Payment'],['salary','💼 Salary'],['business','🏪 Business Sales'],
-    ['freelance','💻 Freelance'],['rental','🏠 Rental Income'],['friends_family','🤝 Friends & Family'],
-    ['side_hustle','⚡ Side Hustle'],['other','✨ Other'],
+    ['deni_payment','ðŸ§¾ Deni Payment'],['salary','ðŸ’¼ Salary'],['business','ðŸª Business Sales'],
+    ['freelance','ðŸ’» Freelance'],['rental','ðŸ  Rental Income'],['friends_family','ðŸ¤ Friends & Family'],
+    ['side_hustle','âš¡ Side Hustle'],['other','âœ¨ Other'],
 ];
 const EXPENSE_CATS = [
-    ['stock','📦 Stock / Restocking'],['transport','🚐 Transport'],['food','🍽️ Food & Meals'],
-    ['groceries','🥬 Groceries'],['airtime','📶 Airtime & Data'],['rent','🏠 Rent / Stall Fee'],
-    ['health','💊 Health'],['wages','👷 Wages Paid'],['utilities','💡 Utilities'],
-    ['savings','🏦 Savings'],['other','📦 Other'],
+    ['stock','ðŸ“¦ Stock / Restocking'],['transport','ðŸš Transport'],['food','ðŸ½ï¸ Food & Meals'],
+    ['groceries','ðŸ¥¬ Groceries'],['airtime','ðŸ“¶ Airtime & Data'],['rent','ðŸ  Rent / Stall Fee'],
+    ['health','ðŸ’Š Health'],['wages','ðŸ‘· Wages Paid'],['utilities','ðŸ’¡ Utilities'],
+    ['savings','ðŸ¦ Savings'],['other','ðŸ“¦ Other'],
 ];
 
 function refreshCategories() {
     const isIncome = document.getElementById('ae-income').checked;
     const cats     = isIncome ? INCOME_CATS : EXPENSE_CATS;
     const sel      = document.getElementById('ae-category');
-    sel.innerHTML  = '<option value="">— Category —</option>' +
+    sel.innerHTML  = '<option value="">â€” Category â€”</option>' +
         cats.map(([v, l]) => `<option value="${v}">${l}</option>`).join('');
 }
 
@@ -970,7 +970,7 @@ document.getElementById('ae-expense').addEventListener('change', refreshCategori
 refreshCategories();
 document.getElementById('ae-date').valueAsDate = new Date();
 
-// ── Save ledger entry ─────────────────────────────────────────────
+// â”€â”€ Save ledger entry â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 async function saveLedgerEntry() {
     const isIncome = document.getElementById('ae-income').checked;
     const cat      = document.getElementById('ae-category').value;
@@ -995,7 +995,7 @@ async function saveLedgerEntry() {
     });
     const data = await res.json();
     if (data.success) {
-        ok.style.display = 'block'; ok.style.color = '#4ADE80'; ok.textContent = '✓ Saved!';
+        ok.style.display = 'block'; ok.style.color = '#4ADE80'; ok.textContent = 'âœ“ Saved!';
         document.getElementById('ae-amount').value = '';
         document.getElementById('ae-desc').value   = '';
         refreshCategories();
@@ -1010,12 +1010,12 @@ async function saveLedgerEntry() {
         row.style.display = (activeLedgerFilter === 'all' || activeLedgerFilter === entryType) ? '' : 'none';
         row.innerHTML  = `
             <div style="flex:1">
-                <div style="font-size:14px;font-weight:700">${isIncome ? '💰 ' : '💸 '}${desc || catLabel}</div>
-                <div class="led-cat">${catLabel} · ${today}</div>
+                <div style="font-size:14px;font-weight:700">${isIncome ? 'ðŸ’° ' : 'ðŸ’¸ '}${desc || catLabel}</div>
+                <div class="led-cat">${catLabel} Â· ${today}</div>
             </div>
             <div style="text-align:right;display:flex;align-items:center;gap:8px">
                 <div class="led-amount" style="color:${color}">${sign}KES ${amount.toLocaleString()}</div>
-                <button class="led-del" onclick="deleteLedgerEntry(${data.id})">×</button>
+                <button class="led-del" onclick="deleteLedgerEntry(${data.id})">Ã—</button>
             </div>`;
         const list  = document.getElementById('ledger-list');
         const empty = list.querySelector('.empty');
@@ -1028,7 +1028,7 @@ async function saveLedgerEntry() {
     }
 }
 
-// ── Ledger filter ─────────────────────────────────────────────────
+// â”€â”€ Ledger filter â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 let activeLedgerFilter = 'all';
 function filterLedger(type) {
     activeLedgerFilter = type;
@@ -1043,7 +1043,7 @@ function filterLedger(type) {
     });
 }
 
-// ── Delete ledger entry ───────────────────────────────────────────
+// â”€â”€ Delete ledger entry â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 async function deleteLedgerEntry(id) {
     if (!confirm('Delete this entry?')) return;
     const res = await fetch(`/creditor/ledger/${id}`, {
@@ -1059,3 +1059,4 @@ async function deleteLedgerEntry(id) {
 </script>
 </body>
 </html>
+

@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Deni — Track Credit & Collect What You're Owed · Pregota</title>
+<title>Deni â€” Track Credit & Collect What You're Owed Â· Pregota</title>
 <meta name="description" content="Record a customer tab or personal loan in 30 seconds. They get a payment link, pay via M-Pesa, money goes straight to you. Real-time balance tracking for vibanda, restaurants, shops, and friends.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,7 +11,7 @@
 @include('partials.pwa')
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;color:#fff;min-height:100vh}
+body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;color:#fff;min-height:100vh-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
 
 .nav{padding:14px 24px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,.08);position:sticky;top:0;background:#0B141A;z-index:10}
 .logo{font-size:20px;font-weight:900;background:linear-gradient(135deg,#25D366,#4ADE80);-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-decoration:none}
@@ -106,21 +106,21 @@ body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;col
 <nav class="nav">
     <a href="{{ route('home') }}" class="logo">Pregota</a>
     <div style="display:flex;gap:10px;align-items:center">
-        <a href="{{ route('creditor.login') }}" style="color:rgba(255,255,255,.6);font-size:13px;font-weight:600;text-decoration:none">Smart Biashara →</a>
-        <a href="{{ route('deni.create') }}" class="nav-cta">Record a Deni →</a>
+        <a href="{{ route('creditor.login') }}" style="color:rgba(255,255,255,.6);font-size:13px;font-weight:600;text-decoration:none">Smart Biashara â†’</a>
+        <a href="{{ route('deni.create') }}" class="nav-cta">Record a Deni â†’</a>
     </div>
 </nav>
 
 <!-- Hero -->
 <div class="hero">
-    <div class="badge">🧾 Deni — For Lenders &amp; Businesses</div>
+    <div class="badge">ðŸ§¾ Deni â€” For Lenders &amp; Businesses</div>
     <h1>Credit given.<br><em>Always collected.</em></h1>
-    <p>Whether you run a kibanda extending lunch credit or you're a friend who lent money — record it in 30 seconds. They get a payment link, pay via M-Pesa, money lands straight in your account. No chasing. No awkward reminders.</p>
+    <p>Whether you run a kibanda extending lunch credit or you're a friend who lent money â€” record it in 30 seconds. They get a payment link, pay via M-Pesa, money lands straight in your account. No chasing. No awkward reminders.</p>
     <div class="hero-btns">
-        <a href="{{ route('deni.create') }}" class="btn-primary">Record a Deni — Free →</a>
-        <a href="{{ route('creditor.login') }}" class="btn-secondary">🏢 Smart Biashara →</a>
+        <a href="{{ route('deni.create') }}" class="btn-primary">Record a Deni â€” Free â†’</a>
+        <a href="{{ route('creditor.login') }}" class="btn-secondary">ðŸ¢ Smart Biashara â†’</a>
     </div>
-    <div style="margin-top:14px;font-size:12px;color:rgba(255,255,255,.35)">Creditor or business? <a href="{{ route('creditor.login') }}" style="color:#f87171;text-decoration:none;font-weight:700">Smart Biashara →</a> — one dashboard for all your madeni.</div>
+    <div style="margin-top:14px;font-size:12px;color:rgba(255,255,255,.35)">Creditor or business? <a href="{{ route('creditor.login') }}" style="color:#f87171;text-decoration:none;font-weight:700">Smart Biashara â†’</a> â€” one dashboard for all your madeni.</div>
 </div>
 
 <!-- Demo preview -->
@@ -128,7 +128,7 @@ body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;col
     <div class="demo-label">
         <div class="demo-card" style="margin-top:24px">
             <div class="demo-biz">Mama Njeri Kibanda</div>
-            <div class="demo-desc">Lunch — rice, beef stew & chai</div>
+            <div class="demo-desc">Lunch â€” rice, beef stew & chai</div>
             <div class="demo-prog-row">
                 <span>Balance remaining</span>
                 <span style="font-weight:900;color:#fff">KES 80</span>
@@ -138,7 +138,7 @@ body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;col
                 <span>KES 40 paid</span>
                 <span>KES 120 total</span>
             </div>
-            <div class="demo-btn">Pay via M-Pesa →</div>
+            <div class="demo-btn">Pay via M-Pesa â†’</div>
         </div>
     </div>
 </div>
@@ -147,13 +147,13 @@ body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;col
 <div class="section">
     <div class="section-tag">Who Uses Deni</div>
     <h2>For personal lenders and businesses.</h2>
-    <p>Whether you run a kibanda, a shop, or a boda boda — or you're a friend who regularly lends cash — Deni tracks every shilling owed and collects it via M-Pesa. No awkward conversations. No lost money.</p>
+    <p>Whether you run a kibanda, a shop, or a boda boda â€” or you're a friend who regularly lends cash â€” Deni tracks every shilling owed and collects it via M-Pesa. No awkward conversations. No lost money.</p>
 
     <div class="who-grid">
         <div class="who-card">
-            <div class="who-icon">🍲</div>
+            <div class="who-icon">ðŸ²</div>
             <div class="who-title">Vibanda & Restaurants</div>
-            <div class="who-desc">Customer eats and promises to pay later. Record the tab in seconds — they get a link, you get the money when they pay. Track partial payments automatically.</div>
+            <div class="who-desc">Customer eats and promises to pay later. Record the tab in seconds â€” they get a link, you get the money when they pay. Track partial payments automatically.</div>
             <div class="who-tags">
                 <span class="who-tag">Lunch tabs</span>
                 <span class="who-tag">Running credit</span>
@@ -161,9 +161,9 @@ body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;col
             </div>
         </div>
         <div class="who-card">
-            <div class="who-icon">🏪</div>
+            <div class="who-icon">ðŸª</div>
             <div class="who-title">Shops & Businesses</div>
-            <div class="who-desc">Sold goods on credit or offer business-to-customer lending? Record what's owed, send the payment link via WhatsApp — customer pays via M-Pesa, balance updates in real time.</div>
+            <div class="who-desc">Sold goods on credit or offer business-to-customer lending? Record what's owed, send the payment link via WhatsApp â€” customer pays via M-Pesa, balance updates in real time.</div>
             <div class="who-tags">
                 <span class="who-tag">Shop credit</span>
                 <span class="who-tag">B2C lending</span>
@@ -171,9 +171,9 @@ body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;col
             </div>
         </div>
         <div class="who-card">
-            <div class="who-icon">💰</div>
+            <div class="who-icon">ðŸ’°</div>
             <div class="who-title">Personal Lenders</div>
-            <div class="who-desc">Lent a friend cash, covered a bill, or helped someone in an emergency? Create a deni — they get a payment link and you track every partial payment until it's fully repaid.</div>
+            <div class="who-desc">Lent a friend cash, covered a bill, or helped someone in an emergency? Create a deni â€” they get a payment link and you track every partial payment until it's fully repaid.</div>
             <div class="who-tags">
                 <span class="who-tag">Personal loans</span>
                 <span class="who-tag">Fare covered</span>
@@ -192,35 +192,35 @@ body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;col
 
         <div class="prob-card">
             <div class="prob-item">
-                <div class="prob-icon">📓</div>
+                <div class="prob-icon">ðŸ““</div>
                 <div class="prob-text">
                     <strong>The exercise book that everyone ignores</strong>
                     <span>You write it down. The customer knows you wrote it down. But when it's time to collect, somehow the amount is always wrong, partially forgotten, or "already paid".</span>
                 </div>
             </div>
             <div class="prob-item">
-                <div class="prob-icon">😬</div>
+                <div class="prob-icon">ðŸ˜¬</div>
                 <div class="prob-text">
                     <strong>Asking for your money feels like begging</strong>
                     <span>You serve the same people every day. Chasing them for KES 120 damages the relationship, makes the air awkward, and sometimes means they stop coming altogether.</span>
                 </div>
             </div>
             <div class="prob-item">
-                <div class="prob-icon">📵</div>
+                <div class="prob-icon">ðŸ“µ</div>
                 <div class="prob-text">
                     <strong>They stop picking up your calls</strong>
                     <span>You have their number. You call. They see it's you. They don't answer. You can't afford a lawyer. You can't afford to write it off. You just stew.</span>
                 </div>
             </div>
             <div class="prob-item">
-                <div class="prob-icon">🤯</div>
+                <div class="prob-icon">ðŸ¤¯</div>
                 <div class="prob-text">
                     <strong>Multiple small debts are impossible to track</strong>
-                    <span>Ten customers, each with a running tab, each paying partial amounts at different times. Manually reconciling who paid what, when, and what's still owed — daily. No sane person can do this accurately.</span>
+                    <span>Ten customers, each with a running tab, each paying partial amounts at different times. Manually reconciling who paid what, when, and what's still owed â€” daily. No sane person can do this accurately.</span>
                 </div>
             </div>
         </div>
-        <p style="text-align:center;font-size:15px;color:rgba(255,255,255,.78);margin-top:28px;font-weight:700">Deni solves this — for the person giving credit and the person who owes.</p>
+        <p style="text-align:center;font-size:15px;color:rgba(255,255,255,.78);margin-top:28px;font-weight:700">Deni solves this â€” for the person giving credit and the person who owes.</p>
     </div>
 </div>
 
@@ -243,21 +243,21 @@ body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;col
                 <div class="step-num">2</div>
                 <div class="step-body">
                     <h3>You get two links instantly</h3>
-                    <p>An <strong style="color:#fbbf24">admin link</strong> (bookmark it — this is your management view showing all payments and balance) and a <strong style="color:#f87171">customer payment link</strong> to share via WhatsApp.</p>
+                    <p>An <strong style="color:#fbbf24">admin link</strong> (bookmark it â€” this is your management view showing all payments and balance) and a <strong style="color:#f87171">customer payment link</strong> to share via WhatsApp.</p>
                 </div>
             </div>
             <div class="step">
                 <div class="step-num">3</div>
                 <div class="step-body">
                     <h3>Customer opens their link, pays via M-Pesa</h3>
-                    <p>They see the balance, how much they've paid, and how much remains. They enter their M-Pesa number and confirm — an STK Push pops up on their phone. Full payment or partial — their choice.</p>
+                    <p>They see the balance, how much they've paid, and how much remains. They enter their M-Pesa number and confirm â€” an STK Push pops up on their phone. Full payment or partial â€” their choice.</p>
                 </div>
             </div>
             <div class="step">
                 <div class="step-num">4</div>
                 <div class="step-body">
                     <h3>Money goes straight to your M-Pesa</h3>
-                    <p>The moment they confirm their PIN, the payment processes and lands in your M-Pesa via B2C. The balance updates on both your admin view and their customer link — in real time.</p>
+                    <p>The moment they confirm their PIN, the payment processes and lands in your M-Pesa via B2C. The balance updates on both your admin view and their customer link â€” in real time.</p>
                 </div>
             </div>
         </div>
@@ -268,38 +268,38 @@ body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;col
 <div class="section">
     <div class="section-tag">Why Deni Works</div>
     <h2>Accountability without confrontation.</h2>
-    <p>The link does the chasing for you. The customer knows what they owe, sees their progress, and can pay any time — no awkward face-to-face required.</p>
+    <p>The link does the chasing for you. The customer knows what they owe, sees their progress, and can pay any time â€” no awkward face-to-face required.</p>
 
     <div class="adv-grid">
         <div class="adv-card">
-            <div class="adv-icon">💬</div>
+            <div class="adv-icon">ðŸ’¬</div>
             <div class="adv-title">WhatsApp-ready in one tap</div>
-            <div class="adv-text">After creating the deni, you get a pre-formatted WhatsApp message with the payment link ready to send. Tap once — it opens in WhatsApp with the message already written.</div>
+            <div class="adv-text">After creating the deni, you get a pre-formatted WhatsApp message with the payment link ready to send. Tap once â€” it opens in WhatsApp with the message already written.</div>
         </div>
         <div class="adv-card">
-            <div class="adv-icon">📊</div>
-            <div class="adv-title">Real-time balance — both sides</div>
+            <div class="adv-icon">ðŸ“Š</div>
+            <div class="adv-title">Real-time balance â€” both sides</div>
             <div class="adv-text">You see every payment the moment it confirms. The customer sees their remaining balance and payment history. No disputes, no "I already paid you".</div>
         </div>
         <div class="adv-card">
-            <div class="adv-icon">💳</div>
-            <div class="adv-title">Partial payments — fully supported</div>
+            <div class="adv-icon">ðŸ’³</div>
+            <div class="adv-title">Partial payments â€” fully supported</div>
             <div class="adv-text">Customer can pay whatever they have now. The progress bar updates, the balance adjusts. You see KES 40 paid against KES 120 owed. Next time they pay the rest.</div>
         </div>
         <div class="adv-card">
-            <div class="adv-icon">⚡</div>
+            <div class="adv-icon">âš¡</div>
             <div class="adv-title">Money lands instantly via B2C</div>
-            <div class="adv-text">Payments go via M-Pesa STK Push into Pregota's till, then B2C'd directly to your personal M-Pesa number — the same moment they confirm their PIN.</div>
+            <div class="adv-text">Payments go via M-Pesa STK Push into Pregota's till, then B2C'd directly to your personal M-Pesa number â€” the same moment they confirm their PIN.</div>
         </div>
         <div class="adv-card">
-            <div class="adv-icon">🔒</div>
+            <div class="adv-icon">ðŸ”’</div>
             <div class="adv-title">No account needed</div>
-            <div class="adv-text">You don't need to register. Neither does the customer. A vibanda owner can record a deni in under a minute, send the link, and forget about chasing — all without signing up for anything.</div>
+            <div class="adv-text">You don't need to register. Neither does the customer. A vibanda owner can record a deni in under a minute, send the link, and forget about chasing â€” all without signing up for anything.</div>
         </div>
         <div class="adv-card">
-            <div class="adv-icon">📱</div>
+            <div class="adv-icon">ðŸ“±</div>
             <div class="adv-title">Appears on buyer's dashboard</div>
-            <div class="adv-text">If the customer uses Pregota, their outstanding madeni show on their My Pregota dashboard — a gentle, always-visible reminder of what they still owe.</div>
+            <div class="adv-text">If the customer uses Pregota, their outstanding madeni show on their My Pregota dashboard â€” a gentle, always-visible reminder of what they still owe.</div>
         </div>
     </div>
 </div>
@@ -309,15 +309,15 @@ body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;col
     <div class="section-tag">When to Use It</div>
     <h2 style="font-size:clamp(22px,4vw,32px);font-weight:900;line-height:1.2;margin-bottom:14px">Any time you give before you receive.</h2>
     <div class="uc-grid">
-        <div class="uc-card"><div class="uc-emoji">🍛</div><div class="uc-name">Kibanda Lunch</div><div class="uc-sub">Ate, will pay Friday</div></div>
-        <div class="uc-card"><div class="uc-emoji">🥤</div><div class="uc-name">Running Tab</div><div class="uc-sub">Daily tea & mandazi</div></div>
-        <div class="uc-card"><div class="uc-emoji">🛒</div><div class="uc-name">Shop Credit</div><div class="uc-sub">Goods on account</div></div>
-        <div class="uc-card"><div class="uc-emoji">🚐</div><div class="uc-name">Fare Covered</div><div class="uc-sub">Paid for their bus</div></div>
-        <div class="uc-card"><div class="uc-emoji">💇</div><div class="uc-name">Salon Credit</div><div class="uc-sub">Hair done, pay later</div></div>
-        <div class="uc-card"><div class="uc-emoji">🤝</div><div class="uc-name">Personal Loan</div><div class="uc-sub">Lent a friend cash</div></div>
-        <div class="uc-card"><div class="uc-emoji">🏥</div><div class="uc-name">Emergency Covered</div><div class="uc-sub">Paid their hospital</div></div>
-        <div class="uc-card"><div class="uc-emoji">📦</div><div class="uc-name">Goods on Delivery</div><div class="uc-sub">Delivered, awaiting pay</div></div>
-        <div class="uc-card"><div class="uc-emoji">🎓</div><div class="uc-name">Fees Helped</div><div class="uc-sub">Covered their school</div></div>
+        <div class="uc-card"><div class="uc-emoji">ðŸ›</div><div class="uc-name">Kibanda Lunch</div><div class="uc-sub">Ate, will pay Friday</div></div>
+        <div class="uc-card"><div class="uc-emoji">ðŸ¥¤</div><div class="uc-name">Running Tab</div><div class="uc-sub">Daily tea & mandazi</div></div>
+        <div class="uc-card"><div class="uc-emoji">ðŸ›’</div><div class="uc-name">Shop Credit</div><div class="uc-sub">Goods on account</div></div>
+        <div class="uc-card"><div class="uc-emoji">ðŸš</div><div class="uc-name">Fare Covered</div><div class="uc-sub">Paid for their bus</div></div>
+        <div class="uc-card"><div class="uc-emoji">ðŸ’‡</div><div class="uc-name">Salon Credit</div><div class="uc-sub">Hair done, pay later</div></div>
+        <div class="uc-card"><div class="uc-emoji">ðŸ¤</div><div class="uc-name">Personal Loan</div><div class="uc-sub">Lent a friend cash</div></div>
+        <div class="uc-card"><div class="uc-emoji">ðŸ¥</div><div class="uc-name">Emergency Covered</div><div class="uc-sub">Paid their hospital</div></div>
+        <div class="uc-card"><div class="uc-emoji">ðŸ“¦</div><div class="uc-name">Goods on Delivery</div><div class="uc-sub">Delivered, awaiting pay</div></div>
+        <div class="uc-card"><div class="uc-emoji">ðŸŽ“</div><div class="uc-name">Fees Helped</div><div class="uc-sub">Covered their school</div></div>
     </div>
 </div>
 
@@ -326,14 +326,15 @@ body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;col
     <h2>Stop chasing.<br><em style="font-style:normal;background:linear-gradient(135deg,#f87171,#fbbf24);-webkit-background-clip:text;-webkit-text-fill-color:transparent">Start collecting.</em></h2>
     <p>Record your first deni in under a minute. Free to create. No account needed. Money goes straight to your M-Pesa the moment they pay.</p>
     <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
-        <a href="{{ route('deni.create') }}" class="btn-primary" style="font-size:16px;padding:15px 36px">Record a Deni — Free →</a>
-        <a href="{{ route('buyer.me') }}" class="btn-secondary" style="font-size:15px;padding:14px 28px">📊 View My Madeni</a>
+        <a href="{{ route('deni.create') }}" class="btn-primary" style="font-size:16px;padding:15px 36px">Record a Deni â€” Free â†’</a>
+        <a href="{{ route('buyer.me') }}" class="btn-secondary" style="font-size:15px;padding:14px 28px">ðŸ“Š View My Madeni</a>
     </div>
-    <p style="margin-top:16px;font-size:12px;color:rgba(255,255,255,.5)">No account needed · Money via B2C to your M-Pesa · Partial payments supported</p>
+    <p style="margin-top:16px;font-size:12px;color:rgba(255,255,255,.5)">No account needed Â· Money via B2C to your M-Pesa Â· Partial payments supported</p>
 </div>
 
 @include('partials.discover', ['current' => 'deni', 'fullWidth' => true])
-<footer class="footer">© 2026 Pregota · Deni — Credit Tracking via M-Pesa · pregota.com</footer>
+<footer class="footer">Â© 2026 Pregota Â· Deni â€” Credit Tracking via M-Pesa Â· pregota.com</footer>
 
 </body>
 </html>
+

@@ -1,16 +1,16 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>{{ $listing->unitLabel() }} — {{ $listing->location }} · Saka Keja</title>
+<title>{{ $listing->unitLabel() }} â€” {{ $listing->location }} Â· Saka Keja</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800;900&display=swap" rel="stylesheet">
 @include('partials.pwa')
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;color:#fff;min-height:100vh}
+body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;color:#fff;min-height:100vh-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
 .nav{padding:14px 20px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,.07)}
 .logo{font-size:20px;font-weight:900;background:linear-gradient(135deg,#25D366,#4ADE80);-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-decoration:none}
 .back{font-size:13px;color:rgba(255,255,255,.4);text-decoration:none}
@@ -56,7 +56,7 @@ body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;col
 <body>
 <nav class="nav">
     <a href="{{ route('home') }}" class="logo">Pregota</a>
-    <a href="{{ route('saka-keja.browse') }}" class="back">← Back to listings</a>
+    <a href="{{ route('saka-keja.browse') }}" class="back">â† Back to listings</a>
 </nav>
 
 <div class="wrap">
@@ -67,12 +67,12 @@ body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;col
         @endforeach
     </div>
     @else
-    <div class="gallery-placeholder">🏠</div>
+    <div class="gallery-placeholder">ðŸ </div>
     @endif
 
     <div class="badge-row">
         <span class="badge badge-type">{{ $listing->unitLabel() }}</span>
-        <span class="badge badge-loc">📍 {{ $listing->location }}</span>
+        <span class="badge badge-loc">ðŸ“ {{ $listing->location }}</span>
     </div>
 
     <div class="rent-line">
@@ -86,9 +86,9 @@ body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;col
 
     @php $secureTotal = $listing->totalSecureAmount() + 200; @endphp
     <div style="background:rgba(74,222,128,.05);border:1px solid rgba(74,222,128,.15);border-radius:16px;padding:18px;margin-bottom:14px">
-        <div style="font-size:16px;font-weight:900;margin-bottom:6px">🔒 Secure this house</div>
-        <div style="font-size:13px;color:rgba(255,255,255,.45);margin-bottom:14px;line-height:1.6">Pay KES {{ number_format($secureTotal) }} to Pregota escrow. Your money is held safely — released to landlord only when you confirm you're moving in.</div>
-        <a href="{{ route('saka-keja.deposit', $listing->id) }}" style="display:block;text-align:center;padding:13px;background:linear-gradient(135deg,#16a34a,#22c55e);border-radius:11px;color:#fff;font-weight:800;text-decoration:none;font-size:14px">Secure — KES {{ number_format($secureTotal) }} →</a>
+        <div style="font-size:16px;font-weight:900;margin-bottom:6px">ðŸ”’ Secure this house</div>
+        <div style="font-size:13px;color:rgba(255,255,255,.45);margin-bottom:14px;line-height:1.6">Pay KES {{ number_format($secureTotal) }} to Pregota escrow. Your money is held safely â€” released to landlord only when you confirm you're moving in.</div>
+        <a href="{{ route('saka-keja.deposit', $listing->id) }}" style="display:block;text-align:center;padding:13px;background:linear-gradient(135deg,#16a34a,#22c55e);border-radius:11px;color:#fff;font-weight:800;text-decoration:none;font-size:14px">Secure â€” KES {{ number_format($secureTotal) }} â†’</a>
     </div>
 
     <div class="connect-box">
@@ -105,7 +105,7 @@ body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;col
                 <input type="tel" id="phone" placeholder="07XX XXX XXX" autocomplete="tel">
             </div>
             <div class="err" id="err-msg"></div>
-            <button class="btn" id="connect-btn" onclick="doConnect()">Connect — KES 200 via M-Pesa →</button>
+            <button class="btn" id="connect-btn" onclick="doConnect()">Connect â€” KES 200 via M-Pesa â†’</button>
             <div class="note">STK Push will appear on your phone. Enter your M-Pesa PIN to confirm.</div>
         </div>
 
@@ -116,7 +116,7 @@ body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;col
         </div>
 
         <div class="success" id="success-view">
-            <div class="success-icon">✅</div>
+            <div class="success-icon">âœ…</div>
             <div class="success-title">Connected!</div>
             <div class="success-sub">Your number has been shared with the landlord.<br>Expect a call soon to arrange a viewing.</div>
             <div id="connect-receipt-box" style="display:none;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:14px 16px;text-align:left;margin-top:14px">
@@ -204,3 +204,4 @@ function pollConnect() {
 </script>
 </body>
 </html>
+

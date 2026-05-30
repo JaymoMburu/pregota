@@ -1,16 +1,16 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Create Your Pay Link — Pregota</title>
+<title>Create Your Pay Link â€” Pregota</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800;900&display=swap" rel="stylesheet">
 @include('partials.pwa')
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;color:#fff;min-height:100vh}
+body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;color:#fff;min-height:100vh-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
 .nav{padding:16px 24px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,.07)}
 .logo{font-size:20px;font-weight:900;background:linear-gradient(135deg,#25D366,#4ADE80);-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-decoration:none}
 .wrap{max-width:480px;margin:48px auto;padding:0 24px 80px}
@@ -56,7 +56,7 @@ input[type=checkbox]{width:18px!important;height:18px;accent-color:#25D366}
 
     <div id="form-view">
         <h1>Create your pay link</h1>
-        <div class="sub">Takes 60 seconds. Verify with M-Pesa — no password needed.</div>
+        <div class="sub">Takes 60 seconds. Verify with M-Pesa â€” no password needed.</div>
 
         <div class="err" id="err-msg"></div>
 
@@ -64,21 +64,21 @@ input[type=checkbox]{width:18px!important;height:18px;accent-color:#25D366}
         <div class="form-group">
             <label>What type of business?</label>
             <select id="category" onchange="onCategoryChange()">
-                <option value="">— Select category —</option>
-                <option value="transport">🚐 Matatu / Transport</option>
-                <option value="supermarket">🛒 Supermarket / Shop</option>
-                <option value="food">🍽️ Restaurant / Food</option>
-                <option value="groceries">🥬 Groceries & Kiosk</option>
-                <option value="fashion">👗 Fashion & Clothing</option>
-                <option value="salon">💇 Salon & Beauty</option>
-                <option value="electronics">📱 Electronics</option>
-                <option value="services">🛠 Services & Freelance</option>
-                <option value="other">🏪 Other</option>
+                <option value="">â€” Select category â€”</option>
+                <option value="transport">ðŸš Matatu / Transport</option>
+                <option value="supermarket">ðŸ›’ Supermarket / Shop</option>
+                <option value="food">ðŸ½ï¸ Restaurant / Food</option>
+                <option value="groceries">ðŸ¥¬ Groceries & Kiosk</option>
+                <option value="fashion">ðŸ‘— Fashion & Clothing</option>
+                <option value="salon">ðŸ’‡ Salon & Beauty</option>
+                <option value="electronics">ðŸ“± Electronics</option>
+                <option value="services">ðŸ›  Services & Freelance</option>
+                <option value="other">ðŸª Other</option>
             </select>
         </div>
 
         <div class="matatu-banner" id="matatu-banner">
-            🚐 <strong>For matatus:</strong> Your reg number becomes your payment link. The conductor updates the route and fare from the live view each time the route changes. Passengers see it automatically.
+            ðŸš <strong>For matatus:</strong> Your reg number becomes your payment link. The conductor updates the route and fare from the live view each time the route changes. Passengers see it automatically.
         </div>
 
         {{-- Handle --}}
@@ -88,7 +88,7 @@ input[type=checkbox]{width:18px!important;height:18px;accent-color:#25D366}
             <div id="reg-wrap" style="display:none">
                 <input type="text" id="reg-plate-display" class="reg-input" placeholder="KCA 123A" autocomplete="off" oninput="onRegInput(this)" maxlength="10">
                 <div class="hint">Enter your vehicle reg number exactly as on the plate</div>
-                <div class="handle-preview" id="reg-preview">Your link: <span id="reg-preview-url">pregota.com/pay/…</span></div>
+                <div class="handle-preview" id="reg-preview">Your link: <span id="reg-preview-url">pregota.com/pay/â€¦</span></div>
             </div>
 
             <div id="handle-wrap">
@@ -115,7 +115,7 @@ input[type=checkbox]{width:18px!important;height:18px;accent-color:#25D366}
         <div class="form-group">
             <label>Your M-Pesa Number</label>
             <input type="tel" id="phone" placeholder="07XX XXX XXX" autocomplete="tel">
-            <div class="hint">We'll send an STK Push to verify — this is also where your payments land</div>
+            <div class="hint">We'll send an STK Push to verify â€” this is also where your payments land</div>
         </div>
 
         <div id="fare-fields">
@@ -136,8 +136,8 @@ input[type=checkbox]{width:18px!important;height:18px;accent-color:#25D366}
             </div>
         </div>
 
-        <button class="btn" id="submit-btn" onclick="doRegister()">Create My Pay Link — Verify via M-Pesa →</button>
-        <div style="font-size:11px;color:rgba(255,255,255,.3);text-align:center;margin-top:10px">KES 1 verification charge via M-Pesa STK Push. No password needed — ever.</div>
+        <button class="btn" id="submit-btn" onclick="doRegister()">Create My Pay Link â€” Verify via M-Pesa â†’</button>
+        <div style="font-size:11px;color:rgba(255,255,255,.3);text-align:center;margin-top:10px">KES 1 verification charge via M-Pesa STK Push. No password needed â€” ever.</div>
     </div>
 
     <div class="pending" id="pending-view">
@@ -162,13 +162,13 @@ function onCategoryChange() {
     document.getElementById('handle-wrap').style.display = isMatatu ? 'none'  : 'block';
     document.getElementById('identifier-label').textContent = isMatatu ? 'Vehicle Registration Number' : 'Your handle (this becomes your link)';
     document.getElementById('name-label').textContent = isMatatu ? 'SACCO / Route name' : 'Business / display name';
-    document.getElementById('business-name').placeholder = isMatatu ? 'e.g. City Hoppa — CBD → Westlands' : "e.g. Akinyi's Boutique";
-    document.getElementById('description').placeholder = isMatatu ? 'e.g. Route: Railways → Westlands' : 'Tell buyers what you sell...';
+    document.getElementById('business-name').placeholder = isMatatu ? 'e.g. City Hoppa â€” CBD â†’ Westlands' : "e.g. Akinyi's Boutique";
+    document.getElementById('description').placeholder = isMatatu ? 'e.g. Route: Railways â†’ Westlands' : 'Tell buyers what you sell...';
     document.getElementById('amount-label').innerHTML = isMatatu ? 'Suggested fare (KES) <span style="color:rgba(255,255,255,.45)">(optional)</span>' : 'Default payment amount (KES) <span style="color:rgba(255,255,255,.45)">(optional)</span>';
-    document.getElementById('amount-hint').textContent = isMatatu ? 'Optional — routes and fares change. Passengers enter the fare the conductor calls.' : 'Leave blank to let buyers enter any amount';
+    document.getElementById('amount-hint').textContent = isMatatu ? 'Optional â€” routes and fares change. Passengers enter the fare the conductor calls.' : 'Leave blank to let buyers enter any amount';
     document.getElementById('fixed-label').textContent = isMatatu ? 'Fixed fare only' : 'Fixed amount only';
     document.getElementById('fixed-desc').textContent  = isMatatu ? 'Only tick if you run a single fixed route all day' : 'Buyers cannot change the amount';
-    document.getElementById('submit-btn').textContent  = isMatatu ? 'Create Matatu Pay Link — Verify via M-Pesa →' : 'Create My Pay Link — Verify via M-Pesa →';
+    document.getElementById('submit-btn').textContent  = isMatatu ? 'Create Matatu Pay Link â€” Verify via M-Pesa â†’' : 'Create My Pay Link â€” Verify via M-Pesa â†’';
     if (isMatatu) { const d = document.getElementById('reg-plate-display'); if (d.value) onRegInput(d); }
 }
 
@@ -248,3 +248,4 @@ function pollRegister() {
 </script>
 </body>
 </html>
+
