@@ -167,8 +167,10 @@ Route::get('/c/{handle}/alert/{token}/poll', [CreatorController::class, 'alertPo
 Route::get('/for-sellers', [SellerController::class, 'landing'])->name('seller.landing');
 Route::get('/seller/register', [SellerController::class, 'registerForm'])->name('seller.register');
 Route::post('/seller/register', [SellerController::class, 'register'])->name('seller.register.post');
+Route::get('/seller/register/poll', [SellerController::class, 'pollRegister'])->name('seller.register.poll');
 Route::get('/seller/login', [SellerController::class, 'loginForm'])->name('seller.login');
 Route::post('/seller/login', [SellerController::class, 'login'])->name('seller.login.post');
+Route::get('/seller/login/poll', [SellerController::class, 'pollLogin'])->name('seller.login.poll');
 Route::post('/seller/logout', [SellerController::class, 'logout'])->name('seller.logout');
 Route::get('/seller/dashboard', [SellerController::class, 'dashboard'])->name('seller.dashboard')->middleware(\App\Http\Middleware\SellerAuth::class);
 Route::post('/seller/stamp-card', [SellerController::class, 'saveStampCard'])->name('seller.stamp-card')->middleware(\App\Http\Middleware\SellerAuth::class);

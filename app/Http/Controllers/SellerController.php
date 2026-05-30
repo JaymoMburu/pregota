@@ -11,16 +11,21 @@ use App\Models\PayLink;
 use App\Models\PayLinkFare;
 use App\Models\SakaKejaDeposit;
 use App\Models\SakaKejaRentPayment;
+use App\Models\SellerAuthSession;
 use App\Models\SellerPayment;
 use App\Models\Subscription;
+use App\Services\DarajaService;
 use App\Services\SellerService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Session;
 
 class SellerController extends Controller
 {
-    public function __construct(private SellerService $seller) {}
+    public function __construct(
+        private SellerService $seller,
+        private DarajaService $daraja,
+    ) {}
 
     // ── Landing ───────────────────────────────────────────────────────────
     public function landing()
@@ -44,25 +49,95 @@ class SellerController extends Controller
             'phone'         => ['required', 'string', 'regex:/^(\+?254|0)[17]\d{8}$/'],
             'default_amount'=> ['nullable', 'integer', 'min:10', 'max:150000'],
             'fixed_amount'  => ['nullable', 'boolean'],
-            'password'      => ['required', 'string', 'min:6', 'confirmed'],
         ]);
 
+        $hash = $this->seller->hashPhone($data['phone']);
+
+        $stk = $this->daraja->stkPush(
+            phone: $data['phone'],
+            amount: 1,
+            accountRef: 'PAYLINK',
+            description: 'Pregota Pay Link Setup',
+        );
+
+        if (! isset($stk['CheckoutRequestID'])) {
+            $msg = $stk['errorMessage'] ?? $stk['ResponseDescription'] ?? 'STK Push failed. Please try again.';
+            return response()->json(['success' => false, 'message' => $msg], 422);
+        }
+
+        SellerAuthSession::create([
+            'checkout_request_id' => $stk['CheckoutRequestID'],
+            'type'                => 'register',
+            'phone_hash'          => $hash,
+            'phone_encrypted'     => Crypt::encryptString($data['phone']),
+            'pending_data'        => [
+                'handle'         => strtolower($data['handle']),
+                'business_name'  => $data['business_name'],
+                'category'       => $data['category'] ?? null,
+                'description'    => $data['description'] ?? null,
+                'default_amount' => $data['default_amount'] ?? null,
+                'fixed_amount'   => ! empty($data['fixed_amount']),
+            ],
+        ]);
+
+        return response()->json([
+            'success'             => true,
+            'checkout_request_id' => $stk['CheckoutRequestID'],
+        ]);
+    }
+
+    public function pollRegister(Request $request)
+    {
+        $auth = SellerAuthSession::where('checkout_request_id', $request->query('checkout_request_id'))
+            ->where('type', 'register')
+            ->first();
+
+        if (! $auth) return response()->json(['status' => 'not_found']);
+        if ($auth->status === 'failed') return response()->json(['status' => 'failed']);
+
+        if ($auth->status === 'confirmed') {
+            return $this->completeRegister($auth);
+        }
+
+        if ($auth->created_at->diffInSeconds(now()) >= 10) {
+            $query = $this->daraja->stkQuery($auth->checkout_request_id);
+            if (($query['ResultCode'] ?? null) == 0) {
+                $auth->update(['status' => 'confirmed']);
+                return $this->completeRegister($auth);
+            }
+            if (isset($query['ResultCode']) && $query['ResultCode'] != 0 && ($query['ResponseCode'] ?? '') === '0') {
+                $auth->update(['status' => 'failed']);
+                return response()->json(['status' => 'failed']);
+            }
+        }
+
+        return response()->json(['status' => 'pending']);
+    }
+
+    private function completeRegister(SellerAuthSession $auth): \Illuminate\Http\JsonResponse
+    {
+        $d = $auth->pending_data;
+
+        if (PayLink::where('handle', $d['handle'])->exists()) {
+            return response()->json(['status' => 'failed', 'message' => 'Handle already taken.']);
+        }
+
         $payLink = PayLink::create([
-            'handle'         => strtolower($data['handle']),
-            'business_name'  => $data['business_name'],
-            'category'       => $data['category'] ?? null,
-            'description'    => $data['description'] ?? null,
-            'phone_encrypted'=> \Illuminate\Support\Facades\Crypt::encryptString($data['phone']),
-            'phone_hash'     => $this->seller->hashPhone($data['phone']),
-            'default_amount' => $data['default_amount'] ?? null,
-            'fixed_amount'   => ! empty($data['fixed_amount']),
-            'password'       => Hash::make($data['password']),
-            'is_active'      => true,
+            'handle'          => $d['handle'],
+            'business_name'   => $d['business_name'],
+            'category'        => $d['category'],
+            'description'     => $d['description'],
+            'phone_encrypted' => $auth->phone_encrypted,
+            'phone_hash'      => $auth->phone_hash,
+            'default_amount'  => $d['default_amount'],
+            'fixed_amount'    => $d['fixed_amount'],
+            'is_active'       => true,
         ]);
 
         Session::put('seller_id', $payLink->id);
         Session::put('seller_verified_at', now()->timestamp);
-        return redirect()->route('seller.dashboard')->with('success', 'Your pay link is live! Share pregota.com/pay/' . $payLink->handle);
+
+        return response()->json(['status' => 'confirmed', 'redirect' => route('seller.dashboard')]);
     }
 
     // ── Login / Logout ────────────────────────────────────────────────────
@@ -73,24 +148,87 @@ class SellerController extends Controller
 
     public function login(Request $request)
     {
-        $data    = $request->validate(['handle' => 'required', 'password' => 'required']);
-        $payLink = PayLink::where('handle', strtolower($data['handle']))->first();
+        $data = $request->validate([
+            'handle' => ['required', 'string'],
+            'phone'  => ['required', 'string', 'regex:/^(\+?254|0)[17]\d{8}$/'],
+        ]);
 
-        if (! $payLink || ! Hash::check($data['password'], $payLink->password)) {
-            return back()->withErrors(['handle' => 'Invalid handle or password.']);
+        $payLink = PayLink::where('handle', strtolower($data['handle']))->first();
+        $hash    = $this->seller->hashPhone($data['phone']);
+
+        if (! $payLink) {
+            return response()->json(['success' => false, 'message' => 'Pay link not found. Check your handle.'], 422);
         }
 
-        // Backfill phone_hash for sellers registered before this feature
+        // Backfill phone_hash for old sellers if missing
         if (! $payLink->phone_hash) {
             try {
-                $phone = \Illuminate\Support\Facades\Crypt::decryptString($payLink->phone_encrypted);
-                $payLink->updateQuietly(['phone_hash' => $this->seller->hashPhone($phone)]);
+                $stored = Crypt::decryptString($payLink->phone_encrypted);
+                $payLink->updateQuietly(['phone_hash' => $this->seller->hashPhone($stored)]);
+                $payLink->refresh();
             } catch (\Throwable $e) {}
         }
 
-        Session::put('seller_id', $payLink->id);
-        Session::put('seller_verified_at', now()->timestamp);
-        return redirect()->route('seller.dashboard');
+        if ($payLink->phone_hash !== $hash) {
+            return response()->json(['success' => false, 'message' => 'Phone number does not match this pay link.'], 422);
+        }
+
+        $stk = $this->daraja->stkPush(
+            phone: $data['phone'],
+            amount: 1,
+            accountRef: 'PAYLINK',
+            description: 'Pregota Pay Link Login',
+        );
+
+        if (! isset($stk['CheckoutRequestID'])) {
+            $msg = $stk['errorMessage'] ?? $stk['ResponseDescription'] ?? 'STK Push failed. Try again.';
+            return response()->json(['success' => false, 'message' => $msg], 422);
+        }
+
+        SellerAuthSession::create([
+            'checkout_request_id' => $stk['CheckoutRequestID'],
+            'type'                => 'login',
+            'phone_hash'          => $hash,
+            'phone_encrypted'     => Crypt::encryptString($data['phone']),
+            'pay_link_id'         => $payLink->id,
+        ]);
+
+        return response()->json([
+            'success'             => true,
+            'checkout_request_id' => $stk['CheckoutRequestID'],
+        ]);
+    }
+
+    public function pollLogin(Request $request)
+    {
+        $auth = SellerAuthSession::where('checkout_request_id', $request->query('checkout_request_id'))
+            ->where('type', 'login')
+            ->first();
+
+        if (! $auth) return response()->json(['status' => 'not_found']);
+        if ($auth->status === 'failed') return response()->json(['status' => 'failed']);
+
+        if ($auth->status === 'confirmed') {
+            Session::put('seller_id', $auth->pay_link_id);
+            Session::put('seller_verified_at', now()->timestamp);
+            return response()->json(['status' => 'confirmed', 'redirect' => route('seller.dashboard')]);
+        }
+
+        if ($auth->created_at->diffInSeconds(now()) >= 10) {
+            $query = $this->daraja->stkQuery($auth->checkout_request_id);
+            if (($query['ResultCode'] ?? null) == 0) {
+                $auth->update(['status' => 'confirmed']);
+                Session::put('seller_id', $auth->pay_link_id);
+                Session::put('seller_verified_at', now()->timestamp);
+                return response()->json(['status' => 'confirmed', 'redirect' => route('seller.dashboard')]);
+            }
+            if (isset($query['ResultCode']) && $query['ResultCode'] != 0 && ($query['ResponseCode'] ?? '') === '0') {
+                $auth->update(['status' => 'failed']);
+                return response()->json(['status' => 'failed']);
+            }
+        }
+
+        return response()->json(['status' => 'pending']);
     }
 
     public function logout()
