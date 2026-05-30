@@ -499,9 +499,10 @@ class CreditorController extends Controller
                     ]
                 );
 
+                $b2cResult = null;
                 try {
                     if ($payout->recipient_till) {
-                        $this->daraja->b2bPayout(
+                        $b2cResult = $this->daraja->b2bPayout(
                             amount: $payout->amount,
                             destination: $payout->recipient_till,
                             type: 'till',
@@ -510,14 +511,15 @@ class CreditorController extends Controller
                         );
                     } elseif ($payout->recipient_phone_encrypted) {
                         $recipientPhone = Crypt::decryptString($payout->recipient_phone_encrypted);
-                        $this->daraja->b2cPayout(
+                        $b2cResult = $this->daraja->b2cPayout(
                             amount: $payout->amount,
                             phone: $recipientPhone,
                             remarks: mb_substr($payout->description ?: ('Pay ' . $payout->recipient_name), 0, 40),
                         );
                     }
+                    $payout->update(['b2c_response' => json_encode($b2cResult)]);
                 } catch (\Exception $e) {
-                    Log::error('Payout dispatch failed', ['payout_id' => $payout->id, 'error' => $e->getMessage()]);
+                    $payout->update(['b2c_response' => $e->getMessage()]);
                 }
             } elseif (isset($query['ResultCode']) && ($query['ResponseCode'] ?? '') === '0' && $query['ResultCode'] != 0) {
                 $payout->update(['status' => 'failed']);

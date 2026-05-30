@@ -103,10 +103,10 @@ foreach ($lines as $i => $line) {
 
 // Show 5 most recent CreditorPayouts from DB
 try {
-    $payouts = \App\Models\CreditorPayout::latest()->limit(5)->get(['id','status','amount','recipient_name','receipt_number','created_at','updated_at']);
+    $payouts = \App\Models\CreditorPayout::latest()->limit(5)->get(['id','status','amount','recipient_name','receipt_number','b2c_response','created_at']);
     $log[] = "\n=== Recent CreditorPayouts ===";
     foreach ($payouts as $p) {
-        $log[] = "#{$p->id} {$p->status} KES{$p->amount} → {$p->recipient_name} | receipt={$p->receipt_number} | created={$p->created_at}";
+        $log[] = "#{$p->id} {$p->status} KES{$p->amount} → {$p->recipient_name} | receipt={$p->receipt_number} | b2c=" . ($p->b2c_response ?: 'null') . " | created={$p->created_at}";
     }
 } catch (\Exception $e) {
     $log[] = "DB query failed: " . $e->getMessage();
