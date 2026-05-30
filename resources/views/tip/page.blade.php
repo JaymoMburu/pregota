@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tip {{ $staff->name }} â€” Pregota</title>
+<title>Tip {{ $staff->name }} — Pregota</title>
 <meta name="csrf-token" content="{{ csrf_token() }}">
 @include('partials.pwa')
 <style>
@@ -82,22 +82,22 @@ textarea::placeholder{color:rgba(255,255,255,.25)}
             @if($staff->role)
             <div class="staff-role">{{ $staff->role }}</div>
             @endif
-            <div class="business-tag">{{ $staff->business->logo_emoji }} {{ $staff->business->name }}@if($staff->branch) Â· {{ $staff->branch }}@endif</div>
+            <div class="business-tag">{{ $staff->business->logo_emoji }} {{ $staff->business->name }}@if($staff->branch) · {{ $staff->branch }}@endif</div>
             @php $avg = $staff->averageRating(); $count = $staff->tipCount(); @endphp
             @if($count > 0)
             <div class="rating-badge">
-                <span class="stars">{{ str_repeat('â˜…', floor($avg)) }}{{ $avg - floor($avg) >= 0.5 ? 'Â½' : '' }}</span>
-                <span>{{ $avg }} Â· {{ $count }} {{ Str::plural('tip', $count) }}</span>
+                <span class="stars">{{ str_repeat('★', floor($avg)) }}{{ $avg - floor($avg) >= 0.5 ? '½' : '' }}</span>
+                <span>{{ $avg }} · {{ $count }} {{ Str::plural('tip', $count) }}</span>
             </div>
             @endif
         </div>
 
         <!-- Privacy badge -->
         <div style="display:flex;align-items:center;gap:10px;background:rgba(34,197,94,.07);border:1px solid rgba(34,197,94,.18);border-radius:10px;padding:10px 14px;margin-bottom:22px">
-            <span style="font-size:20px;flex-shrink:0">ðŸ›¡ï¸</span>
+            <span style="font-size:20px;flex-shrink:0">🛡️</span>
             <div style="flex:1">
                 <div style="font-size:12px;font-weight:700;color:#4ade80">Privacy Protected</div>
-                <div style="font-size:11px;color:rgba(255,255,255,.68);margin-top:1px;line-height:1.5">{{ $staff->name }}'s number is never visible â€” not to you, not to their employer.</div>
+                <div style="font-size:11px;color:rgba(255,255,255,.68);margin-top:1px;line-height:1.5">{{ $staff->name }}'s number is never visible — not to you, not to their employer.</div>
             </div>
             <a href="{{ route('staff.landing') }}" style="font-size:10px;color:rgba(74,222,128,.55);text-decoration:none;white-space:nowrap;flex-shrink:0">Learn more</a>
         </div>
@@ -119,21 +119,21 @@ textarea::placeholder{color:rgba(255,255,255,.25)}
 
             @if(!$feeWaived)
             <div class="fee-preview" id="feePreview">
-                <div class="fee-row"><span>{{ $staff->name }} receives</span><span id="fRecipient">â€”</span></div>
+                <div class="fee-row"><span>{{ $staff->name }} receives</span><span id="fRecipient">—</span></div>
                 <div class="fee-row"><span>Service fee</span><span>KES {{ $flatFee }}</span></div>
-                <div class="fee-row total"><span>You pay (M-Pesa)</span><span id="fGross">â€”</span></div>
+                <div class="fee-row total"><span>You pay (M-Pesa)</span><span id="fGross">—</span></div>
             </div>
             @else
             <div id="feePreview" style="display:none"></div>
             @endif
 
-            <!-- Gift nudge shown when amount â‰¥ nudge threshold -->
+            <!-- Gift nudge shown when amount ≥ nudge threshold -->
             <div id="giftNudge" style="display:none;background:rgba(37,211,102,.07);border:1px solid rgba(37,211,102,.25);border-radius:10px;padding:10px 14px;margin-bottom:14px">
-                <div style="font-size:12px;font-weight:700;color:#25D366;margin-bottom:5px">ðŸ’¡ Sending KES 500+?</div>
-                <div style="font-size:12px;color:rgba(255,255,255,.78);margin-bottom:8px">For larger amounts you can send a Gift Voucher (shareable code) or a Direct Gift (instant delivery). Recipient gets the full amount â€” same fee of KES 75.</div>
+                <div style="font-size:12px;font-weight:700;color:#25D366;margin-bottom:5px">💡 Sending KES 500+?</div>
+                <div style="font-size:12px;color:rgba(255,255,255,.78);margin-bottom:8px">For larger amounts you can send a Gift Voucher (shareable code) or a Direct Gift (instant delivery). Recipient gets the full amount — same fee of KES 75.</div>
                 <div style="display:flex;gap:8px;flex-wrap:wrap">
-                    <a id="nudgeVoucher" href="#" style="font-size:12px;font-weight:700;color:#a78bfa;background:rgba(0,166,81,.15);border:1px solid rgba(0,166,81,.3);border-radius:7px;padding:5px 12px;text-decoration:none">ðŸŽ Gift Voucher â†’</a>
-                    <a id="nudgeDirect" href="#" style="font-size:12px;font-weight:700;color:#25D366;background:rgba(37,211,102,.12);border:1px solid rgba(37,211,102,.3);border-radius:7px;padding:5px 12px;text-decoration:none">âš¡ Direct Gift â†’</a>
+                    <a id="nudgeVoucher" href="#" style="font-size:12px;font-weight:700;color:#a78bfa;background:rgba(0,166,81,.15);border:1px solid rgba(0,166,81,.3);border-radius:7px;padding:5px 12px;text-decoration:none">🎁 Gift Voucher →</a>
+                    <a id="nudgeDirect" href="#" style="font-size:12px;font-weight:700;color:#25D366;background:rgba(37,211,102,.12);border:1px solid rgba(37,211,102,.3);border-radius:7px;padding:5px 12px;text-decoration:none">⚡ Direct Gift →</a>
                 </div>
             </div>
 
@@ -142,7 +142,7 @@ textarea::placeholder{color:rgba(255,255,255,.25)}
                 <input type="tel" id="phone" placeholder="07XX XXX XXX">
             </div>
 
-            <button class="btn" id="tipBtn" onclick="sendTip()">Send Tip â†’</button>
+            <button class="btn" id="tipBtn" onclick="sendTip()">Send Tip →</button>
 
             <div id="pendingStatus" style="display:none;text-align:center;margin-top:16px;font-size:13px;color:rgba(255,255,255,.78)">
                 <span class="status-dot"></span>Waiting for M-Pesa confirmation...
@@ -151,16 +151,16 @@ textarea::placeholder{color:rgba(255,255,255,.25)}
 
         <!-- Feedback step -->
         <div class="feedback-step" id="feedbackStep">
-            <div style="font-size:40px;margin-bottom:10px">ðŸŽ‰</div>
+            <div style="font-size:40px;margin-bottom:10px">🎉</div>
             <div style="font-size:18px;font-weight:800;margin-bottom:6px">Tip sent to {{ $staff->name }}!</div>
             <div style="font-size:13px;color:rgba(255,255,255,.72);margin-bottom:20px">How was your experience?</div>
 
             <div class="star-row" id="starRow">
-                <span onclick="setRating(1)">â­</span>
-                <span onclick="setRating(2)">â­</span>
-                <span onclick="setRating(3)">â­</span>
-                <span onclick="setRating(4)">â­</span>
-                <span onclick="setRating(5)">â­</span>
+                <span onclick="setRating(1)">⭐</span>
+                <span onclick="setRating(2)">⭐</span>
+                <span onclick="setRating(3)">⭐</span>
+                <span onclick="setRating(4)">⭐</span>
+                <span onclick="setRating(5)">⭐</span>
             </div>
 
             <div class="tag-grid" id="tagGrid"></div>
@@ -173,16 +173,16 @@ textarea::placeholder{color:rgba(255,255,255,.25)}
 
         <!-- Final success -->
         <div class="success-box" id="successBox">
-            <div style="font-size:40px;margin-bottom:10px">âœ…</div>
+            <div style="font-size:40px;margin-bottom:10px">✅</div>
             <div style="font-size:16px;font-weight:800;margin-bottom:6px">Thank you!</div>
             <div style="font-size:13px;color:rgba(255,255,255,.82)">Your feedback has been recorded. {{ $staff->name }} appreciates it.</div>
-            <a href="{{ route('home') }}" style="display:inline-block;margin-top:16px;color:#a78bfa;font-size:13px">Send a gift instead â†’</a>
+            <a href="{{ route('home') }}" style="display:inline-block;margin-top:16px;color:#a78bfa;font-size:13px">Send a gift instead →</a>
         </div>
 
     </div>
 </div>
 
-<footer class="footer">Â© 2026 Pregota Â· Tips are private Â· pregota.com</footer>
+<footer class="footer">© 2026 Pregota · Tips are private · pregota.com</footer>
 
 <script>
 const CSRF     = document.querySelector('meta[name=csrf-token]').content;
@@ -263,11 +263,11 @@ async function sendTip() {
             pollTipStatus(json.tip_id);
         } else {
             alert(json.message || 'Something went wrong.');
-            btn.disabled = false; btn.textContent = 'Send Tip â†’';
+            btn.disabled = false; btn.textContent = 'Send Tip →';
         }
     } catch(e) {
         alert('Network error. Please try again.');
-        btn.disabled = false; btn.textContent = 'Send Tip â†’';
+        btn.disabled = false; btn.textContent = 'Send Tip →';
     }
 }
 
@@ -281,9 +281,9 @@ async function pollTipStatus(tipId) {
             return;
         }
         if (json.status === 'failed') {
-            document.getElementById('pendingStatus').innerHTML = 'âŒ Payment failed. Please try again.';
+            document.getElementById('pendingStatus').innerHTML = '❌ Payment failed. Please try again.';
             document.getElementById('tipBtn').disabled = false;
-            document.getElementById('tipBtn').textContent = 'Send Tip â†’';
+            document.getElementById('tipBtn').textContent = 'Send Tip →';
             return;
         }
     }
@@ -339,4 +339,3 @@ function showSuccess() {
 </script>
 </body>
 </html>
-

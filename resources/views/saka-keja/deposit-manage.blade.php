@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+﻿﻿﻿﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -21,17 +21,17 @@ body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;col
 .status-taken{background:rgba(239,68,68,.06);border:1px solid rgba(239,68,68,.15);border-radius:13px;padding:16px;margin-bottom:22px;text-align:center}
 .status-icon{font-size:36px;margin-bottom:8px}
 .status-title{font-size:17px;font-weight:900;margin-bottom:4px}
-.status-sub{font-size:13px;color:rgba(255,255,255,.45);line-height:1.6}
+.status-sub{font-size:13px;color:rgba(255,255,255,.72);line-height:1.6}
 
 .listing-info{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:13px;padding:14px;margin-bottom:22px}
 .listing-type{font-size:11px;font-weight:700;color:#f59e0b;margin-bottom:3px}
 .listing-loc{font-size:16px;font-weight:800}
-.listing-rent{font-size:13px;color:rgba(255,255,255,.45);margin-top:3px}
+.listing-rent{font-size:13px;color:rgba(255,255,255,.72);margin-top:3px}
 
 .amount-held{text-align:center;margin-bottom:22px;padding:16px;background:rgba(74,222,128,.05);border:1px solid rgba(74,222,128,.12);border-radius:13px}
-.amount-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.35);margin-bottom:6px}
+.amount-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.65);margin-bottom:6px}
 .amount-val{font-size:28px;font-weight:900;color:#4ADE80}
-.amount-sub{font-size:12px;color:rgba(255,255,255,.35);margin-top:4px}
+.amount-sub{font-size:12px;color:rgba(255,255,255,.65);margin-top:4px}
 
 .confirm-section{margin-bottom:16px}
 .declaration{background:rgba(245,158,11,.05);border:1px solid rgba(245,158,11,.15);border-radius:11px;padding:14px;margin-bottom:14px;font-size:13px;color:rgba(255,255,255,.6);line-height:1.7}
@@ -42,9 +42,9 @@ body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;col
 
 .btn{width:100%;padding:15px;background:linear-gradient(135deg,#16a34a,#22c55e);color:#fff;font-size:15px;font-weight:900;border:none;border-radius:13px;cursor:pointer;margin-bottom:10px;transition:.15s}
 .btn:disabled{opacity:.35;cursor:not-allowed}
-.btn-cancel{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.45);font-size:13px;font-weight:700;padding:12px;border-radius:11px;cursor:pointer;width:100%}
+.btn-cancel{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.72);font-size:13px;font-weight:700;padding:12px;border-radius:11px;cursor:pointer;width:100%}
 .btn-cancel:hover{background:rgba(239,68,68,.08);border-color:rgba(239,68,68,.2);color:#fca5a5}
-.dispute-note{font-size:11px;color:rgba(255,255,255,.3);text-align:center;margin-top:12px;line-height:1.6}
+.dispute-note{font-size:11px;color:rgba(255,255,255,.65);text-align:center;margin-top:12px;line-height:1.6}
 
 .success-view{display:none;text-align:center;padding:10px 0}
 .success-icon{font-size:48px;margin-bottom:12px}
@@ -116,12 +116,12 @@ body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;col
         <div class="success-view" id="success-view">
             <div class="success-icon">âœ…</div>
             <div style="font-size:18px;font-weight:900;margin-bottom:6px;color:#4ADE80">Confirmed!</div>
-            <div style="font-size:13px;color:rgba(255,255,255,.45);line-height:1.6">Deposit released to landlord. Welcome to your new home!</div>
+            <div style="font-size:13px;color:rgba(255,255,255,.72);line-height:1.6">Deposit released to landlord. Welcome to your new home!</div>
         </div>
     @endif
 
     <div style="text-align:center;margin-top:20px">
-        <a href="{{ route('saka-keja.browse') }}" style="font-size:12px;color:rgba(255,255,255,.3);text-decoration:none">â† Browse other listings</a>
+        <a href="{{ route('saka-keja.browse') }}" style="font-size:12px;color:rgba(255,255,255,.65);text-decoration:none">â† Browse other listings</a>
     </div>
 </div>
 
@@ -165,5 +165,4 @@ async function doCancel() {
 </script>
 </body>
 </html>
-
 

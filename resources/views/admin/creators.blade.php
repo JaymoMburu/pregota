@@ -1,48 +1,48 @@
-﻿<!DOCTYPE html>
+﻿﻿﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Creator Approvals â€” Pregota Admin</title>
+<title>Creator Approvals — Pregota Admin</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}input,textarea,select,button{font-family:inherit;font-size:inherit}
 body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;min-height:100vh;padding:24px}
 .top{display:flex;align-items:center;justify-content:space-between;margin-bottom:28px;flex-wrap:wrap;gap:12px}
 .logo{font-size:20px;font-weight:900;background:linear-gradient(135deg,#25D366,#4ADE80);-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-decoration:none}
 .back{font-size:13px;color:rgba(255,255,255,.6);text-decoration:none;border:1px solid rgba(255,255,255,.12);border-radius:8px;padding:7px 14px}
-.back:hover{color:#fff;border-color:rgba(255,255,255,.3)}
+.back:hover{color:#fff;border-color:rgba(255,255,255,.65)}
 h1{font-size:20px;font-weight:900;margin-bottom:4px}
 .sub{font-size:13px;color:rgba(255,255,255,.6);margin-bottom:24px}
 .badge{display:inline-flex;align-items:center;gap:5px;background:rgba(239,68,68,.15);border:1px solid rgba(239,68,68,.3);border-radius:20px;padding:3px 10px;font-size:11px;font-weight:700;color:#fca5a5}
 .badge.green{background:rgba(34,197,94,.1);border-color:rgba(34,197,94,.25);color:#4ade80}
-.section-head{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.5);margin:28px 0 12px}
+.section-head{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.78);margin:28px 0 12px}
 .creator-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:16px 20px;display:flex;align-items:center;gap:16px;margin-bottom:10px;flex-wrap:wrap}
 .avatar{width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg,#00A651,#007A33);display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:900;flex-shrink:0;overflow:hidden}
 .avatar img{width:100%;height:100%;object-fit:cover}
 .info{flex:1;min-width:160px}
 .name{font-size:15px;font-weight:700}
-.handle{font-size:12px;color:rgba(255,255,255,.5);margin-top:2px}
-.meta{font-size:11px;color:rgba(255,255,255,.45);margin-top:4px}
+.handle{font-size:12px;color:rgba(255,255,255,.78);margin-top:2px}
+.meta{font-size:11px;color:rgba(255,255,255,.72);margin-top:4px}
 .bio{font-size:12px;color:rgba(255,255,255,.65);margin-top:5px;line-height:1.5;max-width:360px}
 .actions{display:flex;gap:8px;flex-shrink:0}
 .btn-approve{background:linear-gradient(135deg,#00A651,#007A33);color:#fff;border:none;border-radius:8px;padding:8px 18px;font-size:13px;font-weight:700;cursor:pointer}
 .btn-approve:hover{opacity:.9}
 .btn-reject{background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.3);color:#fca5a5;border-radius:8px;padding:8px 18px;font-size:13px;font-weight:700;cursor:pointer}
 .btn-reject:hover{background:rgba(239,68,68,.2)}
-.empty{color:rgba(255,255,255,.4);font-size:13px;padding:20px 0}
+.empty{color:rgba(255,255,255,.72);font-size:13px;padding:20px 0}
 .alert{padding:12px 16px;border-radius:10px;font-size:13px;margin-bottom:20px}
 .alert.success{background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.25);color:#4ade80}
 .stats-row{display:flex;gap:12px;margin-bottom:28px;flex-wrap:wrap}
 .stat{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:14px 18px;flex:1;min-width:120px}
 .stat-val{font-size:22px;font-weight:900;color:#fff}
-.stat-lbl{font-size:11px;color:rgba(255,255,255,.5);margin-top:3px;text-transform:uppercase;letter-spacing:.06em}
+.stat-lbl{font-size:11px;color:rgba(255,255,255,.78);margin-top:3px;text-transform:uppercase;letter-spacing:.06em}
 </style>
 </head>
 <body>
 
 <div class="top">
     <a href="{{ route('home') }}" class="logo">Pregota</a>
-    <a href="{{ route('admin.dashboard') }}" class="back">â† Admin Dashboard</a>
+    <a href="{{ route('admin.dashboard') }}" class="back">← Admin Dashboard</a>
 </div>
 
 @if(session('success'))
@@ -79,8 +79,8 @@ h1{font-size:20px;font-weight:900;margin-bottom:4px}
     </div>
     <div class="info">
         <div class="name">{{ $creator->display_name }}</div>
-        <div class="handle">@{{ $creator->handle }} Â· pregota.com/c/{{ $creator->handle }}</div>
-        <div class="meta">Registered {{ $creator->created_at->diffForHumans() }} Â· Min gift KES {{ number_format($creator->min_gift_amount, 0) }}</div>
+        <div class="handle">@{{ $creator->handle }} · pregota.com/c/{{ $creator->handle }}</div>
+        <div class="meta">Registered {{ $creator->created_at->diffForHumans() }} · Min gift KES {{ number_format($creator->min_gift_amount, 0) }}</div>
         @if($creator->bio)
         <div class="bio">{{ $creator->bio }}</div>
         @endif
@@ -98,7 +98,7 @@ h1{font-size:20px;font-weight:900;margin-bottom:4px}
     </div>
 </div>
 @empty
-<div class="empty">No pending creators â€” all caught up.</div>
+<div class="empty">No pending creators — all caught up.</div>
 @endforelse
 
 <div class="section-head">
@@ -118,13 +118,13 @@ h1{font-size:20px;font-weight:900;margin-bottom:4px}
         <div class="name">{{ $creator->display_name }}</div>
         <div class="handle">@{{ $creator->handle }}</div>
         <div class="meta">
-            {{ $creator->gifts()->where('status','paid')->count() }} gifts Â·
-            KES {{ number_format($creator->total_received, 0) }} received Â·
+            {{ $creator->gifts()->where('status','paid')->count() }} gifts ·
+            KES {{ number_format($creator->total_received, 0) }} received ·
             Active since {{ $creator->updated_at->format('d M Y') }}
         </div>
     </div>
     <div class="actions">
-        <a href="{{ route('creator.page', $creator->handle) }}" target="_blank" style="color:rgba(255,255,255,.6);font-size:12px;text-decoration:none;border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:7px 14px">View Page â†—</a>
+        <a href="{{ route('creator.page', $creator->handle) }}" target="_blank" style="color:rgba(255,255,255,.6);font-size:12px;text-decoration:none;border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:7px 14px">View Page ↗</a>
         <form method="POST" action="{{ route('admin.creators.reject', $creator) }}" style="display:inline"
               onsubmit="return confirm('Deactivate and delete @{{ $creator->handle }}? This cannot be undone.')">
             @csrf @method('DELETE')
@@ -138,4 +138,3 @@ h1{font-size:20px;font-weight:900;margin-bottom:4px}
 
 </body>
 </html>
-

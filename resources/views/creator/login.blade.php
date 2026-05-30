@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Creator Login â€” Pregota</title>
+<title>Creator Login — Pregota</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}input,textarea,select,button{font-family:inherit;font-size:inherit}
 body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px}
@@ -38,13 +38,12 @@ input::placeholder{color:rgba(255,255,255,.25)}
         </div>
         <div class="form-group">
             <label>Password</label>
-            <input type="password" name="password" placeholder="â€¢â€¢â€¢â€¢â€¢â€¢" required>
+            <input type="password" name="password" placeholder="••••••" required>
         </div>
-        <button type="submit" class="btn">Sign In â†’</button>
+        <button type="submit" class="btn">Sign In →</button>
     </form>
 
     <div class="register-link">New creator? <a href="{{ route('creator.register') }}">Create an account</a></div>
 </div>
 </body>
 </html>
-

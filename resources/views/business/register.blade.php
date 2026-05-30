@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Register Business â€” Pregota</title>
+<title>Register Business — Pregota</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}input,textarea,select,button{font-family:inherit;font-size:inherit}
 body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;min-height:100vh;display:flex;flex-direction:column}
@@ -47,7 +47,7 @@ select option{background:#0B1810;color:#fff}
             <div class="form-row">
                 <div class="form-group">
                     <label>Business Name</label>
-                    <input type="text" name="name" value="{{ old('name') }}" placeholder="Art CafÃ©" required>
+                    <input type="text" name="name" value="{{ old('name') }}" placeholder="Art Café" required>
                 </div>
                 <div class="form-group">
                     <label>Short Slug</label>
@@ -85,11 +85,10 @@ select option{background:#0B1810;color:#fff}
                     <input type="password" name="password_confirmation" required>
                 </div>
             </div>
-            <button type="submit" class="btn">Create Business Account â†’</button>
+            <button type="submit" class="btn">Create Business Account →</button>
         </form>
         <div class="login-link">Already registered? <a href="{{ route('business.login') }}">Log in</a></div>
     </div>
 </div>
 </body>
 </html>
-

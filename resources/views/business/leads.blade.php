@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Customer Leads â€” {{ $business->name }}</title>
+<title>Customer Leads — {{ $business->name }}</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}input,textarea,select,button{font-family:inherit;font-size:inherit}
 body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;min-height:100vh}
@@ -42,13 +42,13 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 <body>
 
 <div class="topbar">
-    <a href="{{ route('business.dashboard') }}" class="back">â† Dashboard</a>
+    <a href="{{ route('business.dashboard') }}" class="back">← Dashboard</a>
     <a href="{{ route('home') }}" class="logo">Pregota</a>
 </div>
 
 <div class="page">
     <div class="page-title">Customer Leads</div>
-    <div class="page-sub">{{ $business->name }} Â· Customers who voluntarily shared their contact with you through Pregota after paying</div>
+    <div class="page-sub">{{ $business->name }} · Customers who voluntarily shared their contact with you through Pregota after paying</div>
 
     <div class="summary-row">
         <div class="sum-card">
@@ -70,7 +70,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
         <button class="filter-btn active" onclick="filter('all', this)">All</button>
         <button class="filter-btn" onclick="filter('today', this)">Today</button>
         <button class="filter-btn" onclick="filter('week', this)">This week</button>
-        <button class="export-btn" onclick="exportCSV()">â†“ Export CSV</button>
+        <button class="export-btn" onclick="exportCSV()">↓ Export CSV</button>
     </div>
 
     <table class="leads-table">
@@ -88,18 +88,18 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
             @php $phone = $optIn->getPhone(); @endphp
             <tr data-date="{{ $optIn->created_at->toDateString() }}"
                 data-phone="{{ $phone }}"
-                data-venue="{{ $optIn->billSplit->business_name }}{{ $optIn->billSplit->label ? ' Â· ' . $optIn->billSplit->label : '' }}"
-                data-staff="{{ $optIn->billSplit->tip_handle ?? 'â€”' }}"
-                data-datetime="{{ $optIn->created_at->format('d M Y Â· g:i A') }}">
+                data-venue="{{ $optIn->billSplit->business_name }}{{ $optIn->billSplit->label ? ' · ' . $optIn->billSplit->label : '' }}"
+                data-staff="{{ $optIn->billSplit->tip_handle ?? '—' }}"
+                data-datetime="{{ $optIn->created_at->format('d M Y · g:i A') }}">
                 <td class="phone-cell">{{ $phone }}</td>
                 <td class="venue-cell">
                     {{ $optIn->billSplit->business_name }}
                     @if($optIn->billSplit->label)
-                    <span style="color:rgba(255,255,255,.6)"> Â· {{ $optIn->billSplit->label }}</span>
+                    <span style="color:rgba(255,255,255,.6)"> · {{ $optIn->billSplit->label }}</span>
                     @endif
                 </td>
-                <td style="color:rgba(255,255,255,.72)">{{ $optIn->billSplit->tip_handle ?? 'â€”' }}</td>
-                <td class="date-cell">{{ $optIn->created_at->format('d M Â· g:i A') }}</td>
+                <td style="color:rgba(255,255,255,.72)">{{ $optIn->billSplit->tip_handle ?? '—' }}</td>
+                <td class="date-cell">{{ $optIn->created_at->format('d M · g:i A') }}</td>
                 <td><button class="copy-btn" onclick="copyPhone('{{ $phone }}', this)">Copy</button></td>
             </tr>
             @endforeach
@@ -107,7 +107,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
     </table>
     @else
     <div class="empty">
-        <div class="empty-icon">ðŸ“±</div>
+        <div class="empty-icon">📱</div>
         <div style="font-weight:700;margin-bottom:8px">No leads yet</div>
         <div style="font-size:12px">Customers are offered to opt in after paying via bill split. Make sure your staff use their Pregota handle when creating splits.</div>
     </div>
@@ -132,7 +132,7 @@ function filter(period, btn) {
 
 function copyPhone(phone, btn) {
     navigator.clipboard.writeText(phone).then(() => {
-        btn.textContent = 'âœ“ Copied';
+        btn.textContent = '✓ Copied';
         setTimeout(() => btn.textContent = 'Copy', 2000);
     });
 }
@@ -154,4 +154,3 @@ function exportCSV() {
 </script>
 </body>
 </html>
-

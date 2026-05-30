@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+﻿﻿﻿﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -17,7 +17,7 @@ body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;col
 .nav{padding:14px 24px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;background:rgba(11,20,26,.92);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.06);z-index:50}
 .logo{font-size:20px;font-weight:900;background:linear-gradient(135deg,#25D366,#4ADE80);-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-decoration:none}
 .nav-right{display:flex;align-items:center;gap:10px}
-.nav-landlord{font-size:12px;color:rgba(255,255,255,.45);text-decoration:none;font-weight:700;padding:7px 12px;border:1px solid rgba(255,255,255,.1);border-radius:9px;transition:.15s}
+.nav-landlord{font-size:12px;color:rgba(255,255,255,.72);text-decoration:none;font-weight:700;padding:7px 12px;border:1px solid rgba(255,255,255,.1);border-radius:9px;transition:.15s}
 .nav-landlord:hover{color:#f59e0b;border-color:rgba(245,158,11,.3)}
 .nav-list{padding:8px 16px;background:linear-gradient(135deg,#d97706,#f59e0b);border:none;border-radius:10px;color:#0B141A;font-size:13px;font-weight:800;cursor:pointer;text-decoration:none}
 
@@ -27,7 +27,7 @@ body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;col
 .hero-title{font-size:clamp(34px,7vw,58px);font-weight:900;line-height:1.05;margin-bottom:16px;letter-spacing:-.03em}
 .hero-title .green{background:linear-gradient(135deg,#25D366,#4ADE80);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 .hero-title .amber{background:linear-gradient(135deg,#f59e0b,#fbbf24);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.hero-sub{font-size:16px;color:rgba(255,255,255,.55);line-height:1.7;margin-bottom:32px;max-width:480px;margin-left:auto;margin-right:auto}
+.hero-sub{font-size:16px;color:rgba(255,255,255,.78);line-height:1.7;margin-bottom:32px;max-width:480px;margin-left:auto;margin-right:auto}
 .hero-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:36px}
 .btn-primary{padding:14px 28px;background:linear-gradient(135deg,#16a34a,#22c55e);color:#fff;font-size:15px;font-weight:800;border:none;border-radius:13px;cursor:pointer;text-decoration:none;display:inline-block;transition:.15s}
 .btn-primary:hover{opacity:.9;transform:translateY(-1px)}
@@ -42,12 +42,12 @@ body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;col
 /* Divider */
 .section{max-width:820px;margin:0 auto;padding:0 20px}
 .section-title{font-size:22px;font-weight:900;margin-bottom:6px}
-.section-sub{font-size:14px;color:rgba(255,255,255,.45);margin-bottom:32px}
+.section-sub{font-size:14px;color:rgba(255,255,255,.72);margin-bottom:32px}
 
 /* How it works */
 .how-wrap{background:rgba(255,255,255,.02);border-top:1px solid rgba(255,255,255,.05);border-bottom:1px solid rgba(255,255,255,.05);padding:56px 20px}
 .how-tabs{display:flex;gap:8px;margin-bottom:32px;justify-content:center}
-.how-tab{padding:9px 20px;border-radius:10px;font-size:13px;font-weight:800;cursor:pointer;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.04);color:rgba(255,255,255,.5);transition:.15s}
+.how-tab{padding:9px 20px;border-radius:10px;font-size:13px;font-weight:800;cursor:pointer;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.04);color:rgba(255,255,255,.78);transition:.15s}
 .how-tab.active-seeker{background:rgba(37,211,102,.1);border-color:rgba(37,211,102,.3);color:#4ADE80}
 .how-tab.active-landlord{background:rgba(245,158,11,.1);border-color:rgba(245,158,11,.3);color:#f59e0b}
 .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;max-width:820px;margin:0 auto}
@@ -57,21 +57,21 @@ body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;col
 .step-num.amber{color:#f59e0b}
 .step-icon{font-size:28px;margin-bottom:10px}
 .step-title{font-size:14px;font-weight:900;margin-bottom:6px}
-.step-desc{font-size:12px;color:rgba(255,255,255,.45);line-height:1.6}
+.step-desc{font-size:12px;color:rgba(255,255,255,.72);line-height:1.6}
 
 /* Why section */
 .why-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-bottom:56px}
 .why-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:16px;padding:22px 18px}
 .why-icon{font-size:28px;margin-bottom:12px}
 .why-title{font-size:14px;font-weight:900;margin-bottom:6px}
-.why-desc{font-size:12px;color:rgba(255,255,255,.45);line-height:1.6}
+.why-desc{font-size:12px;color:rgba(255,255,255,.72);line-height:1.6}
 
 /* Stats */
 .stats-bar{display:flex;gap:0;border:1px solid rgba(255,255,255,.08);border-radius:16px;overflow:hidden;margin-bottom:56px}
 .stat-item{flex:1;padding:22px 16px;text-align:center;border-right:1px solid rgba(255,255,255,.06)}
 .stat-item:last-child{border-right:none}
 .stat-val{font-size:28px;font-weight:900;color:#4ADE80;margin-bottom:4px}
-.stat-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:rgba(255,255,255,.35)}
+.stat-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:rgba(255,255,255,.65)}
 @media(max-width:460px){.stats-bar{flex-direction:column}.stat-item{border-right:none;border-bottom:1px solid rgba(255,255,255,.06)}.stat-item:last-child{border-bottom:none}}
 
 /* Listings */
@@ -87,7 +87,7 @@ body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;col
 .search-row{display:flex;gap:8px;margin-bottom:24px}
 .search-input{flex:1;padding:11px 16px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:11px;color:#fff;font-size:14px;outline:none;font-family:inherit}
 .search-input:focus{border-color:rgba(245,158,11,.4)}
-.search-input::placeholder{color:rgba(255,255,255,.3)}
+.search-input::placeholder{color:rgba(255,255,255,.65)}
 
 .grid{display:grid;grid-template-columns:1fr;gap:14px}
 @media(min-width:480px){.grid{grid-template-columns:1fr 1fr}}
@@ -100,21 +100,21 @@ body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;col
 .card-type{display:inline-flex;padding:3px 10px;background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.22);border-radius:999px;font-size:11px;font-weight:700;color:#f59e0b;margin-bottom:8px}
 .card-location{font-size:15px;font-weight:800;margin-bottom:6px}
 .card-rent{font-size:22px;font-weight:900;color:#4ADE80}
-.card-rent-label{font-size:11px;color:rgba(255,255,255,.35);margin-left:3px}
+.card-rent-label{font-size:11px;color:rgba(255,255,255,.65);margin-left:3px}
 .card-footer{display:flex;align-items:center;justify-content:space-between;margin-top:12px;padding-top:12px;border-top:1px solid rgba(255,255,255,.05)}
-.card-fee{font-size:11px;color:rgba(255,255,255,.35);display:flex;align-items:center;gap:5px}
+.card-fee{font-size:11px;color:rgba(255,255,255,.65);display:flex;align-items:center;gap:5px}
 .card-fee::before{content:'ðŸ”’';font-size:10px}
 .card-arrow{font-size:18px;color:#f59e0b;font-weight:900}
 
-.empty{text-align:center;padding:60px 20px;color:rgba(255,255,255,.3);grid-column:1/-1}
+.empty{text-align:center;padding:60px 20px;color:rgba(255,255,255,.65);grid-column:1/-1}
 .empty-icon{font-size:52px;margin-bottom:14px}
-.empty-text{font-size:16px;font-weight:700;margin-bottom:6px;color:rgba(255,255,255,.5)}
+.empty-text{font-size:16px;font-weight:700;margin-bottom:6px;color:rgba(255,255,255,.78)}
 .empty-sub{font-size:13px}
 
 /* Landlord CTA */
 .landlord-cta{background:linear-gradient(135deg,rgba(245,158,11,.08),rgba(245,158,11,.04));border:1px solid rgba(245,158,11,.18);border-radius:20px;padding:32px 28px;text-align:center;margin-bottom:32px}
 .landlord-cta-title{font-size:20px;font-weight:900;margin-bottom:8px}
-.landlord-cta-sub{font-size:14px;color:rgba(255,255,255,.5);line-height:1.7;margin-bottom:20px}
+.landlord-cta-sub{font-size:14px;color:rgba(255,255,255,.78);line-height:1.7;margin-bottom:20px}
 .landlord-cta-btn{display:inline-block;padding:13px 28px;background:linear-gradient(135deg,#d97706,#f59e0b);border-radius:12px;color:#0B141A;font-size:14px;font-weight:800;text-decoration:none}
 
 /* Sticky CTA bar (mobile) */
@@ -329,9 +329,9 @@ body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;col
         @endforelse
     </div>
 
-    <div id="no-results" style="display:none;text-align:center;padding:40px 20px;color:rgba(255,255,255,.35)">
+    <div id="no-results" style="display:none;text-align:center;padding:40px 20px;color:rgba(255,255,255,.65)">
         <div style="font-size:36px;margin-bottom:10px">ðŸ”</div>
-        <div style="font-size:15px;font-weight:700;margin-bottom:5px;color:rgba(255,255,255,.5)">No matches found</div>
+        <div style="font-size:15px;font-weight:700;margin-bottom:5px;color:rgba(255,255,255,.78)">No matches found</div>
         <div style="font-size:13px">Try a different area or remove the filter.</div>
     </div>
 
@@ -406,5 +406,4 @@ document.querySelectorAll('a[href="#listings"]').forEach(a => {
 </script>
 </body>
 </html>
-
 

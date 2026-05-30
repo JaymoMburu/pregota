@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pay Your Share â€” {{ $bill->label ?? 'Bill Split' }}</title>
+<title>Pay Your Share — {{ $bill->label ?? 'Bill Split' }}</title>
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}input,textarea,select,button{font-family:inherit;font-size:inherit}
@@ -109,14 +109,14 @@ input::placeholder{color:rgba(255,255,255,.82)}
 
     @if($settled)
     <div class="settled-box">
-        <div style="font-size:48px;margin-bottom:10px">âœ…</div>
+        <div style="font-size:48px;margin-bottom:10px">✅</div>
         <div style="font-size:18px;font-weight:900;color:#4ade80;margin-bottom:6px">Bill fully paid!</div>
         <div style="font-size:13px;color:rgba(255,255,255,.72)">Everyone has paid. You're all settled.</div>
     </div>
 
     @elseif(!$open)
     <div class="settled-box">
-        <div style="font-size:48px;margin-bottom:10px">â±ï¸</div>
+        <div style="font-size:48px;margin-bottom:10px">⏱️</div>
         <div style="font-size:16px;font-weight:700;margin-bottom:6px">This bill has expired</div>
         <div style="font-size:13px;color:rgba(255,255,255,.72)">Ask your waiter to generate a new split.</div>
     </div>
@@ -136,8 +136,8 @@ input::placeholder{color:rgba(255,255,255,.82)}
 
         <div class="breakdown" id="breakdown">
             <div class="breakdown-row">
-                <span class="lbl">{{ $bill->business_name }}{{ $bill->label ? ' Â· ' . $bill->label : '' }}</span>
-                <span class="val" id="bdShare">â€”</span>
+                <span class="lbl">{{ $bill->business_name }}{{ $bill->label ? ' · ' . $bill->label : '' }}</span>
+                <span class="val" id="bdShare">—</span>
             </div>
             <div class="breakdown-row">
                 <span class="lbl">Pregota service fee</span>
@@ -146,9 +146,9 @@ input::placeholder{color:rgba(255,255,255,.82)}
             <hr class="breakdown-divider">
             <div class="breakdown-total">
                 <span class="lbl">You pay on M-Pesa</span>
-                <span class="val" id="bdTotal">â€”</span>
+                <span class="val" id="bdTotal">—</span>
             </div>
-            <div class="fee-tag">KES 30 is Pregota's fee â€” not charged by the restaurant</div>
+            <div class="fee-tag">KES 30 is Pregota's fee — not charged by the restaurant</div>
         </div>
 
         <div class="form-group">
@@ -156,35 +156,35 @@ input::placeholder{color:rgba(255,255,255,.82)}
             <input type="tel" id="phone" placeholder="07XX XXX XXX" required>
         </div>
 
-        <button type="button" class="btn" id="payBtn" onclick="pay()">Pay My Share â†’</button>
+        <button type="button" class="btn" id="payBtn" onclick="pay()">Pay My Share →</button>
     </div>
 
     <!-- Waiting for M-Pesa PIN -->
     <div class="waiting-box" id="waitingBox">
-        <div class="waiting-icon">ðŸ“±</div>
+        <div class="waiting-icon">📱</div>
         <div style="font-size:16px;font-weight:700;margin-bottom:6px">Check your phone</div>
         <div style="font-size:13px;color:rgba(255,255,255,.72)">Enter your M-Pesa PIN to complete payment.</div>
     </div>
 
     <!-- Payment success -->
     <div class="success-box" id="successBox">
-        <div style="font-size:48px;margin-bottom:10px">ðŸŽ‰</div>
+        <div style="font-size:48px;margin-bottom:10px">🎉</div>
         <div style="font-size:18px;font-weight:900;margin-bottom:6px">Payment confirmed!</div>
         <div style="font-size:13px;color:rgba(255,255,255,.72)" id="successMsg"></div>
     </div>
 
     <!-- Payment failed -->
     <div class="fail-box" id="failBox">
-        <div style="font-size:40px;margin-bottom:10px">âŒ</div>
+        <div style="font-size:40px;margin-bottom:10px">❌</div>
         <div style="font-size:15px;font-weight:700;margin-bottom:10px">Payment cancelled</div>
         <button class="btn" onclick="resetForm()" style="font-size:14px;padding:12px">Try Again</button>
     </div>
 
-    <!-- Restaurant opt-in â€” revealed after tip section (or after payment if no tip) -->
+    <!-- Restaurant opt-in — revealed after tip section (or after payment if no tip) -->
     <div class="optin-section" id="optinSection">
-        <div class="optin-badge">ðŸ“± Stay connected</div>
+        <div class="optin-badge">📱 Stay connected</div>
         <div class="optin-heading">Hear from {{ $bill->business_name }}?</div>
-        <div class="optin-sub">Pregota is asking on their behalf â€” would you like to give <strong style="color:rgba(255,255,255,.75)">{{ $bill->business_name }}</strong> your contact so they can send you offers and updates? Your number goes directly to them. Nothing else.</div>
+        <div class="optin-sub">Pregota is asking on their behalf — would you like to give <strong style="color:rgba(255,255,255,.75)">{{ $bill->business_name }}</strong> your contact so they can send you offers and updates? Your number goes directly to them. Nothing else.</div>
 
         <div id="optinForm">
             <div class="form-group">
@@ -192,25 +192,25 @@ input::placeholder{color:rgba(255,255,255,.82)}
                 <input type="tel" id="optinPhone" placeholder="07XX XXX XXX">
                 <div class="hint">Voluntarily shared with {{ $bill->business_name }} only. Pregota does not keep or sell it.</div>
             </div>
-            <button type="button" class="btn" id="optinBtn" onclick="submitOptIn()" style="background:linear-gradient(135deg,#d97706,#f59e0b)">Yes, share my contact â†’</button>
+            <button type="button" class="btn" id="optinBtn" onclick="submitOptIn()" style="background:linear-gradient(135deg,#d97706,#f59e0b)">Yes, share my contact →</button>
             <button type="button" class="optin-skip" onclick="skipOptIn()">No thanks, skip</button>
         </div>
 
         <div class="optin-done" id="optinDone">
-            <div style="font-size:32px;margin-bottom:8px">ðŸ™Œ</div>
+            <div style="font-size:32px;margin-bottom:8px">🙌</div>
             <div style="font-size:14px;font-weight:700;margin-bottom:4px">Contact shared!</div>
             <div style="font-size:12px;color:rgba(255,255,255,.68)">{{ $bill->business_name }} will be in touch. You can ask them to remove you at any time.</div>
         </div>
     </div>
 
     @if($staff)
-    <!-- Tip section â€” revealed after successful payment -->
+    <!-- Tip section — revealed after successful payment -->
     <div class="tip-section" id="tipSection">
         <div class="tip-heading">Enjoyed the service?</div>
-        <div class="tip-sub">Leave a tip for your waiter â€” any amount you feel is right.</div>
+        <div class="tip-sub">Leave a tip for your waiter — any amount you feel is right.</div>
 
         <div class="tip-waiter">
-            <div class="tip-avatar">{{ $staff->avatar_emoji ?? 'ðŸ˜Š' }}</div>
+            <div class="tip-avatar">{{ $staff->avatar_emoji ?? '😊' }}</div>
             <div>
                 <div class="tip-name">{{ $staff->name }}</div>
                 <div class="tip-role">{{ $staff->role }}</div>
@@ -228,18 +228,18 @@ input::placeholder{color:rgba(255,255,255,.82)}
                 <label>Your M-Pesa Number</label>
                 <input type="tel" id="tipPhone" placeholder="07XX XXX XXX">
             </div>
-            <button type="button" class="btn" id="tipBtn" onclick="sendTip()">Send Tip â†’</button>
+            <button type="button" class="btn" id="tipBtn" onclick="sendTip()">Send Tip →</button>
             <button type="button" class="tip-skip" onclick="skipTip()">No thanks</button>
         </div>
 
         <div class="waiting-box" id="tipWaiting">
-            <div class="waiting-icon">ðŸ“±</div>
+            <div class="waiting-icon">📱</div>
             <div style="font-size:15px;font-weight:700;margin-bottom:6px">Check your phone</div>
             <div style="font-size:13px;color:rgba(255,255,255,.72)">Enter your M-Pesa PIN to send the tip.</div>
         </div>
 
         <div class="tip-done" id="tipDone">
-            <div style="font-size:36px;margin-bottom:8px">ðŸ™</div>
+            <div style="font-size:36px;margin-bottom:8px">🙏</div>
             <div style="font-size:15px;font-weight:700;margin-bottom:4px">Tip sent!</div>
             <div style="font-size:12px;color:rgba(255,255,255,.68)">{{ $staff->name }} will appreciate it.</div>
         </div>
@@ -351,7 +351,7 @@ function updateBillDisplay(d) {
 
 function showSettled() {
     document.getElementById('successBox').innerHTML =
-        '<div style="font-size:48px;margin-bottom:10px">âœ…</div>' +
+        '<div style="font-size:48px;margin-bottom:10px">✅</div>' +
         '<div style="font-size:18px;font-weight:900;color:#4ade80;margin-bottom:6px">Bill fully paid!</div>' +
         '<div style="font-size:13px;color:rgba(255,255,255,.72)">Everyone has paid. You\'re all settled.</div>';
 }
@@ -482,4 +482,3 @@ function showErr(msg) {
 @endif
 </body>
 </html>
-

@@ -1,9 +1,9 @@
-﻿<!DOCTYPE html>
+﻿﻿﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>{{ $group->name }} â€” Pregota</title>
+<title>{{ $group->name }} — Pregota</title>
 @include('partials.pwa')
 <style>
 *{box-sizing:border-box;margin:0;padding:0}input,textarea,select,button{font-family:inherit;font-size:inherit}
@@ -14,14 +14,14 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 .group-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:18px;padding:24px;margin-bottom:28px;text-align:center}
 .group-icon{font-size:40px;margin-bottom:10px}
 .group-name{font-size:22px;font-weight:900;margin-bottom:5px}
-.group-desc{font-size:13px;color:rgba(255,255,255,.5);line-height:1.55;margin-bottom:14px}
+.group-desc{font-size:13px;color:rgba(255,255,255,.78);line-height:1.55;margin-bottom:14px}
 .group-meta{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
 .meta-chip{font-size:11px;font-weight:700;padding:4px 12px;border-radius:999px;background:rgba(37,211,102,.1);border:1px solid rgba(37,211,102,.2);color:#4ADE80}
 .field{margin-bottom:18px}
-.field label{display:block;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.45);margin-bottom:7px}
+.field label{display:block;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.72);margin-bottom:7px}
 .field input{width:100%;padding:13px 14px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:11px;color:#fff;font-size:15px;font-family:inherit;outline:none}
 .field input:focus{border-color:rgba(37,211,102,.4)}
-.field .hint{font-size:12px;color:rgba(255,255,255,.3);margin-top:5px}
+.field .hint{font-size:12px;color:rgba(255,255,255,.65);margin-top:5px}
 .pay-btn{width:100%;padding:14px;background:linear-gradient(135deg,#25D366,#1aaa52);color:#fff;font-size:16px;font-weight:900;border:none;border-radius:13px;cursor:pointer}
 .pay-btn:hover{opacity:.9}
 .pay-btn:disabled{opacity:.45;cursor:not-allowed}
@@ -42,7 +42,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 </nav>
 <div class="wrap">
     <div class="group-card">
-        <div class="group-icon">ðŸ¤</div>
+        <div class="group-icon">🤝</div>
         <div class="group-name">{{ $group->name }}</div>
         @if($group->description)<div class="group-desc">{{ $group->description }}</div>@endif
         <div class="group-meta">
@@ -73,14 +73,14 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
     <div class="pending-state" id="pending-state">
         <div class="spinner"></div>
         <div style="font-size:16px;font-weight:700;margin-bottom:6px">M-Pesa prompt sent</div>
-        <div style="font-size:13px;color:rgba(255,255,255,.45)">Check your phone and enter your M-Pesa PIN</div>
+        <div style="font-size:13px;color:rgba(255,255,255,.72)">Check your phone and enter your M-Pesa PIN</div>
     </div>
 
     <div class="confirmed-state" id="confirmed-state">
-        <div class="conf-icon">âœ…</div>
-        <div class="conf-amount">KES {{ $group->amount_per_member ? number_format($group->amount_per_member) : 'â€”' }}</div>
+        <div class="conf-icon">✅</div>
+        <div class="conf-amount">KES {{ $group->amount_per_member ? number_format($group->amount_per_member) : '—' }}</div>
         <div style="font-size:16px;font-weight:700;margin-bottom:6px">Contribution Received!</div>
-        <div style="font-size:13px;color:rgba(255,255,255,.45);margin-bottom:14px">{{ $group->name }}</div>
+        <div style="font-size:13px;color:rgba(255,255,255,.72);margin-bottom:14px">{{ $group->name }}</div>
         <a id="receipt-link" class="receipt-link" href="#" target="_blank"></a>
     </div>
 </div>
@@ -120,7 +120,7 @@ async function pay() {
 
     if (!res.ok) {
         if (data.error === 'already_paid') {
-            document.getElementById('pay-form').innerHTML = `<div class="already-paid">âœ… You have already paid for this period. Thank you!</div>`;
+            document.getElementById('pay-form').innerHTML = `<div class="already-paid">✅ You have already paid for this period. Thank you!</div>`;
         } else {
             errEl.textContent = data.message || 'Something went wrong.'; errEl.style.display = 'block';
             document.getElementById('pay-btn').disabled = false;
@@ -161,4 +161,3 @@ function poll() {
 </script>
 </body>
 </html>
-

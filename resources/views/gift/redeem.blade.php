@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pregota â€” Redeem Your Gift</title>
+<title>Pregota — Redeem Your Gift</title>
 <meta name="csrf-token" content="{{ csrf_token() }}">
 @include('partials.pwa')
 <style>
@@ -21,7 +21,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 .step{display:none}
 .step.active{display:block}
 
-/* Step 1 â€” Code entry */
+/* Step 1 — Code entry */
 .gift-icon{font-size:48px;text-align:center;margin-bottom:16px}
 h2{font-size:20px;font-weight:800;margin-bottom:6px;text-align:center}
 .sub{color:rgba(255,255,255,.78);font-size:13px;text-align:center;margin-bottom:24px;line-height:1.5}
@@ -35,7 +35,7 @@ input::placeholder{color:rgba(255,255,255,.82)}
 .btn:disabled{opacity:.45;cursor:not-allowed}
 .err{background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.3);border-radius:10px;padding:12px 14px;font-size:13px;color:#fca5a5;margin-bottom:14px;display:none}
 
-/* Step 2 â€” Gift revealed + choice */
+/* Step 2 — Gift revealed + choice */
 .gift-reveal{background:linear-gradient(135deg,rgba(0,166,81,.15),rgba(0,122,51,.1));border:1px solid rgba(0,166,81,.3);border-radius:14px;padding:20px;text-align:center;margin-bottom:24px}
 .gift-amount{font-size:36px;font-weight:900;background:linear-gradient(135deg,#25D366,#4ADE80);-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1}
 .gift-from{font-size:12px;color:rgba(255,255,255,.72);margin-top:8px}
@@ -50,11 +50,11 @@ input::placeholder{color:rgba(255,255,255,.82)}
 .choice-title{font-size:13px;font-weight:700}
 .choice-sub{font-size:11px;color:rgba(255,255,255,.68);margin-top:2px}
 
-/* Step 3a â€” Cash claim */
+/* Step 3a — Cash claim */
 .back-link{font-size:13px;color:rgba(255,255,255,.68);cursor:pointer;margin-bottom:20px;display:inline-flex;align-items:center;gap:6px;background:none;border:none;color:rgba(255,255,255,.72)}
 .back-link:hover{color:#fff}
 
-/* Step 3b â€” Partner grid */
+/* Step 3b — Partner grid */
 .partner-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .partner-card{border-radius:12px;padding:14px;border:1px solid rgba(255,255,255,.1);cursor:pointer;text-decoration:none;color:#fff;display:flex;flex-direction:column;gap:6px;transition:.2s;background:rgba(255,255,255,.04)}
 .partner-card:hover{border-color:rgba(255,255,255,.82);background:rgba(255,255,255,.07);transform:translateY(-1px)}
@@ -81,9 +81,9 @@ input::placeholder{color:rgba(255,255,255,.82)}
 <div class="main">
     <div class="card">
 
-        <!-- â”€â”€ STEP 1: Enter code â”€â”€ -->
+        <!-- ── STEP 1: Enter code ── -->
         <div class="step active" id="step1">
-            <div class="gift-icon">ðŸŽ</div>
+            <div class="gift-icon">🎁</div>
             <h2>Redeem Your Gift</h2>
             <p class="sub">Enter the gift code you received to see your gift and choose what to do with it.</p>
 
@@ -94,14 +94,14 @@ input::placeholder{color:rgba(255,255,255,.82)}
                 <input type="text" id="codeInput" placeholder="PRG-XXXX-XXXX" maxlength="13" autocomplete="off"
                     oninput="this.value=this.value.toUpperCase().replace(/[^A-Z0-9-]/g,'')">
             </div>
-            <button class="btn" id="verifyBtn" onclick="verifyCode()">Open Gift â†’</button>
+            <button class="btn" id="verifyBtn" onclick="verifyCode()">Open Gift →</button>
         </div>
 
-        <!-- â”€â”€ STEP 2: Choice â”€â”€ -->
+        <!-- ── STEP 2: Choice ── -->
         <div class="step" id="step2">
             <div class="gift-reveal">
                 <div style="font-size:13px;color:rgba(255,255,255,.72);margin-bottom:6px">Your gift</div>
-                <div class="gift-amount" id="giftAmount">â€”</div>
+                <div class="gift-amount" id="giftAmount">—</div>
                 <div class="gift-from" id="giftFrom"></div>
                 <div class="gift-msg-box" id="giftMsg" style="display:none"></div>
             </div>
@@ -109,31 +109,31 @@ input::placeholder{color:rgba(255,255,255,.82)}
             <div class="choice-label">What would you like to do?</div>
             <div class="choices">
                 <div class="choice-btn" onclick="goTo('cash')">
-                    <div class="choice-emoji">ðŸ’¸</div>
+                    <div class="choice-emoji">💸</div>
                     <div class="choice-title">Get Cash</div>
                     <div class="choice-sub">Send to M-Pesa</div>
                 </div>
                 <div class="choice-btn" onclick="goTo('shop')">
-                    <div class="choice-emoji">ðŸ›ï¸</div>
+                    <div class="choice-emoji">🛍️</div>
                     <div class="choice-title">Shop</div>
                     <div class="choice-sub">Jumia, Naivas &amp; more</div>
                 </div>
                 <div class="choice-btn" onclick="goTo('save')">
-                    <div class="choice-emoji">ðŸ¦</div>
+                    <div class="choice-emoji">🏦</div>
                     <div class="choice-title">Save</div>
                     <div class="choice-sub">Bank or M-Shwari</div>
                 </div>
                 <div class="choice-btn" onclick="goTo('invest')">
-                    <div class="choice-emoji">ðŸ“ˆ</div>
+                    <div class="choice-emoji">📈</div>
                     <div class="choice-title">Invest</div>
                     <div class="choice-sub">Money Market Funds</div>
                 </div>
             </div>
         </div>
 
-        <!-- â”€â”€ STEP 3a: Cash claim â”€â”€ -->
+        <!-- ── STEP 3a: Cash claim ── -->
         <div class="step" id="step3-cash">
-            <button class="back-link" onclick="showStep('step2')">â† Back</button>
+            <button class="back-link" onclick="showStep('step2')">← Back</button>
             <h2 style="text-align:left;margin-bottom:4px">Send to M-Pesa</h2>
             <p class="sub" style="text-align:left;margin-bottom:20px">Enter the number where you want to receive <strong id="cashAmount" style="color:#fff"></strong>.</p>
 
@@ -143,34 +143,34 @@ input::placeholder{color:rgba(255,255,255,.82)}
                 <label>Your M-Pesa Number</label>
                 <input type="tel" id="phoneInput" placeholder="07XX XXX XXX">
             </div>
-            <button class="btn" id="claimBtn" onclick="claimCash()">Claim Gift â†’</button>
+            <button class="btn" id="claimBtn" onclick="claimCash()">Claim Gift →</button>
 
             <div id="claimSuccess" style="display:none;margin-top:16px">
                 <div class="success-box">
-                    <div style="font-size:36px;margin-bottom:10px">âœ…</div>
+                    <div style="font-size:36px;margin-bottom:10px">✅</div>
                     <div style="font-size:16px;font-weight:800;margin-bottom:6px">Gift Claimed!</div>
                     <div style="font-size:13px;color:rgba(255,255,255,.6)" id="claimMsg"></div>
                 </div>
             </div>
         </div>
 
-        <!-- â”€â”€ STEP 3b: Shop / Save / Invest partners â”€â”€ -->
+        <!-- ── STEP 3b: Shop / Save / Invest partners ── -->
         <div class="step" id="step3-partners">
-            <button class="back-link" onclick="showStep('step2')">â† Back</button>
+            <button class="back-link" onclick="showStep('step2')">← Back</button>
             <h2 style="text-align:left;margin-bottom:4px" id="partnerTitle">Shop</h2>
             <p class="sub" style="text-align:left;margin-bottom:20px">Choose a partner and use your gift money there. Your code is still valid to cash out anytime.</p>
 
             <div class="partner-grid" id="partnerGrid"></div>
 
             <p style="font-size:11px;color:rgba(255,255,255,.82);margin-top:16px;text-align:center">
-                Your gift code remains valid Â· Cash out anytime on this page
+                Your gift code remains valid · Cash out anytime on this page
             </p>
         </div>
 
     </div>
 </div>
 
-<footer class="footer">Â© 2026 Pregota Â· Anonymous Gift Transfers</footer>
+<footer class="footer">© 2026 Pregota · Anonymous Gift Transfers</footer>
 
 <script>
 const CSRF = document.querySelector('meta[name=csrf-token]').content;
@@ -232,7 +232,7 @@ async function verifyCode() {
         el.textContent = 'Network error. Please try again.';
         el.style.display = 'block';
     } finally {
-        btn.disabled = false; btn.textContent = 'Open Gift â†’';
+        btn.disabled = false; btn.textContent = 'Open Gift →';
     }
 }
 
@@ -259,7 +259,7 @@ function goTo(choice) {
             <div class="partner-emoji">${p.logo_emoji}</div>
             <div class="partner-name">${p.name}</div>
             <div class="partner-tag">${p.tagline || ''}</div>
-            <div class="partner-cta" style="color:${p.brand_color}">${p.cta_text} â†’</div>
+            <div class="partner-cta" style="color:${p.brand_color}">${p.cta_text} →</div>
         </a>
     `).join('');
 
@@ -301,7 +301,7 @@ async function claimCash() {
         errEl.textContent = 'Network error. Please try again.';
         errEl.style.display = 'block';
     } finally {
-        btn.disabled = false; btn.textContent = 'Claim Gift â†’';
+        btn.disabled = false; btn.textContent = 'Claim Gift →';
     }
 }
 
@@ -331,7 +331,7 @@ function showHoldScreen(seconds) {
         const m = Math.floor(s / 60), sec = s % 60;
         const fmt = m + ':' + String(sec).padStart(2, '0');
         existing.innerHTML = `
-            <div style="font-size:32px;margin-bottom:8px">â³</div>
+            <div style="font-size:32px;margin-bottom:8px">⏳</div>
             <div style="font-size:15px;font-weight:800;color:#fbbf24;margin-bottom:6px">Gift is in its verification window</div>
             <div style="font-size:28px;font-weight:900;font-family:monospace;color:#fbbf24;margin:10px 0">${fmt}</div>
             <div style="font-size:12px;color:rgba(255,255,255,.72);line-height:1.6">The sender is confirming you received this gift. You'll be able to open it when this reaches zero.</div>`;
@@ -345,7 +345,7 @@ function showHoldScreen(seconds) {
             clearInterval(holdTimer);
             existing.remove();
             btn.style.display = 'block';
-            btn.textContent = 'Open Gift â†’';
+            btn.textContent = 'Open Gift →';
             verifyCode(); // auto-retry
             return;
         }
@@ -355,4 +355,3 @@ function showHoldScreen(seconds) {
 </script>
 </body>
 </html>
-

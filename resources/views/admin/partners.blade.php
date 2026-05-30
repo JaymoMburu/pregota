@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Partners â€” Pregota Admin</title>
+<title>Partners — Pregota Admin</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}input,textarea,select,button{font-family:inherit;font-size:inherit}
 body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;min-height:100vh}
@@ -65,7 +65,7 @@ select option{background:#0B1810}
 
     @php
     $byCategory = $partners->groupBy('category');
-    $catLabels  = ['shop' => 'ðŸ›ï¸ Shop', 'save' => 'ðŸ¦ Save', 'invest' => 'ðŸ“ˆ Invest'];
+    $catLabels  = ['shop' => '🛍️ Shop', 'save' => '🏦 Save', 'invest' => '📈 Invest'];
     @endphp
 
     @foreach(['shop','save','invest'] as $cat)
@@ -134,7 +134,7 @@ select option{background:#0B1810}
             <div class="form-row">
                 <div class="form-group">
                     <label>Emoji / Logo</label>
-                    <input type="text" name="logo_emoji" placeholder="ðŸ›ï¸" maxlength="10" value="ðŸ¢">
+                    <input type="text" name="logo_emoji" placeholder="🛍️" maxlength="10" value="🏢">
                 </div>
                 <div class="form-group">
                     <label>Brand Color</label>
@@ -151,4 +151,3 @@ select option{background:#0B1810}
 </div>
 </body>
 </html>
-

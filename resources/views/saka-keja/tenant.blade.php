@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+﻿﻿﻿﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -18,14 +18,14 @@ body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;col
 .listing-box{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:16px;padding:18px;margin-bottom:16px}
 .listing-type{font-size:11px;font-weight:700;color:#f59e0b;margin-bottom:3px}
 .listing-loc{font-size:17px;font-weight:900}
-.listing-meta{font-size:13px;color:rgba(255,255,255,.4);margin-top:4px}
+.listing-meta{font-size:13px;color:rgba(255,255,255,.72);margin-top:4px}
 .tenant-name{font-size:13px;font-weight:700;color:rgba(255,255,255,.6);margin-top:6px}
 
 /* Deposit section */
 .deposit-box{background:rgba(74,222,128,.04);border:1px solid rgba(74,222,128,.13);border-radius:16px;padding:18px;margin-bottom:16px}
-.section-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.35);margin-bottom:12px}
+.section-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.65);margin-bottom:12px}
 .deposit-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
-.deposit-key{font-size:13px;color:rgba(255,255,255,.5)}
+.deposit-key{font-size:13px;color:rgba(255,255,255,.78)}
 .deposit-val{font-size:13px;font-weight:800;color:#4ADE80}
 .move-out-notice{background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.2);border-radius:11px;padding:12px 14px;margin-top:12px;font-size:13px;color:rgba(255,255,255,.65);line-height:1.6}
 .move-out-notice strong{color:#f59e0b}
@@ -35,18 +35,18 @@ body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;col
 /* Rent section */
 .pay-box{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:16px;padding:20px;margin-bottom:16px}
 .pay-title{font-size:16px;font-weight:900;margin-bottom:6px}
-.pay-sub{font-size:13px;color:rgba(255,255,255,.4);margin-bottom:18px;line-height:1.6}
+.pay-sub{font-size:13px;color:rgba(255,255,255,.72);margin-bottom:18px;line-height:1.6}
 .paid-badge{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;background:rgba(74,222,128,.1);border:1px solid rgba(74,222,128,.2);border-radius:999px;font-size:13px;font-weight:700;color:#4ADE80;margin-bottom:12px}
 .paused-notice{background:rgba(245,158,11,.07);border:1px solid rgba(245,158,11,.18);border-radius:11px;padding:12px 14px;font-size:13px;color:#f59e0b;line-height:1.5}
 
 .field{margin-bottom:14px}
-.field label{display:block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.4);margin-bottom:7px}
+.field label{display:block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.72);margin-bottom:7px}
 .field input,.field select{width:100%;padding:13px 14px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:11px;color:#fff;font-size:15px;outline:none;font-family:inherit;transition:.2s}
 .field input:focus,.field select:focus{border-color:rgba(245,158,11,.4);background:rgba(245,158,11,.04)}
 .field select option{background:#1a2633}
 
-.fee-note{font-size:12px;color:rgba(255,255,255,.3);margin-bottom:14px;line-height:1.5}
-.fee-note strong{color:rgba(255,255,255,.5)}
+.fee-note{font-size:12px;color:rgba(255,255,255,.65);margin-bottom:14px;line-height:1.5}
+.fee-note strong{color:rgba(255,255,255,.78)}
 
 .btn{width:100%;padding:15px;background:linear-gradient(135deg,#d97706,#f59e0b);color:#0B141A;font-size:15px;font-weight:900;border:none;border-radius:13px;cursor:pointer}
 .btn:disabled{opacity:.45;cursor:not-allowed}
@@ -57,14 +57,14 @@ body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;col
 .success{display:none;text-align:center;padding:16px 0}
 
 .history-box{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:16px;padding:18px}
-.history-title{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.35);margin-bottom:14px}
+.history-title{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.65);margin-bottom:14px}
 .payment-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.05)}
 .payment-row:last-child{border-bottom:none}
 .payment-month{font-size:14px;font-weight:700}
-.payment-date{font-size:11px;color:rgba(255,255,255,.3);margin-top:2px}
+.payment-date{font-size:11px;color:rgba(255,255,255,.65);margin-top:2px}
 .payment-right{text-align:right}
 .payment-amount{font-size:14px;font-weight:800;color:#4ADE80}
-.payment-receipt{font-size:11px;color:rgba(255,255,255,.3);margin-top:2px}
+.payment-receipt{font-size:11px;color:rgba(255,255,255,.65);margin-top:2px}
 .no-history{font-size:13px;color:rgba(255,255,255,.25);padding:8px 0}
 </style>
 </head>
@@ -105,7 +105,7 @@ body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;col
                 The landlord will inspect the property. If no damage or repainting is required, your KES {{ number_format($deposit->deposit_amount) }} deposit will be fully refunded.
             </div>
         @else
-            <div style="font-size:12px;color:rgba(255,255,255,.35);margin-top:10px;line-height:1.6">
+            <div style="font-size:12px;color:rgba(255,255,255,.65);margin-top:10px;line-height:1.6">
                 â„¹ï¸ The deposit covers any damages or repainting costs when you vacate. If the house is in good condition, the full deposit is refunded.
             </div>
             <button class="btn-move-out" onclick="doMoveOut()">ðŸšª Request Move Out</button>
@@ -123,7 +123,7 @@ body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;col
 
             @if($paidThisMonth)
             <div class="paid-badge">âœ“ Rent paid for {{ now()->format('F Y') }}</div>
-            <div style="font-size:12px;color:rgba(255,255,255,.3);margin-bottom:14px">Receipt: {{ $paidThisMonth->receipt_number }}</div>
+            <div style="font-size:12px;color:rgba(255,255,255,.65);margin-bottom:14px">Receipt: {{ $paidThisMonth->receipt_number }}</div>
             @endif
 
             <div id="pay-form">
@@ -150,7 +150,7 @@ body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;col
             <div class="pending" id="pending-view">
                 <div class="spinner"></div>
                 <div style="font-size:15px;font-weight:700;margin-bottom:6px">Check your phone</div>
-                <div style="font-size:13px;color:rgba(255,255,255,.45)">Enter your M-Pesa PIN to pay rent.</div>
+                <div style="font-size:13px;color:rgba(255,255,255,.72)">Enter your M-Pesa PIN to pay rent.</div>
             </div>
 
             <div class="success" id="success-view">
@@ -158,17 +158,17 @@ body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;col
                 <div id="rent-amount" style="font-size:28px;font-weight:900;color:#fff;margin-bottom:4px"></div>
                 <div id="rent-month-label" style="font-size:14px;font-weight:700;color:#4ADE80;margin-bottom:14px"></div>
                 <div id="rent-receipt-box" style="display:none;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:14px 16px;text-align:left;margin-bottom:14px">
-                    <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.35);margin-bottom:10px">M-Pesa Receipt</div>
+                    <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.65);margin-bottom:10px">M-Pesa Receipt</div>
                     <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:6px">
-                        <span style="color:rgba(255,255,255,.45)">Receipt No.</span>
+                        <span style="color:rgba(255,255,255,.72)">Receipt No.</span>
                         <span id="rent-receipt-no" style="font-weight:700;font-family:monospace;color:#4ADE80"></span>
                     </div>
                     <div style="display:flex;justify-content:space-between;font-size:13px">
-                        <span style="color:rgba(255,255,255,.45)">Property</span>
+                        <span style="color:rgba(255,255,255,.72)">Property</span>
                         <span style="font-weight:600;color:rgba(255,255,255,.7)">{{ $deposit->listing->location }}</span>
                     </div>
                 </div>
-                <div style="font-size:12px;color:rgba(255,255,255,.3)">Refreshing in a momentâ€¦</div>
+                <div style="font-size:12px;color:rgba(255,255,255,.65)">Refreshing in a momentâ€¦</div>
             </div>
         @endif
     </div>
@@ -280,5 +280,4 @@ function poll() {
 </script>
 </body>
 </html>
-
 

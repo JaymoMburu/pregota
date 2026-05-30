@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+﻿﻿﻿﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -13,22 +13,22 @@
 body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;color:#fff;min-height:100vh-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
 .nav{padding:14px 20px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,.07);position:sticky;top:0;background:#0B141A;z-index:10}
 .logo{font-size:20px;font-weight:900;background:linear-gradient(135deg,#25D366,#4ADE80);-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-decoration:none}
-.logout-btn{font-size:12px;color:rgba(255,255,255,.35);background:none;border:none;cursor:pointer;padding:6px 10px}
+.logout-btn{font-size:12px;color:rgba(255,255,255,.65);background:none;border:none;cursor:pointer;padding:6px 10px}
 .logout-btn:hover{color:rgba(255,255,255,.6)}
 .wrap{max-width:620px;margin:0 auto;padding:24px 16px 80px}
 
 .greeting{margin-bottom:24px}
 .greeting-name{font-size:22px;font-weight:900}
-.greeting-sub{font-size:13px;color:rgba(255,255,255,.4);margin-top:3px}
+.greeting-sub{font-size:13px;color:rgba(255,255,255,.72);margin-top:3px}
 
 .stats{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:24px}
 .stat{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:16px;text-align:center}
 .stat-val{font-size:22px;font-weight:900;color:#f59e0b}
-.stat-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:rgba(255,255,255,.35);margin-top:3px}
+.stat-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:rgba(255,255,255,.65);margin-top:3px}
 
 .add-btn{display:block;width:100%;padding:14px;background:linear-gradient(135deg,#d97706,#f59e0b);border:none;border-radius:13px;color:#0B141A;font-size:14px;font-weight:800;cursor:pointer;margin-bottom:24px;text-align:center;text-decoration:none}
 
-.section-head{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.35);margin-bottom:10px;display:flex;align-items:center;gap:10px}
+.section-head{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.65);margin-bottom:10px;display:flex;align-items:center;gap:10px}
 .section-head::after{content:'';flex:1;height:1px;background:rgba(255,255,255,.06)}
 
 .listing-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:14px;margin-bottom:12px;overflow:hidden}
@@ -44,7 +44,7 @@ body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;col
 .status-badge{display:inline-flex;padding:2px 9px;border-radius:999px;font-size:10px;font-weight:700;margin-top:4px}
 .status-active{background:rgba(74,222,128,.1);color:#4ADE80;border:1px solid rgba(74,222,128,.2)}
 .status-pending{background:rgba(245,158,11,.1);color:#f59e0b;border:1px solid rgba(245,158,11,.2)}
-.status-rented{background:rgba(255,255,255,.06);color:rgba(255,255,255,.4);border:1px solid rgba(255,255,255,.1)}
+.status-rented{background:rgba(255,255,255,.06);color:rgba(255,255,255,.72);border:1px solid rgba(255,255,255,.1)}
 .status-inactive{background:rgba(239,68,68,.08);color:#fca5a5;border:1px solid rgba(239,68,68,.15)}
 
 .listing-actions{display:flex;gap:8px;padding:0 14px 14px}
@@ -55,15 +55,15 @@ body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;col
 .btn-delete:hover{background:rgba(239,68,68,.15)}
 
 .leads-section{border-top:1px solid rgba(255,255,255,.06);padding:12px 14px}
-.leads-title{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.3);margin-bottom:10px}
+.leads-title{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.65);margin-bottom:10px}
 .lead-row{display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.04)}
 .lead-row:last-child{border-bottom:none}
 .lead-name{font-size:13px;font-weight:700}
 .lead-phone{font-size:13px;color:#4ADE80;font-weight:700}
-.lead-time{font-size:11px;color:rgba(255,255,255,.3);margin-top:1px}
+.lead-time{font-size:11px;color:rgba(255,255,255,.65);margin-top:1px}
 .no-leads{font-size:12px;color:rgba(255,255,255,.25);padding:8px 0}
 
-.empty{text-align:center;padding:50px 20px;color:rgba(255,255,255,.3)}
+.empty{text-align:center;padding:50px 20px;color:rgba(255,255,255,.65)}
 .empty-icon{font-size:48px;margin-bottom:12px}
 </style>
 </head>
@@ -137,7 +137,7 @@ body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;col
             @if($isMovingOut)
             <div style="background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.2);border-radius:10px;padding:12px 14px;margin-bottom:12px">
                 <div style="font-size:12px;font-weight:800;color:#f59e0b;margin-bottom:4px">âš ï¸ Move-Out Requested</div>
-                <div style="font-size:12px;color:rgba(255,255,255,.55);margin-bottom:10px">{{ $tenant->seeker_name }} requested to move out on {{ $tenant->move_out_requested_at?->format('d M Y') }}. Inspect the property first, then approve. Deposit held: KES {{ number_format($tenant->deposit_amount) }} â€” refund full amount if house is in good condition.</div>
+                <div style="font-size:12px;color:rgba(255,255,255,.78);margin-bottom:10px">{{ $tenant->seeker_name }} requested to move out on {{ $tenant->move_out_requested_at?->format('d M Y') }}. Inspect the property first, then approve. Deposit held: KES {{ number_format($tenant->deposit_amount) }} â€” refund full amount if house is in good condition.</div>
                 <button onclick="approveMoveOut('{{ $tenant->token }}')" style="width:100%;padding:9px;background:linear-gradient(135deg,#16a34a,#22c55e);color:#fff;font-size:13px;font-weight:800;border:none;border-radius:9px;cursor:pointer" id="approve-btn-{{ $tenant->id }}">âœ“ Approve Move Out &amp; Release Deposit</button>
             </div>
             @endif
@@ -187,7 +187,7 @@ body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;col
     @empty
     <div class="empty">
         <div class="empty-icon">ðŸ </div>
-        <div style="font-size:15px;font-weight:700;color:rgba(255,255,255,.5);margin-bottom:6px">No listings yet</div>
+        <div style="font-size:15px;font-weight:700;color:rgba(255,255,255,.78);margin-bottom:6px">No listings yet</div>
         <div style="font-size:13px">Click "Add New Listing" to publish your first property.</div>
     </div>
     @endforelse
@@ -222,5 +222,4 @@ async function deleteListing(id) {
 </script>
 </body>
 </html>
-
 

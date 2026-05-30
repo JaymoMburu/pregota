@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+﻿﻿﻿﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -40,12 +40,12 @@ body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;col
 .demo-card{background:rgba(255,255,255,.04);border:1px solid rgba(239,68,68,.2);border-radius:20px;padding:24px;text-align:left}
 .demo-label{position:relative}
 .demo-label::before{content:'LIVE EXAMPLE';position:absolute;top:-36px;left:50%;transform:translateX(-50%);background:rgba(239,68,68,.15);border:1px solid rgba(239,68,68,.25);color:#f87171;font-size:10px;font-weight:700;letter-spacing:.08em;padding:3px 10px;border-radius:20px;white-space:nowrap}
-.demo-biz{font-size:12px;color:rgba(255,255,255,.45);margin-bottom:4px}
+.demo-biz{font-size:12px;color:rgba(255,255,255,.72);margin-bottom:4px}
 .demo-desc{font-size:17px;font-weight:900;margin-bottom:16px}
-.demo-prog-row{display:flex;justify-content:space-between;font-size:12px;color:rgba(255,255,255,.55);margin-bottom:6px}
+.demo-prog-row{display:flex;justify-content:space-between;font-size:12px;color:rgba(255,255,255,.78);margin-bottom:6px}
 .demo-track{height:8px;background:rgba(255,255,255,.08);border-radius:999px;overflow:hidden;margin-bottom:6px}
 .demo-fill{height:100%;background:linear-gradient(90deg,#ef4444,#fbbf24);border-radius:999px;width:33%}
-.demo-labels{display:flex;justify-content:space-between;font-size:11px;color:rgba(255,255,255,.35);margin-bottom:16px}
+.demo-labels{display:flex;justify-content:space-between;font-size:11px;color:rgba(255,255,255,.65);margin-bottom:16px}
 .demo-btn{width:100%;padding:11px;background:linear-gradient(135deg,#dc2626,#ef4444);border:none;border-radius:10px;font-size:14px;font-weight:700;color:#fff;cursor:pointer}
 
 /* Who it's for */
@@ -92,7 +92,7 @@ body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;col
 .uc-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:16px;text-align:center}
 .uc-emoji{font-size:28px;margin-bottom:6px}
 .uc-name{font-size:13px;font-weight:700;color:rgba(255,255,255,.8)}
-.uc-sub{font-size:11px;color:rgba(255,255,255,.55);margin-top:2px;line-height:1.4}
+.uc-sub{font-size:11px;color:rgba(255,255,255,.78);margin-top:2px;line-height:1.4}
 
 /* Bottom CTA */
 .cta-bottom{background:linear-gradient(135deg,rgba(220,38,38,.15),rgba(239,68,68,.07));border-top:1px solid rgba(239,68,68,.2);padding:64px 24px;text-align:center}
@@ -120,7 +120,7 @@ body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;col
         <a href="{{ route('deni.create') }}" class="btn-primary">Record a Deni â€” Free â†’</a>
         <a href="{{ route('creditor.login') }}" class="btn-secondary">ðŸ¢ Smart Biashara â†’</a>
     </div>
-    <div style="margin-top:14px;font-size:12px;color:rgba(255,255,255,.35)">Creditor or business? <a href="{{ route('creditor.login') }}" style="color:#f87171;text-decoration:none;font-weight:700">Smart Biashara â†’</a> â€” one dashboard for all your madeni.</div>
+    <div style="margin-top:14px;font-size:12px;color:rgba(255,255,255,.65)">Creditor or business? <a href="{{ route('creditor.login') }}" style="color:#f87171;text-decoration:none;font-weight:700">Smart Biashara â†’</a> â€” one dashboard for all your madeni.</div>
 </div>
 
 <!-- Demo preview -->
@@ -329,7 +329,7 @@ body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;col
         <a href="{{ route('deni.create') }}" class="btn-primary" style="font-size:16px;padding:15px 36px">Record a Deni â€” Free â†’</a>
         <a href="{{ route('buyer.me') }}" class="btn-secondary" style="font-size:15px;padding:14px 28px">ðŸ“Š View My Madeni</a>
     </div>
-    <p style="margin-top:16px;font-size:12px;color:rgba(255,255,255,.5)">No account needed Â· Money via B2C to your M-Pesa Â· Partial payments supported</p>
+    <p style="margin-top:16px;font-size:12px;color:rgba(255,255,255,.78)">No account needed Â· Money via B2C to your M-Pesa Â· Partial payments supported</p>
 </div>
 
 @include('partials.discover', ['current' => 'deni', 'fullWidth' => true])
@@ -337,5 +337,4 @@ body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;col
 
 </body>
 </html>
-
 

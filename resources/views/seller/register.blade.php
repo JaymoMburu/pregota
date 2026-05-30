@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+﻿﻿﻿﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -22,7 +22,7 @@ input,select,textarea{width:100%;padding:12px 14px;background:rgba(255,255,255,.
 input:focus,select:focus,textarea:focus{border-color:rgba(37,211,102,.5);background:rgba(255,255,255,.08)}
 select option{background:#1a2730;color:#fff}
 textarea{resize:vertical;min-height:80px}
-.hint{font-size:11px;color:rgba(255,255,255,.45);margin-top:4px;line-height:1.5}
+.hint{font-size:11px;color:rgba(255,255,255,.72);margin-top:4px;line-height:1.5}
 .hint strong{color:rgba(255,255,255,.75)}
 .handle-preview{margin-top:8px;padding:10px 14px;background:rgba(37,211,102,.07);border:1px solid rgba(37,211,102,.18);border-radius:9px;font-size:13px;display:none}
 .handle-preview span{font-family:monospace;font-weight:900;color:#25D366}
@@ -30,14 +30,14 @@ textarea{resize:vertical;min-height:80px}
 .reg-input{font-size:20px!important;font-weight:900!important;text-transform:uppercase!important;letter-spacing:.12em!important;color:#4ADE80!important;font-family:monospace!important;text-align:center!important}
 .toggle-group{display:flex;align-items:center;gap:10px;padding:12px 14px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:10px}
 .toggle-label{flex:1;font-size:13px;color:rgba(255,255,255,.8)}
-.toggle-desc{font-size:11px;color:rgba(255,255,255,.45)}
+.toggle-desc{font-size:11px;color:rgba(255,255,255,.72)}
 input[type=checkbox]{width:18px!important;height:18px;accent-color:#25D366}
 .divider{border:none;border-top:1px solid rgba(255,255,255,.07);margin:28px 0}
 .btn{width:100%;padding:15px;background:linear-gradient(135deg,#25D366,#1aaa52);color:#fff;font-size:16px;font-weight:800;border:none;border-radius:12px;cursor:pointer;transition:.2s}
 .btn:hover{transform:translateY(-1px);box-shadow:0 8px 24px rgba(37,211,102,.3)}
 .btn:disabled{opacity:.45;cursor:not-allowed;transform:none;box-shadow:none}
 .err{background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.2);border-radius:9px;padding:10px 14px;font-size:13px;color:#fca5a5;margin-bottom:16px;display:none}
-.login-link{text-align:center;margin-top:20px;font-size:13px;color:rgba(255,255,255,.55)}
+.login-link{text-align:center;margin-top:20px;font-size:13px;color:rgba(255,255,255,.78)}
 .login-link a{color:#25D366;text-decoration:none;font-weight:600}
 .matatu-banner{display:none;background:rgba(37,211,102,.07);border:1px solid rgba(37,211,102,.2);border-radius:12px;padding:14px 16px;margin-bottom:24px;font-size:13px;color:rgba(255,255,255,.75);line-height:1.6}
 .matatu-banner.visible{display:block}
@@ -93,7 +93,7 @@ input[type=checkbox]{width:18px!important;height:18px;accent-color:#25D366}
 
             <div id="handle-wrap">
                 <div style="position:relative">
-                    <span style="position:absolute;left:14px;top:50%;transform:translateY(-50%);font-size:13px;color:rgba(255,255,255,.45);pointer-events:none">pregota.com/pay/</span>
+                    <span style="position:absolute;left:14px;top:50%;transform:translateY(-50%);font-size:13px;color:rgba(255,255,255,.72);pointer-events:none">pregota.com/pay/</span>
                     <input type="text" id="handle-display" style="padding-left:130px;font-family:monospace;font-weight:700;color:#4ADE80" placeholder="yourshop" autocomplete="off" pattern="[a-z0-9._-]+" oninput="onHandleInput(this)">
                 </div>
                 <div class="hint">Lowercase letters, numbers, hyphens, dots only</div>
@@ -108,7 +108,7 @@ input[type=checkbox]{width:18px!important;height:18px;accent-color:#25D366}
         </div>
 
         <div class="form-group">
-            <label>Description <span style="color:rgba(255,255,255,.45)">(optional)</span></label>
+            <label>Description <span style="color:rgba(255,255,255,.72)">(optional)</span></label>
             <textarea id="description" placeholder="Tell buyers what you sell..." maxlength="300"></textarea>
         </div>
 
@@ -121,7 +121,7 @@ input[type=checkbox]{width:18px!important;height:18px;accent-color:#25D366}
         <div id="fare-fields">
             <hr class="divider">
             <div class="form-group">
-                <label id="amount-label">Default payment amount (KES) <span style="color:rgba(255,255,255,.45)">(optional)</span></label>
+                <label id="amount-label">Default payment amount (KES) <span style="color:rgba(255,255,255,.72)">(optional)</span></label>
                 <input type="number" id="default-amount" placeholder="e.g. 500" min="10" max="150000">
                 <div class="hint" id="amount-hint">Leave blank to let buyers enter any amount</div>
             </div>
@@ -137,13 +137,13 @@ input[type=checkbox]{width:18px!important;height:18px;accent-color:#25D366}
         </div>
 
         <button class="btn" id="submit-btn" onclick="doRegister()">Create My Pay Link â€” Verify via M-Pesa â†’</button>
-        <div style="font-size:11px;color:rgba(255,255,255,.3);text-align:center;margin-top:10px">KES 1 verification charge via M-Pesa STK Push. No password needed â€” ever.</div>
+        <div style="font-size:11px;color:rgba(255,255,255,.65);text-align:center;margin-top:10px">KES 1 verification charge via M-Pesa STK Push. No password needed â€” ever.</div>
     </div>
 
     <div class="pending" id="pending-view">
         <div class="spinner"></div>
         <div style="font-size:17px;font-weight:900;margin-bottom:8px">Check your phone</div>
-        <div style="font-size:14px;color:rgba(255,255,255,.45);line-height:1.6">Enter your M-Pesa PIN to confirm KES 1 and activate your pay link.</div>
+        <div style="font-size:14px;color:rgba(255,255,255,.72);line-height:1.6">Enter your M-Pesa PIN to confirm KES 1 and activate your pay link.</div>
     </div>
 
     <div class="login-link" id="login-link-row">Already have a pay link? <a href="{{ route('seller.login') }}">Login here</a></div>
@@ -164,7 +164,7 @@ function onCategoryChange() {
     document.getElementById('name-label').textContent = isMatatu ? 'SACCO / Route name' : 'Business / display name';
     document.getElementById('business-name').placeholder = isMatatu ? 'e.g. City Hoppa â€” CBD â†’ Westlands' : "e.g. Akinyi's Boutique";
     document.getElementById('description').placeholder = isMatatu ? 'e.g. Route: Railways â†’ Westlands' : 'Tell buyers what you sell...';
-    document.getElementById('amount-label').innerHTML = isMatatu ? 'Suggested fare (KES) <span style="color:rgba(255,255,255,.45)">(optional)</span>' : 'Default payment amount (KES) <span style="color:rgba(255,255,255,.45)">(optional)</span>';
+    document.getElementById('amount-label').innerHTML = isMatatu ? 'Suggested fare (KES) <span style="color:rgba(255,255,255,.72)">(optional)</span>' : 'Default payment amount (KES) <span style="color:rgba(255,255,255,.72)">(optional)</span>';
     document.getElementById('amount-hint').textContent = isMatatu ? 'Optional â€” routes and fares change. Passengers enter the fare the conductor calls.' : 'Leave blank to let buyers enter any amount';
     document.getElementById('fixed-label').textContent = isMatatu ? 'Fixed fare only' : 'Fixed amount only';
     document.getElementById('fixed-desc').textContent  = isMatatu ? 'Only tick if you run a single fixed route all day' : 'Buyers cannot change the amount';
@@ -248,5 +248,4 @@ function pollRegister() {
 </script>
 </body>
 </html>
-
 

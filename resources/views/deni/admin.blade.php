@@ -1,9 +1,9 @@
-﻿<!DOCTYPE html>
+﻿﻿﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tab â€” {{ $deni->creditorLabel() }} Â· Pregota</title>
+<title>Tab — {{ $deni->creditorLabel() }} · Pregota</title>
 @include('partials.pwa')
 <style>
 *{box-sizing:border-box;margin:0;padding:0}input,textarea,select,button{font-family:inherit;font-size:inherit}
@@ -14,9 +14,9 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 
 /* Header */
 .tab-header{margin-bottom:24px}
-.tab-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:rgba(255,255,255,.35);margin-bottom:6px}
+.tab-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:rgba(255,255,255,.65);margin-bottom:6px}
 .tab-title{font-size:22px;font-weight:900;margin-bottom:3px}
-.tab-meta{font-size:13px;color:rgba(255,255,255,.45)}
+.tab-meta{font-size:13px;color:rgba(255,255,255,.72)}
 
 /* Stats */
 .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:20px}
@@ -24,13 +24,13 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 .stat-val{font-size:20px;font-weight:900}
 .stat-val.red{color:#f87171}
 .stat-val.green{color:#4ADE80}
-.stat-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:rgba(255,255,255,.35);margin-top:3px}
+.stat-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:rgba(255,255,255,.65);margin-top:3px}
 
 /* Progress */
 .prog-wrap{margin-bottom:24px}
 .prog-track{height:8px;background:rgba(255,255,255,.08);border-radius:999px;overflow:hidden;margin-bottom:6px}
 .prog-fill{height:100%;background:linear-gradient(90deg,#ef4444,#fbbf24);border-radius:999px;transition:.4s}
-.prog-labels{display:flex;justify-content:space-between;font-size:11px;color:rgba(255,255,255,.35)}
+.prog-labels{display:flex;justify-content:space-between;font-size:11px;color:rgba(255,255,255,.65)}
 
 /* Alert banners */
 .banner{border-radius:11px;padding:13px 16px;margin-bottom:16px;font-size:13px}
@@ -39,7 +39,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 .banner-settled{background:rgba(37,211,102,.08);border:1px solid rgba(37,211,102,.2);border-radius:13px;padding:16px;text-align:center;font-weight:700;font-size:15px;color:#4ADE80;margin-bottom:20px}
 
 /* Section headings */
-.section-head{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.35);margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.section-head{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.65);margin-bottom:12px;display:flex;align-items:center;gap:10px}
 .section-head::after{content:'';flex:1;height:1px;background:rgba(255,255,255,.06)}
 
 /* Add charge form */
@@ -55,12 +55,12 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 /* Items list */
 .item-row{display:flex;justify-content:space-between;align-items:center;padding:11px 14px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:9px;margin-bottom:6px}
 .item-desc{font-size:13px;color:rgba(255,255,255,.8)}
-.item-date{font-size:11px;color:rgba(255,255,255,.3);margin-top:2px}
+.item-date{font-size:11px;color:rgba(255,255,255,.65);margin-top:2px}
 .item-amount{font-size:14px;font-weight:800;color:#f87171}
 
 /* Share box */
 .share-box{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:13px;padding:14px 16px;margin-bottom:24px}
-.share-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:rgba(255,255,255,.3);margin-bottom:8px}
+.share-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:rgba(255,255,255,.65);margin-bottom:8px}
 .share-url{font-family:monospace;font-size:12px;color:#c084fc;word-break:break-all;margin-bottom:10px}
 .share-btns{display:flex;gap:8px;flex-wrap:wrap}
 .share-btn{font-size:12px;padding:6px 14px;border-radius:7px;cursor:pointer;font-weight:600;text-decoration:none;border:none}
@@ -82,9 +82,9 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 <nav class="nav">
     <a href="{{ route('home') }}" class="logo">Pregota</a>
     @if(session()->has('seller_id'))
-        <a href="{{ route('seller.dashboard') }}" style="font-size:13px;color:rgba(255,255,255,.4);text-decoration:none">â† Dashboard</a>
+        <a href="{{ route('seller.dashboard') }}" style="font-size:13px;color:rgba(255,255,255,.72);text-decoration:none">← Dashboard</a>
     @else
-        <a href="{{ route('deni.create') }}" style="font-size:13px;color:rgba(255,255,255,.4);text-decoration:none">+ New Deni</a>
+        <a href="{{ route('deni.create') }}" style="font-size:13px;color:rgba(255,255,255,.72);text-decoration:none">+ New Deni</a>
     @endif
 </nav>
 
@@ -93,21 +93,21 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
     {{-- Bookmark reminder for non-seller first visit --}}
     @if(session('deni_admin_link'))
     <div class="banner banner-yellow" style="margin-bottom:20px">
-        <div style="font-weight:700;margin-bottom:5px">ðŸ“Œ Bookmark this page</div>
-        <div style="font-size:12px;color:rgba(255,255,255,.55);margin-bottom:8px">This is your admin view. Save or bookmark this URL â€” it's the only way to get back.</div>
+        <div style="font-weight:700;margin-bottom:5px">📌 Bookmark this page</div>
+        <div style="font-size:12px;color:rgba(255,255,255,.78);margin-bottom:8px">This is your admin view. Save or bookmark this URL — it's the only way to get back.</div>
         <div style="font-family:monospace;font-size:11px;color:#fcd34d;word-break:break-all;background:rgba(0,0,0,.3);padding:7px 10px;border-radius:7px">{{ session('deni_admin_link') }}</div>
     </div>
     @endif
 
     @if(session('charge_added'))
-    <div class="banner banner-green" style="margin-bottom:16px">âœ“ Charge added â€” tab total updated.</div>
+    <div class="banner banner-green" style="margin-bottom:16px">✓ Charge added — tab total updated.</div>
     @endif
 
     {{-- Tab header --}}
     <div class="tab-header">
-        <div class="tab-label">ðŸ§¾ Customer Tab</div>
+        <div class="tab-label">🧾 Customer Tab</div>
         <div class="tab-title">{{ $deni->description }}</div>
-        <div class="tab-meta">{{ $deni->creditorLabel() }}{{ $deni->due_date ? ' Â· Due ' . $deni->due_date->format('d M Y') : '' }}</div>
+        <div class="tab-meta">{{ $deni->creditorLabel() }}{{ $deni->due_date ? ' · Due ' . $deni->due_date->format('d M Y') : '' }}</div>
     </div>
 
     {{-- Stats --}}
@@ -133,7 +133,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
     </div>
 
     @if($deni->status === 'settled')
-        <div class="banner-settled">âœ… Fully settled</div>
+        <div class="banner-settled">✅ Fully settled</div>
     @endif
 
     {{-- Customer payment link --}}
@@ -142,11 +142,11 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
         @php $payUrl = url('/deni/' . $deni->debtor_token); @endphp
         <div class="share-url">{{ $payUrl }}</div>
         <div class="share-btns">
-            <button class="share-btn share-btn-copy" onclick="navigator.clipboard.writeText('{{ $payUrl }}');this.textContent='âœ“ Copied!'">ðŸ“‹ Copy Link</button>
+            <button class="share-btn share-btn-copy" onclick="navigator.clipboard.writeText('{{ $payUrl }}');this.textContent='✓ Copied!'">📋 Copy Link</button>
             @php
                 $waMsg = $deni->creditorLabel() . ' has recorded a deni of KES ' . number_format($deni->original_amount) . ' for: ' . $deni->description . '. Pay via M-Pesa: ' . $payUrl;
             @endphp
-            <a href="https://wa.me/?text={{ rawurlencode($waMsg) }}" target="_blank" class="share-btn share-btn-wa">ðŸ’¬ Send via WhatsApp</a>
+            <a href="https://wa.me/?text={{ rawurlencode($waMsg) }}" target="_blank" class="share-btn share-btn-wa">💬 Send via WhatsApp</a>
         </div>
     </div>
 
@@ -171,13 +171,13 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 
     {{-- Items list --}}
     @if($deni->items->isEmpty())
-        <div style="text-align:center;padding:20px 0;color:rgba(255,255,255,.3);font-size:13px">No itemised charges â€” tab was created as a single amount.</div>
+        <div style="text-align:center;padding:20px 0;color:rgba(255,255,255,.65);font-size:13px">No itemised charges — tab was created as a single amount.</div>
     @else
         @foreach($deni->items->sortByDesc('created_at') as $item)
         <div class="item-row">
             <div>
                 <div class="item-desc">{{ $item->description }}</div>
-                <div class="item-date">{{ $item->created_at->format('d M Y Â· H:i') }}</div>
+                <div class="item-date">{{ $item->created_at->format('d M Y · H:i') }}</div>
             </div>
             <div class="item-amount">KES {{ number_format($item->amount) }}</div>
         </div>
@@ -188,13 +188,13 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
     <div class="section-head" style="margin-top:28px">Payments Received</div>
 
     @if($deni->payments->where('status', '!=', 'failed')->isEmpty())
-        <div style="text-align:center;padding:20px 0;color:rgba(255,255,255,.3);font-size:13px">No payments yet. Share the link above with your customer.</div>
+        <div style="text-align:center;padding:20px 0;color:rgba(255,255,255,.65);font-size:13px">No payments yet. Share the link above with your customer.</div>
     @else
         @foreach($deni->payments->sortByDesc('created_at') as $p)
         <div class="payment-row {{ $p->status }}">
             <div>
                 <div style="font-size:15px;font-weight:800">KES {{ number_format($p->amount) }}</div>
-                <div style="font-size:11px;color:rgba(255,255,255,.35);margin-top:2px">{{ $p->created_at->format('d M Y Â· H:i') }}</div>
+                <div style="font-size:11px;color:rgba(255,255,255,.65);margin-top:2px">{{ $p->created_at->format('d M Y · H:i') }}</div>
             </div>
             <div style="display:flex;align-items:center;gap:10px">
                 @if($p->receipt_number)
@@ -209,4 +209,3 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 </div>
 </body>
 </html>
-

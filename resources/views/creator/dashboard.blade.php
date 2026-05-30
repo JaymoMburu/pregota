@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Creator Dashboard â€” Pregota</title>
+<title>Creator Dashboard — Pregota</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}input,textarea,select,button{font-family:inherit;font-size:inherit}
 body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;min-height:100vh}
@@ -122,7 +122,7 @@ input:focus{border-color:#00A651}
     <div class="feed-title">Recent Gifts</div>
 
     @if($gifts->isEmpty())
-    <div class="no-gifts">No gifts yet â€” share your link to get started</div>
+    <div class="no-gifts">No gifts yet — share your link to get started</div>
     @else
     @foreach($gifts as $gift)
     <div class="gift-item">
@@ -191,4 +191,3 @@ function copyObs() {
 </script>
 </body>
 </html>
-

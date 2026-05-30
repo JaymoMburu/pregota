@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Verify Phone â€” {{ $collection->title }}</title>
+<title>Verify Phone — {{ $collection->title }}</title>
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}input,textarea,select,button{font-family:inherit;font-size:inherit}
@@ -46,7 +46,7 @@ h1{font-size:22px;font-weight:900;margin-bottom:8px}
 
 <div class="page">
     <div class="card">
-        <div class="icon-ring">ðŸ“±</div>
+        <div class="icon-ring">📱</div>
         <h1>Verify Your Phone</h1>
         <p class="sub">
             We sent a <strong>KES 1 STK Push</strong> to your registered payout number.
@@ -70,14 +70,14 @@ h1{font-size:22px;font-weight:900;margin-bottom:8px}
 
         <div class="status-box waiting" id="statusBox">
             <span class="spin-inline" id="spinner"></span>
-            <span id="statusText">Waiting for verificationâ€¦</span>
+            <span id="statusText">Waiting for verification…</span>
         </div>
 
         <button class="resend-btn" id="resendBtn" onclick="resend()">
             Didn't receive it? Resend STK Push
         </button>
 
-        <p class="notice">The KES 1 goes to Pregota. It is a one-time verification charge â€” not part of your payout.</p>
+        <p class="notice">The KES 1 goes to Pregota. It is a one-time verification charge — not part of your payout.</p>
     </div>
 </div>
 
@@ -96,7 +96,7 @@ function poll() {
             if (data.verified) {
                 document.getElementById('statusBox').className = 'status-box success';
                 document.getElementById('spinner').style.display = 'none';
-                document.getElementById('statusText').textContent = 'âœ… Verified! Redirecting to your dashboardâ€¦';
+                document.getElementById('statusText').textContent = '✅ Verified! Redirecting to your dashboard…';
                 setTimeout(() => { window.location.href = MANAGE_URL; }, 1500);
                 return;
             }
@@ -108,7 +108,7 @@ function poll() {
 async function resend() {
     const btn = document.getElementById('resendBtn');
     btn.disabled = true;
-    btn.textContent = 'Sendingâ€¦';
+    btn.textContent = 'Sending…';
 
     try {
         await fetch(`/collections/${SLUG}/resend-verify?token=${TOKEN}`, {
@@ -130,4 +130,3 @@ poll();
 </script>
 </body>
 </html>
-

@@ -1,9 +1,9 @@
-﻿<!DOCTYPE html>
+﻿﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pregota â€” Send an Anonymous Gift</title>
+<title>Pregota — Send an Anonymous Gift</title>
 <meta name="csrf-token" content="{{ csrf_token() }}">
 @include('partials.pwa')
 <style>
@@ -11,7 +11,7 @@
 html,body{height:100%}
 body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;display:flex;min-height:100vh}
 
-/* â”€â”€ Left panel â”€â”€ */
+/* ── Left panel ── */
 .panel-left{
     width:52%;height:100vh;position:sticky;top:0;
     background:radial-gradient(circle 300px at -50px -100px,rgba(0,166,81,.35),transparent 70%),radial-gradient(circle 230px at calc(100% + 30px) 100%,rgba(0,122,51,.28),transparent 70%),linear-gradient(150deg,#030D07 0%,#0A1A0F 55%,#0F2418 100%);
@@ -41,7 +41,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;d
 
 .left-foot{margin-top:auto;position:relative;z-index:1;font-size:11px;color:rgba(255,255,255,.6)}
 
-/* â”€â”€ Right panel â”€â”€ */
+/* ── Right panel ── */
 .panel-right{
     width:48%;min-height:100vh;background:#0B141A;
     display:flex;flex-direction:column;
@@ -79,7 +79,7 @@ textarea{resize:none;height:68px}
 .search-wrap input{padding-left:38px;background:rgba(255,255,255,.06)}
 .search-icon{position:absolute;left:13px;top:50%;transform:translateY(-50%);font-size:15px;pointer-events:none;opacity:.5}
 .search-results{position:absolute;top:calc(100% + 6px);left:0;right:0;background:#161f27;border:1px solid rgba(255,255,255,.12);border-radius:14px;z-index:50;overflow:hidden;box-shadow:0 16px 48px rgba(0,0,0,.6)}
-.search-empty{padding:18px;text-align:center;font-size:13px;color:rgba(255,255,255,.5)}
+.search-empty{padding:18px;text-align:center;font-size:13px;color:rgba(255,255,255,.78)}
 .creator-result{display:flex;align-items:center;gap:12px;padding:12px 16px;cursor:pointer;text-decoration:none;transition:.15s;border-bottom:1px solid rgba(255,255,255,.05)}
 .creator-result:last-child{border-bottom:none}
 .creator-result:hover{background:rgba(255,255,255,.04)}
@@ -87,7 +87,7 @@ textarea{resize:none;height:68px}
 .cr-avatar img{width:100%;height:100%;object-fit:cover}
 .cr-info{flex:1;min-width:0}
 .cr-name{font-size:14px;font-weight:700;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.cr-handle{font-size:12px;color:rgba(255,255,255,.5);margin-top:1px}
+.cr-handle{font-size:12px;color:rgba(255,255,255,.78);margin-top:1px}
 .cr-min{font-size:11px;color:#4ade80;margin-top:3px}
 
 /* Tabs */
@@ -101,7 +101,7 @@ textarea{resize:none;height:68px}
 .direct-success{text-align:center;padding:20px 0;display:none}
 .direct-pending{text-align:center;margin-top:14px;font-size:13px;color:rgba(255,255,255,.78);display:none}
 
-/* â”€â”€ Modal â”€â”€ */
+/* ── Modal ── */
 .modal{position:fixed;inset:0;background:rgba(0,0,0,.85);display:none;align-items:center;justify-content:center;z-index:200;padding:24px}
 .modal.show{display:flex}
 .modal-box{background:#13131f;border:1px solid rgba(255,255,255,.1);border-radius:22px;padding:36px 32px;max-width:380px;width:100%;text-align:center}
@@ -111,7 +111,7 @@ textarea{resize:none;height:68px}
 .status-dot{width:9px;height:9px;border-radius:50%;background:#f59e0b;display:inline-block;animation:pulse 1.5s infinite;margin-right:6px;vertical-align:middle}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
 
-/* Mobile logo â€” hidden on desktop, shown when left panel is gone */
+/* Mobile logo — hidden on desktop, shown when left panel is gone */
 .m-logo{display:none}
 
 @media(max-width:800px){
@@ -179,13 +179,13 @@ textarea{resize:none;height:68px}
                 <div class="step-num">4</div>
                 <div class="step-text">
                     <h3>Recipient claims the money</h3>
-                    <p>They enter the code and their M-Pesa number. Cash arrives â€” no names, no trail.</p>
+                    <p>They enter the code and their M-Pesa number. Cash arrives — no names, no trail.</p>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="left-foot">Â© 2026 Pregota Â· Phone numbers never stored Â· Secured by M-Pesa STK Push</div>
+    <div class="left-foot">© 2026 Pregota · Phone numbers never stored · Secured by M-Pesa STK Push</div>
 </div>
 
 <!-- RIGHT -->
@@ -193,8 +193,8 @@ textarea{resize:none;height:68px}
     <a href="{{ route('home') }}" class="m-logo">Pregota</a>
     @include('partials.module-nav', ['activeModule' => 'gift'])
     <div class="right-nav" style="padding:10px 24px;gap:8px">
-        <a href="{{ route('gift.multi') }}" class="nav-link" style="font-size:12px;padding:5px 12px">ðŸŽ¤ Multi-Creator</a>
-        <a href="{{ route('gift.bulk') }}" class="nav-link" style="font-size:12px;padding:5px 12px">ðŸ¢ Bulk Codes</a>
+        <a href="{{ route('gift.multi') }}" class="nav-link" style="font-size:12px;padding:5px 12px">🎤 Multi-Creator</a>
+        <a href="{{ route('gift.bulk') }}" class="nav-link" style="font-size:12px;padding:5px 12px">🏢 Bulk Codes</a>
         <a href="{{ route('track') }}" class="nav-link" style="font-size:12px;padding:5px 12px">Track Gift</a>
         <a href="{{ route('redeem') }}" class="nav-link" style="font-size:12px;padding:5px 12px">Redeem Gift</a>
     </div>
@@ -204,15 +204,15 @@ textarea{resize:none;height:68px}
 
             <!-- Creator search -->
             <div class="search-wrap">
-                <span class="search-icon">ðŸ”</span>
-                <input type="text" id="creatorSearch" placeholder="Search a creator to giftâ€¦" autocomplete="off">
+                <span class="search-icon">🔍</span>
+                <input type="text" id="creatorSearch" placeholder="Search a creator to gift…" autocomplete="off">
                 <div class="search-results" id="searchResults" style="display:none"></div>
             </div>
 
             <!-- Tab switcher -->
             <div class="tabs">
-                <button class="tab-btn active" id="tabVoucherBtn" onclick="switchTab('voucher')">ðŸŽ Gift Voucher</button>
-                <button class="tab-btn" id="tabDirectBtn" onclick="switchTab('direct')">âš¡ Direct Gift</button>
+                <button class="tab-btn active" id="tabVoucherBtn" onclick="switchTab('voucher')">🎁 Gift Voucher</button>
+                <button class="tab-btn" id="tabDirectBtn" onclick="switchTab('direct')">⚡ Direct Gift</button>
             </div>
 
             <!-- TAB: Gift Voucher (existing flow) -->
@@ -227,9 +227,9 @@ textarea{resize:none;height:68px}
                     </div>
 
                     <div class="fee-preview" id="feePreview">
-                        <div class="fee-row"><span>Recipient gets</span><span id="fRecipient">â€”</span></div>
-                        <div class="fee-row"><span id="fFeeLabel">Service fee</span><span id="fFee">â€”</span></div>
-                        <div class="fee-row total"><span>You pay (M-Pesa)</span><span id="fGross">â€”</span></div>
+                        <div class="fee-row"><span>Recipient gets</span><span id="fRecipient">—</span></div>
+                        <div class="fee-row"><span id="fFeeLabel">Service fee</span><span id="fFee">—</span></div>
+                        <div class="fee-row total"><span>You pay (M-Pesa)</span><span id="fGross">—</span></div>
                     </div>
 
                     <div class="form-group">
@@ -248,14 +248,14 @@ textarea{resize:none;height:68px}
                         <div class="hint">Recipient sees "From: [name]" only if you fill this in.</div>
                     </div>
 
-                    <button type="submit" class="btn-primary" id="submitBtn">Send Gift Voucher â†’</button>
+                    <button type="submit" class="btn-primary" id="submitBtn">Send Gift Voucher →</button>
                 </form>
             </div>
 
             <!-- TAB: Direct Gift -->
             <div class="tab-pane" id="tabDirect">
                 <div class="form-title" style="font-size:18px;margin-bottom:6px">Direct Gift</div>
-                <div style="font-size:12px;color:rgba(255,255,255,.68);margin-bottom:16px;line-height:1.6">Money goes straight to the recipient's M-Pesa â€” no code, no claiming. Small fee based on amount.</div>
+                <div style="font-size:12px;color:rgba(255,255,255,.68);margin-bottom:16px;line-height:1.6">Money goes straight to the recipient's M-Pesa — no code, no claiming. Small fee based on amount.</div>
 
                 <!-- Direct gift form -->
                 <div id="directForm">
@@ -266,15 +266,15 @@ textarea{resize:none;height:68px}
                     </div>
 
                     <div class="fee-preview" id="dFeePreview">
-                        <div class="fee-row"><span>Recipient gets</span><span id="dRecipient">â€”</span></div>
-                        <div class="fee-row"><span id="dFeeLabel">Service fee</span><span id="dFee">â€”</span></div>
-                        <div class="fee-row total"><span>You pay (M-Pesa)</span><span id="dGross">â€”</span></div>
+                        <div class="fee-row"><span>Recipient gets</span><span id="dRecipient">—</span></div>
+                        <div class="fee-row"><span id="dFeeLabel">Service fee</span><span id="dFee">—</span></div>
+                        <div class="fee-row total"><span>You pay (M-Pesa)</span><span id="dGross">—</span></div>
                     </div>
 
                     <div class="form-group">
                         <label>Recipient M-Pesa Number</label>
                         <input type="tel" id="dRecipientPhone" placeholder="07XX XXX XXX">
-                        <div class="hint">Their number is never stored â€” used only to send the money.</div>
+                        <div class="hint">Their number is never stored — used only to send the money.</div>
                     </div>
 
                     <div class="form-group">
@@ -282,7 +282,7 @@ textarea{resize:none;height:68px}
                         <input type="tel" id="dSenderPhone" placeholder="07XX XXX XXX">
                     </div>
 
-                    <button class="btn-primary" id="dSubmitBtn" onclick="sendDirect()">Send Direct Gift â†’</button>
+                    <button class="btn-primary" id="dSubmitBtn" onclick="sendDirect()">Send Direct Gift →</button>
 
                     <div class="direct-pending" id="dPending">
                         <span class="status-dot"></span>Waiting for M-Pesa confirmation...
@@ -291,34 +291,34 @@ textarea{resize:none;height:68px}
 
                 <!-- Direct success state -->
                 <div class="direct-success" id="directSuccess">
-                    <div style="font-size:44px;margin-bottom:12px">âš¡</div>
+                    <div style="font-size:44px;margin-bottom:12px">⚡</div>
                     <div style="font-size:20px;font-weight:900;margin-bottom:6px">Gift Sent!</div>
-                    <div style="font-size:13px;color:rgba(255,255,255,.78);margin-bottom:6px">KES <span id="dSentAmount">â€”</span> sent directly to the recipient's M-Pesa.</div>
-                    <div style="font-size:12px;color:rgba(255,255,255,.82);margin-bottom:20px">No code needed â€” they should receive an M-Pesa notification shortly.</div>
-                    <button onclick="resetDirect()" style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:10px 22px;color:rgba(255,255,255,.6);cursor:pointer;font-size:13px;font-weight:600">Send Another â†’</button>
+                    <div style="font-size:13px;color:rgba(255,255,255,.78);margin-bottom:6px">KES <span id="dSentAmount">—</span> sent directly to the recipient's M-Pesa.</div>
+                    <div style="font-size:12px;color:rgba(255,255,255,.82);margin-bottom:20px">No code needed — they should receive an M-Pesa notification shortly.</div>
+                    <button onclick="resetDirect()" style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:10px 22px;color:rgba(255,255,255,.6);cursor:pointer;font-size:13px;font-weight:600">Send Another →</button>
                 </div>
             </div>
 
         </div>
     </div>
 
-    <div class="right-foot">Your phone number is never stored Â· Powered by M-Pesa</div>
+    <div class="right-foot">Your phone number is never stored · Powered by M-Pesa</div>
 </div>
 
 <!-- MODAL -->
 <div class="modal" id="successModal">
     <div class="modal-box">
-        <div style="font-size:40px;margin-bottom:12px">ðŸŽ</div>
+        <div style="font-size:40px;margin-bottom:12px">🎁</div>
         <h2 style="font-size:20px;font-weight:800;margin-bottom:8px">Gift Code Generated!</h2>
         <p style="color:rgba(255,255,255,.78);font-size:13px;margin-bottom:4px">Share this code with your recipient</p>
-        <div class="code-display" id="voucherCode">â€”</div>
+        <div class="code-display" id="voucherCode">—</div>
         <button class="copy-btn" onclick="copyCode()">Copy Code</button>
 
         <div style="background:rgba(0,166,81,.1);border:1px solid rgba(0,166,81,.25);border-radius:10px;padding:12px 14px;margin-top:18px;text-align:left">
             <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.68);margin-bottom:6px">Cancel / Recall Token</div>
-            <div style="font-size:15px;font-weight:800;font-family:monospace;color:#25D366;letter-spacing:.1em" id="recallToken">â€”</div>
+            <div style="font-size:15px;font-weight:800;font-family:monospace;color:#25D366;letter-spacing:.1em" id="recallToken">—</div>
             <button class="copy-btn" onclick="copyRecallToken()" style="margin-top:8px;font-size:11px;padding:5px 14px">Copy Token</button>
-            <p style="font-size:11px;color:rgba(255,255,255,.68);margin-top:8px;line-height:1.55">Save this token. If the gift is unredeemed you can use it on the Track page to cancel. The deposit fee is not refunded â€” you receive the face value only.</p>
+            <p style="font-size:11px;color:rgba(255,255,255,.68);margin-top:8px;line-height:1.55">Save this token. If the gift is unredeemed you can use it on the Track page to cancel. The deposit fee is not refunded — you receive the face value only.</p>
         </div>
 
         <p id="mpesaStatus" style="color:rgba(255,255,255,.68);font-size:12px;margin-top:16px">
@@ -327,13 +327,13 @@ textarea{resize:none;height:68px}
 
         <div id="holdAlert" style="display:none;background:rgba(251,191,36,.1);border:1px solid rgba(251,191,36,.3);border-radius:10px;padding:12px 14px;margin-top:12px;text-align:left">
             <div style="font-size:13px;font-weight:700;color:#fbbf24;margin-bottom:4px">
-                âš ï¸ You have <span id="holdCountdown" style="font-family:monospace">5:00</span> to cancel
+                ⚠️ You have <span id="holdCountdown" style="font-family:monospace">5:00</span> to cancel
             </div>
             <div style="font-size:11px;color:rgba(255,255,255,.72);line-height:1.55">If you sent this to the wrong person, go to <strong style="color:rgba(255,255,255,.7)">Track Gift</strong> and use your recall token above before this window closes.</div>
         </div>
-        <div id="holdGone" style="display:none;font-size:11px;color:#4ade80;margin-top:10px">âœ… Verification window passed â€” gift is now claimable.</div>
+        <div id="holdGone" style="display:none;font-size:11px;color:#4ade80;margin-top:10px">✅ Verification window passed — gift is now claimable.</div>
 
-        <p style="color:rgba(255,255,255,.25);font-size:11px;margin-top:10px">Valid for 72 hours Â· Share via WhatsApp, SMS, or verbally</p>
+        <p style="color:rgba(255,255,255,.25);font-size:11px;margin-top:10px">Valid for 72 hours · Share via WhatsApp, SMS, or verbally</p>
         <button onclick="document.getElementById('successModal').classList.remove('show')"
             style="margin-top:14px;background:none;border:none;color:rgba(255,255,255,.82);cursor:pointer;font-size:13px">Close</button>
     </div>
@@ -366,7 +366,7 @@ function tierLabel(amount) {
     return `${last.value}% service fee`;
 }
 
-// â”€â”€ Tab switching â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ── Tab switching ──────────────────────────────────────────────────────────
 function switchTab(tab) {
     document.getElementById('tabVoucher').classList.toggle('active', tab === 'voucher');
     document.getElementById('tabDirect').classList.toggle('active', tab === 'direct');
@@ -374,7 +374,7 @@ function switchTab(tab) {
     document.getElementById('tabDirectBtn').classList.toggle('active', tab === 'direct');
 }
 
-// â”€â”€ Pre-fill from URL query params (when redirected from tip page) â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ── Pre-fill from URL query params (when redirected from tip page) ─────────
 (function() {
     const p = new URLSearchParams(window.location.search);
     const amt  = p.get('amount');
@@ -392,7 +392,7 @@ function switchTab(tab) {
     }
 })();
 
-// â”€â”€ Voucher fee preview â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ── Voucher fee preview ────────────────────────────────────────────────────
 function updateVoucherFee(v) {
     const preview = document.getElementById('feePreview');
     if (!v || v < MIN_AMT) { preview.style.display = 'none'; return; }
@@ -427,7 +427,7 @@ document.getElementById('giftForm').addEventListener('submit', async function(e)
         const json = await res.json();
         if (json.success) {
             document.getElementById('voucherCode').textContent = json.voucher_code;
-            document.getElementById('recallToken').textContent = json.recall_token || 'â€”';
+            document.getElementById('recallToken').textContent = json.recall_token || '—';
             document.getElementById('successModal').classList.add('show');
             pollStatus(json.voucher_code);
         } else {
@@ -436,7 +436,7 @@ document.getElementById('giftForm').addEventListener('submit', async function(e)
     } catch(err) {
         alert('Network error. Please try again.');
     } finally {
-        btn.disabled = false; btn.textContent = 'Send Gift â†’';
+        btn.disabled = false; btn.textContent = 'Send Gift →';
     }
 });
 
@@ -447,7 +447,7 @@ async function pollStatus(code) {
         const json = await res.json();
         if (json.status === 'active') {
             document.querySelector('.status-dot').style.cssText = 'background:#22c55e;animation:none';
-            document.getElementById('mpesaStatus').innerHTML = 'âœ… Payment confirmed! Share the code above with your recipient.';
+            document.getElementById('mpesaStatus').innerHTML = '✅ Payment confirmed! Share the code above with your recipient.';
             document.getElementById('mpesaStatus').style.color = 'rgba(255,255,255,.82)';
             if (json.hold_seconds > 0) {
                 document.getElementById('holdAlert').style.display = 'block';
@@ -456,7 +456,7 @@ async function pollStatus(code) {
             break;
         }
         if (json.status === 'cancelled') {
-            document.getElementById('mpesaStatus').textContent = 'âŒ Payment was cancelled or failed.';
+            document.getElementById('mpesaStatus').textContent = '❌ Payment was cancelled or failed.';
             break;
         }
     }
@@ -496,7 +496,7 @@ function copyRecallToken() {
     });
 }
 
-// â”€â”€ Direct gift fee preview â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ── Direct gift fee preview ────────────────────────────────────────────────
 function updateDirectFee(v) {
     const preview = document.getElementById('dFeePreview');
     if (!v || v < MIN_AMT) { preview.style.display = 'none'; return; }
@@ -512,7 +512,7 @@ document.getElementById('dAmount').addEventListener('input', function() {
     updateDirectFee(parseFloat(this.value));
 });
 
-// â”€â”€ Direct gift submission â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ── Direct gift submission ─────────────────────────────────────────────────
 let currentDirectId = null;
 
 async function sendDirect() {
@@ -546,11 +546,11 @@ async function sendDirect() {
             pollDirectStatus(json.gift_id, amount);
         } else {
             alert(json.message || 'Something went wrong.');
-            btn.disabled = false; btn.textContent = 'Send Direct Gift â†’';
+            btn.disabled = false; btn.textContent = 'Send Direct Gift →';
         }
     } catch(e) {
         alert('Network error. Please try again.');
-        btn.disabled = false; btn.textContent = 'Send Direct Gift â†’';
+        btn.disabled = false; btn.textContent = 'Send Direct Gift →';
     }
 }
 
@@ -566,16 +566,16 @@ async function pollDirectStatus(giftId, amount) {
             return;
         }
         if (json.status === 'failed') {
-            document.getElementById('dPending').innerHTML = 'âŒ Payment failed or cancelled. Please try again.';
+            document.getElementById('dPending').innerHTML = '❌ Payment failed or cancelled. Please try again.';
             document.getElementById('dSubmitBtn').disabled = false;
-            document.getElementById('dSubmitBtn').textContent = 'Send Direct Gift â†’';
+            document.getElementById('dSubmitBtn').textContent = 'Send Direct Gift →';
             return;
         }
     }
-    document.getElementById('dPending').innerHTML = 'âš ï¸ Timed out. Check your M-Pesa â€” if charged, contact support.';
+    document.getElementById('dPending').innerHTML = '⚠️ Timed out. Check your M-Pesa — if charged, contact support.';
 }
 
-// â”€â”€ Creator search â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ── Creator search ─────────────────────────────────────────────────────────
 (function() {
     const input   = document.getElementById('creatorSearch');
     const results = document.getElementById('searchResults');
@@ -640,9 +640,8 @@ function resetDirect() {
     document.getElementById('directSuccess').style.display = 'none';
     document.getElementById('directForm').style.display    = 'block';
     document.getElementById('dSubmitBtn').disabled = false;
-    document.getElementById('dSubmitBtn').textContent = 'Send Direct Gift â†’';
+    document.getElementById('dSubmitBtn').textContent = 'Send Direct Gift →';
 }
 </script>
 </body>
 </html>
-

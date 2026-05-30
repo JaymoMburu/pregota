@@ -1,9 +1,9 @@
-﻿<!DOCTYPE html>
+﻿﻿﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Create Contribution Group â€” Pregota</title>
+<title>Create Contribution Group — Pregota</title>
 @include('partials.pwa')
 <style>
 *{box-sizing:border-box;margin:0;padding:0}input,textarea,select,button{font-family:inherit;font-size:inherit}
@@ -12,12 +12,12 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 .logo{font-size:20px;font-weight:900;background:linear-gradient(135deg,#25D366,#4ADE80);-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-decoration:none}
 .wrap{max-width:520px;margin:0 auto;padding:40px 20px 80px}
 h1{font-size:24px;font-weight:900;margin-bottom:6px}
-.sub{font-size:13px;color:rgba(255,255,255,.5);margin-bottom:30px;line-height:1.55}
+.sub{font-size:13px;color:rgba(255,255,255,.78);margin-bottom:30px;line-height:1.55}
 .field{margin-bottom:18px}
-.field label{display:block;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.45);margin-bottom:7px}
+.field label{display:block;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.72);margin-bottom:7px}
 .field input,.field select,.field textarea{width:100%;padding:12px 14px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:10px;color:#fff;font-size:14px;font-family:inherit;outline:none}
 .field input:focus,.field select:focus,.field textarea:focus{border-color:rgba(37,211,102,.4)}
-.field .hint{font-size:11px;color:rgba(255,255,255,.3);margin-top:5px}
+.field .hint{font-size:11px;color:rgba(255,255,255,.65);margin-top:5px}
 select option{background:#1a2730}
 .field textarea{resize:vertical;min-height:80px}
 .pin-row{display:flex;gap:10px;justify-content:center;margin-bottom:4px}
@@ -28,7 +28,7 @@ select option{background:#1a2730}
 .submit-btn{width:100%;padding:14px;background:linear-gradient(135deg,#25D366,#1aaa52);color:#fff;font-size:16px;font-weight:900;border:none;border-radius:13px;cursor:pointer;margin-top:8px}
 .submit-btn:hover{opacity:.9}
 .err{color:#fca5a5;font-size:12px;margin-top:4px}
-.section-title{font-size:13px;font-weight:700;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.08em;margin:24px 0 14px;padding-top:20px;border-top:1px solid rgba(255,255,255,.06)}
+.section-title{font-size:13px;font-weight:700;color:rgba(255,255,255,.78);text-transform:uppercase;letter-spacing:.08em;margin:24px 0 14px;padding-top:20px;border-top:1px solid rgba(255,255,255,.06)}
 </style>
 </head>
 <body>
@@ -37,7 +37,7 @@ select option{background:#1a2730}
 </nav>
 <div class="wrap">
     <h1>Create a Group</h1>
-    <div class="sub">Chama, welfare, church, or any group that collects contributions. Members pay via M-Pesa â€” you see who's paid instantly.</div>
+    <div class="sub">Chama, welfare, church, or any group that collects contributions. Members pay via M-Pesa — you see who's paid instantly.</div>
 
     <form method="POST" action="{{ route('group.create') }}">
         @csrf
@@ -97,7 +97,7 @@ select option{background:#1a2730}
             <div class="pin-row" id="confirm-boxes"></div>
         </div>
 
-        <button type="submit" class="submit-btn" id="submit-btn" disabled>Create Group â†’</button>
+        <button type="submit" class="submit-btn" id="submit-btn" disabled>Create Group →</button>
     </form>
 </div>
 
@@ -147,4 +147,3 @@ function check() {
 </script>
 </body>
 </html>
-

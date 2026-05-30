@@ -1,9 +1,9 @@
-﻿<!DOCTYPE html>
+﻿﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Gift Multiple Creators â€” Pregota</title>
+<title>Gift Multiple Creators — Pregota</title>
 <meta name="csrf-token" content="{{ csrf_token() }}">
 @include('partials.pwa')
 <style>
@@ -30,7 +30,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 .search-input{width:100%;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);border-radius:10px;padding:12px 14px 12px 38px;color:#fff;font-size:14px;outline:none;transition:.2s;font-family:inherit}
 .search-input:focus{border-color:#00A651;background:rgba(0,166,81,.08)}
 .search-input::placeholder{color:rgba(255,255,255,.68)}
-.search-icon{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:rgba(255,255,255,.4);font-size:15px;pointer-events:none}
+.search-icon{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:rgba(255,255,255,.72);font-size:15px;pointer-events:none}
 
 .search-result{display:none;background:rgba(0,166,81,.08);border:1px solid rgba(0,166,81,.2);border-radius:10px;padding:12px 14px;margin-top:8px;align-items:center;gap:12px}
 .search-result.show{display:flex}
@@ -57,10 +57,10 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 .basket-amount{font-size:15px;font-weight:900;color:#25D366;flex-shrink:0}
 .remove-btn{background:none;border:none;color:rgba(239,68,68,.5);font-size:18px;cursor:pointer;padding:2px 4px;line-height:1;flex-shrink:0;transition:.15s}
 .remove-btn:hover{color:#f87171}
-.empty-basket{text-align:center;padding:20px;font-size:13px;color:rgba(255,255,255,.4)}
+.empty-basket{text-align:center;padding:20px;font-size:13px;color:rgba(255,255,255,.72)}
 
 /* Hint */
-.limit-hint{font-size:11px;color:rgba(255,255,255,.4);text-align:center;margin-top:-8px}
+.limit-hint{font-size:11px;color:rgba(255,255,255,.72);text-align:center;margin-top:-8px}
 
 /* Summary card */
 .summary-row{display:flex;justify-content:space-between;align-items:center;padding:7px 0;font-size:13px;color:rgba(255,255,255,.72);border-bottom:1px solid rgba(255,255,255,.05)}
@@ -112,12 +112,12 @@ input[type=tel]::placeholder{color:rgba(255,255,255,.68)}
 
     <div class="hero">
         <h1>Gift <em>Multiple</em> Creators</h1>
-        <p>Send M-Pesa gifts to up to 5 creators in one payment. One M-Pesa prompt â€” multiple gifts distributed automatically.</p>
+        <p>Send M-Pesa gifts to up to 5 creators in one payment. One M-Pesa prompt — multiple gifts distributed automatically.</p>
     </div>
 
     <!-- Step 1: Search & add creators -->
     <div class="card" id="builderCard">
-        <div class="card-label">Step 1 â€” Add Creators (2â€“5)</div>
+        <div class="card-label">Step 1 — Add Creators (2–5)</div>
 
         <div class="search-wrap">
             <span class="search-icon">@</span>
@@ -129,8 +129,8 @@ input[type=tel]::placeholder{color:rgba(255,255,255,.68)}
         <div class="search-result" id="searchResult">
             <div class="result-avatar" id="rAvatar">?</div>
             <div class="result-info">
-                <div class="result-name" id="rName">â€”</div>
-                <div class="result-handle" id="rHandle">â€”</div>
+                <div class="result-name" id="rName">—</div>
+                <div class="result-handle" id="rHandle">—</div>
             </div>
             <div class="result-amount-wrap">
                 <input type="number" class="amount-input" id="rAmount"
@@ -151,7 +151,7 @@ input[type=tel]::placeholder{color:rgba(255,255,255,.68)}
 
     <!-- Step 2: Fee summary + pay -->
     <div class="card" id="summaryCard" style="display:none">
-        <div class="card-label">Step 2 â€” Review & Pay</div>
+        <div class="card-label">Step 2 — Review & Pay</div>
 
         <div id="summaryRows"></div>
 
@@ -161,7 +161,7 @@ input[type=tel]::placeholder{color:rgba(255,255,255,.68)}
         </div>
 
         <button class="submit-btn" id="submitBtn" onclick="sendMultiGift()" style="margin-top:14px" disabled>
-            Pay via M-Pesa â†’
+            Pay via M-Pesa →
         </button>
     </div>
 
@@ -169,10 +169,10 @@ input[type=tel]::placeholder{color:rgba(255,255,255,.68)}
     <div class="card" id="statusCard" style="display:none">
         <div class="status-panel show" id="statusPanel">
             <div class="spin" id="statusSpin"></div>
-            <div style="font-size:18px;font-weight:900;margin-bottom:6px" id="statusTitle">Waiting for M-Pesaâ€¦</div>
+            <div style="font-size:18px;font-weight:900;margin-bottom:6px" id="statusTitle">Waiting for M-Pesa…</div>
             <div style="font-size:13px;color:rgba(255,255,255,.72);margin-bottom:4px" id="statusSub">Check your phone and enter your M-Pesa PIN.</div>
             <div class="dist-list" id="distList"></div>
-            <button onclick="resetAll()" style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:10px 22px;color:rgba(255,255,255,.72);cursor:pointer;font-size:13px;font-weight:600;margin-top:8px" id="resetBtn" style="display:none">Send Another â†’</button>
+            <button onclick="resetAll()" style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:10px 22px;color:rgba(255,255,255,.72);cursor:pointer;font-size:13px;font-weight:600;margin-top:8px" id="resetBtn" style="display:none">Send Another →</button>
         </div>
     </div>
 
@@ -194,7 +194,7 @@ let searching = false;
 let searchTimer = null;
 let currentRef  = null;
 
-// â”€â”€ Search â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ── Search ────────────────────────────────────────────────────────────────
 const handleInput = document.getElementById('handleInput');
 handleInput.addEventListener('input', function() {
     clearTimeout(searchTimer);
@@ -269,7 +269,7 @@ function addToBasket() {
     renderSummary();
 }
 
-// â”€â”€ Basket rendering â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ── Basket rendering ──────────────────────────────────────────────────────
 function renderBasket() {
     const el      = document.getElementById('basket');
     const emptyEl = document.getElementById('emptyBasket');
@@ -296,7 +296,7 @@ function renderBasket() {
                 <div class="basket-handle">@${b.handle}</div>
             </div>
             <div class="basket-amount">${fmt(b.amount)}</div>
-            <button class="remove-btn" onclick="removeFromBasket(${idx})">Ã—</button>
+            <button class="remove-btn" onclick="removeFromBasket(${idx})">×</button>
         `;
         el.appendChild(div);
     });
@@ -315,7 +315,7 @@ function removeFromBasket(idx) {
     renderSummary();
 }
 
-// â”€â”€ Summary â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ── Summary ───────────────────────────────────────────────────────────────
 function calcFees() {
     const totalPayout  = basket.reduce((s, b) => s + b.amount, 0);
     const feeOutTotal  = FEE_PER * basket.length;
@@ -336,7 +336,7 @@ function renderSummary() {
     const rows = document.getElementById('summaryRows');
     rows.innerHTML = `
         <div class="summary-row"><span>Total gifts (${basket.length} creators)</span><span>${fmt(totalPayout)}</span></div>
-        <div class="summary-row"><span>B2C delivery fee (${basket.length} Ã— KES ${FEE_PER})</span><span>${fmt(feeOutTotal)}</span></div>
+        <div class="summary-row"><span>B2C delivery fee (${basket.length} × KES ${FEE_PER})</span><span>${fmt(feeOutTotal)}</span></div>
         <div class="summary-row"><span>Platform fee (${FEE_PCT}%)</span><span>${fmt(feeIn)}</span></div>
         <div class="summary-row total"><span>You pay via M-Pesa</span><span>${fmt(gross)}</span></div>
     `;
@@ -344,7 +344,7 @@ function renderSummary() {
     validateSubmit();
 }
 
-// â”€â”€ Phone validation â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ── Phone validation ──────────────────────────────────────────────────────
 document.getElementById('senderPhone').addEventListener('input', validateSubmit);
 
 function validateSubmit() {
@@ -353,12 +353,12 @@ function validateSubmit() {
     document.getElementById('submitBtn').disabled = !(basket.length >= 2 && valid);
 }
 
-// â”€â”€ Submit â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ── Submit ────────────────────────────────────────────────────────────────
 async function sendMultiGift() {
     const phone = document.getElementById('senderPhone').value.trim();
     const btn   = document.getElementById('submitBtn');
     btn.disabled = true;
-    btn.textContent = 'Sending STK Pushâ€¦';
+    btn.textContent = 'Sending STK Push…';
 
     const items = basket.map(b => ({ creator_id: b.creator_id, amount: b.amount }));
 
@@ -373,7 +373,7 @@ async function sendMultiGift() {
         if (!data.success) {
             alert(data.message || 'Something went wrong. Please try again.');
             btn.disabled = false;
-            btn.textContent = 'Pay via M-Pesa â†’';
+            btn.textContent = 'Pay via M-Pesa →';
             return;
         }
 
@@ -383,11 +383,11 @@ async function sendMultiGift() {
     } catch(e) {
         alert('Network error. Please try again.');
         btn.disabled = false;
-        btn.textContent = 'Pay via M-Pesa â†’';
+        btn.textContent = 'Pay via M-Pesa →';
     }
 }
 
-// â”€â”€ Status display â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ── Status display ────────────────────────────────────────────────────────
 function showStatusCard() {
     document.getElementById('builderCard').style.display  = 'none';
     document.getElementById('summaryCard').style.display  = 'none';
@@ -398,7 +398,7 @@ function showStatusCard() {
 function renderDistList(items) {
     const list = document.getElementById('distList');
     list.innerHTML = items.map(item => {
-        const icon   = item.b2c_status === 'sent' ? 'âœ…' : item.b2c_status === 'failed' ? 'âŒ' : 'â³';
+        const icon   = item.b2c_status === 'sent' ? '✅' : item.b2c_status === 'failed' ? '❌' : '⏳';
         const cls    = item.b2c_status === 'sent' ? 'dst-sent' : item.b2c_status === 'failed' ? 'dst-failed' : 'dst-pending';
         const label  = item.b2c_status === 'sent' ? 'Sent' : item.b2c_status === 'failed' ? 'Failed' : 'Pending';
         return `<div class="dist-item">
@@ -422,14 +422,14 @@ async function pollStatus() {
             renderDistList(data.items);
 
             if (data.status === 'active' || data.status === 'distributing') {
-                document.getElementById('statusTitle').textContent = 'Distributing giftsâ€¦';
+                document.getElementById('statusTitle').textContent = 'Distributing gifts…';
                 document.getElementById('statusSub').textContent   = `${data.distributed} of ${data.total} creators paid.`;
                 document.getElementById('statusSpin').style.display = 'block';
             }
 
             if (data.status === 'complete') {
                 document.getElementById('statusSpin').style.display = 'none';
-                document.getElementById('statusTitle').textContent  = 'ðŸŽ‰ All gifts sent!';
+                document.getElementById('statusTitle').textContent  = '🎉 All gifts sent!';
                 document.getElementById('statusSub').textContent    = `${data.total} creators received their gifts.`;
                 document.getElementById('resetBtn').style.display   = 'inline-block';
                 break;
@@ -437,7 +437,7 @@ async function pollStatus() {
 
             if (data.status === 'failed') {
                 document.getElementById('statusSpin').style.display = 'none';
-                document.getElementById('statusTitle').textContent  = 'âš ï¸ Some gifts failed';
+                document.getElementById('statusTitle').textContent  = '⚠️ Some gifts failed';
                 document.getElementById('statusSub').textContent    = 'Payment confirmed but one or more payouts failed. Contact support with reference: ' + currentRef;
                 document.getElementById('resetBtn').style.display   = 'inline-block';
                 break;
@@ -456,7 +456,7 @@ function resetAll() {
     renderSummary();
     document.getElementById('statusCard').style.display  = 'none';
     document.getElementById('builderCard').style.display = 'block';
-    document.getElementById('statusTitle').textContent   = 'Waiting for M-Pesaâ€¦';
+    document.getElementById('statusTitle').textContent   = 'Waiting for M-Pesa…';
     document.getElementById('statusSub').textContent     = 'Check your phone and enter your M-Pesa PIN.';
     document.getElementById('statusSpin').style.display  = 'block';
     document.getElementById('resetBtn').style.display    = 'none';
@@ -465,4 +465,3 @@ function resetAll() {
 </script>
 </body>
 </html>
-

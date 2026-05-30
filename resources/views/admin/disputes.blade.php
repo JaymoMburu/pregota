@@ -1,20 +1,20 @@
-﻿<!DOCTYPE html>
+﻿﻿﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Disputes â€” Pregota Admin</title>
+<title>Disputes — Pregota Admin</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}input,textarea,select,button{font-family:inherit;font-size:inherit}
 body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;min-height:100vh}
 .nav{padding:14px 28px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,.08);background:rgba(0,0,0,.3)}
 .logo{font-size:18px;font-weight:900;background:linear-gradient(135deg,#00A651,#007A33);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 .nav-links{display:flex;gap:16px;align-items:center}
-.nav-links a{color:rgba(255,255,255,.55);font-size:13px;text-decoration:none}
+.nav-links a{color:rgba(255,255,255,.78);font-size:13px;text-decoration:none}
 .nav-links a:hover{color:#fff}
 .main{padding:28px;max-width:1100px}
 h1{font-size:20px;font-weight:900;margin-bottom:6px}
-.sub{font-size:13px;color:rgba(255,255,255,.45);margin-bottom:24px}
+.sub{font-size:13px;color:rgba(255,255,255,.72);margin-bottom:24px}
 
 .alert{padding:12px 16px;border-radius:10px;font-size:13px;margin-bottom:20px}
 .alert-success{background:rgba(37,211,102,.08);border:1px solid rgba(37,211,102,.2);color:#4ADE80}
@@ -26,7 +26,7 @@ h1{font-size:20px;font-weight:900;margin-bottom:6px}
 .dc-amount{font-size:20px;font-weight:900;color:#4ADE80;white-space:nowrap}
 .dc-body{padding:16px 20px}
 .dc-meta{display:flex;gap:20px;flex-wrap:wrap;margin-bottom:12px}
-.dc-meta-item{font-size:12px;color:rgba(255,255,255,.45)}
+.dc-meta-item{font-size:12px;color:rgba(255,255,255,.72)}
 .dc-meta-item strong{color:rgba(255,255,255,.8)}
 .issue-badge{display:inline-flex;padding:3px 10px;border-radius:999px;font-size:11px;font-weight:700;background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.25);color:#f87171;margin-bottom:10px}
 .description{font-size:13px;color:rgba(255,255,255,.7);line-height:1.6;background:rgba(255,255,255,.03);border-radius:8px;padding:12px 14px;margin-bottom:14px}
@@ -35,23 +35,23 @@ h1{font-size:20px;font-weight:900;margin-bottom:6px}
 .status-badge.open{background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.25);color:#f87171}
 .status-badge.investigating{background:rgba(251,191,36,.12);border:1px solid rgba(251,191,36,.25);color:#fbbf24}
 .status-badge.resolved{background:rgba(37,211,102,.12);border:1px solid rgba(37,211,102,.25);color:#4ADE80}
-.status-badge.dismissed{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.45)}
+.status-badge.dismissed{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.72)}
 
 .dc-actions{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
 .action-form{display:inline}
 select.status-sel{padding:6px 10px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:8px;color:#fff;font-size:12px;font-family:inherit;outline:none}
 select.status-sel option{background:#1a2730}
 input.note-input{padding:6px 10px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:8px;color:#fff;font-size:12px;font-family:inherit;outline:none;width:220px}
-input.note-input::placeholder{color:rgba(255,255,255,.3)}
+input.note-input::placeholder{color:rgba(255,255,255,.65)}
 .btn-update{padding:6px 14px;background:rgba(168,85,247,.15);border:1px solid rgba(168,85,247,.3);color:#c084fc;font-size:12px;font-weight:700;border-radius:8px;cursor:pointer}
 .btn-update:hover{background:rgba(168,85,247,.25)}
 .btn-suspend{padding:6px 14px;background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.25);color:#f87171;font-size:12px;font-weight:700;border-radius:8px;cursor:pointer}
 .btn-suspend:hover{background:rgba(239,68,68,.2)}
 .btn-reinstate{padding:6px 14px;background:rgba(37,211,102,.1);border:1px solid rgba(37,211,102,.25);color:#4ADE80;font-size:12px;font-weight:700;border-radius:8px;cursor:pointer}
 .btn-reinstate:hover{background:rgba(37,211,102,.2)}
-.admin-note{font-size:11px;color:rgba(255,255,255,.4);margin-top:8px;font-style:italic}
+.admin-note{font-size:11px;color:rgba(255,255,255,.72);margin-top:8px;font-style:italic}
 
-.empty{text-align:center;padding:60px;color:rgba(255,255,255,.3)}
+.empty{text-align:center;padding:60px;color:rgba(255,255,255,.65)}
 .empty-icon{font-size:40px;margin-bottom:12px}
 
 .seller-tag{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:2px 8px;border-radius:999px;margin-left:6px;vertical-align:middle}
@@ -79,7 +79,7 @@ input.note-input::placeholder{color:rgba(255,255,255,.3)}
 
     @if($disputes->isEmpty())
         <div class="empty">
-            <div class="empty-icon">âœ…</div>
+            <div class="empty-icon">✅</div>
             <div>No disputes filed yet.</div>
         </div>
     @else
@@ -99,7 +99,7 @@ input.note-input::placeholder{color:rgba(255,255,255,.3)}
             <div class="dc-head">
                 <div>
                     <div class="dc-biz">
-                        {{ $payLink?->business_name ?? 'â€”' }}
+                        {{ $payLink?->business_name ?? '—' }}
                         @if($payLink?->is_suspended)
                             <span class="seller-tag suspended">Suspended</span>
                         @endif
@@ -108,7 +108,7 @@ input.note-input::placeholder{color:rgba(255,255,255,.3)}
                 </div>
                 <div style="text-align:right">
                     <div class="dc-amount">KES {{ number_format($payment?->amount ?? 0) }}</div>
-                    <div style="font-size:11px;color:rgba(255,255,255,.35);margin-top:3px">{{ $d->created_at->format('d M Y Â· H:i') }}</div>
+                    <div style="font-size:11px;color:rgba(255,255,255,.65);margin-top:3px">{{ $d->created_at->format('d M Y · H:i') }}</div>
                 </div>
             </div>
             <div class="dc-body">
@@ -161,4 +161,3 @@ input.note-input::placeholder{color:rgba(255,255,255,.3)}
 </div>
 </body>
 </html>
-

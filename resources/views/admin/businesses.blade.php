@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Businesses â€” Pregota Admin</title>
+<title>Businesses — Pregota Admin</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}input,textarea,select,button{font-family:inherit;font-size:inherit}
 body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;min-height:100vh}
@@ -76,7 +76,7 @@ select:focus,input:focus{border-color:#00A651}
     @endif
 
     <div class="page-title">Businesses</div>
-    <div class="page-sub">{{ $businesses->count() }} registered Â· {{ $businesses->where('plan', '!=', 'free')->count() }} subscribed</div>
+    <div class="page-sub">{{ $businesses->count() }} registered · {{ $businesses->where('plan', '!=', 'free')->count() }} subscribed</div>
 
     <div class="card">
         <div class="biz-row header">
@@ -96,7 +96,7 @@ select:focus,input:focus{border-color:#00A651}
         <div class="biz-row">
             <div>
                 <div class="biz-name">{{ $biz->logo_emoji }} {{ $biz->name }}</div>
-                <div class="biz-meta">{{ $biz->categoryLabel() }}@if($biz->city) Â· {{ $biz->city }}@endif Â· {{ $biz->email }}</div>
+                <div class="biz-meta">{{ $biz->categoryLabel() }}@if($biz->city) · {{ $biz->city }}@endif · {{ $biz->email }}</div>
             </div>
             <div style="font-size:13px;color:rgba(255,255,255,.78)">{{ $biz->staff_count }}</div>
             <div>
@@ -104,11 +104,11 @@ select:focus,input:focus{border-color:#00A651}
             </div>
             <div>
                 @if($biz->plan === 'free')
-                <span class="expires">â€”</span>
+                <span class="expires">—</span>
                 @elseif($isExpired)
                 <span class="expires expired">Expired {{ $biz->plan_expires_at->format('M j') }}</span>
                 @elseif($expiresSoon)
-                <span class="expires soon">{{ $biz->plan_expires_at->format('M j, Y') }} âš </span>
+                <span class="expires soon">{{ $biz->plan_expires_at->format('M j, Y') }} ⚠</span>
                 @else
                 <span class="expires">{{ $biz->plan_expires_at?->format('M j, Y') ?? 'No expiry' }}</span>
                 @endif
@@ -140,17 +140,17 @@ select:focus,input:focus{border-color:#00A651}
             @csrf
             <label>Plan</label>
             <select name="plan">
-                <option value="starter">Starter â€” KES 1,500/mo (5 staff)</option>
-                <option value="growth" selected>Growth â€” KES 3,500/mo (20 staff)</option>
-                <option value="business">Business â€” KES 7,000/mo (50 staff)</option>
-                <option value="enterprise">Enterprise â€” Custom</option>
+                <option value="starter">Starter — KES 1,500/mo (5 staff)</option>
+                <option value="growth" selected>Growth — KES 3,500/mo (20 staff)</option>
+                <option value="business">Business — KES 7,000/mo (50 staff)</option>
+                <option value="enterprise">Enterprise — Custom</option>
             </select>
 
             <label>Months</label>
             <input type="number" name="months" value="1" min="1" max="12" placeholder="1">
 
             <div class="modal-btns">
-                <button type="submit" class="btn-primary">Activate â†’</button>
+                <button type="submit" class="btn-primary">Activate →</button>
                 <button type="button" class="btn-cancel" onclick="closeSubscribe()">Cancel</button>
             </div>
         </form>
@@ -172,4 +172,3 @@ document.getElementById('subscribeModal').addEventListener('click', function(e) 
 </script>
 </body>
 </html>
-

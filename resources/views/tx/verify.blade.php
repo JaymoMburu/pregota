@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Transaction Verified â€” Pregota</title>
+<title>Transaction Verified — Pregota</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}input,textarea,select,button{font-family:inherit;font-size:inherit}
 body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px}
@@ -34,7 +34,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 <a href="{{ route('home') }}" class="logo">Pregota</a>
 
 <div class="card">
-    <div class="seal-icon">ðŸ”</div>
+    <div class="seal-icon">🔐</div>
     <div class="verified-title">Transaction Verified</div>
     <div class="verified-sub">This payment is cryptographically sealed and has not been altered.</div>
 
@@ -56,7 +56,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
     </div>
     <div class="row">
         <span class="row-key">Status</span>
-        <span class="row-val green">âœ“ Confirmed</span>
+        <span class="row-val green">✓ Confirmed</span>
     </div>
 
     <div class="hash-block">
@@ -67,21 +67,20 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 </div>
 
 <div class="footer-note">
-    Hash computed from: PREGOTA Â· {{ $type }} Â· Record ID Â· M-Pesa code Â· Amount Â· Timestamp<br>
+    Hash computed from: PREGOTA · {{ $type }} · Record ID · M-Pesa code · Amount · Timestamp<br>
     Anyone can independently verify this record has not been tampered with.
 </div>
 
-<a href="{{ route('home') }}" class="home-link">â† Back to Pregota</a>
+<a href="{{ route('home') }}" class="home-link">← Back to Pregota</a>
 
 <script>
 function copyHash() {
     navigator.clipboard.writeText(document.getElementById('hashVal').textContent.trim()).then(() => {
         const btn = document.querySelector('.copy-hash');
-        btn.textContent = 'âœ“ Copied';
+        btn.textContent = '✓ Copied';
         setTimeout(() => btn.textContent = 'Copy Hash', 2000);
     });
 }
 </script>
 </body>
 </html>
-

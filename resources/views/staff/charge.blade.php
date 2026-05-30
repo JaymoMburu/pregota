@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Charge Customer â€” Pregota</title>
+<title>Charge Customer — Pregota</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}input,textarea,select,button{font-family:inherit;font-size:inherit}
 body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:24px 20px}
@@ -56,7 +56,7 @@ input::placeholder{color:rgba(255,255,255,.82)}
 <body>
 
 <div class="topbar">
-    <a href="{{ route('staff.dashboard') }}" class="back">â† Dashboard</a>
+    <a href="{{ route('staff.dashboard') }}" class="back">← Dashboard</a>
     <a href="{{ route('home') }}" class="logo">Pregota</a>
 </div>
 
@@ -80,16 +80,16 @@ input::placeholder{color:rgba(255,255,255,.82)}
         </div>
 
         <div class="amount-preview" id="amountPreview">
-            <div class="preview-row"><span class="lbl">Your charge</span><span class="val" id="prvShare">â€”</span></div>
+            <div class="preview-row"><span class="lbl">Your charge</span><span class="val" id="prvShare">—</span></div>
             <div class="preview-row"><span class="lbl">Pregota service fee</span><span class="val">KES 30</span></div>
             <hr class="preview-divider">
-            <div class="preview-total"><span>Customer pays</span><span class="val" id="prvTotal">â€”</span></div>
-            <div class="preview-note">KES 30 is Pregota's fee â€” not deducted from your charge</div>
+            <div class="preview-total"><span>Customer pays</span><span class="val" id="prvTotal">—</span></div>
+            <div class="preview-note">KES 30 is Pregota's fee — not deducted from your charge</div>
         </div>
 
         <div class="form-group">
             <label>Description (optional)</label>
-            <input type="text" name="description" placeholder="e.g. Table 5 Â· Lunch"
+            <input type="text" name="description" placeholder="e.g. Table 5 · Lunch"
                    maxlength="60" value="{{ old('description') }}">
             <div class="hint">Appears on the customer's payment screen.</div>
         </div>
@@ -100,7 +100,7 @@ input::placeholder{color:rgba(255,255,255,.82)}
         <div class="saved-till" id="savedTillBox">
             <div class="saved-till-info">
                 <strong>{{ $staff->till_type === 'till' ? 'Till (Lipa na M-Pesa)' : 'Paybill' }}</strong>
-                <span>Saved â€” money goes here when customer pays</span>
+                <span>Saved — money goes here when customer pays</span>
             </div>
             <button type="button" class="change-btn" onclick="showTillForm()">Change</button>
         </div>
@@ -140,7 +140,7 @@ input::placeholder{color:rgba(255,255,255,.82)}
             @endif
         </div>
 
-        <button type="submit" class="submit-btn" style="margin-top:20px">Generate QR â†’</button>
+        <button type="submit" class="submit-btn" style="margin-top:20px">Generate QR →</button>
     </form>
 </div>
 
@@ -172,4 +172,3 @@ function showTillForm() {
 </script>
 </body>
 </html>
-

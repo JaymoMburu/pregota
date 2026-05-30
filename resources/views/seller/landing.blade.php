@@ -1,10 +1,10 @@
-﻿<!DOCTYPE html>
+﻿﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Seller Pay Links, Subscriptions & Deni â€” Pregota</title>
-<meta name="description" content="Get paid via M-Pesa. Pay links, till mode, subscriptions, group contributions, and deni tab tracking â€” all in one place.">
+<title>Seller Pay Links, Subscriptions & Deni — Pregota</title>
+<meta name="description" content="Get paid via M-Pesa. Pay links, till mode, subscriptions, group contributions, and deni tab tracking — all in one place.">
 @include('partials.pwa')
 <style>
 *{box-sizing:border-box;margin:0;padding:0}input,textarea,select,button{font-family:inherit;font-size:inherit}
@@ -29,7 +29,7 @@ h1 em{font-style:normal;background:linear-gradient(135deg,#25D366,#4ADE80);-webk
 
 .link-preview{margin:48px auto;max-width:380px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:28px;text-align:center}
 .link-url{font-family:monospace;font-size:14px;color:#25D366;font-weight:700;background:rgba(37,211,102,.08);border:1px solid rgba(37,211,102,.2);border-radius:8px;padding:8px 16px;display:inline-block;margin-bottom:8px}
-.link-caption{font-size:12px;color:rgba(255,255,255,.55)}
+.link-caption{font-size:12px;color:rgba(255,255,255,.78)}
 
 .how{padding:0 24px 64px;max-width:760px;margin:0 auto}
 .how h2{font-size:22px;font-weight:900;margin-bottom:28px;text-align:center}
@@ -72,16 +72,16 @@ h1 em{font-style:normal;background:linear-gradient(135deg,#25D366,#4ADE80);-webk
 </nav>
 
 <div class="hero">
-    <div class="badge">ðŸ›ï¸ Pay Links Â· Subscriptions Â· Deni Â· Groups</div>
+    <div class="badge">🛍️ Pay Links · Subscriptions · Deni · Groups</div>
     <h1>Get paid via M-Pesa.<br><em>Every way you need.</em></h1>
-    <p>One-off payments, recurring subscriptions, group contributions, deni tabs â€” all through M-Pesa STK Push. Your personal number stays private â€” always.</p>
+    <p>One-off payments, recurring subscriptions, group contributions, deni tabs — all through M-Pesa STK Push. Your personal number stays private — always.</p>
     <div class="cta-row">
-        <a href="{{ route('seller.register') }}" class="btn-primary">Get My Pay Link â†’</a>
+        <a href="{{ route('seller.register') }}" class="btn-primary">Get My Pay Link →</a>
         <a href="{{ route('seller.login') }}" class="btn-sec">I already have one</a>
     </div>
     <div class="link-preview">
         <div class="link-url">pregota.com/pay/yourshop</div>
-        <div class="link-caption">Your unique payment page â€” share anywhere</div>
+        <div class="link-caption">Your unique payment page — share anywhere</div>
     </div>
 </div>
 
@@ -89,17 +89,17 @@ h1 em{font-style:normal;background:linear-gradient(135deg,#25D366,#4ADE80);-webk
     <h2>How it works</h2>
     <div class="steps">
         <div class="step">
-            <span class="step-num">âš¡</span>
+            <span class="step-num">⚡</span>
             <div class="step-title">Set up in 60 seconds</div>
             <div class="step-desc">Enter your business name, M-Pesa number, and set your handle. No documents needed.</div>
         </div>
         <div class="step">
-            <span class="step-num">ðŸ”—</span>
+            <span class="step-num">🔗</span>
             <div class="step-title">Share your link or QR</div>
-            <div class="step-desc">Post on WhatsApp, Instagram, or print a QR code sticker. Matatus: stick it on the window â€” passengers scan it without you saying a word.</div>
+            <div class="step-desc">Post on WhatsApp, Instagram, or print a QR code sticker. Matatus: stick it on the window — passengers scan it without you saying a word.</div>
         </div>
         <div class="step">
-            <span class="step-num">ðŸ’š</span>
+            <span class="step-num">💚</span>
             <div class="step-title">They see it, they pay</div>
             <div class="step-desc">The current route and fare are already on screen. Buyer just enters their phone number and confirms the M-Pesa PIN. Done.</div>
         </div>
@@ -110,11 +110,11 @@ h1 em{font-style:normal;background:linear-gradient(135deg,#25D366,#4ADE80);-webk
     <div class="fee-box">
         <h3>Simple, honest pricing</h3>
         <div class="fee-big">1%</div>
-        <div class="fee-note">1% per transaction, rounded up â€” minimum KES 2. Buyers pay the full amount â€” the fee is deducted from your daily payout.</div>
+        <div class="fee-note">1% per transaction, rounded up — minimum KES 2. Buyers pay the full amount — the fee is deducted from your daily payout.</div>
         <div class="fee-examples">
-            <span class="fee-ex">KES 70 â†’ you get KES 68</span>
-            <span class="fee-ex">KES 500 â†’ you get KES 495</span>
-            <span class="fee-ex">KES 2,000 â†’ you get KES 1,980</span>
+            <span class="fee-ex">KES 70 → you get KES 68</span>
+            <span class="fee-ex">KES 500 → you get KES 495</span>
+            <span class="fee-ex">KES 2,000 → you get KES 1,980</span>
         </div>
     </div>
 </div>
@@ -123,42 +123,42 @@ h1 em{font-style:normal;background:linear-gradient(135deg,#25D366,#4ADE80);-webk
     <h2>Who is this for?</h2>
     <div class="uc-grid">
         <div class="uc">
-            <div class="uc-icon">ðŸ‘—</div>
+            <div class="uc-icon">👗</div>
             <div class="uc-name">Instagram & TikTok Sellers</div>
             <div class="uc-desc">Stop sharing your personal M-Pesa in DMs. Drop your pay link in your bio.</div>
         </div>
         <div class="uc">
-            <div class="uc-icon">ðŸª</div>
+            <div class="uc-icon">🏪</div>
             <div class="uc-name">Kiosk & Small Shops</div>
-            <div class="uc-desc">Print your QR code. Customers scan and pay â€” no till, no cash.</div>
+            <div class="uc-desc">Print your QR code. Customers scan and pay — no till, no cash.</div>
         </div>
         <div class="uc">
-            <div class="uc-icon">ðŸ½ï¸</div>
-            <div class="uc-name">Restaurants â€” Pay Before Eat</div>
-            <div class="uc-desc">Cashier enters the bill on the till tablet. Customer enters their number, pays â€” food goes out. No card machine needed.</div>
+            <div class="uc-icon">🍽️</div>
+            <div class="uc-name">Restaurants — Pay Before Eat</div>
+            <div class="uc-desc">Cashier enters the bill on the till tablet. Customer enters their number, pays — food goes out. No card machine needed.</div>
         </div>
         <div class="uc">
-            <div class="uc-icon">ðŸ›’</div>
+            <div class="uc-icon">🛒</div>
             <div class="uc-name">Supermarkets & Shops</div>
-            <div class="uc-desc">Open Till Mode on a counter tablet. Cashier types the total â€” customer enters their M-Pesa number and pays. Faster than cash counting.</div>
+            <div class="uc-desc">Open Till Mode on a counter tablet. Cashier types the total — customer enters their M-Pesa number and pays. Faster than cash counting.</div>
         </div>
         <div class="uc">
-            <div class="uc-icon">ðŸ’‡</div>
+            <div class="uc-icon">💇</div>
             <div class="uc-name">Salons & Freelancers</div>
-            <div class="uc-desc">Send your link via WhatsApp. Client pays before or after service â€” your number stays private.</div>
+            <div class="uc-desc">Send your link via WhatsApp. Client pays before or after service — your number stays private.</div>
         </div>
         <div class="uc">
-            <div class="uc-icon">ðŸš</div>
+            <div class="uc-icon">🚐</div>
             <div class="uc-name">Matatus & Transport</div>
-            <div class="uc-desc">Conductor silently updates the route and fare on their phone. Passenger scans the QR â€” sees the exact fare already on screen â€” enters their number and pays. No shouting. No mishearing. No distraction.</div>
+            <div class="uc-desc">Conductor silently updates the route and fare on their phone. Passenger scans the QR — sees the exact fare already on screen — enters their number and pays. No shouting. No mishearing. No distraction.</div>
         </div>
         <div class="uc">
-            <div class="uc-icon">â™»ï¸</div>
+            <div class="uc-icon">♻️</div>
             <div class="uc-name">Subscriptions</div>
-            <div class="uc-desc">Create monthly, quarterly, or annual plans. Subscribers pay once and auto-renew. You send WhatsApp reminder links â€” they tap and pay. Gyms, internet resellers, content services.</div>
+            <div class="uc-desc">Create monthly, quarterly, or annual plans. Subscribers pay once and auto-renew. You send WhatsApp reminder links — they tap and pay. Gyms, internet resellers, content services.</div>
         </div>
         <div class="uc">
-            <div class="uc-icon">ðŸ¤</div>
+            <div class="uc-icon">🤝</div>
             <div class="uc-name">Groups & Chamas</div>
             <div class="uc-desc">Welfare groups, chamas, churches, and choirs pay their monthly contributions via M-Pesa. Admin sees who has paid per period. No more chasing cash or WhatsApp shouting matches.</div>
         </div>
@@ -167,31 +167,30 @@ h1 em{font-style:normal;background:linear-gradient(135deg,#25D366,#4ADE80);-webk
 
 <div style="padding:0 24px 64px;max-width:760px;margin:0 auto">
     <div style="background:rgba(168,85,247,.06);border:1px solid rgba(168,85,247,.2);border-radius:20px;padding:32px;text-align:center">
-        <div style="font-size:28px;margin-bottom:12px">ðŸ–¥ï¸</div>
-        <div style="font-size:18px;font-weight:900;margin-bottom:8px">Till Mode â€” built for the counter</div>
+        <div style="font-size:28px;margin-bottom:12px">🖥️</div>
+        <div style="font-size:18px;font-weight:900;margin-bottom:8px">Till Mode — built for the counter</div>
         <div style="font-size:14px;color:rgba(255,255,255,.6);line-height:1.65;max-width:440px;margin:0 auto">
-            Open Till Mode on any tablet at your counter. Cashier types the total on a big keypad â€” hands it to the customer â€” customer enters their M-Pesa number and approves. Screen confirms payment, resets automatically for the next customer. No card machine. No cash. No app to install.
+            Open Till Mode on any tablet at your counter. Cashier types the total on a big keypad — hands it to the customer — customer enters their M-Pesa number and approves. Screen confirms payment, resets automatically for the next customer. No card machine. No cash. No app to install.
         </div>
     </div>
 </div>
 
 <div style="padding:0 24px 64px;max-width:760px;margin:0 auto">
     <div style="background:rgba(239,68,68,.05);border:1px solid rgba(239,68,68,.18);border-radius:20px;padding:32px;text-align:center">
-        <div style="font-size:28px;margin-bottom:12px">ðŸ§¾</div>
-        <div style="font-size:18px;font-weight:900;margin-bottom:8px">Deni â€” track customer credit with zero hassle</div>
+        <div style="font-size:28px;margin-bottom:12px">🧾</div>
+        <div style="font-size:18px;font-weight:900;margin-bottom:8px">Deni — track customer credit with zero hassle</div>
         <div style="font-size:14px;color:rgba(255,255,255,.6);line-height:1.65;max-width:480px;margin:0 auto 20px">
-            Customer ate and promises to pay later? Record a deni in 30 seconds â€” enter what they owe, their phone number, and you get a WhatsApp-ready payment link. They tap it, pay via M-Pesa, and the money comes straight to you. No chasing. No awkward reminders. The balance updates in real time on both your admin view and their personal dashboard.
+            Customer ate and promises to pay later? Record a deni in 30 seconds — enter what they owe, their phone number, and you get a WhatsApp-ready payment link. They tap it, pay via M-Pesa, and the money comes straight to you. No chasing. No awkward reminders. The balance updates in real time on both your admin view and their personal dashboard.
         </div>
-        <a href="{{ route('deni.landing') }}" style="display:inline-block;padding:12px 28px;background:rgba(239,68,68,.15);border:1px solid rgba(239,68,68,.3);color:#f87171;font-weight:700;font-size:14px;border-radius:11px;text-decoration:none">Learn About Deni â†’</a>
+        <a href="{{ route('deni.landing') }}" style="display:inline-block;padding:12px 28px;background:rgba(239,68,68,.15);border:1px solid rgba(239,68,68,.3);color:#f87171;font-weight:700;font-size:14px;border-radius:11px;text-decoration:none">Learn About Deni →</a>
     </div>
 </div>
 
 <div class="bottom-cta">
     <h2>Your pay link is free to create.</h2>
     <p>Takes 60 seconds. No documents. No bank account required.</p>
-    <a href="{{ route('seller.register') }}" class="btn-primary">Get My Pay Link â†’</a>
+    <a href="{{ route('seller.register') }}" class="btn-primary">Get My Pay Link →</a>
 </div>
 
 </body>
 </html>
-

@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+﻿﻿﻿﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -15,14 +15,14 @@ body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;col
 .logo{font-size:18px;font-weight:900;background:linear-gradient(135deg,#25D366,#4ADE80);-webkit-background-clip:text;-webkit-text-fill-color:transparent;display:block;margin-bottom:28px;text-decoration:none}
 .icon{font-size:40px;margin-bottom:12px}
 .title{font-size:22px;font-weight:900;margin-bottom:6px}
-.sub{font-size:13px;color:rgba(255,255,255,.5);margin-bottom:28px;line-height:1.6}
+.sub{font-size:13px;color:rgba(255,255,255,.78);margin-bottom:28px;line-height:1.6}
 .field{margin-bottom:14px}
-.field label{display:block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.4);margin-bottom:7px}
+.field label{display:block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.72);margin-bottom:7px}
 .field input{width:100%;padding:13px 14px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:11px;color:#fff;font-size:15px;outline:none;font-family:inherit;transition:.2s}
 .field input:focus{border-color:rgba(239,68,68,.4);background:rgba(239,68,68,.04)}
 .btn{width:100%;padding:14px;background:linear-gradient(135deg,#dc2626,#ef4444);color:#fff;font-size:15px;font-weight:900;border:none;border-radius:13px;cursor:pointer;margin-top:6px}
 .btn:disabled{opacity:.45;cursor:not-allowed}
-.note{font-size:11px;color:rgba(255,255,255,.3);text-align:center;margin-top:14px;line-height:1.6}
+.note{font-size:11px;color:rgba(255,255,255,.65);text-align:center;margin-top:14px;line-height:1.6}
 .err{background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.25);border-radius:9px;padding:10px 14px;font-size:13px;color:#fca5a5;margin-top:12px;display:none}
 .pending{display:none;text-align:center;padding:20px 0}
 .spinner{width:44px;height:44px;border:3px solid rgba(255,255,255,.1);border-top-color:#ef4444;border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 16px}
@@ -30,7 +30,7 @@ body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;col
 .use-cases{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:24px}
 .uc{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:10px;padding:10px 8px;text-align:center}
 .uc-icon{font-size:22px;margin-bottom:4px}
-.uc-label{font-size:11px;color:rgba(255,255,255,.5)}
+.uc-label{font-size:11px;color:rgba(255,255,255,.78)}
 </style>
 </head>
 <body>
@@ -64,7 +64,7 @@ body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;col
     <div class="pending" id="pending-view">
         <div class="spinner"></div>
         <div style="font-size:15px;font-weight:700;margin-bottom:6px">Check your phone</div>
-        <div style="font-size:13px;color:rgba(255,255,255,.45)">Enter your M-Pesa PIN to confirm and access your Deni dashboard.</div>
+        <div style="font-size:13px;color:rgba(255,255,255,.72)">Enter your M-Pesa PIN to confirm and access your Deni dashboard.</div>
     </div>
 </div>
 
@@ -125,5 +125,4 @@ function poll() {
 </script>
 </body>
 </html>
-
 

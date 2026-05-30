@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+﻿﻿﻿﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -13,7 +13,7 @@
 body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;color:#fff;min-height:100vh-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
 .nav{padding:14px 20px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,.07)}
 .logo{font-size:20px;font-weight:900;background:linear-gradient(135deg,#25D366,#4ADE80);-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-decoration:none}
-.back{font-size:13px;color:rgba(255,255,255,.4);text-decoration:none}
+.back{font-size:13px;color:rgba(255,255,255,.72);text-decoration:none}
 .back:hover{color:rgba(255,255,255,.7)}
 .wrap{max-width:620px;margin:0 auto;padding:24px 16px 80px}
 
@@ -29,15 +29,15 @@ body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;col
 
 .rent-line{margin-bottom:6px}
 .rent-val{font-size:32px;font-weight:900;color:#4ADE80}
-.rent-label{font-size:14px;color:rgba(255,255,255,.4);margin-left:6px}
+.rent-label{font-size:14px;color:rgba(255,255,255,.72);margin-left:6px}
 
-.desc{font-size:14px;color:rgba(255,255,255,.55);line-height:1.7;margin-bottom:28px}
+.desc{font-size:14px;color:rgba(255,255,255,.78);line-height:1.7;margin-bottom:28px}
 
 .connect-box{background:rgba(245,158,11,.05);border:1px solid rgba(245,158,11,.2);border-radius:18px;padding:22px}
 .connect-title{font-size:18px;font-weight:900;margin-bottom:6px}
-.connect-sub{font-size:13px;color:rgba(255,255,255,.45);margin-bottom:20px;line-height:1.6}
+.connect-sub{font-size:13px;color:rgba(255,255,255,.72);margin-bottom:20px;line-height:1.6}
 .field{margin-bottom:14px}
-.field label{display:block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.4);margin-bottom:7px}
+.field label{display:block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.72);margin-bottom:7px}
 .field input{width:100%;padding:13px 14px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:11px;color:#fff;font-size:15px;outline:none;font-family:inherit;transition:.2s}
 .field input:focus{border-color:rgba(245,158,11,.4);background:rgba(245,158,11,.04)}
 .btn{width:100%;padding:15px;background:linear-gradient(135deg,#d97706,#f59e0b);color:#0B141A;font-size:15px;font-weight:900;border:none;border-radius:13px;cursor:pointer;transition:.15s}
@@ -49,8 +49,8 @@ body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;col
 .success{display:none;text-align:center;padding:20px 0}
 .success-icon{font-size:48px;margin-bottom:12px}
 .success-title{font-size:18px;font-weight:900;margin-bottom:6px;color:#4ADE80}
-.success-sub{font-size:13px;color:rgba(255,255,255,.45);line-height:1.6}
-.note{font-size:11px;color:rgba(255,255,255,.3);text-align:center;margin-top:12px;line-height:1.6}
+.success-sub{font-size:13px;color:rgba(255,255,255,.72);line-height:1.6}
+.note{font-size:11px;color:rgba(255,255,255,.65);text-align:center;margin-top:12px;line-height:1.6}
 </style>
 </head>
 <body>
@@ -87,7 +87,7 @@ body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;col
     @php $secureTotal = $listing->totalSecureAmount() + 200; @endphp
     <div style="background:rgba(74,222,128,.05);border:1px solid rgba(74,222,128,.15);border-radius:16px;padding:18px;margin-bottom:14px">
         <div style="font-size:16px;font-weight:900;margin-bottom:6px">ðŸ”’ Secure this house</div>
-        <div style="font-size:13px;color:rgba(255,255,255,.45);margin-bottom:14px;line-height:1.6">Pay KES {{ number_format($secureTotal) }} to Pregota escrow. Your money is held safely â€” released to landlord only when you confirm you're moving in.</div>
+        <div style="font-size:13px;color:rgba(255,255,255,.72);margin-bottom:14px;line-height:1.6">Pay KES {{ number_format($secureTotal) }} to Pregota escrow. Your money is held safely â€” released to landlord only when you confirm you're moving in.</div>
         <a href="{{ route('saka-keja.deposit', $listing->id) }}" style="display:block;text-align:center;padding:13px;background:linear-gradient(135deg,#16a34a,#22c55e);border-radius:11px;color:#fff;font-weight:800;text-decoration:none;font-size:14px">Secure â€” KES {{ number_format($secureTotal) }} â†’</a>
     </div>
 
@@ -112,7 +112,7 @@ body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;col
         <div class="pending" id="pending-view">
             <div class="spinner"></div>
             <div style="font-size:15px;font-weight:700;margin-bottom:6px">Check your phone</div>
-            <div style="font-size:13px;color:rgba(255,255,255,.45)">Enter your M-Pesa PIN to confirm the KES 200 connection fee.</div>
+            <div style="font-size:13px;color:rgba(255,255,255,.72)">Enter your M-Pesa PIN to confirm the KES 200 connection fee.</div>
         </div>
 
         <div class="success" id="success-view">
@@ -120,13 +120,13 @@ body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;col
             <div class="success-title">Connected!</div>
             <div class="success-sub">Your number has been shared with the landlord.<br>Expect a call soon to arrange a viewing.</div>
             <div id="connect-receipt-box" style="display:none;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:14px 16px;text-align:left;margin-top:14px">
-                <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.35);margin-bottom:10px">M-Pesa Receipt</div>
+                <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.65);margin-bottom:10px">M-Pesa Receipt</div>
                 <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:6px">
-                    <span style="color:rgba(255,255,255,.45)">Amount</span>
+                    <span style="color:rgba(255,255,255,.72)">Amount</span>
                     <span style="font-weight:700;color:#4ADE80">KES 200</span>
                 </div>
                 <div style="display:flex;justify-content:space-between;font-size:13px">
-                    <span style="color:rgba(255,255,255,.45)">Receipt No.</span>
+                    <span style="color:rgba(255,255,255,.72)">Receipt No.</span>
                     <span id="connect-receipt-no" style="font-weight:700;font-family:monospace;color:#4ADE80"></span>
                 </div>
             </div>
@@ -204,5 +204,4 @@ function pollConnect() {
 </script>
 </body>
 </html>
-
 

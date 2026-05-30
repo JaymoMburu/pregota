@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+﻿﻿﻿﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -17,13 +17,13 @@ body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;col
 .listing-info{background:rgba(245,158,11,.06);border:1px solid rgba(245,158,11,.15);border-radius:13px;padding:14px;margin-bottom:22px}
 .listing-type{font-size:11px;font-weight:700;color:#f59e0b;margin-bottom:3px}
 .listing-loc{font-size:16px;font-weight:800}
-.listing-rent{font-size:13px;color:rgba(255,255,255,.5);margin-top:3px}
+.listing-rent{font-size:13px;color:rgba(255,255,255,.78);margin-top:3px}
 
 .breakdown{margin-bottom:22px}
-.breakdown-title{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.35);margin-bottom:10px}
+.breakdown-title{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.65);margin-bottom:10px}
 .breakdown-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.05);font-size:14px}
 .breakdown-row:last-child{border-bottom:none}
-.breakdown-label{color:rgba(255,255,255,.55)}
+.breakdown-label{color:rgba(255,255,255,.78)}
 .breakdown-amount{font-weight:700}
 .breakdown-total{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-top:2px solid rgba(245,158,11,.2);margin-top:4px}
 .breakdown-total-label{font-size:14px;font-weight:800}
@@ -31,13 +31,13 @@ body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;col
 .escrow-note{font-size:11px;color:rgba(245,158,11,.7);margin-top:6px;line-height:1.5}
 
 .field{margin-bottom:14px}
-.field label{display:block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.4);margin-bottom:7px}
+.field label{display:block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.72);margin-bottom:7px}
 .field input{width:100%;padding:13px 14px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:11px;color:#fff;font-size:15px;outline:none;font-family:inherit;transition:.2s}
 .field input:focus{border-color:rgba(245,158,11,.4);background:rgba(245,158,11,.04)}
 .btn{width:100%;padding:15px;background:linear-gradient(135deg,#d97706,#f59e0b);color:#0B141A;font-size:15px;font-weight:900;border:none;border-radius:13px;cursor:pointer;transition:.15s}
 .btn:disabled{opacity:.45;cursor:not-allowed}
 .err{background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.25);border-radius:9px;padding:10px 14px;font-size:13px;color:#fca5a5;margin-top:12px;display:none}
-.note{font-size:11px;color:rgba(255,255,255,.3);text-align:center;margin-top:12px;line-height:1.6}
+.note{font-size:11px;color:rgba(255,255,255,.65);text-align:center;margin-top:12px;line-height:1.6}
 .pending{display:none;text-align:center;padding:20px 0}
 .spinner{width:44px;height:44px;border:3px solid rgba(255,255,255,.1);border-top-color:#f59e0b;border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 16px}
 @keyframes spin{to{transform:rotate(360deg)}}
@@ -104,7 +104,7 @@ body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;col
     <div class="pending" id="pending-view">
         <div class="spinner"></div>
         <div style="font-size:15px;font-weight:700;margin-bottom:6px">Check your phone</div>
-        <div style="font-size:13px;color:rgba(255,255,255,.45)">Enter your M-Pesa PIN to secure this house. Your money is held safely by Pregota.</div>
+        <div style="font-size:13px;color:rgba(255,255,255,.72)">Enter your M-Pesa PIN to secure this house. Your money is held safely by Pregota.</div>
     </div>
 </div>
 
@@ -173,5 +173,4 @@ function poll() {
 </script>
 </body>
 </html>
-
 

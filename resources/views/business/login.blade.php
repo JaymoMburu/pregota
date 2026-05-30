@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Business Login â€” Pregota</title>
+<title>Business Login — Pregota</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}input,textarea,select,button{font-family:inherit;font-size:inherit}
 body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;min-height:100vh;display:flex;flex-direction:column}
@@ -48,11 +48,10 @@ input:focus{border-color:#00A651}
                 <label>Password</label>
                 <input type="password" name="password" required>
             </div>
-            <button type="submit" class="btn">Log In â†’</button>
+            <button type="submit" class="btn">Log In →</button>
         </form>
         <div class="reg-link">New business? <a href="{{ route('business.register') }}">Register here</a></div>
     </div>
 </div>
 </body>
 </html>
-

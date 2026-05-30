@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Split Bill â€” Pregota</title>
+<title>Split Bill — Pregota</title>
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}input,textarea,select,button{font-family:inherit;font-size:inherit}
@@ -64,7 +64,7 @@ input::placeholder{color:rgba(255,255,255,.82)}
             <div class="flow-step"><div class="flow-num">4</div><div class="flow-text"><strong>Full amount lands on your M-Pesa</strong><span>Instant payout the moment the bill is complete.</span></div></div>
         </div>
     </div>
-    <div class="left-foot">Â© 2026 Pregota Â· KES 30 per payment</div>
+    <div class="left-foot">© 2026 Pregota · KES 30 per payment</div>
 </div>
 
 <div class="panel-right">
@@ -90,12 +90,12 @@ input::placeholder{color:rgba(255,255,255,.82)}
                     <label>Business / Restaurant Name</label>
                     <input type="text" name="business_name" placeholder="Java House Westlands"
                            value="{{ old('business_name') }}" maxlength="80" required>
-                    <div class="hint">Shown on the customer's M-Pesa payment prompt â€” so they know exactly who they're paying.</div>
+                    <div class="hint">Shown on the customer's M-Pesa payment prompt — so they know exactly who they're paying.</div>
                 </div>
 
                 <div class="form-group">
                     <label>Table / Bill Label (optional)</label>
-                    <input type="text" name="label" placeholder="Table 7 Â· Sunday lunch"
+                    <input type="text" name="label" placeholder="Table 7 · Sunday lunch"
                            value="{{ old('label') }}" maxlength="60">
                     <div class="hint">Shown on the payment screen so customers know what they're paying for.</div>
                 </div>
@@ -127,8 +127,8 @@ input::placeholder{color:rgba(255,255,255,.82)}
                     <input type="text" name="payout_destination" id="destInput"
                            placeholder="e.g. 522522" inputmode="numeric"
                            pattern="[0-9]{5,7}" maxlength="7" required>
-                    <div class="hint green">ðŸ”’ Encrypted. Deleted immediately after payout. Never visible to customers or staff.</div>
-                    <div class="hint" id="destHint">Money goes directly to your restaurant's Paybill â€” not to any personal phone.</div>
+                    <div class="hint green">🔒 Encrypted. Deleted immediately after payout. Never visible to customers or staff.</div>
+                    <div class="hint" id="destHint">Money goes directly to your restaurant's Paybill — not to any personal phone.</div>
                 </div>
 
                 <div class="section-label">Tip Link (optional)</div>
@@ -140,8 +140,8 @@ input::placeholder{color:rgba(255,255,255,.82)}
                     <div class="hint">After paying their share, customers will be offered to tip you directly. Leave blank to skip.</div>
                 </div>
 
-                <button type="submit" class="submit-btn">Generate Split QR â†’</button>
-                <div style="text-align:center;margin-top:10px;font-size:11px;color:rgba(255,255,255,.25)">KES 30 added per person Â· Paid by each customer Â· Expires in 90 min</div>
+                <button type="submit" class="submit-btn">Generate Split QR →</button>
+                <div style="text-align:center;margin-top:10px;font-size:11px;color:rgba(255,255,255,.25)">KES 30 added per person · Paid by each customer · Expires in 90 min</div>
             </form>
         </div>
     </div>
@@ -153,8 +153,8 @@ function updateLabel() {
     document.getElementById('destLabel').textContent = isTill ? 'Till Number' : 'Paybill Number';
     document.getElementById('destInput').placeholder  = isTill ? 'e.g. 123456' : 'e.g. 522522';
     document.getElementById('destHint').textContent   = isTill
-        ? 'Money goes directly to your Till (Buy Goods) â€” not to any personal phone.'
-        : 'Money goes directly to your restaurant\'s Paybill â€” not to any personal phone.';
+        ? 'Money goes directly to your Till (Buy Goods) — not to any personal phone.'
+        : 'Money goes directly to your restaurant\'s Paybill — not to any personal phone.';
 }
 
 document.getElementById('totalAmount').addEventListener('input', function() {
@@ -167,4 +167,3 @@ document.getElementById('totalAmount').addEventListener('input', function() {
 </script>
 </body>
 </html>
-

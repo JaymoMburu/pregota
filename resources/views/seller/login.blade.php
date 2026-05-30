@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+﻿﻿﻿﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -16,20 +16,20 @@ body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;col
 .wrap{flex:1;display:flex;align-items:center;justify-content:center;padding:40px 24px}
 .card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:20px;padding:36px;width:100%;max-width:400px}
 h1{font-size:22px;font-weight:900;margin-bottom:6px}
-.sub{font-size:13px;color:rgba(255,255,255,.5);margin-bottom:28px;line-height:1.6}
+.sub{font-size:13px;color:rgba(255,255,255,.78);margin-bottom:28px;line-height:1.6}
 .field{margin-bottom:16px}
-.field label{display:block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.4);margin-bottom:7px}
+.field label{display:block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.72);margin-bottom:7px}
 .field input{width:100%;padding:13px 14px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:11px;color:#fff;font-size:15px;outline:none;font-family:inherit;transition:.2s}
 .field input:focus{border-color:rgba(37,211,102,.4);background:rgba(37,211,102,.04)}
 .btn{width:100%;padding:14px;background:linear-gradient(135deg,#25D366,#1aaa52);color:#fff;font-size:15px;font-weight:900;border:none;border-radius:13px;cursor:pointer;transition:.2s}
 .btn:hover{transform:translateY(-1px);box-shadow:0 8px 24px rgba(37,211,102,.3)}
 .btn:disabled{opacity:.45;cursor:not-allowed;transform:none;box-shadow:none}
-.note{font-size:11px;color:rgba(255,255,255,.3);text-align:center;margin-top:12px;line-height:1.6}
+.note{font-size:11px;color:rgba(255,255,255,.65);text-align:center;margin-top:12px;line-height:1.6}
 .err{background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.25);border-radius:9px;padding:10px 14px;font-size:13px;color:#fca5a5;margin-top:12px;display:none}
 .pending{display:none;text-align:center;padding:20px 0}
 .spinner{width:44px;height:44px;border:3px solid rgba(255,255,255,.1);border-top-color:#25D366;border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 16px}
 @keyframes spin{to{transform:rotate(360deg)}}
-.links{text-align:center;margin-top:20px;font-size:13px;color:rgba(255,255,255,.45)}
+.links{text-align:center;margin-top:20px;font-size:13px;color:rgba(255,255,255,.72)}
 .links a{color:#25D366;text-decoration:none;font-weight:600}
 </style>
 </head>
@@ -59,7 +59,7 @@ h1{font-size:22px;font-weight:900;margin-bottom:6px}
         <div class="pending" id="pending-view">
             <div class="spinner"></div>
             <div style="font-size:15px;font-weight:700;margin-bottom:6px">Check your phone</div>
-            <div style="font-size:13px;color:rgba(255,255,255,.45)">Enter your M-Pesa PIN to confirm and access your pay link dashboard.</div>
+            <div style="font-size:13px;color:rgba(255,255,255,.72)">Enter your M-Pesa PIN to confirm and access your pay link dashboard.</div>
         </div>
 
         <div class="links" id="links-row">
@@ -135,5 +135,4 @@ function pollLogin() {
 </script>
 </body>
 </html>
-
 

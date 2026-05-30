@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>WhatsApp Group Collections â€” Pregota</title>
+<title>WhatsApp Group Collections — Pregota</title>
 <meta name="description" content="Tired of being added to a WhatsApp contribution group? Tired of chasing payments and holding everyone's cash? One link. Everyone pays via M-Pesa directly. No group adds, no drama.">
 @include('partials.pwa')
 <style>
@@ -112,26 +112,26 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 
 <nav class="nav">
     <a href="{{ route('home') }}" class="logo">Pregota</a>
-    <a href="{{ route('collection.new') }}" class="nav-cta">Start a Collection â†’</a>
+    <a href="{{ route('collection.new') }}" class="nav-cta">Start a Collection →</a>
 </nav>
 
 <!-- Hero -->
 <div class="hero">
-    <div class="badge">ðŸ’¬ WhatsApp Group Collections Â· Powered by M-Pesa</div>
-    <h1>WhatsApp contributions â€”<br><em>without the drama.</em></h1>
+    <div class="badge">💬 WhatsApp Group Collections · Powered by M-Pesa</div>
+    <h1>WhatsApp contributions —<br><em>without the drama.</em></h1>
     <p>One link in the group. Everyone pays via M-Pesa directly.<br>No group adds. No cash through admin. No chasing.</p>
     <div class="hero-btns" style="margin-top:28px">
-        <a href="{{ route('collection.new') }}" class="btn-primary">Start a Collection â€” Free</a>
+        <a href="{{ route('collection.new') }}" class="btn-primary">Start a Collection — Free</a>
         <a href="#how-it-works" class="btn-secondary">See How It Works</a>
     </div>
 </div>
 
 <!-- Page preview -->
 <div class="preview">
-    <div class="preview-url">ðŸ”— pregota.com/collections/<strong>grace-wanjiku-welfare</strong></div>
+    <div class="preview-url">🔗 pregota.com/collections/<strong>grace-wanjiku-welfare</strong></div>
     <div class="preview-card">
         <div class="preview-label">YOUR COLLECTION</div>
-        <div class="occ-badge">ðŸ•Šï¸ Bereavement</div>
+        <div class="occ-badge">🕊️ Bereavement</div>
         <div class="preview-title">Grace Wanjiku Bereavement Welfare</div>
         <div class="preview-desc">Kamau Mwangi's mother passed away on Monday. The family is in need of support for funeral expenses. All contributions go directly to the family.</div>
         <div class="preview-bar-wrap">
@@ -146,7 +146,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
             <div class="preview-stat"><strong>3 days</strong>Remaining</div>
             <div class="preview-stat"><strong>100%</strong>Goes to family</div>
         </div>
-        <div class="preview-btn">Contribute via M-Pesa â€º</div>
+        <div class="preview-btn">Contribute via M-Pesa ›</div>
     </div>
 </div>
 
@@ -159,31 +159,31 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:28px">
 
         <div class="problem-card" style="margin-top:0">
-            <div class="problem-title">ðŸ˜¤ The organiser's nightmare</div>
+            <div class="problem-title">😤 The organiser's nightmare</div>
 
             <div class="problem-item">
-                <div class="problem-icon">ðŸ“ž</div>
+                <div class="problem-icon">📞</div>
                 <div class="problem-text">
                     <strong>Hunting for everyone's number just to add them</strong>
-                    <span>You have to manually collect contacts, create a group, add people one by one â€” before you've even started collecting.</span>
+                    <span>You have to manually collect contacts, create a group, add people one by one — before you've even started collecting.</span>
                 </div>
             </div>
             <div class="problem-item">
-                <div class="problem-icon">ðŸ’¸</div>
+                <div class="problem-icon">💸</div>
                 <div class="problem-text">
                     <strong>Money lands in your personal M-Pesa</strong>
                     <span>Now you're holding 30 people's cash. You have to prove every shilling reached the beneficiary. One misunderstanding and you're accused of stealing.</span>
                 </div>
             </div>
             <div class="problem-item">
-                <div class="problem-icon">ðŸ—‚ï¸</div>
+                <div class="problem-icon">🗂️</div>
                 <div class="problem-text">
                     <strong>Tracking is copy-paste and prayer</strong>
-                    <span>Copying M-Pesa messages into a notes app. Manually checking who paid. Someone always says they sent â€” you can't find it. Disputes, always.</span>
+                    <span>Copying M-Pesa messages into a notes app. Manually checking who paid. Someone always says they sent — you can't find it. Disputes, always.</span>
                 </div>
             </div>
             <div class="problem-item">
-                <div class="problem-icon">ðŸ˜“</div>
+                <div class="problem-icon">😓</div>
                 <div class="problem-text">
                     <strong>Chasing people is exhausting and embarrassing</strong>
                     <span>Either post the non-payers publicly and be the villain, or chase each person privately. Neither feels good.</span>
@@ -192,31 +192,31 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
         </div>
 
         <div class="problem-card" style="margin-top:0">
-            <div class="problem-title">ðŸ˜© The contributor's nightmare</div>
+            <div class="problem-title">😩 The contributor's nightmare</div>
 
             <div class="problem-item">
-                <div class="problem-icon">ðŸ””</div>
+                <div class="problem-icon">🔔</div>
                 <div class="problem-text">
                     <strong>"You have been added to Kamau Harambee Group"</strong>
                     <span>You didn't ask to be added. You don't know half these people. Your number is now visible to 80 strangers.</span>
                 </div>
             </div>
             <div class="problem-item">
-                <div class="problem-icon">ðŸ˜³</div>
+                <div class="problem-icon">😳</div>
                 <div class="problem-text">
                     <strong>Public shaming if you haven't paid</strong>
-                    <span>"The following have not yet contributedâ€¦" Your name on a list. In front of everyone. Even if you were just waiting to be paid yourself.</span>
+                    <span>"The following have not yet contributed…" Your name on a list. In front of everyone. Even if you were just waiting to be paid yourself.</span>
                 </div>
             </div>
             <div class="problem-item">
-                <div class="problem-icon">ðŸ“²</div>
+                <div class="problem-icon">📲</div>
                 <div class="problem-text">
                     <strong>Screenshot and prove you paid</strong>
                     <span>You send the money, then screenshot the M-Pesa message, then send it to admin, then wait for confirmation you were ticked off the list. What year is this?</span>
                 </div>
             </div>
             <div class="problem-item">
-                <div class="problem-icon">ðŸšª</div>
+                <div class="problem-icon">🚪</div>
                 <div class="problem-text">
                     <strong>You can't even leave the group</strong>
                     <span>You paid. The collection is done. But you're still in the group, still getting notifications, and you can't leave without looking like you're being difficult.</span>
@@ -225,7 +225,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
         </div>
 
     </div>
-    <p style="text-align:center;font-size:15px;color:rgba(255,255,255,.78);margin-top:28px;font-weight:700">Pregota fixes both â€” for the organiser and for every person contributing.</p>
+    <p style="text-align:center;font-size:15px;color:rgba(255,255,255,.78);margin-top:28px;font-weight:700">Pregota fixes both — for the organiser and for every person contributing.</p>
 </div>
 
 <!-- How it works -->
@@ -246,14 +246,14 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
             <div class="step">
                 <div class="step-num">2</div>
                 <div class="step-body">
-                    <h3>Share the link â€” anywhere</h3>
-                    <p>You get a unique link â€” <strong style="color:#34d399">pregota.com/collections/your-title</strong>. Share it on WhatsApp, as a status, in a DM, by SMS. One link. No adding anyone, no follow-up chasing required.</p>
+                    <h3>Share the link — anywhere</h3>
+                    <p>You get a unique link — <strong style="color:#34d399">pregota.com/collections/your-title</strong>. Share it on WhatsApp, as a status, in a DM, by SMS. One link. No adding anyone, no follow-up chasing required.</p>
                 </div>
             </div>
             <div class="step">
                 <div class="step-num">3</div>
                 <div class="step-body">
-                    <h3>Group members pay directly â€” no number sharing</h3>
+                    <h3>Group members pay directly — no number sharing</h3>
                     <p>Each person opens the link, enters the amount and their phone number, and gets an M-Pesa STK Push. They confirm with their PIN. Nobody shares anyone's personal number. The total updates live for everyone.</p>
                 </div>
             </div>
@@ -261,7 +261,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
                 <div class="step-num">4</div>
                 <div class="step-body">
                     <h3>Money goes straight to the recipient</h3>
-                    <p>When the goal is reached or you trigger it, the full amount pays out directly to the recipient's M-Pesa. You as organiser never touch a single shilling â€” no disputes possible.</p>
+                    <p>When the goal is reached or you trigger it, the full amount pays out directly to the recipient's M-Pesa. You as organiser never touch a single shilling — no disputes possible.</p>
                 </div>
             </div>
         </div>
@@ -272,34 +272,34 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 <div class="contrib-section">
     <div class="section-tag">What Contributors Experience</div>
     <h2>As easy as sending an M-Pesa.</h2>
-    <p style="font-size:15px;color:rgba(255,255,255,.78);margin-top:10px;margin-bottom:0">No sign-up. No app. No asking anyone for a number. <strong style="color:#34d399">You don't need to be in the WhatsApp group to contribute</strong> â€” just open the link and pay.</p>
+    <p style="font-size:15px;color:rgba(255,255,255,.78);margin-top:10px;margin-bottom:0">No sign-up. No app. No asking anyone for a number. <strong style="color:#34d399">You don't need to be in the WhatsApp group to contribute</strong> — just open the link and pay.</p>
 
     <div class="contrib-flow">
         <div class="contrib-step">
-            <div class="contrib-icon">ðŸ”—</div>
+            <div class="contrib-icon">🔗</div>
             <div class="contrib-body">
                 <h4>They click the link you shared</h4>
-                <p>The collection page loads instantly â€” title, story, photo, how much has been raised so far, and how many people have contributed. Fully transparent.</p>
+                <p>The collection page loads instantly — title, story, photo, how much has been raised so far, and how many people have contributed. Fully transparent.</p>
             </div>
         </div>
         <div class="contrib-step">
-            <div class="contrib-icon">ðŸ’°</div>
+            <div class="contrib-icon">💰</div>
             <div class="contrib-body">
-                <h4>They enter whatever they can â€” or a fixed amount if the group requires it</h4>
-                <p>By default, contributors type any amount freely â€” KES 50, KES 5,000, whatever they can manage. If the organiser set a per-person amount (e.g. chama rule: KES 500 each), that amount is pre-filled and locked automatically â€” no confusion, no under-paying. They add their name or stay anonymous.</p>
+                <h4>They enter whatever they can — or a fixed amount if the group requires it</h4>
+                <p>By default, contributors type any amount freely — KES 50, KES 5,000, whatever they can manage. If the organiser set a per-person amount (e.g. chama rule: KES 500 each), that amount is pre-filled and locked automatically — no confusion, no under-paying. They add their name or stay anonymous.</p>
             </div>
         </div>
         <div class="contrib-step">
-            <div class="contrib-icon">ðŸ“±</div>
+            <div class="contrib-icon">📱</div>
             <div class="contrib-body">
                 <h4>M-Pesa STK Push arrives on their phone</h4>
                 <p>They enter their own number. A standard M-Pesa prompt pops up on their screen. They type their PIN and confirm. No codes to share, no one's number to memorise.</p>
             </div>
         </div>
         <div class="contrib-step">
-            <div class="contrib-icon">âœ…</div>
+            <div class="contrib-icon">✅</div>
             <div class="contrib-body">
-                <h4>Confirmed â€” they're on the contributor wall</h4>
+                <h4>Confirmed — they're on the contributor wall</h4>
                 <p>They see a thank-you screen. Their name (if provided) appears on the public contributor list. The collection total updates instantly for everyone.</p>
             </div>
         </div>
@@ -310,42 +310,42 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 <div class="adv">
     <div class="adv-inner">
         <div class="section-tag">Why Pregota</div>
-        <h2>Every pain point, solved â€” for both sides.</h2>
+        <h2>Every pain point, solved — for both sides.</h2>
 
         <div class="adv-grid">
             <div class="adv-card">
-                <div class="adv-icon">ðŸ’¬</div>
+                <div class="adv-icon">💬</div>
                 <div class="adv-title">No need to be in the group</div>
-                <div class="adv-text">Anyone with the link can contribute â€” whether they're in the WhatsApp group or not. Share the link publicly and let people contribute on their own terms, without being added anywhere.</div>
+                <div class="adv-text">Anyone with the link can contribute — whether they're in the WhatsApp group or not. Share the link publicly and let people contribute on their own terms, without being added anywhere.</div>
             </div>
             <div class="adv-card">
-                <div class="adv-icon">ðŸ”’</div>
+                <div class="adv-icon">🔒</div>
                 <div class="adv-title">Everyone's privacy protected</div>
                 <div class="adv-text">Contributors don't need to share their number with the organiser or anyone else. The organiser never sees contributor phone numbers. The recipient's number is never shown publicly.</div>
             </div>
             <div class="adv-card">
-                <div class="adv-icon">ðŸ“Š</div>
-                <div class="adv-title">Real-time total â€” fully transparent</div>
+                <div class="adv-icon">📊</div>
+                <div class="adv-title">Real-time total — fully transparent</div>
                 <div class="adv-text">Anyone with the link can see exactly how much has been raised and how many people have contributed. No guessing, no trusting a screenshot.</div>
             </div>
             <div class="adv-card">
-                <div class="adv-icon">ðŸ’¸</div>
+                <div class="adv-icon">💸</div>
                 <div class="adv-title">Organiser never handles the money</div>
-                <div class="adv-text">Every contribution goes directly into the collection. When it pays out, it goes straight to the recipient's M-Pesa â€” not through your personal account. Zero risk of disputes.</div>
+                <div class="adv-text">Every contribution goes directly into the collection. When it pays out, it goes straight to the recipient's M-Pesa — not through your personal account. Zero risk of disputes.</div>
             </div>
             <div class="adv-card">
-                <div class="adv-icon">â°</div>
-                <div class="adv-title">Open 24/7 â€” even after your status expires</div>
+                <div class="adv-icon">⏰</div>
+                <div class="adv-title">Open 24/7 — even after your status expires</div>
                 <div class="adv-text">The link works anytime. People can contribute at midnight, a week after you shared it, even after you forgot about it. The collection page stays live until you close it.</div>
             </div>
             <div class="adv-card">
-                <div class="adv-icon">ðŸ™Œ</div>
+                <div class="adv-icon">🙌</div>
                 <div class="adv-title">Contributors choose their anonymity</div>
                 <div class="adv-text">Want to give quietly without appearing on the wall? Contributors can stay anonymous. No obligation to publicly display their contribution if they'd rather not.</div>
             </div>
         </div>
 
-        <p style="font-size:13px;color:rgba(255,255,255,.82);margin-top:20px;text-align:center">1% service fee per contribution (min KES 30) Â· Added on top Â· Recipient receives 100% of every pledged amount</p>
+        <p style="font-size:13px;color:rgba(255,255,255,.82);margin-top:20px;text-align:center">1% service fee per contribution (min KES 30) · Added on top · Recipient receives 100% of every pledged amount</p>
 
         <div class="fee-box">
             <div class="fee-row">
@@ -353,7 +353,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
                 <span class="fee-value" style="color:#34d399">KES 5,000</span>
             </div>
             <div class="fee-row">
-                <span class="fee-label">Pregota platform fee (1% â€” added on top)</span>
+                <span class="fee-label">Pregota platform fee (1% — added on top)</span>
                 <span class="fee-value" style="color:rgba(255,255,255,.78)">+ KES 50</span>
             </div>
             <div class="fee-row">
@@ -362,7 +362,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
             </div>
             <div class="fee-row" style="margin-top:4px;padding-top:12px;border-top:1px solid rgba(255,255,255,.08)">
                 <span class="fee-label">Recipient receives</span>
-                <span class="fee-value" style="color:#34d399;font-size:15px">KES 5,000 â€” every shilling pledged</span>
+                <span class="fee-value" style="color:#34d399;font-size:15px">KES 5,000 — every shilling pledged</span>
             </div>
         </div>
     </div>
@@ -374,47 +374,47 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
     <h2>Any occasion where Kenyans come together.</h2>
     <div class="occ-grid">
         <div class="occ-card">
-            <div class="occ-emoji">ðŸ•Šï¸</div>
+            <div class="occ-emoji">🕊️</div>
             <div class="occ-name">Bereavement</div>
             <div class="occ-sub">Funeral welfare</div>
         </div>
         <div class="occ-card">
-            <div class="occ-emoji">ðŸ’’</div>
+            <div class="occ-emoji">💒</div>
             <div class="occ-name">Wedding</div>
             <div class="occ-sub">Harambee ya ndoa</div>
         </div>
         <div class="occ-card">
-            <div class="occ-emoji">ðŸ¥</div>
+            <div class="occ-emoji">🏥</div>
             <div class="occ-name">Medical</div>
             <div class="occ-sub">Hospital bills</div>
         </div>
         <div class="occ-card">
-            <div class="occ-emoji">ðŸ¤²</div>
+            <div class="occ-emoji">🤲</div>
             <div class="occ-name">Chama</div>
             <div class="occ-sub">Group savings</div>
         </div>
         <div class="occ-card">
-            <div class="occ-emoji">ðŸŽ‚</div>
+            <div class="occ-emoji">🎂</div>
             <div class="occ-name">Birthday</div>
             <div class="occ-sub">Surprise collections</div>
         </div>
         <div class="occ-card">
-            <div class="occ-emoji">ðŸŽ“</div>
+            <div class="occ-emoji">🎓</div>
             <div class="occ-name">Education</div>
             <div class="occ-sub">School fees & fees</div>
         </div>
         <div class="occ-card">
-            <div class="occ-emoji">ðŸ </div>
+            <div class="occ-emoji">🏠</div>
             <div class="occ-name">Moving</div>
             <div class="occ-sub">New home harambee</div>
         </div>
         <div class="occ-card">
-            <div class="occ-emoji">ðŸ™</div>
+            <div class="occ-emoji">🙏</div>
             <div class="occ-name">Community</div>
             <div class="occ-sub">Neighbourhood causes</div>
         </div>
         <div class="occ-card">
-            <div class="occ-emoji">ðŸŽ</div>
+            <div class="occ-emoji">🎁</div>
             <div class="occ-name">Gift</div>
             <div class="occ-sub">Team or office gifts</div>
         </div>
@@ -424,14 +424,13 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 <!-- CTA -->
 <div class="cta-bottom">
     <h2>Drop it in the WhatsApp group. Nobody gets added.<br><em style="font-style:normal;background:linear-gradient(135deg,#34d399,#10b981);-webkit-background-clip:text;-webkit-text-fill-color:transparent">Nobody holds the money. Just M-Pesa.</em></h2>
-    <p>Set up in under 2 minutes. Share the link in your WhatsApp group, status, or DM. Contributors pay directly â€” no group joins, no screenshots, no chasing. The money goes straight to the recipient.</p>
-    <a href="{{ route('collection.new') }}" class="btn-primary" style="font-size:16px;padding:16px 36px">Start a Collection â€” Free â†’</a>
-    <p style="margin-top:16px;font-size:12px;color:rgba(255,255,255,.82)">No account needed Â· No monthly fee Â· Money goes direct to recipient</p>
+    <p>Set up in under 2 minutes. Share the link in your WhatsApp group, status, or DM. Contributors pay directly — no group joins, no screenshots, no chasing. The money goes straight to the recipient.</p>
+    <a href="{{ route('collection.new') }}" class="btn-primary" style="font-size:16px;padding:16px 36px">Start a Collection — Free →</a>
+    <p style="margin-top:16px;font-size:12px;color:rgba(255,255,255,.82)">No account needed · No monthly fee · Money goes direct to recipient</p>
 </div>
 
 @include('partials.discover', ['current' => 'collection', 'fullWidth' => true])
-<footer class="footer">Â© 2026 Pregota Â· WhatsApp Group Collections via M-Pesa Â· pregota.com</footer>
+<footer class="footer">© 2026 Pregota · WhatsApp Group Collections via M-Pesa · pregota.com</footer>
 
 </body>
 </html>
-

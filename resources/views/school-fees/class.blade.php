@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>{{ $collection->school_name }} â€” {{ $class->class_name }} Fees</title>
+<title>{{ $collection->school_name }} — {{ $class->class_name }} Fees</title>
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}input,textarea,select,button{font-family:inherit;font-size:inherit}
@@ -69,15 +69,15 @@ input::placeholder{color:rgba(255,255,255,.82)}
 </div>
 
 @if(! $collection->isOpen())
-<div class="status-banner">ðŸ”’ This collection is now closed. No new payments are accepted.</div>
+<div class="status-banner">🔒 This collection is now closed. No new payments are accepted.</div>
 @endif
 
 <div class="hero">
-    <div class="school-badge">ðŸ« {{ $collection->school_name }}</div>
-    <h1>{{ $class->class_name }} Â· {{ $collection->term_label }}</h1>
+    <div class="school-badge">🏫 {{ $collection->school_name }}</div>
+    <h1>{{ $class->class_name }} · {{ $collection->term_label }}</h1>
     <div class="meta">
         <span>Class Teacher: <strong style="color:rgba(255,255,255,.75)">{{ $class->teacher_name }}</strong></span>
-        <span>Â·</span>
+        <span>·</span>
         <span>Fees: <strong style="color:rgba(255,255,255,.75)">KES {{ number_format($collection->amount_per_student) }}</strong> per student</span>
     </div>
 </div>
@@ -101,12 +101,12 @@ input::placeholder{color:rgba(255,255,255,.82)}
         <div id="formArea">
             <div class="amount-display">
                 <div class="amount-big">KES {{ number_format($collection->amount_per_student) }}</div>
-                <div class="amount-label">per student Â· {{ $collection->term_label }}</div>
+                <div class="amount-label">per student · {{ $collection->term_label }}</div>
             </div>
 
             <div class="fee-line">
                 <span>Fees: <strong>KES {{ number_format($collection->amount_per_student) }}</strong></span>
-                <span>Service fee: KES 30 â†’ Total: <strong>KES {{ number_format($collection->amount_per_student + 30) }}</strong></span>
+                <span>Service fee: KES 30 → Total: <strong>KES {{ number_format($collection->amount_per_student + 30) }}</strong></span>
             </div>
 
             <div class="form-group">
@@ -128,7 +128,7 @@ input::placeholder{color:rgba(255,255,255,.82)}
         <div class="status-overlay" id="statusOverlay">
             <div class="spin" id="spinIcon"></div>
             <div class="status-icon" id="statusIcon" style="display:none"></div>
-            <div class="status-msg" id="statusMsg">Sending STK Pushâ€¦</div>
+            <div class="status-msg" id="statusMsg">Sending STK Push…</div>
             <div class="status-sub" id="statusSub">Check your phone and enter your M-Pesa PIN.</div>
             <button class="btn-sm" id="retryBtn" style="display:none" onclick="resetForm()">Try Again</button>
         </div>
@@ -151,7 +151,7 @@ input::placeholder{color:rgba(255,255,255,.82)}
             @endforeach
         </div>
         @else
-        <div class="empty">No payments yet â€” share this link with parents.</div>
+        <div class="empty">No payments yet — share this link with parents.</div>
         @endif
     </div>
 
@@ -175,7 +175,7 @@ async function sendPayment() {
     const name  = document.getElementById('studentName').value.trim();
     const phone = document.getElementById('payerPhone').value.trim();
 
-    showOverlay('pending', 'Sending STK Pushâ€¦', 'Check your phone and enter your M-Pesa PIN.');
+    showOverlay('pending', 'Sending STK Push…', 'Check your phone and enter your M-Pesa PIN.');
 
     try {
         const res  = await fetch(`/school-fees/${SLUG}/class/${CLASS_TOKEN}/pay`, {
@@ -199,11 +199,11 @@ function pollStatus() {
             const res  = await fetch(`/school-fees/status?payment_id=${paymentId}`);
             const data = await res.json();
             if (data.status === 'paid') {
-                showOverlay('success', 'âœ… Payment received!', 'Thank you. KES ' + data.class_total?.toLocaleString() + ' collected for your class so far.');
+                showOverlay('success', '✅ Payment received!', 'Thank you. KES ' + data.class_total?.toLocaleString() + ' collected for your class so far.');
                 setTimeout(() => location.reload(), 3000);
                 return;
             }
-            if (data.status === 'failed') { showOverlay('error', 'âŒ Payment not completed', 'The STK Push was not confirmed. Please try again.'); return; }
+            if (data.status === 'failed') { showOverlay('error', '❌ Payment not completed', 'The STK Push was not confirmed. Please try again.'); return; }
             pollStatus();
         } catch(e) { pollStatus(); }
     }, 2500);
@@ -214,7 +214,7 @@ function showOverlay(state, msg, sub) {
     document.getElementById('statusOverlay').style.display = 'block';
     document.getElementById('spinIcon').style.display      = state==='pending' ? 'block' : 'none';
     document.getElementById('statusIcon').style.display    = state!=='pending' ? 'block' : 'none';
-    document.getElementById('statusIcon').textContent      = state==='success' ? 'âœ…' : 'âŒ';
+    document.getElementById('statusIcon').textContent      = state==='success' ? '✅' : '❌';
     document.getElementById('statusMsg').textContent       = msg;
     document.getElementById('statusSub').textContent       = sub;
     document.getElementById('retryBtn').style.display      = state==='error' ? 'inline-block' : 'none';
@@ -228,4 +228,3 @@ function resetForm() {
 </script>
 </body>
 </html>
-

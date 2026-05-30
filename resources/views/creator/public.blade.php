@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Gift {{ $creator->display_name }} â€” Pregota</title>
+<title>Gift {{ $creator->display_name }} — Pregota</title>
 <meta name="csrf-token" content="{{ csrf_token() }}">
 @include('partials.pwa')
 <style>
@@ -112,10 +112,10 @@ textarea{resize:none;height:64px}
         </div>
 
         <div class="fee-preview" id="feePreview">
-            <div class="fee-row"><span>{{ $creator->display_name }} receives</span><span id="fRecipient">â€”</span></div>
-            <div class="fee-row"><span id="fFeeOutLabel">Payout fee</span><span id="fFeeOut">â€”</span></div>
-            <div class="fee-row"><span id="fFeeInLabel">Deposit fee</span><span id="fFeeIn">â€”</span></div>
-            <div class="fee-row total"><span>You pay (M-Pesa)</span><span id="fGross">â€”</span></div>
+            <div class="fee-row"><span>{{ $creator->display_name }} receives</span><span id="fRecipient">—</span></div>
+            <div class="fee-row"><span id="fFeeOutLabel">Payout fee</span><span id="fFeeOut">—</span></div>
+            <div class="fee-row"><span id="fFeeInLabel">Deposit fee</span><span id="fFeeIn">—</span></div>
+            <div class="fee-row total"><span>You pay (M-Pesa)</span><span id="fGross">—</span></div>
         </div>
 
         <div class="form-group">
@@ -130,18 +130,18 @@ textarea{resize:none;height:64px}
             <label>Message (optional)</label>
             <textarea id="message" placeholder="Keep it up! Love your content..."></textarea>
         </div>
-        <button type="submit" class="btn" id="sendBtn">Send Gift â†’</button>
+        <button type="submit" class="btn" id="sendBtn">Send Gift →</button>
     </form>
 
     <div class="success-box" id="successBox">
-        <div style="font-size:40px;margin-bottom:12px">ðŸŽ‰</div>
+        <div style="font-size:40px;margin-bottom:12px">🎉</div>
         <div style="font-size:17px;font-weight:800;margin-bottom:6px">Gift Sent!</div>
         <div style="font-size:13px;color:rgba(255,255,255,.82)" id="successMsg"></div>
     </div>
 </div>
 
 <div class="footer">
-    Powered by <a href="{{ route('home') }}" class="pregota-link">Pregota</a> Â· Anonymous gift transfers via M-Pesa
+    Powered by <a href="{{ route('home') }}" class="pregota-link">Pregota</a> · Anonymous gift transfers via M-Pesa
 </div>
 
 <script>
@@ -205,10 +205,9 @@ document.getElementById('giftForm').addEventListener('submit', async function(e)
         err.textContent = 'Network error. Please try again.';
         err.style.display = 'block';
     } finally {
-        btn.disabled = false; btn.textContent = 'Send Gift â†’';
+        btn.disabled = false; btn.textContent = 'Send Gift →';
     }
 });
 </script>
 </body>
 </html>
-

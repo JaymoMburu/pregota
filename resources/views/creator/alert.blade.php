@@ -35,7 +35,7 @@ body{background:transparent;font-family:'Segoe UI',system-ui,sans-serif;overflow
 <body>
 <div class="alert-wrap">
     <div class="gift-alert" id="alert">
-        <div class="alert-emoji">ðŸŽ</div>
+        <div class="alert-emoji">🎁</div>
         <div class="alert-body">
             <div class="alert-from" id="alertFrom">Someone</div>
             <div class="alert-amount" id="alertAmount">KES 0</div>
@@ -88,4 +88,3 @@ poll();
 </script>
 </body>
 </html>
-

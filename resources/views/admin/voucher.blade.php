@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Voucher {{ $voucher->code }} â€” Pregota Admin</title>
+<title>Voucher {{ $voucher->code }} — Pregota Admin</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}input,textarea,select,button{font-family:inherit;font-size:inherit}
 body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;min-height:100vh}
@@ -40,7 +40,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 <body>
 <nav class="nav">
     <div class="logo">Pregota Admin</div>
-    <a href="{{ route('admin.dashboard') }}" class="back">â† Dashboard</a>
+    <a href="{{ route('admin.dashboard') }}" class="back">← Dashboard</a>
 </nav>
 
 <div class="main">
@@ -96,11 +96,11 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
         <div class="card">
             <h3>Timeline</h3>
             <div class="row"><span class="lbl">Created</span><span class="val">{{ $voucher->created_at->format('d M Y, H:i') }}</span></div>
-            <div class="row"><span class="lbl">Activated</span><span class="val">{{ $voucher->activated_at?->format('d M Y, H:i') ?? 'â€”' }}</span></div>
-            <div class="row"><span class="lbl">Redeemed</span><span class="val">{{ $voucher->redeemed_at?->format('d M Y, H:i') ?? 'â€”' }}</span></div>
-            <div class="row"><span class="lbl">Expires</span><span class="val">{{ $voucher->expires_at?->format('d M Y, H:i') ?? 'â€”' }}</span></div>
-            <div class="row"><span class="lbl">M-Pesa Ref</span><span class="val" style="font-family:monospace;font-size:12px">{{ $voucher->mpesa_confirmation_code ?? 'â€”' }}</span></div>
-            <div class="row"><span class="lbl">B2C Ref</span><span class="val" style="font-family:monospace;font-size:12px">{{ $voucher->b2c_confirmation_code ?? 'â€”' }}</span></div>
+            <div class="row"><span class="lbl">Activated</span><span class="val">{{ $voucher->activated_at?->format('d M Y, H:i') ?? '—' }}</span></div>
+            <div class="row"><span class="lbl">Redeemed</span><span class="val">{{ $voucher->redeemed_at?->format('d M Y, H:i') ?? '—' }}</span></div>
+            <div class="row"><span class="lbl">Expires</span><span class="val">{{ $voucher->expires_at?->format('d M Y, H:i') ?? '—' }}</span></div>
+            <div class="row"><span class="lbl">M-Pesa Ref</span><span class="val" style="font-family:monospace;font-size:12px">{{ $voucher->mpesa_confirmation_code ?? '—' }}</span></div>
+            <div class="row"><span class="lbl">B2C Ref</span><span class="val" style="font-family:monospace;font-size:12px">{{ $voucher->b2c_confirmation_code ?? '—' }}</span></div>
         </div>
     </div>
 
@@ -125,4 +125,3 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 </div>
 </body>
 </html>
-

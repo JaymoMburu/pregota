@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>{{ $collection->title }} â€” Pregota</title>
+<title>{{ $collection->title }} — Pregota</title>
 @php use Illuminate\Support\Facades\Storage; @endphp
 <meta name="csrf-token" content="{{ csrf_token() }}">
 @php
@@ -12,7 +12,7 @@
         : asset('img/pregota-og-default.png');
     $ogDescription = ($collection->description
         ? \Illuminate\Support\Str::limit(strip_tags($collection->description), 120)
-        : 'Contribute to ' . $collection->recipient_name . ' â€” organised by ' . $collection->organiser_name . '.') . ' Pay securely via M-Pesa.';
+        : 'Contribute to ' . $collection->recipient_name . ' — organised by ' . $collection->organiser_name . '.') . ' Pay securely via M-Pesa.';
 @endphp
 <meta property="og:type" content="website">
 <meta property="og:url" content="{{ url()->current() }}">
@@ -164,14 +164,14 @@ input::placeholder{color:rgba(255,255,255,.82)}
 
 @if($collection->is_frozen)
 <div class="frozen-banner">
-    ðŸš« This collection has been suspended pending review. Contributions are not currently accepted.
+    🚫 This collection has been suspended pending review. Contributions are not currently accepted.
 </div>
 @elseif(! $collection->isOpen())
 <div class="status-banner {{ $collection->isPaid() ? 'paid' : 'closed' }}">
     @if($collection->isPaid())
-        âœ… Payout complete â€” KES {{ number_format($collection->total_raised) }} sent to {{ $collection->recipient_name }}.
+        ✅ Payout complete — KES {{ number_format($collection->total_raised) }} sent to {{ $collection->recipient_name }}.
     @else
-        ðŸ”’ This collection is now closed. No new contributions are accepted.
+        🔒 This collection is now closed. No new contributions are accepted.
     @endif
 </div>
 @endif
@@ -181,10 +181,10 @@ input::placeholder{color:rgba(255,255,255,.82)}
     <h1 class="collection-title">{{ $collection->title }}</h1>
     <div class="meta-line">
         <span>Organised by <strong style="color:rgba(255,255,255,.75)">{{ $collection->organiser_name }}</strong></span>
-        <span class="meta-sep">Â·</span>
+        <span class="meta-sep">·</span>
         <span>For <strong style="color:rgba(255,255,255,.75)">{{ $collection->recipient_name }}</strong></span>
         @if($collection->deadline)
-        <span class="meta-sep">Â·</span>
+        <span class="meta-sep">·</span>
         <span>Closes {{ $collection->deadline->format('j M Y') }}</span>
         @endif
     </div>
@@ -237,7 +237,7 @@ input::placeholder{color:rgba(255,255,255,.82)}
         <div><strong>{{ $collection->progressPct() }}%</strong> of goal</div>
         @endif
         @if($collection->isDeadlinePassed() && $collection->isOpen())
-        <div style="color:#f87171">â° Deadline passed</div>
+        <div style="color:#f87171">⏰ Deadline passed</div>
         @endif
     </div>
 </div>
@@ -245,7 +245,7 @@ input::placeholder{color:rgba(255,255,255,.82)}
 
 <div style="max-width:600px;margin:0 auto;padding:0 20px 4px">
     <div class="trust-notice">
-        <span>ðŸ”’</span>
+        <span>🔒</span>
         <span>Always verify this collection is genuine before contributing. If something seems off,
             <button class="report-link" onclick="openReport()">report a concern</button>.
         </span>
@@ -262,7 +262,7 @@ input::placeholder{color:rgba(255,255,255,.82)}
         <div id="formArea">
             @if($collection->per_person_amount)
             <div style="background:rgba(0,166,81,.1);border:1px solid rgba(0,166,81,.25);border-radius:10px;padding:12px 14px;margin-bottom:14px;font-size:13px;color:rgba(255,255,255,.7)">
-                ðŸ”’ Fixed contribution: <strong style="color:#25D366">KES {{ number_format($collection->per_person_amount) }}</strong> per person
+                🔒 Fixed contribution: <strong style="color:#25D366">KES {{ number_format($collection->per_person_amount) }}</strong> per person
             </div>
             <div class="form-group">
                 <label>Amount (KES)</label>
@@ -285,8 +285,8 @@ input::placeholder{color:rgba(255,255,255,.82)}
             @endif
 
             <div class="fee-line" id="feeLine" style="display:none">
-                <span>Your contribution: <strong id="feeNet">KES â€”</strong></span>
-                <span>Fee: <strong id="feeSvc">KES 30</strong> â†’ You pay: <strong id="feeGross">KES â€”</strong></span>
+                <span>Your contribution: <strong id="feeNet">KES —</strong></span>
+                <span>Fee: <strong id="feeSvc">KES 30</strong> → You pay: <strong id="feeGross">KES —</strong></span>
             </div>
 
             <div class="form-group">
@@ -306,7 +306,7 @@ input::placeholder{color:rgba(255,255,255,.82)}
         <div class="status-overlay" id="statusOverlay">
             <div class="spin" id="spinIcon"></div>
             <div class="status-icon" id="statusIcon" style="display:none"></div>
-            <div class="status-msg" id="statusMsg">Sending STK Pushâ€¦</div>
+            <div class="status-msg" id="statusMsg">Sending STK Push…</div>
             <div class="status-sub" id="statusSub">Check your phone and enter your M-Pesa PIN.</div>
             <button class="btn-sm" id="retryBtn" style="display:none" onclick="resetForm()">Try Again</button>
         </div>
@@ -331,7 +331,7 @@ input::placeholder{color:rgba(255,255,255,.82)}
     <!-- Report concern -->
     <div style="text-align:center">
         <button onclick="openReport()" style="background:none;border:none;color:rgba(239,68,68,.45);font-size:12px;cursor:pointer;padding:4px 0">
-            âš ï¸ Report a concern about this collection
+            ⚠️ Report a concern about this collection
         </button>
     </div>
 
@@ -352,7 +352,7 @@ input::placeholder{color:rgba(255,255,255,.82)}
             @endforeach
         </div>
         @else
-        <div class="empty-wall">Be the first to contribute ðŸ™Œ</div>
+        <div class="empty-wall">Be the first to contribute 🙌</div>
         @endif
     </div>
 
@@ -361,9 +361,9 @@ input::placeholder{color:rgba(255,255,255,.82)}
 <!-- Report Fraud Modal -->
 <div class="modal-backdrop" id="reportModal">
     <div class="modal">
-        <h3>âš ï¸ Report a Concern</h3>
+        <h3>⚠️ Report a Concern</h3>
         <p>If you believe this collection is fraudulent or being misused, let us know. We will investigate and may suspend it while reviewing.</p>
-        <textarea id="reportReason" placeholder="Describe your concern (e.g. unknown organiser, suspicious use of funds, not a genuine collection)â€¦" maxlength="300"></textarea>
+        <textarea id="reportReason" placeholder="Describe your concern (e.g. unknown organiser, suspicious use of funds, not a genuine collection)…" maxlength="300"></textarea>
         <div id="reportMsg" style="display:none;margin-top:10px;font-size:13px;font-weight:600;color:#4ade80"></div>
         <div class="modal-actions">
             <button class="modal-cancel-btn" onclick="closeReport()">Cancel</button>
@@ -425,7 +425,7 @@ async function sendContribution() {
     const phone = phoneEl.value.trim();
     const name  = document.getElementById('contribName').value.trim();
 
-    showOverlay('pending', 'Sending STK Pushâ€¦', 'Check your phone and enter your M-Pesa PIN.');
+    showOverlay('pending', 'Sending STK Push…', 'Check your phone and enter your M-Pesa PIN.');
     payBtn.disabled = true;
 
     try {
@@ -455,13 +455,13 @@ function pollStatus() {
             const data = await res.json();
 
             if (data.status === 'paid') {
-                showOverlay('success', 'âœ… Contribution received!',
+                showOverlay('success', '✅ Contribution received!',
                     'Thank you! KES ' + data.total_raised?.toLocaleString() + ' raised so far.');
                 setTimeout(() => location.reload(), 3000);
                 return;
             }
             if (data.status === 'failed') {
-                showOverlay('error', 'âŒ Payment not completed', 'The STK Push was not confirmed. Please try again.');
+                showOverlay('error', '❌ Payment not completed', 'The STK Push was not confirmed. Please try again.');
                 return;
             }
             pollStatus();
@@ -476,7 +476,7 @@ function showOverlay(state, msg, sub) {
     document.getElementById('statusOverlay').style.display = 'block';
     document.getElementById('spinIcon').style.display     = state === 'pending' ? 'block' : 'none';
     document.getElementById('statusIcon').style.display   = state !== 'pending' ? 'block' : 'none';
-    document.getElementById('statusIcon').textContent     = state === 'success' ? 'âœ…' : 'âŒ';
+    document.getElementById('statusIcon').textContent     = state === 'success' ? '✅' : '❌';
     document.getElementById('statusMsg').textContent      = msg;
     document.getElementById('statusSub').textContent      = sub;
     document.getElementById('retryBtn').style.display     = state === 'error' ? 'inline-block' : 'none';
@@ -492,7 +492,7 @@ function resetForm() {
 function copyLink() {
     navigator.clipboard.writeText(window.location.href).then(() => {
         const btn = document.getElementById('copyBtn');
-        btn.textContent = 'âœ“ Copied!';
+        btn.textContent = '✓ Copied!';
         btn.classList.add('copied');
         setTimeout(() => {
             btn.innerHTML = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg> Copy Link`;
@@ -510,7 +510,7 @@ async function submitReport() {
 
     const btn = document.getElementById('reportSubmitBtn');
     btn.disabled = true;
-    btn.textContent = 'Submittingâ€¦';
+    btn.textContent = 'Submitting…';
 
     try {
         const res  = await fetch(`/collections/${SLUG}/report`, {
@@ -521,7 +521,7 @@ async function submitReport() {
         const data = await res.json();
         if (data.frozen) {
             const msg = document.getElementById('reportMsg');
-            msg.textContent = 'âœ… Report received. This collection has been suspended pending review.';
+            msg.textContent = '✅ Report received. This collection has been suspended pending review.';
             msg.style.display = 'block';
             document.querySelector('.modal-actions').style.display = 'none';
             setTimeout(() => location.reload(), 2500);
@@ -534,4 +534,3 @@ async function submitReport() {
 </script>
 </body>
 </html>
-

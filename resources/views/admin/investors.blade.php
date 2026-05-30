@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pregota Admin â€” Investors</title>
+<title>Pregota Admin — Investors</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}input,textarea,select,button{font-family:inherit;font-size:inherit}
 body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;min-height:100vh}
@@ -58,7 +58,7 @@ tr:hover td{background:rgba(255,255,255,.02)}
         <a href="{{ route('admin.investors') }}" class="active">Investors</a>
         <a href="{{ route('admin.partners') }}">Partners</a>
         <a href="{{ route('admin.businesses') }}">Businesses</a>
-        <a href="{{ route('home') }}">â† Live Site</a>
+        <a href="{{ route('home') }}">← Live Site</a>
         <form method="POST" action="{{ route('admin.logout') }}" style="display:inline">
             @csrf
             <button type="submit" style="background:none;border:none;color:rgba(255,255,255,.82);cursor:pointer;font-size:13px">Logout</button>
@@ -113,7 +113,7 @@ tr:hover td{background:rgba(255,255,255,.02)}
                 <label>Notes (optional)</label>
                 <input type="text" name="notes" placeholder="e.g. Lead angel, introduced via Nairobi garage">
             </div>
-            <button type="submit" class="btn-add">Create Investor Account â†’</button>
+            <button type="submit" class="btn-add">Create Investor Account →</button>
         </form>
     </div>
 
@@ -145,8 +145,8 @@ tr:hover td{background:rgba(255,255,255,.02)}
                     <td><strong>{{ $inv->name }}</strong></td>
                     <td style="color:rgba(255,255,255,.78)">{{ $inv->email }}</td>
                     <td><span class="type-badge">{{ $inv->typeLabel() }}</span></td>
-                    <td>{{ $inv->equity_pct ? $inv->equity_pct . '%' : 'â€”' }}</td>
-                    <td>{{ $inv->amount_invested_kes ? 'KES ' . number_format($inv->amount_invested_kes, 0) : 'â€”' }}</td>
+                    <td>{{ $inv->equity_pct ? $inv->equity_pct . '%' : '—' }}</td>
+                    <td>{{ $inv->amount_invested_kes ? 'KES ' . number_format($inv->amount_invested_kes, 0) : '—' }}</td>
                     <td><span class="badge {{ $inv->is_active ? 'active' : 'inactive' }}">{{ $inv->is_active ? 'Active' : 'Inactive' }}</span></td>
                     <td style="color:rgba(255,255,255,.68);font-size:12px">{{ $inv->last_login_at ? $inv->last_login_at->format('d M y, H:i') : 'Never' }}</td>
                     <td>
@@ -169,4 +169,3 @@ tr:hover td{background:rgba(255,255,255,.02)}
 </div>
 </body>
 </html>
-

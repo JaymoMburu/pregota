@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+﻿﻿﻿﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -15,9 +15,9 @@ body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;col
 .logo{font-size:18px;font-weight:900;background:linear-gradient(135deg,#25D366,#4ADE80);-webkit-background-clip:text;-webkit-text-fill-color:transparent;display:block;margin-bottom:6px;text-decoration:none}
 .brand{font-size:13px;font-weight:800;color:#f59e0b;margin-bottom:24px;display:block}
 .title{font-size:22px;font-weight:900;margin-bottom:6px}
-.sub{font-size:13px;color:rgba(255,255,255,.45);margin-bottom:24px;line-height:1.6}
+.sub{font-size:13px;color:rgba(255,255,255,.72);margin-bottom:24px;line-height:1.6}
 .field{margin-bottom:16px}
-.field label{display:block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.4);margin-bottom:7px}
+.field label{display:block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.72);margin-bottom:7px}
 .field input,.field textarea{width:100%;padding:13px 14px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:11px;color:#fff;font-size:15px;outline:none;font-family:inherit;transition:.2s}
 .field textarea{min-height:80px;resize:vertical}
 .field input:focus,.field textarea:focus{border-color:rgba(245,158,11,.4);background:rgba(245,158,11,.04)}
@@ -25,14 +25,14 @@ body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;col
 .field input::placeholder,.field textarea::placeholder{color:rgba(255,255,255,.25)}
 
 .type-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
-.type-btn{padding:10px 6px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:10px;text-align:center;cursor:pointer;transition:.15s;font-size:12px;font-weight:700;color:rgba(255,255,255,.55)}
+.type-btn{padding:10px 6px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:10px;text-align:center;cursor:pointer;transition:.15s;font-size:12px;font-weight:700;color:rgba(255,255,255,.78)}
 .type-btn:hover,.type-btn.selected{background:rgba(245,158,11,.1);border-color:rgba(245,158,11,.35);color:#f59e0b}
 .type-icon{font-size:22px;display:block;margin-bottom:4px}
 
 .photo-drop{border:2px dashed rgba(255,255,255,.12);border-radius:13px;padding:28px;text-align:center;cursor:pointer;transition:.2s;margin-bottom:4px}
 .photo-drop:hover,.photo-drop.dragover{border-color:rgba(245,158,11,.4);background:rgba(245,158,11,.04)}
 .photo-drop-icon{font-size:32px;margin-bottom:8px}
-.photo-drop-text{font-size:13px;color:rgba(255,255,255,.4);line-height:1.5}
+.photo-drop-text{font-size:13px;color:rgba(255,255,255,.72);line-height:1.5}
 .photo-drop-text strong{color:rgba(255,255,255,.7)}
 .photo-previews{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
 .photo-preview-wrap{position:relative}
@@ -41,7 +41,7 @@ body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;col
 
 .btn{width:100%;padding:15px;background:linear-gradient(135deg,#d97706,#f59e0b);color:#0B141A;font-size:15px;font-weight:900;border:none;border-radius:13px;cursor:pointer;margin-top:6px;transition:.15s}
 .btn:disabled{opacity:.45;cursor:not-allowed}
-.note{font-size:11px;color:rgba(255,255,255,.3);text-align:center;margin-top:12px;line-height:1.6}
+.note{font-size:11px;color:rgba(255,255,255,.65);text-align:center;margin-top:12px;line-height:1.6}
 .err{background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.25);border-radius:9px;padding:10px 14px;font-size:13px;color:#fca5a5;margin-top:12px;display:none}
 .pending{display:none;text-align:center;padding:20px 0}
 .spinner{width:44px;height:44px;border:3px solid rgba(255,255,255,.1);border-top-color:#f59e0b;border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 16px}
@@ -107,7 +107,7 @@ body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;col
     <div class="pending" id="pending-view">
         <div class="spinner"></div>
         <div style="font-size:15px;font-weight:700;margin-bottom:6px">Check your phone</div>
-        <div style="font-size:13px;color:rgba(255,255,255,.45)">Enter your M-Pesa PIN to confirm KES 200 and publish your listing.</div>
+        <div style="font-size:13px;color:rgba(255,255,255,.72)">Enter your M-Pesa PIN to confirm KES 200 and publish your listing.</div>
     </div>
 </div>
 
@@ -235,5 +235,4 @@ function pollListing() {
 </script>
 </body>
 </html>
-
 

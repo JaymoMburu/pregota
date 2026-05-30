@@ -1,9 +1,9 @@
-﻿<!DOCTYPE html>
+﻿﻿﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>{{ $group->name }} Admin â€” Pregota</title>
+<title>{{ $group->name }} Admin — Pregota</title>
 @include('partials.pwa')
 <style>
 *{box-sizing:border-box;margin:0;padding:0}input,textarea,select,button{font-family:inherit;font-size:inherit}
@@ -12,11 +12,11 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 .logo{font-size:20px;font-weight:900;background:linear-gradient(135deg,#25D366,#4ADE80);-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-decoration:none}
 .wrap{max-width:640px;margin:0 auto;padding:32px 20px 80px}
 h1{font-size:22px;font-weight:900;margin-bottom:4px}
-.period-label{font-size:12px;color:rgba(255,255,255,.4);margin-bottom:24px}
+.period-label{font-size:12px;color:rgba(255,255,255,.72);margin-bottom:24px}
 
 /* Auth card */
 .auth-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:18px;padding:28px 24px;margin-bottom:24px}
-.field label{display:block;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.45);margin-bottom:7px}
+.field label{display:block;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.72);margin-bottom:7px}
 .field input{width:100%;padding:12px 14px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:11px;color:#fff;font-size:15px;font-family:inherit;outline:none;margin-bottom:14px}
 .field input:focus{border-color:rgba(37,211,102,.4)}
 .pin-row{display:flex;gap:10px;justify-content:center;margin-bottom:14px}
@@ -29,7 +29,7 @@ h1{font-size:22px;font-weight:900;margin-bottom:4px}
 .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:24px}
 .stat{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:14px;text-align:center}
 .stat-val{font-size:24px;font-weight:900;color:#4ADE80}
-.stat-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:rgba(255,255,255,.38);margin-top:3px}
+.stat-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:rgba(255,255,255,.65);margin-top:3px}
 
 /* Member list */
 .member-row{display:flex;justify-content:space-between;align-items:center;padding:13px 16px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:12px;margin-bottom:8px}
@@ -40,9 +40,9 @@ h1{font-size:22px;font-weight:900;margin-bottom:4px}
 .dot-pending{background:#fbbf24}
 .dot-failed{background:#f87171}
 .member-amount{font-size:15px;font-weight:800}
-.member-date{font-size:11px;color:rgba(255,255,255,.35);margin-top:2px}
+.member-date{font-size:11px;color:rgba(255,255,255,.65);margin-top:2px}
 .receipt-tag{font-size:11px;font-family:monospace;color:#a78bfa;text-decoration:none}
-.copy-btn{font-size:11px;padding:4px 10px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:6px;color:rgba(255,255,255,.5);cursor:pointer}
+.copy-btn{font-size:11px;padding:4px 10px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:6px;color:rgba(255,255,255,.78);cursor:pointer}
 .copy-btn:hover{background:rgba(255,255,255,.1);color:#fff}
 
 .share-link-box{background:rgba(37,211,102,.05);border:1px solid rgba(37,211,102,.15);border-radius:13px;padding:16px 18px;margin-bottom:20px}
@@ -53,24 +53,24 @@ h1{font-size:22px;font-weight:900;margin-bottom:4px}
 <body>
 <nav class="nav">
     <a href="{{ route('home') }}" class="logo">Pregota</a>
-    <a href="{{ route('group.show', $group->slug) }}" style="font-size:13px;color:rgba(255,255,255,.4);text-decoration:none">Member Link â†’</a>
+    <a href="{{ route('group.show', $group->slug) }}" style="font-size:13px;color:rgba(255,255,255,.72);text-decoration:none">Member Link →</a>
 </nav>
 
 <div class="wrap">
     <h1>{{ $group->name }}</h1>
-    <div class="period-label">Period: {{ $period }} Â· {{ ucfirst($group->frequency) }}</div>
+    <div class="period-label">Period: {{ $period }} · {{ ucfirst($group->frequency) }}</div>
 
     @if(!$isAdmin)
     <div class="auth-card" id="auth-card">
-        <div style="font-size:17px;font-weight:900;margin-bottom:6px">ðŸ” Admin Access</div>
-        <div style="font-size:13px;color:rgba(255,255,255,.5);margin-bottom:20px">Enter your admin phone and PIN to view member payments.</div>
+        <div style="font-size:17px;font-weight:900;margin-bottom:6px">🔐 Admin Access</div>
+        <div style="font-size:13px;color:rgba(255,255,255,.78);margin-bottom:20px">Enter your admin phone and PIN to view member payments.</div>
         <div class="field">
             <label>Admin Phone</label>
             <input type="tel" id="admin-phone" placeholder="0712 345 678" autocomplete="tel">
         </div>
-        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.45);margin-bottom:8px">Admin PIN</div>
+        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.72);margin-bottom:8px">Admin PIN</div>
         <div class="pin-row" id="pin-boxes"></div>
-        <button class="action-btn" id="login-btn" onclick="adminLogin()" disabled>Unlock â†’</button>
+        <button class="action-btn" id="login-btn" onclick="adminLogin()" disabled>Unlock →</button>
         <div class="err" id="auth-err"></div>
     </div>
     @endif
@@ -79,7 +79,7 @@ h1{font-size:22px;font-weight:900;margin-bottom:4px}
         <div class="share-link-box">
             <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(37,211,102,.6);margin-bottom:6px">Member Payment Link</div>
             <div class="share-url" id="member-url">{{ url('/group/' . $group->slug) }}</div>
-            <button class="copy-link-btn" onclick="copyMemberLink()">ðŸ“‹ Copy Link</button>
+            <button class="copy-link-btn" onclick="copyMemberLink()">📋 Copy Link</button>
         </div>
 
         @php
@@ -93,10 +93,10 @@ h1{font-size:22px;font-weight:900;margin-bottom:4px}
             <div class="stat"><div class="stat-val">{{ $pending->count() }}</div><div class="stat-label">Pending</div></div>
         </div>
 
-        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.38);margin-bottom:12px">Member Payments</div>
+        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.65);margin-bottom:12px">Member Payments</div>
 
         @if($payments->isEmpty())
-            <div style="text-align:center;padding:40px;color:rgba(255,255,255,.3)">No payments yet for this period.</div>
+            <div style="text-align:center;padding:40px;color:rgba(255,255,255,.65)">No payments yet for this period.</div>
         @else
             @foreach($payments as $p)
             <div class="member-row {{ $p->status === 'confirmed' ? 'paid' : '' }}">
@@ -104,7 +104,7 @@ h1{font-size:22px;font-weight:900;margin-bottom:4px}
                     <div class="status-dot dot-{{ $p->status === 'confirmed' ? 'paid' : ($p->status === 'failed' ? 'failed' : 'pending') }}"></div>
                     <div>
                         <div class="member-amount">KES {{ number_format($p->amount) }}</div>
-                        <div class="member-date">{{ $p->updated_at->format('d M Y Â· H:i') }}</div>
+                        <div class="member-date">{{ $p->updated_at->format('d M Y · H:i') }}</div>
                     </div>
                 </div>
                 <div style="display:flex;align-items:center;gap:8px">
@@ -184,4 +184,3 @@ function copyReminder(url) {
 </script>
 </body>
 </html>
-

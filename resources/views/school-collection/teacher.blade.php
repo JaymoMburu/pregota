@@ -1,9 +1,9 @@
-﻿<!DOCTYPE html>
+﻿﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>{{ $class->class_name }} â€” Collection Tracker</title>
+<title>{{ $class->class_name }} — Collection Tracker</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}input,textarea,select,button{font-family:inherit;font-size:inherit}
 body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;min-height:100vh}
@@ -79,9 +79,9 @@ h1{font-size:clamp(20px,4.5vw,28px);font-weight:900;line-height:1.15;margin-bott
 </div>
 
 <div class="hero">
-    <div class="school-label">{{ $collection->school_name }} Â· {{ $collection->term_label }}</div>
-    <h1>{{ $class->class_name }} â€” Collection Tracker</h1>
-    <div class="meta">{{ $class->teacher_name }} Â· Collection amount: KES {{ number_format($collection->amount_per_student) }}</div>
+    <div class="school-label">{{ $collection->school_name }} · {{ $collection->term_label }}</div>
+    <h1>{{ $class->class_name }} — Collection Tracker</h1>
+    <div class="meta">{{ $class->teacher_name }} · Collection amount: KES {{ number_format($collection->amount_per_student) }}</div>
 </div>
 
 <div class="page">
@@ -108,22 +108,22 @@ h1{font-size:clamp(20px,4.5vw,28px);font-weight:900;line-height:1.15;margin-bott
 
     <!-- Share parent link -->
     <div class="share-card">
-        <div class="card-title">Parent Payment Link â€” Share This With Your Class</div>
+        <div class="card-title">Parent Payment Link — Share This With Your Class</div>
         @php $classUrl = route('school-collection.class', ['slug' => $collection->slug, 'classToken' => $class->class_token]); @endphp
         <div class="link-row">
             <input class="link-input" id="payLink" readonly value="{{ $classUrl }}">
             <button class="copy-btn" onclick="copyLink('payLink', this)">Copy</button>
         </div>
         <div style="display:flex;gap:8px;flex-wrap:wrap">
-            <a href="https://wa.me/?text={{ urlencode('Dear Parents,' . "\n\n" . 'Kindly pay ' . $collection->school_name . ' ' . $collection->term_label . ' fees (KES ' . number_format($collection->amount_per_student) . ') via this link:' . "\n" . $classUrl . "\n\n" . 'You can pay in instalments â€” any amount from KES 50.' . "\n" . 'â€” ' . $class->teacher_name) }}"
+            <a href="https://wa.me/?text={{ urlencode('Dear Parents,' . "\n\n" . 'Kindly pay ' . $collection->school_name . ' ' . $collection->term_label . ' fees (KES ' . number_format($collection->amount_per_student) . ') via this link:' . "\n" . $classUrl . "\n\n" . 'You can pay in instalments — any amount from KES 50.' . "\n" . '— ' . $class->teacher_name) }}"
                target="_blank" class="wa-btn">
                 <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
                 Share with Class
             </a>
             @if($studentTotals->count() > 0)
-            <a href="https://wa.me/?text={{ urlencode('Dear Parent,' . "\n\n" . 'Kindly note that ' . $collection->term_label . ' fees for ' . $class->class_name . ' are still outstanding.' . "\n\n" . $fullCount . ' students have fully paid. You can pay in instalments â€” use this link:' . "\n" . $classUrl . "\n\n" . 'â€” ' . $class->teacher_name) }}"
+            <a href="https://wa.me/?text={{ urlencode('Dear Parent,' . "\n\n" . 'Kindly note that ' . $collection->term_label . ' fees for ' . $class->class_name . ' are still outstanding.' . "\n\n" . $fullCount . ' students have fully paid. You can pay in instalments — use this link:' . "\n" . $classUrl . "\n\n" . '— ' . $class->teacher_name) }}"
                target="_blank" class="nudge-btn">
-                âš¡ Nudge Non-Payers
+                ⚡ Nudge Non-Payers
             </a>
             @endif
         </div>
@@ -134,14 +134,14 @@ h1{font-size:clamp(20px,4.5vw,28px);font-weight:900;line-height:1.15;margin-bott
     <div class="list-card">
         <div class="card-title" style="display:flex;justify-content:space-between;align-items:center">
             <span>Student Fee Status ({{ $studentTotals->count() }} student{{ $studentTotals->count() === 1 ? '' : 's' }})</span>
-            <span id="searchCount" style="font-size:11px;color:rgba(255,255,255,.4)"></span>
+            <span id="searchCount" style="font-size:11px;color:rgba(255,255,255,.72)"></span>
         </div>
         <div style="margin-bottom:12px">
-            <input type="text" id="studentSearch" placeholder="Search by student name or IDâ€¦"
+            <input type="text" id="studentSearch" placeholder="Search by student name or ID…"
                 style="width:100%;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:9px 12px;color:#fff;font-size:13px;outline:none;font-family:inherit"
                 oninput="filterStudents(this.value)">
         </div>
-        <div id="noResults" style="display:none;text-align:center;padding:14px;font-size:13px;color:rgba(255,255,255,.4)">No students match your search.</div>
+        <div id="noResults" style="display:none;text-align:center;padding:14px;font-size:13px;color:rgba(255,255,255,.72)">No students match your search.</div>
         @foreach($studentTotals as $s)
         @php $pct = min(100, round(($s['total_paid'] / $collection->amount_per_student) * 100)); @endphp
         <div class="student-item" data-search="{{ strtolower($s['name'] . ' ' . ($s['student_id'] ?? '')) }}">
@@ -152,7 +152,7 @@ h1{font-size:clamp(20px,4.5vw,28px);font-weight:900;line-height:1.15;margin-bott
                     @if($s['student_id'])<span class="student-id">{{ $s['student_id'] }}</span>@endif
                 </div>
                 @if($s['is_full'])
-                    <span class="full-badge">âœ“ Full</span>
+                    <span class="full-badge">✓ Full</span>
                 @else
                     <span class="partial-badge">{{ $pct }}%</span>
                 @endif
@@ -160,7 +160,7 @@ h1{font-size:clamp(20px,4.5vw,28px);font-weight:900;line-height:1.15;margin-bott
             <div class="student-amounts">
                 <span class="amt-paid">KES {{ number_format($s['total_paid']) }} paid</span>
                 @if(!$s['is_full'])
-                <span class="amt-separator">Â·</span>
+                <span class="amt-separator">·</span>
                 <span class="amt-remaining">KES {{ number_format($s['balance']) }} remaining</span>
                 @endif
             </div>
@@ -181,7 +181,7 @@ h1{font-size:clamp(20px,4.5vw,28px);font-weight:900;line-height:1.15;margin-bott
     @if($pending->count())
     <!-- Pending STK pushes -->
     <div class="list-card">
-        <div class="card-title">â³ STK Sent â€” Awaiting PIN ({{ $pending->count() }})</div>
+        <div class="card-title">⏳ STK Sent — Awaiting PIN ({{ $pending->count() }})</div>
         @foreach($pending as $p)
         <div class="pending-item">
             <span class="pending-name">{{ $p->student_name }}</span>
@@ -198,7 +198,7 @@ h1{font-size:clamp(20px,4.5vw,28px);font-weight:900;line-height:1.15;margin-bott
 function copyLink(id, btn) {
     navigator.clipboard.writeText(document.getElementById(id).value).then(() => {
         const orig = btn.textContent;
-        btn.textContent = 'âœ“ Copied';
+        btn.textContent = '✓ Copied';
         setTimeout(() => btn.textContent = orig, 2000);
     });
 }
@@ -232,4 +232,3 @@ scheduleRefresh();
 </script>
 </body>
 </html>
-

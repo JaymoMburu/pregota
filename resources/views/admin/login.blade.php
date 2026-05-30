@@ -18,7 +18,7 @@ input:focus{border-color:#00A651}
 </head>
 <body>
 <div class="card">
-    <h1>ðŸ” Pregota Admin</h1>
+    <h1>🔐 Pregota Admin</h1>
     <p class="sub">Restricted access</p>
     @if($errors->any())
     <div class="error">{{ $errors->first() }}</div>
@@ -31,4 +31,3 @@ input:focus{border-color:#00A651}
 </div>
 </body>
 </html>
-

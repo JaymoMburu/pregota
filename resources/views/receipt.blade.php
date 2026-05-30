@@ -1,9 +1,9 @@
-﻿<!DOCTYPE html>
+﻿﻿﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Receipt {{ $payment->receipt_number }} â€” Pregota</title>
+<title>Receipt {{ $payment->receipt_number }} — Pregota</title>
 @include('partials.pwa')
 <style>
 *{box-sizing:border-box;margin:0;padding:0}input,textarea,select,button{font-family:inherit;font-size:inherit}
@@ -13,7 +13,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 
 /* Header stripe */
 .card-header{background:linear-gradient(135deg,#0d3320,#0a2018);padding:28px 28px 24px;text-align:center;border-bottom:1px solid rgba(37,211,102,.15)}
-.logo-text{font-size:15px;font-weight:900;color:rgba(255,255,255,.5);letter-spacing:.05em;margin-bottom:16px}
+.logo-text{font-size:15px;font-weight:900;color:rgba(255,255,255,.78);letter-spacing:.05em;margin-bottom:16px}
 .logo-text span{color:#25D366}
 .tick{font-size:64px;line-height:1;margin-bottom:12px}
 .paid-label{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:#4ADE80;margin-bottom:4px}
@@ -24,7 +24,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 .card-body{padding:24px 28px}
 .row{display:flex;justify-content:space-between;align-items:flex-start;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.06)}
 .row:last-child{border-bottom:none}
-.row-label{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.45)}
+.row-label{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.72)}
 .row-val{font-size:14px;font-weight:700;color:#fff;text-align:right;max-width:60%}
 .row-val.green{color:#25D366}
 .row-val.mono{font-family:monospace;font-size:13px;color:#a78bfa;letter-spacing:.04em}
@@ -32,11 +32,11 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 /* Tip row */
 .tip-row{background:rgba(37,211,102,.05);border:1px solid rgba(37,211,102,.12);border-radius:10px;padding:12px 14px;margin:4px 0 8px;font-size:13px}
 .tip-row-top{display:flex;justify-content:space-between;margin-bottom:4px}
-.tip-comment{font-size:11px;color:rgba(255,255,255,.5);font-style:italic}
+.tip-comment{font-size:11px;color:rgba(255,255,255,.78);font-style:italic}
 
 /* KRA stamp */
 .kra-stamp{margin:20px 28px 0;padding:14px 16px;background:rgba(255,255,255,.03);border:1px dashed rgba(255,255,255,.15);border-radius:10px;text-align:center}
-.kra-stamp p{font-size:11px;color:rgba(255,255,255,.5);line-height:1.65}
+.kra-stamp p{font-size:11px;color:rgba(255,255,255,.78);line-height:1.65}
 .kra-stamp strong{color:rgba(255,255,255,.75)}
 
 /* Actions */
@@ -46,7 +46,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 .btn-back{background:rgba(255,255,255,.07);color:rgba(255,255,255,.8);border:1px solid rgba(255,255,255,.12)}
 .btn:hover{opacity:.9}
 
-/* â”€â”€ Print styles â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* ── Print styles ──────────────────────────────────────────────────────── */
 @media print{
     body{background:#fff!important;color:#000!important;padding:0;display:block}
     .card{border:1px solid #ddd;border-radius:8px;max-width:100%;box-shadow:none;background:#fff!important}
@@ -75,13 +75,13 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 <div class="card">
     <div class="card-header">
         <div class="logo-text"><span>Pregota</span> Payment Receipt</div>
-        <div class="tick">âœ…</div>
+        <div class="tick">✅</div>
         <div class="paid-label">Payment Confirmed</div>
         <div class="amount-big">
             <span class="currency">KES</span> {{ number_format($payment->amount, 0) }}
         </div>
         @if($payment->tip_amount > 0)
-        <div style="font-size:13px;color:rgba(255,255,255,.55);margin-top:6px">
+        <div style="font-size:13px;color:rgba(255,255,255,.78);margin-top:6px">
             incl. KES {{ number_format($payment->tip_amount, 0) }} tip
         </div>
         @endif
@@ -96,7 +96,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
             <span class="row-val">
                 {{ $link->business_name }}
                 @if($link->category === 'transport')
-                <br><span style="font-family:monospace;font-size:12px;color:rgba(255,255,255,.55)">{{ $link->displayIdentifier() }}</span>
+                <br><span style="font-family:monospace;font-size:12px;color:rgba(255,255,255,.78)">{{ $link->displayIdentifier() }}</span>
                 @endif
             </span>
         </div>
@@ -126,7 +126,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
             <div style="text-align:right">
                 <div class="tip-row">
                     <div class="tip-row-top">
-                        <span>ðŸ™ {{ ucfirst($payment->tip_recipient ?? 'Staff') }}</span>
+                        <span>🙏 {{ ucfirst($payment->tip_recipient ?? 'Staff') }}</span>
                         <span style="font-weight:800;color:#4ADE80">+ KES {{ number_format($payment->tip_amount, 0) }}</span>
                     </div>
                     @if($payment->tip_comment)
@@ -139,7 +139,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
 
         <div class="row">
             <span class="row-label">Date & Time</span>
-            <span class="row-val">{{ $payment->updated_at->format('D, d M Y Â· H:i:s') }}</span>
+            <span class="row-val">{{ $payment->updated_at->format('D, d M Y · H:i:s') }}</span>
         </div>
 
         <div class="row">
@@ -158,24 +158,23 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0B141A;color:#fff;m
         <p>
             <strong>Valid for KRA expense records</strong><br>
             This receipt is generated from a confirmed M-Pesa transaction via Pregota.<br>
-            Reference: <strong>{{ $payment->receipt_number }}</strong> Â· M-Pesa: <strong>{{ $payment->mpesa_ref }}</strong>
+            Reference: <strong>{{ $payment->receipt_number }}</strong> · M-Pesa: <strong>{{ $payment->mpesa_ref }}</strong>
         </p>
     </div>
 
     <div class="print-footer">
         Verified at pregota.com/receipt/{{ $payment->receipt_number }}<br>
-        Generated {{ $payment->updated_at->format('d M Y H:i') }} Â· Pregota Limited
+        Generated {{ $payment->updated_at->format('d M Y H:i') }} · Pregota Limited
     </div>
 </div>
 
 <div class="actions">
-    <button class="btn btn-print" onclick="window.print()">ðŸ–¨ Print / Save PDF</button>
-    <a href="{{ route('seller.public', $payment->payLink->handle) }}" class="btn btn-back">â† Back</a>
+    <button class="btn btn-print" onclick="window.print()">🖨 Print / Save PDF</button>
+    <a href="{{ route('seller.public', $payment->payLink->handle) }}" class="btn btn-back">← Back</a>
 </div>
 <div style="text-align:center;margin-top:16px;padding-bottom:32px" class="no-print">
-    <a href="{{ route('dispute.show', $payment->receipt_number) }}" style="font-size:13px;color:rgba(255,255,255,.3);text-decoration:none">Problem with this payment? Report it â†’</a>
+    <a href="{{ route('dispute.show', $payment->receipt_number) }}" style="font-size:13px;color:rgba(255,255,255,.65);text-decoration:none">Problem with this payment? Report it →</a>
 </div>
 
 </body>
 </html>
-

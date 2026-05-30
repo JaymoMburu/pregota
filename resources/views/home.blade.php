@@ -1,9 +1,9 @@
-﻿<!DOCTYPE html>
+﻿﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pregota â€” M-Pesa Made Simple</title>
+<title>Pregota — M-Pesa Made Simple</title>
 <meta name="description" content="Digital M-Pesa payments for every Kenyan occasion. Gift vouchers, group collections, school collections, staff tips, seller pay links, and madeni tracking.">
 @include('partials.pwa')
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -106,7 +106,7 @@ body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;col
 <nav class="nav">
     <a href="{{ route('home') }}" class="logo">Pregota</a>
     <div class="nav-links">
-        <a href="{{ route('saka-keja.browse') }}" class="nav-link" style="color:#f59e0b;border-color:rgba(245,158,11,.25)">ðŸ  Saka Keja</a>
+        <a href="{{ route('saka-keja.browse') }}" class="nav-link" style="color:#f59e0b;border-color:rgba(245,158,11,.25)">🏠 Saka Keja</a>
         <a href="{{ route('deni.landing') }}" class="nav-link">Deni</a>
         <a href="{{ route('redeem') }}" class="nav-link">Redeem a Gift</a>
         <a href="{{ route('buyer.me') }}" class="nav-link nav-cta">My Pregota</a>
@@ -115,11 +115,11 @@ body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;col
 
 <!-- Hero -->
 <div class="hero">
-    <div class="badge">ðŸ‡°ðŸ‡ª Built for Kenya Â· Powered by M-Pesa</div>
+    <div class="badge">🇰🇪 Built for Kenya · Powered by M-Pesa</div>
     <h1>M-Pesa.<br><em>Every way you need it.</em></h1>
-    <p>Send gifts, collect contributions, track madeni, receive tips, run school collections â€” all via M-Pesa STK Push. No app. No account needed.</p>
+    <p>Send gifts, collect contributions, track madeni, receive tips, run school collections — all via M-Pesa STK Push. No app. No account needed.</p>
     <div class="hero-btns">
-        <a href="{{ route('buyer.me') }}" class="btn-primary">Open My Pregota â†’</a>
+        <a href="{{ route('buyer.me') }}" class="btn-primary">Open My Pregota →</a>
         <a href="#modules" class="btn-secondary">Explore All Features</a>
     </div>
 </div>
@@ -127,40 +127,40 @@ body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;col
 <!-- Modules -->
 <div class="section" id="modules">
     <div class="section-tag">Everything on Pregota</div>
-    <h2>Pick what you need â€” pay via M-Pesa.</h2>
-    <p>One platform covering every M-Pesa use case Kenyans deal with daily â€” from sending anonymous gifts to tracking a kibanda tab.</p>
+    <h2>Pick what you need — pay via M-Pesa.</h2>
+    <p>One platform covering every M-Pesa use case Kenyans deal with daily — from sending anonymous gifts to tracking a kibanda tab.</p>
 
     <div class="modules-grid">
 
         <!-- Gift Vouchers -->
         <a href="{{ route('gift.landing') }}" class="mod-card mod-green">
-            <div class="mod-icon">ðŸŽ</div>
+            <div class="mod-icon">🎁</div>
             <div class="mod-name">Gift Vouchers</div>
-            <div class="mod-desc">Send money to anyone â€” anonymously. They receive a code to claim it. Your number is never revealed.</div>
+            <div class="mod-desc">Send money to anyone — anonymously. They receive a code to claim it. Your number is never revealed.</div>
             <div class="mod-tags">
                 <span class="mod-tag">Birthday</span>
                 <span class="mod-tag">Anniversary</span>
                 <span class="mod-tag">Surprise</span>
             </div>
-            <div class="mod-cta">Send a Gift <span>â€º</span></div>
+            <div class="mod-cta">Send a Gift <span>›</span></div>
         </a>
 
         <!-- Group Collections -->
         <a href="{{ route('collection.landing') }}" class="mod-card mod-teal">
-            <div class="mod-icon">ðŸ’¬</div>
+            <div class="mod-icon">💬</div>
             <div class="mod-name">WhatsApp Collections</div>
-            <div class="mod-desc">Share one link â€” everyone pays via M-Pesa directly. No group adds. Nobody holds the cash.</div>
+            <div class="mod-desc">Share one link — everyone pays via M-Pesa directly. No group adds. Nobody holds the cash.</div>
             <div class="mod-tags">
                 <span class="mod-tag">Bereavement</span>
                 <span class="mod-tag">Chama</span>
                 <span class="mod-tag">Wedding</span>
             </div>
-            <div class="mod-cta">Start a Collection <span>â€º</span></div>
+            <div class="mod-cta">Start a Collection <span>›</span></div>
         </a>
 
         <!-- School Collections -->
         <a href="{{ route('school.landing') }}" class="mod-card mod-blue">
-            <div class="mod-icon">ðŸ«</div>
+            <div class="mod-icon">🏫</div>
             <div class="mod-name">School Collections</div>
             <div class="mod-desc">Each class gets its own payment link. Parents pay via M-Pesa. Admin sees every payment in real time.</div>
             <div class="mod-tags">
@@ -168,64 +168,64 @@ body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;col
                 <span class="mod-tag">Trips</span>
                 <span class="mod-tag">PTA levy</span>
             </div>
-            <div class="mod-cta">Set Up Collection <span>â€º</span></div>
+            <div class="mod-cta">Set Up Collection <span>›</span></div>
         </a>
 
         <!-- Staff Tips -->
         <a href="{{ route('staff.landing') }}" class="mod-card mod-yellow">
-            <div class="mod-icon">â­</div>
+            <div class="mod-icon">⭐</div>
             <div class="mod-name">Staff Tips</div>
-            <div class="mod-desc">Receive tips directly to your M-Pesa without sharing your personal number. Privacy protected â€” always.</div>
+            <div class="mod-desc">Receive tips directly to your M-Pesa without sharing your personal number. Privacy protected — always.</div>
             <div class="mod-tags">
                 <span class="mod-tag">Waitstaff</span>
                 <span class="mod-tag">Salon</span>
                 <span class="mod-tag">Delivery</span>
             </div>
-            <div class="mod-cta">Create Tip Page <span>â€º</span></div>
+            <div class="mod-cta">Create Tip Page <span>›</span></div>
         </a>
 
         <!-- Seller Pay Links -->
         <a href="{{ route('seller.landing') }}" class="mod-card mod-green">
-            <div class="mod-icon">ðŸ›ï¸</div>
+            <div class="mod-icon">🛍️</div>
             <div class="mod-name">Seller Pay Links</div>
-            <div class="mod-desc">Get paid via M-Pesa without sharing your personal number. One link â€” share on WhatsApp, Instagram, or print a QR at your shop.</div>
+            <div class="mod-desc">Get paid via M-Pesa without sharing your personal number. One link — share on WhatsApp, Instagram, or print a QR at your shop.</div>
             <div class="mod-tags">
                 <span class="mod-tag">Instagram shops</span>
                 <span class="mod-tag">Kiosks</span>
                 <span class="mod-tag">Matatus</span>
             </div>
-            <div class="mod-cta">Get My Pay Link <span>â€º</span></div>
+            <div class="mod-cta">Get My Pay Link <span>›</span></div>
         </a>
 
         <!-- Deni / Smart Biashara -->
         <a href="{{ route('deni.landing') }}" class="mod-card mod-red">
-            <div class="mod-icon">ðŸ§¾</div>
+            <div class="mod-icon">🧾</div>
             <div class="mod-name">Deni</div>
-            <div class="mod-desc">Run a kibanda, lend to customers, or lent a friend cash? Record it â€” they get a payment link, pay via M-Pesa, money goes straight to you. Use Smart Biashara to manage all your madeni in one place.</div>
+            <div class="mod-desc">Run a kibanda, lend to customers, or lent a friend cash? Record it — they get a payment link, pay via M-Pesa, money goes straight to you. Use Smart Biashara to manage all your madeni in one place.</div>
             <div class="mod-tags">
                 <span class="mod-tag">Vibanda</span>
                 <span class="mod-tag">Personal loans</span>
                 <span class="mod-tag">Smart Biashara</span>
             </div>
-            <div class="mod-cta" style="color:#f87171">Record a Deni <span>â€º</span></div>
+            <div class="mod-cta" style="color:#f87171">Record a Deni <span>›</span></div>
         </a>
 
         <!-- My Pregota -->
         <a href="{{ route('buyer.me') }}" class="mod-card mod-blue">
-            <div class="mod-icon">ðŸ“Š</div>
+            <div class="mod-icon">📊</div>
             <div class="mod-name">My Pregota</div>
-            <div class="mod-desc">Your personal hub â€” payments, active subscriptions, group contributions, outstanding madeni. One PIN, everything in one place.</div>
+            <div class="mod-desc">Your personal hub — payments, active subscriptions, group contributions, outstanding madeni. One PIN, everything in one place.</div>
             <div class="mod-tags">
                 <span class="mod-tag">Spending history</span>
                 <span class="mod-tag">Groups</span>
                 <span class="mod-tag">Madeni</span>
             </div>
-            <div class="mod-cta" style="color:#60a5fa">Open My Dashboard <span>â€º</span></div>
+            <div class="mod-cta" style="color:#60a5fa">Open My Dashboard <span>›</span></div>
         </a>
 
         <!-- Find Sellers -->
         <a href="{{ route('seller.directory') }}" class="mod-card mod-teal">
-            <div class="mod-icon">ðŸ”</div>
+            <div class="mod-icon">🔍</div>
             <div class="mod-name">Find Sellers</div>
             <div class="mod-desc">Browse all businesses accepting Pregota payments. Pay without sharing numbers, get KRA-valid receipts, track your spending.</div>
             <div class="mod-tags">
@@ -233,17 +233,17 @@ body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;col
                 <span class="mod-tag">Food</span>
                 <span class="mod-tag">Salons</span>
             </div>
-            <div class="mod-cta" style="color:#34d399">Browse & Pay <span>â€º</span></div>
+            <div class="mod-cta" style="color:#34d399">Browse & Pay <span>›</span></div>
         </a>
 
-        <!-- Saka Keja â€” full width featured -->
+        <!-- Saka Keja — full width featured -->
         <a href="{{ route('saka-keja.browse') }}" class="mod-card" style="grid-column:1/-1;background:linear-gradient(135deg,rgba(245,158,11,.08),rgba(245,158,11,.04));border-color:rgba(245,158,11,.2)">
-            <div style="display:inline-flex;align-items:center;gap:6px;background:rgba(245,158,11,.12);border:1px solid rgba(245,158,11,.25);border-radius:20px;padding:3px 11px;font-size:11px;font-weight:700;color:#f59e0b;margin-bottom:12px;letter-spacing:.04em">ðŸ  NEW â€” Saka Keja</div>
+            <div style="display:inline-flex;align-items:center;gap:6px;background:rgba(245,158,11,.12);border:1px solid rgba(245,158,11,.25);border-radius:20px;padding:3px 11px;font-size:11px;font-weight:700;color:#f59e0b;margin-bottom:12px;letter-spacing:.04em">🏠 NEW — Saka Keja</div>
             <div style="display:flex;align-items:center;gap:20px;flex-wrap:wrap">
-                <div style="font-size:44px;flex-shrink:0">ðŸ¡</div>
+                <div style="font-size:44px;flex-shrink:0">🏡</div>
                 <div style="flex:1;min-width:200px">
-                    <div class="mod-name" style="font-size:19px">Saka Keja â€” Find a House, No Agents</div>
-                    <div class="mod-desc" style="margin-bottom:12px">Browse verified landlord listings. Pay deposit safely through Pregota escrow â€” released only when you confirm move-in. No agents. No lost money.</div>
+                    <div class="mod-name" style="font-size:19px">Saka Keja — Find a House, No Agents</div>
+                    <div class="mod-desc" style="margin-bottom:12px">Browse verified landlord listings. Pay deposit safely through Pregota escrow — released only when you confirm move-in. No agents. No lost money.</div>
                     <div class="mod-tags">
                         <span class="mod-tag">Deposit Protected</span>
                         <span class="mod-tag">Verified Landlords</span>
@@ -251,18 +251,18 @@ body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;col
                         <span class="mod-tag">Full Refund Guarantee</span>
                     </div>
                 </div>
-                <div class="mod-cta" style="flex-shrink:0;font-size:14px;align-self:flex-end;color:#f59e0b">Browse Houses <span>â€º</span></div>
+                <div class="mod-cta" style="flex-shrink:0;font-size:14px;align-self:flex-end;color:#f59e0b">Browse Houses <span>›</span></div>
             </div>
         </a>
 
-        <!-- Creator Gift â€” full width -->
+        <!-- Creator Gift — full width -->
         <a href="{{ route('creator.landing') }}" class="mod-card mod-creator">
-            <div class="creator-badge">âœ¨ For Content Creators</div>
+            <div class="creator-badge">✨ For Content Creators</div>
             <div style="display:flex;align-items:center;gap:20px;flex-wrap:wrap">
-                <div class="mod-icon" style="margin-bottom:0;font-size:44px;flex-shrink:0">ðŸŽ¤</div>
+                <div class="mod-icon" style="margin-bottom:0;font-size:44px;flex-shrink:0">🎤</div>
                 <div style="flex:1;min-width:200px">
                     <div class="mod-name" style="font-size:19px">Creator Gift Page</div>
-                    <div class="mod-desc" style="margin-bottom:12px">Set up your personal gift page in 60 seconds. Fans send you M-Pesa gifts directly â€” no awkward conversations, no sharing your number.</div>
+                    <div class="mod-desc" style="margin-bottom:12px">Set up your personal gift page in 60 seconds. Fans send you M-Pesa gifts directly — no awkward conversations, no sharing your number.</div>
                     <div class="mod-tags">
                         <span class="mod-tag">TikTok</span>
                         <span class="mod-tag">Instagram</span>
@@ -271,7 +271,7 @@ body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;col
                         <span class="mod-tag">pregota.com/c/yourname</span>
                     </div>
                 </div>
-                <div class="mod-cta" style="flex-shrink:0;font-size:14px;align-self:flex-end">Get Your Page <span>â€º</span></div>
+                <div class="mod-cta" style="flex-shrink:0;font-size:14px;align-self:flex-end">Get Your Page <span>›</span></div>
             </div>
         </a>
 
@@ -283,35 +283,35 @@ body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;col
     <div class="how-inner">
         <div class="section-tag">How It Works</div>
         <h2 style="font-size:clamp(22px,4vw,32px);font-weight:900;line-height:1.2;margin-bottom:14px">M-Pesa STK Push. No app. No sign-up.</h2>
-        <p style="font-size:15px;color:rgba(255,255,255,.78);line-height:1.7">Every payment on Pregota goes through M-Pesa's own STK Push â€” the same prompt you already know. No download, no account, no card required.</p>
+        <p style="font-size:15px;color:rgba(255,255,255,.78);line-height:1.7">Every payment on Pregota goes through M-Pesa's own STK Push — the same prompt you already know. No download, no account, no card required.</p>
 
         <div class="steps">
             <div class="step">
                 <div class="step-num">1</div>
                 <div class="step-body">
                     <h3>Pick what you need</h3>
-                    <p>Send a gift, start a collection, record a deni, create a pay link â€” or just pay a seller. Each flow is built for a specific Kenyan use case.</p>
+                    <p>Send a gift, start a collection, record a deni, create a pay link — or just pay a seller. Each flow is built for a specific Kenyan use case.</p>
                 </div>
             </div>
             <div class="step">
                 <div class="step-num">2</div>
                 <div class="step-body">
                     <h3>Enter your M-Pesa number</h3>
-                    <p>Type the number linked to your M-Pesa account. That's all we need â€” no registration, no password, no card details.</p>
+                    <p>Type the number linked to your M-Pesa account. That's all we need — no registration, no password, no card details.</p>
                 </div>
             </div>
             <div class="step">
                 <div class="step-num">3</div>
                 <div class="step-body">
                     <h3>Confirm on your phone</h3>
-                    <p>An M-Pesa STK Push pops up instantly on your screen. Enter your PIN and confirm â€” takes under 10 seconds. Your statement shows "Pregota Ltd".</p>
+                    <p>An M-Pesa STK Push pops up instantly on your screen. Enter your PIN and confirm — takes under 10 seconds. Your statement shows "Pregota Ltd".</p>
                 </div>
             </div>
             <div class="step">
                 <div class="step-num">4</div>
                 <div class="step-body">
                     <h3>Money moves immediately</h3>
-                    <p>Gift codes are generated, contributions are recorded, seller accounts are credited, deni balances update â€” all in real time, the moment M-Pesa confirms.</p>
+                    <p>Gift codes are generated, contributions are recorded, seller accounts are credited, deni balances update — all in real time, the moment M-Pesa confirms.</p>
                 </div>
             </div>
         </div>
@@ -323,28 +323,28 @@ body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;col
     <div class="adv-inner">
         <div class="section-tag">Why Pregota</div>
         <h2 style="font-size:clamp(22px,4vw,32px);font-weight:900;line-height:1.2;margin-bottom:14px">Built for how Kenyans actually move money.</h2>
-        <p style="font-size:15px;color:rgba(255,255,255,.78);line-height:1.7">Standard M-Pesa is powerful but raw. Pregota wraps it in purpose-built flows for every common occasion â€” with privacy, accountability, and zero drama.</p>
+        <p style="font-size:15px;color:rgba(255,255,255,.78);line-height:1.7">Standard M-Pesa is powerful but raw. Pregota wraps it in purpose-built flows for every common occasion — with privacy, accountability, and zero drama.</p>
 
         <div class="adv-grid">
             <div class="adv-card">
-                <div class="adv-icon">ðŸ”’</div>
+                <div class="adv-icon">🔒</div>
                 <div class="adv-title">Nobody shares their personal number</div>
-                <div class="adv-text">Senders, receivers, sellers, contributors â€” nobody's M-Pesa number is ever revealed to the other side. Phone numbers are encrypted and deleted after use.</div>
+                <div class="adv-text">Senders, receivers, sellers, contributors — nobody's M-Pesa number is ever revealed to the other side. Phone numbers are encrypted and deleted after use.</div>
             </div>
             <div class="adv-card">
-                <div class="adv-icon">ðŸ“±</div>
+                <div class="adv-icon">📱</div>
                 <div class="adv-title">No app. No account. No friction.</div>
                 <div class="adv-text">Every Pregota flow works on any phone. Buyers and contributors don't need an account. Just a number and an M-Pesa PIN.</div>
             </div>
             <div class="adv-card">
-                <div class="adv-icon">âš¡</div>
+                <div class="adv-icon">⚡</div>
                 <div class="adv-title">Real-time everywhere</div>
                 <div class="adv-text">Payments confirm in seconds. Collection totals update live. Deni balances reflect instantly. Seller dashboards show every transaction as it happens.</div>
             </div>
             <div class="adv-card">
-                <div class="adv-icon">ðŸ”</div>
+                <div class="adv-icon">🔐</div>
                 <div class="adv-title">Every transaction cryptographically sealed</div>
-                <div class="adv-text">Each payment is signed with a tamper-proof hash â€” so there's a verifiable record of what was paid, when, and to whom. No disputes, no "I never received it".</div>
+                <div class="adv-text">Each payment is signed with a tamper-proof hash — so there's a verifiable record of what was paid, when, and to whom. No disputes, no "I never received it".</div>
             </div>
         </div>
     </div>
@@ -353,17 +353,16 @@ body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;col
 <!-- Bottom CTA -->
 <div class="cta-bottom">
     <h2>Start with whatever<br><em style="font-style:normal;background:linear-gradient(135deg,#25D366,#4ADE80);-webkit-background-clip:text;-webkit-text-fill-color:transparent">you need right now.</em></h2>
-    <p>No account required. No monthly fee. Just M-Pesa â€” the way it should have always worked.</p>
+    <p>No account required. No monthly fee. Just M-Pesa — the way it should have always worked.</p>
     <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
-        <a href="{{ route('gift.home') }}" class="btn-primary" style="font-size:15px;padding:15px 28px">ðŸŽ Send a Gift â†’</a>
-        <a href="{{ route('collection.new') }}" class="btn-secondary" style="font-size:15px;padding:15px 28px">ðŸ’¬ Start a Collection</a>
-        <a href="{{ route('deni.landing') }}" class="btn-secondary" style="font-size:15px;padding:15px 28px">ðŸ§¾ Record a Deni</a>
+        <a href="{{ route('gift.home') }}" class="btn-primary" style="font-size:15px;padding:15px 28px">🎁 Send a Gift →</a>
+        <a href="{{ route('collection.new') }}" class="btn-secondary" style="font-size:15px;padding:15px 28px">💬 Start a Collection</a>
+        <a href="{{ route('deni.landing') }}" class="btn-secondary" style="font-size:15px;padding:15px 28px">🧾 Record a Deni</a>
     </div>
-    <p style="margin-top:20px;font-size:12px;color:rgba(255,255,255,.5)">ðŸ”’ Numbers encrypted Â· âš¡ M-Pesa STK Push Â· ðŸ” Every transaction sealed</p>
+    <p style="margin-top:20px;font-size:12px;color:rgba(255,255,255,.78)">🔒 Numbers encrypted · ⚡ M-Pesa STK Push · 🔐 Every transaction sealed</p>
 </div>
 
-<footer class="footer">Â© 2026 Pregota Â· M-Pesa Made Simple Â· pregota.com</footer>
+<footer class="footer">© 2026 Pregota · M-Pesa Made Simple · pregota.com</footer>
 
 </body>
 </html>
-

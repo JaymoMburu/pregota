@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+﻿﻿﻿﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -18,18 +18,18 @@ body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;col
 
 .greeting{margin-bottom:24px}
 .greeting-name{font-size:22px;font-weight:900}
-.greeting-sub{font-size:13px;color:rgba(255,255,255,.45);margin-top:3px}
+.greeting-sub{font-size:13px;color:rgba(255,255,255,.72);margin-top:3px}
 
 .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:24px}
 .stat{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:14px;text-align:center}
 .stat-val{font-size:18px;font-weight:900}
 .stat-val.red{color:#f87171}
 .stat-val.green{color:#4ADE80}
-.stat-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:rgba(255,255,255,.35);margin-top:3px}
+.stat-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:rgba(255,255,255,.65);margin-top:3px}
 
 /* Customers quick-add section */
 .customers-wrap{margin-bottom:24px}
-.section-head{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.35);margin-bottom:10px;display:flex;align-items:center;gap:10px}
+.section-head{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.65);margin-bottom:10px;display:flex;align-items:center;gap:10px}
 .section-head::after{content:'';flex:1;height:1px;background:rgba(255,255,255,.06)}
 
 .customer-chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}
@@ -37,10 +37,10 @@ body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;col
 .customer-chip:hover,.customer-chip.active{background:rgba(239,68,68,.08);border-color:rgba(239,68,68,.3)}
 .chip-phone{font-size:12px;font-weight:700;color:rgba(255,255,255,.8)}
 .chip-balance{font-size:11px;color:#f87171;margin-top:2px}
-.chip-tabs{font-size:10px;color:rgba(255,255,255,.3);margin-top:1px}
+.chip-tabs{font-size:10px;color:rgba(255,255,255,.65);margin-top:1px}
 
 .quick-form{display:none;background:rgba(239,68,68,.05);border:1px solid rgba(239,68,68,.18);border-radius:13px;padding:16px;margin-bottom:10px}
-.quick-form-title{font-size:12px;font-weight:700;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.07em;margin-bottom:12px}
+.quick-form-title{font-size:12px;font-weight:700;color:rgba(255,255,255,.78);text-transform:uppercase;letter-spacing:.07em;margin-bottom:12px}
 .quick-form-phone{font-size:13px;font-weight:700;color:#f87171;margin-bottom:12px}
 .quick-row{display:flex;gap:8px;flex-wrap:wrap}
 .quick-input{flex:1;min-width:140px;padding:10px 12px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:9px;color:#fff;font-size:14px;outline:none;font-family:inherit}
@@ -59,7 +59,7 @@ body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;col
 .deni-card.settled{border-left:3px solid #4ADE80;opacity:.7}
 .deni-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px}
 .deni-desc{font-size:15px;font-weight:700}
-.deni-date{font-size:11px;color:rgba(255,255,255,.3);margin-top:2px}
+.deni-date{font-size:11px;color:rgba(255,255,255,.65);margin-top:2px}
 .badge{display:inline-flex;padding:2px 9px;border-radius:999px;font-size:11px;font-weight:700}
 .badge.open{background:rgba(239,68,68,.12);color:#f87171}
 .badge.partial{background:rgba(251,191,36,.12);color:#fbbf24}
@@ -67,7 +67,7 @@ body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;col
 
 .deni-amounts{display:flex;gap:16px;margin-bottom:12px}
 .amt-block{flex:1}
-.amt-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:rgba(255,255,255,.35);margin-bottom:3px}
+.amt-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:rgba(255,255,255,.65);margin-bottom:3px}
 .amt-val{font-size:16px;font-weight:900}
 .amt-val.red{color:#f87171}
 .amt-val.green{color:#4ADE80}
@@ -87,21 +87,21 @@ body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0B141A;col
 .charge-input:focus{border-color:rgba(239,68,68,.4)}
 .charge-submit{padding:9px 16px;background:linear-gradient(135deg,#dc2626,#ef4444);border:none;border-radius:8px;color:#fff;font-size:13px;font-weight:700;cursor:pointer}
 
-.empty{text-align:center;padding:40px 20px;color:rgba(255,255,255,.3);font-size:14px}
+.empty{text-align:center;padding:40px 20px;color:rgba(255,255,255,.65);font-size:14px}
 
 /* Tabs */
 .tab-bar{display:flex;gap:4px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:4px;margin-bottom:20px}
-.tab-btn{flex:1;padding:9px;border-radius:9px;font-size:13px;font-weight:700;cursor:pointer;text-align:center;background:none;border:none;color:rgba(255,255,255,.45);font-family:inherit;transition:.15s}
+.tab-btn{flex:1;padding:9px;border-radius:9px;font-size:13px;font-weight:700;cursor:pointer;text-align:center;background:none;border:none;color:rgba(255,255,255,.72);font-family:inherit;transition:.15s}
 .tab-btn.active{background:rgba(255,255,255,.08);color:#fff}
 
 /* Ledger */
 .ledger-summary{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:20px}
 .led-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:14px;text-align:center}
 .led-val{font-size:17px;font-weight:900}
-.led-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:rgba(255,255,255,.35);margin-top:3px}
+.led-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:rgba(255,255,255,.65);margin-top:3px}
 .led-entry{display:flex;justify-content:space-between;align-items:center;padding:11px 0;border-bottom:1px solid rgba(255,255,255,.05)}
 .led-entry:last-child{border-bottom:none}
-.led-cat{font-size:11px;color:rgba(255,255,255,.4);margin-top:2px}
+.led-cat{font-size:11px;color:rgba(255,255,255,.72);margin-top:2px}
 .led-amount{font-size:15px;font-weight:900}
 .led-del{background:none;border:none;color:rgba(255,255,255,.2);cursor:pointer;font-size:16px;padding:2px 6px}
 .led-del:hover{color:#f87171}
@@ -115,15 +115,15 @@ select option{color:#111;background:#fff}
 .ae-type label{flex:1;display:flex;align-items:center;gap:6px;padding:9px 12px;border-radius:9px;cursor:pointer;font-size:13px;font-weight:600;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.04);color:rgba(255,255,255,.6)}
 
 /* Notification bell */
-.bell-btn{position:relative;background:none;border:none;color:rgba(255,255,255,.5);cursor:pointer;padding:4px 8px;font-size:20px}
+.bell-btn{position:relative;background:none;border:none;color:rgba(255,255,255,.78);cursor:pointer;padding:4px 8px;font-size:20px}
 .bell-badge{position:absolute;top:0;right:2px;background:#ef4444;color:#fff;font-size:9px;font-weight:900;border-radius:999px;padding:1px 5px;min-width:16px;text-align:center}
 .notif-panel{display:none;position:absolute;right:0;top:44px;width:300px;background:#1a2730;border:1px solid rgba(255,255,255,.1);border-radius:14px;box-shadow:0 12px 40px rgba(0,0,0,.5);z-index:100;max-height:360px;overflow-y:auto}
 .notif-item{padding:12px 16px;border-bottom:1px solid rgba(255,255,255,.06);font-size:13px}
 .notif-item:last-child{border-bottom:none}
 .notif-amount{font-weight:900;color:#4ADE80}
-.notif-desc{color:rgba(255,255,255,.5);font-size:12px;margin-top:2px}
-.notif-time{font-size:11px;color:rgba(255,255,255,.3);margin-top:2px}
-.notif-empty{padding:20px;text-align:center;color:rgba(255,255,255,.3);font-size:13px}
+.notif-desc{color:rgba(255,255,255,.78);font-size:12px;margin-top:2px}
+.notif-time{font-size:11px;color:rgba(255,255,255,.65);margin-top:2px}
+.notif-empty{padding:20px;text-align:center;color:rgba(255,255,255,.65);font-size:13px}
 
 @media(max-width:480px){
     .stats{grid-template-columns:repeat(3,1fr)}
@@ -143,14 +143,14 @@ select option{color:#111;background:#fff}
                 @if($todayPayments > 0)<span class="bell-badge">{{ $todayPayments }}</span>@endif
             </button>
             <div class="notif-panel" id="notif-panel">
-                <div style="padding:12px 16px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.35);border-bottom:1px solid rgba(255,255,255,.06)">Recent Payments</div>
+                <div style="padding:12px 16px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.65);border-bottom:1px solid rgba(255,255,255,.06)">Recent Payments</div>
                 <div id="notif-list"><div class="notif-empty">Loadingâ€¦</div></div>
             </div>
         </div>
-        <span style="font-size:12px;color:rgba(255,255,255,.4)">{{ session('creditor_name') }}</span>
+        <span style="font-size:12px;color:rgba(255,255,255,.72)">{{ session('creditor_name') }}</span>
         <form method="POST" action="{{ route('creditor.logout') }}" style="display:inline">
             @csrf
-            <button type="submit" style="background:none;border:none;color:rgba(255,255,255,.35);font-size:12px;cursor:pointer">Logout</button>
+            <button type="submit" style="background:none;border:none;color:rgba(255,255,255,.65);font-size:12px;cursor:pointer">Logout</button>
         </form>
     </div>
 </nav>
@@ -163,12 +163,12 @@ select option{color:#111;background:#fff}
 
     {{-- Payout settings --}}
     <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:13px;padding:14px 16px;margin-bottom:20px">
-        <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.35);margin-bottom:10px">ðŸ’° Receive Payments To</div>
+        <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.65);margin-bottom:10px">ðŸ’° Receive Payments To</div>
         <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
             <div id="payout-display" style="flex:1;font-size:14px;font-weight:700;color:{{ session('creditor_payout_till') ? '#4ADE80' : 'rgba(255,255,255,.7)' }}">
                 {{ session('creditor_payout_till') ? 'ðŸª Till ' . session('creditor_payout_till') : 'ðŸ“± M-Pesa / Pochi (your login number)' }}
             </div>
-            <button onclick="toggleTillEdit()" style="font-size:12px;padding:5px 12px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:7px;color:rgba(255,255,255,.55);cursor:pointer;font-family:inherit" id="payout-edit-btn">Change</button>
+            <button onclick="toggleTillEdit()" style="font-size:12px;padding:5px 12px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:7px;color:rgba(255,255,255,.78);cursor:pointer;font-family:inherit" id="payout-edit-btn">Change</button>
         </div>
         <div id="till-edit-form" style="display:none;margin-top:12px">
             <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
@@ -176,9 +176,9 @@ select option{color:#111;background:#fff}
                     value="{{ session('creditor_payout_till','') }}"
                     style="flex:1;padding:10px 12px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:9px;color:#fff;font-size:14px;outline:none;font-family:inherit;min-width:180px">
                 <button onclick="saveTill()" style="padding:10px 18px;background:linear-gradient(135deg,#dc2626,#ef4444);border:none;border-radius:9px;color:#fff;font-size:13px;font-weight:700;cursor:pointer">Save</button>
-                <button onclick="toggleTillEdit()" style="background:none;border:none;color:rgba(255,255,255,.3);cursor:pointer;font-size:12px;padding:6px">Cancel</button>
+                <button onclick="toggleTillEdit()" style="background:none;border:none;color:rgba(255,255,255,.65);cursor:pointer;font-size:12px;padding:6px">Cancel</button>
             </div>
-            <div style="font-size:11px;color:rgba(255,255,255,.3);margin-top:6px">Leave blank to receive via M-Pesa/Pochi instead of Till.</div>
+            <div style="font-size:11px;color:rgba(255,255,255,.65);margin-top:6px">Leave blank to receive via M-Pesa/Pochi instead of Till.</div>
         </div>
     </div>
 
@@ -217,7 +217,7 @@ select option{color:#111;background:#fff}
         <div class="empty">
             <div style="font-size:36px;margin-bottom:12px">ðŸ”—</div>
             <div style="font-size:15px;font-weight:700;margin-bottom:6px">No Pay Links yet</div>
-            <div style="font-size:13px;color:rgba(255,255,255,.35);margin-bottom:20px">Create a pay link so customers can pay you via M-Pesa â€” without you sharing your number.</div>
+            <div style="font-size:13px;color:rgba(255,255,255,.65);margin-bottom:20px">Create a pay link so customers can pay you via M-Pesa â€” without you sharing your number.</div>
             <a href="{{ route('seller.register') }}" style="display:inline-block;padding:12px 24px;background:linear-gradient(135deg,#25D366,#1aaa52);border-radius:11px;color:#fff;font-weight:800;text-decoration:none;font-size:14px">Create a Pay Link â†’</a>
         </div>
         @else
@@ -226,7 +226,7 @@ select option{color:#111;background:#fff}
             <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px;flex-wrap:wrap;gap:10px">
                 <div>
                     <div style="font-size:16px;font-weight:900">{{ $pl['business_name'] }}</div>
-                    <div style="font-size:12px;color:rgba(255,255,255,.4);margin-top:2px">pregota.com/pay/{{ $pl['handle'] }}</div>
+                    <div style="font-size:12px;color:rgba(255,255,255,.72);margin-top:2px">pregota.com/pay/{{ $pl['handle'] }}</div>
                 </div>
                 <div style="display:flex;gap:8px">
                     <a href="{{ $pl['public_url'] }}" target="_blank" style="font-size:12px;padding:6px 12px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:8px;color:rgba(255,255,255,.6);text-decoration:none">View â†’</a>
@@ -237,34 +237,34 @@ select option{color:#111;background:#fff}
             <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px">
                 <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:10px;padding:12px;text-align:center">
                     <div style="font-size:16px;font-weight:900;color:#4ADE80">KES {{ number_format($pl['today_received']) }}</div>
-                    <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:rgba(255,255,255,.35);margin-top:3px">Today</div>
+                    <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:rgba(255,255,255,.65);margin-top:3px">Today</div>
                 </div>
                 <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:10px;padding:12px;text-align:center">
                     <div style="font-size:16px;font-weight:900">{{ $pl['today_count'] }}</div>
-                    <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:rgba(255,255,255,.35);margin-top:3px">Payments</div>
+                    <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:rgba(255,255,255,.65);margin-top:3px">Payments</div>
                 </div>
                 <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:10px;padding:12px;text-align:center">
                     <div style="font-size:16px;font-weight:900">KES {{ number_format($pl['total_received']) }}</div>
-                    <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:rgba(255,255,255,.35);margin-top:3px">All Time</div>
+                    <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:rgba(255,255,255,.65);margin-top:3px">All Time</div>
                 </div>
             </div>
 
             @if(count($pl['recent']) > 0)
-            <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.3);margin-bottom:8px">Recent Payments</div>
+            <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.65);margin-bottom:8px">Recent Payments</div>
             @foreach($pl['recent'] as $rp)
             <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.05)">
                 <div>
                     <div style="font-size:13px;font-weight:700;color:#4ADE80">KES {{ number_format($rp['amount']) }}</div>
-                    <div style="font-size:11px;color:rgba(255,255,255,.3);margin-top:1px">{{ $rp['paid_at'] }}</div>
+                    <div style="font-size:11px;color:rgba(255,255,255,.65);margin-top:1px">{{ $rp['paid_at'] }}</div>
                 </div>
-                <div style="font-size:11px;color:rgba(255,255,255,.3)">{{ $rp['receipt'] }}</div>
+                <div style="font-size:11px;color:rgba(255,255,255,.65)">{{ $rp['receipt'] }}</div>
             </div>
             @endforeach
             @endif
         </div>
         @endforeach
 
-        <a href="{{ route('seller.register') }}" style="display:block;text-align:center;padding:13px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:12px;color:rgba(255,255,255,.5);font-size:13px;font-weight:700;text-decoration:none;margin-top:4px">+ Add Another Pay Link</a>
+        <a href="{{ route('seller.register') }}" style="display:block;text-align:center;padding:13px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:12px;color:rgba(255,255,255,.78);font-size:13px;font-weight:700;text-decoration:none;margin-top:4px">+ Add Another Pay Link</a>
         @endif
     </div>
 
@@ -291,21 +291,21 @@ select option{color:#111;background:#fff}
         <div style="display:flex;gap:10px;margin-bottom:20px">
             <div style="flex:1;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:10px;padding:12px;text-align:center">
                 <div style="font-size:14px;font-weight:900;color:#4ADE80">KES {{ number_format($monthIncome) }}</div>
-                <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:rgba(255,255,255,.3);margin-top:3px">30-Day Income</div>
+                <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:rgba(255,255,255,.65);margin-top:3px">30-Day Income</div>
             </div>
             <div style="flex:1;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:10px;padding:12px;text-align:center">
                 <div style="font-size:14px;font-weight:900;color:#f87171">KES {{ number_format($monthExpense) }}</div>
-                <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:rgba(255,255,255,.3);margin-top:3px">30-Day Expenses</div>
+                <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:rgba(255,255,255,.65);margin-top:3px">30-Day Expenses</div>
             </div>
             <div style="flex:1;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:10px;padding:12px;text-align:center">
                 <div style="font-size:14px;font-weight:900;color:{{ ($monthIncome-$monthExpense)>=0?'#4ADE80':'#f87171' }}">KES {{ number_format(abs($monthIncome-$monthExpense)) }}</div>
-                <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:rgba(255,255,255,.3);margin-top:3px">30-Day {{ ($monthIncome-$monthExpense)>=0?'Profit':'Loss' }}</div>
+                <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:rgba(255,255,255,.65);margin-top:3px">30-Day {{ ($monthIncome-$monthExpense)>=0?'Profit':'Loss' }}</div>
             </div>
         </div>
 
         {{-- Add entry form --}}
         <div class="add-entry-form">
-            <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.35);margin-bottom:10px">Record Entry</div>
+            <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.65);margin-bottom:10px">Record Entry</div>
             <div class="ae-type">
                 <label style="border-color:rgba(37,211,102,.25);background:rgba(37,211,102,.06)">
                     <input type="radio" name="ae-type" value="income" id="ae-income" checked style="accent-color:#4ADE80"> ðŸ’° Income
@@ -379,16 +379,16 @@ select option{color:#111;background:#fff}
             <div class="customer-chip" id="payee-chip-{{ $c->id }}"
                 onclick="selectPayee({{ $c->id }}, '{{ addslashes($c->name) }}', '{{ $c->till ? 'ðŸª Till '.$c->till : ($c->phone_masked ?? 'ðŸ“± Phone') }}')">
                 <div class="chip-phone" style="font-size:13px;color:#fff">{{ $c->name }}</div>
-                <div style="font-size:10px;color:rgba(255,255,255,.35);margin-top:2px">
+                <div style="font-size:10px;color:rgba(255,255,255,.65);margin-top:2px">
                     {{ $c->till ? 'ðŸª Till '.$c->till : ($c->phone_masked ?? 'ðŸ“± Phone') }}
                 </div>
                 <div style="margin-top:6px;display:flex;gap:6px;justify-content:center">
                     <span onclick="event.stopPropagation();editPayee({{ $c->id }})"
-                          style="font-size:11px;color:rgba(255,255,255,.4);cursor:pointer;padding:2px 6px;border:1px solid rgba(255,255,255,.12);border-radius:5px">âœï¸ Edit</span>
+                          style="font-size:11px;color:rgba(255,255,255,.72);cursor:pointer;padding:2px 6px;border:1px solid rgba(255,255,255,.12);border-radius:5px">âœï¸ Edit</span>
                 </div>
             </div>
             @endforeach
-            <div class="customer-chip" onclick="toggleAddPayee()" id="add-payee-chip" style="border-style:dashed;color:rgba(255,255,255,.4)">
+            <div class="customer-chip" onclick="toggleAddPayee()" id="add-payee-chip" style="border-style:dashed;color:rgba(255,255,255,.72)">
                 <div style="font-size:20px">ï¼‹</div>
                 <div style="font-size:11px;margin-top:2px">Add Payee</div>
             </div>
@@ -396,7 +396,7 @@ select option{color:#111;background:#fff}
 
         {{-- Add / Edit payee form --}}
         <div id="add-payee-form" style="display:none;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:13px;padding:16px;margin-bottom:16px">
-            <div id="np-form-title" style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.35);margin-bottom:10px">New Payee</div>
+            <div id="np-form-title" style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.65);margin-bottom:10px">New Payee</div>
             <input type="hidden" id="np-edit-id" value="">
             <div class="ae-row" style="margin-bottom:8px">
                 <input type="text" id="np-name" class="ae-input" placeholder="Name â€” e.g. Amina, Kariuki Supplier" maxlength="100">
@@ -405,14 +405,14 @@ select option{color:#111;background:#fff}
             <input type="tel" id="np-phone" class="ae-input" placeholder="Phone (if no Till) â€” e.g. 0712345678" style="margin-bottom:8px">
             <div style="display:flex;gap:8px">
                 <button id="np-save-btn" onclick="savePayee()" style="padding:10px 20px;background:linear-gradient(135deg,#dc2626,#ef4444);border:none;border-radius:9px;color:#fff;font-size:14px;font-weight:700;cursor:pointer">Save Payee</button>
-                <button onclick="cancelPayeeForm()" style="background:none;border:none;color:rgba(255,255,255,.3);cursor:pointer;font-size:13px;padding:6px">Cancel</button>
+                <button onclick="cancelPayeeForm()" style="background:none;border:none;color:rgba(255,255,255,.65);cursor:pointer;font-size:13px;padding:6px">Cancel</button>
             </div>
             <div id="np-err" style="display:none;margin-top:8px;font-size:13px;color:#f87171"></div>
         </div>
 
         {{-- Pay form --}}
         <div id="pay-form" style="display:none;background:rgba(239,68,68,.04);border:1px solid rgba(239,68,68,.15);border-radius:13px;padding:16px;margin-bottom:16px">
-            <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.35);margin-bottom:6px">Pay</div>
+            <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.65);margin-bottom:6px">Pay</div>
             <div id="pay-to-label" style="font-size:15px;font-weight:700;color:#f87171;margin-bottom:12px"></div>
             <div class="ae-row" style="margin-bottom:8px">
                 <input type="number" id="pay-amount" class="ae-input" placeholder="Amount (KES)" min="10">
@@ -427,7 +427,7 @@ select option{color:#111;background:#fff}
             <input type="text" id="pay-desc" class="ae-input" placeholder="Note â€” e.g. May salary, Unga 10 bags" maxlength="200" style="margin-bottom:8px">
             <div style="display:flex;gap:8px;align-items:center">
                 <button onclick="initiatePayout()" id="pay-btn" style="flex:1;padding:12px;background:linear-gradient(135deg,#dc2626,#ef4444);border:none;border-radius:9px;color:#fff;font-size:15px;font-weight:700;cursor:pointer">Pay Now via M-Pesa â†’</button>
-                <button onclick="clearPayee()" style="background:none;border:none;color:rgba(255,255,255,.3);cursor:pointer;font-size:13px;padding:6px">Cancel</button>
+                <button onclick="clearPayee()" style="background:none;border:none;color:rgba(255,255,255,.65);cursor:pointer;font-size:13px;padding:6px">Cancel</button>
             </div>
             <div id="pay-status" style="display:none;margin-top:10px;padding:10px 14px;border-radius:9px;font-size:13px"></div>
         </div>
@@ -475,7 +475,7 @@ select option{color:#111;background:#fff}
             <div class="customer-chip" onclick="selectCustomer('{{ $c['phone_hash'] }}', '{{ $c['display'] }}', '{{ $c['phone_masked'] }}', '{{ addslashes($c['phone_encrypted']) }}', '{{ addslashes($c['name'] ?? '') }}')" id="chip-{{ $c['phone_hash'] }}">
                 <div class="chip-phone" style="{{ $c['name'] ? 'font-size:13px;color:#fff' : '' }}">{{ $c['display'] }}</div>
                 @if($c['name'])
-                <div style="font-size:10px;color:rgba(255,255,255,.35);margin-top:1px">{{ $c['phone_masked'] }}</div>
+                <div style="font-size:10px;color:rgba(255,255,255,.65);margin-top:1px">{{ $c['phone_masked'] }}</div>
                 @endif
                 @if($c['outstanding'] > 0)
                 <div class="chip-balance">KES {{ number_format($c['outstanding']) }}</div>
@@ -513,7 +513,7 @@ select option{color:#111;background:#fff}
             <div>
                 <div class="deni-desc">{{ $d->description }}</div>
                 <div class="deni-date">
-                    @if($d->debtor_name)<span style="color:rgba(255,255,255,.55);font-weight:600">{{ $d->debtor_name }}</span> Â· @endif
+                    @if($d->debtor_name)<span style="color:rgba(255,255,255,.78);font-weight:600">{{ $d->debtor_name }}</span> Â· @endif
                     {{ $d->created_at->format('d M Y') }}{{ $d->due_date ? ' Â· Due ' . $d->due_date->format('d M') : '' }}
                 </div>
             </div>
@@ -552,7 +552,7 @@ select option{color:#111;background:#fff}
                     <input class="charge-input" type="text" name="description" placeholder="What for? e.g. Uji + mandazi" maxlength="200" required>
                     <input class="charge-input" type="number" name="amount" placeholder="KES" min="1" style="max-width:100px" required>
                     <button class="charge-submit" type="submit">Add</button>
-                    <button type="button" onclick="toggleCharge('{{ $d->admin_token }}')" style="background:none;border:none;color:rgba(255,255,255,.3);cursor:pointer;font-size:12px;padding:6px">Cancel</button>
+                    <button type="button" onclick="toggleCharge('{{ $d->admin_token }}')" style="background:none;border:none;color:rgba(255,255,255,.65);cursor:pointer;font-size:12px;padding:6px">Cancel</button>
                 </div>
             </form>
         </div>
@@ -572,7 +572,7 @@ select option{color:#111;background:#fff}
             </div>
             <span class="badge settled">âœ… Settled</span>
         </div>
-        <div style="font-size:13px;color:rgba(255,255,255,.4)">KES {{ number_format($d->amount_paid) }} collected in full.</div>
+        <div style="font-size:13px;color:rgba(255,255,255,.72)">KES {{ number_format($d->amount_paid) }} collected in full.</div>
     </div>
     @endforeach
     @endif
@@ -794,9 +794,9 @@ async function savePayee() {
             if (chip) {
                 chip.setAttribute('onclick', `selectPayee(${editId}, '${safeName}', '${detail}')`);
                 chip.innerHTML = `<div class="chip-phone" style="font-size:13px;color:#fff">${name}</div>
-                    <div style="font-size:10px;color:rgba(255,255,255,.35);margin-top:2px">${detail}</div>
+                    <div style="font-size:10px;color:rgba(255,255,255,.65);margin-top:2px">${detail}</div>
                     <div style="margin-top:6px;display:flex;gap:6px;justify-content:center">
-                        <span onclick="event.stopPropagation();editPayee(${editId})" style="font-size:11px;color:rgba(255,255,255,.4);cursor:pointer;padding:2px 6px;border:1px solid rgba(255,255,255,.12);border-radius:5px">âœï¸ Edit</span>
+                        <span onclick="event.stopPropagation();editPayee(${editId})" style="font-size:11px;color:rgba(255,255,255,.72);cursor:pointer;padding:2px 6px;border:1px solid rgba(255,255,255,.12);border-radius:5px">âœï¸ Edit</span>
                     </div>`;
             }
         } else {
@@ -807,9 +807,9 @@ async function savePayee() {
             chip.id = 'payee-chip-' + data.id;
             chip.setAttribute('onclick', `selectPayee(${data.id}, '${safeName}', '${detail}')`);
             chip.innerHTML = `<div class="chip-phone" style="font-size:13px;color:#fff">${name}</div>
-                <div style="font-size:10px;color:rgba(255,255,255,.35);margin-top:2px">${detail}</div>
+                <div style="font-size:10px;color:rgba(255,255,255,.65);margin-top:2px">${detail}</div>
                 <div style="margin-top:6px;display:flex;gap:6px;justify-content:center">
-                    <span onclick="event.stopPropagation();editPayee(${data.id})" style="font-size:11px;color:rgba(255,255,255,.4);cursor:pointer;padding:2px 6px;border:1px solid rgba(255,255,255,.12);border-radius:5px">âœï¸ Edit</span>
+                    <span onclick="event.stopPropagation();editPayee(${data.id})" style="font-size:11px;color:rgba(255,255,255,.72);cursor:pointer;padding:2px 6px;border:1px solid rgba(255,255,255,.12);border-radius:5px">âœï¸ Edit</span>
                 </div>`;
             chips.insertBefore(chip, addBtn);
         }
@@ -1059,5 +1059,4 @@ async function deleteLedgerEntry(id) {
 </script>
 </body>
 </html>
-
 

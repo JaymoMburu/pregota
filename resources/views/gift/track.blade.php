@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pregota â€” Track Your Gift</title>
+<title>Pregota — Track Your Gift</title>
 <meta name="csrf-token" content="{{ csrf_token() }}">
 @include('partials.pwa')
 <style>
@@ -49,7 +49,7 @@ input::placeholder{color:rgba(255,255,255,.25);letter-spacing:normal}
 
 <div class="main">
     <div class="card">
-        <div class="icon">ðŸ”</div>
+        <div class="icon">🔍</div>
         <h1>Track Your Gift</h1>
         <p class="sub">Enter your gift code to see if it's been redeemed. No identity is revealed.</p>
 
@@ -59,7 +59,7 @@ input::placeholder{color:rgba(255,255,255,.25);letter-spacing:normal}
                 <input type="text" id="code" placeholder="PRG-XXXX-XXXX" maxlength="13" required
                     oninput="this.value=this.value.toUpperCase().replace(/[^A-Z0-9-]/g,'')">
             </div>
-            <button type="submit" class="btn" id="trackBtn">Check Status â†’</button>
+            <button type="submit" class="btn" id="trackBtn">Check Status →</button>
         </form>
 
         <div class="result" id="result"></div>
@@ -67,17 +67,17 @@ input::placeholder{color:rgba(255,255,255,.25);letter-spacing:normal}
 </div>
 
 <footer class="footer">
-    Â© 2026 Pregota Â· Anonymous Gift Transfers Â· pregota.com
+    © 2026 Pregota · Anonymous Gift Transfers · pregota.com
 </footer>
 
 <script>
 const statusMeta = {
-    pending:   { icon:'â³', title:'Awaiting Payment',    desc:'M-Pesa payment has not been confirmed yet.',           color:'pending'   },
-    active:    { icon:'ðŸŽ', title:'Ready to Redeem',     desc:'Payment confirmed. This gift is waiting to be claimed.',color:'active'    },
-    redeemed:  { icon:'âœ…', title:'Gift Claimed!',        desc:'Someone has already redeemed this gift code.',         color:'redeemed'  },
-    expired:   { icon:'âŒ›', title:'Expired',              desc:'This gift code has expired and can no longer be used.',color:'expired'   },
-    cancelled: { icon:'âŒ', title:'Cancelled',            desc:'This gift was cancelled or the payment failed.',       color:'cancelled' },
-    recalled:  { icon:'â†©ï¸', title:'Recalled by Sender',  desc:'The sender recalled this gift. A refund was sent to them via M-Pesa.', color:'cancelled' },
+    pending:   { icon:'⏳', title:'Awaiting Payment',    desc:'M-Pesa payment has not been confirmed yet.',           color:'pending'   },
+    active:    { icon:'🎁', title:'Ready to Redeem',     desc:'Payment confirmed. This gift is waiting to be claimed.',color:'active'    },
+    redeemed:  { icon:'✅', title:'Gift Claimed!',        desc:'Someone has already redeemed this gift code.',         color:'redeemed'  },
+    expired:   { icon:'⌛', title:'Expired',              desc:'This gift code has expired and can no longer be used.',color:'expired'   },
+    cancelled: { icon:'❌', title:'Cancelled',            desc:'This gift was cancelled or the payment failed.',       color:'cancelled' },
+    recalled:  { icon:'↩️', title:'Recalled by Sender',  desc:'The sender recalled this gift. A refund was sent to them via M-Pesa.', color:'cancelled' },
 };
 
 document.getElementById('trackForm').addEventListener('submit', async function(e) {
@@ -96,7 +96,7 @@ document.getElementById('trackForm').addEventListener('submit', async function(e
     } catch(err) {
         alert('Network error. Please try again.');
     } finally {
-        btn.disabled = false; btn.textContent = 'Check Status â†’';
+        btn.disabled = false; btn.textContent = 'Check Status →';
     }
 });
 
@@ -105,11 +105,11 @@ function renderResult(json) {
     el.style.display = 'block';
 
     if (!json.found) {
-        el.innerHTML = `<div class="status-card cancelled"><div class="status-icon">â“</div><div class="status-title">Not Found</div><div class="status-desc">No gift with that code exists. Please check and try again.</div></div>`;
+        el.innerHTML = `<div class="status-card cancelled"><div class="status-icon">❓</div><div class="status-title">Not Found</div><div class="status-desc">No gift with that code exists. Please check and try again.</div></div>`;
         return;
     }
 
-    // Hold window â€” active but not yet claimable
+    // Hold window — active but not yet claimable
     if (json.status === 'active' && json.in_hold) {
         renderHoldState(json);
         return;
@@ -128,13 +128,13 @@ function renderResult(json) {
     }
 
     const countdown = (json.status === 'active' && json.expires_seconds > 0)
-        ? `<div class="countdown">â± Expires in ${formatSeconds(json.expires_seconds)}</div>` : '';
+        ? `<div class="countdown">⏱ Expires in ${formatSeconds(json.expires_seconds)}</div>` : '';
 
     const trackedCode = document.getElementById('code').value.trim();
     const recallForm = json.status === 'active' ? `
         <div id="recallSection" style="margin-top:20px;border-top:1px solid rgba(255,255,255,.08);padding-top:18px;text-align:left">
             <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.68);margin-bottom:10px">Cancel This Gift</div>
-            <div style="font-size:12px;color:rgba(255,255,255,.68);margin-bottom:12px;line-height:1.55">Changed your mind? Enter your recall token and M-Pesa number to cancel. You will receive the face value back â€” the deposit fee is <strong style="color:rgba(255,255,255,.6)">not</strong> refunded.</div>
+            <div style="font-size:12px;color:rgba(255,255,255,.68);margin-bottom:12px;line-height:1.55">Changed your mind? Enter your recall token and M-Pesa number to cancel. You will receive the face value back — the deposit fee is <strong style="color:rgba(255,255,255,.6)">not</strong> refunded.</div>
             <input type="text" id="recallTokenInput" placeholder="RC-XXXX-XXXX" maxlength="15"
                 style="width:100%;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);border-radius:8px;padding:10px 12px;color:#fff;font-size:13px;outline:none;margin-bottom:8px;font-family:monospace;letter-spacing:.08em"
                 oninput="this.value=this.value.toUpperCase().replace(/[^A-Z0-9-]/g,'')">
@@ -143,7 +143,7 @@ function renderResult(json) {
             <button onclick="submitRecall(document.getElementById('code').value.trim())"
                 id="recallBtn"
                 style="width:100%;padding:11px;border-radius:10px;border:none;font-size:14px;font-weight:700;cursor:pointer;background:linear-gradient(135deg,#dc2626,#9b1c1c);color:#fff">
-                Cancel Gift &amp; Refund â†’
+                Cancel Gift &amp; Refund →
             </button>
             <div id="recallMsg" style="font-size:12px;margin-top:8px;display:none"></div>
         </div>` : '';
@@ -164,14 +164,14 @@ function renderHoldState(json) {
     const el = document.getElementById('result');
     el.style.display = 'block';
     el.innerHTML = `<div class="status-card active" style="border-color:rgba(251,191,36,.4);background:rgba(251,191,36,.06)">
-        <div class="status-icon">â³</div>
+        <div class="status-icon">⏳</div>
         <div class="status-title" style="color:#fbbf24">Verification Window Active</div>
         <div class="status-desc">Payment confirmed. The sender has a short window to verify they sent this to the right person before it becomes claimable.</div>
         <div class="countdown" id="holdCountdown" style="font-size:20px;font-weight:900;font-family:monospace;color:#fbbf24;margin:14px 0">${formatSeconds(json.hold_seconds)}</div>
         <div style="font-size:12px;color:rgba(255,255,255,.6);margin-bottom:16px">Gift becomes claimable when this reaches zero</div>
         <div style="border-top:1px solid rgba(255,255,255,.08);padding-top:16px;text-align:left">
-            <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(251,191,36,.7);margin-bottom:8px">âš ï¸ Sent to the wrong person?</div>
-            <div style="font-size:12px;color:rgba(255,255,255,.68);margin-bottom:10px;line-height:1.55">Cancel now using your recall token. The deposit fee is not refunded â€” you receive the face value only.</div>
+            <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(251,191,36,.7);margin-bottom:8px">⚠️ Sent to the wrong person?</div>
+            <div style="font-size:12px;color:rgba(255,255,255,.68);margin-bottom:10px;line-height:1.55">Cancel now using your recall token. The deposit fee is not refunded — you receive the face value only.</div>
             <input type="text" id="recallTokenInput" placeholder="RC-XXXX-XXXX" maxlength="15"
                 style="width:100%;background:rgba(255,255,255,.07);border:1px solid rgba(251,191,36,.3);border-radius:8px;padding:10px 12px;color:#fff;font-size:13px;outline:none;margin-bottom:8px;font-family:monospace;letter-spacing:.08em"
                 oninput="this.value=this.value.toUpperCase().replace(/[^A-Z0-9-]/g,'')">
@@ -179,7 +179,7 @@ function renderHoldState(json) {
                 style="width:100%;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);border-radius:8px;padding:10px 12px;color:#fff;font-size:13px;outline:none;margin-bottom:10px">
             <button onclick="submitRecall(document.getElementById('code').value.trim())" id="recallBtn"
                 style="width:100%;padding:11px;border-radius:10px;border:none;font-size:14px;font-weight:700;cursor:pointer;background:linear-gradient(135deg,#dc2626,#9b1c1c);color:#fff">
-                Cancel Gift &amp; Refund â†’
+                Cancel Gift &amp; Refund →
             </button>
             <div id="recallMsg" style="font-size:12px;margin-top:8px;display:none"></div>
         </div>
@@ -196,7 +196,7 @@ function startHoldCountdown(seconds) {
         if (!el) { clearInterval(holdInterval); return; }
         if (seconds <= 0) {
             clearInterval(holdInterval);
-            // Re-check status â€” window expired
+            // Re-check status — window expired
             document.getElementById('trackForm').dispatchEvent(new Event('submit'));
             return;
         }
@@ -211,8 +211,8 @@ function startCountdown(seconds) {
         seconds--;
         const el = document.querySelector('.countdown');
         if (!el) { clearInterval(countdownInterval); return; }
-        if (seconds <= 0) { el.textContent = 'âŒ› Expired'; clearInterval(countdownInterval); return; }
-        el.textContent = 'â± Expires in ' + formatSeconds(seconds);
+        if (seconds <= 0) { el.textContent = '⌛ Expired'; clearInterval(countdownInterval); return; }
+        el.textContent = '⏱ Expires in ' + formatSeconds(seconds);
     }, 1000);
 }
 
@@ -251,7 +251,7 @@ async function submitRecall(code) {
         showRecallMsg('Network error. Please try again.', false);
     } finally {
         btn.disabled = false;
-        if (btn.textContent === 'Processing...') btn.textContent = 'Cancel Gift & Refund â†’';
+        if (btn.textContent === 'Processing...') btn.textContent = 'Cancel Gift & Refund →';
     }
 }
 
@@ -264,4 +264,3 @@ function showRecallMsg(text, success) {
 </script>
 </body>
 </html>
-
